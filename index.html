@@ -12,30 +12,25 @@
   <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/jetbrains-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="assets/css/portfolio.css" />
+  <link rel="preload" href="assets/img/portrait.jpg" as="image" />
+  <link rel="stylesheet" href="assets/css/home.css" />
 </head>
 <body>
 
   <!-- ═══════════════ PRELOADER ═══════════════ -->
   <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__panel loader__panel--l"></div>
+    <div class="loader__panel loader__panel--r"></div>
     <div class="loader__inner">
-      <p class="loader__meta"><span>Portfolio</span><span>©2026</span></p>
-      <h1 class="loader__name" id="loaderName">
-        <span class="ln-mask"><span class="ln-char">S</span><span class="ln-char">P</span><span class="ln-char">H</span><span class="ln-char">A</span><span class="ln-char">M</span><span class="ln-char">A</span><span class="ln-char">N</span><span class="ln-char">D</span><span class="ln-char">L</span><span class="ln-char">A</span></span>
-      </h1>
-      <p class="loader__roles" id="loaderRoles">
-        <span data-loader-role>Product Designer</span>
-        <span data-loader-role>AI Experience Designer</span>
-        <span data-loader-role>Interaction Designer</span>
-      </p>
-      <div class="loader__foot">
-        <span class="loader__hint">Loading the experience</span>
+      <p class="loader__eyebrow">Sphamandla Xaba — Portfolio ©2026</p>
+      <div class="loader__row">
+        <span class="loader__word" id="loaderWordA">DESIGNING</span>
         <span class="loader__count" id="loaderCount">000</span>
+        <span class="loader__word loader__word--outline" id="loaderWordB">UNDERSTANDING</span>
       </div>
       <div class="loader__bar"><span id="loaderBar"></span></div>
+      <p class="loader__hint">Thinking before designing…</p>
     </div>
-    <div class="loader__panel loader__panel--a"></div>
-    <div class="loader__panel loader__panel--b"></div>
   </div>
 
   <!-- ═══════════════ CURSOR ═══════════════ -->
@@ -50,29 +45,39 @@
   <!-- ═══════════════ HEADER ═══════════════ -->
   <header class="header" id="header">
     <a href="#top" class="header__logo" data-magnetic>SX<sup>®</sup></a>
-    <div class="header__center" aria-hidden="true">
-      <span class="header__loc">Gauteng, ZA</span>
-      <span class="header__time" id="clock">00:00:00 SAST</span>
-    </div>
+    <nav class="header__nav" aria-label="Primary">
+      <a href="#top" class="header__link is-active">Home</a>
+      <a href="#work" class="header__link">Work</a>
+      <a href="#about" class="header__link">About</a>
+      <a href="#expertise" class="header__link">Expertise</a>
+      <a href="#contact" class="header__link">Contact</a>
+    </nav>
     <div class="header__right">
-      <a href="#contact" class="header__cta" data-magnetic><span>Let's talk</span></a>
-      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" data-magnetic>
-        <span></span><span></span>
+      <div class="header__meta" aria-hidden="true">
+        <span id="clock">00:00 SAST</span>
+        <i></i>
+        <span id="dateNow">—</span>
+      </div>
+      <button class="menu-pill" id="burger" aria-label="Open menu" aria-expanded="false" data-magnetic>
+        <span class="menu-pill__lines"><i></i><i></i></span>
+        <span class="menu-pill__word">Menu</span>
       </button>
     </div>
   </header>
 
   <!-- ═══════════════ OVERLAY MENU ═══════════════ -->
   <nav class="menu" id="menu" aria-hidden="true">
-    <div class="menu__bg"></div>
-    <div class="menu__inner">
+    <div class="menu__scrim" data-menu-close></div>
+    <div class="menu__panel">
+      <p class="menu__label">( Navigation )</p>
       <ul class="menu__list">
         <li><a href="#top" class="menu__link" data-menu-close><span class="menu__index">01</span><span class="menu__word">Home</span></a></li>
         <li><a href="#manifesto" class="menu__link" data-menu-close><span class="menu__index">02</span><span class="menu__word">Philosophy</span></a></li>
         <li><a href="#work" class="menu__link" data-menu-close><span class="menu__index">03</span><span class="menu__word">Work</span></a></li>
-        <li><a href="#expertise" class="menu__link" data-menu-close><span class="menu__index">04</span><span class="menu__word">Expertise</span></a></li>
-        <li><a href="#brands" class="menu__link" data-menu-close><span class="menu__index">05</span><span class="menu__word">Studios</span></a></li>
-        <li><a href="#contact" class="menu__link" data-menu-close><span class="menu__index">06</span><span class="menu__word">Contact</span></a></li>
+        <li><a href="#about" class="menu__link" data-menu-close><span class="menu__index">04</span><span class="menu__word">About</span></a></li>
+        <li><a href="#expertise" class="menu__link" data-menu-close><span class="menu__index">05</span><span class="menu__word">Expertise</span></a></li>
+        <li><a href="#studios" class="menu__link" data-menu-close><span class="menu__index">06</span><span class="menu__word">Studios</span></a></li>
+        <li><a href="#contact" class="menu__link" data-menu-close><span class="menu__index">07</span><span class="menu__word">Contact</span></a></li>
       </ul>
       <div class="menu__foot">
         <a href="mailto:training@gemis.tech" class="menu__mail">training@gemis.tech</a>
@@ -88,40 +93,81 @@
   <main id="top">
 
     <!-- ═══════════════ HERO ═══════════════ -->
-    <section class="hero" data-header-theme="dark">
+    <section class="hero" id="hero" data-header-theme="dark">
       <div class="hero__media" aria-hidden="true">
-        <video class="hero__video" id="heroVideo" autoplay muted loop playsinline preload="auto" poster="assets/img/hero-poster.jpg">
+        <video class="hero__video" autoplay muted loop playsinline preload="auto" poster="assets/img/hero-poster.jpg">
           <source src="assets/video/hero-gem.mp4" type="video/mp4" />
           <source src="https://d8j0ntlcm91z4.cloudfront.net/user_3GMOZifqmavH53boYn9eGkcXqUc/hf_20260712_204917_ee14f045-8dca-45bd-b2d4-e3b9ffeb5d72.mp4" type="video/mp4" />
         </video>
         <div class="hero__shade"></div>
+        <div class="hero__lines"><i></i><i></i><i></i><i></i><i></i></div>
         <canvas class="hero__gl" id="heroCanvas"></canvas>
       </div>
 
-      <div class="hero__content">
-        <p class="hero__eyebrow"><span class="hero__dot"></span><span data-split-lines>Product Designer — Gauteng, South Africa</span></p>
-        <h1 class="hero__title" aria-label="Sphamandla Xaba">
-          <span class="hero__line"><span class="hero__word" data-split-chars>SPHAMANDLA</span></span>
-          <span class="hero__line hero__line--outline"><span class="hero__word" data-split-chars>XABA</span></span>
+      <!-- giant wordmark behind the portrait -->
+      <div class="hero__wordmark" id="heroWordmark" aria-hidden="true"><span>XABA</span></div>
+
+      <!-- centered portrait -->
+      <div class="hero__figure" id="heroFigure" aria-hidden="true">
+        <img src="assets/img/portrait.jpg" alt="" class="hero__portrait" id="heroPortrait" />
+      </div>
+      <div class="hero__fog" aria-hidden="true"></div>
+
+      <!-- left column -->
+      <div class="hero__left">
+        <p class="hero__eyebrow"><i></i>Product Designer &amp; AI Experience Designer</p>
+        <h1 class="hero__title">
+          <span class="line-mask"><span class="line-inner">Designing</span></span>
+          <span class="line-mask"><span class="line-inner line-inner--outline">intelligence</span></span>
+          <span class="line-mask"><span class="line-inner">people trust.</span></span>
         </h1>
-        <div class="hero__meta">
-          <p class="hero__blurb">Designing enterprise SaaS, AI-powered experiences<br />and premium digital products people trust.</p>
-          <div class="hero__status"><i></i>Available for select projects — 2026</div>
+        <div class="hero__proof">
+          <span class="hero__stars" aria-hidden="true">★★★★★</span>
+          <span>6 enterprise platforms shipped</span>
+        </div>
+        <div class="hero__actions">
+          <a href="#contact" class="pill pill--solid" data-magnetic data-cursor="Say hi"><span>Chat with me</span></a>
+          <a href="#work" class="pill pill--ghost" data-magnetic data-cursor="Scroll"><span>View works</span></a>
         </div>
       </div>
 
-      <div class="hero__bottom">
-        <div class="hero__scroll" id="scrollHint" aria-hidden="true">
-          <span class="hero__scroll-track"><span class="hero__scroll-thumb"></span></span>
-          <span>Scroll to explore</span>
-        </div>
-        <div class="hero__ticker" aria-hidden="true">
-          <div class="ticker" data-ticker data-speed="1">
-            <div class="ticker__track">
-              <span>Product Strategy</span><i>✦</i><span>AI Experience Design</span><i>✦</i><span>Interaction Design</span><i>✦</i><span>Design Systems</span><i>✦</i><span>Enterprise SaaS</span><i>✦</i><span>Motion &amp; Storytelling</span><i>✦</i>
-              <span>Product Strategy</span><i>✦</i><span>AI Experience Design</span><i>✦</i><span>Interaction Design</span><i>✦</i><span>Design Systems</span><i>✦</i><span>Enterprise SaaS</span><i>✦</i><span>Motion &amp; Storytelling</span><i>✦</i>
-            </div>
+      <!-- right column -->
+      <aside class="hero__right" aria-hidden="true">
+        <div class="glass-card" id="glassCard">
+          <div class="glass-card__tile"><span>SX<sup>®</sup></span></div>
+          <div class="glass-card__body">
+            <p class="glass-card__title">Design to<br />explore.</p>
+            <div class="glass-card__bar"><span id="glassBar"></span></div>
+            <div class="glass-card__dots"><i class="on"></i><i></i><i></i></div>
           </div>
+        </div>
+        <div class="hero__now">
+          <span class="hero__now-label">Currently</span>
+          <span class="hero__now-value">Product Designer — GEM Information Systems</span>
+        </div>
+        <div class="hero__partners">
+          <span class="hero__partners-label">Selected platforms</span>
+          <div class="hero__partners-grid">
+            <span>✦ ManaGem</span><span>✦ WasteMart</span>
+            <span>✦ SmartStart</span><span>✦ NeuraUX</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- bottom strip -->
+      <div class="hero__strip" aria-hidden="true">
+        <span>• 5+ years experience</span>
+        <span>• Based in Gauteng, South Africa</span>
+        <button class="hero__scrollbtn" id="scrollDown">• Scroll down <em>↓</em></button>
+      </div>
+    </section>
+
+    <!-- ═══════════════ SKILL MARQUEE STRIP ═══════════════ -->
+    <section class="strip" data-header-theme="dark" aria-hidden="true">
+      <div class="ticker" data-ticker data-speed="1">
+        <div class="ticker__track">
+          <span>Product Strategy</span><i>✦</i><span>AI Experience Design</span><i>✦</i><span>Interaction Design</span><i>✦</i><span>Design Systems</span><i>✦</i><span>Enterprise SaaS</span><i>✦</i><span>Motion &amp; Storytelling</span><i>✦</i>
+          <span>Product Strategy</span><i>✦</i><span>AI Experience Design</span><i>✦</i><span>Interaction Design</span><i>✦</i><span>Design Systems</span><i>✦</i><span>Enterprise SaaS</span><i>✦</i><span>Motion &amp; Storytelling</span><i>✦</i>
         </div>
       </div>
     </section>
@@ -129,7 +175,7 @@
     <!-- ═══════════════ MANIFESTO ═══════════════ -->
     <section class="manifesto" id="manifesto" data-header-theme="light">
       <div class="manifesto__inner">
-        <p class="eyebrow-label reveal">( The philosophy )</p>
+        <p class="eyebrow reveal">( The philosophy )</p>
         <p class="manifesto__text" id="manifestoText">I don't design screens — I design understanding. Every product begins with people, business goals and systems, long before a single interface exists. The interface is the outcome. The thinking is the product.</p>
         <div class="manifesto__cols">
           <div class="manifesto__col reveal">
@@ -159,12 +205,6 @@
           <span class="outline">Research</span><span>Define</span><span class="outline">Design</span><span>Deliver</span>
         </div>
       </div>
-      <div class="ticker ticker--giant ticker--reverse" data-ticker data-speed="-1.4">
-        <div class="ticker__track">
-          <span>Clarity</span><span class="outline">Trust</span><span>Efficiency</span><span class="outline">Motion</span>
-          <span>Clarity</span><span class="outline">Trust</span><span>Efficiency</span><span class="outline">Motion</span>
-        </div>
-      </div>
     </section>
 
     <!-- ═══════════════ SELECTED WORK — HORIZONTAL ═══════════════ -->
@@ -173,7 +213,7 @@
         <div class="work__track" id="workTrack">
 
           <div class="work__panel work__panel--intro">
-            <p class="eyebrow-label eyebrow-label--light">( Selected work )</p>
+            <p class="eyebrow eyebrow--light">( Selected work )</p>
             <h2 class="work__title">
               <span class="line-mask"><span class="line-inner">Products designed</span></span>
               <span class="line-mask"><span class="line-inner">to be understood.</span></span>
@@ -184,92 +224,87 @@
 
           <article class="work__panel wcard" data-cursor="Open case">
             <a class="wcard__link" href="managem.html" aria-label="ManaGem case study">
+              <span class="wcard__num" aria-hidden="true">01</span>
               <div class="wcard__media">
                 <img class="wcard__img" src="assets/img/work/managem-dash.jpg" alt="ManaGem enterprise platform dashboard" loading="lazy" />
-                <span class="wcard__year">2026</span>
               </div>
-              <div class="wcard__info">
-                <span class="wcard__idx">01</span>
+              <div class="wcard__caption">
                 <div>
                   <h3 class="wcard__name">ManaGem</h3>
-                  <p class="wcard__desc">Enterprise SaaS for business operations — end-to-end UX, dashboard redesign, information architecture and a full design system.</p>
-                  <span class="wcard__tags">Enterprise UX · Design System · Product Strategy</span>
+                  <span class="wcard__tags">Enterprise UX · Design System · Strategy</span>
                 </div>
+                <span class="wcard__year">2026</span>
               </div>
             </a>
           </article>
 
           <article class="work__panel wcard" data-cursor="Open case">
             <a class="wcard__link" href="wastemart.html" aria-label="WasteMart customer portal case study">
+              <span class="wcard__num" aria-hidden="true">02</span>
               <div class="wcard__media">
                 <img class="wcard__img" src="assets/img/work/wm-customer.jpg" alt="WasteMart customer portal" loading="lazy" />
-                <span class="wcard__year">2026</span>
               </div>
-              <div class="wcard__info">
-                <span class="wcard__idx">02</span>
+              <div class="wcard__caption">
                 <div>
                   <h3 class="wcard__name">WasteMart Portal</h3>
-                  <p class="wcard__desc">Self-service portal for bookings, invoices and live collection tracking — trust-building UX for cautious first-time digital users.</p>
                   <span class="wcard__tags">Service Design · UX Flows · Trust UX</span>
                 </div>
+                <span class="wcard__year">2026</span>
               </div>
             </a>
           </article>
 
           <article class="work__panel wcard" data-cursor="Open case">
             <a class="wcard__link" href="wastemart.html" aria-label="WasteMart driver app case study">
+              <span class="wcard__num" aria-hidden="true">03</span>
               <div class="wcard__media">
                 <img class="wcard__img" src="assets/img/work/wm-driver-v2.jpg" alt="WasteMart driver mobile app" loading="lazy" />
-                <span class="wcard__year">2026</span>
               </div>
-              <div class="wcard__info">
-                <span class="wcard__idx">03</span>
+              <div class="wcard__caption">
                 <div>
                   <h3 class="wcard__name">WasteMart Driver</h3>
-                  <p class="wcard__desc">Mobile-first field verification guiding drivers through routes, pickups and proof-of-service — resilient under weak connectivity.</p>
                   <span class="wcard__tags">Mobile UX · Field Ops · Offline-first</span>
                 </div>
+                <span class="wcard__year">2026</span>
               </div>
             </a>
           </article>
 
           <article class="work__panel wcard" data-cursor="Concept">
             <div class="wcard__link">
+              <span class="wcard__num" aria-hidden="true">04</span>
               <div class="wcard__media wcard__media--mock">
                 <div class="phone" aria-hidden="true">
                   <div class="phone__notch"></div>
                   <div class="phone__head"><b>NeuraCalm</b><span>AI financial coach</span></div>
                   <div class="phone__bub phone__bub--ai">Salary landed. Want me to move R1,500 to your emergency fund before it disappears?</div>
                   <div class="phone__bub phone__bub--user">Yes — and how am I doing this month?</div>
-                  <div class="phone__bub phone__bub--ai">Spending is 12% below June. Two weeks of runway gained. Keep going. <i>Why this advice?</i></div>
+                  <div class="phone__bub phone__bub--ai">Spending is 12% below June. Two weeks of runway gained. <i>Why this advice?</i></div>
                   <div class="phone__input">Ask NeuraCalm…</div>
                 </div>
-                <span class="wcard__year">Concept</span>
               </div>
-              <div class="wcard__info">
-                <span class="wcard__idx">04</span>
+              <div class="wcard__caption">
                 <div>
                   <h3 class="wcard__name">NeuraCalm</h3>
-                  <p class="wcard__desc">AI-powered financial coaching concept — conversational AI, behavioural design and transparency patterns that make advice trustworthy.</p>
                   <span class="wcard__tags">AI UX · Conversational Design · Fintech</span>
                 </div>
+                <span class="wcard__year">Concept</span>
               </div>
             </div>
           </article>
 
           <article class="work__panel wcard" data-cursor="Visit site">
             <a class="wcard__link" href="https://smartstartmoodledev.smartstart.org.za/" target="_blank" rel="noopener" aria-label="SmartStart learning platform">
+              <span class="wcard__num" aria-hidden="true">05</span>
               <div class="wcard__media">
                 <img class="wcard__img" src="assets/img/work/smartstart-v2.jpg" alt="SmartStart learning portal" loading="lazy" />
-                <span class="wcard__year">2025</span>
               </div>
-              <div class="wcard__info">
-                <span class="wcard__idx">05</span>
+              <div class="wcard__caption">
                 <div>
                   <h3 class="wcard__name">SmartStart Learning</h3>
-                  <p class="wcard__desc">Learning environment for a national early-learning practitioner network — designed for low-bandwidth, multilingual South Africa.</p>
                   <span class="wcard__tags">EdTech · Data-conscious · Multilingual</span>
                 </div>
+                <span class="wcard__year">2025</span>
               </div>
             </a>
           </article>
@@ -283,14 +318,44 @@
       </div>
     </section>
 
+    <!-- ═══════════════ ABOUT ═══════════════ -->
+    <section class="about" id="about" data-header-theme="dark">
+      <div class="about__grid">
+        <div class="about__media reveal">
+          <div class="about__frame">
+            <img src="assets/img/portrait.jpg" alt="Portrait of Sphamandla Xaba" loading="lazy" />
+          </div>
+          <span class="about__badge">Gauteng, ZA</span>
+        </div>
+        <div class="about__body">
+          <p class="eyebrow eyebrow--light reveal">( About )</p>
+          <h2 class="about__title">
+            <span class="line-mask"><span class="line-inner">The designer</span></span>
+            <span class="line-mask"><span class="line-inner">behind the systems.</span></span>
+          </h2>
+          <p class="about__text reveal">I'm Sphamandla Xaba, a Product Designer based in Gauteng, South Africa. I design enterprise software, AI-powered experiences and digital products that help businesses work smarter — through product thinking, interaction design and modern web technologies.</p>
+          <p class="about__text reveal">As AI gets faster at generating screens, the designer's advantage shifts to defining problems, simplifying complexity and earning trust. That's the work I care about.</p>
+          <div class="about__stats">
+            <div class="stat reveal"><span class="stat__num" data-count="5" data-suffix="+">0</span><span class="stat__label">Years designing</span></div>
+            <div class="stat reveal"><span class="stat__num" data-count="6">0</span><span class="stat__label">Platforms shipped</span></div>
+            <div class="stat reveal"><span class="stat__num" data-count="2">0</span><span class="stat__label">Studios founded</span></div>
+            <div class="stat reveal"><span class="stat__num" data-count="5">0</span><span class="stat__label">Design principles</span></div>
+          </div>
+          <div class="about__tools reveal">
+            <span>Figma</span><span>GSAP</span><span>Three.js</span><span>React</span><span>Next.js</span><span>Tailwind</span><span>Lenis</span><span>Framer Motion</span><span>Claude Code</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ═══════════════ EXPERTISE ═══════════════ -->
     <section class="expertise" id="expertise" data-header-theme="light">
       <header class="expertise__head">
-        <p class="eyebrow-label">( Expertise )</p>
+        <p class="eyebrow">( Expertise )</p>
         <p class="expertise__statement">Five disciplines, one throughline — turning complex systems into experiences people trust.</p>
       </header>
-      <ul class="expertise__list">
-        <li class="xp" data-cursor="—">
+      <ul class="expertise__list" id="xpList">
+        <li class="xp" data-cursor="—" data-preview="assets/img/work/managem-dash.jpg">
           <div class="xp__row">
             <span class="xp__num">01</span>
             <h3 class="xp__name">Product Design</h3>
@@ -298,7 +363,7 @@
           </div>
           <div class="xp__body"><p>Product strategy, information architecture, user flows, journey mapping, wireframing, prototyping and UX validation — the full arc from problem to product.</p></div>
         </li>
-        <li class="xp" data-cursor="—">
+        <li class="xp" data-cursor="—" data-preview="assets/img/work/wm-customer.jpg">
           <div class="xp__row">
             <span class="xp__num">02</span>
             <h3 class="xp__name">AI Experience Design</h3>
@@ -306,7 +371,7 @@
           </div>
           <div class="xp__body"><p>Conversational interfaces, AI-assisted workflows, human-in-the-loop interactions and transparency patterns — AI people actually understand and trust.</p></div>
         </li>
-        <li class="xp" data-cursor="—">
+        <li class="xp" data-cursor="—" data-preview="assets/img/work/wm-driver-v2.jpg">
           <div class="xp__row">
             <span class="xp__num">03</span>
             <h3 class="xp__name">Interaction &amp; Motion</h3>
@@ -314,7 +379,7 @@
           </div>
           <div class="xp__body"><p>Micro-interactions, scroll storytelling, state transitions and cinematic motion with GSAP, Three.js and Lenis — movement that explains, never decorates.</p></div>
         </li>
-        <li class="xp" data-cursor="—">
+        <li class="xp" data-cursor="—" data-preview="assets/img/work/smartstart-v2.jpg">
           <div class="xp__row">
             <span class="xp__num">04</span>
             <h3 class="xp__name">Design Systems</h3>
@@ -322,7 +387,7 @@
           </div>
           <div class="xp__body"><p>Components, tokens, accessibility and documentation — scalable systems that keep large enterprise products consistent as they grow.</p></div>
         </li>
-        <li class="xp" data-cursor="—">
+        <li class="xp" data-cursor="—" data-preview="assets/img/work/managem-dash.jpg">
           <div class="xp__row">
             <span class="xp__num">05</span>
             <h3 class="xp__name">Enterprise SaaS</h3>
@@ -331,12 +396,13 @@
           <div class="xp__body"><p>Operations, HR, asset management, field services and business intelligence — software for internal teams who live in it eight hours a day.</p></div>
         </li>
       </ul>
+      <div class="xp-preview" id="xpPreview" aria-hidden="true"><img src="assets/img/work/managem-dash.jpg" alt="" id="xpPreviewImg" /></div>
     </section>
 
     <!-- ═══════════════ PRINCIPLES — STACKED CARDS ═══════════════ -->
     <section class="principles" id="principles" data-header-theme="dark">
       <header class="principles__head">
-        <p class="eyebrow-label eyebrow-label--light">( Five principles )</p>
+        <p class="eyebrow eyebrow--light">( Five principles )</p>
         <h2 class="principles__title">
           <span class="line-mask"><span class="line-inner">Every project,</span></span>
           <span class="line-mask"><span class="line-inner">the same compass.</span></span>
@@ -345,28 +411,38 @@
       <div class="principles__stack" id="principleStack">
         <div class="pcard" data-i="1">
           <span class="pcard__num">01</span>
-          <h3 class="pcard__name">Clarity</h3>
-          <p class="pcard__text">Complex systems should feel simple. Users should never wonder what happens next.</p>
+          <div class="pcard__body">
+            <h3 class="pcard__name">Clarity</h3>
+            <p class="pcard__text">Complex systems should feel simple. Users should never wonder what happens next.</p>
+          </div>
         </div>
         <div class="pcard" data-i="2">
           <span class="pcard__num">02</span>
-          <h3 class="pcard__name">Trust</h3>
-          <p class="pcard__text">Every interaction should build confidence — especially in finance, enterprise operations and AI.</p>
+          <div class="pcard__body">
+            <h3 class="pcard__name">Trust</h3>
+            <p class="pcard__text">Every interaction should build confidence — especially in finance, enterprise operations and AI.</p>
+          </div>
         </div>
         <div class="pcard" data-i="3">
           <span class="pcard__num">03</span>
-          <h3 class="pcard__name">Efficiency</h3>
-          <p class="pcard__text">Every unnecessary click costs time. Every unnecessary decision creates friction. Good UX removes both.</p>
+          <div class="pcard__body">
+            <h3 class="pcard__name">Efficiency</h3>
+            <p class="pcard__text">Every unnecessary click costs time. Every unnecessary decision creates friction. Good UX removes both.</p>
+          </div>
         </div>
         <div class="pcard" data-i="4">
           <span class="pcard__num">04</span>
-          <h3 class="pcard__name">Business alignment</h3>
-          <p class="pcard__text">Every interface should move a measurable outcome — adoption, retention, efficiency, conversion, satisfaction.</p>
+          <div class="pcard__body">
+            <h3 class="pcard__name">Business alignment</h3>
+            <p class="pcard__text">Every interface should move a measurable outcome — adoption, retention, efficiency, conversion, satisfaction.</p>
+          </div>
         </div>
         <div class="pcard" data-i="5">
           <span class="pcard__num">05</span>
-          <h3 class="pcard__name">Delight through motion</h3>
-          <p class="pcard__text">Motion should explain, guide, reinforce hierarchy and communicate state — never exist purely for decoration.</p>
+          <div class="pcard__body">
+            <h3 class="pcard__name">Delight through motion</h3>
+            <p class="pcard__text">Motion should explain, guide, reinforce hierarchy and communicate state — never exist purely for decoration.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -374,7 +450,7 @@
     <!-- ═══════════════ SOUTH AFRICA FIRST ═══════════════ -->
     <section class="safirst" id="safirst" data-header-theme="light">
       <header class="safirst__head">
-        <p class="eyebrow-label">( Designed for South Africa )</p>
+        <p class="eyebrow">( Designed for South Africa )</p>
         <p class="safirst__statement">Most products are designed for New York or Berlin first. I design for Gauteng first — five realities shape every decision.</p>
       </header>
       <div class="safirst__grid">
@@ -388,20 +464,12 @@
           <a class="link-arrow" href="#contact" data-magnetic>Let's talk <span>→</span></a>
         </div>
       </div>
-      <div class="safirst__ticker" aria-hidden="true">
-        <div class="ticker" data-ticker data-speed="0.8">
-          <div class="ticker__track ticker__track--mono">
-            <span>Figma</span><span>GSAP</span><span>Three.js</span><span>React</span><span>Next.js</span><span>Tailwind</span><span>Lenis</span><span>Framer Motion</span><span>Claude Code</span><span>React Three Fiber</span><span>FigJam</span><span>Cursor</span>
-            <span>Figma</span><span>GSAP</span><span>Three.js</span><span>React</span><span>Next.js</span><span>Tailwind</span><span>Lenis</span><span>Framer Motion</span><span>Claude Code</span><span>React Three Fiber</span><span>FigJam</span><span>Cursor</span>
-          </div>
-        </div>
-      </div>
     </section>
 
-    <!-- ═══════════════ STUDIOS / BRANDS ═══════════════ -->
-    <section class="brands" id="brands" data-header-theme="dark">
+    <!-- ═══════════════ STUDIOS ═══════════════ -->
+    <section class="brands" id="studios" data-header-theme="dark">
       <header class="brands__head">
-        <p class="eyebrow-label eyebrow-label--light">( Studios I run )</p>
+        <p class="eyebrow eyebrow--light">( Studios I run )</p>
         <h2 class="brands__title">
           <span class="line-mask"><span class="line-inner">Two studios,</span></span>
           <span class="line-mask"><span class="line-inner">one obsession.</span></span>
@@ -432,7 +500,7 @@
     <!-- ═══════════════ FOOTER / CONTACT ═══════════════ -->
     <footer class="footer" id="contact" data-header-theme="dark">
       <div class="footer__media" aria-hidden="true">
-        <video class="footer__video" id="footerVideo" muted loop playsinline preload="none" poster="assets/img/flow-poster.jpg">
+        <video class="footer__video" muted loop playsinline preload="none" poster="assets/img/flow-poster.jpg">
           <source src="assets/video/flow.mp4" type="video/mp4" />
           <source src="https://d8j0ntlcm91z4.cloudfront.net/user_3GMOZifqmavH53boYn9eGkcXqUc/hf_20260712_205022_58f89b74-c25d-4fe8-933d-60fb2b897095.mp4" type="video/mp4" />
         </video>
@@ -440,12 +508,12 @@
       </div>
       <div class="footer__cta">
         <p class="footer__pre">Have a product worth understanding?</p>
-        <h2 class="footer__title">
+        <h2 class="footer__title" aria-label="Let's design understanding">
           <span class="hero__line"><span data-split-chars>LET'S&nbsp;DESIGN</span></span>
           <span class="hero__line hero__line--outline"><span data-split-chars>UNDERSTANDING</span></span>
         </h2>
         <div class="footer__actions">
-          <a href="mailto:training@gemis.tech" class="btn-big" data-magnetic data-cursor="Say hi">
+          <a href="mailto:training@gemis.tech" class="pill pill--solid pill--big" data-magnetic data-cursor="Say hi">
             <span>training@gemis.tech</span>
           </a>
           <div class="badge" id="badge" aria-hidden="true">
@@ -480,7 +548,7 @@
           <span>I design understanding — and when people understand, businesses grow.</span>
         </div>
       </div>
-      <div class="footer__wordmark" aria-hidden="true"><span>XABA®</span></div>
+      <div class="footer__wordmark" aria-hidden="true"><span>SPHAMANDLA®</span></div>
     </footer>
 
   </main>
@@ -489,7 +557,7 @@
   <script src="assets/js/ScrollTrigger.min.js"></script>
   <script src="assets/js/lenis.min.js"></script>
   <script type="importmap">{ "imports": { "three": "./assets/js/three.module.min.js" } }</script>
-  <script type="module" src="assets/js/portfolio3d.js"></script>
-  <script src="assets/js/portfolio.js" defer></script>
+  <script type="module" src="assets/js/hero-gl.js"></script>
+  <script src="assets/js/home.js" defer></script>
 </body>
 </html>

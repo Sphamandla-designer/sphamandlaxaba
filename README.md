@@ -8,10 +8,14 @@ no audio.
 
 ## Experience highlights
 
-- **Preloader** — masked name reveal, cycling role captions, tabular counter,
-  dual-curtain wipe straight into the hero type animation.
-- **Cinematic hero** — AI-generated gem video loop (Higgsfield / Veo 3.1 Lite)
-  under a Three.js emerald particle field with pointer + scroll parallax.
+- **Preloader** — "DESIGNING 000 UNDERSTANDING" counter with side-curtain
+  wipe straight into the hero timeline.
+- **Cinematic hero** — centered portrait over a giant outline XABA wordmark,
+  AI-generated gem video loop (Higgsfield / Veo 3.1 Lite), Three.js emerald
+  particle field, floating glass cards, live SAST clock nav and a glass
+  stats strip — all with pointer + scroll parallax.
+- **Portrait slot** — replace `assets/img/portrait.jpg` with your photo
+  (dark background, chest-up crop) and the hero + about sections pick it up.
 - **Smooth scrolling** — Lenis + GSAP ScrollTrigger orchestration throughout.
 - **Scroll storytelling** — word-by-word manifesto scrub, line-mask titles,
   pinned horizontal work gallery with counter-parallax imagery, stacked
@@ -40,9 +44,9 @@ index.html                  # the portfolio (single page)
 managem.html                # ManaGem case study
 wastemart.html              # WasteMart case study
 brand-studio.html           # brand studio explorations
-assets/css/portfolio.css    # portfolio design tokens + styling
-assets/js/portfolio.js      # GSAP/Lenis interaction & scroll choreography
-assets/js/portfolio3d.js    # Three.js hero particle field (ES module)
+assets/css/home.css         # homepage design tokens + styling
+assets/js/home.js           # GSAP/Lenis interaction & scroll choreography
+assets/js/hero-gl.js        # Three.js hero particle field (ES module)
 assets/video/               # AI-generated background loops (see README inside)
 assets/js/*.min.js          # vendored gsap, ScrollTrigger, lenis, three
 assets/fonts/               # vendored variable fonts (Archivo, Space Grotesk, JetBrains Mono)

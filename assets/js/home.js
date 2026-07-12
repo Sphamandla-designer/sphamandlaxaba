@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   SPHAMANDLA XABA® — portfolio interactions
+   SPHAMANDLA XABA® — portfolio v2 interactions
    GSAP + ScrollTrigger + Lenis
    ═══════════════════════════════════════════════════════════ */
 
@@ -35,7 +35,6 @@
     });
     return el.querySelectorAll('.word');
   };
-
   document.querySelectorAll('[data-split-chars]').forEach(splitChars);
 
   /* ───────────── smooth scroll ───────────── */
@@ -60,18 +59,23 @@
     });
   });
 
-  /* ───────────── clock (SAST) ───────────── */
+  /* ───────────── clock + date (SAST) ───────────── */
   const clock = document.getElementById('clock');
+  const dateNow = document.getElementById('dateNow');
   if (clock) {
     const tick = () => {
-      const t = new Date().toLocaleTimeString('en-ZA', {
-        timeZone: 'Africa/Johannesburg', hour12: false,
-        hour: '2-digit', minute: '2-digit', second: '2-digit',
-      });
-      clock.textContent = `${t} SAST`;
+      const now = new Date();
+      clock.textContent = `${now.toLocaleTimeString('en-ZA', {
+        timeZone: 'Africa/Johannesburg', hour12: false, hour: '2-digit', minute: '2-digit',
+      })} SAST`;
+      if (dateNow) {
+        dateNow.textContent = now.toLocaleDateString('en-ZA', {
+          timeZone: 'Africa/Johannesburg', day: 'numeric', month: 'long', year: 'numeric',
+        });
+      }
     };
     tick();
-    setInterval(tick, 1000);
+    setInterval(tick, 30000);
   }
 
   /* ───────────── custom cursor ───────────── */
@@ -112,26 +116,26 @@
     });
   }
 
-  /* ───────────── preloader ───────────── */
-  const loader = document.getElementById('loader');
-  const heroChars = document.querySelectorAll('.hero__title .char');
+  /* ───────────── hero intro ───────────── */
   const heroIntro = () => {
     const tl = gsap.timeline();
-    tl.to(heroChars, {
-      y: 0, duration: 1.1, ease: 'power4.out',
-      stagger: { each: 0.035, from: 'start' },
-    })
-      .from('.hero__eyebrow', { autoAlpha: 0, y: 16, duration: 0.7, ease: 'power2.out' }, '-=0.7')
-      .from('.hero__blurb, .hero__status', { autoAlpha: 0, y: 20, duration: 0.7, ease: 'power2.out', stagger: 0.08 }, '-=0.5')
-      .from('.hero__scroll, .hero__ticker', { autoAlpha: 0, duration: 0.8 }, '-=0.4');
+    tl.to('.hero__title .line-inner', { y: 0, duration: 1.1, ease: 'power4.out', stagger: 0.09 })
+      .from('.hero__eyebrow', { autoAlpha: 0, y: 14, duration: 0.6, ease: 'power2.out' }, '-=0.8')
+      .from('.hero__figure', { yPercent: 16, autoAlpha: 0, duration: 1.3, ease: 'power3.out' }, '-=1.05')
+      .from('.hero__wordmark span', { yPercent: 60, autoAlpha: 0, duration: 1.2, ease: 'power3.out' }, '-=1.15')
+      .from('.hero__proof, .hero__actions', { autoAlpha: 0, y: 18, duration: 0.6, ease: 'power2.out', stagger: 0.08 }, '-=0.7')
+      .from('.hero__right > *', { autoAlpha: 0, x: 26, duration: 0.7, ease: 'power3.out', stagger: 0.1 }, '-=0.6')
+      .from('.hero__strip', { autoAlpha: 0, y: 20, duration: 0.7, ease: 'power3.out' }, '-=0.5')
+      .from('.header', { autoAlpha: 0, y: -16, duration: 0.6 }, '-=0.6');
     return tl;
   };
 
+  /* ───────────── preloader ───────────── */
+  const loader = document.getElementById('loader');
   if (loader && !prefersReduced) {
     document.body.classList.add('is-locked');
     const count = document.getElementById('loaderCount');
     const bar = document.getElementById('loaderBar');
-    const roles = loader.querySelectorAll('[data-loader-role]');
     const state = { v: 0 };
     const tl = gsap.timeline({
       onComplete: () => {
@@ -140,28 +144,25 @@
         ScrollTrigger.refresh();
       },
     });
-    tl.to('.ln-char', { y: 0, duration: 0.9, ease: 'power4.out', stagger: 0.05 }, 0.2);
-    roles.forEach((r, i) => {
-      tl.to(r, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }, 0.5 + i * 0.75)
-        .to(r, { opacity: 0, y: '-0.6rem', duration: 0.35, ease: 'power2.in' }, 0.5 + i * 0.75 + 0.55);
-    });
-    tl.to(state, {
-      v: 100, duration: 2.6, ease: 'power2.inOut',
-      onUpdate: () => {
-        count.textContent = String(Math.round(state.v)).padStart(3, '0');
-        bar.style.width = `${state.v}%`;
-      },
-    }, 0.15);
-    tl.to('.loader__inner', { autoAlpha: 0, y: -30, duration: 0.5, ease: 'power2.in' }, '+=0.15')
-      .to('.loader__panel--a', { yPercent: -101, duration: 0.9, ease: 'power4.inOut' }, '<0.2')
-      .to('.loader__panel--b', { yPercent: 101, duration: 0.9, ease: 'power4.inOut' }, '<')
-      .add(heroIntro(), '-=0.45');
+    tl.to('#loaderWordA', { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, 0.15)
+      .to('#loaderWordB', { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, 0.35)
+      .to(state, {
+        v: 100, duration: 2.3, ease: 'power2.inOut',
+        onUpdate: () => {
+          count.textContent = String(Math.round(state.v)).padStart(3, '0');
+          bar.style.width = `${state.v}%`;
+        },
+      }, 0.2)
+      .to('.loader__inner', { autoAlpha: 0, scale: 0.96, duration: 0.45, ease: 'power2.in' }, '+=0.2')
+      .to('.loader__panel--l', { xPercent: -101, duration: 0.85, ease: 'power4.inOut' }, '<0.15')
+      .to('.loader__panel--r', { xPercent: 101, duration: 0.85, ease: 'power4.inOut' }, '<')
+      .add(heroIntro(), '-=0.4');
   } else if (loader) {
     loader.remove();
-    gsap.set(heroChars, { y: 0 });
+    gsap.set('.hero__title .line-inner', { y: 0 });
   }
 
-  /* ───────────── header theme + hide on scroll down ───────────── */
+  /* ───────────── header theme ───────────── */
   const header = document.getElementById('header');
   document.querySelectorAll('[data-header-theme]').forEach((sec) => {
     ScrollTrigger.create({
@@ -174,18 +175,37 @@
     });
   });
 
-  /* ───────────── overlay menu ───────────── */
+  /* ───────────── nav active link ───────────── */
+  const navLinks = [...document.querySelectorAll('.header__link')];
+  const sectionsForNav = navLinks
+    .map((l) => ({ link: l, sec: document.querySelector(l.getAttribute('href')) }))
+    .filter((x) => x.sec);
+  sectionsForNav.forEach(({ link, sec }) => {
+    ScrollTrigger.create({
+      trigger: sec,
+      start: 'top 45%',
+      end: 'bottom 45%',
+      onToggle: (self) => {
+        if (self.isActive) {
+          navLinks.forEach((l) => l.classList.remove('is-active'));
+          link.classList.add('is-active');
+        }
+      },
+    });
+  });
+
+  /* ───────────── overlay menu (drawer) ───────────── */
   const burger = document.getElementById('burger');
   const menu = document.getElementById('menu');
   if (burger && menu) {
     let open = false;
     const words = menu.querySelectorAll('.menu__word');
-    const foot = menu.querySelector('.menu__foot');
     const menuTl = gsap.timeline({ paused: true })
       .set(menu, { visibility: 'visible' })
-      .to('.menu__bg', { yPercent: 101, duration: 0.7, ease: 'power4.inOut' })
-      .to(words, { y: 0, duration: 0.7, ease: 'power4.out', stagger: 0.06 }, '-=0.25')
-      .to(foot, { opacity: 1, duration: 0.5 }, '-=0.4');
+      .to('.menu__scrim', { opacity: 1, duration: 0.4 }, 0)
+      .fromTo('.menu__panel', { xPercent: 102 }, { xPercent: 0, duration: 0.65, ease: 'power4.inOut' }, 0)
+      .to(words, { y: 0, duration: 0.6, ease: 'power4.out', stagger: 0.05 }, 0.25)
+      .to('.menu__foot', { opacity: 1, duration: 0.4 }, 0.55);
     const setOpen = (v) => {
       open = v;
       burger.classList.toggle('is-open', v);
@@ -193,7 +213,7 @@
       menu.setAttribute('aria-hidden', String(!v));
       menu.classList.toggle('is-open', v);
       if (v) { menuTl.timeScale(1).play(); lenis?.stop(); }
-      else { menuTl.timeScale(1.6).reverse(); lenis?.start(); }
+      else { menuTl.timeScale(1.5).reverse(); lenis?.start(); }
     };
     burger.addEventListener('click', () => setOpen(!open));
     menu.querySelectorAll('[data-menu-close]').forEach((a) =>
@@ -212,9 +232,7 @@
   window.addEventListener('resize', measure);
   let velo = 0;
   if (!prefersReduced) {
-    ScrollTrigger.create({
-      onUpdate: (self) => { velo = self.getVelocity() / 1200; },
-    });
+    ScrollTrigger.create({ onUpdate: (self) => { velo = self.getVelocity() / 1200; } });
     gsap.ticker.add(() => {
       const boost = gsap.utils.clamp(-4, 4, velo);
       velo *= 0.92;
@@ -227,17 +245,47 @@
     });
   }
 
-  /* ───────────── hero scroll-out ───────────── */
+  /* ───────────── hero parallax (mouse + scroll) ───────────── */
+  if (!prefersReduced && !isTouch) {
+    const fig = document.getElementById('heroFigure');
+    const mark = document.getElementById('heroWordmark');
+    const card = document.getElementById('glassCard');
+    const figX = gsap.quickTo(fig, 'x', { duration: 0.9, ease: 'power3.out' });
+    const markX = gsap.quickTo(mark, 'x', { duration: 1.1, ease: 'power3.out' });
+    const cardX = gsap.quickTo(card, 'x', { duration: 0.8, ease: 'power3.out' });
+    const cardY = gsap.quickTo(card, 'y', { duration: 0.8, ease: 'power3.out' });
+    window.addEventListener('mousemove', (e) => {
+      const nx = (e.clientX / window.innerWidth - 0.5) * 2;
+      const ny = (e.clientY / window.innerHeight - 0.5) * 2;
+      figX(nx * -14);
+      markX(nx * 26);
+      cardX(nx * -10);
+      cardY(ny * -8);
+    }, { passive: true });
+  }
   if (!prefersReduced) {
-    gsap.to('.hero__content', {
-      yPercent: -18, autoAlpha: 0.25, ease: 'none',
+    gsap.to('.hero__figure', {
+      yPercent: 12, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom 20%', scrub: true },
+    });
+    gsap.to('.hero__wordmark', {
+      yPercent: 40, autoAlpha: 0.3, ease: 'none',
       scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom 30%', scrub: true },
     });
+    gsap.to('.hero__left, .hero__right', {
+      autoAlpha: 0, y: -40, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: '12% top', end: '55% top', scrub: true },
+    });
     gsap.to('.hero__video', {
-      scale: 1.12, ease: 'none',
+      scale: 1.1, ease: 'none',
       scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
     });
+    // glass card progress bar loop
+    gsap.fromTo('#glassBar', { xPercent: -110 }, {
+      xPercent: 340, duration: 2.6, ease: 'power1.inOut', repeat: -1, repeatDelay: 0.6,
+    });
   }
+  document.getElementById('scrollDown')?.addEventListener('click', () => scrollTo('#manifesto'));
 
   /* ───────────── manifesto word scrub ───────────── */
   const manifesto = document.getElementById('manifestoText');
@@ -246,12 +294,7 @@
     if (!prefersReduced) {
       gsap.to(words, {
         opacity: 1, stagger: 0.06, ease: 'none',
-        scrollTrigger: {
-          trigger: manifesto,
-          start: 'top 78%',
-          end: 'bottom 45%',
-          scrub: 0.6,
-        },
+        scrollTrigger: { trigger: manifesto, start: 'top 78%', end: 'bottom 45%', scrub: 0.6 },
       });
     } else {
       gsap.set(words, { opacity: 1 });
@@ -266,9 +309,24 @@
     });
   });
   document.querySelectorAll('.line-mask .line-inner').forEach((el) => {
+    if (el.closest('.hero')) return; // hero handled by intro timeline
     gsap.to(el, {
       y: 0, duration: 1.1, ease: 'power4.out',
       scrollTrigger: { trigger: el.closest('section') || el, start: 'top 75%' },
+    });
+  });
+
+  /* ───────────── stat counters ───────────── */
+  document.querySelectorAll('.stat__num').forEach((el) => {
+    const target = parseFloat(el.dataset.count || '0');
+    const suffix = el.dataset.suffix || '';
+    const state = { v: 0 };
+    ScrollTrigger.create({
+      trigger: el, start: 'top 88%', once: true,
+      onEnter: () => gsap.to(state, {
+        v: target, duration: 1.6, ease: 'power2.out',
+        onUpdate: () => { el.textContent = `${Math.round(state.v)}${suffix}`; },
+      }),
     });
   });
 
@@ -289,7 +347,6 @@
         invalidateOnRefresh: true,
       },
     });
-    // inner image parallax against the horizontal movement
     document.querySelectorAll('.wcard__img').forEach((img) => {
       gsap.fromTo(img, { xPercent: -6 }, {
         xPercent: 6, ease: 'none',
@@ -303,6 +360,34 @@
       });
     });
   }
+
+  /* ───────────── expertise hover preview + accordion ───────────── */
+  const preview = document.getElementById('xpPreview');
+  const previewImg = document.getElementById('xpPreviewImg');
+  if (preview && !isTouch && !prefersReduced) {
+    const px = gsap.quickTo(preview, 'x', { duration: 0.5, ease: 'power3.out' });
+    const py = gsap.quickTo(preview, 'y', { duration: 0.5, ease: 'power3.out' });
+    const list = document.getElementById('xpList');
+    list.addEventListener('mousemove', (e) => {
+      px(e.clientX + 30);
+      py(e.clientY - 100);
+    });
+    document.querySelectorAll('.xp').forEach((xp) => {
+      xp.addEventListener('mouseenter', () => {
+        previewImg.src = xp.dataset.preview;
+        gsap.to(preview, { autoAlpha: 1, scale: 1, duration: 0.4, ease: 'power3.out' });
+      });
+      xp.addEventListener('mouseleave', () => {
+        gsap.to(preview, { autoAlpha: 0, scale: 0.9, duration: 0.3, ease: 'power2.in' });
+      });
+    });
+  }
+  document.querySelectorAll('.xp').forEach((xp) => {
+    xp.querySelector('.xp__row').addEventListener('click', () => {
+      document.querySelectorAll('.xp.is-open').forEach((o) => { if (o !== xp) o.classList.remove('is-open'); });
+      xp.classList.toggle('is-open');
+    });
+  });
 
   /* ───────────── principles stacked cards ───────────── */
   if (!prefersReduced) {
@@ -324,14 +409,6 @@
     });
   }
 
-  /* ───────────── expertise accordion (touch) ───────────── */
-  document.querySelectorAll('.xp').forEach((xp) => {
-    xp.querySelector('.xp__row').addEventListener('click', () => {
-      document.querySelectorAll('.xp.is-open').forEach((o) => { if (o !== xp) o.classList.remove('is-open'); });
-      xp.classList.toggle('is-open');
-    });
-  });
-
   /* ───────────── brand card tilt ───────────── */
   if (!isTouch && !prefersReduced) {
     document.querySelectorAll('[data-tilt]').forEach((card) => {
@@ -346,7 +423,7 @@
     });
   }
 
-  /* ───────────── footer title reveal + wordmark drift ───────────── */
+  /* ───────────── footer title + wordmark ───────────── */
   if (!prefersReduced) {
     const footChars = document.querySelectorAll('.footer__title .char');
     gsap.set(footChars, { y: '115%' });
