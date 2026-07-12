@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WasteMart × GEMIS — A Transformation Story</title>
+  <meta name="description" content="How GEMIS partnered with WasteMart to transform waste-collection operations through research, UX strategy, engineering and intelligent software." />
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+  <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body data-theme="dark" class="page-story">
+
+  <!-- ═══════════════ PRELOADER ═══════════════ -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__inner">
+      <div class="preloader__logo" aria-hidden="true">
+        <span class="pl-char">S</span><span class="pl-char">T</span><span class="pl-char">O</span><span class="pl-char">R</span><span class="pl-char">Y</span><span class="pl-char pl-char--reg">®</span>
+      </div>
+      <div class="preloader__row">
+        <span class="preloader__hint">Plotting the route</span>
+        <span class="preloader__count" id="preloaderCount">00</span>
+      </div>
+      <div class="preloader__bar"><span id="preloaderBar"></span></div>
+    </div>
+    <div class="preloader__curtain" aria-hidden="true"></div>
+  </div>
+
+  <!-- ═══════════════ CURSOR / GRAIN ═══════════════ -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor__ring" id="cursorRing"><span class="cursor__label" id="cursorLabel">View</span></div>
+    <div class="cursor__dot" id="cursorDot"></div>
+  </div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ═══════════════ HEADER ═══════════════ -->
+  <header class="header" id="header">
+    <a href="index.html" class="header__logo" data-magnetic>GEMIS<sup>®</sup> <span class="header__sub">Transformation story</span></a>
+    <div class="header__right">
+      <a href="#contact" class="header__cta" data-magnetic>Book a session</a>
+      <button class="burger" id="burger" aria-label="Open menu" data-magnetic>
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ═══════════════ OVERLAY MENU ═══════════════ -->
+  <nav class="menu" id="menu" aria-hidden="true">
+    <div class="menu__bg"></div>
+    <div class="menu__inner">
+      <ul class="menu__list">
+        <li><a href="index.html" class="menu__link" data-menu-close><span class="menu__index">01</span><span class="menu__word">Home</span></a></li>
+        <li><a href="index.html#services" class="menu__link" data-menu-close><span class="menu__index">02</span><span class="menu__word">Services</span></a></li>
+        <li><a href="index.html#work" class="menu__link" data-menu-close><span class="menu__index">03</span><span class="menu__word">Case Studies</span></a></li>
+        <li><a href="brand-studio.html" class="menu__link" data-menu-close><span class="menu__index">04</span><span class="menu__word">Brand Studio</span></a></li>
+        <li><a href="#contact" class="menu__link" data-menu-close><span class="menu__index">05</span><span class="menu__word">Contact</span></a></li>
+      </ul>
+      <div class="menu__foot">
+        <a href="mailto:hello@gemis.tech" class="menu__mail">hello@gemis.tech</a>
+        <div class="menu__socials">
+          <a href="#" aria-label="GitHub">GitHub</a>
+          <a href="#" aria-label="LinkedIn">LinkedIn</a>
+          <a href="#" aria-label="X">X</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+
+    <!-- ═══════════ CH 01 — UNDERSTANDING THE WORLD ═══════════ -->
+    <section class="ch ch1" id="ch1" data-section-theme="dark">
+      <div class="ch1__pin">
+        <div class="ch1__sky ch1__sky--night" aria-hidden="true"></div>
+        <div class="ch1__sky ch1__sky--dawn" aria-hidden="true"></div>
+        <div class="ch1__sun" aria-hidden="true"></div>
+        <svg class="ch1__routes" viewBox="0 0 1440 500" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M-20 380 C 300 300, 500 430, 780 340 S 1250 260, 1460 330" fill="none" stroke="rgba(23,230,133,.35)" stroke-width="1.5" stroke-dasharray="3 9"/>
+          <path d="M-20 250 C 380 190, 700 300, 1050 210 S 1350 160, 1460 190" fill="none" stroke="rgba(237,234,226,.18)" stroke-width="1" stroke-dasharray="2 10"/>
+          <circle class="ch1__node" cx="300" cy="322" r="4"/>
+          <circle class="ch1__node" cx="780" cy="340" r="4"/>
+          <circle class="ch1__node" cx="1150" cy="252" r="4"/>
+        </svg>
+        <svg class="ch1__layer ch1__layer--far" viewBox="0 0 1440 260" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 260 V150 h60 v-40 h50 v40 h70 V90 h80 v70 h60 v-110 h20 l10-24 10 24 h20 v110 h90 V120 h70 v-60 h60 v60 h50 v40 h80 V100 h90 v60 h60 v-80 h70 v80 h55 v-45 h65 v45 h60 v-70 h70 v130 h55 v-60 h60 v100 h55 v-70 h50 V260 Z" fill="currentColor"/>
+        </svg>
+        <svg class="ch1__layer ch1__layer--mid" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 220 V120 h90 v-30 h60 v30 h30 V60 h18 V38 h12 v22 h18 v60 h60 v40 h80 v-90 h100 v90 h50 V90 h70 l0 -25 h55 l0 25 h20 v70 h95 v-55 h28 v-35 h12 v35 h28 v55 h85 v-75 h95 v75 h40 v-40 h80 v-45 h90 v145 h55 v-55 h59 V220 Z" fill="currentColor"/>
+          <rect x="452" y="96" width="26" height="18" rx="2" fill="#0b0b0c" opacity=".55"/>
+          <path d="M462 99 h6 M465 96 v9" stroke="#17e685" stroke-width="2.2" opacity=".9"/>
+        </svg>
+        <svg class="ch1__layer ch1__layer--near" viewBox="0 0 1440 170" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 170 V110 l45 -28 45 28 v60 h40 v-45 h70 v45 h30 V96 l52 -30 52 30 v74 h45 v-38 h85 v38 h35 V92 h120 v78 h50 v-52 l40 -22 40 22 v52 h60 v-70 h140 v70 h45 v-40 h90 v40 h40 V88 l48 -26 48 26 v82 h60 v-58 h95 v58 h35 v-45 h70 V170 Z" fill="currentColor"/>
+        </svg>
+        <div class="ch1__roadwrap" aria-hidden="true">
+          <div class="ch1__road"><span></span></div>
+          <svg class="truck" id="truck1" viewBox="0 0 220 90">
+            <defs>
+              <g id="truckSym">
+                <rect x="0" y="12" width="140" height="52" rx="7" fill="#1d5c52"/>
+                <rect x="10" y="22" width="120" height="10" rx="5" fill="rgba(237,234,226,.25)"/>
+                <text x="70" y="56" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="24" font-weight="900" fill="#edeae2">WM</text>
+                <path d="M140 24 h36 l24 22 v18 h-60 Z" fill="#123a3a"/>
+                <path d="M148 30 h24 l16 15 h-40 Z" fill="#9fd9cf"/>
+                <rect x="140" y="58" width="60" height="6" fill="#0d2b26"/>
+                <circle cx="38" cy="70" r="13" fill="#101114"/><circle cx="38" cy="70" r="6" fill="#3c4046"/>
+                <circle cx="106" cy="70" r="13" fill="#101114"/><circle cx="106" cy="70" r="6" fill="#3c4046"/>
+                <circle cx="178" cy="70" r="13" fill="#101114"/><circle cx="178" cy="70" r="6" fill="#3c4046"/>
+                <rect x="196" y="42" width="6" height="10" rx="2" fill="#f5b921"/>
+              </g>
+            </defs>
+            <use href="#truckSym"/>
+          </svg>
+          <div class="ch1__bins" aria-hidden="true"><i></i><i></i><i></i></div>
+        </div>
+        <div class="ch__copy ch1__copy">
+          <p class="ch__kicker">Chapter 01 — Understanding the world</p>
+          <h1 class="ch__title">
+            <span class="line-mask"><span class="line-inner">Every city depends on</span></span>
+            <span class="line-mask"><span class="line-inner">efficient waste collection.</span></span>
+          </h1>
+          <p class="ch__text">Every day, thousands of collections, drivers, schedules and communities rely on operations running with precision. Behind every successful collection is an intricate network of people, planning and coordination.</p>
+          <p class="ch__caption">Understanding operations before designing solutions.</p>
+        </div>
+        <div class="ch__scrollhint" aria-hidden="true"><span></span>Scroll the story</div>
+      </div>
+    </section>
+
+    <!-- ═══════════ CH 02 — DISCOVERING THE CHALLENGE ═══════════ -->
+    <section class="ch ch2" id="ch2" data-section-theme="light">
+      <div class="ch2__pin">
+        <div class="ch2__stage" id="ch2Stage" aria-hidden="true">
+          <div class="pcard pcard--manifest"><b>Route manifest — Mon</b><i></i><i></i><i></i><i></i><i style="width:55%"></i></div>
+          <div class="pcard pcard--sheet"><b>collections_v14_FINAL.xls</b><span class="pgrid"><u></u><u></u><u></u><u></u><u></u><u></u><u></u><u></u><u></u><u></u><u></u><u></u></span></div>
+          <div class="pcard pcard--note">Bin #B2104 missed — call depot before 7am</div>
+          <div class="pcard pcard--phone">☎ Dispatch — 6 missed calls</div>
+          <div class="pcard pcard--map"><b>Zone overlap — Rte 12 / Rte 15</b><svg viewBox="0 0 120 70"><path d="M8 58 C 40 20, 70 60, 112 24" fill="none" stroke="#b4622d" stroke-width="2.5"/><path d="M8 30 C 46 60, 82 14, 112 48" fill="none" stroke="#123a3a" stroke-width="2.5"/></svg></div>
+          <div class="pcard pcard--manifest pcard--alt"><b>Route manifest — Tue (rev 3)</b><i></i><i style="width:70%"></i><i></i><i style="width:45%"></i></div>
+          <div class="pcard pcard--warn">⚠ Schedule conflict — 2 crews, 1 vehicle</div>
+          <div class="pcard pcard--sheet pcard--alt2"><b>debtors_recon_copy(2).xls</b><span class="pgrid"><u></u><u></u><u></u><u></u><u></u><u></u><u></u><u></u></span></div>
+          <div class="pcard pcard--note pcard--alt3">Client says invoice missing — resend? Which version?</div>
+          <div class="pcard pcard--warn pcard--alt4">⚠ No visibility on truck 07 since 09:40</div>
+        </div>
+        <div class="ch__copy ch2__copy">
+          <p class="ch__kicker">Chapter 02 — Discovering the challenge</p>
+          <h2 class="ch__title">
+            <span class="line-mask"><span class="line-inner">Growth created</span></span>
+            <span class="line-mask"><span class="line-inner">complexity.</span></span>
+          </h2>
+          <p class="ch__text">As operations expanded, manual processes could no longer keep pace. Critical information became fragmented across disconnected tools, reducing visibility and slowing decision-making.</p>
+          <p class="ch__caption">This is where discovery begins.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ CH 03 — A BETTER WAY ═══════════ -->
+    <section class="ch ch3" id="ch3" data-section-theme="light">
+      <div class="ch3__pin">
+        <div class="ch__copy ch3__copy">
+          <p class="ch__kicker">Chapter 03 — GEMIS discovers a better way</p>
+          <h2 class="ch__title">
+            <span class="line-mask"><span class="line-inner">Every transformation</span></span>
+            <span class="line-mask"><span class="line-inner">starts with understanding.</span></span>
+          </h2>
+          <p class="ch__text">We begin by understanding how people work, where friction exists and how technology can remove barriers — before a single line of code is written.</p>
+        </div>
+        <div class="ch3__board" aria-hidden="true">
+          <div class="ch3__stage ch3__stage--journey">
+            <b>Operations journey map</b>
+            <svg viewBox="0 0 420 150">
+              <path d="M20 110 C 110 40, 200 130, 300 60 S 390 60, 405 50" fill="none" stroke="#17a06b" stroke-width="2.5"/>
+              <circle cx="20" cy="110" r="7" fill="#123a3a"/><circle cx="150" cy="82" r="7" fill="#123a3a"/>
+              <circle cx="300" cy="60" r="7" fill="#123a3a"/><circle cx="405" cy="50" r="7" fill="#17e685"/>
+            </svg>
+            <div class="ch3__chips"><span>Dispatcher</span><span>Driver</span><span>Manager</span><span>Customer</span></div>
+          </div>
+          <div class="ch3__stage ch3__stage--wire">
+            <b>Wireframes</b>
+            <div class="wire"><span class="w1"></span><span class="w2"></span><span class="w3"></span><span class="w4"></span><span class="w5"></span><span class="w6"></span></div>
+          </div>
+          <div class="ch3__stage ch3__stage--ui">
+            <b>Working prototype</b>
+            <div class="mk mk--dark mk--flat">
+              <div class="mk__bar"><i></i><i></i><i></i><em>wastemart ops — prototype</em></div>
+              <div class="mk__body mk__body--row">
+                <div class="mk__side"><b></b><b></b><b></b></div>
+                <div class="mk__main"><div class="mk__kpis"><span>Routes 12</span><span>On-time</span></div>
+                <div class="mk__chart"><u style="height:55%"></u><u style="height:78%"></u><u style="height:62%"></u><u style="height:88%"></u><u style="height:70%"></u></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ch3__team" aria-hidden="true">
+          <div class="ticker" data-ticker data-speed="0.7">
+            <div class="ticker__track">
+              <span>Business analysis</span><i>✦</i><span>UX research</span><i>✦</i><span>UX/UI design</span><i>✦</i><span>Solution architecture</span><i>✦</i><span>Software engineering</span><i>✦</i><span>Quality assurance</span><i>✦</i><span>AI &amp; automation</span><i>✦</i><span>Continuous improvement</span><i>✦</i>
+              <span>Business analysis</span><i>✦</i><span>UX research</span><i>✦</i><span>UX/UI design</span><i>✦</i><span>Solution architecture</span><i>✦</i><span>Software engineering</span><i>✦</i><span>Quality assurance</span><i>✦</i><span>AI &amp; automation</span><i>✦</i><span>Continuous improvement</span><i>✦</i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ CH 04 — ENGINEERING THE PLATFORM ═══════════ -->
+    <section class="ch ch4" id="ch4" data-section-theme="dark">
+      <div class="ch4__pin">
+        <div class="ch__copy ch4__copy">
+          <p class="ch__kicker ch__kicker--cyan">Chapter 04 — Engineering the platform</p>
+          <h2 class="ch__title">
+            <span class="line-mask"><span class="line-inner">Software engineered</span></span>
+            <span class="line-mask"><span class="line-inner">around real operations.</span></span>
+          </h2>
+          <p class="ch__text">Every workflow, interface and integration was designed around the people responsible for keeping cities moving.</p>
+          <p class="ch__caption">Designed. Engineered. Delivered by GEMIS.</p>
+        </div>
+        <div class="ch4__grid">
+          <div class="ch4__map" aria-hidden="true">
+            <svg viewBox="0 0 520 420" id="opsMap">
+              <g stroke="rgba(237,234,226,.07)" stroke-width="1.5">
+                <path d="M0 70 H520 M0 150 H520 M0 230 H520 M0 310 H520 M0 390 H520"/>
+                <path d="M60 0 V420 M150 0 V420 M240 0 V420 M330 0 V420 M420 0 V420"/>
+              </g>
+              <path id="opsRoute" d="M30 390 L150 390 Q160 390 160 380 L160 240 Q160 230 170 230 L330 230 Q340 230 340 220 L340 90 Q340 80 350 80 L480 80"
+                fill="none" stroke="#17e685" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="30" cy="390" r="6" fill="#17e685"/>
+              <circle cx="480" cy="80" r="6" fill="#edeae2"/>
+              <circle cx="160" cy="300" r="4" fill="rgba(23,230,133,.5)"/>
+              <circle cx="260" cy="230" r="4" fill="rgba(23,230,133,.5)"/>
+              <circle cx="340" cy="140" r="4" fill="rgba(23,230,133,.5)"/>
+              <g id="mapTruck"><use href="#truckSym" transform="scale(0.32) translate(-110 -100)"/></g>
+            </svg>
+            <div class="ch4__toast ch4__toast--a">✓ Collection confirmed — #B2104</div>
+            <div class="ch4__toast ch4__toast--b">Route 12 re-optimised · −18 min</div>
+            <div class="ch4__toast ch4__toast--c">Driver 07 — next task sent</div>
+          </div>
+          <ol class="ch4__caps" id="capList">
+            <li><b>01</b><div><h3>Intelligent route planning</h3><p>Optimised daily routes built from live constraints.</p></div></li>
+            <li><b>02</b><div><h3>Driver mobile application</h3><p>Tasks, navigation and proof-of-service in hand.</p></div></li>
+            <li><b>03</b><div><h3>Offline field operations</h3><p>Full functionality beyond network coverage.</p></div></li>
+            <li><b>04</b><div><h3>Fleet visibility</h3><p>Every vehicle, live, on one map.</p></div></li>
+            <li><b>05</b><div><h3>Live operations dashboard</h3><p>The whole operation at a glance.</p></div></li>
+            <li><b>06</b><div><h3>Reporting &amp; analytics</h3><p>Decisions backed by operational data.</p></div></li>
+            <li><b>07</b><div><h3>Workflow automation</h3><p>Manual coordination replaced by rules.</p></div></li>
+            <li><b>08</b><div><h3>AI-assisted decision support</h3><p>The platform suggests, people decide.</p></div></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ CH 05 — TRANSFORMING OPERATIONS ═══════════ -->
+    <section class="ch ch5" id="ch5" data-section-theme="light">
+      <div class="ch__copy ch5__head">
+        <p class="ch__kicker">Chapter 05 — Transforming operations</p>
+        <h2 class="ch__title">
+          <span class="line-mask"><span class="line-inner">The difference wasn't</span></span>
+          <span class="line-mask"><span class="line-inner">simply better software.</span></span>
+          <span class="line-mask"><span class="line-inner ch5__em">It was a better way of working.</span></span>
+        </h2>
+        <p class="ch__text">By connecting people, operations and information into one intelligent platform, WasteMart gained greater visibility, consistency and confidence across its daily operations.</p>
+      </div>
+      <ul class="ch5__list">
+        <li class="shift"><span class="shift__old">Paper manifests</span><span class="shift__arrow">→</span><span class="shift__new">Digital workflows</span></li>
+        <li class="shift"><span class="shift__old">Manual coordination</span><span class="shift__arrow">→</span><span class="shift__new">Connected operations</span></li>
+        <li class="shift"><span class="shift__old">Phone calls</span><span class="shift__arrow">→</span><span class="shift__new">Real-time notifications</span></li>
+        <li class="shift"><span class="shift__old">Limited visibility</span><span class="shift__arrow">→</span><span class="shift__new">Live operational intelligence</span></li>
+        <li class="shift"><span class="shift__old">Reactive planning</span><span class="shift__arrow">→</span><span class="shift__new">Proactive decision-making</span></li>
+      </ul>
+      <p class="ch__caption ch5__sig">Transformation engineered by GEMIS.</p>
+    </section>
+
+    <!-- ═══════════ CH 06 — READY FOR TOMORROW ═══════════ -->
+    <section class="ch ch6" id="ch6" data-section-theme="dark">
+      <div class="ch6__pin">
+        <div class="ch6__scene" id="ch6Scene" aria-hidden="true">
+          <div class="ch6__sky"></div>
+          <div class="ch6__sun"></div>
+          <svg class="ch6__layer" viewBox="0 0 1440 240" preserveAspectRatio="none">
+            <path d="M0 240 V140 h70 v-45 h60 v45 h45 V60 h85 v80 h55 v-55 h95 v55 h45 V80 h70 l0 -30 h55 l0 30 h30 v60 h95 v-45 h110 v45 h55 v-85 h90 v85 h45 v-40 h85 v-40 h85 v140 h60 v-55 h60 V240 Z" fill="currentColor"/>
+          </svg>
+          <div class="ch6__flow" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="ch6__road"></div>
+          <svg class="truck ch6__truck ch6__truck--a" viewBox="0 0 220 90"><use href="#truckSym"/></svg>
+          <svg class="truck ch6__truck ch6__truck--b" viewBox="0 0 220 90"><use href="#truckSym"/></svg>
+          <svg class="truck ch6__truck ch6__truck--c" viewBox="0 0 220 90"><use href="#truckSym"/></svg>
+        </div>
+        <div class="ch__copy ch6__copy">
+          <p class="ch__kicker">Chapter 06 — Ready for tomorrow</p>
+          <h2 class="ch__title">
+            <span class="line-mask"><span class="line-inner">Built for today.</span></span>
+            <span class="line-mask"><span class="line-inner">Ready for tomorrow.</span></span>
+          </h2>
+          <p class="ch__text">A scalable digital platform designed to support operational excellence, future growth and continuous innovation.</p>
+        </div>
+        <ul class="ch6__outcomes">
+          <li class="reveal">One operational platform<br><small>replacing disconnected tools</small></li>
+          <li class="reveal">Live fleet visibility<br><small>across every route and vehicle</small></li>
+          <li class="reveal">Digital-first workflows<br><small>from booking to proof-of-service</small></li>
+          <li class="reveal">Offline-capable field ops<br><small>built for real-world conditions</small></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════ FINAL — WHAT COULD GEMIS BUILD FOR YOU ═══════════ -->
+    <footer class="footer story-final" id="contact" data-section-theme="dark">
+      <div class="footer__cta">
+        <p class="footer__pre">The next story</p>
+        <h2 class="footer__title">
+          <span class="hero__line"><span data-split>WHAT&nbsp;COULD&nbsp;WE</span></span>
+          <span class="hero__line hero__line--outline"><span data-split>ENGINEER&nbsp;FOR&nbsp;YOU?</span></span>
+        </h2>
+        <p class="story-final__text">Every organisation has unique operational challenges. We partner with ambitious teams to understand how they work, design around their people and engineer intelligent software that delivers measurable outcomes.</p>
+        <div class="footer__actions">
+          <a href="mailto:hello@gemis.tech?subject=Strategy%20session" class="btn-big" data-magnetic data-cursor="Let's talk">
+            <span>Book a strategy session</span>
+          </a>
+          <a class="link-arrow" href="index.html#work">Explore more stories <span>→</span></a>
+        </div>
+      </div>
+      <div class="footer__base">
+        <div class="footer__legal">
+          <span>© 2026 GEMIS. WasteMart transformation story.</span>
+          <span><a href="index.html">gemis.tech</a></span>
+        </div>
+      </div>
+      <div class="footer__wordmark" aria-hidden="true"><span>GEMIS®</span></div>
+    </footer>
+
+  </main>
+
+  <script src="assets/js/gsap.min.js"></script>
+  <script src="assets/js/ScrollTrigger.min.js"></script>
+  <script src="assets/js/lenis.min.js"></script>
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/story.js" defer></script>
+</body>
+</html>

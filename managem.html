@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ManaGem × GEMIS — The Platform Story</title>
+  <meta name="description" content="ManaGem is GEMIS' flagship enterprise platform — one intelligent system connecting operations, projects, finance, HR and AI-assisted workflows." />
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+  <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body data-theme="dark" class="page-managem">
+
+  <!-- ═══════════════ PRELOADER ═══════════════ -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__inner">
+      <div class="preloader__logo" aria-hidden="true">
+        <span class="pl-char">G</span><span class="pl-char">E</span><span class="pl-char">M</span><span class="pl-char pl-char--reg">®</span>
+      </div>
+      <div class="preloader__row">
+        <span class="preloader__hint">Assembling the platform</span>
+        <span class="preloader__count" id="preloaderCount">00</span>
+      </div>
+      <div class="preloader__bar"><span id="preloaderBar"></span></div>
+    </div>
+    <div class="preloader__curtain" aria-hidden="true"></div>
+  </div>
+
+  <!-- ═══════════════ CURSOR / GRAIN ═══════════════ -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor__ring" id="cursorRing"><span class="cursor__label" id="cursorLabel">View</span></div>
+    <div class="cursor__dot" id="cursorDot"></div>
+  </div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ═══════════════ HEADER ═══════════════ -->
+  <header class="header" id="header">
+    <a href="index.html" class="header__logo" data-magnetic>GEMIS<sup>®</sup> <span class="header__sub">ManaGem — platform story</span></a>
+    <div class="header__right">
+      <a href="#contact" class="header__cta" data-magnetic>Request a demo</a>
+      <button class="burger" id="burger" aria-label="Open menu" data-magnetic>
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ═══════════════ OVERLAY MENU ═══════════════ -->
+  <nav class="menu" id="menu" aria-hidden="true">
+    <div class="menu__bg"></div>
+    <div class="menu__inner">
+      <ul class="menu__list">
+        <li><a href="index.html" class="menu__link" data-menu-close><span class="menu__index">01</span><span class="menu__word">Home</span></a></li>
+        <li><a href="index.html#services" class="menu__link" data-menu-close><span class="menu__index">02</span><span class="menu__word">Services</span></a></li>
+        <li><a href="index.html#work" class="menu__link" data-menu-close><span class="menu__index">03</span><span class="menu__word">Case Studies</span></a></li>
+        <li><a href="brand-studio.html" class="menu__link" data-menu-close><span class="menu__index">04</span><span class="menu__word">Brand Studio</span></a></li>
+        <li><a href="#contact" class="menu__link" data-menu-close><span class="menu__index">05</span><span class="menu__word">Contact</span></a></li>
+      </ul>
+      <div class="menu__foot">
+        <a href="mailto:hello@gemis.tech" class="menu__mail">hello@gemis.tech</a>
+        <div class="menu__socials">
+          <a href="#" aria-label="GitHub">GitHub</a>
+          <a href="#" aria-label="LinkedIn">LinkedIn</a>
+          <a href="#" aria-label="X">X</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+
+    <!-- ═══════════ CH 01 — OPERATIONS NEVER STOP ═══════════ -->
+    <section class="ch mch1" id="mch1" data-section-theme="dark">
+      <div class="mch1__pin">
+        <div class="mch1__glow" aria-hidden="true"></div>
+        <svg class="mch1__streams" viewBox="0 0 1440 700" preserveAspectRatio="none" aria-hidden="true">
+          <path id="streamMain" d="M-20 350 C 220 350, 340 350, 470 350" fill="none" stroke="#4dd6ff" stroke-width="2.5"/>
+          <path class="mch1__split" d="M470 350 C 620 350, 660 120, 860 110" fill="none"/>
+          <path class="mch1__split" d="M470 350 C 640 350, 680 240, 880 250" fill="none"/>
+          <path class="mch1__split" d="M470 350 C 640 350, 680 460, 880 450" fill="none"/>
+          <path class="mch1__split" d="M470 350 C 620 350, 660 590, 860 590" fill="none"/>
+          <circle cx="470" cy="350" r="5" fill="#4dd6ff"/>
+        </svg>
+        <div class="gwin gwin--a" aria-hidden="true"><b>Finance — recon_final_v7.xls</b><span class="pgrid"><u></u><u></u><u></u><u></u><u></u><u></u><u></u><u></u></span></div>
+        <div class="gwin gwin--b" aria-hidden="true"><b>Ops — daily tasks</b><i></i><i style="width:64%"></i><i></i><i style="width:48%"></i></div>
+        <div class="gwin gwin--c" aria-hidden="true"><b>HR — leave approvals</b><em class="chip chip--wait">4 waiting</em><i></i><i style="width:52%"></i></div>
+        <div class="gwin gwin--d" aria-hidden="true"><b>Exec — monthly report (email)</b><i></i><i></i><i style="width:70%"></i></div>
+        <div class="ch__copy mch1__copy">
+          <p class="ch__kicker ch__kicker--cyan">Chapter 01 — Operations never stop</p>
+          <h1 class="ch__title">
+            <span class="line-mask"><span class="line-inner">Growing businesses deserve</span></span>
+            <span class="line-mask"><span class="line-inner">more than disconnected systems.</span></span>
+          </h1>
+          <p class="ch__text">As organisations expand, information becomes scattered across departments, spreadsheets and disconnected software. Operational complexity increases long before leaders realise it.</p>
+          <p class="ch__caption">Every platform begins with understanding how organisations work.</p>
+        </div>
+        <div class="ch__scrollhint" aria-hidden="true"><span></span>Scroll the story</div>
+      </div>
+    </section>
+
+    <!-- ═══════════ CH 02 — THE COST OF DISCONNECTION ═══════════ -->
+    <section class="ch mch2" id="mch2" data-section-theme="light">
+      <div class="ch2__pin">
+        <div class="ch2__stage" id="mch2Stage" aria-hidden="true">
+          <div class="pcard pcard--manifest" style="right:14%;top:12%"><b>PO-0448 — awaiting approval (day 6)</b><i></i><i style="width:58%"></i><em class="chip chip--wait">Stalled</em></div>
+          <div class="pcard pcard--sheet" style="right:30%;top:34%"><b>budget_v12_FINAL_final.xls</b><span class="pgrid"><u></u><u></u><u></u><u></u><u></u><u></u><u></u><u></u></span></div>
+          <div class="pcard pcard--phone" style="right:38%;top:10%">✉ 47 unread — "URGENT: which report is right?"</div>
+          <div class="pcard pcard--kpi" style="right:6%;top:32%"><b>Revenue — Sales dashboard</b><strong>R 3,42 M</strong></div>
+          <div class="pcard pcard--kpi" style="right:16%;top:52%"><b>Revenue — Finance sheet</b><strong>R 2,97 M</strong></div>
+          <div class="pcard pcard--kpi" style="right:4%;top:70%"><b>Revenue — Exec report</b><strong>R 3,88 M</strong></div>
+          <div class="pcard pcard--warn" style="right:40%;top:60%">⚠ Duplicate entry — customer captured twice</div>
+          <div class="pcard pcard--note" style="right:28%;top:78%">Who owns this task? Asking in 3 different threads…</div>
+        </div>
+        <div class="ch__copy ch2__copy">
+          <p class="ch__kicker">Chapter 02 — The cost of disconnection</p>
+          <h2 class="ch__title">
+            <span class="line-mask"><span class="line-inner">Growth created</span></span>
+            <span class="line-mask"><span class="line-inner">complexity.</span></span>
+          </h2>
+          <p class="ch__text">When systems cannot communicate, decisions slow down, teams duplicate effort and valuable information becomes difficult to trust.</p>
+          <p class="ch__caption">Discovery always comes before development.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ CH 03 — ENGINEERING A BETTER WAY ═══════════ -->
+    <section class="ch mch3" id="mch3" data-section-theme="light">
+      <div class="ch3__pin">
+        <div class="ch__copy ch3__copy">
+          <p class="ch__kicker">Chapter 03 — Engineering a better way</p>
+          <h2 class="ch__title">
+            <span class="line-mask"><span class="line-inner">Every great platform starts</span></span>
+            <span class="line-mask"><span class="line-inner">with understanding people.</span></span>
+          </h2>
+          <p class="ch__text">ManaGem wasn't designed around technology. It was engineered around the way organisations actually work.</p>
+        </div>
+        <div class="ch3__board" aria-hidden="true">
+          <div class="ch3__stage ch3__stage--journey">
+            <b>Business workshops &amp; journey mapping</b>
+            <svg viewBox="0 0 420 150">
+              <path d="M20 110 C 110 40, 200 130, 300 60 S 390 60, 405 50" fill="none" stroke="#1793c9" stroke-width="2.5"/>
+              <circle cx="20" cy="110" r="7" fill="#123443"/><circle cx="150" cy="82" r="7" fill="#123443"/>
+              <circle cx="300" cy="60" r="7" fill="#123443"/><circle cx="405" cy="50" r="7" fill="#4dd6ff"/>
+            </svg>
+            <div class="ch3__chips"><span>Finance</span><span>Operations</span><span>HR</span><span>Executives</span></div>
+          </div>
+          <div class="ch3__stage ch3__stage--wire">
+            <b>Workflows &amp; architecture</b>
+            <svg class="flowgraph" viewBox="0 0 420 200">
+              <g fill="none" stroke="#b9c4c9" stroke-width="2">
+                <path d="M70 50 H 180 M 250 50 H 350 M 210 80 V 130 M 210 160 H 120 M 210 160 H 300"/>
+              </g>
+              <g>
+                <rect x="20" y="30" width="70" height="40" rx="8" fill="#123443"/>
+                <rect x="180" y="30" width="70" height="40" rx="8" fill="#1793c9"/>
+                <rect x="340" y="30" width="60" height="40" rx="8" fill="#123443"/>
+                <rect x="175" y="130" width="80" height="46" rx="8" fill="#0d2531"/>
+                <rect x="60" y="140" width="60" height="30" rx="8" fill="#e2e8ea"/>
+                <rect x="300" y="140" width="60" height="30" rx="8" fill="#e2e8ea"/>
+              </g>
+            </svg>
+          </div>
+          <div class="ch3__stage ch3__stage--ui">
+            <b>Working platform</b>
+            <div class="mk mk--dark mk--flat">
+              <div class="mk__bar"><i></i><i></i><i></i><em>managem — dashboard</em></div>
+              <div class="mk__body mk__body--row">
+                <div class="mk__side"><b></b><b></b><b></b><b></b></div>
+                <div class="mk__main"><div class="mk__kpis"><span>41 enq</span><span>R 3,3 M</span></div>
+                <div class="mk__chart"><u style="height:50%"></u><u style="height:72%"></u><u style="height:58%"></u><u style="height:86%"></u><u style="height:66%"></u></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ch3__team" aria-hidden="true">
+          <div class="ticker" data-ticker data-speed="0.7">
+            <div class="ticker__track">
+              <span>Business analysis</span><i>✦</i><span>UX research</span><i>✦</i><span>UX design</span><i>✦</i><span>Software engineering</span><i>✦</i><span>AI integration</span><i>✦</i><span>Quality assurance</span><i>✦</i><span>Cloud architecture</span><i>✦</i><span>Continuous improvement</span><i>✦</i>
+              <span>Business analysis</span><i>✦</i><span>UX research</span><i>✦</i><span>UX design</span><i>✦</i><span>Software engineering</span><i>✦</i><span>AI integration</span><i>✦</i><span>Quality assurance</span><i>✦</i><span>Cloud architecture</span><i>✦</i><span>Continuous improvement</span><i>✦</i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ CH 04 — MEET MANAGEM ═══════════ -->
+    <section class="ch mch4" id="mch4" data-section-theme="dark">
+      <div class="mch4__pin">
+        <div class="mch4__aura" aria-hidden="true"></div>
+        <div class="ch__copy mch4__copy">
+          <p class="ch__kicker ch__kicker--cyan">Chapter 04 — Meet ManaGem</p>
+          <h2 class="ch__title">
+            <span class="line-mask"><span class="line-inner">One intelligent platform.</span></span>
+            <span class="line-mask"><span class="line-inner">Every operation connected.</span></span>
+          </h2>
+          <p class="ch__text">ManaGem brings people, processes and information together in one secure enterprise platform designed for modern organisations.</p>
+        </div>
+        <div class="mch4__stagewrap">
+          <div class="mch4__stage" id="mstage" aria-hidden="true">
+            <div class="glass glass--center" id="mcore">
+              <div class="glass__bar"><i></i><i></i><i></i><em>ManaGem</em></div>
+              <div class="glass__body" id="mcoreBody">
+                <div class="mmod is-live" data-mod="0"><h4>Operations</h4><p>Every task, request and approval in one flow.</p><div class="mk__chart"><u style="height:52%"></u><u style="height:74%"></u><u style="height:60%"></u><u style="height:88%"></u><u style="height:68%"></u><u style="height:80%"></u></div></div>
+                <div class="mmod" data-mod="1"><h4>Projects</h4><p>Live progress, owners and due dates — no chasing.</p><div class="mrows"><i style="width:78%"></i><i style="width:45%"></i><i style="width:92%"></i><i style="width:63%"></i></div></div>
+                <div class="mmod" data-mod="2"><h4>Human resources</h4><p>People, leave and records without the paper trail.</p><div class="mrows"><i style="width:66%"></i><i style="width:81%"></i><i style="width:52%"></i></div></div>
+                <div class="mmod" data-mod="3"><h4>Assets</h4><p>Every asset tracked from purchase to retirement.</p><div class="mk__chart"><u style="height:40%"></u><u style="height:64%"></u><u style="height:76%"></u><u style="height:55%"></u><u style="height:70%"></u></div></div>
+                <div class="mmod" data-mod="4"><h4>Procurement</h4><p>Orders raised, approved and received — traceably.</p><div class="mrows"><i style="width:84%"></i><i style="width:58%"></i><i style="width:71%"></i></div></div>
+                <div class="mmod" data-mod="5"><h4>Compliance</h4><p>Policies and audit trails built into the work itself.</p><div class="mrows"><i style="width:62%"></i><i style="width:88%"></i><i style="width:49%"></i></div></div>
+                <div class="mmod" data-mod="6"><h4>Reporting</h4><p>One version of the truth, generated on demand.</p><div class="mk__chart"><u style="height:66%"></u><u style="height:48%"></u><u style="height:82%"></u><u style="height:58%"></u><u style="height:90%"></u></div></div>
+                <div class="mmod" data-mod="7"><h4>Analytics</h4><p>Trends and signals surfaced across departments.</p><div class="mk__chart"><u style="height:34%"></u><u style="height:56%"></u><u style="height:70%"></u><u style="height:84%"></u><u style="height:94%"></u></div></div>
+                <div class="mmod" data-mod="8"><h4>AI workspace</h4><p>Ask questions in plain language, get grounded answers.</p><div class="mrows"><i style="width:74%"></i><i style="width:90%"></i><i style="width:57%"></i></div></div>
+                <div class="mmod" data-mod="9"><h4>Automation engine</h4><p>Rules that quietly do the repetitive work.</p><div class="mrows"><i style="width:69%"></i><i style="width:52%"></i><i style="width:86%"></i></div></div>
+              </div>
+            </div>
+            <div class="glass glass--sat glass--sat1"><b>Notifications</b><i></i><i style="width:60%"></i></div>
+            <div class="glass glass--sat glass--sat2"><b>Approvals</b><em class="chip chip--ok">2 ready</em></div>
+            <div class="glass glass--sat glass--sat3"><b>Cash position</b><strong>R 3,3 M</strong></div>
+            <div class="glass glass--sat glass--sat4"><b>Team</b><i></i><i style="width:52%"></i></div>
+          </div>
+          <ol class="mch4__mods" id="modList">
+            <li><b>01</b>Operations</li>
+            <li><b>02</b>Projects</li>
+            <li><b>03</b>Human resources</li>
+            <li><b>04</b>Assets</li>
+            <li><b>05</b>Procurement</li>
+            <li><b>06</b>Compliance</li>
+            <li><b>07</b>Reporting</li>
+            <li><b>08</b>Analytics</li>
+            <li><b>09</b>AI workspace</li>
+            <li><b>10</b>Automation engine</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ CH 05 — INTELLIGENCE WITH PEOPLE ═══════════ -->
+    <section class="ch mch5" id="mch5" data-section-theme="dark">
+      <div class="mch5__pin">
+        <div class="mch5__grid">
+          <div class="ch__copy">
+            <p class="ch__kicker ch__kicker--cyan">Chapter 05 — Intelligence that works with people</p>
+            <h2 class="ch__title">
+              <span class="line-mask"><span class="line-inner">AI that empowers people.</span></span>
+              <span class="line-mask"><span class="line-inner">Not replaces them.</span></span>
+            </h2>
+            <p class="ch__text">Every AI capability inside ManaGem is designed to reduce repetitive work, improve decision-making and help teams focus on what matters most.</p>
+            <p class="ch__caption">Human-centred AI, engineered by GEMIS.</p>
+          </div>
+          <div class="mch5__panel" aria-hidden="true">
+            <div class="glass mch5__chat">
+              <div class="glass__bar"><i></i><i></i><i></i><em>managem copilot</em></div>
+              <div class="aibub aibub--user">Summarise overdue debtors for this month</div>
+              <div class="aibub aibub--ai">14 accounts are overdue — R 412 k total. Three look duplicated. Two are already on payment plans.</div>
+              <div class="mch5__actions">
+                <span class="chip chip--ok">Draft reminders</span>
+                <span class="chip chip--wait">Review 3 duplicates</span>
+                <span class="chip">Export summary</span>
+              </div>
+            </div>
+            <svg class="mch5__pipe" viewBox="0 0 480 90" aria-hidden="true">
+              <path id="pipePath" d="M20 45 H 130 M 190 45 H 300 M 360 45 H 460" stroke="#4dd6ff" stroke-width="2" fill="none"/>
+              <g class="mch5__nodes">
+                <rect x="20" y="25" width="110" height="40" rx="9"/>
+                <rect x="190" y="25" width="110" height="40" rx="9"/>
+                <rect x="360" y="25" width="100" height="40" rx="9"/>
+              </g>
+              <text x="75" y="49" text-anchor="middle">Detect</text>
+              <text x="245" y="49" text-anchor="middle">Suggest</text>
+              <text x="410" y="49" text-anchor="middle">Human approves</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ CH 06 — BUILT FOR THE ENTERPRISE ═══════════ -->
+    <section class="ch mch6" id="mch6" data-section-theme="dark">
+      <div class="mch6__pin">
+        <svg class="mch6__net" viewBox="0 0 900 560" aria-hidden="true">
+          <g id="netLines" fill="none" stroke="rgba(77,214,255,.5)" stroke-width="1.6">
+            <path d="M450 280 L 180 120"/><path d="M450 280 L 450 90"/><path d="M450 280 L 720 120"/>
+            <path d="M450 280 L 140 320"/><path d="M450 280 L 760 320"/>
+            <path d="M450 280 L 220 470"/><path d="M450 280 L 450 490"/><path d="M450 280 L 690 470"/>
+          </g>
+          <circle id="netRing" cx="450" cy="280" r="105" fill="none" stroke="rgba(23,230,133,.45)" stroke-width="1.4" stroke-dasharray="6 10"/>
+          <g id="netNodes">
+            <circle cx="180" cy="120" r="8"/><circle cx="450" cy="90" r="8"/><circle cx="720" cy="120" r="8"/>
+            <circle cx="140" cy="320" r="8"/><circle cx="760" cy="320" r="8"/>
+            <circle cx="220" cy="470" r="8"/><circle cx="450" cy="490" r="8"/><circle cx="690" cy="470" r="8"/>
+          </g>
+          <circle cx="450" cy="280" r="26" fill="#0f1c22" stroke="#4dd6ff" stroke-width="2"/>
+          <text x="450" y="286" text-anchor="middle" font-size="13" fill="#4dd6ff" font-family="monospace">GEM</text>
+        </svg>
+        <div class="ch__copy mch6__copy">
+          <p class="ch__kicker ch__kicker--cyan">Chapter 06 — Built for the enterprise</p>
+          <h2 class="ch__title">
+            <span class="line-mask"><span class="line-inner">Built for today.</span></span>
+            <span class="line-mask"><span class="line-inner">Ready for tomorrow.</span></span>
+          </h2>
+          <p class="ch__text">Designed to scale with growing organisations while delivering security, reliability and operational confidence.</p>
+        </div>
+        <ul class="ch6__outcomes mch6__trust">
+          <li class="reveal">Multi-company by design<br><small>one platform, many entities</small></li>
+          <li class="reveal">Cloud deployment<br><small>reachable wherever work happens</small></li>
+          <li class="reveal">Role-based access<br><small>everyone sees exactly what they should</small></li>
+          <li class="reveal">Grows with you<br><small>from first team to full enterprise</small></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════ FINAL — BUILD THE FUTURE WITH GEMIS ═══════════ -->
+    <footer class="footer story-final" id="contact" data-section-theme="dark">
+      <div class="footer__cta">
+        <p class="footer__pre">The future, operational</p>
+        <h2 class="footer__title">
+          <span class="hero__line"><span data-split>THE&nbsp;FUTURE&nbsp;OF&nbsp;BUSINESS</span></span>
+          <span class="hero__line hero__line--outline"><span data-split>STARTS&nbsp;HERE</span></span>
+        </h2>
+        <p class="story-final__text">ManaGem is more than software — it is the result of years of research, engineering and partnership with organisations determined to work smarter, move faster and grow confidently. Whether you need a custom platform or an enterprise solution tailored to your organisation, GEMIS is ready to engineer what's next.</p>
+        <div class="footer__actions">
+          <a href="mailto:hello@gemis.tech?subject=ManaGem%20demo" class="btn-big" data-magnetic data-cursor="Demo">
+            <span>Request a ManaGem demo</span>
+          </a>
+          <a class="link-arrow" href="mailto:hello@gemis.tech?subject=Strategy%20session">Book a strategy session <span>→</span></a>
+        </div>
+      </div>
+      <div class="footer__base">
+        <div class="footer__legal">
+          <span>© 2026 GEMIS. ManaGem platform story.</span>
+          <span><a href="index.html">gemis.tech</a> · <a href="wastemart.html">WasteMart story</a></span>
+        </div>
+      </div>
+      <div class="footer__wordmark" aria-hidden="true"><span>GEMIS®</span></div>
+    </footer>
+
+  </main>
+
+  <script src="assets/js/gsap.min.js"></script>
+  <script src="assets/js/ScrollTrigger.min.js"></script>
+  <script src="assets/js/lenis.min.js"></script>
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/managem.js" defer></script>
+</body>
+</html>

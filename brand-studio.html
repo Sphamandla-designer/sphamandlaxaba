@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brand Studio — GEMIS® Identity Practice</title>
+  <meta name="description" content="Brand Studio is the identity practice inside GEMIS — brand identities for SMEs and start-ups, led by UI/UX designer Sphamandla Xaba." />
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+  <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body data-theme="dark" class="page-brand">
+
+  <!-- ═══════════════ PRELOADER ═══════════════ -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__inner">
+      <div class="preloader__logo" aria-hidden="true">
+        <span class="pl-char">B</span><span class="pl-char">R</span><span class="pl-char">A</span><span class="pl-char">N</span><span class="pl-char">D</span><span class="pl-char pl-char--reg">®</span>
+      </div>
+      <div class="preloader__row">
+        <span class="preloader__hint">Mixing the inks</span>
+        <span class="preloader__count" id="preloaderCount">00</span>
+      </div>
+      <div class="preloader__bar"><span id="preloaderBar"></span></div>
+    </div>
+    <div class="preloader__curtain" aria-hidden="true"></div>
+  </div>
+
+  <!-- ═══════════════ CURSOR / GRAIN ═══════════════ -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <div class="cursor__ring" id="cursorRing"><span class="cursor__label" id="cursorLabel">View</span></div>
+    <div class="cursor__dot" id="cursorDot"></div>
+  </div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ═══════════════ HEADER ═══════════════ -->
+  <header class="header" id="header">
+    <a href="index.html" class="header__logo" data-magnetic>GEMIS<sup>®</sup> <span class="header__sub">Brand Studio</span></a>
+    <div class="header__right">
+      <a href="#contact" class="header__cta" data-magnetic>Start a brand</a>
+      <button class="burger" id="burger" aria-label="Open menu" data-magnetic>
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ═══════════════ OVERLAY MENU ═══════════════ -->
+  <nav class="menu" id="menu" aria-hidden="true">
+    <div class="menu__bg"></div>
+    <div class="menu__inner">
+      <ul class="menu__list">
+        <li><a href="index.html" class="menu__link" data-menu-close><span class="menu__index">01</span><span class="menu__word">Home</span></a></li>
+        <li><a href="index.html#services" class="menu__link" data-menu-close><span class="menu__index">02</span><span class="menu__word">Services</span></a></li>
+        <li><a href="index.html#work" class="menu__link" data-menu-close><span class="menu__index">03</span><span class="menu__word">Case Studies</span></a></li>
+        <li><a href="#top" class="menu__link" data-menu-close><span class="menu__index">04</span><span class="menu__word">Brand Studio</span></a></li>
+        <li><a href="#contact" class="menu__link" data-menu-close><span class="menu__index">05</span><span class="menu__word">Contact</span></a></li>
+      </ul>
+      <div class="menu__foot">
+        <a href="mailto:hello@gemis.tech" class="menu__mail">hello@gemis.tech</a>
+        <div class="menu__socials">
+          <a href="#" aria-label="GitHub">GitHub</a>
+          <a href="https://www.linkedin.com/in/sphamandla-xaba-ba1602287/" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
+          <a href="#" aria-label="X">X</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+
+    <!-- ═══════════════ TRAVELLING 3D GEM ═══════════════ -->
+    <div class="gl-stage" id="glStage" aria-hidden="true">
+      <canvas class="hero__gl" id="heroCanvas"></canvas>
+    </div>
+
+    <!-- ═══════════════ HERO ═══════════════ -->
+    <section class="hero" data-section-theme="dark">
+      <div class="hero__content">
+        <p class="hero__eyebrow"><span class="hero__dot"></span>GEMIS® Brand Studio — identity practice</p>
+        <h1 class="hero__title">
+          <span class="hero__line"><span class="hero__word" data-split>BRANDS</span></span>
+          <span class="hero__line hero__line--outline"><span class="hero__word" data-split>WITH</span></span>
+          <span class="hero__line"><span class="hero__word" data-split>BACKBONE<span class="hero__accent">.</span></span></span>
+        </h1>
+        <div class="hero__meta">
+          <p class="hero__blurb">Brand identities for SMEs &amp; start-ups —<br />led by UI/UX designer Sphamandla Xaba.</p>
+          <div class="hero__scroll" id="scrollHint">
+            <span class="hero__scroll-track"><span class="hero__scroll-thumb"></span></span>
+            <span>Scroll</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero__ticker" aria-hidden="true">
+        <div class="ticker" data-ticker data-speed="1">
+          <div class="ticker__track">
+            <span>Identity systems</span><i>✦</i><span>Logos &amp; marks</span><i>✦</i><span>Typography</span><i>✦</i><span>Colour</span><i>✦</i><span>Voice</span><i>✦</i><span>Guidelines</span><i>✦</i>
+            <span>Identity systems</span><i>✦</i><span>Logos &amp; marks</span><i>✦</i><span>Typography</span><i>✦</i><span>Colour</span><i>✦</i><span>Voice</span><i>✦</i><span>Guidelines</span><i>✦</i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ MANIFESTO ═══════════════ -->
+    <section class="manifesto" id="studio" data-section-theme="light">
+      <div class="manifesto__inner">
+        <p class="manifesto__label">The practice</p>
+        <p class="manifesto__text" id="manifestoText">Brand Studio is the identity practice inside GEMIS. We give SMEs and start-ups brands that punch far above their weight — sharp marks, confident typography and systems that scale from day one.</p>
+        <div class="manifesto__cols">
+          <div class="manifesto__col reveal">
+            <h3>Strategy before style</h3>
+            <p>Every identity starts with positioning — who you are, who it's for, and why anyone should care. The look follows the logic.</p>
+          </div>
+          <div class="manifesto__col reveal">
+            <h3>Small budgets, big presence</h3>
+            <p>We design for the size you want to become. Start-up pricing, blue-chip posture — no watered-down "starter" branding.</p>
+          </div>
+          <div class="manifesto__col reveal">
+            <h3>Systems, not stunts</h3>
+            <p>You get a kit that works everywhere: files, guidelines, templates and rules your team can actually use without us.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ MARKS IN ROTATION (auto-scrolling logo wall) ═══════════════ -->
+    <section class="marks" data-section-theme="light" aria-label="Sample marks from the studio">
+      <p class="eyebrow-label marks__label">( Marks in rotation )</p>
+      <div class="ticker marks__ticker" data-ticker data-speed="0.9">
+        <div class="ticker__track marks__track">
+
+          <div class="lcard lcard--g">
+            <span class="lcard__mono">G<i>.</i></span>
+            <span class="lcard__cap">Driven by craft.<br>Built for those who notice.</span>
+            <span class="lcard__meta">GEMIS® — 2026</span>
+          </div>
+          <div class="lcard lcard--n">
+            <span class="lcard__mono lcard__mono--soft">n<i>.</i></span>
+            <span class="lcard__meta lcard__meta--left">NOVA CAFÉ<br>ROASTERY — ESTD 2025</span>
+          </div>
+          <div class="lcard lcard--ts">
+            <span class="lcard__duo">T<em>S</em></span>
+            <span class="lcard__band">T Ā L A &nbsp;S T U D I O</span>
+          </div>
+          <div class="lcard lcard--au">
+            <svg class="lcard__bldg" viewBox="0 0 120 120" aria-hidden="true">
+              <defs><linearGradient id="silv" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#f4f2ec"/><stop offset="1" stop-color="#6a6f76"/>
+              </linearGradient></defs>
+              <path d="M30 96 V38 L48 22 V96 Z M54 96 V44 L70 32 V96 Z M76 96 V52 L92 40 V96 Z"
+                fill="none" stroke="url(#silv)" stroke-width="4" stroke-linejoin="round"/>
+            </svg>
+            <span class="lcard__meta">AURUM &amp; CO.<br><small>COMMERCE HOUSE</small></span>
+          </div>
+          <div class="lcard lcard--k">
+            <span class="lcard__mono lcard__mono--k">K<i>›</i></span>
+            <span class="lcard__meta lcard__meta--left">KUDU — MONEY,<br>MOVING FORWARD</span>
+          </div>
+
+          <div class="lcard lcard--g" aria-hidden="true">
+            <span class="lcard__mono">G<i>.</i></span>
+            <span class="lcard__cap">Driven by craft.<br>Built for those who notice.</span>
+            <span class="lcard__meta">GEMIS® — 2026</span>
+          </div>
+          <div class="lcard lcard--n" aria-hidden="true">
+            <span class="lcard__mono lcard__mono--soft">n<i>.</i></span>
+            <span class="lcard__meta lcard__meta--left">NOVA CAFÉ<br>ROASTERY — ESTD 2025</span>
+          </div>
+          <div class="lcard lcard--ts" aria-hidden="true">
+            <span class="lcard__duo">T<em>S</em></span>
+            <span class="lcard__band">T Ā L A &nbsp;S T U D I O</span>
+          </div>
+          <div class="lcard lcard--au" aria-hidden="true">
+            <svg class="lcard__bldg" viewBox="0 0 120 120" aria-hidden="true">
+              <path d="M30 96 V38 L48 22 V96 Z M54 96 V44 L70 32 V96 Z M76 96 V52 L92 40 V96 Z"
+                fill="none" stroke="url(#silv)" stroke-width="4" stroke-linejoin="round"/>
+            </svg>
+            <span class="lcard__meta">AURUM &amp; CO.<br><small>COMMERCE HOUSE</small></span>
+          </div>
+          <div class="lcard lcard--k" aria-hidden="true">
+            <span class="lcard__mono lcard__mono--k">K<i>›</i></span>
+            <span class="lcard__meta lcard__meta--left">KUDU — MONEY,<br>MOVING FORWARD</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ WHAT WE SHAPE ═══════════════ -->
+    <section class="shape" id="shape" data-section-theme="light">
+      <header class="services__head">
+        <p class="eyebrow-label">( What we shape )</p>
+        <p class="services__statement">Everything a young company needs to look unmistakably grown.</p>
+      </header>
+      <div class="shape__grid">
+        <div class="tile" data-cursor="—"><span class="tile__num">01</span><h3>Identity systems</h3><p>The full picture — mark, type, colour, layout and motion working as one language.</p><span class="tile__arrow">↗</span></div>
+        <div class="tile" data-cursor="—"><span class="tile__num">02</span><h3>Logos &amp; marks</h3><p>Distinct, ownable marks engineered to survive a favicon and a billboard alike.</p><span class="tile__arrow">↗</span></div>
+        <div class="tile" data-cursor="—"><span class="tile__num">03</span><h3>Typography &amp; colour</h3><p>Palettes and type pairings with a point of view — chosen for contrast, licensed for reality.</p><span class="tile__arrow">↗</span></div>
+        <div class="tile" data-cursor="—"><span class="tile__num">04</span><h3>Naming &amp; voice</h3><p>Names that clear a search and a trademark scan, and a voice your team can imitate.</p><span class="tile__arrow">↗</span></div>
+        <div class="tile" data-cursor="—"><span class="tile__num">05</span><h3>Brand guidelines</h3><p>Living documents — rules, don'ts, and ready-made lockups your hires learn in an afternoon.</p><span class="tile__arrow">↗</span></div>
+        <div class="tile" data-cursor="—"><span class="tile__num">06</span><h3>Launch collateral</h3><p>Decks, social kits, packaging and site styling — everything ready for day one in market.</p><span class="tile__arrow">↗</span></div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ IDENTITY STACK (sticky cards) ═══════════════ -->
+    <section class="stack" id="stackSec" data-section-theme="light">
+      <header class="services__head stack__head">
+        <p class="eyebrow-label">( Recent identities )</p>
+        <p class="services__statement">Fictional friends — sample identities from the studio bench.</p>
+      </header>
+
+      <div class="stack__cards">
+
+        <article class="bcard bcard--kudu" data-cursor="View">
+          <div class="bcard__visual">
+            <div class="bcard__mark">K<span>›</span></div>
+            <div class="bcard__chips"><i style="background:#17e685"></i><i style="background:#0b0b0c"></i><i style="background:#edeae2"></i><i style="background:#0fa35f"></i></div>
+          </div>
+          <div class="bcard__info">
+            <h3>KUDU</h3>
+            <p class="bcard__tag">Fintech · Identity · Guidelines</p>
+            <p class="bcard__desc">Payments for township businesses — a mark that moves forward, a palette that means money.</p>
+            <span class="bcard__type">Aa Bb 0123 — Archivo Expanded</span>
+          </div>
+          <span class="bcard__year">2026</span>
+        </article>
+
+        <article class="bcard bcard--nova" data-cursor="View">
+          <div class="bcard__visual">
+            <div class="bcard__mark bcard__mark--script">nova</div>
+            <div class="bcard__chips"><i style="background:#e8a33d"></i><i style="background:#3a2415"></i><i style="background:#f4ead9"></i><i style="background:#b4622d"></i></div>
+          </div>
+          <div class="bcard__info">
+            <h3>NOVA CAFÉ</h3>
+            <p class="bcard__tag">Hospitality · Identity · Packaging</p>
+            <p class="bcard__desc">A roastery that outgrew its corner — warmth measured in ink, from cup sleeve to shopfront.</p>
+            <span class="bcard__type">Aa Bb 0123 — Grotesk / warm neutrals</span>
+          </div>
+          <span class="bcard__year">2025</span>
+        </article>
+
+        <article class="bcard bcard--tala" data-cursor="View">
+          <div class="bcard__visual">
+            <div class="bcard__mark bcard__mark--thin">TĀLA</div>
+            <div class="bcard__chips"><i style="background:#c084fc"></i><i style="background:#1c1424"></i><i style="background:#f2ecf7"></i><i style="background:#8b5cf6"></i></div>
+          </div>
+          <div class="bcard__info">
+            <h3>TĀLA</h3>
+            <p class="bcard__tag">Cosmetics · Naming · Identity</p>
+            <p class="bcard__desc">Skincare with spine — a wide-tracked wordmark and a violet that photographs like silk.</p>
+            <span class="bcard__type">Aa Bb 0123 — extended caps, airy spacing</span>
+          </div>
+          <span class="bcard__year">2025</span>
+        </article>
+
+        <article class="bcard bcard--veld" data-cursor="View">
+          <div class="bcard__visual">
+            <div class="bcard__mark bcard__mark--stencil">VELD</div>
+            <div class="bcard__chips"><i style="background:#5c8a3f"></i><i style="background:#171a12"></i><i style="background:#e9e6d8"></i><i style="background:#9db978"></i></div>
+          </div>
+          <div class="bcard__info">
+            <h3>VELD</h3>
+            <p class="bcard__tag">Agritech · Identity · Launch kit</p>
+            <p class="bcard__desc">Sensors for smallholder farms — an identity that reads honest in the field and sharp in the pitch deck.</p>
+            <span class="bcard__type">Aa Bb 0123 — stencil cut, earth tones</span>
+          </div>
+          <span class="bcard__year">2024</span>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════ PROCESS ═══════════════ -->
+    <section class="process" data-section-theme="light">
+      <header class="services__head">
+        <p class="eyebrow-label">( How we get there )</p>
+        <p class="services__statement">Four moves, three weeks to first reveal.</p>
+      </header>
+      <div class="process__wrap">
+        <span class="process__rail" aria-hidden="true"><span class="process__line" id="processLine"></span></span>
+        <ol class="process__list">
+          <li class="pstep"><span class="pstep__num">01</span><div><h3>Discover</h3><p>Founders, customers, competitors — a short sharp audit of where you can win.</p></div></li>
+          <li class="pstep"><span class="pstep__num">02</span><div><h3>Define</h3><p>Positioning, personality and the one sentence the whole brand must prove.</p></div></li>
+          <li class="pstep"><span class="pstep__num">03</span><div><h3>Design</h3><p>Marks, type, colour and motion — explored wide, then pressure-tested in the wild.</p></div></li>
+          <li class="pstep"><span class="pstep__num">04</span><div><h3>Deliver</h3><p>Files, guidelines and templates handed over — plus a month of on-call tweaks.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ═══════════════ THE LEAD ═══════════════ -->
+    <section class="lead" data-section-theme="dark">
+      <div class="lead__grid">
+        <div class="lead__portrait reveal" aria-hidden="true">
+          <span class="lead__monogram">SX</span>
+          <span class="lead__ring"></span>
+          <span class="lead__role-chip">Studio lead</span>
+        </div>
+        <div class="lead__bio">
+          <p class="eyebrow-label">( The lead )</p>
+          <h2 class="lead__name">
+            <span class="line-mask"><span class="line-inner">Sphamandla</span></span>
+            <span class="line-mask"><span class="line-inner">Xaba</span></span>
+          </h2>
+          <p class="lead__title">UI/UX designer · Head of Brand Studio</p>
+          <p class="lead__text">Sphamandla leads every identity that leaves this studio. A UI/UX designer by trade, he designs brands the way he designs products — around the people who have to use them. The result: identities that make small companies look unmistakably big, and stay usable long after handover.</p>
+          <div class="lead__actions">
+            <a class="btn-big btn-big--sm" href="https://www.linkedin.com/in/sphamandla-xaba-ba1602287/" target="_blank" rel="noopener" data-magnetic data-cursor="Connect"><span>LinkedIn ↗</span></a>
+            <a class="link-arrow" href="mailto:hello@gemis.tech">Start a brand with Sphamandla <span>→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ FOOTER CTA ═══════════════ -->
+    <footer class="footer" id="contact" data-section-theme="dark">
+      <div class="footer__cta">
+        <p class="footer__pre">Ready when you are</p>
+        <h2 class="footer__title">
+          <span class="hero__line"><span data-split>YOUR&nbsp;BRAND</span></span>
+          <span class="hero__line hero__line--outline"><span data-split>STARTS&nbsp;HERE</span></span>
+        </h2>
+        <div class="footer__actions">
+          <a href="mailto:hello@gemis.tech" class="btn-big" data-magnetic data-cursor="Say hi">
+            <span>hello@gemis.tech</span>
+          </a>
+          <div class="badge" id="badge" aria-hidden="true">
+            <svg viewBox="0 0 120 120">
+              <defs><path id="circlePath" d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0" /></defs>
+              <text><textPath href="#circlePath">BRAND STUDIO · BY GEMIS® · EST. 2024 · </textPath></text>
+            </svg>
+            <span class="badge__arrow">↓</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer__base">
+        <div class="footer__cols">
+          <div>
+            <h4>Studio</h4>
+            <a href="index.html">GEMIS home</a><a href="index.html#work">Case studies</a><a href="index.html#services">Services</a>
+          </div>
+          <div>
+            <h4>Social</h4>
+            <a href="https://www.linkedin.com/in/sphamandla-xaba-ba1602287/" target="_blank" rel="noopener">LinkedIn</a><a href="#">GitHub</a><a href="#">X / Twitter</a>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <a href="mailto:hello@gemis.tech">hello@gemis.tech</a>
+            <span>Remote-first, worldwide</span>
+          </div>
+        </div>
+        <div class="footer__legal">
+          <span>© 2026 GEMIS Brand Studio. All rights reserved.</span>
+          <span>Identities with backbone.</span>
+        </div>
+      </div>
+      <div class="footer__wordmark" aria-hidden="true"><span>BRAND®</span></div>
+    </footer>
+
+  </main>
+
+  <script src="assets/js/gsap.min.js"></script>
+  <script src="assets/js/ScrollTrigger.min.js"></script>
+  <script src="assets/js/lenis.min.js"></script>
+  <script type="importmap">{ "imports": { "three": "./assets/js/three.module.min.js" } }</script>
+  <script type="module" src="assets/js/brand3d.js"></script>
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/brand.js" defer></script>
+</body>
+</html>
