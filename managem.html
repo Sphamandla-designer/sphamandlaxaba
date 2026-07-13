@@ -309,6 +309,16 @@
       display: grid; place-items: center;
     }
 
+    /* ── operational insights ── */
+    .insights { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+    .insight { padding: 18px; display: grid; gap: 12px; align-content: start; }
+    .insight p { font-size: 13px; color: var(--navy-mid); line-height: 1.55; }
+    .insight .label { display: block; margin-bottom: 3px; }
+    .insight p:nth-child(1) .label { color: var(--text-2); }
+    .insight p:nth-child(2) .label { color: #B45309; }
+    .insight p:nth-child(3) .label { color: var(--sky-hover); }
+    .insight p + p { position: relative; padding-top: 12px; border-top: 1px dashed var(--border); }
+
     /* ── decision log ── */
     .decisions { display: grid; gap: 10px; }
     .decision {
@@ -554,15 +564,17 @@
   <!-- progress rail -->
   <nav class="rail" aria-hidden="true">
     <a href="#overview" data-rail>Overview</a>
-    <a href="#why" data-rail>Why</a>
     <a href="#discovery" data-rail>Discovery</a>
+    <a href="#roles" data-rail>Roles</a>
+    <a href="#insights" data-rail>Insights</a>
     <a href="#problem" data-rail>Problem</a>
     <a href="#decisions" data-rail>Decisions</a>
-    <a href="#architecture" data-rail>IA</a>
+    <a href="#validation" data-rail>Validation</a>
     <a href="#flows" data-rail>Flows</a>
     <a href="#prototype" data-rail>Prototype</a>
     <a href="#takeon" data-rail>Take-On</a>
-    <a href="#measured" data-rail>Measured</a>
+    <a href="#measured" data-rail>Measurement</a>
+    <a href="#access" data-rail>Access</a>
     <a href="#reflection" data-rail>Reflection</a>
   </nav>
 
@@ -579,11 +591,19 @@
         </p>
 
         <div class="hero__meta" data-r>
-          <div class="card meta-card"><span class="label">Role</span><p>Product Designer</p></div>
-          <div class="card meta-card"><span class="label">Product</span><p>ManaGem + Take-On</p></div>
-          <div class="card meta-card"><span class="label">Scope</span><p>Enterprise ERP · AI onboarding</p></div>
-          <div class="card meta-card"><span class="label">Market</span><p>SA trade &amp; contracting</p></div>
+          <div class="card meta-card"><span class="label">Role</span><p>Lead UI/UX Designer</p></div>
+          <div class="card meta-card"><span class="label">Company</span><p>GEM Information Systems</p></div>
+          <div class="card meta-card"><span class="label">Product</span><p>ManaGem + Take-On · Enterprise ERP</p></div>
+          <div class="card meta-card"><span class="label">Status</span><p>Approved for implementation · pre-production</p></div>
         </div>
+        <p class="note" data-r style="margin-top:12px;max-width:78ch">
+          A real internal product initiative at GEMIS. I led the end-to-end redesign —
+          UX strategy, information architecture, interaction design, interface design,
+          workflows, the design system, prototyping and stakeholder presentations. The
+          redesign was reviewed and approved internally as the direction for
+          implementation; it has not yet entered production, so this case study contains
+          no production analytics and no external usability claims.
+        </p>
 
         <!-- before → after -->
         <div class="ba" data-r>
@@ -613,10 +633,12 @@
       <div class="wrap--narrow">
         <p class="kicker" data-r>01 · The challenge</p>
         <div class="prose" data-r>
-          <p><strong>GEM Information Systems already had a working, feature-complete ERP.</strong>
-          Ten modules. Real workflows. A client — a Sandton-based waterproofing and
-          pool-solutions contractor — running actual sales, production, stock and debtor
-          operations through it every day.</p>
+          <p><strong>GEM Information Systems already had a working, feature-complete platform.</strong>
+          Ten modules. Real workflows. A Sandton-based waterproofing and pool-solutions
+          contractor running actual sales, production, stock and debtor operations through
+          the existing GemIS system every day. The redesign documented here — ManaGem and
+          Take-On — is the approved next generation of that platform, developed as an
+          internal initiative and not yet deployed to production.</p>
           <p>The problem wasn't the software. It was everything that had to happen
           <em>before</em> the software could be used. Every new client meant weeks of
           spreadsheet wrangling: customer ledgers in one format, product price lists in
@@ -713,14 +735,22 @@
     <!-- ═══════════ DISCOVERY ═══════════ -->
     <section class="section" id="discovery">
       <div class="wrap">
-        <p class="kicker" data-r>03 · How I approached discovery</p>
+        <p class="kicker" data-r>03 · How discovery was conducted</p>
         <h2 class="h1" data-r>A trust problem wearing a data-migration costume</h2>
         <p class="dek" data-r>
-          Before touching a single onboarding screen, I needed answers the existing
-          product couldn't give me. What does a client actually have on their hard drive
-          the day they sign? Where does trust break down? Which handoffs are safe to
-          automate — and what does "done" look like: records in a system, or an owner who
-          <em>trusts</em> those records?
+          Discovery combined internal stakeholder conversations, platform walkthroughs,
+          workflow analysis, existing documentation review and observation of operational
+          processes. No formal external usability testing was conducted — and for an
+          internal enterprise redesign, that was the appropriate scope: the people who
+          onboard clients, own the product and build it work inside GEMIS, the legacy
+          platform was available to walk through end-to-end, and real client workflows
+          were already documented in the business.
+        </p>
+        <p class="note" data-r style="margin-top:8px">
+          <span class="badge badge--slate">Discovery evidence</span>&nbsp; Structured
+          conversations with the GEMIS onboarding team, product owner and internal
+          developers · analysis of the existing platform · client workflow discussions ·
+          review of existing documentation.
         </p>
 
         <!-- onboarding journey stepper -->
@@ -746,24 +776,24 @@
 
         <div class="grid4">
           <article class="card rcard" data-r>
-            <span class="label">Business research</span>
-            <h3>What clients actually keep</h3>
-            <p>Ledgers in Excel, supplier price lists as PDFs, staff registers that are frequently out of date — and where the risk concentrates if any of it is misread.</p>
+            <span class="label">Stakeholder conversations</span>
+            <h3>The people who do the work</h3>
+            <p>Structured conversations with the GEMIS onboarding team, the product owner and internal developers — the people who capture client data, own the roadmap and will build the result.</p>
           </article>
           <article class="card rcard" data-r>
-            <span class="label">Trust mapping</span>
-            <h3>The specific anxieties</h3>
-            <p>Is this POPIA-compliant? Who is the responsible party? Does the AI decide anything on its own? Can I undo this?</p>
+            <span class="label">Platform walkthroughs</span>
+            <h3>Auditing the legacy system</h3>
+            <p>End-to-end walkthroughs of the existing GemIS platform, cataloguing interaction patterns that slowed daily work — always-visible destructive actions, text-only statuses, 15+ near-identical admin tables.</p>
           </article>
           <article class="card rcard" data-r>
-            <span class="label">Failure mode audit</span>
-            <h3>How extraction really breaks</h3>
-            <p>Missing fields, duplicate records, inconsistent formats, truncated scans — designed for each as a first-class state, not an error page.</p>
+            <span class="label">Workflow &amp; document analysis</span>
+            <h3>How the business actually runs</h3>
+            <p>Client workflow discussions and review of existing documentation: what documents businesses actually keep — Excel ledgers, PDF price lists, out-of-date staff registers — and where misreading them concentrates risk.</p>
           </article>
           <article class="card rcard" data-r>
-            <span class="label">Onboarding audit</span>
+            <span class="label">Process observation</span>
             <h3>What humans did silently</h3>
-            <p>Duplicate checks, phone-format validation, blank-field flags — steps a reviewer performed invisibly that the product now had to make explicit.</p>
+            <p>Observing manual onboarding revealed the invisible steps — duplicate checks, phone-format validation, blank-field flags — that the product would now have to make explicit.</p>
           </article>
         </div>
 
@@ -813,15 +843,164 @@
               </g>
             </svg>
           </div>
-          <figcaption><span class="ref">FIG 03</span> The failure-mode matrix, plotted with records from Take-On's real mock data. Every quadrant is a designed state.</figcaption>
+          <figcaption><span class="ref">FIG 03</span> The failure-mode matrix, plotted with records from the Take-On prototype's mock dataset. Every quadrant is a designed state. <span class="badge badge--slate">Design artefact</span></figcaption>
         </figure>
+      </div>
+    </section>
+
+    <!-- ═══════════ OPERATIONAL ROLES FRAMEWORK ═══════════ -->
+    <section class="section" id="roles">
+      <div class="wrap">
+        <p class="kicker" data-r>04 · Operational roles framework</p>
+        <h2 class="h1" data-r>Who the platform serves, in operational terms</h2>
+        <p class="dek" data-r style="margin-bottom:1.6rem">
+          Rather than fictional personas, the redesign was grounded in an operational
+          roles framework — the real functions inside a trade business, what each is
+          accountable for, and what information each needs to make its decisions. Every
+          screen in ManaGem answers to at least one row of this table.
+        </p>
+        <figure class="shot" data-r style="margin-top:0">
+          <div class="shot__frame apptable">
+            <div style="overflow-x:auto">
+            <table>
+              <thead>
+                <tr><th>Operational role</th><th>Primary responsibilities</th><th>Business goals</th><th>Critical decisions</th><th>Information required</th><th>Dependencies</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Business Owner</strong></td>
+                  <td style="font-size:12.5px">Overall trading performance, approvals, pricing policy, credit policy</td>
+                  <td style="font-size:12.5px">Margin, cash flow, controlled growth</td>
+                  <td style="font-size:12.5px">Pricing and credit terms, capacity investment, hiring, escalations</td>
+                  <td style="font-size:12.5px">Consolidated KPIs, debtors ageing, pipeline vs production load, critical alerts</td>
+                  <td style="font-size:12.5px">Every module — final approver across the chain</td>
+                </tr>
+                <tr>
+                  <td><strong>Sales</strong></td>
+                  <td style="font-size:12.5px">Enquiries, quotations, invoicing, customer relationships</td>
+                  <td style="font-size:12.5px">Conversion, promises the business can keep</td>
+                  <td style="font-size:12.5px">Quote pricing within policy, delivery commitments, follow-up priority</td>
+                  <td style="font-size:12.5px">Price lists, stock availability, production status, customer history and credit state</td>
+                  <td style="font-size:12.5px">Products &amp; Pricing, Factory status, Stock, Debtors</td>
+                </tr>
+                <tr>
+                  <td><strong>Factory</strong></td>
+                  <td style="font-size:12.5px">Scheduling builds, quality control, foreman assignment</td>
+                  <td style="font-size:12.5px">On-time completion, capacity utilisation</td>
+                  <td style="font-size:12.5px">Job sequencing, delay escalation, QC pass/fail</td>
+                  <td style="font-size:12.5px">Job specifications from quotes, material availability, due dates, stage progress</td>
+                  <td style="font-size:12.5px">Sales (incoming jobs), Stock (materials), Delivery</td>
+                </tr>
+                <tr>
+                  <td><strong>Inventory</strong></td>
+                  <td style="font-size:12.5px">Receiving, movements, dispatch, stocktakes, purchasing</td>
+                  <td style="font-size:12.5px">Availability without over-holding capital in stock</td>
+                  <td style="font-size:12.5px">Reorder timing, supplier selection, warehouse and bay allocation</td>
+                  <td style="font-size:12.5px">Stock levels per warehouse/bay, purchase orders, production consumption</td>
+                  <td style="font-size:12.5px">Factory demand, suppliers, Finance (PO approval)</td>
+                </tr>
+                <tr>
+                  <td><strong>Finance</strong></td>
+                  <td style="font-size:12.5px">Invoicing, debtors management, Sage synchronisation, VAT</td>
+                  <td style="font-size:12.5px">Collection days down, clean reconciliation</td>
+                  <td style="font-size:12.5px">Credit-control actions, payment plans, write-off recommendations</td>
+                  <td style="font-size:12.5px">Invoice status, Sage sync state, ageing, deposits received</td>
+                  <td style="font-size:12.5px">Sales invoices, Sage Accounting, Business Owner approvals</td>
+                </tr>
+                <tr>
+                  <td><strong>HR</strong></td>
+                  <td style="font-size:12.5px">Staff records, roles and permissions, user onboarding</td>
+                  <td style="font-size:12.5px">Accurate records, correct system access per person</td>
+                  <td style="font-size:12.5px">Role-to-permission mapping, account provisioning and deactivation</td>
+                  <td style="font-size:12.5px">Staff register, role tiers, module access requirements</td>
+                  <td style="font-size:12.5px">Admin zone; every module consumes its user accounts</td>
+                </tr>
+                <tr>
+                  <td><strong>Operations</strong></td>
+                  <td style="font-size:12.5px">Cross-module coordination, projects, day-to-day escalations</td>
+                  <td style="font-size:12.5px">The chain keeps moving — no stage starves the next</td>
+                  <td style="font-size:12.5px">Prioritisation across jobs, resource allocation, escalation timing</td>
+                  <td style="font-size:12.5px">Cross-module status, alerts, bookings, delivery schedules</td>
+                  <td style="font-size:12.5px">Sales, Factory, Stock and Finance simultaneously</td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
+          </div>
+          <figcaption><span class="ref">TABLE 04</span> Operational roles framework — derived from stakeholder conversations and workflow analysis, not invented personas. <span class="badge badge--slate">Discovery evidence</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ═══════════ OPERATIONAL INSIGHTS ═══════════ -->
+    <section class="section section--tight" id="insights">
+      <div class="wrap">
+        <p class="kicker" data-r>05 · Operational insights</p>
+        <h2 class="h1" data-r>Observation → business impact → design response</h2>
+        <p class="dek" data-r style="margin-bottom:1.6rem">
+          Discovery findings were recorded as operational insights rather than empathy
+          maps: what was observed in the legacy platform and the business, what it costs,
+          and what the redesign does about it.
+        </p>
+        <div class="insights">
+          <article class="card insight" data-r>
+            <p><span class="label">Observation</span>Sales teams lacked visibility into production progress.</p>
+            <p><span class="label">Business impact</span>Delivery expectations became difficult to communicate accurately.</p>
+            <p><span class="label">Design response</span>Production status became visible earlier in the quotation workflow, and Factory alerts surface in the navigation for downstream roles.</p>
+          </article>
+          <article class="card insight" data-r>
+            <p><span class="label">Observation</span>Status lived as plain text inside records in the legacy platform.</p>
+            <p><span class="label">Business impact</span>Operational state was invisible while scanning lists — delays were found, not seen.</p>
+            <p><span class="label">Design response</span>A semantic StatusBadge system: state legible at a glance, colour reserved exclusively for meaning.</p>
+          </article>
+          <article class="card insight" data-r>
+            <p><span class="label">Observation</span>Every legacy table row carried always-visible Edit and Delete buttons.</p>
+            <p><span class="label">Business impact</span>Visual noise multiplied by every row, and destructive actions sat one accidental click away.</p>
+            <p><span class="label">Design response</span>Row actions moved behind a hover-revealed menu, with confirmation required on anything destructive.</p>
+          </article>
+          <article class="card insight" data-r>
+            <p><span class="label">Observation</span>Every new client required weeks of manual data capture by GEMIS staff.</p>
+            <p><span class="label">Business impact</span>Deals stalled at their highest-energy moment; onboarding consumed skilled internal capacity.</p>
+            <p><span class="label">Design response</span>Take-On — onboarding designed as a product, with AI extraction drafting what humans previously typed.</p>
+          </article>
+          <article class="card insight" data-r>
+            <p><span class="label">Observation</span>Client source documents are inconsistent by nature — one ledger has a phone column, another doesn't.</p>
+            <p><span class="label">Business impact</span>Silent import errors surface weeks later as broken invoices, and the vendor relationship takes the blame.</p>
+            <p><span class="label">Design response</span>Confidence-scored review: every extracted record carries a visible confidence level, a plain-language reason and a route back to its source.</p>
+          </article>
+          <article class="card insight" data-r>
+            <p><span class="label">Observation</span>GEMIS reviewers manage several client onboardings at the same time.</p>
+            <p><span class="label">Business impact</span>Without a way to prioritise, attention went to whoever asked loudest rather than whichever onboarding was blocked.</p>
+            <p><span class="label">Design response</span>The Take-on queue: per-client stage, compliance status, risk level and estimated review effort in one internal view.</p>
+          </article>
+          <article class="card insight" data-r>
+            <p><span class="label">Observation</span>A trade business runs one continuous revenue chain, not a set of departments.</p>
+            <p><span class="label">Business impact</span>Category-shaped modules fragmented that chain and forced constant context-switching.</p>
+            <p><span class="label">Design response</span>Ten modules organised into five zones that mirror the chain — Core, Customers, Sales, Operations, Admin.</p>
+          </article>
+          <article class="card insight" data-r>
+            <p><span class="label">Observation</span>The legacy system had 15+ near-identical single-table admin pages.</p>
+            <p><span class="label">Business impact</span>Navigation waste and inconsistent editing patterns for what was structurally the same task.</p>
+            <p><span class="label">Design response</span>A unified Master Data panel with a category sidebar — one pattern, every reference table.</p>
+          </article>
+          <article class="card insight" data-r>
+            <p><span class="label">Observation</span>Field and factory staff frequently work from phones in variable connectivity.</p>
+            <p><span class="label">Business impact</span>Desktop-only data tables were effectively unusable on site.</p>
+            <p><span class="label">Design response</span>Below 720px every table collapses to labelled cards, and the sidebar becomes a drawer — a rule enforced by the design system.</p>
+          </article>
+          <article class="card insight" data-r>
+            <p><span class="label">Observation</span>Legacy browsing meant paging through as many as 77 pages of records.</p>
+            <p><span class="label">Business impact</span>Finding a record depended on patience rather than the system.</p>
+            <p><span class="label">Design response</span>Search-first list patterns with dismissible filter chips and category grouping.</p>
+          </article>
+        </div>
       </div>
     </section>
 
     <!-- ═══════════ CORE PROBLEM ═══════════ -->
     <section class="section" id="problem">
       <div class="wrap">
-        <p class="kicker" data-r>04 · The core design problem</p>
+        <p class="kicker" data-r>06 · The core design problem</p>
         <h2 class="h1" data-r>Automation without losing trust</h2>
         <div class="prose" data-r>
           <p>Every prior attempt at "self-service data import" in ERP software fails the
@@ -854,8 +1033,9 @@
     <!-- ═══════════ DECISION LOG ═══════════ -->
     <section class="section" id="decisions">
       <div class="wrap">
-        <p class="kicker" data-r>05 · Decision log</p>
+        <p class="kicker" data-r>07 · Decision log</p>
         <h2 class="h1" data-r>Six decisions, and the alternatives they beat</h2>
+        <p class="note" data-r><span class="badge badge--slate">Internal stakeholder review</span>&nbsp; Each decision below was presented and defended in the internal review with the GEMIS Director, Product Owner and Lead Developer.</p>
         <div class="decisions" style="margin-top:1.6rem">
           <article class="card decision" data-r>
             <h3 class="decision__name"><span class="mono">DECISION 01</span>Confidence badges instead of a binary success / error import</h3>
@@ -903,10 +1083,79 @@
       </div>
     </section>
 
+    <!-- ═══════════ STAKEHOLDER VALIDATION & DESIGN EVOLUTION ═══════════ -->
+    <section class="section" id="validation">
+      <div class="wrap">
+        <p class="kicker" data-r>08 · Stakeholder validation</p>
+        <h2 class="h1" data-r>How the redesign was reviewed — and how it changed</h2>
+        <p class="dek" data-r style="margin-bottom:1.6rem">
+          The redesign was validated through a structured internal review rather than
+          external testing. That review was not a formality: it changed the product, and
+          two of its most visible features exist because of it.
+        </p>
+
+        <div class="grid4" style="grid-template-columns:repeat(auto-fit,minmax(250px,1fr))">
+          <article class="card rcard" data-r>
+            <span class="label">Review participants</span>
+            <h3>Three internal stakeholders</h3>
+            <p>The GEMIS Director, the Product Owner and the Lead Developer — commercial accountability, product accountability and implementation accountability in one room.</p>
+          </article>
+          <article class="card rcard" data-r>
+            <span class="label">Objectives</span>
+            <h3>Three questions on the table</h3>
+            <p>Validate workflow feasibility against how the business actually operates · review business alignment · assess implementation practicality within the existing architecture.</p>
+          </article>
+          <article class="card rcard" data-r>
+            <span class="label">Key feedback</span>
+            <h3>Supported, with refinements</h3>
+            <p>Supported: the five-zone shell, confidence-based review in Take-On, and consent-first onboarding. Refinements requested: critical issues must be visible globally, and each module should open with its operational health.</p>
+          </article>
+          <article class="card rcard" data-r>
+            <span class="label">Design changes</span>
+            <h3>The design evolved</h3>
+            <p>Two additions came directly out of review — the Executive Priority Banner and contextual KPI Summary Panels — and the navigation structure was kept compatible with the legacy platform's mental model for a phased rollout.</p>
+          </article>
+        </div>
+        <p class="note" data-r style="margin-top:10px"><span class="badge badge--emerald">Approved for implementation</span>&nbsp; The proposed redesign was approved internally as the direction for implementation.</p>
+
+        <h3 class="h2" data-r style="margin:2.6rem 0 0.4rem">Stakeholder feedback &amp; design evolution</h3>
+        <p class="prose" data-r style="font-size:13.5px;color:var(--text-2);max-width:72ch;margin-bottom:1.2rem">
+          The redesign was not a single-pass solution. Two decisions in particular show
+          how it evolved through collaboration with the people accountable for the
+          business.
+        </p>
+
+        <div class="decisions">
+          <article class="card decision" data-r>
+            <h3 class="decision__name"><span class="mono">EVOLUTION 01</span>Operational priority messaging — the Executive Priority Banner</h3>
+            <div class="decision__body">
+              <p>During the stakeholder review, the Director emphasised that critical operational issues should never be hidden inside individual modules. In response, the Dashboard gained a persistent <b>Executive Priority Banner</b> — a high-visibility red alert strip reserved exclusively for business-critical information: outstanding approvals, overdue quotations, delayed production jobs, compliance issues, inventory shortages and system-wide operational alerts.</p>
+              <p class="rej"><b>Reasoning:</b> the Dashboard is the first screen users see each day. Surfacing urgent issues there reduces the likelihood of missed actions and improves organisational awareness. It is a deliberate hierarchy decision — the banner earns its colour by being rare, scoped to genuine consequence, and forbidden to routine notifications — not a warning message bolted on. <span class="badge badge--slate">Internal stakeholder review</span></p>
+            </div>
+          </article>
+          <article class="card decision" data-r>
+            <h3 class="decision__name"><span class="mono">EVOLUTION 02</span>Executive KPI summaries — contextual panels per module</h3>
+            <div class="decision__body">
+              <p>Stakeholders asked that users understand the health of each business area without navigating multiple screens. In response, key modules — Dashboard, Sales, Projects, Inventory, Finance, Factory, Procurement — open with a <b>contextual KPI Summary Panel</b> showing only the indicators relevant to that module: Sales leads with revenue, open quotations, conversion and outstanding invoices; Inventory with stock value, low-stock items, purchase orders and warehouse utilisation; Factory with active jobs, capacity, delayed orders and completion rate; Finance with cash flow, outstanding payments, monthly revenue and expenses.</p>
+              <p class="rej"><b>Reasoning:</b> rather than forcing users to search for information, each module begins with a concise operational summary that supports faster decisions and situational awareness. These panels are contextual, not generic dashboards — each role sees what is immediately relevant to its responsibilities, which is exactly what the operational roles framework prescribes. <span class="badge badge--slate">Approved for implementation</span></p>
+            </div>
+          </article>
+        </div>
+
+        <blockquote class="pull" data-r style="margin-top:1.6rem">
+          These stakeholder discussions reinforced an important lesson about enterprise
+          software: users don't simply need access to data — they need immediate
+          visibility into what requires attention. The interface shifted from being a
+          collection of screens to becoming a proactive operational decision-support
+          system.
+        </blockquote>
+      </div>
+    </section>
+
     <!-- ═══════════ PRINCIPLES ═══════════ -->
     <section class="section section--tight" id="principles">
       <div class="wrap">
-        <p class="kicker" data-r>06 · Design principles</p>
+        <p class="kicker" data-r>09 · Design principles</p>
         <div class="pcards" style="margin-top:1rem">
           <article class="card pcard" data-r>
             <span class="pcard__icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></span>
@@ -935,7 +1184,7 @@
     <!-- ═══════════ INFORMATION ARCHITECTURE ═══════════ -->
     <section class="section" id="architecture">
       <div class="wrap">
-        <p class="kicker" data-r>07 · Information architecture</p>
+        <p class="kicker" data-r>10 · Information architecture</p>
         <h2 class="h1" data-r>The trust boundary is the diagram</h2>
         <p class="dek" data-r style="margin-bottom:1.8rem">
           Take-On is deliberately <em>not</em> an eleventh module. It lives outside
@@ -966,7 +1215,7 @@
     <!-- ═══════════ KEY FLOWS ═══════════ -->
     <section class="section" id="flows">
       <div class="wrap">
-        <p class="kicker" data-r>08 · Key flows</p>
+        <p class="kicker" data-r>11 · Key flows</p>
         <h2 class="h1" data-r>Where breakdowns cost time, materials or money</h2>
 
         <!-- Flow 1 -->
@@ -1044,12 +1293,36 @@
     <!-- ═══════════ LIVE PROTOTYPE ═══════════ -->
     <section class="section" id="prototype">
       <div class="wrap">
-        <p class="kicker" data-r>09 · The working prototypes</p>
+        <p class="kicker" data-r>12 · The working prototypes</p>
         <h2 class="h1" data-r>Don't take the screenshots' word for it</h2>
         <p class="dek" data-r style="margin-bottom:1.6rem">
           Both products, running live inside this page — the same builds every screenshot
           in this case study was captured from.
         </p>
+
+        <div class="grid4" data-r style="margin-bottom:1.6rem">
+          <article class="card rcard">
+            <span class="label">Fully interactive</span>
+            <h3>What you can actually use</h3>
+            <p>The complete Take-On client wizard — consent, simulated secure upload, AI extraction, validation and all three review categories — plus the GEMIS Take-on queue, and ManaGem's shell: login, navigation, Dashboard, Factory, Stock Control and the sales views.</p>
+          </article>
+          <article class="card rcard">
+            <span class="label">Partially interactive</span>
+            <h3>Representative, not wired</h3>
+            <p>Module list views run on representative mock data; some actions — exports, certain drawers and row actions — demonstrate the pattern without executing it.</p>
+          </article>
+          <article class="card rcard">
+            <span class="label">Static concept screens</span>
+            <h3>Documented, not built</h3>
+            <p>Edge and error states, some admin detail views and mobile behaviours are specified in the design system rather than built into these prototypes.</p>
+          </article>
+          <article class="card rcard">
+            <span class="label">Future prototype work</span>
+            <h3>Next to be prototyped</h3>
+            <p>Sage synchronisation flows, the permissions administration journey, offline and connectivity-loss states, and the Executive Priority Banner and per-module KPI panels adopted at stakeholder review.</p>
+          </article>
+        </div>
+        <p class="note" data-r style="margin-bottom:1.2rem"><span class="badge badge--slate">Prototype scope</span>&nbsp; Stated so reviewers know exactly what they are seeing — and what remains concept.</p>
         <div class="proto-tabs" data-r>
           <button class="proto-tab is-on" data-proto="ManaGem.html" data-label="ManaGem.html — live prototype">ManaGem — the ERP</button>
           <button class="proto-tab" data-proto="ManaGem Take-On (Standalone).html" data-label="ManaGem Take-On (Standalone).html — live prototype">Take-On — AI onboarding</button>
@@ -1072,7 +1345,7 @@
     <!-- ═══════════ FACTORY ALERTS DEEP DIVE ═══════════ -->
     <section class="section" id="alerts">
       <div class="wrap">
-        <p class="kicker" data-r>10 · Feature deep dive</p>
+        <p class="kicker" data-r>13 · Feature deep dive</p>
         <h2 class="h1" data-r>Factory alerts: making delay visible upstream</h2>
         <div class="prose" data-r>
           <p>Production delays and material shortages were previously invisible outside
@@ -1111,7 +1384,7 @@
     <!-- ═══════════ TAKE-ON DEEP DIVE ═══════════ -->
     <section class="section" id="takeon">
       <div class="wrap">
-        <p class="kicker" data-r>11 · Feature deep dive</p>
+        <p class="kicker" data-r>14 · Feature deep dive</p>
         <h2 class="h1" data-r>Take-On: trust-first, AI-powered onboarding</h2>
         <div class="prose" data-r>
           <p>The blocker was never extraction accuracy — OCR and AI were already good
@@ -1156,7 +1429,27 @@
     <!-- ═══════════ TRADE-OFFS ═══════════ -->
     <section class="section section--tight" id="tradeoffs">
       <div class="wrap--narrow">
-        <p class="kicker" data-r>12 · Trade-offs &amp; constraints</p>
+        <p class="kicker" data-r>15 · Constraints &amp; trade-offs</p>
+        <h2 class="h1" data-r>The realities the design worked within</h2>
+        <ul class="tradeoffs" data-r style="margin-top:1rem">
+          <li>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+            <span><b>Working within an existing ERP architecture.</b> The redesign changes the visual and interaction layer; data structures, module boundaries and the Sage integration were fixed inputs. <span class="badge badge--slate">Engineering constraint</span></span>
+          </li>
+          <li>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+            <span><b>Designing around existing business workflows.</b> The client's operation could not pause for the software. Navigation preserves the legacy mental model so retraining cost stays near zero. <span class="badge badge--slate">Implementation consideration</span></span>
+          </li>
+          <li>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+            <span><b>Balancing modern UX with implementation feasibility.</b> Every component in the design system was scoped against what a small engineering team can build and maintain — CSS variables and utility classes, one chart library, no runtime CSS-in-JS. <span class="badge badge--slate">Engineering constraint</span></span>
+          </li>
+          <li>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+            <span><b>Working within engineering priorities, compatible with existing modules.</b> The design supports phased implementation — redesigned modules must coexist with legacy ones during rollout, which shaped the shared shell and token strategy. Scalability to future products (Take-On is the first) is a design-system requirement, not an afterthought. <span class="badge badge--slate">Implementation consideration</span></span>
+          </li>
+        </ul>
+        <h3 class="h2" data-r style="margin:2rem 0 0.4rem">Deliberate trade-offs</h3>
         <ul class="tradeoffs" data-r>
           <li>
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4M12 17h.01"/></svg>
@@ -1177,70 +1470,139 @@
     <!-- ═══════════ WHAT I MEASURED ═══════════ -->
     <section class="section" id="measured">
       <div class="wrap">
-        <p class="kicker" data-r>13 · What I measured</p>
-        <h2 class="h1" data-r>Questions the product must keep answering honestly</h2>
-        <div class="qgrid" style="margin-top:1.4rem">
-          <div class="card qcard" data-r><span class="mono">Q1</span>How would GEMIS know onboarding time actually dropped — rather than just looking faster in a demo?</div>
-          <div class="card qcard" data-r><span class="mono">Q2</span>Would the trust-versus-review ratio hold up across a messy, real-world client — not just a clean pilot?</div>
-          <div class="card qcard" data-r><span class="mono">Q3</span>Across a dozen simultaneous onboardings, which ones need GEMIS's attention <em>today</em>?</div>
-          <div class="card qcard" data-r><span class="mono">Q4</span>How does a compliance-conscious buyer know "AI-powered" isn't a euphemism for "we can't tell you what happens to your data"?</div>
+        <p class="kicker" data-r>16 · Success measurement framework</p>
+        <h2 class="h1" data-r>How success will be measured — after deployment</h2>
+        <p class="dek" data-r style="margin-bottom:1.4rem">
+          The redesign has been approved for implementation but has not yet entered
+          production. No production analytics exist, and none are claimed here. The
+          following framework defines the measurements that would be used after
+          deployment.
+        </p>
+        <figure class="shot" data-r style="margin-top:0">
+          <div class="shot__frame apptable">
+            <div style="overflow-x:auto">
+            <table>
+              <thead>
+                <tr><th>Business objective</th><th>Success metric</th><th>How it would be measured</th><th>When it would be evaluated</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Shorten the onboarding runway</strong></td>
+                  <td style="font-size:12.5px">Elapsed time from signed contract to client review complete</td>
+                  <td style="font-size:12.5px">Take-On stage timestamps, per client</td>
+                  <td style="font-size:12.5px">After each of the first five onboardings</td>
+                </tr>
+                <tr>
+                  <td><strong>Reduce manual capture effort</strong></td>
+                  <td style="font-size:12.5px">GEMIS reviewer hours per onboarding</td>
+                  <td style="font-size:12.5px">Review durations logged in the Take-on queue</td>
+                  <td style="font-size:12.5px">Quarterly</td>
+                </tr>
+                <tr>
+                  <td><strong>Data quality at go-live</strong></td>
+                  <td style="font-size:12.5px">Share of extracted records confirmed without edits vs edited vs rejected</td>
+                  <td style="font-size:12.5px">Take-On review outcome logs, per category</td>
+                  <td style="font-size:12.5px">After every onboarding</td>
+                </tr>
+                <tr>
+                  <td><strong>Production visibility for downstream roles</strong></td>
+                  <td style="font-size:12.5px">Engagement with Factory alerts by non-production roles; delivery-date changes communicated before due date</td>
+                  <td style="font-size:12.5px">Alert interaction events; enquiry timeline entries</td>
+                  <td style="font-size:12.5px">Sixty days after rollout, then quarterly</td>
+                </tr>
+                <tr>
+                  <td><strong>Faster revenue cycle</strong></td>
+                  <td style="font-size:12.5px">Enquiry-to-invoice cycle time</td>
+                  <td style="font-size:12.5px">Sales module timestamps across the enquiry lifecycle</td>
+                  <td style="font-size:12.5px">Quarterly, against pre-rollout baseline from the legacy system</td>
+                </tr>
+                <tr>
+                  <td><strong>Lower support burden</strong></td>
+                  <td style="font-size:12.5px">Onboarding- and navigation-related support requests</td>
+                  <td style="font-size:12.5px">GEMIS support ticket categories</td>
+                  <td style="font-size:12.5px">First two quarters after rollout</td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
+          </div>
+          <figcaption><span class="ref">TABLE 16</span> Measurement framework agreed as part of the implementation direction. <span class="badge badge--slate">Pre-production</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ═══════════ ACCESSIBILITY ═══════════ -->
+    <section class="section section--tight" id="access">
+      <div class="wrap">
+        <p class="kicker" data-r>17 · Accessibility</p>
+        <h2 class="h1" data-r>Accessible by default — an acceptance criterion, not an enhancement</h2>
+        <p class="dek" data-r style="margin-bottom:1.6rem">
+          The design system treats accessibility as a requirement every component must
+          pass before it ships, aligned with WCAG AA as the enterprise baseline.
+        </p>
+        <div class="pcards" style="grid-template-columns:repeat(auto-fit,minmax(230px,1fr))">
+          <article class="card pcard" data-r>
+            <h3>Keyboard navigation &amp; focus</h3>
+            <p>Every interactive element is reachable and operable by keyboard, with visible focus states specified in the system — power users spend six-plus hours a day here, many of them keyboard-first.</p>
+          </article>
+          <article class="card pcard" data-r>
+            <h3>Contrast</h3>
+            <p>WCAG AA contrast on the light canvas and the dark navy rail alike; secondary text never drops below the system's slate-500, and colour is never the only carrier of state.</p>
+          </article>
+          <article class="card pcard" data-r>
+            <h3>Table readability</h3>
+            <p>44–48px rows, 13px minimum body type, 11px uppercase headers, truncation with tooltips — density without shrinking type below legibility.</p>
+          </article>
+          <article class="card pcard" data-r>
+            <h3>Form validation &amp; error prevention</h3>
+            <p>Inline, plain-language validation; destructive actions demand confirmation; and Take-On's two-gate submission means no irreversible action happens on a single click.</p>
+          </article>
+          <article class="card pcard" data-r>
+            <h3>Touch targets &amp; responsive layouts</h3>
+            <p>44px minimum touch targets; below 720px, tables collapse to labelled cards and the sidebar becomes a drawer — designed for factory floors and site visits, not just desks.</p>
+          </article>
+          <article class="card pcard" data-r>
+            <h3>Loading, empty &amp; reduced-motion states</h3>
+            <p>Designed skeleton loading states, empty states with a clear next action instead of dead ends, and full <span class="ref" style="font-size:11px">prefers-reduced-motion</span> support — motion in the system never exceeds 200ms as it is.</p>
+          </article>
         </div>
-        <div class="kpis">
-          <div class="card kpi" data-r>
-            <span class="kpi__icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
-            <span class="label">Onboarding runway</span>
-            <p class="kpi__value">Weeks <span style="font-size:16px;color:var(--text-2)">→</span> Days</p>
-            <p class="kpi__delta">signed contract to reviewable system</p>
-          </div>
-          <div class="card kpi" data-r>
-            <span class="kpi__icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></span>
-            <span class="label">Auto-verified tier</span>
-            <p class="kpi__value"><span data-count="78">0</span>%</p>
-            <p class="kpi__delta">records landing Verified on a clean ledger</p>
-          </div>
-          <div class="card kpi" data-r>
-            <span class="kpi__icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></span>
-            <span class="label">Needs human eyes</span>
-            <p class="kpi__value"><span data-count="14">0</span>%</p>
-            <p class="kpi__delta">flagged for the client's focused attention</p>
-          </div>
-          <div class="card kpi" data-r>
-            <span class="kpi__icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
-            <span class="label">Queue per reviewer</span>
-            <p class="kpi__value"><span data-count="12">0</span></p>
-            <p class="kpi__delta">simultaneous onboardings, triaged at a glance</p>
-          </div>
-        </div>
-        <span class="badge badge--slate illustrative" data-r>Illustrative figures — production metrics pending</span>
       </div>
     </section>
 
     <!-- ═══════════ REFLECTION ═══════════ -->
     <section class="section" id="reflection">
       <div class="wrap--narrow">
-        <p class="kicker" data-r>14 · Reflection</p>
+        <p class="kicker" data-r>18 · Reflection</p>
         <div class="refl">
           <div data-r>
             <h3>What surprised me</h3>
-            <p>How much of the real problem lived in the sequence of trust-building, not extraction accuracy. Clients forgave an AI getting a phone number wrong far more readily than a product that didn't explain what it was doing with their customer list.</p>
+            <p>How much of the real problem lived in the sequence of trust-building rather than in extraction accuracy. The internal consensus was consistent: a business owner will forgive an AI getting a phone number wrong far more readily than a product that doesn't explain what it is doing with their customer list.</p>
           </div>
           <div data-r>
-            <h3>What I'd do differently</h3>
-            <p>More structured time with GEMIS's own onboarding staff before finalising the Admin Queue — the people who triage a dozen onboardings a day would have surfaced prioritisation needs I had to discover later.</p>
+            <h3>How my understanding evolved</h3>
+            <p>I began treating this as an interface modernisation and ended treating it as an operational-visibility problem. The stakeholder review accelerated that shift — the Director's insistence that critical issues be visible globally, and the request for per-module health summaries, reframed the dashboard from a report into a decision-support surface.</p>
           </div>
           <div data-r>
-            <h3>What the compliance requirement taught me</h3>
-            <p>POPIA-consciousness, done well, is a sales asset rather than friction. Once Trust &amp; Compliance was treated as a feature worth designing carefully, it became the screen most worth showing a skeptical buyer first.</p>
+            <h3>How stakeholder feedback shaped the design</h3>
+            <p>The Executive Priority Banner and the contextual KPI panels exist because of the internal review, not despite it. Both came from people accountable for the business rather than from a design preference — which is exactly the provenance an enterprise feature should have.</p>
           </div>
           <div data-r>
-            <h3>What I'd design next</h3>
-            <p>A client-facing version of the Admin Queue — letting the client's own project sponsor watch their onboarding's compliance score and stage in real time. The transparency that builds trust in the moment should extend to the wait before go-live.</p>
+            <h3>What I'd validate next</h3>
+            <p>Structured sessions with the GEMIS onboarding team working the Take-on queue against real client documents, and observed walkthroughs of the client wizard with a genuine business owner — the two audiences whose behaviour the design makes the strongest assumptions about.</p>
+          </div>
+          <div data-r>
+            <h3>What I'd measure after launch</h3>
+            <p>The framework above, in order of importance: onboarding runway, reviewer hours, and the confirmed-without-edit rate — the single number that will tell us whether confidence-scored review actually earns the trust it is designed to earn.</p>
+          </div>
+          <div data-r>
+            <h3>Lessons about enterprise product design</h3>
+            <p>Enterprise design is negotiated, not decreed: the constraint set — existing architecture, phased rollout, a small engineering team — did more to shape good decisions than unconstrained ideation would have. And in this category, compliance treated as a designed feature rather than a legal checkbox turned out to be a genuine asset.</p>
           </div>
         </div>
         <p class="closing" data-r>
-          "Every version that leaned harder on the <b>AI-powered</b> framing and softer on
-          <b>you stay in control</b> tested worse with the audience this product actually
-          needs to convince."
+          "In internal review, every version that leaned harder on the <b>AI-powered</b>
+          framing and softer on <b>you stay in control</b> landed worse — with the very
+          people who will sell, support and build this product."
         </p>
       </div>
     </section>
