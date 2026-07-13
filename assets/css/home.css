@@ -353,6 +353,15 @@ html.js .cursor { display: block; }
 .btn--big { padding: 0.7rem 0.7rem 0.7rem 2rem; font-size: clamp(1rem, 2.4vw, 1.5rem); }
 .btn--big .btn__orb { width: 52px; height: 52px; }
 .btn__orb--dark { background: var(--ink); color: #fff; }
+.btn--ghost {
+  padding: 0.95rem 1.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #f4f4f6;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.btn--ghost:hover { background: rgba(255, 255, 255, 0.14); border-color: rgba(255, 255, 255, 0.6); }
 .btn--light:hover .btn__orb--dark { background: var(--accent); color: var(--ink); transform: rotate(45deg); }
 
 /* ═══════════════════════ HERO ═══════════════════════ */
@@ -432,6 +441,18 @@ html.js .cursor { display: block; }
 .hero__title em { font-style: normal; }
 .hero__line { display: block; overflow: hidden; }
 .hero__line em { display: inline-block; will-change: transform; }
+.hero__line--outline em {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--ink);
+}
+.hero__sub {
+  position: relative; z-index: 4;
+  margin-top: 1.4rem;
+  max-width: 46ch;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
 .hero__rating {
   position: relative; z-index: 4;
   display: flex; align-items: center; gap: 0.7rem;
@@ -596,6 +617,7 @@ html.js .cursor { display: block; }
 /* ═══════════════════════ WORK ═══════════════════════ */
 .work { padding: clamp(5rem, 13vh, 9rem) var(--pad); background: var(--bg-3); border-top: 1px solid var(--hairline); }
 .work__head { display: grid; gap: 1.2rem; margin-bottom: clamp(3rem, 7vh, 5rem); }
+.work__sub { max-width: 52ch; font-size: 0.95rem; line-height: 1.6; color: var(--muted); }
 .work__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -642,6 +664,41 @@ html.js .cursor { display: block; }
   white-space: nowrap;
 }
 
+/* ═══════════════════════ PHILOSOPHY ═══════════════════════ */
+.philosophy {
+  padding: clamp(6rem, 15vh, 10rem) var(--pad);
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+  border-top: 1px solid var(--hairline);
+}
+.philosophy .section-tag { grid-column: 1 / -1; }
+.philosophy__lines { padding-top: 0.6rem; }
+.philosophy__lead {
+  font-size: 1.05rem; line-height: 1.6; color: var(--ink-2);
+  max-width: 44ch; margin-bottom: 1.6rem;
+}
+.philosophy__lines ul { display: grid; gap: 0.55rem; margin-bottom: 1.6rem; }
+.philosophy__lines li {
+  font-family: var(--font-display);
+  font-weight: 700; font-stretch: 93%;
+  font-size: clamp(1.3rem, 2.4vw, 1.9rem);
+  letter-spacing: -0.02em;
+  padding-left: 1.4rem;
+  position: relative;
+}
+.philosophy__lines li::before {
+  content: "✦";
+  position: absolute; left: 0; top: 0.35em;
+  font-size: 0.55em; color: var(--accent);
+}
+.philosophy__close {
+  font-family: var(--font-mono); font-size: 0.72rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--muted);
+}
+
 /* ═══════════════════════ SERVICES ═══════════════════════ */
 .services {
   background: var(--dark);
@@ -686,12 +743,34 @@ html.js .cursor { display: block; }
 }
 .service:hover .service__arrow { transform: translate(0, 0); color: var(--accent); }
 
+/* why companies hire me */
+.value { margin-top: clamp(3.5rem, 9vh, 6rem); }
+.value__title {
+  font-family: var(--font-display);
+  font-weight: 800; font-stretch: 92%;
+  font-size: clamp(1.9rem, 4vw, 3.2rem);
+  line-height: 1.02; letter-spacing: -0.025em;
+  color: #f5f5f7;
+  margin-bottom: 1.8rem;
+}
+.value__title em { font-style: normal; color: transparent; -webkit-text-stroke: 1.3px rgba(255,255,255,0.85); }
+.value__list { display: grid; gap: 0; border-top: 1px solid rgba(255,255,255,0.12); }
+.value__list li {
+  display: flex; align-items: baseline; gap: 1.1rem;
+  padding: 1rem 0.4rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+  font-weight: 500; color: rgba(255, 255, 255, 0.82);
+}
+.value__list .mono { color: var(--accent); }
+
 /* ═══════════════════════ PROCESS ═══════════════════════ */
 .process {
   padding: clamp(5rem, 13vh, 8rem) var(--pad);
   background:
     radial-gradient(90% 120% at 50% 100%, #f2f2f5 0%, var(--bg) 60%, var(--bg-2) 100%);
 }
+.process__head { display: grid; gap: 1.2rem; margin-bottom: clamp(2.5rem, 6vh, 4rem); }
 .process__inner {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -730,6 +809,21 @@ html.js .cursor { display: block; }
   background: rgba(255, 255, 255, 0.5);
 }
 
+/* about preview */
+.aboutpreview {
+  margin-top: clamp(4rem, 10vh, 7rem);
+  padding-top: clamp(2.5rem, 6vh, 4rem);
+  border-top: 1px solid var(--hairline);
+  display: grid;
+  justify-items: start;
+  gap: 1.4rem;
+}
+.aboutpreview__copy {
+  max-width: 58ch;
+  font-size: 1rem; line-height: 1.65;
+  color: var(--muted);
+}
+
 /* ═══════════════════════ FOOTER ═══════════════════════ */
 .footer {
   position: relative;
@@ -747,6 +841,8 @@ html.js .cursor { display: block; }
   color: #f5f5f7;
 }
 .footer__title em { font-style: normal; color: transparent; -webkit-text-stroke: 1.5px rgba(255,255,255,0.85); }
+.footer__sub { font-size: 1.02rem; color: rgba(255, 255, 255, 0.65); margin-top: -0.6rem; }
+.footer__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
 .footer__meta {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -800,6 +896,7 @@ html.js .cursor { display: block; }
   color: rgba(255, 255, 255, 0.5);
 }
 .footer__bar a:hover { color: var(--accent); }
+.footer__statement { max-width: 72ch; line-height: 1.7; text-transform: none; letter-spacing: 0.04em; }
 
 /* ═══════════════════════ RESPONSIVE ═══════════════════════ */
 @media (max-width: 1180px) {
@@ -818,6 +915,7 @@ html.js .cursor { display: block; }
   .service__arrow { grid-row: 1; grid-column: 3; }
   .work__grid { grid-template-columns: 1fr; }
   .work__grid > .project:nth-child(even) { transform: none; }
+  .philosophy { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
   .hero__strip { font-size: 0.56rem; padding: 0.9rem 1rem; }
