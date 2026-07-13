@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 1024" role="img" aria-label="">
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1b1b20"/>
+      <stop offset="0.55" stop-color="#101014"/>
+      <stop offset="1" stop-color="#070709"/>
+    </linearGradient>
+    <linearGradient id="rim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="0.5" stop-color="#dcdce2" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#dcdce2" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="visor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffb35c"/>
+      <stop offset="0.45" stop-color="#ff7a1a"/>
+      <stop offset="1" stop-color="#e05500"/>
+    </linearGradient>
+    <linearGradient id="visorShine" x1="0" y1="0" x2="1" y2="0.3">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.65"/>
+      <stop offset="0.35" stop-color="#ffffff" stop-opacity="0.08"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="sheen" cx="0.5" cy="0.22" r="0.75">
+      <stop offset="0" stop-color="#3a3a44" stop-opacity="0.9"/>
+      <stop offset="0.6" stop-color="#1a1a20" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#101014" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="26"/>
+    </filter>
+  </defs>
+
+  <!-- rim light halo behind figure -->
+  <path filter="url(#soft)" fill="url(#rim)" opacity="0.9"
+    d="M246 322 C246 186 296 110 384 110 C472 110 522 186 522 322 C522 404 488 474 446 510 L446 556 C530 588 648 640 706 722 C754 792 772 884 772 1028 L-4 1028 C-4 884 14 792 62 722 C120 640 238 588 322 556 L322 510 C280 474 246 404 246 322 Z"/>
+
+  <!-- bust silhouette -->
+  <path fill="url(#body)"
+    d="M254 322 C254 190 302 118 384 118 C466 118 514 190 514 322 C514 402 481 470 440 506 L440 560 C522 591 636 642 696 722 C746 790 764 880 764 1024 L4 1024 C4 880 22 790 72 722 C132 642 246 591 328 560 L328 506 C287 470 254 402 254 322 Z"/>
+
+  <!-- head sheen -->
+  <path fill="url(#sheen)"
+    d="M254 322 C254 190 302 118 384 118 C466 118 514 190 514 322 C514 402 481 470 440 506 L328 506 C287 470 254 402 254 322 Z"/>
+
+  <!-- visor glow -->
+  <path filter="url(#glow)" fill="#ff7a1a" opacity="0.55"
+    d="M250 268 Q384 226 518 268 Q536 302 518 336 Q384 378 250 336 Q232 302 250 268 Z"/>
+
+  <!-- visor -->
+  <path fill="url(#visor)"
+    d="M252 268 Q384 228 516 268 Q533 302 516 336 Q384 376 252 336 Q235 302 252 268 Z"/>
+  <!-- visor shine -->
+  <path fill="url(#visorShine)"
+    d="M252 268 Q384 228 516 268 Q520 276 522 286 Q384 250 254 288 Q252 278 252 268 Z"/>
+
+  <!-- warm reflections on cheeks -->
+  <ellipse cx="306" cy="392" rx="26" ry="14" fill="#ff7a1a" opacity="0.28" filter="url(#soft)"/>
+  <ellipse cx="462" cy="392" rx="26" ry="14" fill="#ff7a1a" opacity="0.28" filter="url(#soft)"/>
+
+  <!-- shoulder rim accents -->
+  <path fill="#ffffff" opacity="0.16" filter="url(#soft)"
+    d="M72 722 C132 642 246 591 328 560 L340 574 C260 606 152 658 96 736 Z"/>
+  <path fill="#ffffff" opacity="0.16" filter="url(#soft)"
+    d="M696 722 C636 642 522 591 440 560 L428 574 C508 606 616 658 672 736 Z"/>
+</svg>

@@ -1,14 +1,17 @@
 /* ═══════════════════════════════════════════════════════════
    SPHAMANDLA XABA® — hero WebGL particle field (Three.js)
-   Floating emerald dust with mouse + scroll parallax
+   Silver dust + amber visor sparks with mouse/scroll parallax
    ═══════════════════════════════════════════════════════════ */
 
 import * as THREE from 'three';
 
-const canvas = document.getElementById('heroCanvas');
+const holder = document.getElementById('heroCanvas');
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-if (canvas && !reduced) {
+if (holder && !reduced) {
+  const canvas = document.createElement('canvas');
+  holder.appendChild(canvas);
+
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
 
@@ -16,7 +19,7 @@ if (canvas && !reduced) {
   const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 60);
   camera.position.z = 10;
 
-  const COUNT = 900;
+  const COUNT = 750;
   const positions = new Float32Array(COUNT * 3);
   const seeds = new Float32Array(COUNT * 3);
   for (let i = 0; i < COUNT; i++) {
@@ -34,7 +37,7 @@ if (canvas && !reduced) {
   const mat = new THREE.ShaderMaterial({
     transparent: true,
     depthWrite: false,
-    blending: THREE.AdditiveBlending,
+    blending: THREE.NormalBlending,
     uniforms: {
       uTime: { value: 0 },
       uPixelRatio: { value: renderer.getPixelRatio() },
@@ -47,12 +50,12 @@ if (canvas && !reduced) {
       varying float vFade;
       void main() {
         vec3 p = position;
-        float t = uTime * 0.28 * aSeed.y;
+        float t = uTime * 0.26 * aSeed.y;
         p.y += sin(t + aSeed.x) * 0.9;
         p.x += cos(t * 0.8 + aSeed.x * 2.0) * 0.7;
         vec4 mv = modelViewMatrix * vec4(p, 1.0);
         gl_Position = projectionMatrix * mv;
-        float size = mix(1.4, 4.2, aSeed.z);
+        float size = mix(1.3, 4.0, aSeed.z);
         gl_PointSize = size * uPixelRatio * (9.0 / -mv.z);
         vTint = aSeed.z;
         vFade = smoothstep(-14.0, -2.0, mv.z);
@@ -64,10 +67,11 @@ if (canvas && !reduced) {
       void main() {
         float d = length(gl_PointCoord - 0.5);
         float a = smoothstep(0.5, 0.05, d);
-        vec3 emerald = vec3(0.09, 0.9, 0.52);
-        vec3 bone = vec3(0.93, 0.91, 0.87);
-        vec3 col = mix(bone, emerald, step(0.45, vTint));
-        gl_FragColor = vec4(col, a * 0.55 * vFade);
+        vec3 ink = vec3(0.32, 0.32, 0.38);      // graphite dust
+        vec3 amber = vec3(1.0, 0.52, 0.12);     // visor sparks
+        vec3 col = mix(ink, amber, step(0.82, vTint));
+        float alpha = mix(0.28, 0.55, step(0.82, vTint));
+        gl_FragColor = vec4(col, a * alpha * vFade);
       }
     `,
   });
@@ -82,8 +86,8 @@ if (canvas && !reduced) {
   }, { passive: true });
 
   const resize = () => {
-    const w = canvas.clientWidth || window.innerWidth;
-    const h = canvas.clientHeight || window.innerHeight;
+    const w = holder.clientWidth || window.innerWidth;
+    const h = holder.clientHeight || window.innerHeight;
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
@@ -93,7 +97,7 @@ if (canvas && !reduced) {
 
   let visible = true;
   new IntersectionObserver((en) => { visible = en[0].isIntersecting; }, { threshold: 0 })
-    .observe(canvas);
+    .observe(holder);
 
   const clock = new THREE.Clock();
   renderer.setAnimationLoop(() => {
