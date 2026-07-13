@@ -385,14 +385,17 @@
     {
       index: '01', cat: 'Enterprise SaaS', name: 'ManaGem', href: 'managem.html',
       desc: 'Designing an enterprise platform that simplifies complex business operations through scalable UX and thoughtful product strategy.',
+      mock: 'assets/img/work/managem-mockup.png',
     },
     {
       index: '02', cat: 'Conversational AI', name: 'WhatsApp Conversation AI', href: 'whatsapp-ai.html',
       desc: 'An AI assistant that lives where the conversation already happens — turning WhatsApp into a natural, trustworthy way to get business done.',
+      mock: 'assets/img/work/whatsapp-ai-mockup.png',
     },
     {
       index: '03', cat: 'AI-Powered Real Estate', name: 'Lisa', href: 'lisa.html',
       desc: 'An AI real-estate companion that turns complex property decisions into guided, confident conversations.',
+      mock: 'assets/img/work/lisa-mockup.png',
     },
   ];
   const worklab = $('#worklabPin');
@@ -411,6 +414,27 @@
     let active = 0;
     let swapping = false;
 
+    const mock = $('#workMock');
+    const mockImg = $('#workMockImg');
+    const hint = $('#wpHint');
+    let mockVisible = false;
+    PROJECTS.forEach((p) => { new Image().src = p.mock; }); // preload pop-ups
+
+    const showMock = () => {
+      if (mockVisible) return;
+      mockVisible = true;
+      mockImg.src = PROJECTS[active].mock;
+      gsap.killTweensOf(mock);
+      gsap.fromTo(mock,
+        { opacity: 0, y: 26, scale: 0.92, rotate: 4.5 },
+        { opacity: 1, y: 0, scale: 1, rotate: 2, duration: 0.55, ease: 'expo.out', overwrite: true });
+    };
+    const hideMock = () => {
+      if (!mockVisible) return;
+      mockVisible = false;
+      gsap.to(mock, { opacity: 0, y: 18, scale: 0.94, duration: 0.3, ease: 'power2.in', overwrite: true });
+    };
+
     const applyProject = (i) => {
       const p = PROJECTS[i];
       wpIndex.textContent = p.index;
@@ -418,7 +442,11 @@
       wpName.textContent = p.name;
       wpDesc.textContent = p.desc;
       wpCta.href = p.href;
+      mockImg.src = p.mock;
       dots.forEach((d, di) => d.classList.toggle('is-on', di === i));
+      if (hint) {
+        gsap.to(hint, { opacity: i === PROJECTS.length - 1 ? 0 : 1, duration: 0.4 });
+      }
     };
 
     const swapTo = (i) => {
@@ -426,7 +454,18 @@
       swapping = true;
       active = i;
       window.XabaCube?.setProject(i);
-      gsap.timeline({ onComplete: () => { swapping = false; } })
+      const wasMockVisible = mockVisible;
+      if (wasMockVisible) gsap.to(mock, { opacity: 0, y: 12, scale: 0.95, duration: 0.2, ease: 'power2.in' });
+      gsap.timeline({
+        onComplete: () => {
+          swapping = false;
+          if (mockVisible) {
+            gsap.fromTo(mock,
+              { opacity: 0, y: 20, scale: 0.94, rotate: 3.5 },
+              { opacity: 1, y: 0, scale: 1, rotate: 2, duration: 0.5, ease: 'expo.out', overwrite: true });
+          }
+        },
+      })
         .to([...stagger, wpCta], { y: -14, opacity: 0, duration: 0.22, ease: 'power2.in', stagger: 0.03 })
         .add(() => applyProject(i))
         .fromTo(stagger,
@@ -463,9 +502,15 @@
       },
     });
 
-    // hover: the cube reacts, subtly
-    wpPanel.addEventListener('mouseenter', () => window.XabaCube?.setHover(true));
-    wpPanel.addEventListener('mouseleave', () => window.XabaCube?.setHover(false));
+    // hover: the cube reacts, and the project's mockup pops up
+    wpPanel.addEventListener('mouseenter', () => {
+      window.XabaCube?.setHover(true);
+      if (!isTouch) showMock();
+    });
+    wpPanel.addEventListener('mouseleave', () => {
+      window.XabaCube?.setHover(false);
+      hideMock();
+    });
 
     // click: the cube becomes the transition into the case study
     wpCta.addEventListener('click', (e) => {
@@ -473,7 +518,7 @@
       if (!href || href.startsWith('#')) return;
       e.preventDefault();
       if (lenis) lenis.stop();
-      gsap.to([wpPanel, '.worklab__head', '#wpProgress'], { opacity: 0, duration: 0.4, ease: 'power2.in' });
+      gsap.to([wpPanel, '.worklab__head', '.worklab__foot', mock], { opacity: 0, duration: 0.4, ease: 'power2.in' });
       window.XabaCube?.zoomTo(() => {
         gsap.to(document.body, {
           opacity: 0, duration: 0.25, ease: 'power1.in',
