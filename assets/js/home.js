@@ -161,8 +161,8 @@
   /* ───────────── hero widget slider ───────────── */
   const slides = [
     { copy: 'Design to<br />explore.' },
-    { copy: 'Zero to<br />one.' },
-    { copy: 'Craft with<br />intent.' },
+    { copy: 'Thinking before<br />designing.' },
+    { copy: 'AI + human<br />judgement.' },
     { copy: 'Ship what<br />matters.' },
   ];
   const widgetCopy = $('#widgetCopy');
@@ -259,16 +259,15 @@
     finishLoad();
   }
 
-  /* ───────────── hero bust: swap SVG placeholder for AI render ───────────── */
-  const bust = $('#heroBust');
-  if (bust?.dataset.src) {
+  /* ───────────── lazy-swap AI renders over local fallbacks ───────────── */
+  $$('img[data-src]').forEach((img) => {
     const hi = new Image();
     hi.onload = () => {
-      bust.src = bust.dataset.src;
-      bust.classList.add('is-hi');
+      img.src = img.dataset.src;
+      img.classList.add('is-hi');
     };
-    hi.src = bust.dataset.src;
-  }
+    hi.src = img.dataset.src;
+  });
 
   /* ───────────── hero parallax ───────────── */
   if (!prefersReduced) {
@@ -364,8 +363,8 @@
   }
 
   /* ───────────── stats counters ───────────── */
-  $$('.stat__num').forEach((el) => {
-    const target = Number(el.dataset.count || 0);
+  $$('.stat__num[data-count]').forEach((el) => {
+    const target = Number(el.dataset.count);
     if (prefersReduced) { el.textContent = target; return; }
     const obj = { v: 0 };
     ScrollTrigger.create({

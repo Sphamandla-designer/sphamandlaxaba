@@ -28,7 +28,11 @@ A light "silver studio" system recreating a premium creative-agency hero:
   with mouse/scroll parallax, 3D tilt on cards, magnetic buttons, custom
   cursor with contextual labels.
 - **Selected work** — ManaGem, WasteMart Portal & Driver (case-study pages),
-  SmartStart Learning.
+  NeuraCalm AI coaching concept.
+- **Real content** — copy sourced from Sphamandla's professional profile:
+  positioning (Product Designer & AI Experience Designer at GEM Information
+  Systems), five design principles, South Africa–first design approach, and
+  personal studios NeuraUX & AX-Channels.
 - **Accessibility & performance** — `prefers-reduced-motion` fallbacks,
   capped DPR on WebGL, semantic markup, keyboard-closable menu, no-JS
   fallback (loader hidden, content visible).
