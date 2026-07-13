@@ -380,24 +380,112 @@
     });
   });
 
-  /* ───────────── project media parallax ───────────── */
-  if (!prefersReduced) {
-    $$('.project').forEach((card) => {
-      const img = $('img', card);
-      gsap.fromTo(img,
-        { yPercent: -6 },
-        {
-          yPercent: 6, ease: 'none',
-          scrollTrigger: { trigger: card, start: 'top bottom', end: 'bottom top', scrub: true },
-        });
-      gsap.fromTo(card,
-        { y: 60, opacity: 0 },
-        {
-          y: 0, opacity: 1, duration: 1.1, ease: 'expo.out',
-          scrollTrigger: { trigger: card, start: 'top 90%' },
-        });
+  /* ───────────── selected work — cube lab ───────────── */
+  const PROJECTS = [
+    {
+      index: '01', cat: 'Enterprise SaaS', name: 'ManaGem', href: 'managem.html',
+      desc: 'Designing an enterprise platform that simplifies complex business operations through scalable UX and thoughtful product strategy.',
+    },
+    {
+      index: '02', cat: 'Conversational AI', name: 'WhatsApp Conversation AI', href: 'whatsapp-ai.html',
+      desc: 'An AI assistant that lives where the conversation already happens — turning WhatsApp into a natural, trustworthy way to get business done.',
+    },
+    {
+      index: '03', cat: 'AI-Powered Real Estate', name: 'Lisa', href: 'lisa.html',
+      desc: 'An AI real-estate companion that turns complex property decisions into guided, confident conversations.',
+    },
+  ];
+  const worklab = $('#worklabPin');
+  const wpPanel = $('#workPanel');
+  const useCubeLab = worklab && !prefersReduced && window.matchMedia('(min-width: 941px)').matches;
+  document.documentElement.classList.toggle('cubelab', !!useCubeLab);
+
+  if (useCubeLab) {
+    const wpIndex = $('#wpIndex');
+    const wpCat = $('#wpCat');
+    const wpName = $('#wpName');
+    const wpDesc = $('#wpDesc');
+    const wpCta = $('#wpCta');
+    const dots = $$('#wpProgress span');
+    const stagger = [wpCat, wpName, wpDesc];
+    let active = 0;
+    let swapping = false;
+
+    const applyProject = (i) => {
+      const p = PROJECTS[i];
+      wpIndex.textContent = p.index;
+      wpCat.textContent = p.cat;
+      wpName.textContent = p.name;
+      wpDesc.textContent = p.desc;
+      wpCta.href = p.href;
+      dots.forEach((d, di) => d.classList.toggle('is-on', di === i));
+    };
+
+    const swapTo = (i) => {
+      if (i === active || swapping) return;
+      swapping = true;
+      active = i;
+      window.XabaCube?.setProject(i);
+      gsap.timeline({ onComplete: () => { swapping = false; } })
+        .to([...stagger, wpCta], { y: -14, opacity: 0, duration: 0.22, ease: 'power2.in', stagger: 0.03 })
+        .add(() => applyProject(i))
+        .fromTo(stagger,
+          { y: 40, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.55, ease: 'expo.out', stagger: 0.09 }, '+=0.05')
+        .fromTo(wpCta,
+          { y: 24, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.45, ease: 'expo.out' }, '-=0.25'); // CTA slides in last
+    };
+
+    ScrollTrigger.create({
+      trigger: '#work',
+      start: 'top top',
+      end: '+=260%',
+      pin: true,
+      scrub: true,
+      onUpdate: (self) => {
+        const i = Math.min(2, Math.floor(self.progress * 2.999));
+        if (i !== active) swapTo(i);
+      },
     });
 
+    // staggered first entrance: cube, then text, CTA last
+    gsap.set([...stagger, wpCta, wpIndex], { opacity: 0, y: 40 });
+    ScrollTrigger.create({
+      trigger: '#work',
+      start: 'top 62%',
+      once: true,
+      onEnter: () => {
+        window.XabaCube?.enter();
+        gsap.to(wpIndex, { y: 0, opacity: 1, duration: 0.6, ease: 'expo.out', delay: 0.15 });
+        gsap.to(stagger, { y: 0, opacity: 1, duration: 0.9, ease: 'expo.out', stagger: 0.1, delay: 0.2 });
+        gsap.to(wpCta, { y: 0, opacity: 1, duration: 0.7, ease: 'expo.out', delay: 0.62 });
+      },
+    });
+
+    // hover: the cube reacts, subtly
+    wpPanel.addEventListener('mouseenter', () => window.XabaCube?.setHover(true));
+    wpPanel.addEventListener('mouseleave', () => window.XabaCube?.setHover(false));
+
+    // click: the cube becomes the transition into the case study
+    wpCta.addEventListener('click', (e) => {
+      const href = wpCta.getAttribute('href');
+      if (!href || href.startsWith('#')) return;
+      e.preventDefault();
+      if (lenis) lenis.stop();
+      gsap.to([wpPanel, '.worklab__head', '#wpProgress'], { opacity: 0, duration: 0.4, ease: 'power2.in' });
+      window.XabaCube?.zoomTo(() => {
+        gsap.to(document.body, {
+          opacity: 0, duration: 0.25, ease: 'power1.in',
+          onComplete: () => { window.location.href = href; },
+        });
+      });
+    });
+
+    applyProject(0);
+  }
+
+  if (!prefersReduced) {
     /* services rows */
     gsap.fromTo('[data-service]',
       { y: 44, opacity: 0 },

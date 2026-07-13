@@ -152,8 +152,8 @@
         <p class="hero__partners-label">Brands &amp; Projects</p>
         <ul class="hero__partners-grid">
           <li><span class="p-mark">◆</span>ManaGem</li>
-          <li><span class="p-mark">✦</span>WasteMart</li>
-          <li><span class="p-mark">●</span>NeuraCalm</li>
+          <li><span class="p-mark">✦</span>WhatsApp AI</li>
+          <li><span class="p-mark">●</span>Lisa</li>
           <li><span class="p-mark">▲</span>GEM Systems</li>
           <li><span class="p-mark">✚</span>NeuraUX</li>
           <li><span class="p-mark">❖</span>AX-Channels</li>
@@ -188,63 +188,63 @@
       </p>
     </section>
 
-    <!-- ═══════════════ SELECTED WORK ═══════════════ -->
-    <section class="work" id="work">
-      <div class="work__head">
-        <p class="section-tag" data-reveal><span>02</span> — Selected Work</p>
-        <h2 class="section-title" data-split>Selected<br /><em>Work</em></h2>
-        <p class="work__sub" data-reveal>
-          A curated collection of enterprise software, AI products, and digital
-          experiences designed to solve real business problems.
-        </p>
+    <!-- ═══════════════ SELECTED WORK — CUBE LAB ═══════════════ -->
+    <section class="worklab" id="work">
+      <div class="worklab__pin" id="worklabPin">
+        <div class="worklab__head">
+          <p class="section-tag section-tag--light" data-reveal><span>02</span> — Selected Work</p>
+          <p class="worklab__sub" data-reveal>
+            A curated collection of enterprise software, AI products, and digital
+            experiences designed to solve real business problems.
+          </p>
+        </div>
+
+        <div class="worklab__stage">
+          <div class="worklab__canvas" id="cubeCanvas" aria-hidden="true"></div>
+
+          <article class="workpanel" id="workPanel">
+            <p class="workpanel__index mono"><span id="wpIndex">01</span> / 03</p>
+            <p class="workpanel__cat mono" id="wpCat">Enterprise SaaS</p>
+            <h3 class="workpanel__name" id="wpName">ManaGem</h3>
+            <p class="workpanel__desc" id="wpDesc">
+              Designing an enterprise platform that simplifies complex business
+              operations through scalable UX and thoughtful product strategy.
+            </p>
+            <a class="workpanel__cta" id="wpCta" href="managem.html" data-cursor="Enter">
+              <span>View Case Study</span>
+              <i aria-hidden="true">→</i>
+            </a>
+          </article>
+        </div>
+
+        <div class="worklab__progress" id="wpProgress" aria-hidden="true">
+          <span class="is-on"></span><span></span><span></span>
+        </div>
       </div>
 
-      <div class="work__grid">
-        <a href="managem.html" class="project" data-cursor="Open case" data-tilt>
-          <div class="project__media"><img src="assets/img/work/managem-dash.jpg" alt="ManaGem enterprise SaaS platform" loading="lazy" /></div>
-          <div class="project__meta">
-            <div>
-              <h3 class="project__name">ManaGem</h3>
-              <p class="project__desc">Enterprise SaaS Platform</p>
-            </div>
-            <div class="project__tags"><span>Design System</span><span>Product Strategy</span><span>UX • UI</span></div>
-          </div>
-        </a>
-
-        <a href="brand-studio.html" class="project" data-cursor="Open case" data-tilt>
-          <div class="project__media"><img src="assets/img/work/smartstart-v2.jpg" alt="GEM Information Systems enterprise website" loading="lazy"
-               data-src="https://d8j0ntlcm91z4.cloudfront.net/user_3GMOZifqmavH53boYn9eGkcXqUc/hf_20260713_103657_1b74245c-e929-4da7-a6ad-ad6be8b84cc9.png" /></div>
-          <div class="project__meta">
-            <div>
-              <h3 class="project__name">GEM Information Systems</h3>
-              <p class="project__desc">Enterprise Website</p>
-            </div>
-            <div class="project__tags"><span>Interaction Design</span><span>Motion</span><span>Product Experience</span></div>
-          </div>
-        </a>
-
-        <a href="wastemart.html" class="project" data-cursor="Open case" data-tilt>
-          <div class="project__media"><img src="assets/img/work/wm-customer.jpg" alt="WasteMart operational platform" loading="lazy" /></div>
-          <div class="project__meta">
-            <div>
-              <h3 class="project__name">WasteMart</h3>
-              <p class="project__desc">Operational Platform</p>
-            </div>
-            <div class="project__tags"><span>Field Experience</span><span>Workflow Design</span></div>
-          </div>
-        </a>
-
-        <a href="brand-studio.html" class="project" data-cursor="Open case" data-tilt>
-          <div class="project__media"><img src="assets/img/work/wm-driver-v2.jpg" alt="NeuraCalm AI product concept" loading="lazy"
-               data-src="https://d8j0ntlcm91z4.cloudfront.net/user_3GMOZifqmavH53boYn9eGkcXqUc/hf_20260713_070340_68da6a1c-7552-4680-b70b-0bf00b006c70.png" /></div>
-          <div class="project__meta">
-            <div>
-              <h3 class="project__name">NeuraCalm <sup class="project__sup">Concept</sup></h3>
-              <p class="project__desc">AI Product Concept</p>
-            </div>
-            <div class="project__tags"><span>AI UX</span><span>Behaviour Design</span></div>
-          </div>
-        </a>
+      <!-- static fallback: no-JS / reduced motion / small screens -->
+      <div class="worklab__staticlist">
+        <article class="workpanel workpanel--static">
+          <p class="workpanel__index mono">01 / 03</p>
+          <p class="workpanel__cat mono">Enterprise SaaS</p>
+          <h3 class="workpanel__name">ManaGem</h3>
+          <p class="workpanel__desc">Designing an enterprise platform that simplifies complex business operations through scalable UX and thoughtful product strategy.</p>
+          <a class="workpanel__cta" href="managem.html"><span>View Case Study</span><i aria-hidden="true">→</i></a>
+        </article>
+        <article class="workpanel workpanel--static">
+          <p class="workpanel__index mono">02 / 03</p>
+          <p class="workpanel__cat mono">Conversational AI</p>
+          <h3 class="workpanel__name">WhatsApp Conversation AI</h3>
+          <p class="workpanel__desc">An AI assistant that lives where the conversation already happens — turning WhatsApp into a natural, trustworthy way to get business done.</p>
+          <a class="workpanel__cta" href="whatsapp-ai.html"><span>View Case Study</span><i aria-hidden="true">→</i></a>
+        </article>
+        <article class="workpanel workpanel--static">
+          <p class="workpanel__index mono">03 / 03</p>
+          <p class="workpanel__cat mono">AI-Powered Real Estate</p>
+          <h3 class="workpanel__name">Lisa</h3>
+          <p class="workpanel__desc">An AI real-estate companion that turns complex property decisions into guided, confident conversations.</p>
+          <a class="workpanel__cta" href="lisa.html"><span>View Case Study</span><i aria-hidden="true">→</i></a>
+        </article>
       </div>
     </section>
 
@@ -417,5 +417,6 @@
   <script src="assets/js/lenis.min.js"></script>
   <script src="assets/js/home.js" defer></script>
   <script type="module" src="assets/js/hero-gl.js"></script>
+  <script type="module" src="assets/js/cube-gl.js"></script>
 </body>
 </html>
