@@ -688,19 +688,55 @@ html.cubelab .worklab__stage { display: flex; }
 .workpanel__cta:hover { color: var(--accent); border-color: var(--accent); }
 .workpanel__cta:hover i { transform: translateX(5px); }
 
-/* progress dots */
-.worklab__progress {
+/* hover mockup pop-up */
+.workmock {
+  position: absolute; z-index: 3;
+  right: clamp(0.5rem, 3vw, 3rem);
+  top: clamp(1rem, 9vh, 5rem);
+  width: min(440px, 32vw);
+  border-radius: 18px;
+  overflow: clip;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 50px 110px -40px rgba(0, 0, 0, 0.9);
+  opacity: 0;
+  pointer-events: none;
+}
+.workmock img { width: 100%; display: block; }
+
+/* progress dots + scroll hint */
+.worklab__foot {
   display: none;
-  gap: 0.5rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
   padding-top: 1.6rem;
 }
-html.cubelab .worklab__progress { display: flex; }
+html.cubelab .worklab__foot { display: flex; }
+.worklab__progress { display: flex; gap: 0.5rem; }
 .worklab__progress span {
   width: 30px; height: 2px; border-radius: 2px;
   background: rgba(255, 255, 255, 0.16);
   transition: background 0.4s;
 }
 .worklab__progress span.is-on { background: var(--accent); }
+.worklab__hint {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.worklab__hint span {
+  color: var(--accent);
+  animation: hintbounce 1.8s ease-in-out infinite;
+}
+@keyframes hintbounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
 
 /* static fallback list (no-JS, reduced motion, small screens) */
 .worklab__staticlist {
