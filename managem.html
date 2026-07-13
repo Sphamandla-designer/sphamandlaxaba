@@ -383,8 +383,24 @@
     .jstep--gate { border-color: var(--navy); background: var(--navy); color: #E2E8F0; }
     .jstep--gate .jstep__icon { background: var(--navy-mid); color: var(--sky); }
     .jstep--gate p { color: #94A3B8; }
+    .jstep__thumb {
+      width: 100%; aspect-ratio: 16 / 10;
+      object-fit: cover; object-position: top;
+      border-radius: 8px; border: 1px solid var(--border);
+      margin-bottom: 10px; background: var(--slate-100);
+    }
+    .jstep--gate .jstep__thumb { border-color: rgba(255, 255, 255, 0.18); }
 
     /* ── prototype embed ── */
+    .proto-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .proto-tab {
+      font-size: 13px; font-weight: 600;
+      padding: 8px 16px; border-radius: 999px;
+      border: 1px solid var(--border); background: var(--white); color: var(--text-2);
+      transition: background 120ms, color 120ms, border-color 120ms;
+    }
+    .proto-tab:hover { border-color: var(--sky); color: var(--sky-hover); }
+    .proto-tab.is-on { background: var(--navy); color: #E2E8F0; border-color: var(--navy); }
     .proto { border-radius: 14px; overflow: clip; border: 1px solid var(--border); box-shadow: var(--shadow-lg); background: var(--white); }
     .proto__chrome {
       display: flex; align-items: center; gap: 10px;
@@ -820,69 +836,17 @@
           <em>a well-reasoned draft the client is being asked to confirm.</em></p>
         </div>
 
-        <!-- Review Customers recreation -->
+        <!-- Review Customers — the real screen -->
         <figure class="shot" data-r>
-          <div class="shot__frame apptable">
-            <div class="apptable__toolbar">
-              <span class="apptable__search">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                Search customers…
-              </span>
-              <span class="chip">Confidence: All ✕</span>
-              <span class="chip">Source: Client_Ledger_2025.xlsx ✕</span>
-              <span class="badge badge--sky">38 of 42 auto-verified</span>
-            </div>
-            <div style="overflow-x:auto">
-            <table>
-              <thead>
-                <tr><th>Customer</th><th>Account</th><th>Contact</th><th>Confidence</th><th>Actions</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>Atlantic Pools (Pty) Ltd</strong><p class="why">All fields matched ledger columns</p><p class="src">Client_Ledger_2025.xlsx · Row 4</p></td>
-                  <td class="ref">ACC-0231</td>
-                  <td style="font-size:12.5px">011 447 2210<br/>accounts@atlanticpools.co.za</td>
-                  <td><span class="badge badge--emerald">Verified</span></td>
-                  <td><span class="rowacts"><span class="a">Accept</span><span class="e">Edit</span><span class="r">Reject</span></span></td>
-                </tr>
-                <tr>
-                  <td><strong>Ridge &amp; Roof Solutions</strong><p class="why">Account type inferred from credit-terms column</p><p class="src">Client_Ledger_2025.xlsx · Row 9</p></td>
-                  <td class="ref">ACC-0244</td>
-                  <td style="font-size:12.5px">082 331 8874<br/><span style="color:var(--slate-400)">—</span></td>
-                  <td><span class="badge badge--amber">Needs review</span></td>
-                  <td><span class="rowacts"><span class="a">Accept</span><span class="e">Edit</span><span class="r">Reject</span></span></td>
-                </tr>
-                <tr>
-                  <td><strong>Mzansi Construct CC</strong><p class="why">Similar to "Mzansi Konstruct" — confirm before import</p><p class="src">Client_Ledger_2025.xlsx · Row 17</p></td>
-                  <td class="ref">ACC-0198</td>
-                  <td style="font-size:12.5px">011 902 5541<br/>info@mzansiconstruct.co.za</td>
-                  <td><span class="badge badge--purple">Possible duplicate</span></td>
-                  <td><span class="rowacts"><span class="a">Accept</span><span class="e">Edit</span><span class="r">Reject</span></span></td>
-                </tr>
-                <tr>
-                  <td><strong>Coastal Marine Yachts</strong><p class="why">No contact details found in source document</p><p class="src">Scanned_Ledger_p3.pdf · Page 3</p></td>
-                  <td class="ref">ACC-0207</td>
-                  <td style="font-size:12.5px;color:var(--slate-400)">— <br/>—</td>
-                  <td><span class="badge badge--red">Low confidence</span></td>
-                  <td><span class="rowacts"><span class="a">Accept</span><span class="e">Edit</span><span class="r">Reject</span></span></td>
-                </tr>
-                <tr>
-                  <td><strong>Ubuntu Interiors</strong><p class="why">Added by the client during review</p><p class="src">—</p></td>
-                  <td class="ref">ACC-0252</td>
-                  <td style="font-size:12.5px">083 448 1120<br/>hello@ubuntuinteriors.co.za</td>
-                  <td><span class="badge badge--slate">Entered manually</span></td>
-                  <td><span class="rowacts"><span class="a">Accept</span><span class="e">Edit</span><span class="r">Reject</span></span></td>
-                </tr>
-              </tbody>
-            </table>
-            </div>
+          <div class="shot__frame">
+            <img src="assets/img/case/to-07-customers.jpg" alt="Take-On Review Customers screen with live confidence tallies — 6 verified, 3 needing review, 1 possible duplicate" loading="lazy" />
           </div>
           <div class="callouts">
-            <p class="co" data-r><i>1</i>Confidence badges — a spectrum of certainty, never a binary import result.</p>
-            <p class="co" data-r><i>2</i>A plain-language reason under every flagged record. "The AI found this" is a claim, not a reason.</p>
-            <p class="co" data-r><i>3</i>Source traceability — file, row or page — so trust comes from checking, not from being told to trust.</p>
+            <p class="co" data-r><i>1</i>Confidence badges — <span class="badge badge--emerald">Verified</span> <span class="badge badge--amber">Needs review</span> <span class="badge badge--purple">Possible duplicate</span> <span class="badge badge--red">Low confidence</span> — a spectrum of certainty, never a binary import result.</p>
+            <p class="co" data-r><i>2</i>The tallies do the triage: review the 3, merge the 1, trust the 6. "Accept all verified" is one click.</p>
+            <p class="co" data-r><i>3</i>"How was this extracted?" — every record traces back to its source file, row or page, so trust comes from checking, not from being told to trust.</p>
           </div>
-          <figcaption style="margin-top:14px"><span class="ref">FIG 04</span> The Review Customers screen — the single most important screen in the product, rebuilt here component-for-component in the ManaGem design system.</figcaption>
+          <figcaption style="margin-top:14px"><span class="ref">FIG 04</span> The Review Customers screen, captured live from Take-On — the single most important screen in the product. Coastal Marine Yachts arrives with no contact details; Mzansi Construct CC is flagged as a possible duplicate. Both are states, not errors.</figcaption>
         </figure>
       </div>
     </section>
@@ -1063,39 +1027,44 @@
           separate, sequential gates.
         </p>
         <div class="journey">
-          <article class="card jstep" data-r><span class="mono">STEP 01</span><span class="jstep__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></span><h4>Welcome</h4><p>The product introduces itself and the journey ahead</p></article>
-          <article class="card jstep" data-r><span class="mono">STEP 02</span><span class="jstep__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg></span><h4>Trust &amp; Compliance</h4><p>Itemised consent before a single upload</p></article>
-          <article class="card jstep" data-r><span class="mono">STEP 03</span><span class="jstep__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/></svg></span><h4>Company Profile</h4><p>The business describes itself once</p></article>
-          <article class="card jstep" data-r><span class="mono">STEP 04</span><span class="jstep__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5M12 3v12"/></svg></span><h4>Upload Documents</h4><p>Ledgers, price lists, registers — as they are</p></article>
-          <article class="card jstep" data-r><span class="mono">STEP 05</span><span class="jstep__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></span><h4>AI Extraction</h4><p>Structuring into ManaGem's schema, scoring confidence</p></article>
-          <article class="card jstep" data-r><span class="mono">STEP 06</span><span class="jstep__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><h4>Validation Summary</h4><p>What was found, what needs eyes</p></article>
-          <article class="card jstep" data-r><span class="mono">STEPS 07–09</span><span class="jstep__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><h4>Review Customers · Products · Staff</h4><p>One shared pattern, per category</p></article>
-          <article class="card jstep jstep--gate" data-r><span class="mono" style="color:var(--sky)">GATE 1</span><span class="jstep__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><h4>Confirm &amp; Submit</h4><p>The client has confirmed</p></article>
-          <article class="card jstep jstep--gate" data-r><span class="mono" style="color:var(--sky)">GATE 2</span><span class="jstep__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><h4>GEMIS QA sign-off</h4><p>A second pair of expert eyes — then live</p></article>
+          <article class="card jstep" data-r><img class="jstep__thumb" src="assets/img/case/to-01-welcome.jpg" alt="" loading="lazy"/><span class="mono">STEP 01</span><h4>Welcome</h4><p>The product introduces itself and the journey ahead — "nothing goes live until you've confirmed it"</p></article>
+          <article class="card jstep" data-r><img class="jstep__thumb" src="assets/img/case/to-02-trust.jpg" alt="" loading="lazy"/><span class="mono">STEP 02</span><h4>Trust &amp; Compliance</h4><p>Itemised consent before a single upload</p></article>
+          <article class="card jstep" data-r><img class="jstep__thumb" src="assets/img/case/to-03-profile.jpg" alt="" loading="lazy"/><span class="mono">STEP 03</span><h4>Company Profile</h4><p>The business describes itself once</p></article>
+          <article class="card jstep" data-r><img class="jstep__thumb" src="assets/img/case/to-04-upload.jpg" alt="" loading="lazy"/><span class="mono">STEP 04</span><h4>Upload Documents</h4><p>Every file encrypted, virus-scanned and logged the moment it lands</p></article>
+          <article class="card jstep" data-r><img class="jstep__thumb" src="assets/img/case/to-05-extraction.jpg" alt="" loading="lazy"/><span class="mono">STEP 05</span><h4>AI Extraction</h4><p>Structuring into ManaGem's schema, scoring confidence</p></article>
+          <article class="card jstep" data-r><img class="jstep__thumb" src="assets/img/case/to-06-validation.jpg" alt="" loading="lazy"/><span class="mono">STEP 06</span><h4>Validation Summary</h4><p>13 of 22 clean, the rest flagged — before any detail review</p></article>
+          <article class="card jstep" data-r><img class="jstep__thumb" src="assets/img/case/to-07-customers.jpg" alt="" loading="lazy"/><span class="mono">STEPS 07–09</span><h4>Review Customers · Products · Staff</h4><p>One shared pattern, per category</p></article>
+          <article class="card jstep jstep--gate" data-r><img class="jstep__thumb" src="assets/img/case/to-10-confirm.jpg" alt="" loading="lazy"/><span class="mono" style="color:var(--sky)">GATE 1</span><h4>Confirm &amp; Submit</h4><p>The client has confirmed</p></article>
+          <article class="card jstep jstep--gate" data-r><img class="jstep__thumb" src="assets/img/case/to-11-complete.jpg" alt="" loading="lazy"/><span class="mono" style="color:var(--sky)">GATE 2</span><h4>GEMIS QA sign-off</h4><p>A second pair of expert eyes — then live</p></article>
         </div>
+        <p class="note" data-r style="margin-top:6px">Every thumbnail above is the real screen, captured from the working Take-On build.</p>
       </div>
     </section>
 
     <!-- ═══════════ LIVE PROTOTYPE ═══════════ -->
     <section class="section" id="prototype">
       <div class="wrap">
-        <p class="kicker" data-r>09 · The working prototype</p>
+        <p class="kicker" data-r>09 · The working prototypes</p>
         <h2 class="h1" data-r>Don't take the screenshots' word for it</h2>
         <p class="dek" data-r style="margin-bottom:1.6rem">
-          This is the actual ManaGem prototype, running live inside this page — the same
-          build the screenshots above were taken from.
+          Both products, running live inside this page — the same builds every screenshot
+          in this case study was captured from.
         </p>
+        <div class="proto-tabs" data-r>
+          <button class="proto-tab is-on" data-proto="ManaGem.html" data-label="ManaGem.html — live prototype">ManaGem — the ERP</button>
+          <button class="proto-tab" data-proto="ManaGem Take-On (Standalone).html" data-label="ManaGem Take-On (Standalone).html — live prototype">Take-On — AI onboarding</button>
+        </div>
         <div class="proto" data-r>
           <div class="proto__chrome">
             <span class="proto__dots"><i></i><i></i><i></i></span>
-            <span class="proto__url">ManaGem.html — live prototype</span>
+            <span class="proto__url" id="protoUrl">ManaGem.html — live prototype</span>
           </div>
-          <iframe src="ManaGem.html" title="ManaGem live prototype" loading="lazy"></iframe>
+          <iframe id="protoFrame" src="ManaGem.html" title="Live prototype" loading="lazy"></iframe>
         </div>
         <p class="proto__hint" data-r>
           <span class="badge badge--sky">Interactive</span>
-          Sign in with any username and password, then explore the modules — Dashboard,
-          Factory, Stock Control, Open Enquiries.
+          <span id="protoHint">Sign in with any username and password, then explore the modules —
+          Dashboard, Factory, Stock Control, Open Enquiries.</span>
         </p>
       </div>
     </section>
@@ -1153,73 +1122,34 @@
           <em>every time</em>.</p>
         </div>
 
-        <div class="trust" style="margin-top:1.6rem">
-          <!-- trust & compliance screen recreation -->
-          <div class="card" data-r style="padding:20px">
-            <span class="label">Take-On · Step 02</span>
-            <h3 class="h2" style="margin:6px 0 2px">Trust &amp; Compliance</h3>
-            <p style="font-size:12.5px;color:var(--text-2)">Shown before any document is uploaded — never after.</p>
-            <div class="trust__badges">
-              <span class="tbadge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>POPIA compliant</span>
-              <span class="tbadge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Encrypted end-to-end</span>
-              <span class="tbadge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>Full audit trail</span>
-            </div>
-            <ul class="consent">
-              <li class="group">Authorisation &amp; consent</li>
-              <li><span class="box"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>I am authorised to share this business's customer, product and staff records with GEMIS.</li>
-              <li class="group">Understanding the AI's role</li>
-              <li><span class="box"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>I understand the AI structures and drafts data but makes no final decisions on its own.</li>
-              <li class="group">Accepting policies</li>
-              <li><span class="box"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>I understand I will review and confirm every category, and nothing goes live until I approve it and GEMIS completes its check.</li>
-            </ul>
+        <!-- the real Trust & Compliance screen -->
+        <figure class="shot" data-r style="margin-top:1.6rem">
+          <div class="shot__frame">
+            <img src="assets/img/case/to-02-trust.jpg" alt="Take-On Trust and Compliance screen — how your data is handled, with itemised consent" loading="lazy" />
           </div>
+          <figcaption><span class="ref">FIG 11.1</span> Trust &amp; Compliance, live — shown before any document is uploaded, never after. This is the screen that gets forwarded to a client's legal team, so it stands alone.</figcaption>
+        </figure>
 
-          <!-- admin queue -->
-          <div data-r>
-            <div class="card apptable queue" style="overflow:hidden">
-              <div class="apptable__toolbar" style="justify-content:space-between">
-                <div><span class="label">GEMIS internal</span>
-                <h3 class="h2" style="margin-top:2px">Onboarding Admin Queue</h3></div>
-                <span class="badge badge--navy">12 active</span>
-              </div>
-              <div style="overflow-x:auto">
-              <table>
-                <thead><tr><th>Client</th><th>Stage</th><th>Compliance</th><th>Risk</th><th>Est. review</th></tr></thead>
-                <tbody>
-                  <tr>
-                    <td><strong>SBS Waterproofing</strong></td>
-                    <td style="font-size:12px">Review — Staff</td>
-                    <td><span class="cchips"><span class="cchip">POPIA</span><span class="cchip">AI</span><span class="cchip">ENC</span><span class="cchip">AUDIT</span></span></td>
-                    <td><span class="badge badge--emerald">Low</span></td>
-                    <td class="ref">1.5 h</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Mzansi Construct CC</strong></td>
-                    <td style="font-size:12px">Validation</td>
-                    <td><span class="cchips"><span class="cchip">POPIA</span><span class="cchip cchip--warn">AI</span><span class="cchip">ENC</span><span class="cchip">AUDIT</span></span></td>
-                    <td><span class="badge badge--amber">Medium</span></td>
-                    <td class="ref">3 h</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Coastal Marine Yachts</strong></td>
-                    <td style="font-size:12px">Upload</td>
-                    <td><span class="cchips"><span class="cchip cchip--warn">POPIA</span><span class="cchip cchip--warn">AI</span><span class="cchip">ENC</span><span class="cchip">AUDIT</span></span></td>
-                    <td><span class="badge badge--red">High</span></td>
-                    <td class="ref">6 h</td>
-                  </tr>
-                </tbody>
-              </table>
-              </div>
+        <div class="trust" style="margin-top:1.2rem">
+          <figure class="shot" data-r style="margin-top:0">
+            <div class="shot__frame">
+              <img src="assets/img/case/to-04-upload.jpg" alt="Take-On secure upload screen — every file encrypted, virus-scanned and logged" loading="lazy" />
             </div>
-            <p class="note" style="margin-top:8px">Compliance tracked independently per dimension — a reviewer sees <em>why</em> a client is stuck, not just that they are.</p>
-
-            <blockquote class="pull" style="margin-top:16px">
-              "I understand I will review and confirm every category, and nothing goes
-              live until I approve it and GEMIS completes its check."
-              <footer>— the product's own consent copy. It is, in effect, the thesis statement.</footer>
-            </blockquote>
-          </div>
+            <figcaption><span class="ref">FIG 11.2</span> Uploading securely — <span class="badge badge--emerald">Encrypted</span> <span class="badge badge--emerald">Scanned</span> confirmed on each file, with manual entry as a first-class path on every card.</figcaption>
+          </figure>
+          <figure class="shot" data-r style="margin-top:0">
+            <div class="shot__frame">
+              <img src="assets/img/case/to-12-admin.jpg" alt="GEMIS Take-on queue — every onboarding with compliance score, risk level and estimated review time" loading="lazy" />
+            </div>
+            <figcaption><span class="ref">FIG 11.3</span> The GEMIS Take-on queue — compliance, risk and estimated review per client, so a reviewer sees <em>why</em> a client is stuck, not just that they are.</figcaption>
+          </figure>
         </div>
+
+        <blockquote class="pull" data-r style="margin-top:1.6rem">
+          "I understand I will review and confirm every category, and nothing goes
+          live until I approve it and GEMIS completes its check."
+          <footer>— the product's own consent copy. It is, in effect, the thesis statement.</footer>
+        </blockquote>
       </div>
     </section>
 
@@ -1385,6 +1315,23 @@
             const o = { v: 0 };
             gsap.to(o, { v: target, duration: 0.9, ease: 'power2.out', onUpdate: () => { el.textContent = Math.round(o.v); } });
           },
+        });
+      });
+
+      // prototype tabs
+      const protoFrame = document.getElementById('protoFrame');
+      const protoUrl = document.getElementById('protoUrl');
+      const protoHint = document.getElementById('protoHint');
+      const HINTS = {
+        'ManaGem.html': 'Sign in with any username and password, then explore the modules — Dashboard, Factory, Stock Control, Open Enquiries.',
+        'ManaGem Take-On (Standalone).html': 'Walk the onboarding: accept the consents, drop any file into the upload cards, run the AI extraction and review what it found. Toggle to "GEMIS admin" for the queue.',
+      };
+      document.querySelectorAll('.proto-tab').forEach((tab) => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.proto-tab').forEach((t) => t.classList.toggle('is-on', t === tab));
+          protoFrame.src = encodeURI(tab.dataset.proto);
+          protoUrl.textContent = tab.dataset.label;
+          protoHint.textContent = HINTS[tab.dataset.proto] || '';
         });
       });
 
