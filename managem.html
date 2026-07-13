@@ -3,342 +3,1408 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ManaGem × GEMIS — The Platform Story</title>
-  <meta name="description" content="ManaGem is GEMIS' flagship enterprise platform — one intelligent system connecting operations, projects, finance, HR and AI-assisted workflows." />
+  <title>Designing ManaGem: An ERP That Onboards Itself — Case Study — Sphamandla Xaba®</title>
+  <meta name="description" content="How GEM Information Systems rebuilt enterprise software around the one moment that kills most ERP rollouts — day one. A product design case study by Sphamandla Xaba." />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
-  <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="preload" href="assets/fonts/outfit-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/jetbrains-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <script>document.documentElement.classList.add('js');</script>
+  <style>
+    /* ═══════════════════════════════════════════════════════════
+       ManaGem case study — built in the ManaGem Design System V2.0
+       Tokens copied verbatim from the system. Motion follows the
+       system's rules: functional, ≤200ms interactions, 300ms bars.
+       ═══════════════════════════════════════════════════════════ */
+    @font-face {
+      font-family: "Outfit";
+      src: url("assets/fonts/outfit-latin-wght-normal.woff2") format("woff2-variations");
+      font-weight: 100 900;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "JetBrains Mono";
+      src: url("assets/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2");
+      font-weight: 400;
+      font-display: swap;
+    }
+    :root {
+      --navy: #0F172A; --navy-mid: #1E293B;
+      --sky: #0EA5E9; --sky-hover: #0284C7; --sky-light: #E0F2FE;
+      --emerald: #10B981; --emerald-light: #D1FAE5;
+      --amber: #F59E0B; --amber-light: #FEF3C7;
+      --red: #EF4444; --red-light: #FEE2E2;
+      --purple: #8B5CF6; --purple-light: #EDE9FE;
+      --canvas: #F8FAFC; --white: #FFFFFF;
+      --border: #E2E8F0; --slate-100: #F1F5F9; --slate-300: #CBD5E1;
+      --text: #0F172A; --text-2: #64748B; --slate-400: #94A3B8;
+      --shadow-sm: 0 1px 2px rgba(15,23,42,0.04);
+      --shadow-md: 0 4px 12px rgba(15,23,42,0.06);
+      --shadow-lg: 0 12px 32px rgba(15,23,42,0.10);
+      --font: "Outfit", system-ui, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, monospace;
+      --pad: clamp(1.25rem, 4vw, 3rem);
+      --measure: 68ch;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    html.lenis { height: auto; scroll-behavior: auto; }
+    body {
+      background: var(--canvas);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: clip;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    ul, ol { list-style: none; }
+    button { font: inherit; cursor: pointer; border: 0; background: none; }
+    ::selection { background: var(--sky-light); color: var(--navy); }
+
+    .mono { font-family: var(--mono); }
+    .label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--text-2);
+    }
+    .ref { font-family: var(--mono); font-size: 12px; color: var(--sky); }
+
+    /* ── badges (StatusBadge) ── */
+    .badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 3px 10px; border-radius: 999px; white-space: nowrap;
+    }
+    .badge--emerald { background: var(--emerald-light); color: #047857; }
+    .badge--amber { background: var(--amber-light); color: #B45309; }
+    .badge--red { background: var(--red-light); color: #B91C1C; }
+    .badge--purple { background: var(--purple-light); color: #6D28D9; }
+    .badge--slate { background: var(--slate-100); color: var(--text-2); }
+    .badge--sky { background: var(--sky-light); color: var(--sky-hover); }
+    .badge--navy { background: var(--navy); color: #E2E8F0; }
+
+    /* ── cards ── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 150ms, transform 150ms;
+    }
+    .card:hover { box-shadow: var(--shadow-md); }
+
+    /* ── top bar (navy rail language) ── */
+    .bar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--navy);
+      color: #E2E8F0;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem;
+      padding: 0.7rem var(--pad);
+    }
+    .bar__left { display: flex; align-items: center; gap: 1rem; min-width: 0; }
+    .bar__back {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-weight: 600; font-size: 13.5px;
+      transition: color 120ms;
+    }
+    .bar__back:hover { color: var(--sky); }
+    .bar__crumb { font-size: 13px; color: #94A3B8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .bar__crumb b { color: #E2E8F0; font-weight: 500; }
+    .bar__tag { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; color: #94A3B8; }
+    @media (max-width: 720px) { .bar__crumb, .bar__tag { display: none; } }
+
+    /* ── layout ── */
+    main { padding-top: 52px; }
+    .section { padding: clamp(3.5rem, 9vh, 6.5rem) var(--pad); }
+    .section--tight { padding-top: clamp(2rem, 5vh, 3.5rem); }
+    .wrap { max-width: 1180px; margin: 0 auto; }
+    .wrap--narrow { max-width: 860px; margin: 0 auto; }
+    .kicker {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--sky);
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-bottom: 14px;
+    }
+    .kicker::before { content: ""; width: 18px; height: 1.5px; background: var(--sky); }
+    h1.display {
+      font-size: clamp(30px, 4.6vw, 46px);
+      font-weight: 650; line-height: 1.12; letter-spacing: -0.02em;
+      max-width: 22ch;
+    }
+    h2.h1 { font-size: clamp(22px, 2.6vw, 28px); font-weight: 600; letter-spacing: -0.01em; margin-bottom: 10px; }
+    h3.h2 { font-size: 17px; font-weight: 600; }
+    .dek { font-size: clamp(15.5px, 1.6vw, 18px); color: var(--text-2); max-width: 62ch; }
+    .prose { max-width: var(--measure); color: var(--navy-mid); }
+    .prose p + p { margin-top: 0.9em; }
+    .prose strong { font-weight: 600; }
+    .note { font-size: 12px; color: var(--slate-400); }
+
+    /* ── progress rail ── */
+    .rail {
+      position: fixed; right: 18px; top: 50%; transform: translateY(-50%);
+      z-index: 90; display: none; flex-direction: column; gap: 2px;
+    }
+    @media (min-width: 1400px) { html.js .rail { display: flex; } }
+    .rail a {
+      font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--slate-400);
+      padding: 3px 8px; border-right: 2px solid var(--border);
+      transition: color 120ms, border-color 120ms;
+    }
+    .rail a.is-on { color: var(--sky); border-color: var(--sky); }
+
+    /* ── hero ── */
+    .hero { padding: clamp(4rem, 10vh, 7rem) var(--pad) 0; }
+    .hero__meta {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 12px; margin-top: 2.2rem;
+    }
+    .meta-card { padding: 14px 16px; }
+    .meta-card .label { margin-bottom: 4px; }
+    .meta-card p { font-size: 14px; font-weight: 500; }
+
+    /* ── before / after ── */
+    .ba { margin-top: 3rem; }
+    .ba__grid {
+      display: grid; grid-template-columns: 1fr auto 1.25fr;
+      gap: 0; align-items: stretch;
+    }
+    .ba__panel { overflow: clip; border-radius: 12px; position: relative; }
+    .ba__panel img { width: 100%; height: 100%; object-fit: cover; }
+    .ba__panel--before img { filter: grayscale(0.55) sepia(0.12) contrast(0.96); }
+    .ba__cap {
+      position: absolute; left: 12px; bottom: 12px;
+      background: rgba(15,23,42,0.78); color: #E2E8F0;
+      font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 5px 10px; border-radius: 6px;
+    }
+    .ba__bridge {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 8px; padding: 0 18px;
+    }
+    .ba__line { width: 54px; height: 2px; background: var(--slate-300); border-radius: 2px; overflow: hidden; position: relative; }
+    .ba__line span { position: absolute; inset: 0; background: var(--sky); transform: scaleX(0); transform-origin: left; }
+    .ba__bridge .badge { box-shadow: var(--shadow-sm); }
+    @media (max-width: 880px) {
+      .ba__grid { grid-template-columns: 1fr; gap: 10px; }
+      .ba__bridge { flex-direction: row; padding: 4px 0; }
+    }
+
+    /* ── money chain pipeline ── */
+    .chain {
+      display: grid;
+      grid-template-columns: repeat(10, minmax(96px, 1fr));
+      gap: 8px;
+      overflow-x: auto;
+      padding: 6px 2px 14px;
+      scrollbar-width: thin;
+    }
+    .chain__cell {
+      background: var(--white); border: 1px solid var(--border); border-radius: 10px;
+      padding: 12px 10px 10px; text-align: center; position: relative;
+    }
+    .chain__cell::after {
+      content: "→"; position: absolute; right: -11px; top: 50%; transform: translateY(-50%);
+      color: var(--slate-300); font-size: 12px; z-index: 2;
+    }
+    .chain__cell:last-child::after { content: none; }
+    .chain__icon {
+      width: 30px; height: 30px; border-radius: 8px;
+      display: grid; place-items: center; margin: 0 auto 8px;
+      background: var(--slate-100); color: var(--text-2);
+    }
+    .chain__cell p { font-size: 11.5px; font-weight: 600; line-height: 1.25; }
+    .chain__cell .note { font-size: 9.5px; margin-top: 2px; }
+    .chain__cell--on { border-color: var(--sky); box-shadow: 0 0 0 1px var(--sky) inset; }
+    .chain__cell--on .chain__icon { background: var(--sky-light); color: var(--sky-hover); }
+    .chain__legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 10px; font-size: 12px; color: var(--text-2); }
+    .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+
+    /* ── stepper ── */
+    .stepper { position: relative; margin-top: 1.6rem; }
+    .stepper__track {
+      position: absolute; left: 16px; right: 16px; top: 15px; height: 2px;
+      background: var(--border);
+    }
+    .stepper__fill { position: absolute; inset: 0; background: var(--sky); transform: scaleX(0); transform-origin: left; }
+    .stepper__row {
+      display: grid; grid-template-columns: repeat(9, 1fr);
+      gap: 6px; position: relative;
+    }
+    .step { text-align: center; position: relative; padding-top: 0; }
+    .step__dot {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: var(--white); border: 2px solid var(--border);
+      display: grid; place-items: center; margin: 0 auto 8px;
+      font-family: var(--mono); font-size: 10.5px; color: var(--text-2);
+      position: relative; z-index: 1;
+      transition: border-color 150ms, color 150ms, background 150ms;
+    }
+    .step.is-on .step__dot { border-color: var(--sky); color: var(--sky-hover); background: var(--sky-light); }
+    .step p { font-size: 11px; font-weight: 600; line-height: 1.25; }
+    .step .note { font-size: 9.5px; }
+    @media (max-width: 880px) {
+      .stepper__row { grid-template-columns: repeat(3, 1fr); row-gap: 18px; }
+      .stepper__track { display: none; }
+    }
+
+    /* ── research cards ── */
+    .grid4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
+    .rcard { padding: 18px; }
+    .rcard .label { color: var(--sky-hover); margin-bottom: 8px; }
+    .rcard h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+    .rcard p { font-size: 13px; color: var(--text-2); }
+
+    /* ── figure & captions ── */
+    figure.shot { margin-top: 1.8rem; }
+    .shot__frame {
+      border: 1px solid var(--border); border-radius: 12px; overflow: clip;
+      background: var(--white); box-shadow: var(--shadow-md);
+    }
+    figcaption {
+      display: flex; gap: 8px; align-items: baseline;
+      font-size: 12px; color: var(--text-2); margin-top: 10px;
+    }
+    figcaption .ref { font-size: 11px; }
+
+    /* ── failure matrix ── */
+    .matrix-wrap { overflow-x: auto; }
+    .matrix { min-width: 640px; width: 100%; height: auto; }
+
+    /* ── review table recreation ── */
+    .apptable { font-size: 13px; }
+    .apptable__toolbar {
+      display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+      padding: 12px 14px; border-bottom: 1px solid var(--border);
+    }
+    .apptable__search {
+      flex: 1 1 200px; display: flex; align-items: center; gap: 8px;
+      background: var(--canvas); border: 1px solid var(--border); border-radius: 8px;
+      padding: 7px 11px; color: var(--slate-400); font-size: 13px;
+    }
+    .chip {
+      font-size: 12px; font-weight: 500; color: var(--navy-mid);
+      background: var(--slate-100); border-radius: 999px; padding: 5px 11px;
+    }
+    .apptable table { width: 100%; border-collapse: collapse; }
+    .apptable th {
+      text-align: left; font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--text-2);
+      background: var(--slate-100); padding: 9px 14px; white-space: nowrap;
+    }
+    .apptable td { padding: 11px 14px; border-top: 1px solid var(--border); vertical-align: top; }
+    .apptable tr:hover td { background: #FAFCFE; }
+    .apptable .why { font-size: 12px; color: var(--text-2); margin-top: 3px; }
+    .apptable .src { font-family: var(--mono); font-size: 10.5px; color: var(--slate-400); margin-top: 3px; }
+    .rowacts { display: flex; gap: 10px; font-size: 12.5px; font-weight: 500; white-space: nowrap; }
+    .rowacts .a { color: var(--sky); } .rowacts .e { color: var(--text-2); } .rowacts .r { color: var(--red); }
+    .callouts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 14px; }
+    .co { display: flex; gap: 10px; font-size: 13px; color: var(--navy-mid); }
+    .co i {
+      flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%;
+      background: var(--sky); color: #fff; font-style: normal; font-size: 12px; font-weight: 600;
+      display: grid; place-items: center;
+    }
+
+    /* ── decision log ── */
+    .decisions { display: grid; gap: 10px; }
+    .decision {
+      display: grid; grid-template-columns: 240px 1fr; gap: 18px;
+      padding: 18px;
+    }
+    .decision__name { font-size: 15px; font-weight: 600; }
+    .decision__name .mono { display: block; font-size: 10.5px; color: var(--sky); margin-bottom: 6px; letter-spacing: 0.1em; }
+    .decision__body { font-size: 13.5px; color: var(--navy-mid); }
+    .decision__body p + p { margin-top: 6px; }
+    .decision__body b { font-weight: 600; }
+    .decision__body .rej { color: var(--text-2); }
+    @media (max-width: 720px) { .decision { grid-template-columns: 1fr; gap: 8px; } }
+
+    /* ── principle cards ── */
+    .pcards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+    .pcard { padding: 18px; }
+    .pcard__icon {
+      width: 34px; height: 34px; border-radius: 9px;
+      background: var(--sky-light); color: var(--sky-hover);
+      display: grid; place-items: center; margin-bottom: 12px;
+    }
+    .pcard h3 { font-size: 14.5px; font-weight: 600; margin-bottom: 5px; }
+    .pcard p { font-size: 12.5px; color: var(--text-2); }
+
+    /* ── IA diagram ── */
+    .ia { display: grid; grid-template-columns: 1fr auto 1.6fr; gap: 16px; align-items: center; }
+    .ia__takeon {
+      border: 1.5px dashed var(--sky); border-radius: 12px;
+      background: var(--sky-light); padding: 18px; text-align: center;
+    }
+    .ia__takeon h3 { font-size: 15px; font-weight: 600; color: var(--sky-hover); }
+    .ia__takeon p { font-size: 11.5px; color: var(--navy-mid); margin-top: 4px; }
+    .ia__arrow { text-align: center; font-size: 11px; color: var(--text-2); font-family: var(--mono); white-space: nowrap; }
+    .ia__arrow span { display: block; font-size: 18px; color: var(--sky); }
+    .ia__mg { border: 1.5px solid var(--navy); border-radius: 14px; padding: 16px; background: var(--white); }
+    .ia__mg > .label { color: var(--navy); margin-bottom: 10px; }
+    .ia__zones { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; }
+    .zone { background: var(--canvas); border: 1px solid var(--border); border-radius: 8px; padding: 10px; }
+    .zone h4 { font-size: 12.5px; font-weight: 600; }
+    .zone p { font-size: 10.5px; color: var(--text-2); line-height: 1.4; margin-top: 3px; }
+    @media (max-width: 880px) { .ia { grid-template-columns: 1fr; } .ia__arrow span { transform: rotate(90deg); } }
+
+    /* ── storyboard ── */
+    .story { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .story figure { position: relative; }
+    .story .shot__frame { box-shadow: var(--shadow-sm); }
+    .story figure:not(:last-child)::after {
+      content: "→"; position: absolute; right: -13px; top: 40%;
+      color: var(--slate-400); font-size: 15px; z-index: 2;
+    }
+    @media (max-width: 880px) { .story { grid-template-columns: 1fr; } .story figure::after { content: none !important; } }
+
+    /* ── venn ── */
+    .venn { display: grid; place-items: center; padding: 10px 0; }
+
+    /* ── journey map ── */
+    .journey {
+      display: grid; grid-auto-flow: column; grid-auto-columns: minmax(168px, 1fr);
+      gap: 10px; overflow-x: auto; padding: 6px 2px 16px;
+      scrollbar-width: thin;
+    }
+    .jstep { padding: 14px; position: relative; }
+    .jstep .mono { font-size: 10px; color: var(--sky); letter-spacing: 0.1em; }
+    .jstep__icon {
+      width: 30px; height: 30px; border-radius: 8px;
+      background: var(--slate-100); color: var(--navy-mid);
+      display: grid; place-items: center; margin: 10px 0;
+    }
+    .jstep h4 { font-size: 13px; font-weight: 600; line-height: 1.3; }
+    .jstep p { font-size: 11px; color: var(--text-2); margin-top: 4px; }
+    .jstep--gate { border-color: var(--navy); background: var(--navy); color: #E2E8F0; }
+    .jstep--gate .jstep__icon { background: var(--navy-mid); color: var(--sky); }
+    .jstep--gate p { color: #94A3B8; }
+
+    /* ── prototype embed ── */
+    .proto { border-radius: 14px; overflow: clip; border: 1px solid var(--border); box-shadow: var(--shadow-lg); background: var(--white); }
+    .proto__chrome {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--slate-100); border-bottom: 1px solid var(--border);
+      padding: 9px 14px;
+    }
+    .proto__dots { display: flex; gap: 5px; }
+    .proto__dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--slate-300); }
+    .proto__url {
+      flex: 1; text-align: center;
+      font-family: var(--mono); font-size: 11px; color: var(--text-2);
+      background: var(--white); border: 1px solid var(--border); border-radius: 6px;
+      padding: 4px 10px;
+    }
+    .proto iframe { width: 100%; height: min(72vh, 720px); border: 0; display: block; background: var(--navy); }
+    .proto__hint { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 12px; font-size: 12.5px; color: var(--text-2); }
+
+    /* ── before/after alerts ── */
+    .alertpair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: stretch; }
+    .alertpair__before {
+      background: var(--slate-100); border: 1px solid var(--border); border-radius: 12px;
+      padding: 18px; filter: grayscale(1); color: var(--text-2);
+      display: flex; flex-direction: column; gap: 10px; justify-content: center;
+    }
+    .fakebar { height: 12px; border-radius: 4px; background: var(--slate-300); opacity: 0.6; }
+    .fakebar--w60 { width: 60%; } .fakebar--w80 { width: 80%; } .fakebar--w45 { width: 45%; }
+    .alertpair__before p { font-size: 12px; }
+    .alertpair__after { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: center; }
+    .alertpair__after .shot__frame { max-width: 240px; }
+    @media (max-width: 880px) { .alertpair, .alertpair__after { grid-template-columns: 1fr; } }
+
+    /* production card (Delayed) recreation */
+    .prodcard { border-left: 3px solid var(--amber); padding: 14px 16px; }
+    .prodcard .ref { color: var(--sky); }
+    .prodcard h4 { font-size: 14.5px; font-weight: 600; margin: 3px 0 1px; }
+    .prodcard .addr { font-size: 11.5px; color: var(--text-2); }
+    .prodcard__row { display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; color: var(--text-2); margin-top: 10px; }
+    .pbar { height: 6px; background: var(--slate-100); border-radius: 3px; overflow: hidden; margin-top: 5px; }
+    .pbar span { display: block; height: 100%; width: 0; background: var(--amber); border-radius: 3px; transition: width 300ms ease; }
+
+    /* ── trust screen ── */
+    .trust { display: grid; grid-template-columns: 1.1fr 1fr; gap: 14px; }
+    .trust__badges { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 16px; }
+    .tbadge {
+      display: inline-flex; align-items: center; gap: 7px;
+      border: 1px solid var(--border); border-radius: 999px;
+      background: var(--canvas);
+      font-size: 12px; font-weight: 600; padding: 7px 13px;
+    }
+    .tbadge svg { color: var(--emerald); }
+    .consent { display: grid; gap: 9px; }
+    .consent li { display: flex; gap: 10px; font-size: 12.5px; color: var(--navy-mid); align-items: flex-start; }
+    .consent .box {
+      flex: 0 0 auto; width: 16px; height: 16px; margin-top: 2px; border-radius: 4px;
+      background: var(--sky); color: #fff; display: grid; place-items: center;
+    }
+    .consent .group { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-2); margin-top: 6px; }
+    .queue td, .queue th { white-space: nowrap; }
+    .cchips { display: inline-flex; gap: 4px; }
+    .cchip {
+      font-family: var(--mono); font-size: 9px; padding: 2px 6px; border-radius: 4px;
+      background: var(--emerald-light); color: #047857;
+    }
+    .cchip--warn { background: var(--amber-light); color: #B45309; }
+    .pull {
+      border-left: 3px solid var(--sky);
+      background: var(--white); border-radius: 0 12px 12px 0;
+      padding: clamp(1.4rem, 3vw, 2.2rem);
+      font-size: clamp(17px, 2.4vw, 23px);
+      font-weight: 500; line-height: 1.45; letter-spacing: -0.01em;
+      color: var(--navy); max-width: 46ch;
+      box-shadow: var(--shadow-sm);
+    }
+    .pull footer { font-size: 12px; color: var(--text-2); margin-top: 12px; font-weight: 400; }
+    @media (max-width: 880px) { .trust { grid-template-columns: 1fr; } }
+
+    /* ── tradeoffs ── */
+    .tradeoffs { max-width: 620px; }
+    .tradeoffs li { display: flex; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 13.5px; color: var(--navy-mid); }
+    .tradeoffs li:last-child { border-bottom: 0; }
+    .tradeoffs svg { flex: 0 0 auto; color: var(--amber); margin-top: 2px; }
+
+    /* ── stat tiles ── */
+    .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+    .kpi { padding: 16px 18px; position: relative; }
+    .kpi__icon {
+      position: absolute; top: 14px; right: 14px;
+      width: 28px; height: 28px; border-radius: 8px;
+      display: grid; place-items: center;
+      background: var(--sky-light); color: var(--sky-hover);
+    }
+    .kpi .label { margin-bottom: 6px; }
+    .kpi__value { font-size: 32px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
+    .kpi__delta { font-size: 12px; color: var(--text-2); margin-top: 4px; }
+    .illustrative {
+      display: inline-flex; margin-top: 14px;
+    }
+    .qgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-bottom: 1.6rem; }
+    .qcard { padding: 16px 18px; font-size: 13.5px; color: var(--navy-mid); }
+    .qcard .mono { color: var(--sky); font-size: 10.5px; display: block; margin-bottom: 6px; }
+
+    /* ── reflection ── */
+    .refl { display: grid; gap: 14px; max-width: var(--measure); }
+    .refl h3 { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
+    .refl p { font-size: 14px; color: var(--navy-mid); }
+    .closing {
+      margin-top: 2.4rem;
+      font-size: clamp(19px, 2.8vw, 26px); font-weight: 550; line-height: 1.4;
+      letter-spacing: -0.01em; color: var(--navy); max-width: 30ch;
+    }
+    .closing b { color: var(--sky-hover); font-weight: 650; }
+
+    /* ── footer ── */
+    .foot {
+      background: var(--navy); color: #E2E8F0;
+      padding: clamp(2.5rem, 6vh, 4rem) var(--pad);
+    }
+    .foot .wrap { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; justify-content: space-between; }
+    .foot a { font-weight: 600; transition: color 120ms; }
+    .foot a:hover { color: var(--sky); }
+    .foot .note { color: #64748B; }
+
+    /* ── reveals (functional: small fade+rise, fast) ── */
+    html.js [data-r] { opacity: 0; transform: translateY(14px); }
+    html.js.no-anim [data-r] { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      html.js [data-r] { opacity: 1; transform: none; }
+    }
+  </style>
 </head>
-<body data-theme="dark" class="page-managem">
+<body>
 
-  <!-- ═══════════════ PRELOADER ═══════════════ -->
-  <div class="preloader" id="preloader">
-    <div class="preloader__inner">
-      <div class="preloader__logo" aria-hidden="true">
-        <span class="pl-char">G</span><span class="pl-char">E</span><span class="pl-char">M</span><span class="pl-char pl-char--reg">®</span>
-      </div>
-      <div class="preloader__row">
-        <span class="preloader__hint">Assembling the platform</span>
-        <span class="preloader__count" id="preloaderCount">00</span>
-      </div>
-      <div class="preloader__bar"><span id="preloaderBar"></span></div>
+  <!-- top bar -->
+  <header class="bar">
+    <div class="bar__left">
+      <a href="index.html#work" class="bar__back" data-cursor="Back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Sphamandla<sup>®</sup>
+      </a>
+      <span class="bar__crumb">Home / Work / <b>ManaGem</b></span>
     </div>
-    <div class="preloader__curtain" aria-hidden="true"></div>
-  </div>
-
-  <!-- ═══════════════ CURSOR / GRAIN ═══════════════ -->
-  <div class="cursor" id="cursor" aria-hidden="true">
-    <div class="cursor__ring" id="cursorRing"><span class="cursor__label" id="cursorLabel">View</span></div>
-    <div class="cursor__dot" id="cursorDot"></div>
-  </div>
-  <div class="grain" aria-hidden="true"></div>
-
-  <!-- ═══════════════ HEADER ═══════════════ -->
-  <header class="header" id="header">
-    <a href="index.html" class="header__logo" data-magnetic>GEMIS<sup>®</sup> <span class="header__sub">ManaGem — platform story</span></a>
-    <div class="header__right">
-      <a href="#contact" class="header__cta" data-magnetic>Request a demo</a>
-      <button class="burger" id="burger" aria-label="Open menu" data-magnetic>
-        <span></span><span></span>
-      </button>
-    </div>
+    <span class="bar__tag">CASE STUDY · 2026</span>
   </header>
 
-  <!-- ═══════════════ OVERLAY MENU ═══════════════ -->
-  <nav class="menu" id="menu" aria-hidden="true">
-    <div class="menu__bg"></div>
-    <div class="menu__inner">
-      <ul class="menu__list">
-        <li><a href="index.html" class="menu__link" data-menu-close><span class="menu__index">01</span><span class="menu__word">Home</span></a></li>
-        <li><a href="index.html#services" class="menu__link" data-menu-close><span class="menu__index">02</span><span class="menu__word">Services</span></a></li>
-        <li><a href="index.html#work" class="menu__link" data-menu-close><span class="menu__index">03</span><span class="menu__word">Case Studies</span></a></li>
-        <li><a href="brand-studio.html" class="menu__link" data-menu-close><span class="menu__index">04</span><span class="menu__word">Brand Studio</span></a></li>
-        <li><a href="#contact" class="menu__link" data-menu-close><span class="menu__index">05</span><span class="menu__word">Contact</span></a></li>
-      </ul>
-      <div class="menu__foot">
-        <a href="mailto:hello@gemis.tech" class="menu__mail">hello@gemis.tech</a>
-        <div class="menu__socials">
-          <a href="#" aria-label="GitHub">GitHub</a>
-          <a href="#" aria-label="LinkedIn">LinkedIn</a>
-          <a href="#" aria-label="X">X</a>
-        </div>
-      </div>
-    </div>
+  <!-- progress rail -->
+  <nav class="rail" aria-hidden="true">
+    <a href="#overview" data-rail>Overview</a>
+    <a href="#why" data-rail>Why</a>
+    <a href="#discovery" data-rail>Discovery</a>
+    <a href="#problem" data-rail>Problem</a>
+    <a href="#decisions" data-rail>Decisions</a>
+    <a href="#architecture" data-rail>IA</a>
+    <a href="#flows" data-rail>Flows</a>
+    <a href="#prototype" data-rail>Prototype</a>
+    <a href="#takeon" data-rail>Take-On</a>
+    <a href="#measured" data-rail>Measured</a>
+    <a href="#reflection" data-rail>Reflection</a>
   </nav>
 
-  <main id="top">
+  <main>
 
-    <!-- ═══════════ CH 01 — OPERATIONS NEVER STOP ═══════════ -->
-    <section class="ch mch1" id="mch1" data-section-theme="dark">
-      <div class="mch1__pin">
-        <div class="mch1__glow" aria-hidden="true"></div>
-        <svg class="mch1__streams" viewBox="0 0 1440 700" preserveAspectRatio="none" aria-hidden="true">
-          <path id="streamMain" d="M-20 350 C 220 350, 340 350, 470 350" fill="none" stroke="#4dd6ff" stroke-width="2.5"/>
-          <path class="mch1__split" d="M470 350 C 620 350, 660 120, 860 110" fill="none"/>
-          <path class="mch1__split" d="M470 350 C 640 350, 680 240, 880 250" fill="none"/>
-          <path class="mch1__split" d="M470 350 C 640 350, 680 460, 880 450" fill="none"/>
-          <path class="mch1__split" d="M470 350 C 620 350, 660 590, 860 590" fill="none"/>
-          <circle cx="470" cy="350" r="5" fill="#4dd6ff"/>
-        </svg>
-        <div class="gwin gwin--a" aria-hidden="true"><b>Finance — recon_final_v7.xls</b><span class="pgrid"><u></u><u></u><u></u><u></u><u></u><u></u><u></u><u></u></span></div>
-        <div class="gwin gwin--b" aria-hidden="true"><b>Ops — daily tasks</b><i></i><i style="width:64%"></i><i></i><i style="width:48%"></i></div>
-        <div class="gwin gwin--c" aria-hidden="true"><b>HR — leave approvals</b><em class="chip chip--wait">4 waiting</em><i></i><i style="width:52%"></i></div>
-        <div class="gwin gwin--d" aria-hidden="true"><b>Exec — monthly report (email)</b><i></i><i></i><i style="width:70%"></i></div>
-        <div class="ch__copy mch1__copy">
-          <p class="ch__kicker ch__kicker--cyan">Chapter 01 — Operations never stop</p>
-          <h1 class="ch__title">
-            <span class="line-mask"><span class="line-inner">Growing businesses deserve</span></span>
-            <span class="line-mask"><span class="line-inner">more than disconnected systems.</span></span>
-          </h1>
-          <p class="ch__text">As organisations expand, information becomes scattered across departments, spreadsheets and disconnected software. Operational complexity increases long before leaders realise it.</p>
-          <p class="ch__caption">Every platform begins with understanding how organisations work.</p>
-        </div>
-        <div class="ch__scrollhint" aria-hidden="true"><span></span>Scroll the story</div>
-      </div>
-    </section>
+    <!-- ═══════════ HERO ═══════════ -->
+    <section class="hero" id="overview">
+      <div class="wrap">
+        <p class="kicker" data-r>GEM Information Systems · Product Design Case Study</p>
+        <h1 class="display" data-r>Designing ManaGem: an ERP that onboards itself</h1>
+        <p class="dek" data-r style="margin-top:16px">
+          How GEM Information Systems rebuilt enterprise software around the one moment
+          that kills most ERP rollouts — day one.
+        </p>
 
-    <!-- ═══════════ CH 02 — THE COST OF DISCONNECTION ═══════════ -->
-    <section class="ch mch2" id="mch2" data-section-theme="light">
-      <div class="ch2__pin">
-        <div class="ch2__stage" id="mch2Stage" aria-hidden="true">
-          <div class="pcard pcard--manifest" style="right:14%;top:12%"><b>PO-0448 — awaiting approval (day 6)</b><i></i><i style="width:58%"></i><em class="chip chip--wait">Stalled</em></div>
-          <div class="pcard pcard--sheet" style="right:30%;top:34%"><b>budget_v12_FINAL_final.xls</b><span class="pgrid"><u></u><u></u><u></u><u></u><u></u><u></u><u></u><u></u></span></div>
-          <div class="pcard pcard--phone" style="right:38%;top:10%">✉ 47 unread — "URGENT: which report is right?"</div>
-          <div class="pcard pcard--kpi" style="right:6%;top:32%"><b>Revenue — Sales dashboard</b><strong>R 3,42 M</strong></div>
-          <div class="pcard pcard--kpi" style="right:16%;top:52%"><b>Revenue — Finance sheet</b><strong>R 2,97 M</strong></div>
-          <div class="pcard pcard--kpi" style="right:4%;top:70%"><b>Revenue — Exec report</b><strong>R 3,88 M</strong></div>
-          <div class="pcard pcard--warn" style="right:40%;top:60%">⚠ Duplicate entry — customer captured twice</div>
-          <div class="pcard pcard--note" style="right:28%;top:78%">Who owns this task? Asking in 3 different threads…</div>
+        <div class="hero__meta" data-r>
+          <div class="card meta-card"><span class="label">Role</span><p>Product Designer</p></div>
+          <div class="card meta-card"><span class="label">Product</span><p>ManaGem + Take-On</p></div>
+          <div class="card meta-card"><span class="label">Scope</span><p>Enterprise ERP · AI onboarding</p></div>
+          <div class="card meta-card"><span class="label">Market</span><p>SA trade &amp; contracting</p></div>
         </div>
-        <div class="ch__copy ch2__copy">
-          <p class="ch__kicker">Chapter 02 — The cost of disconnection</p>
-          <h2 class="ch__title">
-            <span class="line-mask"><span class="line-inner">Growth created</span></span>
-            <span class="line-mask"><span class="line-inner">complexity.</span></span>
-          </h2>
-          <p class="ch__text">When systems cannot communicate, decisions slow down, teams duplicate effort and valuable information becomes difficult to trust.</p>
-          <p class="ch__caption">Discovery always comes before development.</p>
-        </div>
-      </div>
-    </section>
 
-    <!-- ═══════════ CH 03 — ENGINEERING A BETTER WAY ═══════════ -->
-    <section class="ch mch3" id="mch3" data-section-theme="light">
-      <div class="ch3__pin">
-        <div class="ch__copy ch3__copy">
-          <p class="ch__kicker">Chapter 03 — Engineering a better way</p>
-          <h2 class="ch__title">
-            <span class="line-mask"><span class="line-inner">Every great platform starts</span></span>
-            <span class="line-mask"><span class="line-inner">with understanding people.</span></span>
-          </h2>
-          <p class="ch__text">ManaGem wasn't designed around technology. It was engineered around the way organisations actually work.</p>
-        </div>
-        <div class="ch3__board" aria-hidden="true">
-          <div class="ch3__stage ch3__stage--journey">
-            <b>Business workshops &amp; journey mapping</b>
-            <svg viewBox="0 0 420 150">
-              <path d="M20 110 C 110 40, 200 130, 300 60 S 390 60, 405 50" fill="none" stroke="#1793c9" stroke-width="2.5"/>
-              <circle cx="20" cy="110" r="7" fill="#123443"/><circle cx="150" cy="82" r="7" fill="#123443"/>
-              <circle cx="300" cy="60" r="7" fill="#123443"/><circle cx="405" cy="50" r="7" fill="#4dd6ff"/>
-            </svg>
-            <div class="ch3__chips"><span>Finance</span><span>Operations</span><span>HR</span><span>Executives</span></div>
+        <!-- before → after -->
+        <div class="ba" data-r>
+          <div class="ba__grid">
+            <figure class="ba__panel ba__panel--before card">
+              <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GMOZifqmavH53boYn9eGkcXqUc/hf_20260713_162817_830a35c2-0a0b-4f16-add8-f85bc571ce74.png"
+                   alt="Chaotic spreadsheets, scanned ledgers and paperwork — how client data arrives"
+                   onerror="this.closest('.ba__panel').style.background='var(--slate-100)';this.remove()" />
+              <figcaption class="ba__cap">Before — weeks of manual capture</figcaption>
+            </figure>
+            <div class="ba__bridge">
+              <span class="ba__line"><span id="baFill"></span></span>
+              <span class="badge badge--sky">Take-On</span>
+              <span class="ba__line"><span id="baFill2"></span></span>
+            </div>
+            <figure class="ba__panel card">
+              <img src="assets/img/case/mg-dashboard.jpg" alt="The ManaGem dashboard, live" />
+              <figcaption class="ba__cap" style="background:rgba(2,132,199,0.85)">After — a working system</figcaption>
+            </figure>
           </div>
-          <div class="ch3__stage ch3__stage--wire">
-            <b>Workflows &amp; architecture</b>
-            <svg class="flowgraph" viewBox="0 0 420 200">
-              <g fill="none" stroke="#b9c4c9" stroke-width="2">
-                <path d="M70 50 H 180 M 250 50 H 350 M 210 80 V 130 M 210 160 H 120 M 210 160 H 300"/>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ CHALLENGE + SUMMARY ═══════════ -->
+    <section class="section" id="challenge">
+      <div class="wrap--narrow">
+        <p class="kicker" data-r>01 · The challenge</p>
+        <div class="prose" data-r>
+          <p><strong>GEM Information Systems already had a working, feature-complete ERP.</strong>
+          Ten modules. Real workflows. A client — a Sandton-based waterproofing and
+          pool-solutions contractor — running actual sales, production, stock and debtor
+          operations through it every day.</p>
+          <p>The problem wasn't the software. It was everything that had to happen
+          <em>before</em> the software could be used. Every new client meant weeks of
+          spreadsheet wrangling: customer ledgers in one format, product price lists in
+          another, staff registers in a third, all hand-typed into the system before a
+          client could log in and see their own business reflected back at them. The ERP
+          was excellent. The runway to it was not — and in enterprise software, a bad
+          runway is a hidden top-of-funnel leak: deals stall, momentum dies, and champions
+          inside the client business lose the political capital that got the project
+          approved in the first place.</p>
+          <p>This case study covers two things designed as one system: <strong>ManaGem</strong>,
+          the core management platform, and <strong>Take-On</strong>, the AI-powered
+          onboarding product built to get a client from "signed contract" to "working
+          system" without a single manual data-entry session — while satisfying the
+          compliance expectations that large South African companies rightly hold
+          AI-touched business data to.</p>
+          <p>Together, they answer the one question a CFO or operations director will
+          always ask before signing: <strong>"What actually happens between us saying yes
+          and our team using this?"</strong> The honest, specific, compliance-aware answer
+          to that question is the product this case study documents.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ WHY DIFFERENT ═══════════ -->
+    <section class="section section--tight" id="why">
+      <div class="wrap">
+        <p class="kicker" data-r>02 · Why an ERP for trade businesses has to be different</p>
+        <h2 class="h1" data-r>One continuous money chain — not ten disconnected tools</h2>
+        <p class="dek" data-r style="margin-bottom:1.8rem">
+          Off-the-shelf ERPs force contractors into the loosest-fitting category. But a
+          trade business generates revenue through one chain, and ManaGem treats that
+          chain as one coordinated object. Every module is legible by where it sits on
+          the chain — not just what data it stores.
+        </p>
+
+        <div class="chain" data-r>
+          <div class="chain__cell chain__cell--on">
+            <span class="chain__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+            <p>Customer</p><p class="note">Take-On</p>
+          </div>
+          <div class="chain__cell">
+            <span class="chain__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg></span>
+            <p>Sales</p>
+          </div>
+          <div class="chain__cell">
+            <span class="chain__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg></span>
+            <p>Quotation</p>
+          </div>
+          <div class="chain__cell">
+            <span class="chain__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg></span>
+            <p>Deposit</p>
+          </div>
+          <div class="chain__cell">
+            <span class="chain__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/></svg></span>
+            <p>Production</p>
+          </div>
+          <div class="chain__cell chain__cell--on">
+            <span class="chain__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v3"/><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M9 12h6"/></svg></span>
+            <p>Inventory</p><p class="note">Take-On</p>
+          </div>
+          <div class="chain__cell">
+            <span class="chain__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 18H3a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h11v11a1 1 0 0 1-1 1h-1M14 9h4l4 4v4a1 1 0 0 1-1 1h-2"/><circle cx="7.5" cy="18.5" r="2"/><circle cx="17.5" cy="18.5" r="2"/></svg></span>
+            <p>Delivery</p>
+          </div>
+          <div class="chain__cell">
+            <span class="chain__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8H8M16 12H8M13 16H8"/></svg></span>
+            <p>Invoice</p>
+          </div>
+          <div class="chain__cell">
+            <span class="chain__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h4"/></svg></span>
+            <p>Accounting</p>
+          </div>
+          <div class="chain__cell">
+            <span class="chain__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg></span>
+            <p>Payment</p>
+          </div>
+        </div>
+        <div class="chain__legend" data-r>
+          <span><i class="dot" style="background:var(--sky)"></i>Populated by Take-On during onboarding <span class="badge badge--sky" style="margin-left:6px">+ Staff &amp; Suppliers</span></span>
+          <span><i class="dot" style="background:var(--slate-300)"></i>Activates once the business starts operating</span>
+        </div>
+
+        <div class="prose" data-r style="margin-top:2rem">
+          <p>A chain-shaped product creates a chain-shaped onboarding problem: you cannot
+          "half-migrate" a contractor. If customers land in ManaGem but products don't,
+          sales reps can't quote. If staff records are missing, jobs can't be assigned.
+          The system only starts paying for itself the moment the <em>whole</em> chain is
+          populated and trustworthy — which made onboarding not a support task bolted onto
+          the product, but <strong>a product in its own right.</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ DISCOVERY ═══════════ -->
+    <section class="section" id="discovery">
+      <div class="wrap">
+        <p class="kicker" data-r>03 · How I approached discovery</p>
+        <h2 class="h1" data-r>A trust problem wearing a data-migration costume</h2>
+        <p class="dek" data-r>
+          Before touching a single onboarding screen, I needed answers the existing
+          product couldn't give me. What does a client actually have on their hard drive
+          the day they sign? Where does trust break down? Which handoffs are safe to
+          automate — and what does "done" look like: records in a system, or an owner who
+          <em>trusts</em> those records?
+        </p>
+
+        <!-- onboarding journey stepper -->
+        <div class="stepper" data-r>
+          <div class="stepper__track"><span class="stepper__fill" id="stepFill"></span></div>
+          <div class="stepper__row">
+            <div class="step" data-step><span class="step__dot">1</span><p>Signed contract</p></div>
+            <div class="step" data-step><span class="step__dot">2</span><p>Trust &amp; consent</p></div>
+            <div class="step" data-step><span class="step__dot">3</span><p>Company profile</p></div>
+            <div class="step" data-step><span class="step__dot">4</span><p>Document upload</p></div>
+            <div class="step" data-step><span class="step__dot">5</span><p>AI extraction</p></div>
+            <div class="step" data-step><span class="step__dot">6</span><p>Guided validation</p></div>
+            <div class="step" data-step><span class="step__dot">7</span><p>Client confirmation</p></div>
+            <div class="step" data-step><span class="step__dot">8</span><p>GEMIS QA sign-off</p></div>
+            <div class="step" data-step><span class="step__dot">9</span><p>Live in ManaGem</p></div>
+          </div>
+        </div>
+        <p class="note" data-r style="margin:10px 0 2.2rem">
+          Once this journey was mapped, it became clear: a client handing over their
+          customer ledger and staff register is handing over the two most sensitive lists
+          in their business. Every design decision in Take-On follows from that one realisation.
+        </p>
+
+        <div class="grid4">
+          <article class="card rcard" data-r>
+            <span class="label">Business research</span>
+            <h3>What clients actually keep</h3>
+            <p>Ledgers in Excel, supplier price lists as PDFs, staff registers that are frequently out of date — and where the risk concentrates if any of it is misread.</p>
+          </article>
+          <article class="card rcard" data-r>
+            <span class="label">Trust mapping</span>
+            <h3>The specific anxieties</h3>
+            <p>Is this POPIA-compliant? Who is the responsible party? Does the AI decide anything on its own? Can I undo this?</p>
+          </article>
+          <article class="card rcard" data-r>
+            <span class="label">Failure mode audit</span>
+            <h3>How extraction really breaks</h3>
+            <p>Missing fields, duplicate records, inconsistent formats, truncated scans — designed for each as a first-class state, not an error page.</p>
+          </article>
+          <article class="card rcard" data-r>
+            <span class="label">Onboarding audit</span>
+            <h3>What humans did silently</h3>
+            <p>Duplicate checks, phone-format validation, blank-field flags — steps a reviewer performed invisibly that the product now had to make explicit.</p>
+          </article>
+        </div>
+
+        <!-- failure-mode matrix -->
+        <figure class="shot" data-r>
+          <div class="shot__frame matrix-wrap" style="padding:22px">
+            <svg class="matrix" viewBox="0 0 720 420" font-family="Outfit, sans-serif" aria-label="Failure mode matrix: data completeness vs extraction confidence">
+              <!-- quadrant fills -->
+              <rect x="70" y="20" width="310" height="180" fill="#FEF3C7" opacity="0.35" rx="8"/>
+              <rect x="380" y="20" width="310" height="180" fill="#D1FAE5" opacity="0.45" rx="8"/>
+              <rect x="70" y="200" width="310" height="180" fill="#FEE2E2" opacity="0.45" rx="8"/>
+              <rect x="380" y="200" width="310" height="180" fill="#FEF3C7" opacity="0.35" rx="8"/>
+              <!-- axes -->
+              <line x1="70" y1="200" x2="690" y2="200" stroke="#CBD5E1" stroke-width="1.5"/>
+              <line x1="380" y1="20" x2="380" y2="380" stroke="#CBD5E1" stroke-width="1.5"/>
+              <text x="695" y="204" font-size="11" fill="#64748B" text-anchor="end" transform="rotate(0)"></text>
+              <text x="30" y="110" font-size="11" fill="#64748B" transform="rotate(-90 30 110)" text-anchor="middle">CONFIDENCE — HIGH</text>
+              <text x="30" y="300" font-size="11" fill="#64748B" transform="rotate(-90 30 300)" text-anchor="middle">CONFIDENCE — LOW</text>
+              <text x="225" y="405" font-size="11" fill="#64748B" text-anchor="middle">DATA — MISSING</text>
+              <text x="535" y="405" font-size="11" fill="#64748B" text-anchor="middle">DATA — COMPLETE</text>
+              <!-- records -->
+              <g>
+                <circle cx="590" cy="90" r="7" fill="#10B981"/>
+                <text x="590" y="70" font-size="12.5" font-weight="600" fill="#0F172A" text-anchor="middle">Atlantic Pools (Pty) Ltd</text>
+                <text x="590" y="115" font-size="10.5" fill="#64748B" text-anchor="middle">All fields matched · Verified</text>
               </g>
               <g>
-                <rect x="20" y="30" width="70" height="40" rx="8" fill="#123443"/>
-                <rect x="180" y="30" width="70" height="40" rx="8" fill="#1793c9"/>
-                <rect x="340" y="30" width="60" height="40" rx="8" fill="#123443"/>
-                <rect x="175" y="130" width="80" height="46" rx="8" fill="#0d2531"/>
-                <rect x="60" y="140" width="60" height="30" rx="8" fill="#e2e8ea"/>
-                <rect x="300" y="140" width="60" height="30" rx="8" fill="#e2e8ea"/>
+                <circle cx="205" cy="105" r="7" fill="#F59E0B"/>
+                <text x="205" y="85" font-size="12.5" font-weight="600" fill="#0F172A" text-anchor="middle">Ridge &amp; Roof Solutions</text>
+                <text x="205" y="130" font-size="10.5" fill="#64748B" text-anchor="middle">Email column absent · Needs review</text>
+              </g>
+              <g>
+                <circle cx="540" cy="300" r="7" fill="#F59E0B"/>
+                <text x="540" y="280" font-size="12.5" font-weight="600" fill="#0F172A" text-anchor="middle">PoolCare CC</text>
+                <text x="540" y="325" font-size="10.5" fill="#64748B" text-anchor="middle">Truncated scan · Low confidence</text>
+              </g>
+              <g>
+                <circle cx="170" cy="320" r="7" fill="#EF4444"/>
+                <text x="170" y="300" font-size="12.5" font-weight="600" fill="#0F172A" text-anchor="middle">Coastal Marine Yachts</text>
+                <text x="170" y="345" font-size="10.5" fill="#64748B" text-anchor="middle">No contact details at all</text>
+              </g>
+              <!-- duplicate callout -->
+              <g>
+                <rect x="440" y="150" width="235" height="44" rx="8" fill="#EDE9FE"/>
+                <text x="557" y="169" font-size="12" font-weight="600" fill="#6D28D9" text-anchor="middle">Mzansi Construct CC</text>
+                <text x="557" y="185" font-size="10" fill="#6D28D9" text-anchor="middle">Possible duplicate — its own state, not an error</text>
               </g>
             </svg>
           </div>
-          <div class="ch3__stage ch3__stage--ui">
-            <b>Working platform</b>
-            <div class="mk mk--dark mk--flat">
-              <div class="mk__bar"><i></i><i></i><i></i><em>managem — dashboard</em></div>
-              <div class="mk__body mk__body--row">
-                <div class="mk__side"><b></b><b></b><b></b><b></b></div>
-                <div class="mk__main"><div class="mk__kpis"><span>41 enq</span><span>R 3,3 M</span></div>
-                <div class="mk__chart"><u style="height:50%"></u><u style="height:72%"></u><u style="height:58%"></u><u style="height:86%"></u><u style="height:66%"></u></div></div>
-              </div>
+          <figcaption><span class="ref">FIG 03</span> The failure-mode matrix, plotted with records from Take-On's real mock data. Every quadrant is a designed state.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ═══════════ CORE PROBLEM ═══════════ -->
+    <section class="section" id="problem">
+      <div class="wrap">
+        <p class="kicker" data-r>04 · The core design problem</p>
+        <h2 class="h1" data-r>Automation without losing trust</h2>
+        <div class="prose" data-r>
+          <p>Every prior attempt at "self-service data import" in ERP software fails the
+          same way: it either demands the client format their data perfectly — nobody
+          does — or it silently imports whatever it finds and lets errors surface weeks
+          later as broken invoices and missing customers. A client who discovers bad data
+          three weeks in doesn't blame the ledger they uploaded. <strong>They blame the
+          software, and the vendor relationship often never recovers.</strong></p>
+          <p>So in Take-On, nothing is presented as fact. Every extracted record carries a
+          visible confidence signal, a plain-language reason for that confidence, and a
+          pointer back to exactly where it came from. Everything is
+          <em>a well-reasoned draft the client is being asked to confirm.</em></p>
+        </div>
+
+        <!-- Review Customers recreation -->
+        <figure class="shot" data-r>
+          <div class="shot__frame apptable">
+            <div class="apptable__toolbar">
+              <span class="apptable__search">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                Search customers…
+              </span>
+              <span class="chip">Confidence: All ✕</span>
+              <span class="chip">Source: Client_Ledger_2025.xlsx ✕</span>
+              <span class="badge badge--sky">38 of 42 auto-verified</span>
+            </div>
+            <div style="overflow-x:auto">
+            <table>
+              <thead>
+                <tr><th>Customer</th><th>Account</th><th>Contact</th><th>Confidence</th><th>Actions</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Atlantic Pools (Pty) Ltd</strong><p class="why">All fields matched ledger columns</p><p class="src">Client_Ledger_2025.xlsx · Row 4</p></td>
+                  <td class="ref">ACC-0231</td>
+                  <td style="font-size:12.5px">011 447 2210<br/>accounts@atlanticpools.co.za</td>
+                  <td><span class="badge badge--emerald">Verified</span></td>
+                  <td><span class="rowacts"><span class="a">Accept</span><span class="e">Edit</span><span class="r">Reject</span></span></td>
+                </tr>
+                <tr>
+                  <td><strong>Ridge &amp; Roof Solutions</strong><p class="why">Account type inferred from credit-terms column</p><p class="src">Client_Ledger_2025.xlsx · Row 9</p></td>
+                  <td class="ref">ACC-0244</td>
+                  <td style="font-size:12.5px">082 331 8874<br/><span style="color:var(--slate-400)">—</span></td>
+                  <td><span class="badge badge--amber">Needs review</span></td>
+                  <td><span class="rowacts"><span class="a">Accept</span><span class="e">Edit</span><span class="r">Reject</span></span></td>
+                </tr>
+                <tr>
+                  <td><strong>Mzansi Construct CC</strong><p class="why">Similar to "Mzansi Konstruct" — confirm before import</p><p class="src">Client_Ledger_2025.xlsx · Row 17</p></td>
+                  <td class="ref">ACC-0198</td>
+                  <td style="font-size:12.5px">011 902 5541<br/>info@mzansiconstruct.co.za</td>
+                  <td><span class="badge badge--purple">Possible duplicate</span></td>
+                  <td><span class="rowacts"><span class="a">Accept</span><span class="e">Edit</span><span class="r">Reject</span></span></td>
+                </tr>
+                <tr>
+                  <td><strong>Coastal Marine Yachts</strong><p class="why">No contact details found in source document</p><p class="src">Scanned_Ledger_p3.pdf · Page 3</p></td>
+                  <td class="ref">ACC-0207</td>
+                  <td style="font-size:12.5px;color:var(--slate-400)">— <br/>—</td>
+                  <td><span class="badge badge--red">Low confidence</span></td>
+                  <td><span class="rowacts"><span class="a">Accept</span><span class="e">Edit</span><span class="r">Reject</span></span></td>
+                </tr>
+                <tr>
+                  <td><strong>Ubuntu Interiors</strong><p class="why">Added by the client during review</p><p class="src">—</p></td>
+                  <td class="ref">ACC-0252</td>
+                  <td style="font-size:12.5px">083 448 1120<br/>hello@ubuntuinteriors.co.za</td>
+                  <td><span class="badge badge--slate">Entered manually</span></td>
+                  <td><span class="rowacts"><span class="a">Accept</span><span class="e">Edit</span><span class="r">Reject</span></span></td>
+                </tr>
+              </tbody>
+            </table>
             </div>
           </div>
+          <div class="callouts">
+            <p class="co" data-r><i>1</i>Confidence badges — a spectrum of certainty, never a binary import result.</p>
+            <p class="co" data-r><i>2</i>A plain-language reason under every flagged record. "The AI found this" is a claim, not a reason.</p>
+            <p class="co" data-r><i>3</i>Source traceability — file, row or page — so trust comes from checking, not from being told to trust.</p>
+          </div>
+          <figcaption style="margin-top:14px"><span class="ref">FIG 04</span> The Review Customers screen — the single most important screen in the product, rebuilt here component-for-component in the ManaGem design system.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ═══════════ DECISION LOG ═══════════ -->
+    <section class="section" id="decisions">
+      <div class="wrap">
+        <p class="kicker" data-r>05 · Decision log</p>
+        <h2 class="h1" data-r>Six decisions, and the alternatives they beat</h2>
+        <div class="decisions" style="margin-top:1.6rem">
+          <article class="card decision" data-r>
+            <h3 class="decision__name"><span class="mono">DECISION 01</span>Confidence badges instead of a binary success / error import</h3>
+            <div class="decision__body">
+              <p>Real-world documents produce a spectrum of certainty. Collapsing it into "imported" or "failed" either hides genuine problems or rejects usable data over a formatting quirk.</p>
+              <p class="rej"><b>Rejected:</b> a single pass/fail validation — it forces an all-or-nothing decision on data the client can't see yet, and gives GEMIS no way to distinguish "two-second glance" from "needs a phone call."</p>
+            </div>
+          </article>
+          <article class="card decision" data-r>
+            <h3 class="decision__name"><span class="mono">DECISION 02</span>Source traceability on every extracted record</h3>
+            <div class="decision__body">
+              <p>Trust in an AI-populated record comes from being able to check it against the original — file, row, page — not from being told to trust the AI.</p>
+              <p class="rej"><b>Rejected:</b> a generic "AI-extracted" tag. It asks for faith at the exact moment the client's instinct is to be most skeptical.</p>
+            </div>
+          </article>
+          <article class="card decision" data-r>
+            <h3 class="decision__name"><span class="mono">DECISION 03</span>Explicit, itemised consent before any document is processed</h3>
+            <div class="decision__body">
+              <p>SA businesses are themselves POPIA responsible parties. They must actively confirm what GEMIS's AI is and isn't doing with their data before a single file uploads.</p>
+              <p class="rej"><b>Rejected:</b> one bundled "I agree to the Terms" checkbox — it hides exactly the facts a compliance-conscious buyer needs to see plainly.</p>
+            </div>
+          </article>
+          <article class="card decision" data-r>
+            <h3 class="decision__name"><span class="mono">DECISION 04</span>A visible GEMIS QA sign-off after the client's own review</h3>
+            <div class="decision__body">
+              <p>Client review catches what the client can see. A second human GEMIS review catches what only someone who has onboarded hundreds of contractors would recognise.</p>
+              <p class="rej"><b>Rejected:</b> client confirmation as the final gate — it puts 100% of the burden on a first-timer and removes the second-pair-of-eyes safeguard enterprise buyers look for.</p>
+            </div>
+          </article>
+          <article class="card decision" data-r>
+            <h3 class="decision__name"><span class="mono">DECISION 05</span>An Admin Queue that shows compliance status, not just progress</h3>
+            <div class="decision__body">
+              <p>POPIA, AI disclosure, encryption and audit trail — each independently checked — tell a reviewer <b>why</b> a client is stuck, not just that they're stuck.</p>
+              <p class="rej"><b>Rejected:</b> a percentage-complete bar. Two clients can both be "60% done" for completely different reasons.</p>
+            </div>
+          </article>
+          <article class="card decision" data-r>
+            <h3 class="decision__name"><span class="mono">DECISION 06</span>Manual entry as a first-class path, not a fallback</h3>
+            <div class="decision__body">
+              <p>Some clients have no digital records at all for a category. Upload-only onboarding would block them entirely.</p>
+              <p class="rej"><b>Rejected:</b> manual entry via support ticket — it punishes exactly the smaller, less digitised businesses GEMIS also serves.</p>
+            </div>
+          </article>
         </div>
-        <div class="ch3__team" aria-hidden="true">
-          <div class="ticker" data-ticker data-speed="0.7">
-            <div class="ticker__track">
-              <span>Business analysis</span><i>✦</i><span>UX research</span><i>✦</i><span>UX design</span><i>✦</i><span>Software engineering</span><i>✦</i><span>AI integration</span><i>✦</i><span>Quality assurance</span><i>✦</i><span>Cloud architecture</span><i>✦</i><span>Continuous improvement</span><i>✦</i>
-              <span>Business analysis</span><i>✦</i><span>UX research</span><i>✦</i><span>UX design</span><i>✦</i><span>Software engineering</span><i>✦</i><span>AI integration</span><i>✦</i><span>Quality assurance</span><i>✦</i><span>Cloud architecture</span><i>✦</i><span>Continuous improvement</span><i>✦</i>
+      </div>
+    </section>
+
+    <!-- ═══════════ PRINCIPLES ═══════════ -->
+    <section class="section section--tight" id="principles">
+      <div class="wrap">
+        <p class="kicker" data-r>06 · Design principles</p>
+        <div class="pcards" style="margin-top:1rem">
+          <article class="card pcard" data-r>
+            <span class="pcard__icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></span>
+            <h3>Nothing is final until a human says so</h3>
+            <p>Every AI screen is a <em>review</em>, never an import log. Verbs are "Review", "Confirm", "Accept" — never "Done".</p>
+          </article>
+          <article class="card pcard" data-r>
+            <span class="pcard__icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span>
+            <h3>Compliance is shown, not just written</h3>
+            <p>POPIA, encryption and audit-trail status are persistent badges on the screens where clients act — not a link to a document.</p>
+          </article>
+          <article class="card pcard" data-r>
+            <span class="pcard__icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span>
+            <h3>Every extracted record explains itself</h3>
+            <p>One plain-language line per record: "Account type inferred from credit-terms column." Trust the 36, focus on the 4.</p>
+          </article>
+          <article class="card pcard" data-r>
+            <span class="pcard__icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z"/><path d="m7 16.5-4.74-2.85M7 16.5l5-3M7 16.5v5.17M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z"/><path d="m17 16.5-5-3M17 16.5l4.74-2.85M17 16.5v5.17M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z"/></svg></span>
+            <h3>Designed for scale, not the demo</h3>
+            <p>One review pattern — filter, badge, reason, source, accept/edit/reject — generalises from Customers to any future category.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ INFORMATION ARCHITECTURE ═══════════ -->
+    <section class="section" id="architecture">
+      <div class="wrap">
+        <p class="kicker" data-r>07 · Information architecture</p>
+        <h2 class="h1" data-r>The trust boundary is the diagram</h2>
+        <p class="dek" data-r style="margin-bottom:1.8rem">
+          Take-On is deliberately <em>not</em> an eleventh module. It lives outside
+          ManaGem entirely and only writes into the five zones once a human has approved
+          what it found. A client should never confuse "data I'm reviewing" with "data
+          that's live in my business."
+        </p>
+        <div class="ia" data-r>
+          <div class="ia__takeon">
+            <h3>Take-On</h3>
+            <p>AI onboarding · its own product<br/>drafts, confidence, review</p>
+          </div>
+          <div class="ia__arrow">on approval,<br/>writes to<span>→</span></div>
+          <div class="ia__mg">
+            <span class="label">ManaGem</span>
+            <div class="ia__zones">
+              <div class="zone"><h4>Core</h4><p>Dashboard — the shared, role-aware home</p></div>
+              <div class="zone"><h4>Customers</h4><p>Customers · Contacts · Warranties</p></div>
+              <div class="zone"><h4>Sales</h4><p>Enquiries · Invoices · Sage · Targets · Reports</p></div>
+              <div class="zone"><h4>Operations</h4><p>Debtors · Products · Projects · Factory · Stock</p></div>
+              <div class="zone"><h4>Admin</h4><p>Staff · Companies · Users · Settings</p></div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ═══════════ CH 04 — MEET MANAGEM ═══════════ -->
-    <section class="ch mch4" id="mch4" data-section-theme="dark">
-      <div class="mch4__pin">
-        <div class="mch4__aura" aria-hidden="true"></div>
-        <div class="ch__copy mch4__copy">
-          <p class="ch__kicker ch__kicker--cyan">Chapter 04 — Meet ManaGem</p>
-          <h2 class="ch__title">
-            <span class="line-mask"><span class="line-inner">One intelligent platform.</span></span>
-            <span class="line-mask"><span class="line-inner">Every operation connected.</span></span>
-          </h2>
-          <p class="ch__text">ManaGem brings people, processes and information together in one secure enterprise platform designed for modern organisations.</p>
+    <!-- ═══════════ KEY FLOWS ═══════════ -->
+    <section class="section" id="flows">
+      <div class="wrap">
+        <p class="kicker" data-r>08 · Key flows</p>
+        <h2 class="h1" data-r>Where breakdowns cost time, materials or money</h2>
+
+        <!-- Flow 1 -->
+        <h3 class="h2" data-r style="margin:2.2rem 0 0.4rem">Flow 1 — Revenue: enquiry to invoice</h3>
+        <p class="prose" data-r style="font-size:13.5px;color:var(--text-2);max-width:70ch">
+          A sales rep captures a new enquiry, tracks it through open and closed states, and
+          converts it to an invoice — quote templates, sales targets and reporting all one
+          zone away, because a sales manager moves between these constantly.
+        </p>
+        <div class="story" style="margin-top:1.2rem">
+          <figure data-r>
+            <div class="shot__frame"><img src="assets/img/case/mg-new-enquiry.jpg" alt="ManaGem New Enquiry screen" loading="lazy"/></div>
+            <figcaption><span class="ref">01</span> New Enquiry</figcaption>
+          </figure>
+          <figure data-r>
+            <div class="shot__frame"><img src="assets/img/case/mg-open-enquiries.jpg" alt="ManaGem Open Enquiries list showing 51 open records" loading="lazy"/></div>
+            <figcaption><span class="ref">02</span> Open Enquiries — the live <span class="ref">51</span> badge</figcaption>
+          </figure>
+          <figure data-r>
+            <div class="shot__frame"><img src="assets/img/case/mg-invoices.jpg" alt="ManaGem Invoices screen" loading="lazy"/></div>
+            <figcaption><span class="ref">03</span> Invoice — same functional zone</figcaption>
+          </figure>
         </div>
-        <div class="mch4__stagewrap">
-          <div class="mch4__stage" id="mstage" aria-hidden="true">
-            <div class="glass glass--center" id="mcore">
-              <div class="glass__bar"><i></i><i></i><i></i><em>ManaGem</em></div>
-              <div class="glass__body" id="mcoreBody">
-                <div class="mmod is-live" data-mod="0"><h4>Operations</h4><p>Every task, request and approval in one flow.</p><div class="mk__chart"><u style="height:52%"></u><u style="height:74%"></u><u style="height:60%"></u><u style="height:88%"></u><u style="height:68%"></u><u style="height:80%"></u></div></div>
-                <div class="mmod" data-mod="1"><h4>Projects</h4><p>Live progress, owners and due dates — no chasing.</p><div class="mrows"><i style="width:78%"></i><i style="width:45%"></i><i style="width:92%"></i><i style="width:63%"></i></div></div>
-                <div class="mmod" data-mod="2"><h4>Human resources</h4><p>People, leave and records without the paper trail.</p><div class="mrows"><i style="width:66%"></i><i style="width:81%"></i><i style="width:52%"></i></div></div>
-                <div class="mmod" data-mod="3"><h4>Assets</h4><p>Every asset tracked from purchase to retirement.</p><div class="mk__chart"><u style="height:40%"></u><u style="height:64%"></u><u style="height:76%"></u><u style="height:55%"></u><u style="height:70%"></u></div></div>
-                <div class="mmod" data-mod="4"><h4>Procurement</h4><p>Orders raised, approved and received — traceably.</p><div class="mrows"><i style="width:84%"></i><i style="width:58%"></i><i style="width:71%"></i></div></div>
-                <div class="mmod" data-mod="5"><h4>Compliance</h4><p>Policies and audit trails built into the work itself.</p><div class="mrows"><i style="width:62%"></i><i style="width:88%"></i><i style="width:49%"></i></div></div>
-                <div class="mmod" data-mod="6"><h4>Reporting</h4><p>One version of the truth, generated on demand.</p><div class="mk__chart"><u style="height:66%"></u><u style="height:48%"></u><u style="height:82%"></u><u style="height:58%"></u><u style="height:90%"></u></div></div>
-                <div class="mmod" data-mod="7"><h4>Analytics</h4><p>Trends and signals surfaced across departments.</p><div class="mk__chart"><u style="height:34%"></u><u style="height:56%"></u><u style="height:70%"></u><u style="height:84%"></u><u style="height:94%"></u></div></div>
-                <div class="mmod" data-mod="8"><h4>AI workspace</h4><p>Ask questions in plain language, get grounded answers.</p><div class="mrows"><i style="width:74%"></i><i style="width:90%"></i><i style="width:57%"></i></div></div>
-                <div class="mmod" data-mod="9"><h4>Automation engine</h4><p>Rules that quietly do the repetitive work.</p><div class="mrows"><i style="width:69%"></i><i style="width:52%"></i><i style="width:86%"></i></div></div>
-              </div>
-            </div>
-            <div class="glass glass--sat glass--sat1"><b>Notifications</b><i></i><i style="width:60%"></i></div>
-            <div class="glass glass--sat glass--sat2"><b>Approvals</b><em class="chip chip--ok">2 ready</em></div>
-            <div class="glass glass--sat glass--sat3"><b>Cash position</b><strong>R 3,3 M</strong></div>
-            <div class="glass glass--sat glass--sat4"><b>Team</b><i></i><i style="width:52%"></i></div>
-          </div>
-          <ol class="mch4__mods" id="modList">
-            <li><b>01</b>Operations</li>
-            <li><b>02</b>Projects</li>
-            <li><b>03</b>Human resources</li>
-            <li><b>04</b>Assets</li>
-            <li><b>05</b>Procurement</li>
-            <li><b>06</b>Compliance</li>
-            <li><b>07</b>Reporting</li>
-            <li><b>08</b>Analytics</li>
-            <li><b>09</b>AI workspace</li>
-            <li><b>10</b>Automation engine</li>
-          </ol>
+
+        <!-- Flow 2 -->
+        <h3 class="h2" data-r style="margin:3rem 0 0.4rem">Flow 2 — Production: the Factory module</h3>
+        <p class="prose" data-r style="font-size:13.5px;color:var(--text-2);max-width:70ch">
+          Production sits in the middle of the money chain — a delay here ripples into
+          delivery, invoicing and customer trust. Build stage, progress, foreman and due
+          date live on one card, with a status badge legible without opening the record.
+        </p>
+        <figure class="shot" data-r style="margin-top:1.2rem">
+          <div class="shot__frame"><img src="assets/img/case/mg-factory.jpg" alt="ManaGem Factory module with live production pipeline" loading="lazy"/></div>
+          <figcaption><span class="ref">FIG 08</span> The Factory dashboard, live — pipeline counts by stage, and the sidebar's Factory entry carrying its own alert badge.</figcaption>
+        </figure>
+
+        <!-- Flow 3 -->
+        <h3 class="h2" data-r style="margin:3rem 0 0.4rem">Flow 3 — Inventory: Stock Control</h3>
+        <div class="venn" data-r>
+          <svg width="min(560px, 92vw)" viewBox="0 0 560 260" font-family="Outfit, sans-serif" aria-label="Factory and Stock Control overlap diagram">
+            <circle cx="210" cy="130" r="105" fill="#E0F2FE" opacity="0.75"/>
+            <circle cx="350" cy="130" r="105" fill="#D1FAE5" opacity="0.65"/>
+            <text x="150" y="126" font-size="15" font-weight="600" fill="#0F172A" text-anchor="middle">Factory</text>
+            <text x="150" y="145" font-size="10.5" fill="#64748B" text-anchor="middle">builds · QC · foremen</text>
+            <text x="412" y="126" font-size="15" font-weight="600" fill="#0F172A" text-anchor="middle">Stock Control</text>
+            <text x="412" y="145" font-size="10.5" fill="#64748B" text-anchor="middle">suppliers · POs · bays</text>
+            <text x="280" y="108" font-size="11.5" font-weight="600" fill="#0369A1" text-anchor="middle">Dispatch</text>
+            <text x="280" y="130" font-size="11.5" font-weight="600" fill="#0369A1" text-anchor="middle">Receive</text>
+            <text x="280" y="152" font-size="11.5" font-weight="600" fill="#0369A1" text-anchor="middle">Movements</text>
+            <text x="280" y="245" font-size="10.5" fill="#64748B" text-anchor="middle">Why these two modules sit adjacent in the navigation</text>
+          </svg>
+        </div>
+
+        <!-- Flow 4 -->
+        <h3 class="h2" data-r style="margin:2.6rem 0 0.4rem">Flow 4 — Client Take-On: signed contract to live system</h3>
+        <p class="prose" data-r style="font-size:13.5px;color:var(--text-2);max-width:70ch;margin-bottom:1.2rem">
+          The full journey, exactly as built in Take-On's step sequence — ending in two
+          separate, sequential gates.
+        </p>
+        <div class="journey">
+          <article class="card jstep" data-r><span class="mono">STEP 01</span><span class="jstep__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></span><h4>Welcome</h4><p>The product introduces itself and the journey ahead</p></article>
+          <article class="card jstep" data-r><span class="mono">STEP 02</span><span class="jstep__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg></span><h4>Trust &amp; Compliance</h4><p>Itemised consent before a single upload</p></article>
+          <article class="card jstep" data-r><span class="mono">STEP 03</span><span class="jstep__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/></svg></span><h4>Company Profile</h4><p>The business describes itself once</p></article>
+          <article class="card jstep" data-r><span class="mono">STEP 04</span><span class="jstep__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5M12 3v12"/></svg></span><h4>Upload Documents</h4><p>Ledgers, price lists, registers — as they are</p></article>
+          <article class="card jstep" data-r><span class="mono">STEP 05</span><span class="jstep__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></span><h4>AI Extraction</h4><p>Structuring into ManaGem's schema, scoring confidence</p></article>
+          <article class="card jstep" data-r><span class="mono">STEP 06</span><span class="jstep__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><h4>Validation Summary</h4><p>What was found, what needs eyes</p></article>
+          <article class="card jstep" data-r><span class="mono">STEPS 07–09</span><span class="jstep__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><h4>Review Customers · Products · Staff</h4><p>One shared pattern, per category</p></article>
+          <article class="card jstep jstep--gate" data-r><span class="mono" style="color:var(--sky)">GATE 1</span><span class="jstep__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><h4>Confirm &amp; Submit</h4><p>The client has confirmed</p></article>
+          <article class="card jstep jstep--gate" data-r><span class="mono" style="color:var(--sky)">GATE 2</span><span class="jstep__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><h4>GEMIS QA sign-off</h4><p>A second pair of expert eyes — then live</p></article>
         </div>
       </div>
     </section>
 
-    <!-- ═══════════ CH 05 — INTELLIGENCE WITH PEOPLE ═══════════ -->
-    <section class="ch mch5" id="mch5" data-section-theme="dark">
-      <div class="mch5__pin">
-        <div class="mch5__grid">
-          <div class="ch__copy">
-            <p class="ch__kicker ch__kicker--cyan">Chapter 05 — Intelligence that works with people</p>
-            <h2 class="ch__title">
-              <span class="line-mask"><span class="line-inner">AI that empowers people.</span></span>
-              <span class="line-mask"><span class="line-inner">Not replaces them.</span></span>
-            </h2>
-            <p class="ch__text">Every AI capability inside ManaGem is designed to reduce repetitive work, improve decision-making and help teams focus on what matters most.</p>
-            <p class="ch__caption">Human-centred AI, engineered by GEMIS.</p>
+    <!-- ═══════════ LIVE PROTOTYPE ═══════════ -->
+    <section class="section" id="prototype">
+      <div class="wrap">
+        <p class="kicker" data-r>09 · The working prototype</p>
+        <h2 class="h1" data-r>Don't take the screenshots' word for it</h2>
+        <p class="dek" data-r style="margin-bottom:1.6rem">
+          This is the actual ManaGem prototype, running live inside this page — the same
+          build the screenshots above were taken from.
+        </p>
+        <div class="proto" data-r>
+          <div class="proto__chrome">
+            <span class="proto__dots"><i></i><i></i><i></i></span>
+            <span class="proto__url">ManaGem.html — live prototype</span>
           </div>
-          <div class="mch5__panel" aria-hidden="true">
-            <div class="glass mch5__chat">
-              <div class="glass__bar"><i></i><i></i><i></i><em>managem copilot</em></div>
-              <div class="aibub aibub--user">Summarise overdue debtors for this month</div>
-              <div class="aibub aibub--ai">14 accounts are overdue — R 412 k total. Three look duplicated. Two are already on payment plans.</div>
-              <div class="mch5__actions">
-                <span class="chip chip--ok">Draft reminders</span>
-                <span class="chip chip--wait">Review 3 duplicates</span>
-                <span class="chip">Export summary</span>
-              </div>
+          <iframe src="ManaGem.html" title="ManaGem live prototype" loading="lazy"></iframe>
+        </div>
+        <p class="proto__hint" data-r>
+          <span class="badge badge--sky">Interactive</span>
+          Sign in with any username and password, then explore the modules — Dashboard,
+          Factory, Stock Control, Open Enquiries.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════ FACTORY ALERTS DEEP DIVE ═══════════ -->
+    <section class="section" id="alerts">
+      <div class="wrap">
+        <p class="kicker" data-r>10 · Feature deep dive</p>
+        <h2 class="h1" data-r>Factory alerts: making delay visible upstream</h2>
+        <div class="prose" data-r>
+          <p>Production delays and material shortages were previously invisible outside
+          the production module — so sales kept promising delivery dates production
+          couldn't hit. The fix: surface production-affecting events to the roles
+          <em>downstream</em> of production. Scoped to events with genuine consequence —
+          delay risk, material shortfall — never general status chatter.</p>
+        </div>
+        <div class="alertpair" style="margin-top:1.6rem">
+          <div class="alertpair__before" data-r>
+            <span class="label">Before — the old way</span>
+            <span class="fakebar fakebar--w60"></span>
+            <span class="fakebar fakebar--w80"></span>
+            <span class="fakebar fakebar--w45"></span>
+            <p>A sales manager's view: no signal that job P26-031 is three days behind.
+            The first person to find out is the customer.</p>
+          </div>
+          <div class="alertpair__after" data-r>
+            <figure>
+              <div class="shot__frame"><img src="assets/img/case/mg-sidebar.png" alt="ManaGem sidebar with Factory alert badge showing 3" loading="lazy"/></div>
+              <figcaption><span class="ref">FIG 10</span> The Factory nav badge — legible without ever opening the module</figcaption>
+            </figure>
+            <div class="card prodcard">
+              <span class="ref">P26-031</span>
+              <span class="badge badge--amber" style="float:right">Delayed</span>
+              <h4>Vista Bryanston Resi</h4>
+              <p class="addr">7 Vista Close</p>
+              <div class="pbar"><span data-bar="22"></span></div>
+              <div class="prodcard__row"><span>Awaiting Stock · 22%</span><span>Due 24 May</span></div>
             </div>
-            <svg class="mch5__pipe" viewBox="0 0 480 90" aria-hidden="true">
-              <path id="pipePath" d="M20 45 H 130 M 190 45 H 300 M 360 45 H 460" stroke="#4dd6ff" stroke-width="2" fill="none"/>
-              <g class="mch5__nodes">
-                <rect x="20" y="25" width="110" height="40" rx="9"/>
-                <rect x="190" y="25" width="110" height="40" rx="9"/>
-                <rect x="360" y="25" width="100" height="40" rx="9"/>
-              </g>
-              <text x="75" y="49" text-anchor="middle">Detect</text>
-              <text x="245" y="49" text-anchor="middle">Suggest</text>
-              <text x="410" y="49" text-anchor="middle">Human approves</text>
-            </svg>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ═══════════ CH 06 — BUILT FOR THE ENTERPRISE ═══════════ -->
-    <section class="ch mch6" id="mch6" data-section-theme="dark">
-      <div class="mch6__pin">
-        <svg class="mch6__net" viewBox="0 0 900 560" aria-hidden="true">
-          <g id="netLines" fill="none" stroke="rgba(77,214,255,.5)" stroke-width="1.6">
-            <path d="M450 280 L 180 120"/><path d="M450 280 L 450 90"/><path d="M450 280 L 720 120"/>
-            <path d="M450 280 L 140 320"/><path d="M450 280 L 760 320"/>
-            <path d="M450 280 L 220 470"/><path d="M450 280 L 450 490"/><path d="M450 280 L 690 470"/>
-          </g>
-          <circle id="netRing" cx="450" cy="280" r="105" fill="none" stroke="rgba(23,230,133,.45)" stroke-width="1.4" stroke-dasharray="6 10"/>
-          <g id="netNodes">
-            <circle cx="180" cy="120" r="8"/><circle cx="450" cy="90" r="8"/><circle cx="720" cy="120" r="8"/>
-            <circle cx="140" cy="320" r="8"/><circle cx="760" cy="320" r="8"/>
-            <circle cx="220" cy="470" r="8"/><circle cx="450" cy="490" r="8"/><circle cx="690" cy="470" r="8"/>
-          </g>
-          <circle cx="450" cy="280" r="26" fill="#0f1c22" stroke="#4dd6ff" stroke-width="2"/>
-          <text x="450" y="286" text-anchor="middle" font-size="13" fill="#4dd6ff" font-family="monospace">GEM</text>
-        </svg>
-        <div class="ch__copy mch6__copy">
-          <p class="ch__kicker ch__kicker--cyan">Chapter 06 — Built for the enterprise</p>
-          <h2 class="ch__title">
-            <span class="line-mask"><span class="line-inner">Built for today.</span></span>
-            <span class="line-mask"><span class="line-inner">Ready for tomorrow.</span></span>
-          </h2>
-          <p class="ch__text">Designed to scale with growing organisations while delivering security, reliability and operational confidence.</p>
+    <!-- ═══════════ TAKE-ON DEEP DIVE ═══════════ -->
+    <section class="section" id="takeon">
+      <div class="wrap">
+        <p class="kicker" data-r>11 · Feature deep dive</p>
+        <h2 class="h1" data-r>Take-On: trust-first, AI-powered onboarding</h2>
+        <div class="prose" data-r>
+          <p>The blocker was never extraction accuracy — OCR and AI were already good
+          enough. The blocker was trust. A fully automated "black box" import would have
+          been faster to build and faster to demo. It was rejected, because the target
+          buyer — a larger South African company with its own compliance obligations —
+          will trust a slower, explainable process over a faster, opaque one
+          <em>every time</em>.</p>
         </div>
-        <ul class="ch6__outcomes mch6__trust">
-          <li class="reveal">Multi-company by design<br><small>one platform, many entities</small></li>
-          <li class="reveal">Cloud deployment<br><small>reachable wherever work happens</small></li>
-          <li class="reveal">Role-based access<br><small>everyone sees exactly what they should</small></li>
-          <li class="reveal">Grows with you<br><small>from first team to full enterprise</small></li>
+
+        <div class="trust" style="margin-top:1.6rem">
+          <!-- trust & compliance screen recreation -->
+          <div class="card" data-r style="padding:20px">
+            <span class="label">Take-On · Step 02</span>
+            <h3 class="h2" style="margin:6px 0 2px">Trust &amp; Compliance</h3>
+            <p style="font-size:12.5px;color:var(--text-2)">Shown before any document is uploaded — never after.</p>
+            <div class="trust__badges">
+              <span class="tbadge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>POPIA compliant</span>
+              <span class="tbadge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Encrypted end-to-end</span>
+              <span class="tbadge"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>Full audit trail</span>
+            </div>
+            <ul class="consent">
+              <li class="group">Authorisation &amp; consent</li>
+              <li><span class="box"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>I am authorised to share this business's customer, product and staff records with GEMIS.</li>
+              <li class="group">Understanding the AI's role</li>
+              <li><span class="box"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>I understand the AI structures and drafts data but makes no final decisions on its own.</li>
+              <li class="group">Accepting policies</li>
+              <li><span class="box"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>I understand I will review and confirm every category, and nothing goes live until I approve it and GEMIS completes its check.</li>
+            </ul>
+          </div>
+
+          <!-- admin queue -->
+          <div data-r>
+            <div class="card apptable queue" style="overflow:hidden">
+              <div class="apptable__toolbar" style="justify-content:space-between">
+                <div><span class="label">GEMIS internal</span>
+                <h3 class="h2" style="margin-top:2px">Onboarding Admin Queue</h3></div>
+                <span class="badge badge--navy">12 active</span>
+              </div>
+              <div style="overflow-x:auto">
+              <table>
+                <thead><tr><th>Client</th><th>Stage</th><th>Compliance</th><th>Risk</th><th>Est. review</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td><strong>SBS Waterproofing</strong></td>
+                    <td style="font-size:12px">Review — Staff</td>
+                    <td><span class="cchips"><span class="cchip">POPIA</span><span class="cchip">AI</span><span class="cchip">ENC</span><span class="cchip">AUDIT</span></span></td>
+                    <td><span class="badge badge--emerald">Low</span></td>
+                    <td class="ref">1.5 h</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Mzansi Construct CC</strong></td>
+                    <td style="font-size:12px">Validation</td>
+                    <td><span class="cchips"><span class="cchip">POPIA</span><span class="cchip cchip--warn">AI</span><span class="cchip">ENC</span><span class="cchip">AUDIT</span></span></td>
+                    <td><span class="badge badge--amber">Medium</span></td>
+                    <td class="ref">3 h</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Coastal Marine Yachts</strong></td>
+                    <td style="font-size:12px">Upload</td>
+                    <td><span class="cchips"><span class="cchip cchip--warn">POPIA</span><span class="cchip cchip--warn">AI</span><span class="cchip">ENC</span><span class="cchip">AUDIT</span></span></td>
+                    <td><span class="badge badge--red">High</span></td>
+                    <td class="ref">6 h</td>
+                  </tr>
+                </tbody>
+              </table>
+              </div>
+            </div>
+            <p class="note" style="margin-top:8px">Compliance tracked independently per dimension — a reviewer sees <em>why</em> a client is stuck, not just that they are.</p>
+
+            <blockquote class="pull" style="margin-top:16px">
+              "I understand I will review and confirm every category, and nothing goes
+              live until I approve it and GEMIS completes its check."
+              <footer>— the product's own consent copy. It is, in effect, the thesis statement.</footer>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ TRADE-OFFS ═══════════ -->
+    <section class="section section--tight" id="tradeoffs">
+      <div class="wrap--narrow">
+        <p class="kicker" data-r>12 · Trade-offs &amp; constraints</p>
+        <ul class="tradeoffs" data-r>
+          <li>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4M12 17h.01"/></svg>
+            <span><b>The AI cannot eliminate the final human sign-off — deliberately.</b> A fully autonomous import would demo well and fail the exact trust test the market applies. The two-stage confirmation is permanent, not a v1 stopgap.</span>
+          </li>
+          <li>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4M12 17h.01"/></svg>
+            <span><b>Source quality sets a hard ceiling on confidence.</b> A truncated scan will never produce Verified-tier records. The system makes that ceiling visible and explicable — it doesn't disguise it.</span>
+          </li>
+          <li>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4M12 17h.01"/></svg>
+            <span><b>Manual entry is first-class, but still slower than a clean upload.</b> The goal was to make the difference proportionate to the actual state of a client's data — not to pretend it doesn't exist.</span>
+          </li>
         </ul>
       </div>
     </section>
 
-    <!-- ═══════════ FINAL — BUILD THE FUTURE WITH GEMIS ═══════════ -->
-    <footer class="footer story-final" id="contact" data-section-theme="dark">
-      <div class="footer__cta">
-        <p class="footer__pre">The future, operational</p>
-        <h2 class="footer__title">
-          <span class="hero__line"><span data-split>THE&nbsp;FUTURE&nbsp;OF&nbsp;BUSINESS</span></span>
-          <span class="hero__line hero__line--outline"><span data-split>STARTS&nbsp;HERE</span></span>
-        </h2>
-        <p class="story-final__text">ManaGem is more than software — it is the result of years of research, engineering and partnership with organisations determined to work smarter, move faster and grow confidently. Whether you need a custom platform or an enterprise solution tailored to your organisation, GEMIS is ready to engineer what's next.</p>
-        <div class="footer__actions">
-          <a href="mailto:hello@gemis.tech?subject=ManaGem%20demo" class="btn-big" data-magnetic data-cursor="Demo">
-            <span>Request a ManaGem demo</span>
-          </a>
-          <a class="link-arrow" href="mailto:hello@gemis.tech?subject=Strategy%20session">Book a strategy session <span>→</span></a>
+    <!-- ═══════════ WHAT I MEASURED ═══════════ -->
+    <section class="section" id="measured">
+      <div class="wrap">
+        <p class="kicker" data-r>13 · What I measured</p>
+        <h2 class="h1" data-r>Questions the product must keep answering honestly</h2>
+        <div class="qgrid" style="margin-top:1.4rem">
+          <div class="card qcard" data-r><span class="mono">Q1</span>How would GEMIS know onboarding time actually dropped — rather than just looking faster in a demo?</div>
+          <div class="card qcard" data-r><span class="mono">Q2</span>Would the trust-versus-review ratio hold up across a messy, real-world client — not just a clean pilot?</div>
+          <div class="card qcard" data-r><span class="mono">Q3</span>Across a dozen simultaneous onboardings, which ones need GEMIS's attention <em>today</em>?</div>
+          <div class="card qcard" data-r><span class="mono">Q4</span>How does a compliance-conscious buyer know "AI-powered" isn't a euphemism for "we can't tell you what happens to your data"?</div>
         </div>
-      </div>
-      <div class="footer__base">
-        <div class="footer__legal">
-          <span>© 2026 GEMIS. ManaGem platform story.</span>
-          <span><a href="index.html">gemis.tech</a> · <a href="wastemart.html">WasteMart story</a></span>
+        <div class="kpis">
+          <div class="card kpi" data-r>
+            <span class="kpi__icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+            <span class="label">Onboarding runway</span>
+            <p class="kpi__value">Weeks <span style="font-size:16px;color:var(--text-2)">→</span> Days</p>
+            <p class="kpi__delta">signed contract to reviewable system</p>
+          </div>
+          <div class="card kpi" data-r>
+            <span class="kpi__icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></span>
+            <span class="label">Auto-verified tier</span>
+            <p class="kpi__value"><span data-count="78">0</span>%</p>
+            <p class="kpi__delta">records landing Verified on a clean ledger</p>
+          </div>
+          <div class="card kpi" data-r>
+            <span class="kpi__icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></span>
+            <span class="label">Needs human eyes</span>
+            <p class="kpi__value"><span data-count="14">0</span>%</p>
+            <p class="kpi__delta">flagged for the client's focused attention</p>
+          </div>
+          <div class="card kpi" data-r>
+            <span class="kpi__icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+            <span class="label">Queue per reviewer</span>
+            <p class="kpi__value"><span data-count="12">0</span></p>
+            <p class="kpi__delta">simultaneous onboardings, triaged at a glance</p>
+          </div>
         </div>
+        <span class="badge badge--slate illustrative" data-r>Illustrative figures — production metrics pending</span>
       </div>
-      <div class="footer__wordmark" aria-hidden="true"><span>GEMIS®</span></div>
-    </footer>
+    </section>
+
+    <!-- ═══════════ REFLECTION ═══════════ -->
+    <section class="section" id="reflection">
+      <div class="wrap--narrow">
+        <p class="kicker" data-r>14 · Reflection</p>
+        <div class="refl">
+          <div data-r>
+            <h3>What surprised me</h3>
+            <p>How much of the real problem lived in the sequence of trust-building, not extraction accuracy. Clients forgave an AI getting a phone number wrong far more readily than a product that didn't explain what it was doing with their customer list.</p>
+          </div>
+          <div data-r>
+            <h3>What I'd do differently</h3>
+            <p>More structured time with GEMIS's own onboarding staff before finalising the Admin Queue — the people who triage a dozen onboardings a day would have surfaced prioritisation needs I had to discover later.</p>
+          </div>
+          <div data-r>
+            <h3>What the compliance requirement taught me</h3>
+            <p>POPIA-consciousness, done well, is a sales asset rather than friction. Once Trust &amp; Compliance was treated as a feature worth designing carefully, it became the screen most worth showing a skeptical buyer first.</p>
+          </div>
+          <div data-r>
+            <h3>What I'd design next</h3>
+            <p>A client-facing version of the Admin Queue — letting the client's own project sponsor watch their onboarding's compliance score and stage in real time. The transparency that builds trust in the moment should extend to the wait before go-live.</p>
+          </div>
+        </div>
+        <p class="closing" data-r>
+          "Every version that leaned harder on the <b>AI-powered</b> framing and softer on
+          <b>you stay in control</b> tested worse with the audience this product actually
+          needs to convince."
+        </p>
+      </div>
+    </section>
 
   </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <a href="index.html#work">← Back to Selected Work</a>
+      <span class="note">ManaGem &amp; Take-On — GEM Information Systems · Case study by Sphamandla Xaba®</span>
+      <a href="whatsapp-ai.html">Next: WhatsApp Conversation AI →</a>
+    </div>
+  </footer>
 
   <script src="assets/js/gsap.min.js"></script>
   <script src="assets/js/ScrollTrigger.min.js"></script>
   <script src="assets/js/lenis.min.js"></script>
-  <script src="assets/js/main.js" defer></script>
-  <script src="assets/js/managem.js" defer></script>
+  <script>
+    (() => {
+      'use strict';
+      gsap.registerPlugin(ScrollTrigger);
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced) { document.documentElement.classList.add('no-anim'); return; }
+
+      const lenis = new Lenis({ lerp: 0.11, smoothWheel: true });
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((t) => lenis.raf(t * 1000));
+      gsap.ticker.lagSmoothing(0);
+
+      // reveals — functional: quick fade + small rise
+      document.querySelectorAll('[data-r]').forEach((el) => {
+        gsap.to(el, {
+          opacity: 1, y: 0, duration: 0.45, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 88%' },
+        });
+      });
+
+      // before→after bridge fill (300ms progress-bar rule)
+      ['#baFill', '#baFill2'].forEach((sel, i) => {
+        const el = document.querySelector(sel);
+        if (!el) return;
+        ScrollTrigger.create({
+          trigger: '.ba', start: 'top 75%', once: true,
+          onEnter: () => gsap.to(el, { scaleX: 1, duration: 0.3, delay: i * 0.15, ease: 'power1.inOut' }),
+        });
+      });
+
+      // stepper fill + dots
+      const steps = document.querySelectorAll('[data-step]');
+      ScrollTrigger.create({
+        trigger: '.stepper', start: 'top 80%', once: true,
+        onEnter: () => {
+          gsap.to('#stepFill', { scaleX: 1, duration: 0.9, ease: 'power1.inOut' });
+          steps.forEach((s, i) => setTimeout(() => s.classList.add('is-on'), 90 * i + 120));
+        },
+      });
+
+      // production progress bar
+      document.querySelectorAll('[data-bar]').forEach((el) => {
+        ScrollTrigger.create({
+          trigger: el, start: 'top 90%', once: true,
+          onEnter: () => { el.style.width = el.dataset.bar + '%'; },
+        });
+      });
+
+      // KPI counters
+      document.querySelectorAll('[data-count]').forEach((el) => {
+        const target = Number(el.dataset.count);
+        ScrollTrigger.create({
+          trigger: el, start: 'top 90%', once: true,
+          onEnter: () => {
+            const o = { v: 0 };
+            gsap.to(o, { v: target, duration: 0.9, ease: 'power2.out', onUpdate: () => { el.textContent = Math.round(o.v); } });
+          },
+        });
+      });
+
+      // progress rail
+      const railLinks = [...document.querySelectorAll('[data-rail]')];
+      railLinks.forEach((a) => {
+        const id = a.getAttribute('href');
+        const sec = document.querySelector(id);
+        if (!sec) return;
+        ScrollTrigger.create({
+          trigger: sec, start: 'top 45%', end: 'bottom 45%',
+          onToggle: (self) => {
+            if (self.isActive) railLinks.forEach((l) => l.classList.toggle('is-on', l === a));
+          },
+        });
+        a.addEventListener('click', (e) => { e.preventDefault(); lenis.scrollTo(id, { duration: 1.1 }); });
+      });
+
+      window.addEventListener('load', () => ScrollTrigger.refresh());
+    })();
+  </script>
 </body>
 </html>
