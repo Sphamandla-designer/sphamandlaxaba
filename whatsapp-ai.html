@@ -3,61 +3,834 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WhatsApp Conversation AI — Case Study — Sphamandla Xaba®</title>
-  <meta name="description" content="Case study: designing an AI assistant that lives where the conversation already happens — WhatsApp." />
+  <title>Home Assist — Designing AI Governance Into Claims Verification — Sphamandla Xaba®</title>
+  <meta name="description" content="How I helped Santam's Home Assist team turn a slow, trust-fragile claims process into a governed, explainable WhatsApp verification system — as AI UX Strategist across a four-phase enterprise engagement." />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
-  <link rel="stylesheet" href="assets/css/home.css" />
+  <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/jetbrains-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <script>document.documentElement.classList.add('js');</script>
+  <style>
+    /* ═══════════════════════════════════════════════════════════
+       Home Assist — WhatsApp AI verification case study
+       Dark editorial · WhatsApp-green accent · governance-first
+       ═══════════════════════════════════════════════════════════ */
+    @font-face { font-family:"Archivo"; src:url("assets/fonts/archivo-latin-wdth-normal.woff2") format("woff2-variations"); font-weight:100 900; font-stretch:62.5% 125%; font-display:swap; }
+    @font-face { font-family:"Space Grotesk"; src:url("assets/fonts/space-grotesk-latin-wght-normal.woff2") format("woff2-variations"); font-weight:300 700; font-display:swap; }
+    @font-face { font-family:"JetBrains Mono"; src:url("assets/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2"); font-weight:400; font-display:swap; }
+
+    :root {
+      --bg: #0b0f0d;
+      --bg-2: #101613;
+      --panel: #131a17;
+      --ink: #eef2ef;
+      --ink-2: #b9c4bd;
+      --muted: #7f8d85;
+      --line: rgba(255,255,255,0.1);
+      --wa: #25d366;        /* WhatsApp green */
+      --wa-deep: #128c7e;   /* teal */
+      --wa-dark: #075e54;
+      --amber: #f0a020;
+      --red: #ef5350;
+      --glass: rgba(255,255,255,0.045);
+      --glass-brd: rgba(255,255,255,0.1);
+      --font-display:"Archivo", system-ui, sans-serif;
+      --font-body:"Space Grotesk", system-ui, sans-serif;
+      --font-mono:"JetBrains Mono", ui-monospace, monospace;
+      --pad: clamp(1.25rem, 4vw, 3.2rem);
+      --ease: cubic-bezier(0.65,0.05,0,1);
+    }
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    html.lenis { height:auto; scroll-behavior:auto; }
+    body { background:var(--bg); color:var(--ink); font-family:var(--font-body); font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; overflow-x:clip; }
+    img { display:block; max-width:100%; }
+    a { color:inherit; text-decoration:none; }
+    ul { list-style:none; }
+    ::selection { background:var(--wa); color:#04140d; }
+    .mono { font-family:var(--font-mono); }
+
+    /* grain */
+    .grain { position:fixed; inset:-50%; width:200%; height:200%; pointer-events:none; z-index:2000; opacity:0.04;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+    /* top bar */
+    .bar { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; gap:1rem;
+      padding:0.85rem var(--pad); background:rgba(11,15,13,0.72); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-bottom:1px solid var(--line); }
+    .bar__back { display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:14px; transition:color .2s; }
+    .bar__back:hover { color:var(--wa); }
+    .bar__crumb { font-size:12.5px; color:var(--muted); }
+    .bar__crumb b { color:var(--ink-2); font-weight:500; }
+    .bar__tag { font-family:var(--font-mono); font-size:10.5px; letter-spacing:.12em; color:var(--muted); }
+    @media (max-width:720px){ .bar__crumb,.bar__tag{ display:none; } }
+
+    main { padding-top:54px; }
+    .section { padding:clamp(3.5rem,9vh,6.5rem) var(--pad); }
+    .wrap { max-width:1180px; margin:0 auto; }
+    .narrow { max-width:820px; margin:0 auto; }
+    .kicker { font-family:var(--font-mono); font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:var(--wa);
+      display:inline-flex; align-items:center; gap:8px; margin-bottom:14px; }
+    .kicker::before { content:""; width:20px; height:1.5px; background:var(--wa); }
+    h1.display { font-family:var(--font-display); font-weight:760; font-stretch:92%; font-size:clamp(2rem,5vw,3.6rem); line-height:1.06; letter-spacing:-0.03em; }
+    h2.h1 { font-family:var(--font-display); font-weight:740; font-stretch:92%; font-size:clamp(1.7rem,3.4vw,2.6rem); line-height:1.05; letter-spacing:-0.025em; margin-bottom:12px; }
+    h3.h2 { font-family:var(--font-display); font-weight:720; font-size:1.2rem; letter-spacing:-0.01em; }
+    .dek { font-size:clamp(1rem,1.7vw,1.2rem); color:var(--ink-2); max-width:64ch; }
+    .prose { max-width:68ch; color:var(--ink-2); }
+    .prose p + p { margin-top:1em; }
+    .prose strong { color:var(--ink); font-weight:600; }
+    .prose em { font-style:italic; color:var(--ink); }
+    .note { font-size:12.5px; color:var(--muted); }
+
+    .badge { display:inline-flex; align-items:center; gap:5px; font-family:var(--font-mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase;
+      padding:4px 10px; border-radius:999px; border:1px solid var(--glass-brd); background:var(--glass); color:var(--ink-2); }
+    .badge--wa { border-color:rgba(37,211,102,.4); color:var(--wa); background:rgba(37,211,102,.08); }
+    .badge--amber { border-color:rgba(240,160,32,.4); color:var(--amber); background:rgba(240,160,32,.08); }
+    .badge--red { border-color:rgba(239,83,80,.4); color:#ff8785; background:rgba(239,83,80,.08); }
+
+    .card { background:var(--glass); border:1px solid var(--glass-brd); border-radius:16px;
+      backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); }
+
+    /* reveals */
+    html.js [data-r] { opacity:0; transform:translateY(18px); }
+    html.js.no-anim [data-r] { opacity:1; transform:none; }
+
+    /* progress rail */
+    .rail { position:fixed; right:16px; top:50%; transform:translateY(-50%); z-index:90; display:none; flex-direction:column; gap:2px; }
+    @media (min-width:1400px){ html.js .rail{ display:flex; } }
+    .rail a { font-family:var(--font-mono); font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted);
+      padding:3px 8px; border-right:2px solid var(--line); transition:color .2s,border-color .2s; }
+    .rail a.is-on { color:var(--wa); border-color:var(--wa); }
+
+    /* ── HERO ── */
+    .hero { position:relative; padding:clamp(4rem,11vh,7.5rem) var(--pad) clamp(3rem,7vh,5rem); overflow:clip; }
+    .hero::before { content:""; position:absolute; inset:0; z-index:-1;
+      background:radial-gradient(75% 60% at 78% 12%, rgba(18,140,126,.28), transparent 60%),
+                 radial-gradient(60% 60% at 12% 90%, rgba(37,211,102,.12), transparent 65%), var(--bg); }
+    .hero__grid { display:grid; grid-template-columns:1.25fr 0.75fr; gap:clamp(2rem,4vw,4rem); align-items:center; }
+    .hero__phone { justify-self:center; position:relative; }
+    .hero__meta { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin-top:2rem; }
+    .meta { padding:12px 14px; }
+    .meta .badge { margin-bottom:6px; }
+    .meta p { font-size:13.5px; color:var(--ink-2); }
+    .meta b { color:var(--ink); font-weight:600; }
+    @media (max-width:900px){ .hero__grid{ grid-template-columns:1fr; } .hero__phone{ display:none; } }
+
+    /* phone frame */
+    .phone { width:clamp(240px,26vw,300px); border-radius:34px; padding:9px; background:#05100b;
+      border:1px solid rgba(255,255,255,.14); box-shadow:0 50px 100px -40px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.08); }
+    .phone img { width:100%; border-radius:26px; display:block; }
+    .phone--float { animation:floaty 6s ease-in-out infinite; }
+    @keyframes floaty { 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-10px); } }
+
+    /* image band */
+    .band { position:relative; height:clamp(300px,46vh,480px); overflow:clip; border-block:1px solid var(--line);
+      background:
+        radial-gradient(80% 120% at 18% 20%, rgba(18,140,126,.5), transparent 55%),
+        radial-gradient(70% 110% at 88% 90%, rgba(37,211,102,.22), transparent 60%),
+        conic-gradient(from 200deg at 60% 40%, #0c1512, #12201b 30%, #081310 60%, #0f1c17 85%, #0c1512),
+        var(--bg); }
+    .band img { width:100%; height:100%; object-fit:cover; }
+    .band__grid { position:absolute; inset:0; opacity:.25;
+      background-image:linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+      background-size:44px 44px; -webkit-mask-image:radial-gradient(60% 60% at 30% 40%, #000, transparent 75%); mask-image:radial-gradient(60% 60% at 30% 40%, #000, transparent 75%); }
+    .band__scrim { position:absolute; inset:0; background:linear-gradient(180deg, rgba(11,15,13,.35), rgba(11,15,13,.15) 40%, rgba(11,15,13,.8)); }
+    .band__cap { position:absolute; left:var(--pad); bottom:1.4rem; right:var(--pad); max-width:60ch; }
+    .band__cap p { font-family:var(--font-display); font-weight:640; font-size:clamp(1.2rem,2.6vw,1.9rem); line-height:1.2; letter-spacing:-0.02em; }
+    .band__cap .note { font-family:var(--font-body); font-weight:400; margin-top:6px; }
+
+    /* stakeholder chain */
+    .chain { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-top:1.4rem; }
+    .chain__node { font-family:var(--font-mono); font-size:11px; letter-spacing:.04em; padding:7px 12px; border-radius:8px;
+      border:1px solid var(--glass-brd); background:var(--glass); color:var(--ink-2); white-space:nowrap; }
+    .chain__node--wa { border-color:rgba(37,211,102,.45); color:var(--wa); }
+    .chain__arrow { color:var(--muted); }
+
+    /* stakeholder fear table */
+    .tbl-wrap { overflow-x:auto; border:1px solid var(--glass-brd); border-radius:14px; }
+    table { width:100%; border-collapse:collapse; font-size:13.5px; min-width:520px; }
+    thead th { text-align:left; font-family:var(--font-mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted);
+      padding:12px 16px; background:rgba(255,255,255,.03); border-bottom:1px solid var(--glass-brd); }
+    td { padding:13px 16px; border-bottom:1px solid var(--line); color:var(--ink-2); vertical-align:top; }
+    tbody tr:last-child td { border-bottom:0; }
+    td strong { color:var(--ink); font-weight:600; }
+    td .fear { color:#ff8785; }
+
+    /* role columns */
+    .cols3 { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    .rolecol { padding:18px; }
+    .rolecol h3 { font-size:14px; margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+    .rolecol h3 .dot { width:8px; height:8px; border-radius:50%; }
+    .rolecol ul { display:grid; gap:7px; }
+    .rolecol li { font-size:12.8px; color:var(--ink-2); padding-left:16px; position:relative; }
+    .rolecol li::before { content:""; position:absolute; left:0; top:8px; width:5px; height:5px; border-radius:50%; background:currentColor; opacity:.5; }
+    @media (max-width:820px){ .cols3{ grid-template-columns:1fr; } }
+
+    /* principles */
+    .principles { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; }
+    .principle { padding:20px; }
+    .principle__n { font-family:var(--font-mono); font-size:11px; color:var(--wa); }
+    .principle h3 { font-size:16px; margin:8px 0 6px; }
+    .principle p { font-size:13px; color:var(--muted); }
+
+    /* seven-screen flow */
+    .flow { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:clamp(1rem,2.4vw,1.8rem); }
+    .step { display:grid; gap:14px; }
+    .step__phone { border-radius:26px; padding:7px; background:#05100b; border:1px solid rgba(255,255,255,.12);
+      box-shadow:0 30px 60px -32px rgba(0,0,0,.85); overflow:hidden; }
+    .step__phone img { width:100%; border-radius:20px; }
+    .step__meta .mono { font-size:10.5px; color:var(--wa); letter-spacing:.1em; }
+    .step__meta h3 { font-size:16px; margin:4px 0 5px; }
+    .step__meta p { font-size:13px; color:var(--ink-2); }
+
+    /* spotlight (serial photo) */
+    .spotlight { display:grid; grid-template-columns:0.8fr 1fr; gap:clamp(1.5rem,4vw,3.5rem); align-items:center; }
+    .spotlight__phones { display:flex; gap:14px; justify-content:center; }
+    .spotlight__phones .phone { width:clamp(160px,21vw,220px); }
+    .spotlight__phones .phone:first-child { transform:rotate(-4deg) translateY(10px); }
+    .spotlight__phones .phone:last-child { transform:rotate(4deg); }
+    .confbar { margin:1.4rem 0; }
+    .confbar__row { display:flex; justify-content:space-between; font-size:12.5px; color:var(--ink-2); margin-bottom:6px; }
+    .confbar__track { height:8px; border-radius:5px; background:rgba(255,255,255,.08); overflow:hidden; }
+    .confbar__fill { height:100%; border-radius:5px; width:0; transition:width 1s var(--ease); }
+    .confbar--low .confbar__fill { background:var(--amber); }
+    .confbar--high .confbar__fill { background:var(--wa); }
+    @media (max-width:820px){ .spotlight{ grid-template-columns:1fr; } }
+
+    /* blueprint */
+    .blueprint { display:grid; gap:2px; border:1px solid var(--glass-brd); border-radius:14px; overflow:hidden; }
+    .bp-row { display:grid; grid-template-columns:130px 1fr; gap:0; }
+    .bp-row__label { font-family:var(--font-mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--wa);
+      padding:14px 16px; background:rgba(255,255,255,.03); display:flex; align-items:center; }
+    .bp-row__cells { display:flex; flex-wrap:wrap; gap:6px; padding:12px 14px; }
+    .bp-cell { font-size:12px; color:var(--ink-2); padding:6px 11px; border-radius:8px; background:var(--glass); border:1px solid var(--line); }
+    @media (max-width:640px){ .bp-row{ grid-template-columns:1fr; } .bp-row__label{ padding-bottom:2px; } }
+
+    /* guidance exploration */
+    .explore { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    .dir { padding:18px; position:relative; }
+    .dir--win { border-color:rgba(37,211,102,.4); background:rgba(37,211,102,.05); }
+    .dir__tag { font-family:var(--font-mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+    .dir--win .dir__tag { color:var(--wa); }
+    .dir h3 { font-size:15px; margin:8px 0 8px; }
+    .dir dl { display:grid; gap:6px; font-size:12.5px; }
+    .dir dt { color:var(--muted); font-family:var(--font-mono); font-size:10px; letter-spacing:.06em; text-transform:uppercase; margin-top:4px; }
+    .dir dd { color:var(--ink-2); }
+    @media (max-width:820px){ .explore{ grid-template-columns:1fr; } }
+
+    /* governance / three questions */
+    .qcards { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:1.4rem; }
+    .qcard { padding:18px; }
+    .qcard .mono { font-size:10.5px; color:var(--wa); letter-spacing:.08em; }
+    .qcard h3 { font-size:15px; margin:6px 0 5px; }
+    .qcard p { font-size:12.8px; color:var(--muted); }
+    @media (max-width:820px){ .qcards{ grid-template-columns:1fr; } }
+
+    /* reason codes */
+    .codes { display:grid; gap:10px; }
+    .code { display:grid; grid-template-columns:90px 1fr 1.3fr; gap:16px; padding:14px 16px; align-items:start; }
+    .code__id { font-family:var(--font-mono); font-size:12px; color:var(--wa); }
+    .code__internal { font-size:12.8px; color:var(--muted); }
+    .code__msg { font-size:13.5px; color:var(--ink); }
+    .code__msg::before { content:"“"; color:var(--wa); }
+    .code__msg::after { content:"”"; color:var(--wa); }
+    @media (max-width:640px){ .code{ grid-template-columns:1fr; gap:4px; } }
+
+    /* escalation cards */
+    .esc { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:12px; }
+    .esc-card { padding:18px; }
+    .esc-card h3 { font-size:14.5px; margin-bottom:8px; display:flex; align-items:center; gap:8px; }
+    .esc-card p { font-size:12.8px; color:var(--ink-2); }
+    .esc-flow { font-family:var(--font-mono); font-size:11px; color:var(--wa); margin-top:8px; line-height:1.6; }
+
+    /* prototype workspaces */
+    .work4 { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px; }
+    .work4 .card { padding:18px; }
+    .work4 h3 { font-size:14.5px; margin-bottom:6px; }
+    .work4 p { font-size:12.5px; color:var(--muted); }
+    .acts { display:flex; flex-wrap:wrap; gap:8px; margin-top:1.4rem; }
+    .act { font-family:var(--font-mono); font-size:11px; letter-spacing:.05em; padding:7px 13px; border-radius:999px; border:1px solid var(--glass-brd); background:var(--glass); color:var(--ink-2); }
+
+    /* impact */
+    .impact { border:1px solid var(--glass-brd); border-radius:14px; overflow:hidden; }
+    .impact-row { display:grid; grid-template-columns:1.3fr 1.7fr 90px; gap:16px; padding:16px; border-bottom:1px solid var(--line); align-items:center; }
+    .impact-row:last-child { border-bottom:0; }
+    .impact-row strong { color:var(--ink); font-weight:600; font-size:14px; }
+    .impact-row p { font-size:12.8px; color:var(--muted); }
+    .impact-row .pill { font-family:var(--font-mono); font-size:10px; color:var(--wa); border:1px solid rgba(37,211,102,.35); border-radius:999px; padding:4px 8px; text-align:center; }
+    @media (max-width:720px){ .impact-row{ grid-template-columns:1fr; gap:6px; } }
+
+    /* reflection */
+    .refl { display:grid; gap:14px; max-width:68ch; }
+    .refl h3 { font-size:15px; margin-bottom:3px; color:var(--ink); }
+    .refl p { font-size:14px; color:var(--ink-2); }
+    .pull { border-left:3px solid var(--wa); padding:clamp(1.4rem,3vw,2.2rem); margin-top:2.2rem;
+      font-family:var(--font-display); font-weight:600; font-size:clamp(1.2rem,2.6vw,1.8rem); line-height:1.35; letter-spacing:-0.02em; color:var(--ink); max-width:38ch; }
+    .pull footer { font-family:var(--font-body); font-weight:400; font-size:12.5px; color:var(--muted); margin-top:12px; }
+
+    /* footer */
+    .foot { border-top:1px solid var(--line); padding:clamp(2.5rem,6vh,4rem) var(--pad); }
+    .foot .wrap { display:flex; flex-wrap:wrap; gap:1.5rem; align-items:center; justify-content:space-between; }
+    .foot a { font-weight:600; transition:color .2s; }
+    .foot a:hover { color:var(--wa); }
+
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after { animation-duration:.01ms !important; transition-duration:.01ms !important; scroll-behavior:auto !important; }
+      html.js [data-r] { opacity:1; transform:none; }
+      .phone--float { animation:none; }
+    }
+  </style>
 </head>
 <body>
-  <header class="header">
-    <a href="index.html" class="header__logo">
-      <svg viewBox="0 0 24 24" class="header__mark" aria-hidden="true"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg>
-      <span>Sphamandla<sup>®</sup></span>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="bar">
+    <a href="index.html#work" class="bar__back" data-cursor="Back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Sphamandla<sup>®</sup>
     </a>
-    <nav class="header__nav" aria-label="Primary">
-      <a href="index.html" class="header__link">Home</a>
-      <a href="index.html#work" class="header__link is-active"><i class="header__dot"></i>Work</a>
-      <a href="index.html#contact" class="header__link">Contact</a>
-    </nav>
-    <div class="header__right"></div>
+    <span class="bar__crumb">Home / Work / <b>Home Assist</b></span>
+    <span class="bar__tag">CASE STUDY · 2026</span>
   </header>
 
-  <main class="case">
-    <div class="case__head">
-      <p class="section-tag"><span>02</span> — Conversational AI</p>
-      <h1 class="section-title">WhatsApp<br /><em>Conversation AI</em></h1>
-      <p class="case__intro">
-        For millions of South Africans, WhatsApp is not a support channel — it is the
-        primary digital platform. This project designs an AI assistant that lives where
-        the conversation already happens, turning WhatsApp into a natural, trustworthy
-        way to get business done.
-      </p>
-    </div>
+  <nav class="rail" aria-hidden="true">
+    <a href="#overview" data-rail>Overview</a>
+    <a href="#context" data-rail>Context</a>
+    <a href="#role" data-rail>Role</a>
+    <a href="#principles" data-rail>Principles</a>
+    <a href="#flow" data-rail>Flow</a>
+    <a href="#serial" data-rail>Serial</a>
+    <a href="#blueprint" data-rail>Blueprint</a>
+    <a href="#governance" data-rail>Governance</a>
+    <a href="#trust" data-rail>Trust</a>
+    <a href="#prototype" data-rail>Prototype</a>
+    <a href="#impact" data-rail>Impact</a>
+    <a href="#reflection" data-rail>Reflection</a>
+  </nav>
 
-    <img class="case__mock" src="assets/img/work/whatsapp-ai-mockup.png"
-         alt="WhatsApp Conversation AI interface mockup"
-         onerror="this.style.display='none'" />
+  <main>
+    <!-- ═══════════ HERO ═══════════ -->
+    <section class="hero" id="overview">
+      <div class="wrap">
+        <div class="hero__grid">
+          <div>
+            <p class="kicker" data-r>Santam · Home Assist · AI UX case study</p>
+            <h1 class="display" data-r>Designing AI governance into an enterprise claims-verification system</h1>
+            <p class="dek" data-r style="margin-top:18px">
+              How I helped Santam's Home Assist team turn a slow, trust-fragile claims
+              process into a governed, explainable WhatsApp verification system — as AI UX
+              Strategist across a four-phase enterprise engagement.
+            </p>
+            <div class="hero__meta" data-r>
+              <div class="card meta"><span class="badge badge--wa">Role</span><p><b>AI UX Strategist</b> &amp; Conversation Designer</p></div>
+              <div class="card meta"><span class="badge">Client</span><p>Santam — Home Assist<br/><span class="note">via GEMIS × NeuraUX</span></p></div>
+              <div class="card meta"><span class="badge">Platform</span><p>WhatsApp + Reviewer / Ops / Costing dashboards</p></div>
+              <div class="card meta"><span class="badge">Engagement</span><p>4 phases + a validation gate</p></div>
+            </div>
+          </div>
+          <div class="hero__phone" data-r>
+            <div class="phone phone--float">
+              <img src="assets/img/ha/ha-09-serial-ok.png" alt="WhatsApp verification — serial number captured at 98% confidence" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <div class="case__grid">
-      <article class="case__block glass">
-        <span class="mono">Challenge</span>
-        <h2>Meet users where they are</h2>
-        <p>Standalone apps create friction and cost data. The assistant had to integrate naturally into existing WhatsApp behaviour — no downloads, no new habits, no heavy interfaces.</p>
-      </article>
-      <article class="case__block glass">
-        <span class="mono">Approach</span>
-        <h2>Conversation as the interface</h2>
-        <p>Flows designed around natural language with human-in-the-loop checkpoints, progressive disclosure for complex tasks, and clear signals about when AI is acting — building trust turn by turn.</p>
-      </article>
-      <article class="case__block glass">
-        <span class="mono">Principles</span>
-        <h2>Trust, clarity, resilience</h2>
-        <p>Data-conscious and connectivity-aware by design: lightweight exchanges, transparent AI behaviour, and language that reduces uncertainty instead of adding to it.</p>
-      </article>
-    </div>
+    <!-- emotional band -->
+    <figure class="band" data-r>
+      <div class="band__grid" aria-hidden="true"></div>
+      <div class="band__scrim"></div>
+      <figcaption class="band__cap">
+        <p>A plumber in a roof space, phone in one hand, asking the same thing every time: <em>will I actually get paid for this?</em></p>
+        <p class="note">Verification had to earn trust at the exact moment it was most fragile — on site, one-handed, on a bad signal.</p>
+      </figcaption>
+    </figure>
 
-    <p class="case__note">Full case study in progress — screens and flows coming soon.</p>
-    <a href="index.html#work" class="case__back">← Back to Selected Work</a>
+    <!-- ═══════════ CONTEXT ═══════════ -->
+    <section class="section" id="context">
+      <div class="wrap">
+        <p class="kicker" data-r>01 · Business context</p>
+        <h2 class="h1" data-r>Verification is where the claim — and the trust — lives</h2>
+        <div class="prose" data-r>
+          <p>Home Assist sits inside Santam's claims chain: a homeowner's policy triggers a
+          dispatch, an accredited plumber completes the job, and that job can't close — and
+          the plumber can't get paid — until the work is verified. That verification has to
+          satisfy three separate, sometimes competing interests at once: a <strong>reviewer</strong>
+          checking compliance, a <strong>costing team</strong> protecting against leakage and
+          fraud, and an <strong>executive layer</strong> that won't fund further build without
+          proof the process holds up under governance scrutiny — POPIA, ISO, audit trail.</p>
+        </div>
+        <div class="chain" data-r>
+          <span class="chain__node">Executives</span><span class="chain__arrow">→</span>
+          <span class="chain__node">Operations</span><span class="chain__arrow">→</span>
+          <span class="chain__node">Reviewers</span><span class="chain__arrow">→</span>
+          <span class="chain__node">Costing</span><span class="chain__arrow">→</span>
+          <span class="chain__node">Call Centre</span><span class="chain__arrow">→</span>
+          <span class="chain__node chain__node--wa">WhatsApp System</span><span class="chain__arrow">→</span>
+          <span class="chain__node">Plumbers</span><span class="chain__arrow">→</span>
+          <span class="chain__node">Homeowners</span>
+        </div>
+
+        <h3 class="h2" data-r style="margin:2.6rem 0 1rem;font-size:clamp(1.3rem,2.4vw,1.7rem)">Five stakeholders, five fears — all being realised at once</h3>
+        <p class="prose" data-r style="margin-bottom:1.2rem">
+          Heavy admin at intake, inconsistent photos at the evidence stage, slow decisions
+          and manual cost validation at the back end. Every one was a symptom of the same
+          root cause: <strong>nobody in the chain had a shared, trustworthy source of truth
+          about what actually happened on site.</strong>
+        </p>
+        <div class="tbl-wrap" data-r>
+          <table>
+            <thead><tr><th>Stakeholder</th><th>Primary goal</th><th>Primary fear</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Plumber</strong></td><td>Finish the job quickly and get paid</td><td class="fear">Rejection or payment delays</td></tr>
+              <tr><td><strong>Operations</strong></td><td>Reduce support burden</td><td class="fear">High call volume</td></tr>
+              <tr><td><strong>Reviewer</strong></td><td>Make accurate decisions</td><td class="fear">Missing critical evidence</td></tr>
+              <tr><td><strong>Costing</strong></td><td>Prevent leakage</td><td class="fear">Incorrect claims</td></tr>
+              <tr><td><strong>Executives</strong></td><td>Reduce total claim cost</td><td class="fear">Compliance failures</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ ROLE / GROUNDING ═══════════ -->
+    <section class="section" id="role" style="background:var(--bg-2)">
+      <div class="wrap">
+        <p class="kicker" data-r>02 · My role &amp; how it was grounded</p>
+        <h2 class="h1" data-r>Not built from interviews — built from a decision register</h2>
+        <div class="prose" data-r>
+          <p>This came out of a structured service-design engagement run against the live
+          business, not a research panel. I led current- and future-state journey mapping
+          from workflow analysis and existing process documentation, built the stakeholder
+          ecosystem map, and ran a full trust-breakdown analysis stakeholder by stakeholder
+          before a single screen was designed.</p>
+          <p>Every material assumption then went through an <strong>8-session stakeholder
+          workshop program</strong> and was logged in a <strong>Decision Register</strong>
+          against a named business owner before it was allowed into the design — nothing
+          shipped on my judgment alone.</p>
+        </div>
+
+        <div class="card" data-r style="padding:20px;margin:1.6rem 0;max-width:70ch">
+          <span class="badge badge--wa">Decision register · sample</span>
+          <p style="margin-top:12px;font-size:14.5px;color:var(--ink)"><strong>VR-001 — Mandatory evidence for standard geyser replacement:</strong> before photo, serial photo, and compliance photo required.</p>
+          <p style="margin-top:8px;font-size:12.8px;color:var(--muted)"><span class="mono" style="color:var(--wa)">Owner:</span> Vanessa &nbsp;·&nbsp; <span class="mono" style="color:var(--wa)">Design impact:</span> updates the WhatsApp checklist flow &nbsp;·&nbsp; <span class="mono" style="color:var(--wa)">Technical impact:</span> updates validation logic</p>
+        </div>
+        <p class="prose note" data-r style="margin-bottom:2rem">That register — not a stack of transcripts — is the evidence base for this case study. A slower way to design, and a much harder one to get wrong in front of an executive committee.</p>
+
+        <div class="cols3" data-r>
+          <div class="card rolecol">
+            <h3><span class="dot" style="background:var(--wa)"></span>I owned</h3>
+            <ul>
+              <li>Experience &amp; journey mapping</li>
+              <li>Service-blueprint architecture</li>
+              <li>Trust-breakdown analysis</li>
+              <li>AI governance facilitation &amp; documentation</li>
+              <li>7-screen conversation architecture</li>
+              <li>Photo-guidance spec</li>
+              <li>Reason-code taxonomy</li>
+              <li>Reviewer / ops / costing decision trees</li>
+              <li>Decision-register authorship</li>
+              <li>Prototype narrative &amp; demo storyline</li>
+            </ul>
+          </div>
+          <div class="card rolecol">
+            <h3><span class="dot" style="background:var(--amber)"></span>I collaborated on</h3>
+            <ul>
+              <li>AI confidence thresholds — with Leon, AI Governance</li>
+              <li>Costing rules &amp; module definitions — with Vanessa, Costing</li>
+              <li>Escalation ownership &amp; SLAs — with Keishan, Operations</li>
+              <li>Payment eligibility &amp; trust messaging — with Finance / Ops</li>
+            </ul>
+          </div>
+          <div class="card rolecol">
+            <h3><span class="dot" style="background:var(--muted)"></span>I didn't own</h3>
+            <ul>
+              <li>Backend / engineering build</li>
+              <li>Final governance sign-off</li>
+              <li>Legal &amp; compliance approval</li>
+              <li>Production infrastructure decisions</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ PRINCIPLES ═══════════ -->
+    <section class="section" id="principles">
+      <div class="wrap">
+        <p class="kicker" data-r>03 · Design principles</p>
+        <h2 class="h1" data-r>Five rules for a one-handed, on-site tool</h2>
+        <div class="principles" style="margin-top:1.6rem">
+          <article class="card principle" data-r><span class="principle__n">01</span><h3>Speed over perfection</h3><p>Every extra interaction costs a plumber money — cut friction before adding polish.</p></article>
+          <article class="card principle" data-r><span class="principle__n">02</span><h3>Explain uncertainty</h3><p>Never say "Error." Say exactly what needs fixing and why.</p></article>
+          <article class="card principle" data-r><span class="principle__n">03</span><h3>Reduce typing</h3><p>Quick replies first, free text last — this is a one-handed, on-site tool.</p></article>
+          <article class="card principle" data-r><span class="principle__n">04</span><h3>Preserve trust</h3><p>Every message answers one question: "what does this mean for me and my pay?"</p></article>
+          <article class="card principle" data-r><span class="principle__n">05</span><h3>Humans remain accountable</h3><p>AI assists. Humans decide. Always — and always stated.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ SEVEN-SCREEN FLOW ═══════════ -->
+    <section class="section" id="flow" style="background:var(--bg-2)">
+      <div class="wrap">
+        <p class="kicker" data-r>04 · From current state to a seven-screen experience</p>
+        <h2 class="h1" data-r>One continuous WhatsApp conversation</h2>
+        <p class="dek" data-r style="margin-bottom:2rem">
+          The future-state journey collapses a multi-call, multi-day process into a single
+          conversation: claim → initiation → guided evidence capture → AI-assisted analysis
+          → human review if required → cost validation, approval and reference number. In
+          interaction design, that became seven discrete experiences.
+        </p>
+        <div class="flow">
+          <article class="step" data-r>
+            <div class="step__phone"><img src="assets/img/ha/ha-03-summary.png" alt="Initiation — job summary, language and reference" loading="lazy"/></div>
+            <div class="step__meta"><span class="mono">SCREEN 01</span><h3>Initiation</h3><p>Language choice, job summary and reference number, set up front.</p></div>
+          </article>
+          <article class="step" data-r>
+            <div class="step__phone"><img src="assets/img/ha/ha-04-before-guide.png" alt="Before photo — guidance" loading="lazy"/></div>
+            <div class="step__meta"><span class="mono">SCREEN 02</span><h3>Before evidence</h3><p>The on-ramp photo; a blur triggers a blame-free, one-tap retake.</p></div>
+          </article>
+          <article class="step" data-r>
+            <div class="step__phone"><img src="assets/img/ha/ha-09-serial-ok.png" alt="Serial verification — OCR confidence" loading="lazy"/></div>
+            <div class="step__meta"><span class="mono">SCREEN 03</span><h3>Serial verification</h3><p>The highest-stakes photo. OCR confidence shown as a colour bar, not a number alone.</p></div>
+          </article>
+          <article class="step" data-r>
+            <div class="step__phone"><img src="assets/img/ha/ha-10-compliance.png" alt="Compliance checklist" loading="lazy"/></div>
+            <div class="step__meta"><span class="mono">SCREEN 04</span><h3>Compliance</h3><p>Remaining checklist items, completable in any order or deferred.</p></div>
+          </article>
+          <article class="step" data-r>
+            <div class="step__phone"><img src="assets/img/ha/ha-12-offline.png" alt="Offline and recovery state" loading="lazy"/></div>
+            <div class="step__meta"><span class="mono">SCREEN 05</span><h3>Submit &amp; confirm</h3><p>Including the offline state: exactly what's saved, what's pending, resuming on reconnect.</p></div>
+          </article>
+          <article class="step" data-r>
+            <div class="step__phone"><img src="assets/img/ha/ha-14-review.png" alt="Manual review" loading="lazy"/></div>
+            <div class="step__meta"><span class="mono">SCREEN 06</span><h3>Manual review</h3><p>Handed to a person when confidence doesn't clear the threshold — "this doesn't affect your payment eligibility."</p></div>
+          </article>
+          <article class="step" data-r>
+            <div class="step__phone"><img src="assets/img/ha/ha-15-approved.png" alt="Final outcome — approved" loading="lazy"/></div>
+            <div class="step__meta"><span class="mono">SCREEN 07</span><h3>Final outcome</h3><p>Approved, retake needed, or escalated — every state keeping the same reference number.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ SERIAL SPOTLIGHT ═══════════ -->
+    <section class="section" id="serial">
+      <div class="wrap">
+        <p class="kicker" data-r>05 · The screen the whole claim hinges on</p>
+        <div class="spotlight">
+          <div class="spotlight__phones" data-r>
+            <div class="phone"><img src="assets/img/ha/ha-08-serial-retake.png" alt="Serial photo at 41% — glare and hidden characters named" /></div>
+            <div class="phone"><img src="assets/img/ha/ha-09-serial-ok.png" alt="Serial photo at 98% after retake" /></div>
+          </div>
+          <div>
+            <h2 class="h1" data-r>Confidence you can read at a glance</h2>
+            <div class="prose" data-r>
+              <p>The serial label is the photo the claim legally hinges on. The first attempt
+              comes back at <strong>41%</strong> — but the system doesn't say "Error." It
+              names the exact problem: <em>glare across part of the label, a few characters
+              hidden</em> — and reassures: <em>"you're very close, one more try should do it."</em></p>
+              <p>The retake reaches <strong>98%</strong>, the number is captured, and a line
+              underneath keeps the human in frame: <em>"a Home Assist reviewer confirms this
+              too."</em> Confidence is a colour bar, not a bare score — legible to a plumber on
+              a ladder, defensible to a reviewer at a desk.</p>
+            </div>
+            <div class="confbar confbar--low" data-r>
+              <div class="confbar__row"><span>First attempt · glare + hidden characters</span><span class="mono">41%</span></div>
+              <div class="confbar__track"><span class="confbar__fill" data-conf="41"></span></div>
+            </div>
+            <div class="confbar confbar--high" data-r>
+              <div class="confbar__row"><span>After a guided retake</span><span class="mono">98%</span></div>
+              <div class="confbar__track"><span class="confbar__fill" data-conf="98"></span></div>
+            </div>
+            <p class="note" data-r>Design principle in action: push friction to the moment that needs it — the serial photo — and strip it everywhere else.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ SERVICE BLUEPRINT ═══════════ -->
+    <section class="section" id="blueprint" style="background:var(--bg-2)">
+      <div class="wrap">
+        <p class="kicker" data-r>06 · Information architecture</p>
+        <h2 class="h1" data-r>The service blueprint — one model, every team</h2>
+        <p class="dek" data-r style="margin-bottom:1.8rem">
+          Below the conversation sits a blueprint mapping what the plumber experiences
+          against what the system and internal teams do at the same moment — the artifact
+          that let engineering, operations and reviewers work from one model instead of
+          three different pictures of "what the AI does."
+        </p>
+        <div class="blueprint" data-r>
+          <div class="bp-row"><div class="bp-row__label">Frontstage</div><div class="bp-row__cells">
+            <span class="bp-cell">Starts WhatsApp process</span><span class="bp-cell">Takes before photos</span><span class="bp-cell">Receives guidance</span><span class="bp-cell">Submits evidence</span><span class="bp-cell">Gets reference number</span>
+          </div></div>
+          <div class="bp-row"><div class="bp-row__label">Backstage</div><div class="bp-row__cells">
+            <span class="bp-cell">Session management</span><span class="bp-cell">Photo compression</span><span class="bp-cell">OCR processing</span><span class="bp-cell">AI confidence scoring</span><span class="bp-cell">Notification triggers</span>
+          </div></div>
+          <div class="bp-row"><div class="bp-row__label">Internal</div><div class="bp-row__cells">
+            <span class="bp-cell">Operations monitor progress</span><span class="bp-cell">Reviewers validate evidence</span><span class="bp-cell">Costing validates invoices</span>
+          </div></div>
+          <div class="bp-row"><div class="bp-row__label">Systems</div><div class="bp-row__cells">
+            <span class="bp-cell">WhatsApp</span><span class="bp-cell">AI models</span><span class="bp-cell">Job database</span><span class="bp-cell">Dashboards</span><span class="bp-cell">Export layer</span>
+          </div></div>
+        </div>
+        <p class="note" data-r style="margin-top:12px">Underpinning all of it: a single <strong style="color:var(--ink)">Job Record</strong> — the source of truth every role reads from (Job · Plumber · Property · Installation · Evidence · AI outputs · Review, costing &amp; outcome).</p>
+      </div>
+    </section>
+
+    <!-- ═══════════ GUIDANCE EXPLORATION ═══════════ -->
+    <section class="section" id="explore">
+      <div class="wrap">
+        <p class="kicker" data-r>07 · Design exploration</p>
+        <h2 class="h1" data-r>One reusable guidance card, three directions</h2>
+        <p class="dek" data-r style="margin-bottom:1.8rem">
+          Every photo request routes through one reusable guidance card. I explored three
+          directions before locking one in — the serial photo, with non-visual requirements
+          a single image can't teach, decided it.
+        </p>
+        <div class="explore">
+          <article class="card dir dir--win" data-r>
+            <span class="dir__tag">A · Sectioned — shipped</span>
+            <h3>Headings + tip lists + thumbnails</h3>
+            <dl>
+              <dt>Best for</dt><dd>High-stakes, first-time instructions with non-visual requirements — distance, lighting — the serial photo.</dd>
+              <dt>Trade-off</dt><dd>More text on screen; slower to scan.</dd>
+            </dl>
+          </article>
+          <article class="card dir" data-r>
+            <span class="dir__tag">B · Visual-first</span>
+            <h3>One large example, tips as chips</h3>
+            <dl>
+              <dt>Best for</dt><dd>Repeat items easy to pattern-match visually.</dd>
+              <dt>Trade-off</dt><dd>Weak at conveying non-visual instructions like distance or lighting.</dd>
+            </dl>
+          </article>
+          <article class="card dir" data-r>
+            <span class="dir__tag">C · Stepper</span>
+            <h3>One numbered instruction at a time</h3>
+            <dl>
+              <dt>Best for</dt><dd>Lowest cognitive load; one-handed, on-ladder use.</dd>
+              <dt>Trade-off</dt><dd>Hides the full picture up front; more taps.</dd>
+            </dl>
+          </article>
+        </div>
+        <p class="note" data-r style="margin-top:12px">The photo spec itself came out of the workshop program, not a style guide: before photos need the whole geyser and environment; the serial label needs 15–20 cm distance, good lighting, label only; compliance photos are module-specific.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════ AI UX GOVERNANCE ═══════════ -->
+    <section class="section" id="governance" style="background:var(--bg-2)">
+      <div class="wrap">
+        <p class="kicker" data-r>08 · AI UX strategy</p>
+        <h2 class="h1" data-r>Governance before generation</h2>
+        <div class="prose" data-r>
+          <p>Confidence thresholds and review triggers weren't a design decision I made
+          alone — they were owned by <strong>Leon (AI Governance)</strong> and ratified in a
+          dedicated workshop, because a threshold set too loose creates fraud exposure and
+          one set too tight buries reviewers in false escalations. My job was translating
+          that governance decision into an interaction: a reviewer decision tree that checks
+          evidence completeness, then AI confidence, then routes to auto-approval or manual
+          assessment — and an explainability layer that always answers three questions.</p>
+        </div>
+        <div class="qcards" data-r>
+          <div class="card qcard"><span class="mono">WHAT WAS FOUND</span><h3>"Heat Tech Geyser"</h3><p>The recognised entity, in plain language — never a raw model output.</p></div>
+          <div class="card qcard"><span class="mono">HOW CONFIDENT</span><h3>92%</h3><p>A number the reviewer can weigh — paired with the evidence, not hidden behind it.</p></div>
+          <div class="card qcard"><span class="mono">WHAT HAPPENS NEXT</span><h3>Reviewer verification</h3><p>The next action is always explicit. The AI proposes; a human disposes.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ TRUST BREAKDOWN + REASON CODES ═══════════ -->
+    <section class="section" id="trust">
+      <div class="wrap">
+        <p class="kicker" data-r>09 · Trust-breakdown analysis</p>
+        <h2 class="h1" data-r>Where trust breaks — and the response designed into the product</h2>
+        <p class="dek" data-r style="margin-bottom:1.6rem">
+          I mapped where trust actually breaks for each stakeholder — as a specific trigger
+          with a specific consequence — and designed a response to each one into the product,
+          not into an FAQ.
+        </p>
+        <div class="tbl-wrap" data-r>
+          <table>
+            <thead><tr><th>Stakeholder</th><th>Trigger</th><th>Consequence if unaddressed</th><th>Design response</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Plumber</strong></td><td>"Will I still get paid?" after a manual-review request</td><td class="fear">Calls operations / abandons the system</td><td>Explain why review happened, what's next, and the expected timeline</td></tr>
+              <tr><td><strong>Operations</strong></td><td>"Is this reducing calls?" amid high abandonment</td><td class="fear">Reverts to manual process</td><td>Visibility into abandoned jobs, escalations and support triggers</td></tr>
+              <tr><td><strong>Reviewer</strong></td><td>"Can I trust the AI?" after a false positive</td><td class="fear">AI recommendations ignored wholesale</td><td>Transparent confidence scores and explainable evidence checks</td></tr>
+              <tr><td><strong>Costing</strong></td><td>"Can I trust extracted data?" after incorrect OCR</td><td class="fear">Manual validation creeps back in</td><td>Side-by-side photo and extracted-text comparison</td></tr>
+              <tr><td><strong>Executives</strong></td><td>"Can we trust this operationally?" amid compliance uncertainty</td><td class="fear">Pilot-termination risk</td><td>Audit trails, oversight controls, governance checkpoints</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="h2" data-r style="margin:2.6rem 0 1rem;font-size:clamp(1.3rem,2.4vw,1.7rem)">Reason-code taxonomy</h3>
+        <p class="prose" data-r style="margin-bottom:1.2rem">Every AI or reviewer outcome maps to an internal reason code and a plain-language WhatsApp message — the layer that keeps internal logic from ever leaking through as a cryptic error.</p>
+        <div class="codes" data-r>
+          <div class="card code"><span class="code__id">F001 / R001</span><span class="code__internal">Photo blurry</span><span class="code__msg">We couldn't clearly read the label. Please move closer and ensure the text is visible.</span></div>
+          <div class="card code"><span class="code__id">F002 / R002</span><span class="code__internal">Wrong component</span><span class="code__msg">This photo doesn't show the requested component.</span></div>
+          <div class="card code"><span class="code__id">F004</span><span class="code__internal">Upload failed / connectivity drop</span><span class="code__msg">Your progress has been saved. Try again when you have signal.</span></div>
+          <div class="card code"><span class="code__id">F006 / R005</span><span class="code__internal">Manual review / compliance concern</span><span class="code__msg">A specialist is reviewing your submission. This does not affect payment eligibility.</span></div>
+          <div class="card code"><span class="code__id">R006 / R007</span><span class="code__internal">Reviewer approval / rejection</span><span class="code__msg">Your installation has been approved.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ ESCALATION ═══════════ -->
+    <section class="section" id="escalation" style="background:var(--bg-2)">
+      <div class="wrap">
+        <p class="kicker" data-r>10 · Escalation &amp; resilience</p>
+        <h2 class="h1" data-r>No dead ends, no infinite loops</h2>
+        <div class="esc" style="margin-top:1.6rem">
+          <article class="card esc-card" data-r>
+            <h3><span class="badge badge--amber">Poor upload</span></h3>
+            <p>AI detects blur, WhatsApp guidance nudges "move closer," a retake is requested.</p>
+            <p class="esc-flow">blur → guidance → retake → 3 fails → Human Assist queue</p>
+          </article>
+          <article class="card esc-card" data-r>
+            <h3><span class="badge badge--red">Cost anomaly</span></h3>
+            <p>A claim exceeding expected norms trips an automatic manual-review flag.</p>
+            <p class="esc-flow">exceeds norm → manual-review flag → costing validation</p>
+          </article>
+          <article class="card esc-card" data-r>
+            <h3><span class="badge badge--wa">Connectivity loss</span></h3>
+            <p>Treated as a first-class conversational state, not an error — progress saved locally.</p>
+            <p class="esc-flow">signal lost → saved locally → resumes exactly where it left off</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ PROTOTYPE ═══════════ -->
+    <section class="section" id="prototype">
+      <div class="wrap">
+        <p class="kicker" data-r>11 · Prototype &amp; validation</p>
+        <h2 class="h1" data-r>A functional, multi-role prototype — built to be believed</h2>
+        <p class="dek" data-r style="margin-bottom:1.8rem">
+          The Phase 4 deliverable was built to five principles — <strong>trustworthy</strong>
+          (the AI never appears autonomous), <strong>explainable</strong> (every output shows
+          its rationale), <strong>enterprise-ready</strong>, <strong>human-centered</strong>
+          and <strong>compliance-conscious</strong> — across four workspaces.
+        </p>
+        <div class="work4">
+          <div class="card"><h3>Field WhatsApp flow</h3><p>The plumber's seven-screen capture journey.</p></div>
+          <div class="card"><h3>Reviewer dashboard</h3><p>Evidence panel, explainability layer, decision workspace.</p></div>
+          <div class="card"><h3>Operations monitor</h3><p>Active / stalled jobs, SLA bottlenecks.</p></div>
+          <div class="card"><h3>Costing validation</h3><p>OCR checks, warranty risk, export formatting.</p></div>
+        </div>
+        <p class="prose" data-r style="margin-top:1.6rem">
+          It was demonstrated as a <strong>seven-act storyline</strong> for an executive
+          audience — Field Reality → Guided Verification → AI Assistance → Human Oversight →
+          Operational Efficiency → Financial Impact → Executive Outcomes.
+        </p>
+        <div class="acts" data-r>
+          <span class="act">Figma</span><span class="act">Voiceflow</span><span class="act">Make / Airtable</span><span class="act">Retool</span><span class="act">7-sprint roadmap</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- interactive prototype embed -->
+    <section class="section" style="padding-top:0">
+      <div class="wrap">
+        <div class="card" data-r style="padding:0;overflow:hidden;border-radius:16px">
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(255,255,255,.03);border-bottom:1px solid var(--glass-brd)">
+            <span style="display:flex;gap:5px"><i style="width:9px;height:9px;border-radius:50%;background:#3a4a42;display:block"></i><i style="width:9px;height:9px;border-radius:50%;background:#3a4a42;display:block"></i><i style="width:9px;height:9px;border-radius:50%;background:#3a4a42;display:block"></i></span>
+            <span class="mono" style="flex:1;text-align:center;font-size:11px;color:var(--muted)">Home Assist — WhatsApp verification · interactive prototype</span>
+          </div>
+          <iframe src="homeassist-proto.html" title="Home Assist interactive prototype" loading="lazy" style="width:100%;height:min(80vh,820px);border:0;display:block;background:#e9e2d8"></iframe>
+        </div>
+        <p class="proto__hint note" data-r style="margin-top:12px"><span class="badge badge--wa">Interactive</span>&nbsp; Tap the quick replies inside the chat, or jump to any of the 17 screens from the index on the left.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════ IMPACT ═══════════ -->
+    <section class="section" id="impact" style="background:var(--bg-2)">
+      <div class="wrap">
+        <p class="kicker" data-r>12 · Business impact</p>
+        <h2 class="h1" data-r>Success was stakeholders concluding the model was real</h2>
+        <div class="prose" data-r>
+          <p>Success for this phase wasn't a production metric — it was stakeholders
+          concluding: <em>"this is operationally feasible," "this aligns with governance
+          requirements," "this could reduce total claim costs," "our people would actually
+          use this."</em> The design goals behind those conclusions, with space for the
+          pilot's real numbers once reporting closes:</p>
+        </div>
+        <div class="impact" data-r style="margin-top:1.6rem">
+          <div class="impact-row"><strong>First-submission pass rate on the serial photo</strong><p>Real-time confidence feedback + a named fix instead of a delayed manual rejection</p><span class="pill">pilot</span></div>
+          <div class="impact-row"><strong>Technician rework / return-trip rate</strong><p>Catching unreadable evidence on-site, before the technician leaves the job</p><span class="pill">pilot</span></div>
+          <div class="impact-row"><strong>Reviewer manual-touch volume</strong><p>Governed thresholds route only genuinely low-confidence cases to a human</p><span class="pill">pilot</span></div>
+          <div class="impact-row"><strong>Claim-to-payment cycle time</strong><p>Fewer rejection round-trips, end to end</p><span class="pill">pilot</span></div>
+          <div class="impact-row"><strong>Support-call volume</strong><p>Self-serve retry / offline handling instead of "my upload failed" calls</p><span class="pill">pilot</span></div>
+        </div>
+        <p class="note" data-r style="margin-top:12px">Pilot cells are placeholders for Santam's actual figures once shared — the design goals hold regardless of the final numbers.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════ REFLECTION ═══════════ -->
+    <section class="section" id="reflection">
+      <div class="wrap narrow">
+        <p class="kicker" data-r>13 · Reflection</p>
+        <div class="refl">
+          <div data-r><h3>What surprised me</h3><p>At enterprise scale, most of "AI UX" work is facilitation and governance documentation, not screens. The decision register did more to earn trust than any interface polish could have.</p></div>
+          <div data-r><h3>The biggest challenge</h3><p>Getting five stakeholder groups, each protecting something different, aligned on a single confidence threshold — one number that had to satisfy a plumber's need for fairness and an executive's need for auditability at the same time.</p></div>
+          <div data-r><h3>A real trade-off</h3><p>"Speed over perfection" and "audit trails, oversight, governance checkpoints" pull in opposite directions. The resolution: push friction to the moments that need it — the serial photo — and strip it everywhere else.</p></div>
+          <div data-r><h3>What I'd validate next</h3><p>The reason-code language, with real plumbers, in all three languages — and the confidence thresholds against real fraud and rework data once pilot volume exists.</p></div>
+        </div>
+        <blockquote class="pull" data-r>
+          AI UX at enterprise scale isn't about making the AI look smart. It's about making
+          its judgment legible enough that five stakeholders, each with something real to
+          lose, are willing to trust it.
+          <footer>The chat screen is the easy twenty percent — the governance behind it is the job.</footer>
+        </blockquote>
+      </div>
+    </section>
   </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <a href="index.html#work">← Back to Selected Work</a>
+      <span class="note">Santam · Home Assist — delivered via GEMIS × NeuraUX · Case study by Sphamandla Xaba®</span>
+      <a href="managem.html">Next: ManaGem →</a>
+    </div>
+  </footer>
+
+  <script src="assets/js/gsap.min.js"></script>
+  <script src="assets/js/ScrollTrigger.min.js"></script>
+  <script src="assets/js/lenis.min.js"></script>
+  <script>
+    (() => {
+      'use strict';
+      gsap.registerPlugin(ScrollTrigger);
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced) { document.documentElement.classList.add('no-anim'); return; }
+
+      const lenis = new Lenis({ lerp: 0.11, smoothWheel: true });
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((t) => lenis.raf(t * 1000));
+      gsap.ticker.lagSmoothing(0);
+
+      document.querySelectorAll('[data-r]').forEach((el) => {
+        gsap.to(el, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 88%' } });
+      });
+
+      // confidence bars
+      document.querySelectorAll('[data-conf]').forEach((el) => {
+        ScrollTrigger.create({ trigger: el, start: 'top 92%', once: true,
+          onEnter: () => { el.style.width = el.dataset.conf + '%'; } });
+      });
+
+      // rail
+      const links = [...document.querySelectorAll('[data-rail]')];
+      links.forEach((a) => {
+        const sec = document.querySelector(a.getAttribute('href'));
+        if (!sec) return;
+        ScrollTrigger.create({ trigger: sec, start: 'top 45%', end: 'bottom 45%',
+          onToggle: (self) => { if (self.isActive) links.forEach((l) => l.classList.toggle('is-on', l === a)); } });
+        a.addEventListener('click', (e) => { e.preventDefault(); lenis.scrollTo(a.getAttribute('href'), { duration: 1.1 }); });
+      });
+
+      window.addEventListener('load', () => ScrollTrigger.refresh());
+    })();
+  </script>
 </body>
 </html>
