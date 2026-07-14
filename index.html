@@ -188,71 +188,80 @@
       </p>
     </section>
 
-    <!-- ═══════════════ SELECTED WORK — CUBE LAB ═══════════════ -->
-    <section class="worklab" id="work">
-      <div class="worklab__pin" id="worklabPin">
-        <div class="worklab__head">
+    <!-- ═══════════════ SELECTED WORK — GLASS CARD CAROUSEL ═══════════════ -->
+    <section class="workcarousel" id="work">
+      <div class="workcarousel__head">
+        <div>
           <p class="section-tag section-tag--light" data-reveal><span>02</span> — Selected Work</p>
-          <p class="worklab__sub" data-reveal>
-            A curated collection of enterprise software, AI products, and digital
-            experiences designed to solve real business problems.
-          </p>
+          <h2 class="section-title section-title--light" data-split>Work that<br /><em>ships &amp; matters</em></h2>
         </div>
-
-        <div class="worklab__stage">
-          <div class="worklab__canvas" id="cubeCanvas" aria-hidden="true"></div>
-
-          <figure class="workmock" id="workMock" aria-hidden="true">
-            <img id="workMockImg" alt="" draggable="false" />
-          </figure>
-
-          <article class="workpanel" id="workPanel">
-            <p class="workpanel__index mono"><span id="wpIndex">01</span> / 03</p>
-            <p class="workpanel__cat mono" id="wpCat">Enterprise SaaS</p>
-            <h3 class="workpanel__name" id="wpName">ManaGem</h3>
-            <p class="workpanel__desc" id="wpDesc">
-              Designing an enterprise platform that simplifies complex business
-              operations through scalable UX and thoughtful product strategy.
-            </p>
-            <a class="workpanel__cta" id="wpCta" href="managem.html" data-cursor="Enter">
-              <span>View Case Study</span>
-              <i aria-hidden="true">→</i>
-            </a>
-          </article>
-        </div>
-
-        <div class="worklab__foot">
-          <div class="worklab__progress" id="wpProgress" aria-hidden="true">
-            <span class="is-on"></span><span></span><span></span>
-          </div>
-          <p class="worklab__hint" id="wpHint" aria-hidden="true">Keep scrolling — more projects <span>↓</span></p>
-        </div>
+        <p class="workcarousel__sub" data-reveal>
+          A curated collection of enterprise software, AI products, and digital
+          experiences designed to solve real business problems.
+        </p>
       </div>
 
-      <!-- static fallback: no-JS / reduced motion / small screens -->
-      <div class="worklab__staticlist">
-        <article class="workpanel workpanel--static">
-          <p class="workpanel__index mono">01 / 03</p>
-          <p class="workpanel__cat mono">Enterprise SaaS</p>
-          <h3 class="workpanel__name">ManaGem</h3>
-          <p class="workpanel__desc">Designing an enterprise platform that simplifies complex business operations through scalable UX and thoughtful product strategy.</p>
-          <a class="workpanel__cta" href="managem.html"><span>View Case Study</span><i aria-hidden="true">→</i></a>
-        </article>
-        <article class="workpanel workpanel--static">
-          <p class="workpanel__index mono">02 / 03</p>
-          <p class="workpanel__cat mono">Conversational AI</p>
-          <h3 class="workpanel__name">WhatsApp Conversation AI</h3>
-          <p class="workpanel__desc">An AI assistant that lives where the conversation already happens — turning WhatsApp into a natural, trustworthy way to get business done.</p>
-          <a class="workpanel__cta" href="whatsapp-ai.html"><span>View Case Study</span><i aria-hidden="true">→</i></a>
-        </article>
-        <article class="workpanel workpanel--static">
-          <p class="workpanel__index mono">03 / 03</p>
-          <p class="workpanel__cat mono">AI-Powered Real Estate</p>
-          <h3 class="workpanel__name">Lisa</h3>
-          <p class="workpanel__desc">An AI real-estate companion that turns complex property decisions into guided, confident conversations.</p>
-          <a class="workpanel__cta" href="lisa.html"><span>View Case Study</span><i aria-hidden="true">→</i></a>
-        </article>
+      <div class="workcarousel__viewport" id="workViewport" aria-label="Selected work — auto-scrolling gallery">
+        <div class="workcarousel__track" id="workTrack">
+          <!-- set A -->
+          <a href="managem.html" class="wcard glass-work" data-cursor="View case" data-tilt>
+            <div class="wcard__media"><img src="assets/img/work/managem-mockup.png" alt="ManaGem enterprise SaaS platform" loading="lazy" /></div>
+            <div class="wcard__body">
+              <p class="wcard__cat mono">Enterprise SaaS</p>
+              <h3 class="wcard__name">ManaGem</h3>
+              <p class="wcard__desc">An enterprise platform that simplifies complex business operations through scalable UX and product strategy.</p>
+              <span class="wcard__cta">View case study <i aria-hidden="true">→</i></span>
+            </div>
+          </a>
+          <a href="whatsapp-ai.html" class="wcard glass-work" data-cursor="View case" data-tilt>
+            <div class="wcard__media"><img src="assets/img/work/whatsapp-ai-mockup.png" alt="WhatsApp Conversation AI" loading="lazy" /></div>
+            <div class="wcard__body">
+              <p class="wcard__cat mono">Conversational AI</p>
+              <h3 class="wcard__name">WhatsApp Conversation AI</h3>
+              <p class="wcard__desc">An AI assistant that lives where the conversation already happens — turning WhatsApp into a trustworthy way to do business.</p>
+              <span class="wcard__cta">View case study <i aria-hidden="true">→</i></span>
+            </div>
+          </a>
+          <a href="lisa.html" class="wcard glass-work" data-cursor="View case" data-tilt>
+            <div class="wcard__media"><img src="assets/img/work/lisa-mockup.png" alt="Lisa AI-powered real estate" loading="lazy" /></div>
+            <div class="wcard__body">
+              <p class="wcard__cat mono">AI-Powered Real Estate</p>
+              <h3 class="wcard__name">Lisa</h3>
+              <p class="wcard__desc">An AI real-estate companion that turns complex property decisions into guided, confident conversations.</p>
+              <span class="wcard__cta">View case study <i aria-hidden="true">→</i></span>
+            </div>
+          </a>
+          <!-- set B (duplicate for seamless loop) -->
+          <a href="managem.html" class="wcard glass-work" data-cursor="View case" data-tilt aria-hidden="true" tabindex="-1">
+            <div class="wcard__media"><img src="assets/img/work/managem-mockup.png" alt="" loading="lazy" /></div>
+            <div class="wcard__body">
+              <p class="wcard__cat mono">Enterprise SaaS</p>
+              <h3 class="wcard__name">ManaGem</h3>
+              <p class="wcard__desc">An enterprise platform that simplifies complex business operations through scalable UX and product strategy.</p>
+              <span class="wcard__cta">View case study <i aria-hidden="true">→</i></span>
+            </div>
+          </a>
+          <a href="whatsapp-ai.html" class="wcard glass-work" data-cursor="View case" data-tilt aria-hidden="true" tabindex="-1">
+            <div class="wcard__media"><img src="assets/img/work/whatsapp-ai-mockup.png" alt="" loading="lazy" /></div>
+            <div class="wcard__body">
+              <p class="wcard__cat mono">Conversational AI</p>
+              <h3 class="wcard__name">WhatsApp Conversation AI</h3>
+              <p class="wcard__desc">An AI assistant that lives where the conversation already happens — turning WhatsApp into a trustworthy way to do business.</p>
+              <span class="wcard__cta">View case study <i aria-hidden="true">→</i></span>
+            </div>
+          </a>
+          <a href="lisa.html" class="wcard glass-work" data-cursor="View case" data-tilt aria-hidden="true" tabindex="-1">
+            <div class="wcard__media"><img src="assets/img/work/lisa-mockup.png" alt="" loading="lazy" /></div>
+            <div class="wcard__body">
+              <p class="wcard__cat mono">AI-Powered Real Estate</p>
+              <h3 class="wcard__name">Lisa</h3>
+              <p class="wcard__desc">An AI real-estate companion that turns complex property decisions into guided, confident conversations.</p>
+              <span class="wcard__cta">View case study <i aria-hidden="true">→</i></span>
+            </div>
+          </a>
+        </div>
       </div>
+      <p class="workcarousel__hint" data-reveal>Hover to pause · drag to explore</p>
     </section>
 
     <!-- ═══════════════ PHILOSOPHY ═══════════════ -->
@@ -273,51 +282,58 @@
 
     <!-- ═══════════════ EXPERTISE ═══════════════ -->
     <section class="services" id="services">
-      <div class="services__head">
-        <p class="section-tag section-tag--light" data-reveal><span>04</span> — Expertise</p>
-        <h2 class="section-title section-title--light" data-split>What I<br /><em>Design</em></h2>
-      </div>
-      <ul class="services__list">
-        <li class="service" data-service>
-          <span class="service__num mono">(01)</span>
-          <h3 class="service__name">Enterprise SaaS</h3>
-          <p class="service__desc">Complex software built for businesses.</p>
-          <span class="service__arrow" aria-hidden="true">↗</span>
-        </li>
-        <li class="service" data-service>
-          <span class="service__num mono">(02)</span>
-          <h3 class="service__name">AI Experiences</h3>
-          <p class="service__desc">Human-centred AI products that feel natural, transparent, and trustworthy.</p>
-          <span class="service__arrow" aria-hidden="true">↗</span>
-        </li>
-        <li class="service" data-service>
-          <span class="service__num mono">(03)</span>
-          <h3 class="service__name">Product Strategy</h3>
-          <p class="service__desc">Connecting business objectives with user needs.</p>
-          <span class="service__arrow" aria-hidden="true">↗</span>
-        </li>
-        <li class="service" data-service>
-          <span class="service__num mono">(04)</span>
-          <h3 class="service__name">Interaction Design</h3>
-          <p class="service__desc">Motion, transitions, and micro-interactions that make software feel intuitive.</p>
-          <span class="service__arrow" aria-hidden="true">↗</span>
-        </li>
-        <li class="service" data-service>
-          <span class="service__num mono">(05)</span>
-          <h3 class="service__name">Design Systems</h3>
-          <p class="service__desc">Scalable systems that improve consistency across products.</p>
-          <span class="service__arrow" aria-hidden="true">↗</span>
-        </li>
-      </ul>
-
-      <div class="value">
-        <h3 class="value__title" data-split>Design that creates<br /><em>business value</em></h3>
-        <ul class="value__list">
-          <li data-reveal><span class="mono">(01)</span>Simplify complex enterprise workflows</li>
-          <li data-reveal><span class="mono">(02)</span>Design products teams actually adopt</li>
-          <li data-reveal><span class="mono">(03)</span>Build scalable design systems</li>
-          <li data-reveal><span class="mono">(04)</span>Transform ideas into validated product experiences</li>
-          <li data-reveal><span class="mono">(05)</span>Bridge design, business, and development</li>
+      <div class="services__bg" aria-hidden="true"></div>
+      <div class="services__inner">
+        <div class="services__head">
+          <p class="section-tag section-tag--light" data-reveal><span>04</span> — Expertise</p>
+          <h2 class="section-title section-title--light" data-split>What I<br /><em>Design</em></h2>
+        </div>
+        <ul class="services__grid">
+          <li class="service-card" data-reveal data-tilt>
+            <span class="service-card__num mono">(01)</span>
+            <span class="service-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>
+            <h3 class="service-card__name">Enterprise SaaS</h3>
+            <p class="service-card__desc">Complex software built for businesses — legible at the 1,000th session, not just the first.</p>
+            <span class="service-card__arrow" aria-hidden="true">↗</span>
+          </li>
+          <li class="service-card" data-reveal data-tilt>
+            <span class="service-card__num mono">(02)</span>
+            <span class="service-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></span>
+            <h3 class="service-card__name">AI Experiences</h3>
+            <p class="service-card__desc">Human-centred AI products that feel natural, transparent, and trustworthy.</p>
+            <span class="service-card__arrow" aria-hidden="true">↗</span>
+          </li>
+          <li class="service-card" data-reveal data-tilt>
+            <span class="service-card__num mono">(03)</span>
+            <span class="service-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg></span>
+            <h3 class="service-card__name">Product Strategy</h3>
+            <p class="service-card__desc">Connecting business objectives with user needs before a single screen is drawn.</p>
+            <span class="service-card__arrow" aria-hidden="true">↗</span>
+          </li>
+          <li class="service-card" data-reveal data-tilt>
+            <span class="service-card__num mono">(04)</span>
+            <span class="service-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z"/></svg></span>
+            <h3 class="service-card__name">Interaction Design</h3>
+            <p class="service-card__desc">Motion, transitions and micro-interactions that make software feel intuitive.</p>
+            <span class="service-card__arrow" aria-hidden="true">↗</span>
+          </li>
+          <li class="service-card" data-reveal data-tilt>
+            <span class="service-card__num mono">(05)</span>
+            <span class="service-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
+            <h3 class="service-card__name">Design Systems</h3>
+            <p class="service-card__desc">Scalable, token-driven systems that keep large products consistent.</p>
+            <span class="service-card__arrow" aria-hidden="true">↗</span>
+          </li>
+          <li class="service-card service-card--value" data-reveal data-tilt>
+            <span class="service-card__num mono">(06)</span>
+            <h3 class="service-card__name">Design that creates business value</h3>
+            <ul class="service-card__value">
+              <li>Simplify complex enterprise workflows</li>
+              <li>Design products teams actually adopt</li>
+              <li>Build scalable design systems</li>
+              <li>Bridge design, business and development</li>
+            </ul>
+          </li>
         </ul>
       </div>
     </section>
@@ -424,6 +440,5 @@
   <script src="assets/js/lenis.min.js"></script>
   <script src="assets/js/home.js" defer></script>
   <script type="module" src="assets/js/hero-gl.js"></script>
-  <script type="module" src="assets/js/cube-gl.js"></script>
 </body>
 </html>

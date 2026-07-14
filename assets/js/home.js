@@ -380,163 +380,105 @@
     });
   });
 
-  /* ───────────── selected work — cube lab ───────────── */
-  const PROJECTS = [
-    {
-      index: '01', cat: 'Enterprise SaaS', name: 'ManaGem', href: 'managem.html',
-      desc: 'Designing an enterprise platform that simplifies complex business operations through scalable UX and thoughtful product strategy.',
-      mock: 'assets/img/work/managem-mockup.png',
-    },
-    {
-      index: '02', cat: 'Conversational AI', name: 'WhatsApp Conversation AI', href: 'whatsapp-ai.html',
-      desc: 'An AI assistant that lives where the conversation already happens — turning WhatsApp into a natural, trustworthy way to get business done.',
-      mock: 'assets/img/work/whatsapp-ai-mockup.png',
-    },
-    {
-      index: '03', cat: 'AI-Powered Real Estate', name: 'Lisa', href: 'lisa.html',
-      desc: 'An AI real-estate companion that turns complex property decisions into guided, confident conversations.',
-      mock: 'assets/img/work/lisa-mockup.png',
-    },
-  ];
-  const worklab = $('#worklabPin');
-  const wpPanel = $('#workPanel');
-  const useCubeLab = worklab && !prefersReduced && window.matchMedia('(min-width: 941px)').matches;
-  document.documentElement.classList.toggle('cubelab', !!useCubeLab);
+  /* ───────────── selected work — auto-slide glass carousel ───────────── */
+  const wcViewport = $('#workViewport');
+  const wcTrack = $('#workTrack');
+  if (wcViewport && wcTrack) {
+    let x = 0;
+    let speed = 0.55;                 // px per frame, base drift
+    let targetSpeed = 0.55;
+    let half = wcTrack.scrollWidth / 2; // one full set (track holds two)
+    let paused = false;
+    let dragging = false;
+    let dragStartX = 0;
+    let dragStartOffset = 0;
+    let lastPointerX = 0;
+    let dragVel = 0;
 
-  if (useCubeLab) {
-    const wpIndex = $('#wpIndex');
-    const wpCat = $('#wpCat');
-    const wpName = $('#wpName');
-    const wpDesc = $('#wpDesc');
-    const wpCta = $('#wpCta');
-    const dots = $$('#wpProgress span');
-    const stagger = [wpCat, wpName, wpDesc];
-    let active = 0;
-    let swapping = false;
+    const measure = () => { half = wcTrack.scrollWidth / 2; };
+    window.addEventListener('load', measure);
+    window.addEventListener('resize', measure);
 
-    const mock = $('#workMock');
-    const mockImg = $('#workMockImg');
-    const hint = $('#wpHint');
-    let mockVisible = false;
-    PROJECTS.forEach((p) => { new Image().src = p.mock; }); // preload pop-ups
-
-    const showMock = () => {
-      if (mockVisible) return;
-      mockVisible = true;
-      mockImg.src = PROJECTS[active].mock;
-      gsap.killTweensOf(mock);
-      gsap.fromTo(mock,
-        { opacity: 0, y: 26, scale: 0.92, rotate: 4.5 },
-        { opacity: 1, y: 0, scale: 1, rotate: 2, duration: 0.55, ease: 'expo.out', overwrite: true });
-    };
-    const hideMock = () => {
-      if (!mockVisible) return;
-      mockVisible = false;
-      gsap.to(mock, { opacity: 0, y: 18, scale: 0.94, duration: 0.3, ease: 'power2.in', overwrite: true });
+    const wrap = () => {
+      if (half <= 0) return;
+      if (-x >= half) x += half;
+      else if (x > 0) x -= half;
     };
 
-    const applyProject = (i) => {
-      const p = PROJECTS[i];
-      wpIndex.textContent = p.index;
-      wpCat.textContent = p.cat;
-      wpName.textContent = p.name;
-      wpDesc.textContent = p.desc;
-      wpCta.href = p.href;
-      mockImg.src = p.mock;
-      dots.forEach((d, di) => d.classList.toggle('is-on', di === i));
-      if (hint) {
-        gsap.to(hint, { opacity: i === PROJECTS.length - 1 ? 0 : 1, duration: 0.4 });
-      }
-    };
-
-    const swapTo = (i) => {
-      if (i === active || swapping) return;
-      swapping = true;
-      active = i;
-      window.XabaCube?.setProject(i);
-      const wasMockVisible = mockVisible;
-      if (wasMockVisible) gsap.to(mock, { opacity: 0, y: 12, scale: 0.95, duration: 0.2, ease: 'power2.in' });
-      gsap.timeline({
-        onComplete: () => {
-          swapping = false;
-          if (mockVisible) {
-            gsap.fromTo(mock,
-              { opacity: 0, y: 20, scale: 0.94, rotate: 3.5 },
-              { opacity: 1, y: 0, scale: 1, rotate: 2, duration: 0.5, ease: 'expo.out', overwrite: true });
-          }
-        },
-      })
-        .to([...stagger, wpCta], { y: -14, opacity: 0, duration: 0.22, ease: 'power2.in', stagger: 0.03 })
-        .add(() => applyProject(i))
-        .fromTo(stagger,
-          { y: 40, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.55, ease: 'expo.out', stagger: 0.09 }, '+=0.05')
-        .fromTo(wpCta,
-          { y: 24, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.45, ease: 'expo.out' }, '-=0.25'); // CTA slides in last
-    };
-
-    ScrollTrigger.create({
-      trigger: '#work',
-      start: 'top top',
-      end: '+=260%',
-      pin: true,
-      scrub: true,
-      onUpdate: (self) => {
-        const i = Math.min(2, Math.floor(self.progress * 2.999));
-        if (i !== active) swapTo(i);
-      },
-    });
-
-    // staggered first entrance: cube, then text, CTA last
-    gsap.set([...stagger, wpCta, wpIndex], { opacity: 0, y: 40 });
-    ScrollTrigger.create({
-      trigger: '#work',
-      start: 'top 62%',
-      once: true,
-      onEnter: () => {
-        window.XabaCube?.enter();
-        gsap.to(wpIndex, { y: 0, opacity: 1, duration: 0.6, ease: 'expo.out', delay: 0.15 });
-        gsap.to(stagger, { y: 0, opacity: 1, duration: 0.9, ease: 'expo.out', stagger: 0.1, delay: 0.2 });
-        gsap.to(wpCta, { y: 0, opacity: 1, duration: 0.7, ease: 'expo.out', delay: 0.62 });
-      },
-    });
-
-    // hover: the cube reacts, and the project's mockup pops up
-    wpPanel.addEventListener('mouseenter', () => {
-      window.XabaCube?.setHover(true);
-      if (!isTouch) showMock();
-    });
-    wpPanel.addEventListener('mouseleave', () => {
-      window.XabaCube?.setHover(false);
-      hideMock();
-    });
-
-    // click: the cube becomes the transition into the case study
-    wpCta.addEventListener('click', (e) => {
-      const href = wpCta.getAttribute('href');
-      if (!href || href.startsWith('#')) return;
-      e.preventDefault();
-      if (lenis) lenis.stop();
-      gsap.to([wpPanel, '.worklab__head', '.worklab__foot', mock], { opacity: 0, duration: 0.4, ease: 'power2.in' });
-      window.XabaCube?.zoomTo(() => {
-        gsap.to(document.body, {
-          opacity: 0, duration: 0.25, ease: 'power1.in',
-          onComplete: () => { window.location.href = href; },
-        });
+    if (!prefersReduced) {
+      gsap.ticker.add(() => {
+        if (dragging) return;
+        speed += (targetSpeed - speed) * 0.06;
+        x -= speed;
+        wrap();
+        wcTrack.style.transform = `translate3d(${x}px,0,0)`;
       });
-    });
 
-    applyProject(0);
+      // pause on hover
+      wcViewport.addEventListener('mouseenter', () => { paused = true; targetSpeed = 0; });
+      wcViewport.addEventListener('mouseleave', () => { if (!dragging) { paused = false; targetSpeed = 0.55; } });
+
+      // velocity-reactive to page scroll
+      ScrollTrigger.create({
+        start: 0, end: 'max',
+        onUpdate: (self) => {
+          if (paused || dragging) return;
+          targetSpeed = gsap.utils.clamp(0.55, 4.5, 0.55 + Math.abs(self.getVelocity()) / 400);
+        },
+      });
+
+      // drag to explore
+      const onDown = (e) => {
+        dragging = true;
+        wcViewport.classList.add('is-drag');
+        dragStartX = lastPointerX = e.clientX ?? e.touches?.[0]?.clientX ?? 0;
+        dragStartOffset = x;
+        dragVel = 0;
+      };
+      const onMove = (e) => {
+        if (!dragging) return;
+        const px = e.clientX ?? e.touches?.[0]?.clientX ?? 0;
+        dragVel = px - lastPointerX;
+        lastPointerX = px;
+        x = dragStartOffset + (px - dragStartX);
+        wrap();
+        wcTrack.style.transform = `translate3d(${x}px,0,0)`;
+      };
+      const onUp = (e) => {
+        if (!dragging) return;
+        dragging = false;
+        wcViewport.classList.remove('is-drag');
+        // suppress click if it was a real drag
+        if (Math.abs((e.clientX ?? lastPointerX) - dragStartX) > 6) {
+          const kill = (ev) => { ev.preventDefault(); ev.stopPropagation(); wcViewport.removeEventListener('click', kill, true); };
+          wcViewport.addEventListener('click', kill, true);
+        }
+        speed = gsap.utils.clamp(-6, 6, -dragVel);
+        if (!paused) targetSpeed = 0.55;
+      };
+      wcViewport.addEventListener('pointerdown', onDown);
+      window.addEventListener('pointermove', onMove, { passive: true });
+      window.addEventListener('pointerup', onUp);
+    }
+
+    // reveal cards on entry
+    if (!prefersReduced) {
+      gsap.fromTo('#workTrack > .wcard',
+        { y: 40, opacity: 0 },
+        {
+          y: 0, opacity: 1, duration: 0.8, ease: 'expo.out', stagger: 0.06,
+          scrollTrigger: { trigger: '#work', start: 'top 78%' },
+        });
+    }
   }
 
   if (!prefersReduced) {
-    /* services rows */
-    gsap.fromTo('[data-service]',
+    /* services glass cards */
+    gsap.fromTo('.service-card',
       { y: 44, opacity: 0 },
       {
-        y: 0, opacity: 1, duration: 0.9, ease: 'expo.out', stagger: 0.1,
-        scrollTrigger: { trigger: '.services__list', start: 'top 82%' },
+        y: 0, opacity: 1, duration: 0.9, ease: 'expo.out', stagger: 0.08,
+        scrollTrigger: { trigger: '.services__grid', start: 'top 82%' },
       });
 
     /* footer word */
