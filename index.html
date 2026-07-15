@@ -77,10 +77,10 @@
       <p class="menu__label">( Navigation )</p>
       <ul class="menu__list">
         <li><a href="#top" class="menu__link" data-menu-close><span class="menu__index">01</span><span class="menu__word">Home</span></a></li>
-        <li><a href="#about" class="menu__link" data-menu-close><span class="menu__index">02</span><span class="menu__word">About</span></a></li>
-        <li><a href="#work" class="menu__link" data-menu-close><span class="menu__index">03</span><span class="menu__word">Work</span></a></li>
-        <li><a href="#services" class="menu__link" data-menu-close><span class="menu__index">04</span><span class="menu__word">Services</span></a></li>
-        <li><a href="#studios" class="menu__link" data-menu-close><span class="menu__index">05</span><span class="menu__word">Studios</span></a></li>
+        <li><a href="#work" class="menu__link" data-menu-close><span class="menu__index">02</span><span class="menu__word">Work</span></a></li>
+        <li><a href="#problems" class="menu__link" data-menu-close><span class="menu__index">03</span><span class="menu__word">Problems</span></a></li>
+        <li><a href="#services" class="menu__link" data-menu-close><span class="menu__index">04</span><span class="menu__word">Expertise</span></a></li>
+        <li><a href="#about" class="menu__link" data-menu-close><span class="menu__index">05</span><span class="menu__word">About</span></a></li>
         <li><a href="#contact" class="menu__link" data-menu-close><span class="menu__index">06</span><span class="menu__word">Contact</span></a></li>
       </ul>
       <div class="menu__foot">
@@ -100,69 +100,51 @@
     <section class="hero" id="hero">
       <div class="hero__canvas" id="heroCanvas" aria-hidden="true"></div>
 
+      <span class="hero__word" id="heroWord" aria-hidden="true">XABA</span>
+
       <figure class="hero__figure" id="heroFigure" aria-hidden="true">
         <img src="assets/img/hero-bust.svg" alt="" class="hero__bust" id="heroBust" draggable="false"
              data-src="https://d8j0ntlcm91z4.cloudfront.net/user_3GMOZifqmavH53boYn9eGkcXqUc/hf_20260712_223347_499c8c9f-c98b-4164-93bd-ca0249b00b48.png" />
       </figure>
 
-      <span class="hero__word" id="heroWord" aria-hidden="true">XABA</span>
-
       <div class="hero__left">
-        <p class="hero__eyebrow" data-reveal><span class="hero__eyebrow-bar"></span>Product Designer • AI Experience Designer • South Africa</p>
+        <p class="hero__eyebrow" data-reveal><span class="hero__eyebrow-bar"></span>Enterprise Product Designer &amp; AI UX Strategist</p>
         <h1 class="hero__title" id="heroTitle">
-          <span class="hero__line"><em>Designing products</em></span>
-          <span class="hero__line"><em>people trust.</em></span>
-          <span class="hero__line hero__line--outline"><em>Experiences they</em></span>
-          <span class="hero__line hero__line--outline"><em>remember.</em></span>
+          <span class="hero__line">I design enterprise software</span>
+          <span class="hero__line">and AI experiences that</span>
+          <span class="hero__line"><em>people trust</em> when the</span>
+          <span class="hero__line">decisions matter.</span>
         </h1>
         <p class="hero__sub" data-reveal>
-          I design enterprise software, AI-powered experiences, and premium digital
-          products that transform complex systems into intuitive experiences.
-          Every decision begins with strategy&thinsp;—&thinsp;not screens.
+          Complex systems don't fail because users can't tap a button. They fail when
+          people don't understand, trust, or feel confident in the decisions those systems
+          make. I design the layer in between — transforming operational complexity into
+          products that are intuitive, transparent, and built for real-world use.
         </p>
+        <div class="hero__spec" data-reveal>
+          <span class="hero__spec-label">Specialising in</span>
+          <ul class="hero__spec-list">
+            <li>Enterprise SaaS Platforms</li>
+            <li>AI &amp; Conversational Experiences</li>
+            <li>Complex Workflow Design</li>
+            <li>Design Systems</li>
+            <li>Product Strategy</li>
+          </ul>
+        </div>
         <div class="hero__actions" data-reveal>
-          <a href="#work" class="btn btn--dark" data-magnetic data-cursor="Scroll">
-            <span class="btn__text">View Selected Work</span>
+          <a href="#work" class="btn btn--dark" data-magnetic data-cursor="View">
+            <span class="btn__text">View Case Studies</span>
             <span class="btn__orb"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 12L12 2M12 2H4M12 2v8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </a>
           <a href="#contact" class="btn btn--glass" data-magnetic data-cursor="Say hi">
-            <span class="btn__text">Let's Build Something</span>
+            <span class="btn__text">Let's Connect</span>
           </a>
         </div>
-      </div>
-
-      <aside class="hero__widget glass" id="heroWidget" data-tilt>
-        <div class="hero__widget-top">
-          <span class="hero__widget-index mono" id="widgetIndex">01</span>
-          <div class="hero__widget-tile" id="widgetTile">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg>
-          </div>
-          <p class="hero__widget-copy" id="widgetCopy">Design to<br />explore.</p>
-        </div>
-        <div class="hero__widget-bottom">
-          <div class="hero__widget-track" aria-hidden="true"><span id="widgetBar"></span></div>
-          <div class="hero__widget-nav">
-            <button aria-label="Previous" id="widgetPrev"><svg viewBox="0 0 14 14"><path d="M9 2L4 7l5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-            <button aria-label="Next" id="widgetNext"><svg viewBox="0 0 14 14"><path d="M5 2l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          </div>
-        </div>
-      </aside>
-
-      <div class="hero__partners" data-reveal>
-        <p class="hero__partners-label">Brands &amp; Projects</p>
-        <ul class="hero__partners-grid">
-          <li><span class="p-mark">◆</span>ManaGem</li>
-          <li><span class="p-mark">✦</span>WhatsApp AI</li>
-          <li><span class="p-mark">●</span>Lisa</li>
-          <li><span class="p-mark">▲</span>GEM Systems</li>
-          <li><span class="p-mark">✚</span>NeuraUX</li>
-          <li><span class="p-mark">❖</span>AX-Channels</li>
-        </ul>
       </div>
 
       <div class="hero__strip glass-dark" id="heroStrip">
         <span data-reveal>• GEM Information Systems</span>
-        <span data-reveal>• Based in Gauteng, SA</span>
+        <span data-reveal>• Based in South Africa</span>
         <a href="#marquee" data-reveal data-cursor="↓">• Scroll Down</a>
       </div>
     </section>
@@ -176,16 +158,35 @@
       </div>
     </section>
 
-    <!-- ═══════════════ BRAND STATEMENT ═══════════════ -->
-    <section class="manifesto" id="about">
+    <!-- ═══════════════ DESIGN PHILOSOPHY ═══════════════ -->
+    <section class="manifesto" id="philosophy">
       <div class="manifesto__head">
-        <p class="section-tag" data-reveal><span>01</span> — Brand Statement</p>
-        <h2 class="section-title" data-split>Thinking before<br /><em>designing.</em></h2>
+        <p class="section-tag" data-reveal><span>01</span> — Design Philosophy</p>
+        <h2 class="section-title" data-split>Designing trust,<br /><em>not just interfaces.</em></h2>
       </div>
       <p class="manifesto__text" id="manifestoText">
-        AI can generate interfaces. It cannot understand businesses, simplify
-        complexity, or earn user trust. That's where I create value.
+        Enterprise AI doesn't fail on the screen. It fails in the gap between what a
+        system decides and whether the people affected by that decision trust it. That's
+        the space I design for.
       </p>
+      <div class="philo">
+        <p class="philo__lead" data-reveal>
+          Whether I'm simplifying a property-management platform, helping field technicians
+          submit compliant evidence through WhatsApp, or improving operational workflows for
+          enterprise teams, my focus is always the same: <strong>make complex decisions feel
+          understandable, reliable and human.</strong>
+        </p>
+        <ul class="philo__list">
+          <li data-reveal><span class="mono">01</span>Explain rather than hide AI decisions.</li>
+          <li data-reveal><span class="mono">02</span>Help users recover from mistakes instead of punishing them.</li>
+          <li data-reveal><span class="mono">03</span>Reduce operational complexity without sacrificing transparency.</li>
+          <li data-reveal><span class="mono">04</span>Balance business goals with real human behaviour.</li>
+        </ul>
+        <p class="philo__close" data-reveal>
+          Intelligent software isn't successful because it's technically correct.
+          It's successful when people confidently use it.
+        </p>
+      </div>
     </section>
 
     <!-- ═══════════════ SELECTED WORK — GLASS CARD CAROUSEL ═══════════════ -->
@@ -193,11 +194,10 @@
       <div class="workcarousel__head">
         <div>
           <p class="section-tag section-tag--light" data-reveal><span>02</span> — Selected Work</p>
-          <h2 class="section-title section-title--light" data-split>Work that<br /><em>ships &amp; matters</em></h2>
+          <h2 class="section-title section-title--light" data-split>Solving complex problems across<br /><em>enterprise software &amp; AI.</em></h2>
         </div>
         <p class="workcarousel__sub" data-reveal>
-          A curated collection of enterprise software, AI products, and digital
-          experiences designed to solve real business problems.
+          Every project begins with a business challenge — not a screen.
         </p>
       </div>
 
@@ -205,29 +205,38 @@
         <div class="workcarousel__track" id="workTrack">
           <!-- set A -->
           <a href="managem.html" class="wcard glass-work" data-cursor="View case" data-tilt>
-            <div class="wcard__media"><img src="assets/img/work/managem-mockup.png" alt="ManaGem enterprise SaaS platform" loading="lazy" /></div>
+            <div class="wcard__media"><img src="assets/img/work/managem-mockup.png" alt="ManaGem enterprise property-management platform" loading="lazy" /></div>
             <div class="wcard__body">
-              <p class="wcard__cat mono">Enterprise SaaS</p>
+              <p class="wcard__cat mono">Enterprise SaaS · Design Systems</p>
               <h3 class="wcard__name">ManaGem</h3>
-              <p class="wcard__desc">An enterprise platform that simplifies complex business operations through scalable UX and product strategy.</p>
+              <p class="wcard__desc">Redesigning an enterprise property-management platform for speed, scalability and operational efficiency.</p>
               <span class="wcard__cta">View case study <i aria-hidden="true">→</i></span>
             </div>
           </a>
           <a href="whatsapp-ai.html" class="wcard glass-work" data-cursor="View case" data-tilt>
-            <div class="wcard__media"><img src="assets/img/work/whatsapp-ai-mockup.png" alt="WhatsApp Conversation AI" loading="lazy" /></div>
+            <div class="wcard__media"><img src="assets/img/work/whatsapp-ai-mockup.png" alt="Santam Home Assist WhatsApp verification" loading="lazy" /></div>
             <div class="wcard__body">
-              <p class="wcard__cat mono">Conversational AI</p>
-              <h3 class="wcard__name">WhatsApp Conversation AI</h3>
-              <p class="wcard__desc">An AI assistant that lives where the conversation already happens — turning WhatsApp into a trustworthy way to do business.</p>
+              <p class="wcard__cat mono">AI UX · Explainable AI · Trust Design</p>
+              <h3 class="wcard__name">Santam Home Assist</h3>
+              <p class="wcard__desc">An AI-assisted WhatsApp verification experience that helps field technicians submit compliant evidence correctly the first time.</p>
               <span class="wcard__cta">View case study <i aria-hidden="true">→</i></span>
             </div>
           </a>
-          <a href="lisa.html" class="wcard glass-work" data-cursor="View case" data-tilt>
-            <div class="wcard__media"><img src="assets/img/work/lisa-mockup.png" alt="Lisa AI-powered real estate" loading="lazy" /></div>
+          <a href="wastemart.html" class="wcard glass-work" data-cursor="View case" data-tilt>
+            <div class="wcard__media"><img src="assets/img/work/wm-driver-v2.jpg" alt="WasteMart driver-first mobile experience" loading="lazy" /></div>
             <div class="wcard__body">
-              <p class="wcard__cat mono">AI-Powered Real Estate</p>
-              <h3 class="wcard__name">Lisa</h3>
-              <p class="wcard__desc">An AI real-estate companion that turns complex property decisions into guided, confident conversations.</p>
+              <p class="wcard__cat mono">Operational Systems · Mobile UX</p>
+              <h3 class="wcard__name">WasteMart</h3>
+              <p class="wcard__desc">Improving field operations through a driver-first mobile experience that reduces friction in real-world waste-collection workflows.</p>
+              <span class="wcard__cta">View case study <i aria-hidden="true">→</i></span>
+            </div>
+          </a>
+          <a href="brand-studio.html" class="wcard glass-work" data-cursor="View case" data-tilt>
+            <div class="wcard__media"><img src="assets/img/work/smartstart-v2.jpg" alt="GEM Information Systems digital presence" loading="lazy" /></div>
+            <div class="wcard__body">
+              <p class="wcard__cat mono">UX Strategy · Website Experience</p>
+              <h3 class="wcard__name">GEM Information Systems</h3>
+              <p class="wcard__desc">Reimagining the digital presence of an enterprise technology company through a modern, product-first experience.</p>
               <span class="wcard__cta">View case study <i aria-hidden="true">→</i></span>
             </div>
           </a>
@@ -235,27 +244,36 @@
           <a href="managem.html" class="wcard glass-work" data-cursor="View case" data-tilt aria-hidden="true" tabindex="-1">
             <div class="wcard__media"><img src="assets/img/work/managem-mockup.png" alt="" loading="lazy" /></div>
             <div class="wcard__body">
-              <p class="wcard__cat mono">Enterprise SaaS</p>
+              <p class="wcard__cat mono">Enterprise SaaS · Design Systems</p>
               <h3 class="wcard__name">ManaGem</h3>
-              <p class="wcard__desc">An enterprise platform that simplifies complex business operations through scalable UX and product strategy.</p>
+              <p class="wcard__desc">Redesigning an enterprise property-management platform for speed, scalability and operational efficiency.</p>
               <span class="wcard__cta">View case study <i aria-hidden="true">→</i></span>
             </div>
           </a>
           <a href="whatsapp-ai.html" class="wcard glass-work" data-cursor="View case" data-tilt aria-hidden="true" tabindex="-1">
             <div class="wcard__media"><img src="assets/img/work/whatsapp-ai-mockup.png" alt="" loading="lazy" /></div>
             <div class="wcard__body">
-              <p class="wcard__cat mono">Conversational AI</p>
-              <h3 class="wcard__name">WhatsApp Conversation AI</h3>
-              <p class="wcard__desc">An AI assistant that lives where the conversation already happens — turning WhatsApp into a trustworthy way to do business.</p>
+              <p class="wcard__cat mono">AI UX · Explainable AI · Trust Design</p>
+              <h3 class="wcard__name">Santam Home Assist</h3>
+              <p class="wcard__desc">An AI-assisted WhatsApp verification experience that helps field technicians submit compliant evidence correctly the first time.</p>
               <span class="wcard__cta">View case study <i aria-hidden="true">→</i></span>
             </div>
           </a>
-          <a href="lisa.html" class="wcard glass-work" data-cursor="View case" data-tilt aria-hidden="true" tabindex="-1">
-            <div class="wcard__media"><img src="assets/img/work/lisa-mockup.png" alt="" loading="lazy" /></div>
+          <a href="wastemart.html" class="wcard glass-work" data-cursor="View case" data-tilt aria-hidden="true" tabindex="-1">
+            <div class="wcard__media"><img src="assets/img/work/wm-driver-v2.jpg" alt="" loading="lazy" /></div>
             <div class="wcard__body">
-              <p class="wcard__cat mono">AI-Powered Real Estate</p>
-              <h3 class="wcard__name">Lisa</h3>
-              <p class="wcard__desc">An AI real-estate companion that turns complex property decisions into guided, confident conversations.</p>
+              <p class="wcard__cat mono">Operational Systems · Mobile UX</p>
+              <h3 class="wcard__name">WasteMart</h3>
+              <p class="wcard__desc">Improving field operations through a driver-first mobile experience that reduces friction in real-world waste-collection workflows.</p>
+              <span class="wcard__cta">View case study <i aria-hidden="true">→</i></span>
+            </div>
+          </a>
+          <a href="brand-studio.html" class="wcard glass-work" data-cursor="View case" data-tilt aria-hidden="true" tabindex="-1">
+            <div class="wcard__media"><img src="assets/img/work/smartstart-v2.jpg" alt="" loading="lazy" /></div>
+            <div class="wcard__body">
+              <p class="wcard__cat mono">UX Strategy · Website Experience</p>
+              <h3 class="wcard__name">GEM Information Systems</h3>
+              <p class="wcard__desc">Reimagining the digital presence of an enterprise technology company through a modern, product-first experience.</p>
               <span class="wcard__cta">View case study <i aria-hidden="true">→</i></span>
             </div>
           </a>
@@ -265,19 +283,39 @@
     </section>
 
     <!-- ═══════════════ PHILOSOPHY ═══════════════ -->
-    <section class="philosophy" id="philosophy">
-      <p class="section-tag" data-reveal><span>03</span> — Philosophy</p>
-      <h2 class="section-title philosophy__title" data-split>Good products aren't<br /><em>discovered in Figma.</em></h2>
-      <div class="philosophy__lines">
-        <p class="philosophy__lead" data-reveal>The best interfaces are the result of asking better questions.</p>
-        <ul>
-          <li data-reveal>Understanding users.</li>
-          <li data-reveal>Aligning business goals.</li>
-          <li data-reveal>Reducing complexity.</li>
-          <li data-reveal>Creating clarity.</li>
-        </ul>
-        <p class="philosophy__close" data-reveal>Only then do pixels matter.</p>
+    <section class="problems" id="problems">
+      <div class="problems__head">
+        <p class="section-tag" data-reveal><span>03</span> — The Problems I Solve</p>
+        <h2 class="section-title" data-split>Most products don't have<br />interface problems. They have<br /><em>decision problems.</em></h2>
+        <p class="problems__lead" data-reveal>I help organisations solve challenges such as:</p>
       </div>
+      <ul class="problems__grid">
+        <li class="problem" data-reveal>
+          <span class="problem__num mono">01</span>
+          <h3>Making AI decisions understandable</h3>
+          <p>Designing confidence, transparency and human oversight into AI-powered experiences.</p>
+        </li>
+        <li class="problem" data-reveal>
+          <span class="problem__num mono">02</span>
+          <h3>Simplifying complex operational workflows</h3>
+          <p>Transforming fragmented enterprise processes into intuitive user journeys.</p>
+        </li>
+        <li class="problem" data-reveal>
+          <span class="problem__num mono">03</span>
+          <h3>Reducing cognitive load</h3>
+          <p>Helping users complete critical tasks with confidence — even in high-pressure environments.</p>
+        </li>
+        <li class="problem" data-reveal>
+          <span class="problem__num mono">04</span>
+          <h3>Building scalable design systems</h3>
+          <p>Creating reusable foundations that enable product teams to move faster while maintaining consistency.</p>
+        </li>
+        <li class="problem" data-reveal>
+          <span class="problem__num mono">05</span>
+          <h3>Aligning business and user needs</h3>
+          <p>Turning stakeholder complexity into products that achieve measurable outcomes.</p>
+        </li>
+      </ul>
     </section>
 
     <!-- ═══════════════ EXPERTISE ═══════════════ -->
@@ -286,52 +324,52 @@
       <div class="services__inner">
         <div class="services__head">
           <p class="section-tag section-tag--light" data-reveal><span>04</span> — Expertise</p>
-          <h2 class="section-title section-title--light" data-split>What I<br /><em>Design</em></h2>
+          <h2 class="section-title section-title--light" data-split>What I bring<br /><em>to product teams</em></h2>
         </div>
         <ul class="services__grid">
           <li class="service-card" data-reveal data-tilt>
             <span class="service-card__num mono">(01)</span>
             <span class="service-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>
-            <h3 class="service-card__name">Enterprise SaaS</h3>
-            <p class="service-card__desc">Complex software built for businesses — legible at the 1,000th session, not just the first.</p>
+            <h3 class="service-card__name">Enterprise Product Design</h3>
+            <p class="service-card__desc">Designing complex SaaS platforms, operational dashboards and internal systems.</p>
             <span class="service-card__arrow" aria-hidden="true">↗</span>
           </li>
           <li class="service-card" data-reveal data-tilt>
             <span class="service-card__num mono">(02)</span>
             <span class="service-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></span>
-            <h3 class="service-card__name">AI Experiences</h3>
-            <p class="service-card__desc">Human-centred AI products that feel natural, transparent, and trustworthy.</p>
+            <h3 class="service-card__name">AI Experience Design</h3>
+            <p class="service-card__desc">Conversational interfaces, explainable AI, human-in-the-loop systems and trust-centred experiences.</p>
             <span class="service-card__arrow" aria-hidden="true">↗</span>
           </li>
           <li class="service-card" data-reveal data-tilt>
             <span class="service-card__num mono">(03)</span>
             <span class="service-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg></span>
-            <h3 class="service-card__name">Product Strategy</h3>
-            <p class="service-card__desc">Connecting business objectives with user needs before a single screen is drawn.</p>
+            <h3 class="service-card__name">UX Strategy</h3>
+            <p class="service-card__desc">Research synthesis, information architecture, workflow optimisation and product thinking.</p>
             <span class="service-card__arrow" aria-hidden="true">↗</span>
           </li>
           <li class="service-card" data-reveal data-tilt>
             <span class="service-card__num mono">(04)</span>
-            <span class="service-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z"/></svg></span>
-            <h3 class="service-card__name">Interaction Design</h3>
-            <p class="service-card__desc">Motion, transitions and micro-interactions that make software feel intuitive.</p>
+            <span class="service-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
+            <h3 class="service-card__name">Design Systems</h3>
+            <p class="service-card__desc">Scalable component libraries, interaction patterns, accessibility and governance.</p>
             <span class="service-card__arrow" aria-hidden="true">↗</span>
           </li>
           <li class="service-card" data-reveal data-tilt>
             <span class="service-card__num mono">(05)</span>
-            <span class="service-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
-            <h3 class="service-card__name">Design Systems</h3>
-            <p class="service-card__desc">Scalable, token-driven systems that keep large products consistent.</p>
+            <span class="service-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M3 20l9-9 3 3-9 9H3v-3ZM14 6l4 4"/></svg></span>
+            <h3 class="service-card__name">Prototyping</h3>
+            <p class="service-card__desc">Interactive prototypes that help teams validate ideas before development begins.</p>
             <span class="service-card__arrow" aria-hidden="true">↗</span>
           </li>
           <li class="service-card service-card--value" data-reveal data-tilt>
             <span class="service-card__num mono">(06)</span>
-            <h3 class="service-card__name">Design that creates business value</h3>
+            <h3 class="service-card__name">The through-line</h3>
             <ul class="service-card__value">
-              <li>Simplify complex enterprise workflows</li>
-              <li>Design products teams actually adopt</li>
-              <li>Build scalable design systems</li>
-              <li>Bridge design, business and development</li>
+              <li>Explain rather than hide AI decisions</li>
+              <li>Reduce complexity without losing transparency</li>
+              <li>Design for real-world constraints</li>
+              <li>Balance business goals with human behaviour</li>
             </ul>
           </li>
         </ul>
@@ -341,63 +379,74 @@
     <!-- ═══════════════ PROCESS ═══════════════ -->
     <section class="process">
       <div class="process__head">
-        <p class="section-tag" data-reveal><span>05</span> — Process</p>
-        <h2 class="section-title" data-split>How I<br /><em>Work</em></h2>
+        <p class="section-tag" data-reveal><span>05</span> — How I Work</p>
+        <h2 class="section-title" data-split>Good products are built<br /><em>through better decisions.</em></h2>
+        <p class="process__lead" data-reveal>
+          My process changes with the product, but the principles stay consistent. I begin
+          by understanding how the business operates, where users struggle, and which
+          decisions have the greatest impact. From there I map workflows, identify friction,
+          explore multiple directions, prototype rapidly, and validate with stakeholders
+          before refining the experience into scalable design systems — treating design as
+          a continuous process of reducing uncertainty, not a sequence of deliverables.
+        </p>
       </div>
       <div class="process__inner">
         <article class="process__card glass" data-reveal>
-          <span class="mono">01</span><h3>Discover</h3>
-          <p>Understanding people, products, and business objectives.</p>
+          <span class="mono">01</span><h3>Understand</h3>
+          <p>How the business operates, where users struggle, and which decisions matter most.</p>
         </article>
         <article class="process__card glass" data-reveal>
-          <span class="mono">02</span><h3>Define</h3>
-          <p>Identifying opportunities worth solving.</p>
+          <span class="mono">02</span><h3>Map &amp; explore</h3>
+          <p>Workflows and friction points, then multiple solution directions — not just one.</p>
         </article>
         <article class="process__card glass" data-reveal>
-          <span class="mono">03</span><h3>Design</h3>
-          <p>Building intuitive experiences that reduce complexity.</p>
+          <span class="mono">03</span><h3>Prototype &amp; validate</h3>
+          <p>Rapid, interactive prototypes tested with stakeholders before development begins.</p>
         </article>
         <article class="process__card glass" data-reveal>
-          <span class="mono">04</span><h3>Refine</h3>
-          <p>Testing, improving, and collaborating until every interaction feels intentional.</p>
+          <span class="mono">04</span><h3>Systemise</h3>
+          <p>Refining the experience into scalable, reusable design systems.</p>
         </article>
       </div>
+    </section>
 
-      <div class="studios" id="studios">
-        <article class="studio glass" data-reveal data-tilt>
-          <span class="mono">Studio 01</span>
-          <h3 class="studio__name">NeuraUX</h3>
-          <p class="studio__desc">A product design studio focused on AI-powered digital experiences — helping organisations design intelligent products people understand, trust and enjoy using.</p>
-          <ul class="studio__tags"><li>AI UX</li><li>Product Strategy</li><li>Enterprise Software</li></ul>
-        </article>
-        <article class="studio glass" data-reveal data-tilt>
-          <span class="mono">Studio 02</span>
-          <h3 class="studio__name">AX-Channels</h3>
-          <p class="studio__desc">A digital studio helping South African SMEs establish professional online presences through high-quality websites and digital experiences.</p>
-          <ul class="studio__tags"><li>SME Websites</li><li>Digital Presence</li><li>South Africa</li></ul>
-        </article>
-      </div>
-
-      <div class="aboutpreview" data-reveal>
-        <h2 class="section-title aboutpreview__title" data-split>More than<br /><em>beautiful interfaces.</em></h2>
-        <p class="aboutpreview__copy">
-          I believe design is a strategic discipline. Every product should solve a
-          measurable business problem, respect the people using it, and leave the
-          experience simpler than it found it.
-        </p>
-        <a href="assets/docs/Sphamandla-Xaba-Profile.pdf" class="btn btn--dark" data-magnetic data-cursor="Profile" target="_blank" rel="noopener">
-          <span class="btn__text">Learn More</span>
-          <span class="btn__orb"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 12L12 2M12 2H4M12 2v8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
+    <!-- ═══════════════ ABOUT ═══════════════ -->
+    <section class="about" id="about">
+      <div class="about__inner">
+        <div class="about__head">
+          <p class="section-tag" data-reveal><span>06</span> — About</p>
+          <h2 class="section-title" data-split>Hi, I'm<br /><em>Sphamandla.</em></h2>
+        </div>
+        <div class="about__body">
+          <p class="about__lead" data-reveal>
+            I'm a Product Designer based in South Africa, specialising in enterprise
+            software, AI-powered products and operational systems.
+          </p>
+          <p data-reveal>
+            Much of my work focuses on environments where technology meets real-world
+            constraints — field technicians working with limited connectivity, multilingual
+            users interacting through WhatsApp, and enterprise teams managing complex
+            operational workflows. Those experiences have shaped how I approach design.
+          </p>
+          <p data-reveal>
+            I believe great products don't earn trust through polished interfaces alone.
+            They earn trust by making complex systems feel understandable, predictable and
+            accountable. <strong>That's the kind of work I enjoy building.</strong>
+          </p>
+          <a href="assets/docs/Sphamandla-Xaba-Profile.pdf" class="btn btn--dark" data-magnetic data-cursor="Profile" target="_blank" rel="noopener" data-reveal>
+            <span class="btn__text">Download Profile</span>
+            <span class="btn__orb"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 12L12 2M12 2H4M12 2v8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+        </div>
       </div>
     </section>
 
     <!-- ═══════════════ FOOTER / CONTACT ═══════════════ -->
     <footer class="footer" id="contact">
       <div class="footer__inner">
-        <p class="section-tag section-tag--light" data-reveal><span>06</span> — Contact</p>
-        <h2 class="footer__title" data-split>Building the next<br /><em>enterprise product?</em></h2>
-        <p class="footer__sub" data-reveal>Let's design something people will actually want to use.</p>
+        <p class="section-tag section-tag--light" data-reveal><span>07</span> — Contact</p>
+        <h2 class="footer__title" data-split>Let's build<br /><em>better products.</em></h2>
+        <p class="footer__sub" data-reveal>Whether you're modernising enterprise software, exploring AI-powered experiences, or improving operational workflows, I'd love to help design products that are both intelligent and genuinely usable. Let's talk.</p>
         <div class="footer__actions" data-reveal>
           <a href="mailto:training@gemis.tech" class="btn btn--light btn--big" data-magnetic data-cursor="Email me">
             <span class="btn__text">Start a Conversation</span>

@@ -158,45 +158,6 @@
     return $$('.w', el);
   };
 
-  /* ───────────── hero widget slider ───────────── */
-  const slides = [
-    { copy: 'Design to<br />explore.' },
-    { copy: 'Thinking before<br />designing.' },
-    { copy: 'AI + human<br />judgement.' },
-    { copy: 'Ship what<br />matters.' },
-  ];
-  const widgetCopy = $('#widgetCopy');
-  const widgetIndex = $('#widgetIndex');
-  const widgetBar = $('#widgetBar');
-  let slide = 0;
-  let slideTimer = null;
-  const setSlide = (i, animate = true) => {
-    slide = (i + slides.length) % slides.length;
-    const apply = () => {
-      widgetCopy.innerHTML = slides[slide].copy;
-      widgetIndex.textContent = String(slide + 1).padStart(2, '0');
-      widgetBar.style.width = `${((slide + 1) / slides.length) * 100}%`;
-    };
-    if (animate && !prefersReduced) {
-      gsap.to(widgetCopy, {
-        y: -8, opacity: 0, duration: 0.22, ease: 'power2.in',
-        onComplete: () => {
-          apply();
-          gsap.fromTo(widgetCopy, { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: 'power2.out' });
-        },
-      });
-    } else apply();
-  };
-  const armSlideTimer = () => {
-    clearInterval(slideTimer);
-    if (!prefersReduced) slideTimer = setInterval(() => setSlide(slide + 1), 4200);
-  };
-  if (widgetCopy) {
-    $('#widgetNext')?.addEventListener('click', () => { setSlide(slide + 1); armSlideTimer(); });
-    $('#widgetPrev')?.addEventListener('click', () => { setSlide(slide - 1); armSlideTimer(); });
-    setSlide(0, false);
-    armSlideTimer();
-  }
 
   /* ───────────── intro / loader ───────────── */
   const loader = $('#loader');
@@ -204,23 +165,20 @@
   const heroReveals = $$('.hero [data-reveal]');
   const heroFigure = $('#heroFigure');
   const heroWord = $('#heroWord');
-  const heroWidget = $('#heroWidget');
 
   if (!prefersReduced) {
     gsap.set(heroLines, { yPercent: 115 });
     gsap.set(heroReveals, { y: 26, opacity: 0 });
-    gsap.set(heroFigure, { yPercent: 8, opacity: 0 });
-    gsap.set(heroWord, { yPercent: 30, opacity: 0 });
-    if (heroWidget) gsap.set(heroWidget, { y: 30, opacity: 0 });
+    if (heroFigure) gsap.set(heroFigure, { yPercent: 8, opacity: 0 });
+    if (heroWord) gsap.set(heroWord, { yPercent: 30, opacity: 0 });
   }
 
   const introTl = gsap.timeline({ paused: true, defaults: { ease: 'expo.out' } });
+  if (heroFigure) introTl.to(heroFigure, { yPercent: 0, opacity: 1, duration: 1.5 }, 0);
+  if (heroWord) introTl.to(heroWord, { yPercent: 0, opacity: 1, duration: 1.5 }, 0.12);
   introTl
-    .to(heroFigure, { yPercent: 0, opacity: 1, duration: 1.5 }, 0)
-    .to(heroWord, { yPercent: 0, opacity: 1, duration: 1.5 }, 0.12)
     .to(heroLines, { yPercent: 0, duration: 1.25, stagger: 0.09 }, 0.25)
-    .to(heroReveals, { y: 0, opacity: 1, duration: 1, stagger: 0.07 }, 0.55)
-    .to(heroWidget, { y: 0, opacity: 1, duration: 1 }, 0.7);
+    .to(heroReveals, { y: 0, opacity: 1, duration: 1, stagger: 0.07 }, 0.55);
 
   const finishLoad = () => {
     if (!loader) { introTl.play(); return; }
@@ -272,25 +230,20 @@
   /* ───────────── hero parallax ───────────── */
   if (!prefersReduced) {
     // pointer parallax
-    if (!isTouch) {
-      const px = { x: 0, y: 0 };
+    if (!isTouch && (heroFigure || heroWord)) {
       window.addEventListener('mousemove', (e) => {
-        px.x = (e.clientX / window.innerWidth - 0.5) * 2;
-        px.y = (e.clientY / window.innerHeight - 0.5) * 2;
-        gsap.to(heroFigure, { x: px.x * 14, duration: 1.1, ease: 'power2.out' });
-        gsap.to(heroWord, { x: `${-50 + px.x * -1.6}%`, duration: 1.3, ease: 'power2.out' });
-        if (heroWidget) gsap.to(heroWidget, { x: px.x * -8, y: px.y * -6, duration: 1.2, ease: 'power2.out' });
+        const x = (e.clientX / window.innerWidth - 0.5) * 2;
+        if (heroFigure) gsap.to(heroFigure, { x: x * 14, duration: 1.1, ease: 'power2.out' });
+        if (heroWord) gsap.to(heroWord, { x: x * -14, duration: 1.3, ease: 'power2.out' });
       }, { passive: true });
     }
     // scroll parallax
-    gsap.to(heroFigure, {
-      yPercent: 14,
-      ease: 'none',
+    if (heroFigure) gsap.to(heroFigure, {
+      yPercent: 14, ease: 'none',
       scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true },
     });
-    gsap.to(heroWord, {
-      yPercent: -60,
-      ease: 'none',
+    if (heroWord) gsap.to(heroWord, {
+      yPercent: -40, ease: 'none',
       scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true },
     });
     gsap.to('.hero__left', {
