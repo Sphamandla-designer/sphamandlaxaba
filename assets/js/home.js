@@ -159,18 +159,60 @@
   };
 
 
+  /* ───────────── hero widget slider ───────────── */
+  const slides = [
+    { copy: 'Strategy before<br />screens.' },
+    { copy: 'Thinking before<br />designing.' },
+    { copy: 'AI + human<br />judgement.' },
+    { copy: 'Ship what<br />matters.' },
+  ];
+  const widgetCopy = $('#widgetCopy');
+  const widgetIndex = $('#widgetIndex');
+  const widgetBar = $('#widgetBar');
+  let slide = 0;
+  let slideTimer = null;
+  const setSlide = (i, animate = true) => {
+    slide = (i + slides.length) % slides.length;
+    const apply = () => {
+      widgetCopy.innerHTML = slides[slide].copy;
+      widgetIndex.textContent = String(slide + 1).padStart(2, '0');
+      widgetBar.style.width = `${((slide + 1) / slides.length) * 100}%`;
+    };
+    if (animate && !prefersReduced) {
+      gsap.to(widgetCopy, {
+        y: -8, opacity: 0, duration: 0.22, ease: 'power2.in',
+        onComplete: () => {
+          apply();
+          gsap.fromTo(widgetCopy, { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: 'power2.out' });
+        },
+      });
+    } else apply();
+  };
+  const armSlideTimer = () => {
+    clearInterval(slideTimer);
+    if (!prefersReduced) slideTimer = setInterval(() => setSlide(slide + 1), 4200);
+  };
+  if (widgetCopy) {
+    $('#widgetNext')?.addEventListener('click', () => { setSlide(slide + 1); armSlideTimer(); });
+    $('#widgetPrev')?.addEventListener('click', () => { setSlide(slide - 1); armSlideTimer(); });
+    setSlide(0, false);
+    armSlideTimer();
+  }
+
   /* ───────────── intro / loader ───────────── */
   const loader = $('#loader');
   const heroLines = $$('.hero__line em');
   const heroReveals = $$('.hero [data-reveal]');
   const heroFigure = $('#heroFigure');
   const heroWord = $('#heroWord');
+  const heroWidget = $('#heroWidget');
 
   if (!prefersReduced) {
     gsap.set(heroLines, { yPercent: 115 });
     gsap.set(heroReveals, { y: 26, opacity: 0 });
     if (heroFigure) gsap.set(heroFigure, { yPercent: 8, opacity: 0 });
     if (heroWord) gsap.set(heroWord, { yPercent: 30, opacity: 0 });
+    if (heroWidget) gsap.set(heroWidget, { y: 30, opacity: 0 });
   }
 
   const introTl = gsap.timeline({ paused: true, defaults: { ease: 'expo.out' } });
@@ -179,6 +221,7 @@
   introTl
     .to(heroLines, { yPercent: 0, duration: 1.25, stagger: 0.09 }, 0.25)
     .to(heroReveals, { y: 0, opacity: 1, duration: 1, stagger: 0.07 }, 0.55);
+  if (heroWidget) introTl.to(heroWidget, { y: 0, opacity: 1, duration: 1 }, 0.7);
 
   const finishLoad = () => {
     if (!loader) { introTl.play(); return; }
@@ -233,8 +276,10 @@
     if (!isTouch && (heroFigure || heroWord)) {
       window.addEventListener('mousemove', (e) => {
         const x = (e.clientX / window.innerWidth - 0.5) * 2;
+        const y = (e.clientY / window.innerHeight - 0.5) * 2;
         if (heroFigure) gsap.to(heroFigure, { x: x * 14, duration: 1.1, ease: 'power2.out' });
         if (heroWord) gsap.to(heroWord, { x: x * -14, duration: 1.3, ease: 'power2.out' });
+        if (heroWidget) gsap.to(heroWidget, { x: x * -8, y: y * -6, duration: 1.2, ease: 'power2.out' });
       }, { passive: true });
     }
     // scroll parallax
