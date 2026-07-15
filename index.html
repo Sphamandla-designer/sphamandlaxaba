@@ -100,51 +100,71 @@
     <section class="hero" id="hero">
       <div class="hero__canvas" id="heroCanvas" aria-hidden="true"></div>
 
-      <span class="hero__word" id="heroWord" aria-hidden="true">XABA</span>
-
+      <!-- CENTER bust (behind content) -->
       <figure class="hero__figure" id="heroFigure" aria-hidden="true">
         <img src="assets/img/hero-bust.svg" alt="" class="hero__bust" id="heroBust" draggable="false"
              data-src="https://d8j0ntlcm91z4.cloudfront.net/user_3GMOZifqmavH53boYn9eGkcXqUc/hf_20260712_223347_499c8c9f-c98b-4164-93bd-ca0249b00b48.png" />
       </figure>
 
+      <span class="hero__word" id="heroWord" aria-hidden="true">XABA</span>
+
+      <!-- LEFT column -->
       <div class="hero__left">
-        <p class="hero__eyebrow" data-reveal><span class="hero__eyebrow-bar"></span>Enterprise Product Designer &amp; AI UX Strategist</p>
+        <p class="hero__eyebrow" data-reveal><span class="hero__eyebrow-bar"></span>Product Designer &amp; AI Experience Designer</p>
         <h1 class="hero__title" id="heroTitle">
-          <span class="hero__line">I design enterprise software</span>
-          <span class="hero__line">and AI experiences that</span>
-          <span class="hero__line"><em>people trust</em> when the</span>
-          <span class="hero__line">decisions matter.</span>
+          <span class="hero__line"><em>I start from</em></span>
+          <span class="hero__line"><em>zero, designing</em></span>
+          <span class="hero__line"><em>only what matters.</em></span>
         </h1>
-        <p class="hero__sub" data-reveal>
-          Complex systems don't fail because users can't tap a button. They fail when
-          people don't understand, trust, or feel confident in the decisions those systems
-          make. I design the layer in between — transforming operational complexity into
-          products that are intuitive, transparent, and built for real-world use.
-        </p>
-        <div class="hero__spec" data-reveal>
-          <span class="hero__spec-label">Specialising in</span>
-          <ul class="hero__spec-list">
-            <li>Enterprise SaaS Platforms</li>
-            <li>AI &amp; Conversational Experiences</li>
-            <li>Complex Workflow Design</li>
-            <li>Design Systems</li>
-            <li>Product Strategy</li>
-          </ul>
+        <div class="hero__rating" data-reveal>
+          <span class="hero__stars" aria-hidden="true">★★★★★</span>
+          <span class="hero__rating-copy">Enterprise SaaS · AI Experiences · Design Systems</span>
         </div>
         <div class="hero__actions" data-reveal>
-          <a href="#work" class="btn btn--dark" data-magnetic data-cursor="View">
-            <span class="btn__text">View Case Studies</span>
+          <a href="#contact" class="btn btn--dark" data-magnetic data-cursor="Say hi">
+            <span class="btn__text">Chat With Me</span>
             <span class="btn__orb"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 12L12 2M12 2H4M12 2v8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </a>
-          <a href="#contact" class="btn btn--glass" data-magnetic data-cursor="Say hi">
-            <span class="btn__text">Let's Connect</span>
+          <a href="#work" class="btn btn--glass" data-magnetic data-cursor="Browse">
+            <span class="btn__text">My Works</span>
           </a>
         </div>
       </div>
 
+      <!-- widget card (right-top): rotating design principles -->
+      <aside class="hero__widget glass" id="heroWidget" data-tilt>
+        <div class="hero__widget-top">
+          <span class="hero__widget-index mono" id="widgetIndex">01</span>
+          <div class="hero__widget-tile" id="widgetTile">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg>
+          </div>
+          <p class="hero__widget-copy" id="widgetCopy">Strategy before<br />screens.</p>
+        </div>
+        <div class="hero__widget-bottom">
+          <div class="hero__widget-track" aria-hidden="true"><span id="widgetBar"></span></div>
+          <div class="hero__widget-nav">
+            <button aria-label="Previous principle" id="widgetPrev"><svg viewBox="0 0 14 14"><path d="M9 2L4 7l5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button aria-label="Next principle" id="widgetNext"><svg viewBox="0 0 14 14"><path d="M5 2l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- brands & projects (right-bottom) -->
+      <div class="hero__partners" data-reveal>
+        <p class="hero__partners-label">Brands &amp; Projects</p>
+        <ul class="hero__partners-grid">
+          <li><a href="managem.html"><span class="p-mark">✦</span>ManaGem</a></li>
+          <li><a href="wastemart.html"><span class="p-mark">✦</span>WasteMart</a></li>
+          <li><a href="whatsapp-ai.html"><span class="p-mark">●</span>Home Assist</a></li>
+          <li><a href="brand-studio.html"><span class="p-mark">▲</span>GEM Systems</a></li>
+          <li><span class="p-mark">✚</span>NeuraUX</li>
+          <li><span class="p-mark">❖</span>AX-Channels</li>
+        </ul>
+      </div>
+
       <div class="hero__strip glass-dark" id="heroStrip">
         <span data-reveal>• GEM Information Systems</span>
-        <span data-reveal>• Based in South Africa</span>
+        <span data-reveal>• Based in Gauteng, SA</span>
         <a href="#marquee" data-reveal data-cursor="↓">• Scroll Down</a>
       </div>
     </section>
@@ -182,10 +202,6 @@
           <li data-reveal><span class="mono">03</span>Reduce operational complexity without sacrificing transparency.</li>
           <li data-reveal><span class="mono">04</span>Balance business goals with real human behaviour.</li>
         </ul>
-        <p class="philo__close" data-reveal>
-          Intelligent software isn't successful because it's technically correct.
-          It's successful when people confidently use it.
-        </p>
       </div>
     </section>
 
@@ -279,38 +295,46 @@
           </a>
         </div>
       </div>
-      <p class="workcarousel__hint" data-reveal>Hover to pause · drag to explore</p>
+      <div class="workcarousel__foot" data-reveal>
+        <p class="workcarousel__hint">Hover to pause · drag to explore</p>
+        <a href="#work" class="btn btn--outline" data-magnetic data-cursor="All work">
+          <span class="btn__text">View All Projects</span>
+          <span class="btn__orb btn__orb--light"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 12L12 2M12 2H4M12 2v8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+      </div>
     </section>
 
     <!-- ═══════════════ PHILOSOPHY ═══════════════ -->
-    <section class="problems" id="problems">
+    <section class="problems grad-anim" id="problems">
+      <div class="orb orb--amber orb--float" data-parallax="0.25" style="width:32vw;height:32vw;top:-8%;right:-6%"></div>
+      <div class="orb orb--cool orb--float" data-parallax="0.15" style="width:24vw;height:24vw;bottom:-10%;left:-8%;animation-delay:-5s"></div>
       <div class="problems__head">
         <p class="section-tag" data-reveal><span>03</span> — The Problems I Solve</p>
         <h2 class="section-title" data-split>Most products don't have<br />interface problems. They have<br /><em>decision problems.</em></h2>
         <p class="problems__lead" data-reveal>I help organisations solve challenges such as:</p>
       </div>
-      <ul class="problems__grid">
-        <li class="problem" data-reveal>
+      <ul class="problems__grid" data-reveal-group>
+        <li class="problem">
           <span class="problem__num mono">01</span>
           <h3>Making AI decisions understandable</h3>
           <p>Designing confidence, transparency and human oversight into AI-powered experiences.</p>
         </li>
-        <li class="problem" data-reveal>
+        <li class="problem">
           <span class="problem__num mono">02</span>
           <h3>Simplifying complex operational workflows</h3>
           <p>Transforming fragmented enterprise processes into intuitive user journeys.</p>
         </li>
-        <li class="problem" data-reveal>
+        <li class="problem">
           <span class="problem__num mono">03</span>
           <h3>Reducing cognitive load</h3>
           <p>Helping users complete critical tasks with confidence — even in high-pressure environments.</p>
         </li>
-        <li class="problem" data-reveal>
+        <li class="problem">
           <span class="problem__num mono">04</span>
           <h3>Building scalable design systems</h3>
           <p>Creating reusable foundations that enable product teams to move faster while maintaining consistency.</p>
         </li>
-        <li class="problem" data-reveal>
+        <li class="problem">
           <span class="problem__num mono">05</span>
           <h3>Aligning business and user needs</h3>
           <p>Turning stakeholder complexity into products that achieve measurable outcomes.</p>
@@ -411,11 +435,20 @@
     </section>
 
     <!-- ═══════════════ ABOUT ═══════════════ -->
-    <section class="about" id="about">
+    <section class="about grad-anim" id="about">
+      <div class="orb orb--mint orb--float" data-parallax="0.2" style="width:26vw;height:26vw;top:6%;left:-6%"></div>
       <div class="about__inner">
         <div class="about__head">
           <p class="section-tag" data-reveal><span>06</span> — About</p>
           <h2 class="section-title" data-split>Hi, I'm<br /><em>Sphamandla.</em></h2>
+          <div class="about__obj" data-reveal aria-hidden="true">
+            <div class="obj3d obj3d--dark obj3d--float" style="--s:150px;--z:75px">
+              <div class="obj3d__spin">
+                <span class="obj3d__face"></span><span class="obj3d__face"></span><span class="obj3d__face"></span>
+                <span class="obj3d__face"></span><span class="obj3d__face"></span><span class="obj3d__face"></span>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="about__body">
           <p class="about__lead" data-reveal>

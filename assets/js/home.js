@@ -159,18 +159,60 @@
   };
 
 
+  /* ───────────── hero widget slider ───────────── */
+  const slides = [
+    { copy: 'Strategy before<br />screens.' },
+    { copy: 'Thinking before<br />designing.' },
+    { copy: 'AI + human<br />judgement.' },
+    { copy: 'Ship what<br />matters.' },
+  ];
+  const widgetCopy = $('#widgetCopy');
+  const widgetIndex = $('#widgetIndex');
+  const widgetBar = $('#widgetBar');
+  let slide = 0;
+  let slideTimer = null;
+  const setSlide = (i, animate = true) => {
+    slide = (i + slides.length) % slides.length;
+    const apply = () => {
+      widgetCopy.innerHTML = slides[slide].copy;
+      widgetIndex.textContent = String(slide + 1).padStart(2, '0');
+      widgetBar.style.width = `${((slide + 1) / slides.length) * 100}%`;
+    };
+    if (animate && !prefersReduced) {
+      gsap.to(widgetCopy, {
+        y: -8, opacity: 0, duration: 0.22, ease: 'power2.in',
+        onComplete: () => {
+          apply();
+          gsap.fromTo(widgetCopy, { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: 'power2.out' });
+        },
+      });
+    } else apply();
+  };
+  const armSlideTimer = () => {
+    clearInterval(slideTimer);
+    if (!prefersReduced) slideTimer = setInterval(() => setSlide(slide + 1), 4200);
+  };
+  if (widgetCopy) {
+    $('#widgetNext')?.addEventListener('click', () => { setSlide(slide + 1); armSlideTimer(); });
+    $('#widgetPrev')?.addEventListener('click', () => { setSlide(slide - 1); armSlideTimer(); });
+    setSlide(0, false);
+    armSlideTimer();
+  }
+
   /* ───────────── intro / loader ───────────── */
   const loader = $('#loader');
   const heroLines = $$('.hero__line em');
   const heroReveals = $$('.hero [data-reveal]');
   const heroFigure = $('#heroFigure');
   const heroWord = $('#heroWord');
+  const heroWidget = $('#heroWidget');
 
   if (!prefersReduced) {
     gsap.set(heroLines, { yPercent: 115 });
     gsap.set(heroReveals, { y: 26, opacity: 0 });
     if (heroFigure) gsap.set(heroFigure, { yPercent: 8, opacity: 0 });
     if (heroWord) gsap.set(heroWord, { yPercent: 30, opacity: 0 });
+    if (heroWidget) gsap.set(heroWidget, { y: 30, opacity: 0 });
   }
 
   const introTl = gsap.timeline({ paused: true, defaults: { ease: 'expo.out' } });
@@ -179,6 +221,7 @@
   introTl
     .to(heroLines, { yPercent: 0, duration: 1.25, stagger: 0.09 }, 0.25)
     .to(heroReveals, { y: 0, opacity: 1, duration: 1, stagger: 0.07 }, 0.55);
+  if (heroWidget) introTl.to(heroWidget, { y: 0, opacity: 1, duration: 1 }, 0.7);
 
   const finishLoad = () => {
     if (!loader) { introTl.play(); return; }
@@ -233,8 +276,10 @@
     if (!isTouch && (heroFigure || heroWord)) {
       window.addEventListener('mousemove', (e) => {
         const x = (e.clientX / window.innerWidth - 0.5) * 2;
+        const y = (e.clientY / window.innerHeight - 0.5) * 2;
         if (heroFigure) gsap.to(heroFigure, { x: x * 14, duration: 1.1, ease: 'power2.out' });
         if (heroWord) gsap.to(heroWord, { x: x * -14, duration: 1.3, ease: 'power2.out' });
+        if (heroWidget) gsap.to(heroWidget, { x: x * -8, y: y * -6, duration: 1.2, ease: 'power2.out' });
       }, { passive: true });
     }
     // scroll parallax
@@ -253,25 +298,63 @@
     });
   }
 
-  /* ───────────── generic reveals ───────────── */
+  /* ───────────── cinematic reveals ───────────── */
   if (!prefersReduced) {
     $$('[data-reveal]').forEach((el) => {
       if (el.closest('.hero')) return; // hero handled by intro
       gsap.fromTo(el,
-        { y: 34, opacity: 0 },
+        { y: 40, opacity: 0, filter: 'blur(8px)' },
         {
-          y: 0, opacity: 1, duration: 1, ease: 'expo.out',
-          scrollTrigger: { trigger: el, start: 'top 88%' },
+          y: 0, opacity: 1, filter: 'blur(0px)', duration: 1.1, ease: 'expo.out',
+          scrollTrigger: { trigger: el, start: 'top 90%' },
         });
     });
 
+    // grouped staggered reveals (cards, list items)
+    $$('[data-reveal-group]').forEach((group) => {
+      const kids = [...group.children];
+      gsap.fromTo(kids,
+        { y: 48, opacity: 0, filter: 'blur(8px)' },
+        {
+          y: 0, opacity: 1, filter: 'blur(0px)', duration: 1, ease: 'expo.out', stagger: 0.09,
+          scrollTrigger: { trigger: group, start: 'top 82%' },
+        });
+    });
+
+    // line-masked titles with a cinematic scale settle
     $$('[data-split]').forEach((el) => {
       const spans = splitLines(el);
       gsap.set(spans, { yPercent: 112 });
-      gsap.to(spans, {
-        yPercent: 0, duration: 1.15, ease: 'expo.out', stagger: 0.1,
-        scrollTrigger: { trigger: el, start: 'top 85%' },
+      gsap.set(el, { transformOrigin: 'left center' });
+      gsap.fromTo(el, { scale: 1.06 }, {
+        scale: 1, duration: 1.4, ease: 'expo.out',
+        scrollTrigger: { trigger: el, start: 'top 86%' },
       });
+      gsap.to(spans, {
+        yPercent: 0, duration: 1.2, ease: 'expo.out', stagger: 0.09,
+        scrollTrigger: { trigger: el, start: 'top 86%' },
+      });
+    });
+
+    // scroll parallax on decorative / flagged elements
+    $$('[data-parallax]').forEach((el) => {
+      const depth = parseFloat(el.dataset.parallax) || 0.15;
+      gsap.fromTo(el,
+        { yPercent: -depth * 60 },
+        {
+          yPercent: depth * 60, ease: 'none',
+          scrollTrigger: { trigger: el.closest('section') || el, start: 'top bottom', end: 'bottom top', scrub: true },
+        });
+    });
+
+    // section-scoped soft-zoom on media (cinematic push-in)
+    $$('[data-kenburns] img').forEach((img) => {
+      gsap.fromTo(img,
+        { scale: 1.12 },
+        {
+          scale: 1, ease: 'none',
+          scrollTrigger: { trigger: img, start: 'top bottom', end: 'bottom top', scrub: true },
+        });
     });
   }
 
