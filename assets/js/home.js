@@ -253,25 +253,63 @@
     });
   }
 
-  /* ───────────── generic reveals ───────────── */
+  /* ───────────── cinematic reveals ───────────── */
   if (!prefersReduced) {
     $$('[data-reveal]').forEach((el) => {
       if (el.closest('.hero')) return; // hero handled by intro
       gsap.fromTo(el,
-        { y: 34, opacity: 0 },
+        { y: 40, opacity: 0, filter: 'blur(8px)' },
         {
-          y: 0, opacity: 1, duration: 1, ease: 'expo.out',
-          scrollTrigger: { trigger: el, start: 'top 88%' },
+          y: 0, opacity: 1, filter: 'blur(0px)', duration: 1.1, ease: 'expo.out',
+          scrollTrigger: { trigger: el, start: 'top 90%' },
         });
     });
 
+    // grouped staggered reveals (cards, list items)
+    $$('[data-reveal-group]').forEach((group) => {
+      const kids = [...group.children];
+      gsap.fromTo(kids,
+        { y: 48, opacity: 0, filter: 'blur(8px)' },
+        {
+          y: 0, opacity: 1, filter: 'blur(0px)', duration: 1, ease: 'expo.out', stagger: 0.09,
+          scrollTrigger: { trigger: group, start: 'top 82%' },
+        });
+    });
+
+    // line-masked titles with a cinematic scale settle
     $$('[data-split]').forEach((el) => {
       const spans = splitLines(el);
       gsap.set(spans, { yPercent: 112 });
-      gsap.to(spans, {
-        yPercent: 0, duration: 1.15, ease: 'expo.out', stagger: 0.1,
-        scrollTrigger: { trigger: el, start: 'top 85%' },
+      gsap.set(el, { transformOrigin: 'left center' });
+      gsap.fromTo(el, { scale: 1.06 }, {
+        scale: 1, duration: 1.4, ease: 'expo.out',
+        scrollTrigger: { trigger: el, start: 'top 86%' },
       });
+      gsap.to(spans, {
+        yPercent: 0, duration: 1.2, ease: 'expo.out', stagger: 0.09,
+        scrollTrigger: { trigger: el, start: 'top 86%' },
+      });
+    });
+
+    // scroll parallax on decorative / flagged elements
+    $$('[data-parallax]').forEach((el) => {
+      const depth = parseFloat(el.dataset.parallax) || 0.15;
+      gsap.fromTo(el,
+        { yPercent: -depth * 60 },
+        {
+          yPercent: depth * 60, ease: 'none',
+          scrollTrigger: { trigger: el.closest('section') || el, start: 'top bottom', end: 'bottom top', scrub: true },
+        });
+    });
+
+    // section-scoped soft-zoom on media (cinematic push-in)
+    $$('[data-kenburns] img').forEach((img) => {
+      gsap.fromTo(img,
+        { scale: 1.12 },
+        {
+          scale: 1, ease: 'none',
+          scrollTrigger: { trigger: img, start: 'top bottom', end: 'bottom top', scrub: true },
+        });
     });
   }
 
