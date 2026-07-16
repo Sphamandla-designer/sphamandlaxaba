@@ -223,6 +223,17 @@
     .to(heroReveals, { y: 0, opacity: 1, duration: 1, stagger: 0.07 }, 0.55);
   if (heroWidget) introTl.to(heroWidget, { y: 0, opacity: 1, duration: 1 }, 0.7);
 
+  // a few seconds after landing, the bust drifts right and turns to face left
+  introTl.eventCallback('onStart', () => {
+    if (heroFigure && !prefersReduced) {
+      gsap.to(heroFigure, {
+        xPercent: -44, rotationY: -16,
+        transformPerspective: 1000, transformOrigin: '50% 42%',
+        duration: 1.8, ease: 'power3.inOut', delay: 3.4,
+      });
+    }
+  });
+
   const finishLoad = () => {
     if (!loader) { introTl.play(); return; }
     if (prefersReduced) {
