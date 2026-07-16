@@ -450,14 +450,22 @@ html.js .cursor { display: block; }
 .hero__rating-copy { font-size: 0.82rem; color: var(--muted); font-weight: 500; }
 .hero__actions { position: relative; z-index: 4; display: flex; flex-wrap: wrap; align-items: center; gap: 0.9rem; margin-top: 1.6rem; }
 
-/* hero stats */
+/* hero stats — frosted card so figures stay legible over the wordmark/bust */
 .hero__stats {
   position: relative; z-index: 4;
-  display: flex; flex-wrap: wrap; gap: clamp(1.4rem, 3vw, 2.6rem);
+  display: inline-flex; flex-wrap: wrap; align-items: center;
+  gap: clamp(1.3rem, 2.6vw, 2.2rem);
   margin-top: clamp(1.8rem, 4vh, 2.6rem);
+  padding: 0.95rem clamp(1.2rem, 2.4vw, 1.7rem);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(18px) saturate(1.3);
+  -webkit-backdrop-filter: blur(18px) saturate(1.3);
+  box-shadow: 0 20px 46px -26px rgba(15, 15, 19, 0.34), inset 0 1px 0 rgba(255,255,255,0.8);
 }
-.hero__stat { display: flex; align-items: baseline; gap: 0.6rem; }
-.hero__stat + .hero__stat { padding-left: clamp(1.4rem, 3vw, 2.6rem); border-left: 1px solid rgba(15, 15, 19, 0.14); }
+.hero__stat { display: flex; align-items: baseline; gap: 0.55rem; }
+.hero__stat + .hero__stat { padding-left: clamp(1.3rem, 2.6vw, 2.2rem); border-left: 1px solid rgba(15, 15, 19, 0.16); }
 .hero__stat-num {
   font-family: var(--font-display); font-weight: 800; font-stretch: 96%;
   font-size: clamp(1.9rem, 3vw, 2.6rem); letter-spacing: -0.03em;

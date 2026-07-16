@@ -227,9 +227,9 @@
   introTl.eventCallback('onStart', () => {
     if (heroFigure && !prefersReduced) {
       gsap.to(heroFigure, {
-        xPercent: -44, rotationY: -16,
-        transformPerspective: 1000, transformOrigin: '50% 42%',
-        duration: 1.8, ease: 'power3.inOut', delay: 3.4,
+        xPercent: -34, rotationY: 26,
+        transformPerspective: 900, transformOrigin: '50% 44%',
+        duration: 1.9, ease: 'power3.inOut', delay: 3.4,
       });
     }
   });
