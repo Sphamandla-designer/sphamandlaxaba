@@ -376,16 +376,17 @@ html.js .cursor { display: block; }
 .hero__canvas { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
 .hero__canvas canvas { width: 100%; height: 100%; display: block; }
 
-/* bust — big, centred, sits behind the content */
+/* bust — big, centred, nudged down so the face sits mid-hero */
 .hero__figure {
   position: absolute; z-index: 2;
-  left: 50%; bottom: 0;
+  left: 50%; bottom: -9%;
   transform: translateX(-50%);
   width: clamp(340px, 44vw, 640px);
   aspect-ratio: 3 / 4;
   pointer-events: none;
   will-change: transform;
 }
+.hero__bust { will-change: transform; }
 .hero__bust {
   width: 100%; height: 100%;
   object-fit: cover; object-position: top center;
@@ -448,6 +449,25 @@ html.js .cursor { display: block; }
 .hero__stars { color: var(--accent); font-size: 0.95rem; letter-spacing: 0.12em; }
 .hero__rating-copy { font-size: 0.82rem; color: var(--muted); font-weight: 500; }
 .hero__actions { position: relative; z-index: 4; display: flex; flex-wrap: wrap; align-items: center; gap: 0.9rem; margin-top: 1.6rem; }
+
+/* hero stats */
+.hero__stats {
+  position: relative; z-index: 4;
+  display: flex; flex-wrap: wrap; gap: clamp(1.4rem, 3vw, 2.6rem);
+  margin-top: clamp(1.8rem, 4vh, 2.6rem);
+}
+.hero__stat { display: flex; align-items: baseline; gap: 0.6rem; }
+.hero__stat + .hero__stat { padding-left: clamp(1.4rem, 3vw, 2.6rem); border-left: 1px solid rgba(15, 15, 19, 0.14); }
+.hero__stat-num {
+  font-family: var(--font-display); font-weight: 800; font-stretch: 96%;
+  font-size: clamp(1.9rem, 3vw, 2.6rem); letter-spacing: -0.03em;
+  line-height: 1; color: var(--ink);
+}
+.hero__stat-label {
+  font-family: var(--font-mono); font-size: 0.62rem;
+  letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.35;
+  color: var(--ink-2);
+}
 
 /* widget card (right) */
 .hero__widget {
@@ -681,17 +701,21 @@ html.js .cursor { display: block; }
   font-size: 0.92rem; line-height: 1.6;
   color: rgba(255, 255, 255, 0.5);
 }
-/* static work grid */
+/* static work grid — stacked horizontal cards */
 .workcarousel__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: clamp(1.1rem, 2.4vw, 1.9rem);
+  max-width: 1120px; margin: 0 auto;
   padding: 0 var(--pad);
 }
 
-/* glass work card */
+/* glass work card — media beside body */
 .glass-work {
   position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 42%) 1fr;
+  align-items: stretch;
   width: auto;
   border-radius: 22px;
   overflow: hidden;
@@ -704,15 +728,16 @@ html.js .cursor { display: block; }
   transition: transform 0.5s var(--ease), border-color 0.4s, box-shadow 0.4s;
 }
 .glass-work:hover {
+  transform: translateY(-4px);
   border-color: rgba(255, 255, 255, 0.28);
   box-shadow: 0 40px 90px -35px rgba(0, 0, 0, 0.9),
               inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 .wcard__media {
-  aspect-ratio: 4 / 3;
   overflow: hidden;
+  min-height: 240px;
   background: #111116;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
 }
 .wcard__media img {
   width: 100%; height: 100%;
@@ -720,8 +745,12 @@ html.js .cursor { display: block; }
   transform: scale(1.04);
   transition: transform 0.9s var(--ease), filter 0.6s;
 }
-.glass-work:hover .wcard__media img { transform: scale(1.1); }
-.wcard__body { padding: 1.4rem 1.5rem 1.6rem; }
+.glass-work:hover .wcard__media img { transform: scale(1.08); }
+.wcard__body {
+  display: flex; flex-direction: column; align-items: flex-start;
+  justify-content: center;
+  padding: clamp(1.6rem, 3.2vw, 2.6rem) clamp(1.6rem, 3.2vw, 2.8rem);
+}
 .wcard__cat {
   font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase;
   color: var(--accent); margin-bottom: 0.6rem;
@@ -1228,7 +1257,6 @@ html.js .cursor { display: block; }
   .philosophy { grid-template-columns: 1fr; }
   .services__bg { background-attachment: scroll, scroll; }
   .workcarousel__head { align-items: flex-start; }
-  .workcarousel__grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 640px) {
   .hero__figure { opacity: 0.28; width: min(82vw, 360px); }
@@ -1236,8 +1264,12 @@ html.js .cursor { display: block; }
   .hero__strip { font-size: 0.56rem; padding: 0.9rem 1rem; }
   .hero__title { font-size: clamp(2rem, 9vw, 3rem); }
   .hero__word { font-size: 30vw; }
-  .workcarousel__grid { grid-template-columns: 1fr; }
+  .glass-work { grid-template-columns: 1fr; }
+  .wcard__media { min-height: 0; aspect-ratio: 16 / 10; border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
   .services__grid { grid-template-columns: 1fr; }
+  .hero__stats { gap: 1.3rem 1.6rem; }
+  .hero__stat { flex-direction: column; align-items: flex-start; gap: 0.15rem; }
+  .hero__stat + .hero__stat { padding-left: 0; border-left: none; }
   .footer__bar { flex-wrap: wrap; }
 }
 
