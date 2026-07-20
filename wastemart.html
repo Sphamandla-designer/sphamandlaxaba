@@ -3,335 +3,1159 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WasteMart × GEMIS — A Transformation Story</title>
-  <meta name="description" content="How GEMIS partnered with WasteMart to transform waste-collection operations through research, UX strategy, engineering and intelligent software." />
+  <title>WasteMart — Designing a mobile operating system for work in motion · Sphamandla Xaba</title>
+  <meta name="description" content="WasteMart case study — a field operations platform for drivers: jobs, evidence capture, verification, offline resilience and end-of-day reconciliation. Product design by Sphamandla Xaba." />
+  <meta name="theme-color" content="#063A40" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="preload" href="assets/fonts/jetbrains-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <script>document.documentElement.classList.add('js');</script>
+  <style>
+    @font-face { font-family: "Archivo"; src: url("assets/fonts/archivo-latin-wdth-normal.woff2") format("woff2-variations"); font-weight: 100 900; font-stretch: 62.5% 125%; font-display: swap; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-wght-normal.woff2") format("woff2-variations"); font-weight: 300 700; font-display: swap; }
+    @font-face { font-family: "JetBrains Mono"; src: url("assets/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+
+    :root {
+      --deep: #063A40;
+      --deep-2: #0A4A52;
+      --deep-3: #052E33;
+      --teal: #22B8A6;
+      --teal-dark: #17907F;
+      --mint: #9FD9D0;
+      --paper: #F2F5F4;
+      --card: #ffffff;
+      --ink: #0F2422;
+      --mut: #5B6F6D;
+      --amber-bg: #F8E9C8; --amber-ink: #8A5A12;
+      --red: #E2626B;
+      --line: rgba(6, 58, 64, 0.12);
+      --line-l: rgba(255, 255, 255, 0.14);
+      --fd: "Archivo", system-ui, sans-serif;
+      --fb: "Space Grotesk", system-ui, sans-serif;
+      --fm: "JetBrains Mono", ui-monospace, monospace;
+      --pad: clamp(1.25rem, 4vw, 4rem);
+      --r: 20px;
+      --ease: cubic-bezier(0.65, 0.05, 0, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: clip; }
+    html.lenis { height: auto; scroll-behavior: auto; }
+    body { background: var(--paper); color: var(--ink); font-family: var(--fb); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+    ::selection { background: var(--teal); color: #04292d; }
+    .mono { font-family: var(--fm); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; }
+
+    /* ── header ── */
+    .top {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem var(--pad);
+      transition: transform 0.4s var(--ease), background 0.3s;
+    }
+    .top.is-scrolled { background: rgba(6, 58, 64, 0.9); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+    .top__back {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-weight: 600; font-size: 0.85rem; color: #fff;
+      padding: 0.5rem 1rem; border-radius: 999px;
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      transition: background 0.25s;
+    }
+    .top__back:hover { background: rgba(255,255,255,0.24); }
+    .top__mark { display: inline-flex; align-items: center; gap: 0.5rem; color: #fff; font-family: var(--fd); font-weight: 800; letter-spacing: -0.01em; }
+    .top__mark i { font-style: normal; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 9px; background: var(--teal); color: #04292d; font-size: 0.7rem; font-weight: 800; }
+
+    /* ── hero ── */
+    .hero {
+      position: relative; overflow: clip;
+      background:
+        radial-gradient(90% 70% at 78% 12%, rgba(34,184,166,0.24), transparent 60%),
+        radial-gradient(70% 60% at 12% 88%, rgba(159,217,208,0.12), transparent 60%),
+        linear-gradient(180deg, var(--deep-3), var(--deep) 55%, #075059);
+      color: #fff;
+      padding: clamp(7rem, 15vh, 9.5rem) var(--pad) 0;
+    }
+    .hero__wm {
+      position: absolute; inset: auto 0 -4% 0; z-index: 0;
+      font-family: var(--fd); font-weight: 900; font-stretch: 115%;
+      font-size: clamp(9rem, 26vw, 26rem); line-height: 0.75; letter-spacing: 0.02em;
+      text-align: center; color: transparent;
+      -webkit-text-stroke: 1.5px rgba(159, 217, 208, 0.14);
+      pointer-events: none; user-select: none;
+    }
+    .hero__inner { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto; text-align: center; }
+    .hero__tag { color: var(--mint); margin-bottom: 1.2rem; display: inline-flex; gap: 0.6rem; align-items: center; }
+    .hero__tag::before, .hero__tag::after { content: ""; width: 26px; height: 1px; background: rgba(159,217,208,0.5); display: inline-block; }
+    .hero__title {
+      font-family: var(--fd); font-weight: 850; font-stretch: 95%;
+      font-size: clamp(2.6rem, 6.4vw, 5.6rem);
+      line-height: 0.99; letter-spacing: -0.03em;
+      margin-bottom: 1.1rem;
+    }
+    .hero__title em { font-style: normal; color: var(--teal); }
+    .hero__sub { max-width: 62ch; margin: 0 auto 1.4rem; font-size: clamp(0.95rem, 1.4vw, 1.1rem); color: rgba(255,255,255,0.78); }
+    .hero__meta { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-bottom: clamp(2rem, 5vh, 3.2rem); }
+    .hero__meta li {
+      font-family: var(--fm); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.42rem 0.85rem; border-radius: 999px;
+      color: var(--mint); border: 1px solid rgba(159,217,208,0.3); background: rgba(159,217,208,0.08);
+    }
+    .hero__phones { position: relative; z-index: 2; display: flex; justify-content: center; align-items: flex-end; gap: clamp(1rem, 3vw, 2.4rem); transform: translateY(6%); }
+    .hero__phones .phone { width: clamp(150px, 21vw, 250px); }
+    .hero__phones .phone--main { width: clamp(190px, 26vw, 310px); z-index: 2; }
+    .hero__phones .phone--side { opacity: 0.92; }
+    @media (max-width: 680px) { .hero__phones .phone--side { display: none; } }
+
+    /* phone frame */
+    .phone {
+      position: relative;
+      border-radius: clamp(22px, 3vw, 34px);
+      padding: clamp(7px, 0.8vw, 10px);
+      background: linear-gradient(160deg, #0d3237, #041e22);
+      box-shadow: 0 40px 80px -34px rgba(2, 24, 27, 0.75), inset 0 1px 0 rgba(255,255,255,0.14);
+      will-change: transform;
+    }
+    .phone__screen { border-radius: clamp(15px, 2.2vw, 25px); overflow: hidden; background: #0b2f34; }
+    .phone__screen img { width: 100%; height: auto; }
+    .phone__notch { position: absolute; top: clamp(11px, 1.2vw, 15px); left: 50%; transform: translateX(-50%); width: 34%; height: 12px; border-radius: 999px; background: #041e22; z-index: 3; }
+
+    /* floating 3D cubes */
+    .cube { position: absolute; z-index: 1; pointer-events: none; perspective: 900px; }
+    .cube__spin { position: relative; width: var(--s, 90px); height: var(--s, 90px); transform-style: preserve-3d; animation: cubespin 22s linear infinite; }
+    .cube__spin span {
+      position: absolute; inset: 0; border-radius: 14px;
+      background: linear-gradient(135deg, rgba(34,184,166,0.2), rgba(159,217,208,0.08), rgba(6,58,64,0.35));
+      border: 1px solid rgba(34,184,166,0.4);
+      backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
+    }
+    .cube__spin span:nth-child(1){transform:rotateY(0deg) translateZ(var(--z,45px));}
+    .cube__spin span:nth-child(2){transform:rotateY(90deg) translateZ(var(--z,45px));}
+    .cube__spin span:nth-child(3){transform:rotateY(180deg) translateZ(var(--z,45px));}
+    .cube__spin span:nth-child(4){transform:rotateY(270deg) translateZ(var(--z,45px));}
+    .cube__spin span:nth-child(5){transform:rotateX(90deg) translateZ(var(--z,45px));}
+    .cube__spin span:nth-child(6){transform:rotateX(-90deg) translateZ(var(--z,45px));}
+    @keyframes cubespin { from { transform: rotateX(-16deg) rotateY(0); } to { transform: rotateX(-16deg) rotateY(360deg); } }
+    .cube--float { animation: cubefloat 9s ease-in-out infinite; }
+    @keyframes cubefloat { 0%,100% { translate: 0 0; } 50% { translate: 0 -16px; } }
+
+    /* ── generic sections ── */
+    .sec { padding: clamp(4.5rem, 11vh, 8rem) var(--pad); position: relative; overflow: clip; }
+    .sec__inner { max-width: 1160px; margin: 0 auto; position: relative; z-index: 2; }
+    .sec--deep { background: linear-gradient(180deg, var(--deep-3), var(--deep)); color: #fff; }
+    .sec--paper2 { background: #E9EEEC; }
+    .kicker { color: var(--teal-dark); margin-bottom: 1rem; display: inline-flex; align-items: center; gap: 0.6rem; }
+    .kicker::before { content: ""; width: 22px; height: 2px; background: var(--teal); display: inline-block; }
+    .sec--deep .kicker { color: var(--mint); }
+    .h2 {
+      font-family: var(--fd); font-weight: 830; font-stretch: 93%;
+      font-size: clamp(1.9rem, 4.2vw, 3.4rem);
+      line-height: 1.02; letter-spacing: -0.025em;
+      max-width: 24ch;
+    }
+    .h2 em { font-style: normal; color: var(--teal-dark); }
+    .sec--deep .h2 em { color: var(--teal); }
+    .lead { font-size: clamp(1rem, 1.5vw, 1.16rem); line-height: 1.65; color: var(--mut); max-width: 66ch; margin-top: 1.1rem; }
+    .sec--deep .lead { color: rgba(255,255,255,0.75); }
+    .lead strong, .body strong { color: var(--ink); font-weight: 650; }
+    .sec--deep .lead strong { color: #fff; }
+    .body { font-size: 0.97rem; line-height: 1.7; color: var(--mut); }
+    .body + .body { margin-top: 0.9rem; }
+    .sec--deep .body { color: rgba(255,255,255,0.72); }
+    .sec--deep .body strong { color: #fff; }
+
+    /* fact bar */
+    .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; margin-top: clamp(2rem, 5vh, 3rem); }
+    .facts div { background: var(--card); padding: 1.1rem 1.2rem; }
+    .facts .mono { color: var(--teal-dark); display: block; margin-bottom: 0.35rem; }
+    .facts b { font-family: var(--fd); font-weight: 750; font-size: 1rem; letter-spacing: -0.01em; }
+
+    /* chips */
+    .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .chip {
+      font-size: 0.8rem; font-weight: 550; color: var(--ink);
+      padding: 0.5rem 0.95rem; border-radius: 999px;
+      background: var(--card); border: 1px solid var(--line);
+      box-shadow: 0 6px 16px -10px rgba(6,58,64,0.25);
+      transition: transform 0.3s var(--ease), border-color 0.3s, background 0.3s;
+    }
+    .chip:hover { transform: translateY(-3px); border-color: rgba(34,184,166,0.55); background: #f2fbf9; }
+
+    /* question cards */
+    .qgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 2rem; }
+    .qcard { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 1.4rem 1.3rem; box-shadow: 0 18px 40px -28px rgba(6,58,64,0.4); }
+    .qcard .mono { color: var(--teal-dark); }
+    .qcard h3 { font-family: var(--fd); font-weight: 780; font-stretch: 94%; font-size: 1.22rem; letter-spacing: -0.015em; margin-top: 0.6rem; }
+    .qcard p { font-size: 0.85rem; color: var(--mut); margin-top: 0.45rem; }
+
+    /* two-col case blocks */
+    .duo { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+    .duo--flip > .duo__media { order: 2; }
+    @media (max-width: 880px) { .duo { grid-template-columns: 1fr; } .duo--flip > .duo__media { order: 0; } }
+    .duo__media { display: grid; justify-items: center; position: relative; }
+    .duo__media .phone { width: min(300px, 74vw); }
+    .num {
+      font-family: var(--fm); font-size: 0.72rem; letter-spacing: 0.16em; color: var(--teal-dark);
+      display: inline-flex; align-items: center; gap: 0.6rem; margin-bottom: 0.9rem;
+    }
+    .num::after { content: ""; width: 34px; height: 1px; background: var(--line); }
+    .h3 { font-family: var(--fd); font-weight: 810; font-stretch: 93%; font-size: clamp(1.5rem, 2.8vw, 2.2rem); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 0.9rem; }
+    .callout {
+      margin-top: 1.2rem; padding: 1.1rem 1.2rem; border-radius: 14px;
+      background: rgba(34, 184, 166, 0.09); border-left: 3px solid var(--teal);
+      font-size: 0.92rem; color: var(--ink);
+    }
+    .callout b { font-weight: 700; }
+    .quote {
+      font-family: var(--fd); font-weight: 700; font-stretch: 95%;
+      font-size: clamp(1.2rem, 2.3vw, 1.7rem); line-height: 1.3; letter-spacing: -0.015em;
+      color: var(--ink); border-left: 3px solid var(--teal); padding-left: 1.1rem; margin-top: 1.4rem;
+    }
+    .sec--deep .quote { color: #fff; }
+
+    /* pipelines */
+    .pipe { display: flex; flex-wrap: wrap; align-items: center; gap: 0.55rem; margin-top: 2rem; }
+    .pipe__step {
+      font-family: var(--fm); font-size: clamp(0.6rem, 1vw, 0.74rem); letter-spacing: 0.1em;
+      padding: 0.62rem 0.95rem; border-radius: 12px; white-space: nowrap;
+      background: rgba(255,255,255,0.07); border: 1px solid var(--line-l); color: rgba(255,255,255,0.85);
+      transition: background 0.4s, border-color 0.4s, color 0.4s, box-shadow 0.4s;
+    }
+    .pipe__step.is-on { background: rgba(34,184,166,0.2); border-color: var(--teal); color: #fff; box-shadow: 0 0 24px -8px rgba(34,184,166,0.7); }
+    .pipe__arrow { color: rgba(159,217,208,0.55); font-size: 0.85rem; }
+    .pipe--light .pipe__step { background: var(--card); border: 1px solid var(--line); color: var(--ink); }
+    .pipe--light .pipe__step.is-on { background: #E4F6F2; border-color: var(--teal); color: var(--deep); box-shadow: 0 10px 24px -14px rgba(34,184,166,0.7); }
+    .pipe--light .pipe__arrow { color: rgba(6,58,64,0.35); }
+
+    /* interactive state demo */
+    .statedemo {
+      margin-top: 1.6rem; border-radius: var(--r); padding: 1.4rem;
+      background: var(--card); border: 1px solid var(--line);
+      box-shadow: 0 24px 50px -34px rgba(6,58,64,0.5);
+    }
+    .statedemo__track { display: flex; gap: 0.45rem; margin-bottom: 1.1rem; flex-wrap: wrap; }
+    .statedemo__dot {
+      flex: 1; min-width: 64px; text-align: center;
+      font-family: var(--fm); font-size: 0.54rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--mut); padding-top: 0.55rem; border-top: 3px solid var(--line);
+      transition: color 0.3s, border-color 0.3s;
+    }
+    .statedemo__dot.is-done { border-color: var(--mint); color: var(--teal-dark); }
+    .statedemo__dot.is-now { border-color: var(--teal); color: var(--deep); font-weight: 700; }
+    .statedemo__btn {
+      width: 100%; text-align: center;
+      font-weight: 700; font-size: 0.95rem; color: #fff;
+      padding: 0.95rem 1rem; border-radius: 999px; background: var(--teal);
+      box-shadow: 0 14px 30px -14px rgba(34,184,166,0.8);
+      transition: transform 0.25s var(--ease), background 0.3s;
+    }
+    .statedemo__btn:hover { transform: translateY(-2px); }
+    .statedemo__btn.is-done { background: var(--deep); }
+    .statedemo__hint { text-align: center; font-family: var(--fm); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mut); margin-top: 0.8rem; }
+
+    /* evidence tabs */
+    .tabs { margin-top: 1.8rem; }
+    .tabs__nav { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.4rem; }
+    .tabs__btn {
+      font-weight: 650; font-size: 0.85rem; color: var(--mut);
+      padding: 0.6rem 1.1rem; border-radius: 999px; border: 1px solid var(--line); background: var(--card);
+      transition: background 0.3s, color 0.3s, border-color 0.3s;
+    }
+    .tabs__btn.is-active { background: var(--deep); color: #fff; border-color: var(--deep); }
+    .tabs__panel { display: none; }
+    .tabs__panel.is-active { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: clamp(1.6rem, 4vw, 3rem); align-items: center; animation: tabin 0.5s var(--ease); }
+    @media (max-width: 880px) { .tabs__panel.is-active { grid-template-columns: 1fr; } }
+    @keyframes tabin { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+    .tabs__panel .phone { width: min(280px, 72vw); justify-self: center; }
+    .tabs__label { font-family: var(--fm); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal-dark); margin-bottom: 0.5rem; }
+    .tabs__title { font-family: var(--fd); font-weight: 790; font-size: 1.35rem; letter-spacing: -0.015em; margin-bottom: 0.6rem; }
+
+    /* audit trail visual */
+    .audit {
+      border-radius: var(--r); background: var(--card); border: 1px solid var(--line);
+      box-shadow: 0 24px 50px -34px rgba(6,58,64,0.5); overflow: hidden; margin-top: 1.6rem;
+    }
+    .audit__row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.6rem; padding: 1rem 1.2rem; border-bottom: 1px solid var(--line); }
+    .audit__field { font-weight: 650; font-size: 0.9rem; }
+    .audit__badge { font-family: var(--fm); font-size: 0.54rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber-ink); background: var(--amber-bg); padding: 0.26rem 0.6rem; border-radius: 999px; }
+    .audit__delta { display: flex; align-items: center; gap: 0.55rem; font-family: var(--fm); font-size: 0.72rem; }
+    .audit__old { color: var(--mut); text-decoration: line-through; }
+    .audit__arrow { color: var(--teal-dark); }
+    .audit__new { color: var(--deep); font-weight: 700; }
+    .audit__meta { padding: 0.85rem 1.2rem; font-family: var(--fm); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mut); background: #FAFCFB; }
+
+    /* sync demo */
+    .syncdemo { margin-top: 1.6rem; border-radius: var(--r); background: var(--card); border: 1px solid var(--line); box-shadow: 0 24px 50px -34px rgba(6,58,64,0.5); padding: 1.3rem; }
+    .syncdemo__pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+    .syncdemo__pill { font-family: var(--fm); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 0.9rem; border-radius: 999px; border: 1px solid var(--line); color: var(--mut); transition: all 0.25s; }
+    .syncdemo__pill.is-active { background: var(--deep); border-color: var(--deep); color: #fff; }
+    .syncdemo__strip {
+      display: flex; align-items: center; gap: 0.7rem;
+      border-radius: 12px; padding: 0.85rem 1.1rem;
+      font-weight: 650; font-size: 0.88rem;
+      background: #E4F6F2; color: var(--deep); border: 1px solid rgba(34,184,166,0.4);
+      transition: background 0.35s, color 0.35s, border-color 0.35s;
+    }
+    .syncdemo__dot { width: 9px; height: 9px; border-radius: 50%; background: var(--teal); flex: 0 0 auto; }
+    .syncdemo__strip[data-state="syncing"] { background: #EAF1FB; border-color: rgba(72,120,220,0.4); color: #1d3f7a; }
+    .syncdemo__strip[data-state="syncing"] .syncdemo__dot { background: #4878DC; animation: pulse-dot 1s infinite; }
+    .syncdemo__strip[data-state="offline"] { background: #F5F0E4; border-color: rgba(183,121,31,0.4); color: var(--amber-ink); }
+    .syncdemo__strip[data-state="offline"] .syncdemo__dot { background: #C98A1F; }
+    .syncdemo__strip[data-state="failed"] { background: #FBEBEC; border-color: rgba(226,98,107,0.5); color: #8f2b33; }
+    .syncdemo__strip[data-state="failed"] .syncdemo__dot { background: var(--red); }
+    @keyframes pulse-dot { 50% { opacity: 0.35; } }
+
+    /* reason codes */
+    .reasons { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.2rem; }
+    .reasons li { font-family: var(--fm); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 0.85rem; border-radius: 999px; background: rgba(255,255,255,0.08); border: 1px solid var(--line-l); color: rgba(255,255,255,0.82); }
+
+    /* film strip */
+    .strip { padding: clamp(3rem, 7vh, 4.5rem) 0; background: var(--deep-3); overflow: hidden; }
+    .strip__head { text-align: center; color: var(--mint); margin-bottom: 1.8rem; padding: 0 var(--pad); }
+    .strip__row { display: flex; gap: 1.1rem; width: max-content; padding: 0 var(--pad); will-change: transform; }
+    .strip__row .phone { width: 168px; flex: 0 0 auto; }
+
+    /* design system specimens */
+    .tokens { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1rem; margin-top: 2rem; }
+    .token { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 1.25rem; }
+    .token .mono { color: var(--teal-dark); display: block; margin-bottom: 0.8rem; }
+    .swatches { display: flex; gap: 0.5rem; }
+    .swatches span { flex: 1; height: 52px; border-radius: 10px; border: 1px solid var(--line); }
+    .typeramp b { display: block; font-family: var(--fd); letter-spacing: -0.02em; line-height: 1.15; }
+    .radii { display: flex; gap: 0.6rem; align-items: flex-end; }
+    .radii span { background: #E4F6F2; border: 1.5px solid var(--teal); display: block; }
+    .spacing span { display: inline-block; background: var(--mint); height: 12px; border-radius: 3px; margin-right: 6px; }
+
+    /* result / embed */
+    .embed { margin-top: clamp(2.4rem, 6vh, 3.6rem); display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+    @media (max-width: 880px) { .embed { grid-template-columns: 1fr; } }
+    .embed__frame { position: relative; justify-self: center; width: min(320px, 80vw); }
+    .embed__frame .phone__screen { aspect-ratio: 390 / 780; position: relative; }
+    .embed__frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+    .embed__cover {
+      position: absolute; inset: 0; z-index: 2;
+      display: grid; place-items: center; text-align: center;
+      background: linear-gradient(180deg, rgba(6,58,64,0.4), rgba(4,30,34,0.75)), url("assets/img/wm/06-jobs.png") top/cover;
+      color: #fff; cursor: pointer; transition: opacity 0.4s;
+    }
+    .embed__cover span { display: grid; gap: 0.7rem; justify-items: center; }
+    .embed__play { width: 66px; height: 66px; border-radius: 50%; display: grid; place-items: center; background: var(--teal); color: #04292d; box-shadow: 0 20px 44px -16px rgba(34,184,166,0.9); font-size: 1.3rem; }
+    .btnrow { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.4rem; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      font-weight: 700; font-size: 0.9rem;
+      padding: 0.85rem 1.5rem; border-radius: 999px;
+      transition: transform 0.3s var(--ease), background 0.3s, border-color 0.3s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn--teal { background: var(--teal); color: #04292d; box-shadow: 0 16px 36px -16px rgba(34,184,166,0.9); }
+    .btn--ghostl { border: 1px solid var(--line-l); color: #fff; background: rgba(255,255,255,0.07); }
+
+    .outcomes { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 0.8rem; margin-top: 2rem; }
+    .outcomes li {
+      font-size: 0.86rem; font-weight: 550; color: rgba(255,255,255,0.85);
+      padding: 0.85rem 1rem; border-radius: 12px;
+      background: rgba(255,255,255,0.06); border: 1px solid var(--line-l);
+      display: flex; gap: 0.6rem; align-items: baseline;
+    }
+    .outcomes li::before { content: "✓"; color: var(--teal); font-weight: 800; }
+
+    /* principle band */
+    .principle { text-align: center; }
+    .principle .h2 { max-width: none; }
+    .principle__big {
+      font-family: var(--fd); font-weight: 900; font-stretch: 105%;
+      font-size: clamp(2.4rem, 7vw, 5.6rem); letter-spacing: -0.03em; line-height: 1;
+      background: linear-gradient(100deg, var(--mint), var(--teal));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      margin: 0.8rem 0 1.2rem;
+    }
+
+    /* reflection */
+    .reflect { max-width: 860px; }
+    .reflect__note {
+      margin-top: 1.8rem; border-radius: var(--r);
+      border: 1px dashed rgba(6,58,64,0.3); background: #FBFDFC;
+      padding: 1.4rem 1.5rem; font-size: 0.92rem; color: var(--mut);
+    }
+    .reflect__note b { color: var(--ink); }
+
+    /* footer */
+    .foot { background: var(--deep-3); color: #fff; padding: clamp(2.5rem, 6vh, 4rem) var(--pad); }
+    .foot__inner { max-width: 1160px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 1.2rem; align-items: center; justify-content: space-between; }
+    .foot a { font-weight: 650; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 2px; transition: color 0.25s, border-color 0.25s; }
+    .foot a:hover { color: var(--teal); border-color: var(--teal); }
+    .foot .mono { color: rgba(255,255,255,0.45); }
+
+    /* reveals */
+    html.js [data-rv] { opacity: 0; transform: translateY(34px); }
+    html.js .is-rv[data-rv], html.js [data-rv].is-rv { opacity: 1; transform: none; transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+      html.js [data-rv] { opacity: 1; transform: none; }
+    }
+  </style>
 </head>
-<body data-theme="dark" class="page-story">
+<body>
 
-  <!-- ═══════════════ PRELOADER ═══════════════ -->
-  <div class="preloader" id="preloader">
-    <div class="preloader__inner">
-      <div class="preloader__logo" aria-hidden="true">
-        <span class="pl-char">S</span><span class="pl-char">T</span><span class="pl-char">O</span><span class="pl-char">R</span><span class="pl-char">Y</span><span class="pl-char pl-char--reg">®</span>
-      </div>
-      <div class="preloader__row">
-        <span class="preloader__hint">Plotting the route</span>
-        <span class="preloader__count" id="preloaderCount">00</span>
-      </div>
-      <div class="preloader__bar"><span id="preloaderBar"></span></div>
-    </div>
-    <div class="preloader__curtain" aria-hidden="true"></div>
-  </div>
-
-  <!-- ═══════════════ CURSOR / GRAIN ═══════════════ -->
-  <div class="cursor" id="cursor" aria-hidden="true">
-    <div class="cursor__ring" id="cursorRing"><span class="cursor__label" id="cursorLabel">View</span></div>
-    <div class="cursor__dot" id="cursorDot"></div>
-  </div>
-  <div class="grain" aria-hidden="true"></div>
-
-  <!-- ═══════════════ HEADER ═══════════════ -->
-  <header class="header" id="header">
-    <a href="index.html" class="header__logo" data-magnetic>GEMIS<sup>®</sup> <span class="header__sub">Transformation story</span></a>
-    <div class="header__right">
-      <a href="#contact" class="header__cta" data-magnetic>Book a session</a>
-      <button class="burger" id="burger" aria-label="Open menu" data-magnetic>
-        <span></span><span></span>
-      </button>
-    </div>
+  <!-- header -->
+  <header class="top" id="top">
+    <a href="index.html#work" class="top__back">← Portfolio</a>
+    <span class="top__mark"><i>WM</i>WasteMart</span>
   </header>
 
-  <!-- ═══════════════ OVERLAY MENU ═══════════════ -->
-  <nav class="menu" id="menu" aria-hidden="true">
-    <div class="menu__bg"></div>
-    <div class="menu__inner">
-      <ul class="menu__list">
-        <li><a href="index.html" class="menu__link" data-menu-close><span class="menu__index">01</span><span class="menu__word">Home</span></a></li>
-        <li><a href="index.html#services" class="menu__link" data-menu-close><span class="menu__index">02</span><span class="menu__word">Services</span></a></li>
-        <li><a href="index.html#work" class="menu__link" data-menu-close><span class="menu__index">03</span><span class="menu__word">Case Studies</span></a></li>
-        <li><a href="brand-studio.html" class="menu__link" data-menu-close><span class="menu__index">04</span><span class="menu__word">Brand Studio</span></a></li>
-        <li><a href="#contact" class="menu__link" data-menu-close><span class="menu__index">05</span><span class="menu__word">Contact</span></a></li>
+  <!-- ═══════════ HERO ═══════════ -->
+  <section class="hero">
+    <div class="cube cube--float" style="top:16%;left:8%"><div class="cube__spin" style="--s:88px;--z:44px"><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
+    <div class="cube cube--float" style="top:24%;right:9%;animation-delay:-4s"><div class="cube__spin" style="--s:56px;--z:28px;animation-duration:16s"><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
+    <span class="hero__wm" aria-hidden="true">WM</span>
+    <div class="hero__inner">
+      <p class="hero__tag mono" data-rv>Case Study — Field Operations</p>
+      <h1 class="hero__title" data-rv>Designing a mobile operating<br />system for <em>work in motion.</em></h1>
+      <p class="hero__sub" data-rv>
+        WasteMart is a field operations platform designed to support drivers throughout the
+        working day — from managing assigned jobs and checking into client sites to capturing
+        operational details, uploading manifests, recording evidence, and closing out the shift.
+      </p>
+      <ul class="hero__meta" data-rv>
+        <li>Product Design</li><li>Mobile UX</li><li>Field Operations</li><li>Workflow Design</li>
       </ul>
-      <div class="menu__foot">
-        <a href="mailto:hello@gemis.tech" class="menu__mail">hello@gemis.tech</a>
-        <div class="menu__socials">
-          <a href="#" aria-label="GitHub">GitHub</a>
-          <a href="#" aria-label="LinkedIn">LinkedIn</a>
-          <a href="#" aria-label="X">X</a>
+      <div class="hero__phones" data-rv>
+        <div class="phone phone--side" data-tilt><span class="phone__notch"></span><div class="phone__screen"><img src="assets/img/wm/09-capture-top.png" alt="WasteMart capture screen — manifest details" loading="eager" /></div></div>
+        <div class="phone phone--main" data-tilt><span class="phone__notch"></span><div class="phone__screen"><img src="assets/img/wm/06-jobs.png" alt="WasteMart jobs list — the driver's mission control" loading="eager" /></div></div>
+        <div class="phone phone--side" data-tilt><span class="phone__notch"></span><div class="phone__screen"><img src="assets/img/wm/19-endday-review.png" alt="WasteMart end-of-day review" loading="eager" /></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- intro / challenge framing -->
+  <section class="sec">
+    <div class="sec__inner">
+      <div data-rv>
+        <p class="kicker mono">The brief</p>
+        <h2 class="h2">The challenge was not to create <em>another mobile interface.</em></h2>
+        <p class="lead">
+          It was to design a system that could support complex operational processes while
+          remaining clear, fast, and dependable in the field — <strong>and stay defensible when
+          someone other than the driver has to review what happened.</strong>
+        </p>
+      </div>
+      <div class="facts" data-rv>
+        <div><span class="mono">Role</span><b>Product Designer</b></div>
+        <div><span class="mono">Platform</span><b>Mobile application</b></div>
+        <div><span class="mono">Context</span><b>Field operations</b></div>
+        <div><span class="mono">Focus</span><b>Operational UX</b></div>
+        <div><span class="mono">Build</span><b>29 interactive screens</b></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ THE PROBLEM ═══════════ -->
+  <section class="sec sec--paper2">
+    <div class="sec__inner">
+      <div data-rv>
+        <p class="kicker mono">The problem</p>
+        <h2 class="h2">The work happens in the real world. <em>The software has to keep up.</em></h2>
+        <p class="lead">Waste collection is not a single task. A driver's day can involve:</p>
+      </div>
+      <div class="chips" style="margin-top:1.8rem" data-rv-group>
+        <span class="chip">Multiple scheduled jobs</span><span class="chip">Different clients &amp; locations</span>
+        <span class="chip">Check-in &amp; check-out</span><span class="chip">Waste classification</span>
+        <span class="chip">Bin verification</span><span class="chip">Manifest capture</span>
+        <span class="chip">Photo evidence</span><span class="chip">Barcode scanning</span>
+        <span class="chip">Bag counts</span><span class="chip">Customer sign-off</span>
+        <span class="chip">Dump records</span><span class="chip">Fuel activity</span>
+        <span class="chip">Incomplete work</span><span class="chip">Offline data</span>
+        <span class="chip">End-of-day reconciliation</span>
+      </div>
+      <p class="body" style="margin-top:1.8rem;max-width:70ch" data-rv>
+        These activities are connected. A mistake or missing piece of information in one part of
+        the workflow can create operational problems later — sometimes hours later,
+        <strong>sometimes for someone other than the driver.</strong>
+      </p>
+      <p class="body" style="margin-top:0.9rem" data-rv>The product needed to help the driver understand four things at any point in the day:</p>
+      <div class="qgrid" data-rv-group>
+        <div class="qcard"><span class="mono">Q1</span><h3>What am I doing now?</h3></div>
+        <div class="qcard"><span class="mono">Q2</span><h3>What has already been completed?</h3></div>
+        <div class="qcard"><span class="mono">Q3</span><h3>What still needs to happen?</h3></div>
+        <div class="qcard"><span class="mono">Q4</span><h3>What happens if something goes wrong?</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ DESIGN CHALLENGE ═══════════ -->
+  <section class="sec">
+    <div class="sec__inner">
+      <div data-rv>
+        <p class="kicker mono">The design challenge</p>
+        <h2 class="h2">How do you design software for people who are <em>already busy doing the work?</em></h2>
+        <p class="lead">The product had to balance four competing needs:</p>
+      </div>
+      <div class="qgrid" data-rv-group>
+        <div class="qcard"><span class="mono">01</span><h3>Operational depth</h3><p>Support detailed workflows and operational records.</p></div>
+        <div class="qcard"><span class="mono">02</span><h3>Speed</h3><p>Field workers should not fight through unnecessary navigation.</p></div>
+        <div class="qcard"><span class="mono">03</span><h3>Accuracy</h3><p>Manifests, bin numbers, evidence and sign-offs captured correctly.</p></div>
+        <div class="qcard"><span class="mono">04</span><h3>Resilience</h3><p>Understandable and usable when connectivity is unreliable.</p></div>
+      </div>
+      <p class="body" style="margin-top:1.8rem;max-width:72ch" data-rv>
+        The real design question was not "how do we make the app easier to use?" It was:
+        <strong>how do we make a complex operational system feel predictable while the user's
+        environment is anything but — and while someone in an office, hours later, has to be able
+        to trust what it recorded?</strong>
+      </p>
+      <p class="quote" data-rv>
+        Designing for the person reviewing the record — not just the person creating it —
+        became the thread that runs through everything below.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════ PRODUCT MODEL ═══════════ -->
+  <section class="sec sec--deep">
+    <div class="cube cube--float" style="bottom:12%;right:6%"><div class="cube__spin" style="--s:74px;--z:37px;animation-duration:18s"><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
+    <div class="sec__inner">
+      <div data-rv>
+        <p class="kicker mono">The product model</p>
+        <h2 class="h2">Structured around the driver's workday — <em>not isolated screens.</em></h2>
+        <p class="lead">
+          The most important design decision was to give the product a clear operational backbone.
+          The user always has a place to understand what is assigned, what is active, what is
+          complete, what needs attention, and what still needs to sync.
+        </p>
+      </div>
+      <div class="pipe" id="pipeModel" aria-label="Workday pipeline">
+        <span class="pipe__step">WORKDAY</span><span class="pipe__arrow">→</span>
+        <span class="pipe__step">JOBS</span><span class="pipe__arrow">→</span>
+        <span class="pipe__step">JOB EXECUTION</span><span class="pipe__arrow">→</span>
+        <span class="pipe__step">EVIDENCE</span><span class="pipe__arrow">→</span>
+        <span class="pipe__step">COMPLETION</span><span class="pipe__arrow">→</span>
+        <span class="pipe__step">RECONCILIATION</span><span class="pipe__arrow">→</span>
+        <span class="pipe__step">END DAY</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 01 JOBS ═══════════ -->
+  <section class="sec">
+    <div class="sec__inner duo">
+      <div>
+        <p class="num">01 — The workday starts with the jobs</p>
+        <h3 class="h3">The job list becomes mission control.</h3>
+        <p class="body">
+          Rather than presenting a generic list of tasks, the interface gives the driver a clear
+          view of the working day: assigned jobs, current progress, the active job, completed
+          work, operational status, client information, and scheduled timing.
+        </p>
+        <p class="body">
+          The workflow is intentionally visible. Each state determines the next meaningful
+          action — the interface does not ask the driver to decide what to do next. The system
+          guides them by changing the primary action based on the job's current state.
+        </p>
+        <div class="statedemo" data-rv id="stateDemo">
+          <div class="statedemo__track">
+            <span class="statedemo__dot">Assigned</span>
+            <span class="statedemo__dot">Checked in</span>
+            <span class="statedemo__dot">Details captured</span>
+            <span class="statedemo__dot">Manifest saved</span>
+            <span class="statedemo__dot">Completed</span>
+          </div>
+          <button class="statedemo__btn" id="stateBtn">Confirm &amp; Check In</button>
+          <p class="statedemo__hint">Try it — the primary action follows the job state</p>
+        </div>
+        <div class="callout" data-rv>
+          <b>The interface should not make the driver manage the workflow. The workflow should
+          manage the interface.</b> The list also supports drag-to-reorder, so a driver can
+          resequence stops when site access, traffic, or dispatch instructions change mid-shift.
+        </div>
+      </div>
+      <div class="duo__media" data-rv>
+        <div class="phone" data-tilt><span class="phone__notch"></span><div class="phone__screen"><img src="assets/img/wm/06-jobs.png" alt="Jobs list with 9 assigned stops, progress header and drag-to-reorder" loading="lazy" /></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 02 JOB DETAILS ═══════════ -->
+  <section class="sec sec--paper2">
+    <div class="sec__inner duo duo--flip">
+      <div>
+        <p class="num">02 — Job details</p>
+        <h3 class="h3">An operational control centre.</h3>
+        <p class="body">
+          Once a driver opens a job, the experience brings together everything needed to
+          understand the current operational context: client, location, waste type, service
+          details, vehicle information, operational notes, workflow progress, and activity history.
+        </p>
+        <p class="body">
+          The system is not only recording what happened — it is helping the driver understand
+          <strong>where they are within the process.</strong> It also distinguishes between a
+          <strong>client note</strong> (site-specific context) and an <strong>ops instruction</strong>
+          (something dispatch specifically wants flagged), each with its own visual treatment so
+          the two don't get mixed up in a busy moment.
+        </p>
+      </div>
+      <div class="duo__media" data-rv>
+        <div class="phone" data-tilt><span class="phone__notch"></span><div class="phone__screen"><img src="assets/img/wm/07-job-detail.png" alt="Job detail — client, address, description, captured details" loading="lazy" /></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 03 CAPTURE ═══════════ -->
+  <section class="sec">
+    <div class="sec__inner duo">
+      <div>
+        <p class="num">03 — Capturing operational reality</p>
+        <h3 class="h3">One structured record, not disconnected tools.</h3>
+        <p class="body">
+          The capture workflow brings together everything required to create a reliable
+          operational record: waste type, quantity, disposal allocation, bin number, barcode
+          information, recycling bag information, manifest evidence, bin photographs, and
+          customer sign-off — structured around the job.
+        </p>
+        <div class="callout" data-rv>
+          Manifest numbers are handled as <b>two separate fields</b> — a read-only system manifest
+          number and an editable manual manifest number for paperwork issued on-site — because in
+          the field, the paperwork and the system don't always agree, and the interface needs to
+          <b>hold both truths</b> without forcing a false reconciliation.
+        </div>
+      </div>
+      <div class="duo__media" data-rv>
+        <div class="phone" data-tilt><span class="phone__notch"></span><div class="phone__screen"><img src="assets/img/wm/09-capture-top.png" alt="Capture form — system and manual manifest numbers, waste details" loading="lazy" /></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 04 EVIDENCE TABS ═══════════ -->
+  <section class="sec sec--paper2">
+    <div class="sec__inner">
+      <div data-rv>
+        <p class="kicker mono">04 — Evidence</p>
+        <h2 class="h2">Four kinds of evidence, <em>not one.</em></h2>
+        <p class="lead">
+          Operational work needs proof, and not all proof looks the same. Treating "evidence" as a
+          single feature would have flattened four genuinely different capture problems into one —
+          so the system treats them as distinct flows, each producing a different kind of trust.
+        </p>
+      </div>
+      <div class="tabs" id="evidenceTabs" data-rv>
+        <div class="tabs__nav" role="tablist">
+          <button class="tabs__btn is-active" data-tab="0">Manifest</button>
+          <button class="tabs__btn" data-tab="1">Bin evidence</button>
+          <button class="tabs__btn" data-tab="2">Recycling bags</button>
+          <button class="tabs__btn" data-tab="3">Customer sign-off</button>
+        </div>
+        <div class="tabs__panel is-active">
+          <div>
+            <p class="tabs__label">Proof the paperwork was handled</p>
+            <h3 class="tabs__title">Manifest evidence</h3>
+            <p class="body">A dedicated capture state for the paperwork itself, with framing guidance, retake capability, and save confirmation. The record shows "Manifest photo attached" the moment it's secured.</p>
+          </div>
+          <div class="phone" data-tilt><span class="phone__notch"></span><div class="phone__screen"><img src="assets/img/wm/09-capture-top.png" alt="Manifest capture with photo attached confirmation" loading="lazy" /></div></div>
+        </div>
+        <div class="tabs__panel">
+          <div>
+            <p class="tabs__label">Proof of which bin</p>
+            <h3 class="tabs__title">Bin evidence</h3>
+            <p class="body">Multiple photographs per bin movement — <strong>removed and placed are tracked separately</strong>, because a bin swap is two events, not one, and each can need its own supporting photo.</p>
+          </div>
+          <div class="phone" data-tilt><span class="phone__notch"></span><div class="phone__screen"><img src="assets/img/wm/10-bin-mismatch.png" alt="Bin movements — removed and placed tracked separately" loading="lazy" /></div></div>
+        </div>
+        <div class="tabs__panel">
+          <div>
+            <p class="tabs__label">Proof of what was collected, and from where</p>
+            <h3 class="tabs__title">Recycling bag evidence</h3>
+            <p class="body">A dedicated barcode-scanning flow with a customer/site lookup, waste-type tagging, and optional weight capture — building a running list of bags collected in the session rather than a single tally.</p>
+          </div>
+          <div class="phone" data-tilt><span class="phone__notch"></span><div class="phone__screen"><img src="assets/img/wm/11-scan.png" alt="Recycling bag barcode scanning with waste-type tagging" loading="lazy" /></div></div>
+        </div>
+        <div class="tabs__panel">
+          <div>
+            <p class="tabs__label">Proof the customer agreed</p>
+            <h3 class="tabs__title">Customer sign-off</h3>
+            <p class="body">A drawn signature captured on-canvas, not a checkbox — <strong>gating the manifest so it cannot be saved without it.</strong> Designing the four flows separately keeps each piece of proof legible on its own, which matters when someone in an office is reconstructing what happened without having been there.</p>
+          </div>
+          <div class="phone" data-tilt><span class="phone__notch"></span><div class="phone__screen"><img src="assets/img/wm/12-signoff.png" alt="Customer sign-off with drawn signature" loading="lazy" /></div></div>
         </div>
       </div>
     </div>
-  </nav>
+  </section>
 
-  <main id="top">
-
-    <!-- ═══════════ CH 01 — UNDERSTANDING THE WORLD ═══════════ -->
-    <section class="ch ch1" id="ch1" data-section-theme="dark">
-      <div class="ch1__pin">
-        <div class="ch1__sky ch1__sky--night" aria-hidden="true"></div>
-        <div class="ch1__sky ch1__sky--dawn" aria-hidden="true"></div>
-        <div class="ch1__sun" aria-hidden="true"></div>
-        <svg class="ch1__routes" viewBox="0 0 1440 500" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M-20 380 C 300 300, 500 430, 780 340 S 1250 260, 1460 330" fill="none" stroke="rgba(23,230,133,.35)" stroke-width="1.5" stroke-dasharray="3 9"/>
-          <path d="M-20 250 C 380 190, 700 300, 1050 210 S 1350 160, 1460 190" fill="none" stroke="rgba(237,234,226,.18)" stroke-width="1" stroke-dasharray="2 10"/>
-          <circle class="ch1__node" cx="300" cy="322" r="4"/>
-          <circle class="ch1__node" cx="780" cy="340" r="4"/>
-          <circle class="ch1__node" cx="1150" cy="252" r="4"/>
-        </svg>
-        <svg class="ch1__layer ch1__layer--far" viewBox="0 0 1440 260" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M0 260 V150 h60 v-40 h50 v40 h70 V90 h80 v70 h60 v-110 h20 l10-24 10 24 h20 v110 h90 V120 h70 v-60 h60 v60 h50 v40 h80 V100 h90 v60 h60 v-80 h70 v80 h55 v-45 h65 v45 h60 v-70 h70 v130 h55 v-60 h60 v100 h55 v-70 h50 V260 Z" fill="currentColor"/>
-        </svg>
-        <svg class="ch1__layer ch1__layer--mid" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M0 220 V120 h90 v-30 h60 v30 h30 V60 h18 V38 h12 v22 h18 v60 h60 v40 h80 v-90 h100 v90 h50 V90 h70 l0 -25 h55 l0 25 h20 v70 h95 v-55 h28 v-35 h12 v35 h28 v55 h85 v-75 h95 v75 h40 v-40 h80 v-45 h90 v145 h55 v-55 h59 V220 Z" fill="currentColor"/>
-          <rect x="452" y="96" width="26" height="18" rx="2" fill="#0b0b0c" opacity=".55"/>
-          <path d="M462 99 h6 M465 96 v9" stroke="#17e685" stroke-width="2.2" opacity=".9"/>
-        </svg>
-        <svg class="ch1__layer ch1__layer--near" viewBox="0 0 1440 170" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M0 170 V110 l45 -28 45 28 v60 h40 v-45 h70 v45 h30 V96 l52 -30 52 30 v74 h45 v-38 h85 v38 h35 V92 h120 v78 h50 v-52 l40 -22 40 22 v52 h60 v-70 h140 v70 h45 v-40 h90 v40 h40 V88 l48 -26 48 26 v82 h60 v-58 h95 v58 h35 v-45 h70 V170 Z" fill="currentColor"/>
-        </svg>
-        <div class="ch1__roadwrap" aria-hidden="true">
-          <div class="ch1__road"><span></span></div>
-          <svg class="truck" id="truck1" viewBox="0 0 220 90">
-            <defs>
-              <g id="truckSym">
-                <rect x="0" y="12" width="140" height="52" rx="7" fill="#1d5c52"/>
-                <rect x="10" y="22" width="120" height="10" rx="5" fill="rgba(237,234,226,.25)"/>
-                <text x="70" y="56" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="24" font-weight="900" fill="#edeae2">WM</text>
-                <path d="M140 24 h36 l24 22 v18 h-60 Z" fill="#123a3a"/>
-                <path d="M148 30 h24 l16 15 h-40 Z" fill="#9fd9cf"/>
-                <rect x="140" y="58" width="60" height="6" fill="#0d2b26"/>
-                <circle cx="38" cy="70" r="13" fill="#101114"/><circle cx="38" cy="70" r="6" fill="#3c4046"/>
-                <circle cx="106" cy="70" r="13" fill="#101114"/><circle cx="106" cy="70" r="6" fill="#3c4046"/>
-                <circle cx="178" cy="70" r="13" fill="#101114"/><circle cx="178" cy="70" r="6" fill="#3c4046"/>
-                <rect x="196" y="42" width="6" height="10" rx="2" fill="#f5b921"/>
-              </g>
-            </defs>
-            <use href="#truckSym"/>
-          </svg>
-          <div class="ch1__bins" aria-hidden="true"><i></i><i></i><i></i></div>
-        </div>
-        <div class="ch__copy ch1__copy">
-          <p class="ch__kicker">Chapter 01 — Understanding the world</p>
-          <h1 class="ch__title">
-            <span class="line-mask"><span class="line-inner">Every city depends on</span></span>
-            <span class="line-mask"><span class="line-inner">efficient waste collection.</span></span>
-          </h1>
-          <p class="ch__text">Every day, thousands of collections, drivers, schedules and communities rely on operations running with precision. Behind every successful collection is an intricate network of people, planning and coordination.</p>
-          <p class="ch__caption">Understanding operations before designing solutions.</p>
-        </div>
-        <div class="ch__scrollhint" aria-hidden="true"><span></span>Scroll the story</div>
+  <!-- ═══════════ 05 VERIFICATION ═══════════ -->
+  <section class="sec">
+    <div class="sec__inner">
+      <div data-rv>
+        <p class="kicker mono">05 — Verification</p>
+        <h2 class="h2">Verification <em>without blocking</em> the workflow.</h2>
+        <p class="lead">
+          The system knows the expected bin number. The driver enters or scans a different one.
+          Instead of a hard stop, the interface communicates the discrepancy directly and lets the
+          driver <strong>re-check, continue, or flag it for Operations review.</strong>
+        </p>
       </div>
-    </section>
+      <div class="pipe pipe--light" id="pipeMismatch">
+        <span class="pipe__step">EXPECTED DATA</span><span class="pipe__arrow">→</span>
+        <span class="pipe__step">ACTUAL DATA</span><span class="pipe__arrow">→</span>
+        <span class="pipe__step">MISMATCH</span><span class="pipe__arrow">→</span>
+        <span class="pipe__step">REVIEW OR CONTINUE</span>
+      </div>
+      <p class="quote" data-rv>
+        A field environment is messy; the product should be able to represent reality rather than
+        forcing reality to fit the interface.
+      </p>
+    </div>
+  </section>
 
-    <!-- ═══════════ CH 02 — DISCOVERING THE CHALLENGE ═══════════ -->
-    <section class="ch ch2" id="ch2" data-section-theme="light">
-      <div class="ch2__pin">
-        <div class="ch2__stage" id="ch2Stage" aria-hidden="true">
-          <div class="pcard pcard--manifest"><b>Route manifest — Mon</b><i></i><i></i><i></i><i></i><i style="width:55%"></i></div>
-          <div class="pcard pcard--sheet"><b>collections_v14_FINAL.xls</b><span class="pgrid"><u></u><u></u><u></u><u></u><u></u><u></u><u></u><u></u><u></u><u></u><u></u><u></u></span></div>
-          <div class="pcard pcard--note">Bin #B2104 missed — call depot before 7am</div>
-          <div class="pcard pcard--phone">☎ Dispatch — 6 missed calls</div>
-          <div class="pcard pcard--map"><b>Zone overlap — Rte 12 / Rte 15</b><svg viewBox="0 0 120 70"><path d="M8 58 C 40 20, 70 60, 112 24" fill="none" stroke="#b4622d" stroke-width="2.5"/><path d="M8 30 C 46 60, 82 14, 112 48" fill="none" stroke="#123a3a" stroke-width="2.5"/></svg></div>
-          <div class="pcard pcard--manifest pcard--alt"><b>Route manifest — Tue (rev 3)</b><i></i><i style="width:70%"></i><i></i><i style="width:45%"></i></div>
-          <div class="pcard pcard--warn">⚠ Schedule conflict — 2 crews, 1 vehicle</div>
-          <div class="pcard pcard--sheet pcard--alt2"><b>debtors_recon_copy(2).xls</b><span class="pgrid"><u></u><u></u><u></u><u></u><u></u><u></u><u></u><u></u></span></div>
-          <div class="pcard pcard--note pcard--alt3">Client says invoice missing — resend? Which version?</div>
-          <div class="pcard pcard--warn pcard--alt4">⚠ No visibility on truck 07 since 09:40</div>
-        </div>
-        <div class="ch__copy ch2__copy">
-          <p class="ch__kicker">Chapter 02 — Discovering the challenge</p>
-          <h2 class="ch__title">
-            <span class="line-mask"><span class="line-inner">Growth created</span></span>
-            <span class="line-mask"><span class="line-inner">complexity.</span></span>
-          </h2>
-          <p class="ch__text">As operations expanded, manual processes could no longer keep pace. Critical information became fragmented across disconnected tools, reducing visibility and slowing decision-making.</p>
-          <p class="ch__caption">This is where discovery begins.</p>
+  <!-- ═══════════ 06 CORRECTING THE RECORD ═══════════ -->
+  <section class="sec sec--paper2">
+    <div class="sec__inner duo">
+      <div>
+        <p class="num">06 — Correcting the record</p>
+        <h3 class="h3">Editable while in progress. Accountable after.</h3>
+        <p class="body">
+          Field data is captured once, but it isn't always correct the first time — a bin number
+          gets mistyped, a quantity gets revised after a supervisor call. Most systems either lock
+          everything permanently (punishing honest correction) or allow silent edits (destroying
+          trust in the record). <strong>WasteMart does neither.</strong>
+        </p>
+        <p class="body">
+          While a job is in progress, captured details are editable. Once complete, the record
+          locks — but a driver can still request a correction, and every change is written as an
+          explicit audit entry, visible inline against the field it changed.
+        </p>
+        <p class="body">
+          A reviewer looking at a completed job three weeks later doesn't just see the current
+          numbers — <strong>they see the history of how those numbers got there, and who touched
+          them.</strong> That's what makes a field-ops record usable as evidence, not just a status log.
+        </p>
+      </div>
+      <div data-rv>
+        <div class="audit">
+          <div class="audit__row">
+            <span class="audit__field">Bin removed — number</span>
+            <span class="audit__badge">Edited</span>
+            <span class="audit__delta"><span class="audit__old">BIN-9911</span><span class="audit__arrow">→</span><span class="audit__new">BIN-8814</span></span>
+          </div>
+          <div class="audit__row">
+            <span class="audit__field">Quantity</span>
+            <span class="audit__badge">Edited</span>
+            <span class="audit__delta"><span class="audit__old">1 · Skip 6m³</span><span class="audit__arrow">→</span><span class="audit__new">2 · Skip 6m³</span></span>
+          </div>
+          <div class="audit__meta">Amended by T. Dlamini · 21 May, 16:42 · correction requested after completion</div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ═══════════ CH 03 — A BETTER WAY ═══════════ -->
-    <section class="ch ch3" id="ch3" data-section-theme="light">
-      <div class="ch3__pin">
-        <div class="ch__copy ch3__copy">
-          <p class="ch__kicker">Chapter 03 — GEMIS discovers a better way</p>
-          <h2 class="ch__title">
-            <span class="line-mask"><span class="line-inner">Every transformation</span></span>
-            <span class="line-mask"><span class="line-inner">starts with understanding.</span></span>
-          </h2>
-          <p class="ch__text">We begin by understanding how people work, where friction exists and how technology can remove barriers — before a single line of code is written.</p>
+  <!-- ═══════════ 07 OFFLINE ═══════════ -->
+  <section class="sec">
+    <div class="sec__inner duo">
+      <div>
+        <p class="num">07 — Offline-first thinking</p>
+        <h3 class="h3">When connectivity becomes uncertain, visibility becomes part of trust.</h3>
+        <p class="body">
+          Connectivity is not always guaranteed. The system makes synchronisation visible without
+          making it the centre of the experience — a subtle persistent strip supports Online,
+          Syncing, Offline (queued locally) and Sync Failed states, so the driver
+          <strong>never has to wonder whether their work disappeared.</strong>
+        </p>
+        <div class="syncdemo" data-rv id="syncDemo">
+          <div class="syncdemo__pills">
+            <button class="syncdemo__pill is-active" data-sync="online">Online</button>
+            <button class="syncdemo__pill" data-sync="syncing">Syncing</button>
+            <button class="syncdemo__pill" data-sync="offline">Offline</button>
+            <button class="syncdemo__pill" data-sync="failed">Sync failed</button>
+          </div>
+          <div class="syncdemo__strip" id="syncStrip" data-state="online">
+            <span class="syncdemo__dot"></span><span id="syncText">Online · all operational data synced</span>
+          </div>
+          <p class="statedemo__hint" style="margin-top:0.8rem">Tap a state — the strip is how the driver sees it</p>
         </div>
-        <div class="ch3__board" aria-hidden="true">
-          <div class="ch3__stage ch3__stage--journey">
-            <b>Operations journey map</b>
-            <svg viewBox="0 0 420 150">
-              <path d="M20 110 C 110 40, 200 130, 300 60 S 390 60, 405 50" fill="none" stroke="#17a06b" stroke-width="2.5"/>
-              <circle cx="20" cy="110" r="7" fill="#123a3a"/><circle cx="150" cy="82" r="7" fill="#123a3a"/>
-              <circle cx="300" cy="60" r="7" fill="#123a3a"/><circle cx="405" cy="50" r="7" fill="#17e685"/>
-            </svg>
-            <div class="ch3__chips"><span>Dispatcher</span><span>Driver</span><span>Manager</span><span>Customer</span></div>
+      </div>
+      <div class="duo__media" data-rv>
+        <div class="phone" data-tilt><span class="phone__notch"></span><div class="phone__screen"><img src="assets/img/wm/18-shift.png" alt="Shift controls — sync status and offline queue" loading="lazy" /></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 08 ACTIVITY ═══════════ -->
+  <section class="sec sec--paper2">
+    <div class="sec__inner duo duo--flip">
+      <div>
+        <p class="num">08 — Managing the operational record</p>
+        <h3 class="h3">A record of the entire working day.</h3>
+        <p class="body">
+          Beyond the core job workflow, the Activity area gives drivers access to dump records and
+          fuel activity: reviewing previous entries, filtering by status, searching, creating new
+          records, and linking completed jobs to disposal events.
+        </p>
+        <p class="body">
+          The system distinguishes between records that are <strong>synced, queued, or failed</strong> —
+          extending the product beyond simple job completion into a record of the entire working day.
+        </p>
+      </div>
+      <div class="duo__media" data-rv>
+        <div class="phone" data-tilt><span class="phone__notch"></span><div class="phone__screen"><img src="assets/img/wm/17-activity.png" alt="Activity — dump records, fuel activity and manifests" loading="lazy" /></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 09 END DAY ═══════════ -->
+  <section class="sec sec--deep">
+    <div class="cube cube--float" style="top:14%;right:7%"><div class="cube__spin" style="--s:64px;--z:32px;animation-duration:15s"><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
+    <div class="sec__inner duo">
+      <div>
+        <p class="num" style="color:var(--mint)">09 — Ending the day isn't a button</p>
+        <h3 class="h3" style="color:#fff">It's a review.</h3>
+        <p class="body">
+          An early or incomplete close-out is exactly the moment operations teams need the most
+          information — and the moment a driver is most likely to want to rush. Tapping
+          <strong>End Day</strong> opens an operational review: jobs completed, jobs remaining,
+          pending uploads, and failed syncs, laid out plainly before anything is confirmed.
+        </p>
+        <p class="body">
+          If everything is clean, one clear confirmation. If it isn't, the path changes — and
+          choosing to end anyway doesn't quietly wave incomplete work through. It opens a second,
+          more deliberate sheet: an unresolved-items summary, a <strong>required reason code</strong>,
+          and an optional note for context. Only then can the day close.
+        </p>
+        <ul class="reasons" data-rv-group>
+          <li>Vehicle issue</li><li>Supervisor instruction</li><li>Personal emergency</li><li>Connectivity issue</li><li>Other</li>
+        </ul>
+        <p class="body" style="margin-top:1.2rem">
+          Whoever reviews the day afterward doesn't just see that something was left incomplete —
+          they see <strong>why, in the driver's own words.</strong> A moment that's usually just a
+          data gap becomes a small, structured handoff between the driver and the office.
+        </p>
+      </div>
+      <div class="duo__media" data-rv>
+        <div class="phone" data-tilt><span class="phone__notch"></span><div class="phone__screen"><img src="assets/img/wm/19-endday-review.png" alt="End Workday review — completed, remaining, pending uploads, failed syncs" loading="lazy" /></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ FILM STRIP ═══════════ -->
+  <section class="strip">
+    <p class="strip__head mono" data-rv>29 screens · one working system · a few of them ↓</p>
+    <div class="strip__row" id="stripRow">
+      <div class="phone"><div class="phone__screen"><img src="assets/img/wm/01-login.png" alt="Login" loading="lazy" /></div></div>
+      <div class="phone"><div class="phone__screen"><img src="assets/img/wm/03-vehicles.png" alt="Vehicle selection" loading="lazy" /></div></div>
+      <div class="phone"><div class="phone__screen"><img src="assets/img/wm/04-startday-ready.png" alt="Start day" loading="lazy" /></div></div>
+      <div class="phone"><div class="phone__screen"><img src="assets/img/wm/06-jobs.png" alt="Jobs" loading="lazy" /></div></div>
+      <div class="phone"><div class="phone__screen"><img src="assets/img/wm/07-job-detail.png" alt="Job detail" loading="lazy" /></div></div>
+      <div class="phone"><div class="phone__screen"><img src="assets/img/wm/09-capture-top.png" alt="Capture" loading="lazy" /></div></div>
+      <div class="phone"><div class="phone__screen"><img src="assets/img/wm/11-scan.png" alt="Bag scanning" loading="lazy" /></div></div>
+      <div class="phone"><div class="phone__screen"><img src="assets/img/wm/12-signoff.png" alt="Sign-off" loading="lazy" /></div></div>
+      <div class="phone"><div class="phone__screen"><img src="assets/img/wm/17-activity.png" alt="Activity" loading="lazy" /></div></div>
+      <div class="phone"><div class="phone__screen"><img src="assets/img/wm/19-endday-review.png" alt="End day review" loading="lazy" /></div></div>
+    </div>
+  </section>
+
+  <!-- ═══════════ DESIGN SYSTEM ═══════════ -->
+  <section class="sec">
+    <div class="sec__inner">
+      <div data-rv>
+        <p class="kicker mono">The design system</p>
+        <h2 class="h2">A restrained visual language, built for <em>clarity in the field.</em></h2>
+        <p class="lead">
+          Strong hierarchy, high-contrast action states, clear status indicators, consistent card
+          patterns, large touch targets, predictable navigation, and restrained colour — built on a
+          proper token system rather than one-off styling per screen, so the 29 screens stay
+          visually consistent under real iteration.
+        </p>
+      </div>
+      <div class="tokens" data-rv-group>
+        <div class="token">
+          <span class="mono">Colour · operational states</span>
+          <div class="swatches">
+            <span style="background:#063A40" title="Deep teal"></span>
+            <span style="background:#22B8A6" title="Action teal"></span>
+            <span style="background:#9FD9D0" title="Mint"></span>
+            <span style="background:#F2C063" title="Warning"></span>
+            <span style="background:#E2626B" title="Destructive"></span>
+            <span style="background:#F2F5F4" title="Surface"></span>
           </div>
-          <div class="ch3__stage ch3__stage--wire">
-            <b>Wireframes</b>
-            <div class="wire"><span class="w1"></span><span class="w2"></span><span class="w3"></span><span class="w4"></span><span class="w5"></span><span class="w6"></span></div>
+        </div>
+        <div class="token typeramp">
+          <span class="mono">Type ramp</span>
+          <b style="font-size:1.55rem">Headline 28</b>
+          <b style="font-size:1.15rem;color:#2c4441">Title 20</b>
+          <b style="font-size:0.9rem;color:#5B6F6D;font-family:var(--fb);font-weight:500">Body 15 — labels &amp; meta in mono</b>
+        </div>
+        <div class="token">
+          <span class="mono">Radii &amp; elevation</span>
+          <div class="radii">
+            <span style="width:44px;height:44px;border-radius:8px"></span>
+            <span style="width:44px;height:44px;border-radius:14px"></span>
+            <span style="width:44px;height:44px;border-radius:22px"></span>
+            <span style="width:64px;height:34px;border-radius:999px"></span>
           </div>
-          <div class="ch3__stage ch3__stage--ui">
-            <b>Working prototype</b>
-            <div class="mk mk--dark mk--flat">
-              <div class="mk__bar"><i></i><i></i><i></i><em>wastemart ops — prototype</em></div>
-              <div class="mk__body mk__body--row">
-                <div class="mk__side"><b></b><b></b><b></b></div>
-                <div class="mk__main"><div class="mk__kpis"><span>Routes 12</span><span>On-time</span></div>
-                <div class="mk__chart"><u style="height:55%"></u><u style="height:78%"></u><u style="height:62%"></u><u style="height:88%"></u><u style="height:70%"></u></div></div>
+        </div>
+        <div class="token spacing">
+          <span class="mono">Spacing scale</span>
+          <div><span style="width:8px"></span><span style="width:16px"></span><span style="width:24px"></span><span style="width:40px"></span><span style="width:64px"></span></div>
+          <p class="body" style="margin-top:0.7rem;font-size:0.8rem">8 · 16 · 24 · 40 · 64 — large touch targets by default.</p>
+        </div>
+      </div>
+      <p class="body" style="margin-top:1.6rem;max-width:72ch" data-rv>
+        The language supports a hierarchy between <strong>primary action</strong> (what needs to
+        happen next), <strong>operational status</strong> (what state the work is in), and
+        <strong>supporting information</strong> — particularly important on mobile, where the
+        driver may be working under time pressure.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════ PRINCIPLE ═══════════ -->
+  <section class="sec sec--deep principle">
+    <div class="sec__inner" data-rv>
+      <p class="kicker mono" style="justify-content:center">The core UX principle</p>
+      <p class="principle__big">One job. One next action.</p>
+      <p class="lead" style="margin:0 auto;max-width:64ch">
+        At any point in the workflow, the driver should understand what has happened, what is
+        happening, and what happens next. They should not need to remember which step they
+        completed, which information is missing, which button they need next, or whether the
+        system saved their work. <strong>The product should communicate that state — always.</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════ RESULT + LIVE PROTOTYPE ═══════════ -->
+  <section class="sec sec--deep" style="background:linear-gradient(180deg, var(--deep), var(--deep-3))">
+    <div class="sec__inner">
+      <div data-rv>
+        <p class="kicker mono">The result</p>
+        <h2 class="h2">A complete operational workflow — <em>not a collection of screens.</em></h2>
+      </div>
+      <div class="pipe" id="pipeResult">
+        <span class="pipe__step">ASSIGNMENT</span><span class="pipe__arrow">→</span>
+        <span class="pipe__step">CHECK-IN</span><span class="pipe__arrow">→</span>
+        <span class="pipe__step">JOB EXECUTION</span><span class="pipe__arrow">→</span>
+        <span class="pipe__step">DATA CAPTURE</span><span class="pipe__arrow">→</span>
+        <span class="pipe__step">EVIDENCE</span><span class="pipe__arrow">→</span>
+        <span class="pipe__step">SIGN-OFF</span><span class="pipe__arrow">→</span>
+        <span class="pipe__step">MANIFEST</span><span class="pipe__arrow">→</span>
+        <span class="pipe__step">CHECK-OUT</span><span class="pipe__arrow">→</span>
+        <span class="pipe__step">RECONCILIATION</span><span class="pipe__arrow">→</span>
+        <span class="pipe__step">END OF DAY</span>
+      </div>
+      <ul class="outcomes" data-rv-group>
+        <li>Clearer job progression</li>
+        <li>Contextual next actions</li>
+        <li>Four distinct evidence types</li>
+        <li>Non-blocking verification</li>
+        <li>Auditable correction trail</li>
+        <li>Structured close-out process</li>
+        <li>Offline resilience</li>
+        <li>Full operational activity record</li>
+      </ul>
+      <div class="embed">
+        <div data-rv>
+          <h3 class="h3" style="color:#fff">Don't take the screenshots' word for it.</h3>
+          <p class="body">
+            This case study is backed by a <strong>fully working interactive prototype — 29
+            screens</strong>, with the state machine, audit logic, evidence flows and two-stage
+            close-out all functional. Log in with any credentials, pick truck CT-WM-417, and run
+            a delivery end-to-end.
+          </p>
+          <div class="btnrow">
+            <a class="btn btn--teal" href="wastemart-proto.html" target="_blank" rel="noopener">Open full prototype ↗</a>
+            <button class="btn btn--ghostl" id="embedBtn">Run it here</button>
+          </div>
+        </div>
+        <div class="embed__frame" data-rv>
+          <div class="phone">
+            <span class="phone__notch"></span>
+            <div class="phone__screen" id="embedScreen">
+              <div class="embed__cover" id="embedCover" role="button" tabindex="0" aria-label="Launch the WasteMart prototype">
+                <span><i class="embed__play">▶</i><span class="mono" style="color:#fff">Launch prototype</span></span>
               </div>
             </div>
           </div>
         </div>
-        <div class="ch3__team" aria-hidden="true">
-          <div class="ticker" data-ticker data-speed="0.7">
-            <div class="ticker__track">
-              <span>Business analysis</span><i>✦</i><span>UX research</span><i>✦</i><span>UX/UI design</span><i>✦</i><span>Solution architecture</span><i>✦</i><span>Software engineering</span><i>✦</i><span>Quality assurance</span><i>✦</i><span>AI &amp; automation</span><i>✦</i><span>Continuous improvement</span><i>✦</i>
-              <span>Business analysis</span><i>✦</i><span>UX research</span><i>✦</i><span>UX/UI design</span><i>✦</i><span>Solution architecture</span><i>✦</i><span>Software engineering</span><i>✦</i><span>Quality assurance</span><i>✦</i><span>AI &amp; automation</span><i>✦</i><span>Continuous improvement</span><i>✦</i>
-            </div>
-          </div>
-        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ═══════════ CH 04 — ENGINEERING THE PLATFORM ═══════════ -->
-    <section class="ch ch4" id="ch4" data-section-theme="dark">
-      <div class="ch4__pin">
-        <div class="ch__copy ch4__copy">
-          <p class="ch__kicker ch__kicker--cyan">Chapter 04 — Engineering the platform</p>
-          <h2 class="ch__title">
-            <span class="line-mask"><span class="line-inner">Software engineered</span></span>
-            <span class="line-mask"><span class="line-inner">around real operations.</span></span>
-          </h2>
-          <p class="ch__text">Every workflow, interface and integration was designed around the people responsible for keeping cities moving.</p>
-          <p class="ch__caption">Designed. Engineered. Delivered by GEMIS.</p>
-        </div>
-        <div class="ch4__grid">
-          <div class="ch4__map" aria-hidden="true">
-            <svg viewBox="0 0 520 420" id="opsMap">
-              <g stroke="rgba(237,234,226,.07)" stroke-width="1.5">
-                <path d="M0 70 H520 M0 150 H520 M0 230 H520 M0 310 H520 M0 390 H520"/>
-                <path d="M60 0 V420 M150 0 V420 M240 0 V420 M330 0 V420 M420 0 V420"/>
-              </g>
-              <path id="opsRoute" d="M30 390 L150 390 Q160 390 160 380 L160 240 Q160 230 170 230 L330 230 Q340 230 340 220 L340 90 Q340 80 350 80 L480 80"
-                fill="none" stroke="#17e685" stroke-width="3" stroke-linecap="round"/>
-              <circle cx="30" cy="390" r="6" fill="#17e685"/>
-              <circle cx="480" cy="80" r="6" fill="#edeae2"/>
-              <circle cx="160" cy="300" r="4" fill="rgba(23,230,133,.5)"/>
-              <circle cx="260" cy="230" r="4" fill="rgba(23,230,133,.5)"/>
-              <circle cx="340" cy="140" r="4" fill="rgba(23,230,133,.5)"/>
-              <g id="mapTruck"><use href="#truckSym" transform="scale(0.32) translate(-110 -100)"/></g>
-            </svg>
-            <div class="ch4__toast ch4__toast--a">✓ Collection confirmed — #B2104</div>
-            <div class="ch4__toast ch4__toast--b">Route 12 re-optimised · −18 min</div>
-            <div class="ch4__toast ch4__toast--c">Driver 07 — next task sent</div>
-          </div>
-          <ol class="ch4__caps" id="capList">
-            <li><b>01</b><div><h3>Intelligent route planning</h3><p>Optimised daily routes built from live constraints.</p></div></li>
-            <li><b>02</b><div><h3>Driver mobile application</h3><p>Tasks, navigation and proof-of-service in hand.</p></div></li>
-            <li><b>03</b><div><h3>Offline field operations</h3><p>Full functionality beyond network coverage.</p></div></li>
-            <li><b>04</b><div><h3>Fleet visibility</h3><p>Every vehicle, live, on one map.</p></div></li>
-            <li><b>05</b><div><h3>Live operations dashboard</h3><p>The whole operation at a glance.</p></div></li>
-            <li><b>06</b><div><h3>Reporting &amp; analytics</h3><p>Decisions backed by operational data.</p></div></li>
-            <li><b>07</b><div><h3>Workflow automation</h3><p>Manual coordination replaced by rules.</p></div></li>
-            <li><b>08</b><div><h3>AI-assisted decision support</h3><p>The platform suggests, people decide.</p></div></li>
-          </ol>
-        </div>
+  <!-- ═══════════ REFLECTION ═══════════ -->
+  <section class="sec">
+    <div class="sec__inner reflect">
+      <div data-rv>
+        <p class="kicker mono">Reflection</p>
+        <h2 class="h2">Complexity should exist in the system — <em>not in the user's decision-making.</em></h2>
+        <p class="lead">
+          The product manages multiple jobs, operational states, four kinds of evidence,
+          exceptions, synchronisation, and incomplete work — but the driver using it shouldn't
+          have to carry all of that in their head. The role of the interface is to make the next
+          right action clear, and the role of the record it leaves behind is to
+          <strong>make the day defensible to someone who wasn't there.</strong>
+        </p>
       </div>
-    </section>
+      <div class="reflect__note" data-rv>
+        <b>On what this case study is, and isn't:</b> this is a systems-design artifact, built as a
+        fully working interactive prototype rather than static screens. I designed and built the
+        state machine, the audit-trail and correction logic, the four evidence flows, and the
+        two-stage close-out process myself, and I can walk through the reasoning behind any of it —
+        including the decisions I'd revisit given real usage data. What I have <b>not</b> done is
+        fabricate user research findings, usability-test results, or business metrics that don't
+        exist. If there's a next phase of this project, it's exactly there: putting this in front
+        of real drivers and dispatchers and finding out which of these decisions hold up.
+      </div>
+    </div>
+  </section>
 
-    <!-- ═══════════ CH 05 — TRANSFORMING OPERATIONS ═══════════ -->
-    <section class="ch ch5" id="ch5" data-section-theme="light">
-      <div class="ch__copy ch5__head">
-        <p class="ch__kicker">Chapter 05 — Transforming operations</p>
-        <h2 class="ch__title">
-          <span class="line-mask"><span class="line-inner">The difference wasn't</span></span>
-          <span class="line-mask"><span class="line-inner">simply better software.</span></span>
-          <span class="line-mask"><span class="line-inner ch5__em">It was a better way of working.</span></span>
-        </h2>
-        <p class="ch__text">By connecting people, operations and information into one intelligent platform, WasteMart gained greater visibility, consistency and confidence across its daily operations.</p>
+  <!-- footer -->
+  <footer class="foot">
+    <div class="foot__inner">
+      <span class="mono">WasteMart — Product Design Case Study</span>
+      <div style="display:flex;gap:1.6rem;flex-wrap:wrap">
+        <a href="index.html#work">← All work</a>
+        <a href="managem.html">Next: ManaGem →</a>
       </div>
-      <ul class="ch5__list">
-        <li class="shift"><span class="shift__old">Paper manifests</span><span class="shift__arrow">→</span><span class="shift__new">Digital workflows</span></li>
-        <li class="shift"><span class="shift__old">Manual coordination</span><span class="shift__arrow">→</span><span class="shift__new">Connected operations</span></li>
-        <li class="shift"><span class="shift__old">Phone calls</span><span class="shift__arrow">→</span><span class="shift__new">Real-time notifications</span></li>
-        <li class="shift"><span class="shift__old">Limited visibility</span><span class="shift__arrow">→</span><span class="shift__new">Live operational intelligence</span></li>
-        <li class="shift"><span class="shift__old">Reactive planning</span><span class="shift__arrow">→</span><span class="shift__new">Proactive decision-making</span></li>
-      </ul>
-      <p class="ch__caption ch5__sig">Transformation engineered by GEMIS.</p>
-    </section>
-
-    <!-- ═══════════ CH 06 — READY FOR TOMORROW ═══════════ -->
-    <section class="ch ch6" id="ch6" data-section-theme="dark">
-      <div class="ch6__pin">
-        <div class="ch6__scene" id="ch6Scene" aria-hidden="true">
-          <div class="ch6__sky"></div>
-          <div class="ch6__sun"></div>
-          <svg class="ch6__layer" viewBox="0 0 1440 240" preserveAspectRatio="none">
-            <path d="M0 240 V140 h70 v-45 h60 v45 h45 V60 h85 v80 h55 v-55 h95 v55 h45 V80 h70 l0 -30 h55 l0 30 h30 v60 h95 v-45 h110 v45 h55 v-85 h90 v85 h45 v-40 h85 v-40 h85 v140 h60 v-55 h60 V240 Z" fill="currentColor"/>
-          </svg>
-          <div class="ch6__flow" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-          <div class="ch6__road"></div>
-          <svg class="truck ch6__truck ch6__truck--a" viewBox="0 0 220 90"><use href="#truckSym"/></svg>
-          <svg class="truck ch6__truck ch6__truck--b" viewBox="0 0 220 90"><use href="#truckSym"/></svg>
-          <svg class="truck ch6__truck ch6__truck--c" viewBox="0 0 220 90"><use href="#truckSym"/></svg>
-        </div>
-        <div class="ch__copy ch6__copy">
-          <p class="ch__kicker">Chapter 06 — Ready for tomorrow</p>
-          <h2 class="ch__title">
-            <span class="line-mask"><span class="line-inner">Built for today.</span></span>
-            <span class="line-mask"><span class="line-inner">Ready for tomorrow.</span></span>
-          </h2>
-          <p class="ch__text">A scalable digital platform designed to support operational excellence, future growth and continuous innovation.</p>
-        </div>
-        <ul class="ch6__outcomes">
-          <li class="reveal">One operational platform<br><small>replacing disconnected tools</small></li>
-          <li class="reveal">Live fleet visibility<br><small>across every route and vehicle</small></li>
-          <li class="reveal">Digital-first workflows<br><small>from booking to proof-of-service</small></li>
-          <li class="reveal">Offline-capable field ops<br><small>built for real-world conditions</small></li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ═══════════ FINAL — WHAT COULD GEMIS BUILD FOR YOU ═══════════ -->
-    <footer class="footer story-final" id="contact" data-section-theme="dark">
-      <div class="footer__cta">
-        <p class="footer__pre">The next story</p>
-        <h2 class="footer__title">
-          <span class="hero__line"><span data-split>WHAT&nbsp;COULD&nbsp;WE</span></span>
-          <span class="hero__line hero__line--outline"><span data-split>ENGINEER&nbsp;FOR&nbsp;YOU?</span></span>
-        </h2>
-        <p class="story-final__text">Every organisation has unique operational challenges. We partner with ambitious teams to understand how they work, design around their people and engineer intelligent software that delivers measurable outcomes.</p>
-        <div class="footer__actions">
-          <a href="mailto:hello@gemis.tech?subject=Strategy%20session" class="btn-big" data-magnetic data-cursor="Let's talk">
-            <span>Book a strategy session</span>
-          </a>
-          <a class="link-arrow" href="index.html#work">Explore more stories <span>→</span></a>
-        </div>
-      </div>
-      <div class="footer__base">
-        <div class="footer__legal">
-          <span>© 2026 GEMIS. WasteMart transformation story.</span>
-          <span><a href="index.html">gemis.tech</a></span>
-        </div>
-      </div>
-      <div class="footer__wordmark" aria-hidden="true"><span>GEMIS®</span></div>
-    </footer>
-
-  </main>
+    </div>
+  </footer>
 
   <script src="assets/js/gsap.min.js"></script>
   <script src="assets/js/ScrollTrigger.min.js"></script>
   <script src="assets/js/lenis.min.js"></script>
-  <script src="assets/js/main.js" defer></script>
-  <script src="assets/js/story.js" defer></script>
+  <script>
+  (() => {
+    const $ = (s, c = document) => c.querySelector(s);
+    const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+    const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isTouch = matchMedia('(pointer: coarse)').matches;
+
+    /* smooth scroll */
+    let lenis = null;
+    if (window.Lenis && !prefersReduced) {
+      lenis = new Lenis({ duration: 1.1, smoothWheel: true });
+      const raf = (t) => { lenis.raf(t); requestAnimationFrame(raf); };
+      requestAnimationFrame(raf);
+    }
+    if (window.gsap) {
+      gsap.registerPlugin(ScrollTrigger);
+      if (lenis) lenis.on('scroll', ScrollTrigger.update);
+    }
+
+    /* header state */
+    addEventListener('scroll', () => $('#top').classList.toggle('is-scrolled', scrollY > 60), { passive: true });
+
+    /* reveals */
+    if (window.gsap && !prefersReduced) {
+      $$('[data-rv]').forEach((el) => {
+        gsap.fromTo(el, { y: 34, opacity: 0 }, {
+          y: 0, opacity: 1, duration: 1, ease: 'expo.out', clearProps: 'transform',
+          scrollTrigger: { trigger: el, start: 'top 88%' },
+          onStart: () => el.classList.add('is-rv'),
+        });
+      });
+      $$('[data-rv-group]').forEach((g) => {
+        gsap.fromTo([...g.children], { y: 26, opacity: 0 }, {
+          y: 0, opacity: 1, duration: 0.8, ease: 'expo.out', stagger: 0.05,
+          scrollTrigger: { trigger: g, start: 'top 86%' },
+        });
+      });
+      /* pipelines light up step by step */
+      $$('.pipe').forEach((pipe) => {
+        const steps = $$('.pipe__step', pipe);
+        ScrollTrigger.create({
+          trigger: pipe, start: 'top 82%',
+          onEnter: () => steps.forEach((s, i) => setTimeout(() => s.classList.add('is-on'), i * 170)),
+        });
+      });
+      /* hero phones drift on scroll */
+      gsap.to('.hero__phones', { yPercent: -6, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+      /* film strip slow pan */
+      const row = $('#stripRow');
+      if (row) gsap.to(row, { x: () => -(row.scrollWidth - innerWidth + 80), ease: 'none',
+        scrollTrigger: { trigger: '.strip', start: 'top 85%', end: 'bottom top', scrub: 1 } });
+    } else {
+      $$('[data-rv]').forEach((el) => el.classList.add('is-rv'));
+      $$('.pipe__step').forEach((s) => s.classList.add('is-on'));
+    }
+
+    /* tilt */
+    if (!isTouch && !prefersReduced && window.gsap) {
+      $$('[data-tilt]').forEach((el) => {
+        el.addEventListener('mousemove', (e) => {
+          const r = el.getBoundingClientRect();
+          gsap.to(el, {
+            rotateY: ((e.clientX - r.left) / r.width - 0.5) * 10,
+            rotateX: ((e.clientY - r.top) / r.height - 0.5) * -8,
+            transformPerspective: 800, duration: 0.5, ease: 'power2.out',
+          });
+        });
+        el.addEventListener('mouseleave', () => gsap.to(el, { rotateX: 0, rotateY: 0, duration: 0.7, ease: 'elastic.out(1,0.5)' }));
+      });
+    }
+
+    /* 01 — job state demo */
+    const states = ['Assigned', 'Checked in', 'Details captured', 'Manifest saved', 'Completed'];
+    const actions = ['Confirm & Check In', 'Capture Details', 'Save Manifest', 'Check Out', '✓ Job complete — tap to restart'];
+    let sIdx = 0;
+    const dots = $$('#stateDemo .statedemo__dot');
+    const stateBtn = $('#stateBtn');
+    const renderState = () => {
+      dots.forEach((d, i) => {
+        d.classList.toggle('is-done', i < sIdx);
+        d.classList.toggle('is-now', i === sIdx);
+      });
+      stateBtn.textContent = actions[sIdx];
+      stateBtn.classList.toggle('is-done', sIdx === states.length - 1);
+    };
+    if (stateBtn) {
+      renderState();
+      stateBtn.addEventListener('click', () => { sIdx = (sIdx + 1) % states.length; renderState(); });
+    }
+
+    /* 04 — evidence tabs */
+    const tabsRoot = $('#evidenceTabs');
+    if (tabsRoot) {
+      const btns = $$('.tabs__btn', tabsRoot);
+      const panels = $$('.tabs__panel', tabsRoot);
+      btns.forEach((b) => b.addEventListener('click', () => {
+        btns.forEach((x) => x.classList.toggle('is-active', x === b));
+        panels.forEach((p, i) => p.classList.toggle('is-active', i === +b.dataset.tab));
+      }));
+    }
+
+    /* 07 — sync demo */
+    const syncStates = {
+      online:  'Online · all operational data synced',
+      syncing: 'Syncing… 3 items',
+      offline: 'Offline · 3 queued — saved locally',
+      failed:  'Sync failed · 1 item — tap to retry',
+    };
+    const strip = $('#syncStrip'), syncText = $('#syncText');
+    $$('#syncDemo .syncdemo__pill').forEach((pill) => pill.addEventListener('click', () => {
+      $$('#syncDemo .syncdemo__pill').forEach((x) => x.classList.toggle('is-active', x === pill));
+      strip.dataset.state = pill.dataset.sync;
+      syncText.textContent = syncStates[pill.dataset.sync];
+    }));
+
+    /* live prototype embed */
+    const boot = () => {
+      const scr = $('#embedScreen');
+      const cover = $('#embedCover');
+      if (!cover || cover.dataset.done) return;
+      cover.dataset.done = '1';
+      const f = document.createElement('iframe');
+      f.src = 'wastemart-proto.html';
+      f.title = 'WasteMart interactive prototype';
+      f.loading = 'lazy';
+      scr.appendChild(f);
+      cover.style.opacity = '0';
+      setTimeout(() => cover.remove(), 450);
+    };
+    $('#embedCover')?.addEventListener('click', boot);
+    $('#embedCover')?.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') boot(); });
+    $('#embedBtn')?.addEventListener('click', () => {
+      boot();
+      $('#embedScreen').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  })();
+  </script>
 </body>
 </html>
