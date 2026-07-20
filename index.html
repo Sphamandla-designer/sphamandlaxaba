@@ -15,7 +15,7 @@
   <link rel="preload" href="assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/jetbrains-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/img/hero-bg.png" as="image" fetchpriority="high" />
-  <link rel="stylesheet" href="assets/css/home.css?v=neon-2" />
+  <link rel="stylesheet" href="assets/css/home.css?v=neon-3" />
   <script>document.documentElement.classList.add('js');</script>
   <script type="importmap">{ "imports": { "three": "./assets/js/three.module.min.js" } }</script>
 </head>
@@ -174,25 +174,44 @@
     <section class="manifesto" id="philosophy">
       <div class="manifesto__head">
         <p class="section-tag" data-reveal><span>01</span> — Design Philosophy</p>
-        <h2 class="section-title" data-split>Designing trust,<br /><em>not just interfaces.</em></h2>
+        <h2 class="section-title" data-split>Designing systems that<br /><em>hold up under real use.</em></h2>
       </div>
       <p class="manifesto__text" id="manifestoText">
-        Enterprise AI doesn't fail on the screen. It fails in the gap between what a
-        system decides and whether the people affected by that decision trust it. That's
-        the space I design for.
+        Good design isn't the interface — it's everything that has to be true for the
+        interface to work.
       </p>
       <div class="philo">
         <p class="philo__lead" data-reveal>
-          Whether I'm simplifying a property-management platform, helping field technicians
-          submit compliant evidence through WhatsApp, or improving operational workflows for
-          enterprise teams, my focus is always the same: <strong>make complex decisions feel
-          understandable, reliable and human.</strong>
+          Before I draw a screen, I want to understand the decision points, the failure
+          states, and the constraints the business is actually operating under — whether
+          that's a WiFi dashboard, a fintech onboarding flow, or a WhatsApp-based
+          verification system. <strong>The medium changes. The discipline doesn't.</strong>
         </p>
         <ul class="philo__list">
-          <li data-reveal><span class="mono">01</span>Explain rather than hide AI decisions.</li>
-          <li data-reveal><span class="mono">02</span>Help users recover from mistakes instead of punishing them.</li>
-          <li data-reveal><span class="mono">03</span>Reduce operational complexity without sacrificing transparency.</li>
-          <li data-reveal><span class="mono">04</span>Balance business goals with real human behaviour.</li>
+          <li data-reveal>
+            <span class="mono">01</span>
+            <p><strong>Context beats convention.</strong> I design for the South African
+            reality — multilingual, low-bandwidth, income-irregular — instead of importing
+            frameworks built for someone else's market.</p>
+          </li>
+          <li data-reveal>
+            <span class="mono">02</span>
+            <p><strong>Trust is a design material.</strong> Consent, data handling, and
+            compliance aren't legal afterthoughts — POPIA and governance thinking get
+            designed in from the first flow, not bolted on before launch.</p>
+          </li>
+          <li data-reveal>
+            <span class="mono">03</span>
+            <p><strong>Unhappy paths are the real design work.</strong> Rejection loops,
+            edge cases, admin overrides — if a system only works in the happy-path demo,
+            it isn't finished.</p>
+          </li>
+          <li data-reveal>
+            <span class="mono">04</span>
+            <p><strong>Depth over breadth-for-its-own-sake.</strong> Whether it's a service
+            blueprint, a design system, or a conversational AI flow, I'd rather take one
+            problem all the way to governance-grade than ship ten shallow screens.</p>
+          </li>
         </ul>
       </div>
     </section>
@@ -449,7 +468,7 @@
   <script src="assets/js/gsap.min.js"></script>
   <script src="assets/js/ScrollTrigger.min.js"></script>
   <script src="assets/js/lenis.min.js"></script>
-  <script src="assets/js/home.js?v=neon-2" defer></script>
-  <script type="module" src="assets/js/hero-gl.js?v=neon-2"></script>
+  <script src="assets/js/home.js?v=neon-3" defer></script>
+  <script type="module" src="assets/js/hero-gl.js?v=neon-3"></script>
 </body>
 </html>
