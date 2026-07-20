@@ -8,12 +8,13 @@
   <meta property="og:title" content="Sphamandla Xaba® — Product Designer &amp; AI Experience Designer" />
   <meta property="og:description" content="I start from zero, designing only what matters. Product design, AI experiences and design systems." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://d8j0ntlcm91z4.cloudfront.net/user_3GMOZifqmavH53boYn9eGkcXqUc/hf_20260712_223347_499c8c9f-c98b-4164-93bd-ca0249b00b48.png" />
+  <meta property="og:image" content="https://sphamandla-designer.github.io/sphamandlaxaba/assets/img/hero-bg.png" />
+  <meta name="theme-color" content="#060609" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/jetbrains-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="assets/img/hero-bust.svg" as="image" fetchpriority="high" />
+  <link rel="preload" href="assets/img/hero-bg.png" as="image" fetchpriority="high" />
   <link rel="stylesheet" href="assets/css/home.css" />
   <script>document.documentElement.classList.add('js');</script>
   <script type="importmap">{ "imports": { "three": "./assets/js/three.module.min.js" } }</script>
@@ -34,12 +35,6 @@
     </div>
     <div class="loader__curtain loader__curtain--l"></div>
     <div class="loader__curtain loader__curtain--r"></div>
-  </div>
-
-  <!-- ═══════════════ CURSOR ═══════════════ -->
-  <div class="cursor" id="cursor" aria-hidden="true">
-    <div class="cursor__ring" id="cursorRing"><span class="cursor__label" id="cursorLabel">View</span></div>
-    <div class="cursor__dot" id="cursorDot"></div>
   </div>
 
   <!-- ═══════════════ GRAIN ═══════════════ -->
@@ -98,13 +93,8 @@
 
     <!-- ═══════════════ HERO ═══════════════ -->
     <section class="hero" id="hero">
+      <div class="hero__bg" id="heroBg" aria-hidden="true"></div>
       <div class="hero__canvas" id="heroCanvas" aria-hidden="true"></div>
-
-      <!-- CENTER bust (behind content) -->
-      <figure class="hero__figure" id="heroFigure" aria-hidden="true">
-        <img src="assets/img/hero-bust.svg" alt="" class="hero__bust" id="heroBust" draggable="false"
-             data-src="https://d8j0ntlcm91z4.cloudfront.net/user_3GMOZifqmavH53boYn9eGkcXqUc/hf_20260712_223347_499c8c9f-c98b-4164-93bd-ca0249b00b48.png" />
-      </figure>
 
       <span class="hero__word" id="heroWord" aria-hidden="true">XABA</span>
 
