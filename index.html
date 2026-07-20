@@ -15,7 +15,7 @@
   <link rel="preload" href="assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/jetbrains-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/img/hero-bg.png" as="image" fetchpriority="high" />
-  <link rel="stylesheet" href="assets/css/home.css?v=neon-1" />
+  <link rel="stylesheet" href="assets/css/home.css?v=neon-2" />
   <script>document.documentElement.classList.add('js');</script>
   <script type="importmap">{ "imports": { "three": "./assets/js/three.module.min.js" } }</script>
 </head>
@@ -58,36 +58,8 @@
         <span class="header__meta-label">Timezone</span>
         <span class="header__meta-time"><b id="clock">6:30pm</b>&nbsp;•&nbsp;<span id="dateNow">12 July, 2026</span></span>
       </div>
-      <button class="menu-pill" id="burger" aria-label="Open menu" aria-expanded="false" data-magnetic>
-        <span class="menu-pill__lines"><i></i><i></i></span>
-        <span class="menu-pill__word">Menu</span>
-      </button>
     </div>
   </header>
-
-  <!-- ═══════════════ OVERLAY MENU ═══════════════ -->
-  <nav class="menu" id="menu" aria-hidden="true">
-    <div class="menu__scrim" data-menu-close></div>
-    <div class="menu__panel">
-      <p class="menu__label">( Navigation )</p>
-      <ul class="menu__list">
-        <li><a href="#top" class="menu__link" data-menu-close><span class="menu__index">01</span><span class="menu__word">Home</span></a></li>
-        <li><a href="#work" class="menu__link" data-menu-close><span class="menu__index">02</span><span class="menu__word">Work</span></a></li>
-        <li><a href="#problems" class="menu__link" data-menu-close><span class="menu__index">03</span><span class="menu__word">Problems</span></a></li>
-        <li><a href="#services" class="menu__link" data-menu-close><span class="menu__index">04</span><span class="menu__word">Expertise</span></a></li>
-        <li><a href="#about" class="menu__link" data-menu-close><span class="menu__index">05</span><span class="menu__word">About</span></a></li>
-        <li><a href="#contact" class="menu__link" data-menu-close><span class="menu__index">06</span><span class="menu__word">Contact</span></a></li>
-      </ul>
-      <div class="menu__foot">
-        <a href="mailto:training@gemis.tech" class="menu__mail">training@gemis.tech</a>
-        <div class="menu__socials">
-          <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="https://dribbble.com/" target="_blank" rel="noopener">Dribbble</a>
-          <a href="https://github.com/Sphamandla-designer" target="_blank" rel="noopener">GitHub</a>
-        </div>
-      </div>
-    </div>
-  </nav>
 
   <main id="top">
 
@@ -96,15 +68,32 @@
       <div class="hero__bg" id="heroBg" aria-hidden="true"></div>
       <div class="hero__canvas" id="heroCanvas" aria-hidden="true"></div>
 
+      <!-- floating 3D glass objects -->
+      <div class="hero__obj hero__obj--a" id="heroObjA" aria-hidden="true">
+        <div class="obj3d obj3d--dark obj3d--float" style="--s:132px;--z:66px">
+          <div class="obj3d__spin">
+            <span class="obj3d__face"></span><span class="obj3d__face"></span><span class="obj3d__face"></span>
+            <span class="obj3d__face"></span><span class="obj3d__face"></span><span class="obj3d__face"></span>
+          </div>
+        </div>
+      </div>
+      <div class="hero__obj hero__obj--b" id="heroObjB" aria-hidden="true">
+        <div class="obj3d obj3d--dark obj3d--float" style="--s:64px;--z:32px">
+          <div class="obj3d__spin" style="animation-duration: 14s">
+            <span class="obj3d__face"></span><span class="obj3d__face"></span><span class="obj3d__face"></span>
+            <span class="obj3d__face"></span><span class="obj3d__face"></span><span class="obj3d__face"></span>
+          </div>
+        </div>
+      </div>
+
       <span class="hero__word" id="heroWord" aria-hidden="true">XABA</span>
 
       <!-- LEFT column -->
       <div class="hero__left">
         <p class="hero__eyebrow" data-reveal><span class="hero__eyebrow-bar"></span>Product Designer &amp; AI Experience Designer</p>
         <h1 class="hero__title" id="heroTitle">
-          <span class="hero__line"><em>Making complex</em></span>
-          <span class="hero__line"><em>systems</em></span>
-          <span class="hero__line"><em>trustworthy.</em></span>
+          <span class="hero__line"><em>I design complex products</em></span>
+          <span class="hero__line"><em>into experiences people <span class="grad">understand.</span></em></span>
         </h1>
         <div class="hero__rating" data-reveal>
           <span class="hero__stars" aria-hidden="true">★★★★★</span>
@@ -460,7 +449,7 @@
   <script src="assets/js/gsap.min.js"></script>
   <script src="assets/js/ScrollTrigger.min.js"></script>
   <script src="assets/js/lenis.min.js"></script>
-  <script src="assets/js/home.js?v=neon-1" defer></script>
-  <script type="module" src="assets/js/hero-gl.js?v=neon-1"></script>
+  <script src="assets/js/home.js?v=neon-2" defer></script>
+  <script type="module" src="assets/js/hero-gl.js?v=neon-2"></script>
 </body>
 </html>
