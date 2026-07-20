@@ -67,10 +67,12 @@ if (holder && !reduced) {
       void main() {
         float d = length(gl_PointCoord - 0.5);
         float a = smoothstep(0.5, 0.05, d);
-        vec3 ink = vec3(0.32, 0.32, 0.38);      // graphite dust
-        vec3 amber = vec3(1.0, 0.52, 0.12);     // visor sparks
-        vec3 col = mix(ink, amber, step(0.82, vTint));
-        float alpha = mix(0.28, 0.55, step(0.82, vTint));
+        vec3 dust = vec3(0.62, 0.65, 0.78);     // silver mist dust
+        vec3 neonA = vec3(0.24, 0.84, 1.0);     // ring cyan
+        vec3 neonB = vec3(1.0, 0.25, 0.66);     // ring magenta
+        vec3 spark = mix(neonA, neonB, step(0.5, fract(vTint * 7.31)));
+        vec3 col = mix(dust, spark, step(0.82, vTint));
+        float alpha = mix(0.22, 0.6, step(0.82, vTint));
         gl_FragColor = vec4(col, a * alpha * vFade);
       }
     `,

@@ -55,35 +55,6 @@
   tickClock();
   setInterval(tickClock, 30_000);
 
-  /* ───────────── custom cursor ───────────── */
-  const cursor = $('#cursor');
-  if (cursor && !isTouch && !prefersReduced) {
-    const dot = $('#cursorDot');
-    const ring = $('#cursorRing');
-    const label = $('#cursorLabel');
-    const pos = { x: -100, y: -100 };
-    const ringPos = { x: -100, y: -100 };
-    window.addEventListener('mousemove', (e) => { pos.x = e.clientX; pos.y = e.clientY; }, { passive: true });
-    gsap.ticker.add(() => {
-      ringPos.x += (pos.x - ringPos.x) * 0.16;
-      ringPos.y += (pos.y - ringPos.y) * 0.16;
-      dot.style.transform = `translate(${pos.x}px, ${pos.y}px) translate(-50%,-50%)`;
-      ring.style.transform = `translate(${ringPos.x}px, ${ringPos.y}px) translate(-50%,-50%)`;
-    });
-    const bindCursor = () => {
-      $$('[data-cursor]').forEach((el) => {
-        if (el.dataset.cursorBound) return;
-        el.dataset.cursorBound = '1';
-        el.addEventListener('mouseenter', () => {
-          label.textContent = el.dataset.cursor;
-          cursor.classList.add('is-label');
-        });
-        el.addEventListener('mouseleave', () => cursor.classList.remove('is-label'));
-      });
-    };
-    bindCursor();
-  }
-
   /* ───────────── magnetic elements ───────────── */
   if (!isTouch && !prefersReduced) {
     $$('[data-magnetic]').forEach((el) => {
@@ -203,36 +174,25 @@
   const loader = $('#loader');
   const heroLines = $$('.hero__line em');
   const heroReveals = $$('.hero [data-reveal]');
-  const heroFigure = $('#heroFigure');
+  const heroBg = $('#heroBg');
   const heroWord = $('#heroWord');
   const heroWidget = $('#heroWidget');
 
   if (!prefersReduced) {
     gsap.set(heroLines, { yPercent: 115 });
     gsap.set(heroReveals, { y: 26, opacity: 0 });
-    if (heroFigure) gsap.set(heroFigure, { yPercent: 8, opacity: 0 });
+    if (heroBg) gsap.set(heroBg, { scale: 1.12, opacity: 0 });
     if (heroWord) gsap.set(heroWord, { yPercent: 30, opacity: 0 });
     if (heroWidget) gsap.set(heroWidget, { y: 30, opacity: 0 });
   }
 
   const introTl = gsap.timeline({ paused: true, defaults: { ease: 'expo.out' } });
-  if (heroFigure) introTl.to(heroFigure, { yPercent: 0, opacity: 1, duration: 1.5 }, 0);
+  if (heroBg) introTl.to(heroBg, { scale: 1, opacity: 1, duration: 2.4, ease: 'power2.out' }, 0);
   if (heroWord) introTl.to(heroWord, { yPercent: 0, opacity: 1, duration: 1.5 }, 0.12);
   introTl
     .to(heroLines, { yPercent: 0, duration: 1.25, stagger: 0.09 }, 0.25)
     .to(heroReveals, { y: 0, opacity: 1, duration: 1, stagger: 0.07 }, 0.55);
   if (heroWidget) introTl.to(heroWidget, { y: 0, opacity: 1, duration: 1 }, 0.7);
-
-  // a few seconds after landing, the bust drifts right and turns to face left
-  introTl.eventCallback('onStart', () => {
-    if (heroFigure && !prefersReduced) {
-      gsap.to(heroFigure, {
-        xPercent: -34, rotationY: 26,
-        transformPerspective: 900, transformOrigin: '50% 44%',
-        duration: 1.9, ease: 'power3.inOut', delay: 3.4,
-      });
-    }
-  });
 
   const finishLoad = () => {
     if (!loader) { introTl.play(); return; }
@@ -271,31 +231,21 @@
     finishLoad();
   }
 
-  /* ───────────── lazy-swap AI renders over local fallbacks ───────────── */
-  $$('img[data-src]').forEach((img) => {
-    const hi = new Image();
-    hi.onload = () => {
-      img.src = img.dataset.src;
-      img.classList.add('is-hi');
-    };
-    hi.src = img.dataset.src;
-  });
-
   /* ───────────── hero parallax ───────────── */
   if (!prefersReduced) {
-    // pointer parallax
-    if (!isTouch && (heroFigure || heroWord)) {
+    // pointer parallax — background drifts against the wordmark
+    if (!isTouch && (heroBg || heroWord)) {
       window.addEventListener('mousemove', (e) => {
         const x = (e.clientX / window.innerWidth - 0.5) * 2;
         const y = (e.clientY / window.innerHeight - 0.5) * 2;
-        if (heroFigure) gsap.to(heroFigure, { x: x * 14, duration: 1.1, ease: 'power2.out' });
+        if (heroBg) gsap.to(heroBg, { x: x * 12, y: y * 8, duration: 1.4, ease: 'power2.out' });
         if (heroWord) gsap.to(heroWord, { x: x * -14, duration: 1.3, ease: 'power2.out' });
         if (heroWidget) gsap.to(heroWidget, { x: x * -8, y: y * -6, duration: 1.2, ease: 'power2.out' });
       }, { passive: true });
     }
     // scroll parallax
-    if (heroFigure) gsap.to(heroFigure, {
-      yPercent: 14, ease: 'none',
+    if (heroBg) gsap.to(heroBg, {
+      yPercent: 12, scale: 1.06, ease: 'none',
       scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true },
     });
     if (heroWord) gsap.to(heroWord, {
