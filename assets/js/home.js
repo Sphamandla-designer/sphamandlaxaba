@@ -88,19 +88,6 @@
     });
   }
 
-  /* ───────────── overlay menu ───────────── */
-  const menu = $('#menu');
-  const burger = $('#burger');
-  const setMenu = (open) => {
-    menu.classList.toggle('is-open', open);
-    menu.setAttribute('aria-hidden', String(!open));
-    burger.setAttribute('aria-expanded', String(open));
-    if (lenis) open ? lenis.stop() : lenis.start();
-  };
-  burger?.addEventListener('click', () => setMenu(!menu.classList.contains('is-open')));
-  $$('[data-menu-close]').forEach((el) => el.addEventListener('click', () => setMenu(false)));
-  window.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
-
   /* ───────────── header hide on scroll ───────────── */
   const header = $('#header');
   let lastY = 0;
@@ -178,12 +165,15 @@
   const heroWord = $('#heroWord');
   const heroWidget = $('#heroWidget');
 
+  const heroObjs = $$('.hero__obj');
+
   if (!prefersReduced) {
     gsap.set(heroLines, { yPercent: 115 });
     gsap.set(heroReveals, { y: 26, opacity: 0 });
     if (heroBg) gsap.set(heroBg, { scale: 1.12, opacity: 0 });
     if (heroWord) gsap.set(heroWord, { yPercent: 30, opacity: 0 });
     if (heroWidget) gsap.set(heroWidget, { y: 30, opacity: 0 });
+    if (heroObjs.length) gsap.set(heroObjs, { y: 26, opacity: 0 });
   }
 
   const introTl = gsap.timeline({ paused: true, defaults: { ease: 'expo.out' } });
@@ -193,6 +183,7 @@
     .to(heroLines, { yPercent: 0, duration: 1.25, stagger: 0.09 }, 0.25)
     .to(heroReveals, { y: 0, opacity: 1, duration: 1, stagger: 0.07 }, 0.55);
   if (heroWidget) introTl.to(heroWidget, { y: 0, opacity: 1, duration: 1 }, 0.7);
+  if (heroObjs.length) introTl.to(heroObjs, { y: 0, opacity: 1, duration: 1.4, stagger: 0.18 }, 0.9);
 
   const finishLoad = () => {
     if (!loader) { introTl.play(); return; }
@@ -241,6 +232,8 @@
         if (heroBg) gsap.to(heroBg, { x: x * 12, y: y * 8, duration: 1.4, ease: 'power2.out' });
         if (heroWord) gsap.to(heroWord, { x: x * -14, duration: 1.3, ease: 'power2.out' });
         if (heroWidget) gsap.to(heroWidget, { x: x * -8, y: y * -6, duration: 1.2, ease: 'power2.out' });
+        gsap.to('#heroObjA', { x: x * 24, y: y * 16, duration: 1.6, ease: 'power2.out' });
+        gsap.to('#heroObjB', { x: x * -16, y: y * -11, duration: 1.6, ease: 'power2.out' });
       }, { passive: true });
     }
     // scroll parallax
