@@ -610,6 +610,60 @@ html:not(.js) .loader { display: none; }
 .case__back { display: inline-flex; gap: 0.5rem; font-weight: 600; border-bottom: 1px solid var(--hairline); padding-bottom: 2px; }
 .case__back:hover { color: var(--accent); border-color: var(--accent); }
 
+/* ═══════════════════════ TOOLS & STACK ═══════════════════════ */
+.stack {
+  padding: clamp(4rem, 10vh, 6.5rem) 0 clamp(4.5rem, 11vh, 7rem);
+  border-top: 1px solid var(--hairline);
+  overflow: clip;
+}
+.stack__head { display: grid; gap: 1.2rem; padding: 0 var(--pad); margin-bottom: clamp(0.4rem, 1.6vh, 1rem); }
+.stack__viewport {
+  overflow: hidden;
+  /* top padding gives the hover tooltip headroom inside the clip box */
+  padding-top: 3.2rem;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+.stack__track { display: flex; width: max-content; will-change: transform; }
+.stack__row {
+  display: flex; align-items: center;
+  gap: clamp(2.2rem, 4.5vw, 3.6rem);
+  padding: 0.6rem clamp(1.1rem, 2.25vw, 1.8rem);
+}
+.tool { position: relative; flex: 0 0 auto; }
+.tool__logo {
+  display: grid; place-items: center;
+  width: 56px; height: 56px;
+  color: rgba(242, 243, 248, 0.34);
+  transition: color 0.35s, transform 0.35s var(--ease);
+  will-change: transform;
+}
+.tool__logo svg { width: 34px; height: 34px; fill: currentColor; display: block; }
+.tool__logo svg[fill="none"] { fill: none; }
+.tool__logo--word svg { width: 58px; height: 32px; }
+.tool:hover .tool__logo { color: var(--c, var(--ink)); transform: scale(1.12); }
+.tool__tip {
+  position: absolute; bottom: calc(100% + 10px); left: 50%;
+  transform: translate(-50%, 6px);
+  white-space: nowrap;
+  font-family: var(--font-mono); font-size: 0.58rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink);
+  padding: 0.45rem 0.75rem; border-radius: 999px;
+  background: rgba(16, 18, 28, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.25s, transform 0.25s var(--ease);
+  z-index: 5;
+}
+.tool:hover .tool__tip { opacity: 1; transform: translate(-50%, 0); }
+@media (hover: none) { .tool__tip { display: none; } .tool:hover .tool__logo { transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .stack__viewport { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+  .stack__row--copy { display: none; }
+}
+
 /* ═══════════════ WORK — GLASS CARD CAROUSEL ═══════════════ */
 .workcarousel {
   position: relative;

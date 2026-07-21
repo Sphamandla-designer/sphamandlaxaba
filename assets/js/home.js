@@ -483,6 +483,32 @@
     }
   }
 
+  /* ───────────── tools & stack marquee ───────────── */
+  const stackTrack = $('#stackTrack');
+  if (stackTrack) {
+    const src = stackTrack.children[0];
+    const copy = stackTrack.children[1];
+    if (src && copy) copy.innerHTML = src.innerHTML;
+    if (!prefersReduced) {
+      let x = 0, sp = 0.5, target = 0.5, half = 0;
+      const measure = () => { half = stackTrack.scrollWidth / 2; };
+      window.addEventListener('load', measure);
+      window.addEventListener('resize', measure);
+      measure();
+      gsap.ticker.add(() => {
+        sp += (target - sp) * 0.07;
+        x -= sp;
+        if (half > 0 && -x >= half) x += half;
+        stackTrack.style.transform = `translate3d(${x}px,0,0)`;
+      });
+      const vp = $('#stackViewport');
+      vp.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') target = 0.07; });
+      vp.addEventListener('pointerleave', () => { target = 0.5; });
+      vp.addEventListener('touchstart', () => { target = 0; }, { passive: true });
+      vp.addEventListener('touchend', () => { target = 0.5; }, { passive: true });
+    }
+  }
+
   /* ───────────── active nav link ───────────── */
   const navLinks = $$('.header__link');
   const sections = ['#hero', '#work', '#about', '#services', '#contact'];
