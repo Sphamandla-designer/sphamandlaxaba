@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CMAXX WiFi Solutions Case Study — Sphamandla Xaba | UI/UX Designer</title>
+  <meta name="description" content="A UX/UI case study documenting how Sphamandla Xaba designed and delivered a clearer digital experience for CMAXX WiFi Solutions." />
+  <meta name="theme-color" content="#0A1B2A" />
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+  <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/jetbrains-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <style>
+    @font-face { font-family: "Archivo"; src: url("assets/fonts/archivo-latin-wdth-normal.woff2") format("woff2-variations"); font-weight: 100 900; font-stretch: 62.5% 125%; font-display: swap; }
+    @font-face { font-family: "Space Grotesk"; src: url("assets/fonts/space-grotesk-latin-wght-normal.woff2") format("woff2-variations"); font-weight: 300 700; font-display: swap; }
+    @font-face { font-family: "JetBrains Mono"; src: url("assets/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+    :root{
+      --navy:#0A1B2A; --navy-d:#061320; --navy-2:#0E2436;
+      --orange:#F26A21; --orange-d:#C1490F; --orange-l:#FFB183;
+      --teal:#2BC4A5; --teal-d:#12796A;
+      --paper:#F4F6F8; --paper-2:#EAEEF1; --card:#fff;
+      --ink:#0E1C26; --ink-2:#334454; --mut:#59697A; --mut-2:#7A8895;
+      --line:rgba(10,27,42,.12); --line-l:rgba(255,255,255,.14);
+      --fd:"Archivo",system-ui,sans-serif; --fb:"Space Grotesk",system-ui,sans-serif; --fm:"JetBrains Mono",ui-monospace,monospace;
+      --pad:clamp(1.25rem,4vw,4rem); --r:20px; --ease:cubic-bezier(.65,.05,0,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;overflow-x:clip;scroll-padding-top:120px}
+    body{background:var(--paper);color:var(--ink);font-family:var(--fb);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip}
+    img{display:block;max-width:100%}
+    a{color:var(--orange-d);text-decoration:none}
+    a:hover{color:var(--orange)}
+    ul,ol{list-style:none}
+    ::selection{background:var(--orange);color:#fff}
+    :focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:6px}
+    .mono{font-family:var(--fm);font-size:.6rem;letter-spacing:.13em;text-transform:uppercase}
+    .skiplink{position:absolute;left:1rem;top:-100px;z-index:500;font-family:var(--fm);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;padding:.85rem 1.2rem;border-radius:999px;background:var(--navy);color:#fff;transition:top .2s}
+    .skiplink:focus{top:1rem}
+    .prog{position:fixed;top:0;left:0;right:0;height:3px;z-index:120;background:rgba(10,27,42,.12)}
+    .prog span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--orange),var(--teal))}
+    .top{position:fixed;top:3px;left:0;right:0;z-index:110;background:rgba(244,246,248,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+    .top__row{display:flex;align-items:center;justify-content:space-between;gap:1.2rem;padding:.7rem var(--pad)}
+    .top__back,.top__live{display:inline-flex;align-items:center;gap:.5rem;min-height:44px;font-weight:600;font-size:.85rem;color:var(--ink);padding:.45rem .95rem;border-radius:999px;border:1px solid var(--line);background:#fff;white-space:nowrap}
+    .top__back:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+    .top__live{font-family:var(--fm);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase}
+    .top__live:hover{border-color:var(--orange);color:var(--orange-d)}
+    .top__mark{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--fd);font-weight:800;letter-spacing:-.01em;color:var(--ink)}
+    .top__mark img{width:30px;height:30px;border-radius:9px;object-fit:cover}
+    .chapnav{display:flex;gap:.35rem;overflow-x:auto;padding:0 var(--pad) .6rem;scrollbar-width:none}
+    .chapnav::-webkit-scrollbar{display:none}
+    .chapnav a{flex:0 0 auto;font-family:var(--fm);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);padding:.5rem .8rem;border-radius:999px;border:1px solid var(--line);background:#fff;min-height:38px;display:inline-flex;align-items:center}
+    .chapnav a:hover,.chapnav a.is-on{color:var(--ink);border-color:var(--orange)}
+    .sec{padding:clamp(4.5rem,11vh,8rem) var(--pad)}
+    .sec__inner{max-width:1180px;margin:0 auto}
+    .sec--paper2{background:var(--paper-2)}
+    .sec--white{background:#fff;border-bottom:1px solid var(--line);padding:clamp(4rem,10vh,7rem) var(--pad)}
+    .sec--deep{background:linear-gradient(180deg,var(--navy-d),var(--navy));color:#fff}
+    .sec--deep-r{background:linear-gradient(180deg,var(--navy),var(--navy-d));color:#fff}
+    .kicker{font-family:var(--fm);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange-d);display:inline-flex;align-items:center;gap:.6rem;margin-bottom:1rem}
+    .kicker::before{content:"";width:22px;height:2px;background:var(--orange)}
+    .sec--deep .kicker,.sec--deep-r .kicker{color:var(--orange-l)}
+    .h2{font-family:var(--fd);font-weight:830;font-stretch:93%;font-size:clamp(1.9rem,4.2vw,3.4rem);line-height:1.02;letter-spacing:-.025em;max-width:26ch;margin-bottom:1.1rem;text-wrap:pretty}
+    .h2 em,.h3 em{font-style:normal;color:var(--orange-d)}
+    .sec--deep .h2 em{color:var(--orange)}
+    .h3{font-family:var(--fd);font-weight:810;font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.06;letter-spacing:-.02em;margin-bottom:.9rem}
+    .lead{font-size:clamp(1rem,1.5vw,1.14rem);line-height:1.65;color:var(--mut);max-width:68ch}
+    .sec--deep .lead,.sec--deep-r .lead{color:rgba(255,255,255,.75)}
+    .body{font-size:.95rem;line-height:1.7;color:var(--ink-2)}
+    .sub{font-family:var(--fm);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange-d);margin-bottom:.7rem}
+    .sec--deep .sub,.sec--deep-r .sub{color:var(--orange-l)}
+    /* hero */
+    .hero{position:relative;overflow:clip;color:#fff;padding:clamp(9rem,20vh,12rem) var(--pad) 0;
+      background:radial-gradient(80% 70% at 78% 8%,rgba(242,106,33,.22),transparent 62%),radial-gradient(60% 60% at 8% 92%,rgba(43,196,165,.14),transparent 60%),linear-gradient(180deg,var(--navy-d),var(--navy) 58%,var(--navy-2))}
+    .hero__wm{position:absolute;inset:auto 0 -3% 0;z-index:0;font-family:var(--fd);font-weight:900;font-stretch:115%;font-size:clamp(8rem,25vw,25rem);line-height:.75;text-align:center;color:transparent;-webkit-text-stroke:1.5px rgba(242,106,33,.15);pointer-events:none;user-select:none}
+    .hero__inner{position:relative;z-index:2;max-width:1180px;margin:0 auto}
+    .hero__tag{font-family:var(--fm);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--orange-l);display:inline-flex;align-items:center;gap:.6rem;margin-bottom:1.4rem}
+    .hero__tag::before{content:"";width:26px;height:1px;background:rgba(255,177,131,.6)}
+    .hero__title{font-family:var(--fd);font-weight:850;font-stretch:95%;font-size:clamp(2.4rem,6vw,5.2rem);line-height:.99;letter-spacing:-.03em;margin-bottom:1.1rem;max-width:22ch;text-wrap:pretty}
+    .hero__title em{font-style:normal;color:var(--orange)}
+    .hero__sub{max-width:64ch;font-size:clamp(1rem,1.5vw,1.16rem);color:rgba(255,255,255,.78);margin-bottom:2.2rem}
+    .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--line-l);border:1px solid var(--line-l);border-radius:18px;overflow:hidden;margin-bottom:2rem}
+    .facts>div{background:rgba(6,19,32,.55);padding:1.05rem 1.2rem}
+    .facts dt{font-family:var(--fm);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange-l);margin-bottom:.35rem}
+    .facts dd{font-family:var(--fd);font-weight:750;font-size:1rem}
+    .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--teal);margin-right:.45rem}
+    .btnrow{display:flex;flex-wrap:wrap;gap:.8rem;margin-bottom:clamp(2rem,5vh,3rem)}
+    .btn{display:inline-flex;align-items:center;gap:.55rem;min-height:48px;font-weight:700;font-size:.92rem;padding:.9rem 1.6rem;border-radius:999px;transition:transform .3s var(--ease),background .3s}
+    .btn:hover{transform:translateY(-2px)}
+    .btn--o{background:var(--orange);color:#fff;box-shadow:0 16px 36px -16px rgba(242,106,33,.8)}
+    .btn--o:hover{background:#D95511;color:#fff}
+    .btn--g{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#fff}
+    .btn--g:hover{background:rgba(255,255,255,.16);color:#fff}
+    .hero__shot{position:relative;z-index:2;transform:translateY(4%)}
+    .hero__shot img{width:100%;border-radius:16px 16px 0 0}
+    /* numbers */
+    .nums{background:var(--navy);color:#fff;padding:clamp(2.4rem,6vh,3.6rem) var(--pad);border-top:1px solid rgba(255,255,255,.1)}
+    .nums__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--line-l);border:1px solid var(--line-l);border-radius:18px;overflow:hidden}
+    .num{background:var(--navy);padding:1.3rem 1.2rem}
+    .num b{display:block;font-family:var(--fd);font-weight:900;font-stretch:105%;font-size:clamp(2.2rem,4.5vw,3.2rem);line-height:1;letter-spacing:-.03em;color:var(--orange);margin-bottom:.35rem}
+    .num i{font-style:normal;display:block;font-family:var(--fd);font-weight:750;font-size:.95rem;letter-spacing:-.01em;margin-bottom:.3rem}
+    .num span{font-family:var(--fm);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45)}
+    /* generic pieces */
+    .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(1.6rem,4vw,3rem)}
+    .stack{display:grid;gap:.55rem}
+    .tickitem{display:flex;gap:.7rem;align-items:baseline;font-size:.94rem;color:var(--ink-2);padding:.55rem .9rem;border-radius:12px;background:var(--paper);border:1px solid rgba(10,27,42,.08)}
+    .tickitem b{color:var(--teal-d);font-weight:800}
+    .cardlist{display:grid;gap:.7rem}
+    .card{padding:1rem 1.1rem;border-radius:14px;background:#fff;border:1px solid var(--line);box-shadow:0 18px 40px -32px rgba(10,27,42,.5)}
+    .card p.t{font-family:var(--fm);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--orange-d);margin-bottom:.3rem}
+    .card p.b{font-size:.92rem;color:var(--ink-2)}
+    .trio{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-top:2.4rem}
+    .pcard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:1.5rem 1.4rem;box-shadow:0 22px 46px -34px rgba(10,27,42,.5)}
+    .pcard--deep{background:var(--navy);color:#fff;border:0}
+    .pcard h3{font-family:var(--fd);font-weight:790;font-size:1.24rem;letter-spacing:-.015em;margin-bottom:.6rem}
+    .pcard p{font-size:.9rem;color:var(--mut)}
+    .pcard--deep p{color:rgba(255,255,255,.72)}
+    .pcard--deep .sub{color:var(--orange-l)}
+    .symp{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.8rem}
+    .symp div{padding:1rem;border-radius:14px;background:var(--paper);border:1px solid rgba(10,27,42,.08)}
+    .symp b{display:block;font-family:var(--fd);font-weight:780;font-size:1rem;margin-bottom:.3rem}
+    .symp p{font-size:.85rem;color:var(--mut)}
+    .chain{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:2.2rem}
+    .chain li{flex:1 1 190px;padding:1.1rem;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid var(--line-l)}
+    .chain .n{font-family:var(--fm);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:.5rem}
+    .chain b{display:block;font-family:var(--fd);font-weight:780;font-size:1.02rem;margin-bottom:.4rem}
+    .chain p{font-size:.84rem;color:rgba(255,255,255,.68)}
+    .svclist li{display:flex;flex-wrap:wrap;gap:.6rem;align-items:baseline;padding:.7rem .9rem;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12)}
+    .svclist .n{font-family:var(--fm);font-size:.56rem;letter-spacing:.1em;color:var(--teal)}
+    .svclist b{font-family:var(--fd);font-weight:750;font-size:.98rem}
+    .svclist span{font-size:.8rem;color:rgba(255,255,255,.6)}
+    .sitemap{border-radius:18px;background:rgba(255,255,255,.05);border:1px solid var(--line-l);padding:1.2rem;font-family:var(--fm);font-size:.72rem;line-height:2}
+    .sitemap div{display:flex;gap:.6rem;align-items:baseline;color:rgba(255,255,255,.82)}
+    .sitemap .rail{color:rgba(43,196,165,.7)}
+    .sitemap .note{color:rgba(255,255,255,.35);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase}
+    .techgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:.6rem}
+    .techgrid div{display:grid;place-items:center;height:66px;padding:.7rem;border-radius:12px;background:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.16)}
+    .techgrid img{max-height:100%;max-width:100%;object-fit:contain}
+    figure.brandfig{border-radius:16px;overflow:hidden;border:1px solid var(--line-l);background:rgba(255,255,255,.04)}
+    figure.brandfig figcaption{font-family:var(--fm);font-size:.54rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);padding:.7rem .9rem}
+    .note-pill{display:inline-block;font-family:var(--fm);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--orange-l);border:1px dashed rgba(255,177,131,.5);border-radius:999px;padding:.5rem .95rem;margin-bottom:1.4rem}
+    .jrn{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
+    .jrn>div{padding:1.4rem 1.3rem;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid var(--line-l)}
+    .jrn h4{font-family:var(--fd);font-weight:790;font-size:1.14rem;letter-spacing:-.015em;margin-bottom:.9rem}
+    .jrn ol{display:grid;gap:.4rem;margin-bottom:.9rem}
+    .jrn li{display:flex;gap:.6rem;align-items:baseline;font-size:.85rem;color:rgba(255,255,255,.78)}
+    .jrn li i{font-style:normal;color:var(--orange)}
+    .jrn .foot{font-size:.82rem;color:rgba(255,255,255,.6);border-top:1px solid rgba(255,255,255,.12);padding-top:.8rem}
+    /* decision component */
+    .dec{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 30px 60px -44px rgba(10,27,42,.55)}
+    .dec+.dec{margin-top:clamp(1.2rem,3vh,2rem)}
+    .dec__head{display:flex;flex-wrap:wrap;gap:.8rem;align-items:baseline;justify-content:space-between;padding:1.3rem clamp(1.2rem,3vw,2rem);background:var(--navy);color:#fff}
+    .dec__head .l{display:flex;gap:.9rem;align-items:baseline;flex-wrap:wrap}
+    .dec__n{font-family:var(--fm);font-size:.62rem;letter-spacing:.14em;color:var(--orange)}
+    .dec__head h3{font-family:var(--fd);font-weight:800;font-stretch:94%;font-size:clamp(1.15rem,2.2vw,1.6rem);letter-spacing:-.02em;max-width:34ch}
+    .dec__where{font-family:var(--fm);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+    .dec__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));border-bottom:1px solid var(--line)}
+    .dec__grid>div{padding:1.4rem clamp(1.2rem,3vw,2rem)}
+    .dec__grid>div:first-child{border-right:1px solid var(--line)}
+    .dec__grid>div:last-child{background:#F8FAFB}
+    .dec__lbl{font-family:var(--fm);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange-d);margin-bottom:.5rem}
+    .dec__grid p.body{margin-bottom:1.4rem}
+    .dec__grid p.body:last-child{margin-bottom:0}
+    .iface{display:grid;gap:.5rem}
+    .iface li{display:flex;gap:.6rem;align-items:baseline;font-size:.9rem;color:var(--ink-2);padding:.6rem .8rem;border-radius:11px;background:#fff;border:1px solid rgba(10,27,42,.1)}
+    .iface li i{font-style:normal;color:var(--teal-d);font-weight:800}
+    .dec__foot{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+    .dec__foot>div{padding:1.2rem clamp(1.2rem,3vw,2rem)}
+    .dec__foot>div:first-child{border-right:1px solid var(--line)}
+    .dec__foot>div:last-child{background:rgba(43,196,165,.08)}
+    .dec__foot .l1{font-family:var(--fm);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut-2);margin-bottom:.45rem}
+    .dec__foot .l2{font-family:var(--fm);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-d);margin-bottom:.45rem}
+    .dec__foot p{font-size:.88rem;line-height:1.65;color:var(--mut)}
+    /* screens */
+    .scr{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+    .scr+.scr{margin-top:clamp(1.2rem,3vh,1.8rem)}
+    .scr__copy{padding:clamp(1.4rem,3vw,2.2rem)}
+    .scr__copy h3{font-family:var(--fd);font-weight:810;font-size:clamp(1.3rem,2.4vw,1.85rem);line-height:1.06;letter-spacing:-.02em;margin-bottom:.9rem}
+    .scr__l{font-family:var(--fm);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut-2);margin-bottom:.4rem}
+    .scr__copy p.body{margin-bottom:1rem}
+    .scr__notes{display:grid;gap:.35rem}
+    .scr__notes li{display:flex;gap:.6rem;align-items:baseline;font-size:.86rem;color:var(--mut)}
+    .scr__notes i{font-style:normal;font-family:var(--fm);font-size:.6rem;color:var(--orange-d)}
+    .scr__media{background:var(--navy);padding:clamp(1.2rem,3vw,1.8rem);display:grid;place-items:center}
+    .scr__frame{width:100%;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.16)}
+    .scr__ph{width:100%;aspect-ratio:16/11;display:grid;place-items:center;text-align:center;padding:1rem;border-radius:14px;border:1px dashed rgba(255,255,255,.3);background:repeating-linear-gradient(135deg,rgba(255,255,255,.05) 0 8px,transparent 8px 16px);font-family:var(--fm);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+    /* production + outcome */
+    .bpgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:2.2rem}
+    .bpgrid>div{padding:1.3rem 1.2rem;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid var(--line-l)}
+    .bpgrid .r{font-family:var(--fm);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:.6rem}
+    .bpgrid b{display:block;font-family:var(--fd);font-weight:780;font-size:1.05rem;margin-bottom:.7rem}
+    .bpgrid li{display:flex;gap:.55rem;align-items:baseline;font-size:.85rem;color:rgba(255,255,255,.72)}
+    .bpgrid li i{font-style:normal;color:var(--orange)}
+    .pipe{display:flex;flex-wrap:wrap;gap:.5rem}
+    .pipe li{flex:1 1 180px;padding:1rem;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid var(--line-l)}
+    .pipe .s{font-family:var(--fm);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:.45rem}
+    .pipe p{font-size:.85rem;color:rgba(255,255,255,.75)}
+    .outgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.2rem;margin-top:2.2rem}
+    .outbox{background:#fff;border:1px solid var(--line);border-radius:20px;padding:1.6rem 1.5rem}
+    .outbox--dash{border:1px dashed rgba(10,27,42,.28)}
+    .outbox li{display:flex;gap:.65rem;align-items:baseline;font-size:.92rem;color:var(--ink-2)}
+    .outbox .y{color:var(--teal);font-weight:800}
+    .outbox .o{color:var(--mut-2)}
+    .lessons{display:grid;gap:.8rem}
+    .lessons>div{padding:1.1rem 1.2rem;border-radius:16px;background:#fff;border:1px solid var(--line)}
+    .lessons b{display:block;font-family:var(--fd);font-weight:780;font-size:1.02rem;margin-bottom:.35rem}
+    .lessons p{font-size:.9rem;color:var(--mut)}
+    .improve li{display:flex;gap:.65rem;align-items:baseline;font-size:.92rem;color:var(--ink-2);padding:.7rem .9rem;border-radius:12px;background:var(--paper-2)}
+    .improve i{font-style:normal;color:var(--orange-d)}
+    /* footer */
+    .foot{background:var(--navy-d);color:#fff;padding:clamp(3rem,8vh,5rem) var(--pad)}
+    .foot__inner{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:1.4rem;align-items:center;justify-content:space-between}
+    .foot h2{font-family:var(--fd);font-weight:820;font-size:clamp(1.4rem,3vw,2.1rem);letter-spacing:-.02em;margin-bottom:.4rem}
+    .foot .m{font-family:var(--fm);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.45)}
+    @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<a href="#main" class="skiplink">Skip to content</a>
+<div class="prog" aria-hidden="true"><span id="prog"></span></div>
+
+<header class="top">
+  <div class="top__row">
+    <a href="index.html#work" class="top__back">← Portfolio</a>
+    <span class="top__mark"><img src="https://1124817.eu9.myftpupload.com/wp-content/uploads/2026/04/cropped-IMG_9779.jpeg" alt="CMAXX WiFi Solutions logo" />CMAXX WiFi Solutions</span>
+    <a href="https://1124817.eu9.myftpupload.com/" class="top__live" target="_blank" rel="noopener">Live site ↗</a>
+  </div>
+  <nav class="chapnav" aria-label="Case study chapters">
+    <a href="#overview">01 Overview</a>
+    <a href="#problem">02 Problem</a>
+    <a href="#approach">03 Approach</a>
+    <a href="#decisions">04 Decisions</a>
+    <a href="#design">05 Interface</a>
+    <a href="#production">06 Production</a>
+    <a href="#outcome">07 Outcome</a>
+  </nav>
+</header>
+
+<main id="main">
+<section class="hero" id="overview">
+  <span class="hero__wm" aria-hidden="true">CMAXX</span>
+  <div class="hero__inner">
+    <p class="hero__tag">Case study — Connectivity &amp; network solutions</p>
+    <h1 class="hero__title">Designing a clearer digital experience for <em>connectivity.</em></h1>
+    <p class="hero__sub">Reworking how customers discover, understand and enquire about WiFi, CCTV and network infrastructure solutions — a broad, technically complex offering presented through one coherent structure.</p>
+    <dl class="facts">
+      <div><dt>Role</dt><dd>UI/UX Designer</dd></div>
+      <div><dt>Studio</dt><dd>AX-Channels</dd></div>
+      <div><dt>Project</dt><dd>Website experience</dd></div>
+      <div><dt>Scope</dt><dd>UX strategy · IA · UI · Responsive · Build</dd></div>
+      <div><dt>Status</dt><dd><span class="dot"></span>Live, still iterating</dd></div>
+    </dl>
+    <div class="btnrow">
+      <a class="btn btn--o" href="https://1124817.eu9.myftpupload.com/" target="_blank" rel="noopener">View live website ↗</a>
+      <a class="btn btn--g" href="#decisions">Jump to the design decisions</a>
+    </div>
+    <figure class="hero__shot">
+      <img src="assets/img/work/cmaxx-mockup.png" alt="The CMAXX WiFi Solutions homepage shown on a laptop: dark hero with the headline &quot;Professional WiFi, Network &amp; Security Solutions in Gauteng&quot;, trust markers, two calls to action, and a network-health panel." />
+    </figure>
+  </div>
+</section>
+
+<section class="nums" aria-label="The project in numbers">
+  <div class="sec__inner">
+    <p class="mono" style="color:var(--orange-l);margin-bottom:1.4rem">The shape of the problem, counted — structural facts, not performance claims</p>
+    <div class="nums__grid">
+      <div class="num"><b>7</b><i>service lines structured</i><span>Four divisions, one menu</span></div>
+      <div class="num"><b>9</b><i>top-level destinations</i><span>One level deep, no mega-menu</span></div>
+      <div class="num"><b>5</b><i>sectors given their own route</i><span>Homes, offices, restaurants, events, retail</span></div>
+      <div class="num"><b>18</b><i>technologies presented</i><span>The trust layer had to hold all of them</span></div>
+      <div class="num"><b>4</b><i>breakpoints designed</i><span>320 · 768 · 1024 · 1440</span></div>
+      <div class="num"><b>1</b><i>primary action site-wide</i><span>Get a free assessment</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec--white">
+  <div class="sec__inner cols">
+    <div>
+      <p class="kicker">My role</p>
+      <h2 class="h2" style="font-size:clamp(1.6rem,3vw,2.3rem)">What I actually did on this project.</h2>
+      <ul class="stack" role="list">
+        <li class="tickitem"><b>✓</b>UX strategy</li>
+        <li class="tickitem"><b>✓</b>Information architecture</li>
+        <li class="tickitem"><b>✓</b>Content structure &amp; copy</li>
+        <li class="tickitem"><b>✓</b>UI design</li>
+        <li class="tickitem"><b>✓</b>Responsive design</li>
+        <li class="tickitem"><b>✓</b>Build — WordPress / Elementor</li>
+        <li class="tickitem"><b>✓</b>QA before launch</li>
+        <li class="tickitem"><b>✓</b>SEO structure</li>
+      </ul>
+      <p class="mono" style="margin-top:1rem;color:var(--mut-2)">Design and build were the same engagement — I took the work into production myself.</p>
+    </div>
+    <div>
+      <p class="kicker">Constraints</p>
+      <h2 class="h2" style="font-size:clamp(1.6rem,3vw,2.3rem)">Design decisions happen inside real-world limits.</h2>
+      <ul class="cardlist" role="list">
+        <li class="card"><p class="t">Existing brand</p><p class="b">The CMAXX mark, orange and dark navy were fixed. The palette had to carry a technical, security-adjacent tone without becoming aggressive.</p></li>
+        <li class="card"><p class="t">Client-supplied content</p><p class="b">Service names, technology partners and trust markers came from the business. My job was to structure and edit them, not to invent them.</p></li>
+        <li class="card"><p class="t">Platform</p><p class="b">WordPress + Elementor. Layouts had to be reproducible by the client's own team after handover, which ruled out anything I couldn't rebuild in the page builder.</p></li>
+        <li class="card"><p class="t">Breadth of offering</p><p class="b">Seven service lines across four divisions, plus sector and location pages — all of which had to fit in one navigation without a mega-menu the client couldn't maintain.</p></li>
+        <li class="card"><p class="t">Single-designer engagement</p><p class="b">No research budget and no separate development team. Every decision below is a designer's judgement call taken with the client, then shipped.</p></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--paper2" id="problem">
+  <div class="sec__inner">
+    <p class="kicker">02 — The problem</p>
+    <h2 class="h2">CMAXX does four different jobs for five different kinds of customer. <em>The website had to make that legible.</em></h2>
+    <p class="lead">WiFi design, CCTV and security, structured cabling and infrastructure, cloud and Microsoft 365 — sold to homeowners, offices, restaurants, retail and events. Everything below is drawn from the service offering and the site itself, not from user research.</p>
+    <div class="trio">
+      <div class="pcard"><p class="sub">Business need</p><h3>Be credible enough to be trusted with infrastructure.</h3><p>CMAXX competes with individual technicians on one side and enterprise integrators on the other. The site needed to carry a multi-division offering, real trust markers (BBBEE Level 1, 9+ years, 100+ projects, supported technologies) and a single obvious way to start a conversation.</p></div>
+      <div class="pcard"><p class="sub">User need</p><h3>Recognise my problem before I learn your service names.</h3><p>A visitor rarely arrives searching for "structured cabling". They arrive with a dead zone in the back bedroom, a slow connection they are already paying for, or a security gap they have been warned about. The vocabulary gap between customer symptom and service category is the core UX problem here.</p></div>
+      <div class="pcard pcard--deep"><p class="sub">Design opportunity</p><h3>How might we make a broad, technical offering easier to understand, navigate and act on?</h3><p>Framed as a structure problem first and a visual problem second: if the categories and the paths between them are right, the interface has much less to compensate for.</p></div>
+    </div>
+    <div class="pcard" style="margin-top:2.4rem">
+      <p class="sub">The four symptoms the content leads with — in the customer's words, not ours</p>
+      <div class="symp">
+        <div><b>Dead zone</b><p>Rooms the WiFi doesn't reach — the most common reason someone starts looking.</p></div>
+        <div><b>Slow speed</b><p>Paying for fast internet and not getting it. The network, not the ISP.</p></div>
+        <div><b>Security vulnerability</b><p>An unsecured or misconfigured network, with CCTV and cloud systems attached.</p></div>
+        <div><b>Business downtime</b><p>Unreliable connectivity costing a team real hours.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--deep" id="approach">
+  <div class="sec__inner">
+    <p class="kicker">03 — My UX approach</p>
+    <h2 class="h2">Structuring the experience</h2>
+    <p class="lead">The interface came out of a structure, in this order. Each step constrained the next — which is why the final pages look inevitable rather than composed.</p>
+    <ol class="chain" role="list">
+      <li><p class="n">Step 01</p><b>Service ecosystem</b><p>List the whole offering honestly before grouping anything: four divisions, seven service lines.</p></li>
+      <li><p class="n">Step 02</p><b>Information architecture</b><p>Group by what a customer would recognise, not by how the business is organised internally.</p></li>
+      <li><p class="n">Step 03</p><b>User intent</b><p>Three broad intents — home, business, technical evaluation — each needing a different depth of information.</p></li>
+      <li><p class="n">Step 04</p><b>Content hierarchy</b><p>Symptom first, service second, specification third. Trust markers placed where doubt appears.</p></li>
+      <li><p class="n">Step 05</p><b>Conversion journey</b><p>One primary action — the free assessment — reachable from every depth of the site.</p></li>
+    </ol>
+
+    <div class="cols" style="margin-top:clamp(2.6rem,6vh,4rem);align-items:start">
+      <div>
+        <p class="sub">03A — Service ecosystem</p>
+        <h3 class="h3">Seven service lines, four divisions, one relationship.</h3>
+        <p class="body" style="color:rgba(255,255,255,.72);margin-bottom:1.2rem">The website needed to accommodate a broad service ecosystem without forcing visitors to understand the company's internal structure. I grouped the offering into service lines a customer can self-select from, and kept sector-based and location-based routes as separate entry points rather than folding them into the service menu.</p>
+        <ul class="svclist stack" role="list">
+          <li><span class="n">01</span><b>WiFi &amp; Network Solutions</b><span>Home, office, public/guest, events, assessments</span></li>
+          <li><span class="n">02</span><b>Security Solutions (CCTV)</b><span>Installation, maintenance, remote monitoring, network security</span></li>
+          <li><span class="n">03</span><b>Infrastructure &amp; Cabling</b><span>Structured cabling, racks, cabinets, site surveys</span></li>
+          <li><span class="n">04</span><b>Cloud &amp; Microsoft 365</b><span>Email hosting, Teams &amp; SharePoint, backup, NAS</span></li>
+          <li><span class="n">05</span><b>Managed WiFi</b><span>Ongoing support, monitoring, long-term partnership</span></li>
+          <li><span class="n">06</span><b>Public &amp; Guest WiFi</b><span>Branded portals, visitor analytics, reporting</span></li>
+          <li><span class="n">07</span><b>Smart Home</b><span>Whole-home WiFi, smart security, automation</span></li>
+        </ul>
+      </div>
+      <div>
+        <p class="sub">03B — Information architecture</p>
+        <h3 class="h3">The shipped sitemap.</h3>
+        <p class="body" style="color:rgba(255,255,255,.72);margin-bottom:1.2rem">I structured the experience so visitors could move from broad discovery toward increasingly specific information without needing to understand the technical structure of the business first. Services expand into a seven-item submenu; everything else stays one level deep.</p>
+        <div class="sitemap">
+          <div><span class="rail">▪</span><span>Home</span><span class="note">symptom → service → trust → contact</span></div>
+          <div><span class="rail">├─</span><span>Services</span><span class="note">7 service lines in a submenu</span></div>
+          <div><span class="rail">│  └─</span><span>Service detail ×7</span><span class="note">overview → inclusions → CTA</span></div>
+          <div><span class="rail">├─</span><span>Industries</span><span class="note">5 sectors — a second route in</span></div>
+          <div><span class="rail">├─</span><span>Areas We Serve</span><span class="note">local intent, kept out of Services</span></div>
+          <div><span class="rail">├─</span><span>Case Studies</span><span class="note">proof of delivery</span></div>
+          <div><span class="rail">├─</span><span>Blogs &amp; Articles</span><span class="note">search intent, knowledge hub</span></div>
+          <div><span class="rail">├─</span><span>About</span><span class="note">BBBEE, years, projects, technologies</span></div>
+          <div><span class="rail">└─</span><span>Contact</span><span class="note">form, two numbers, WhatsApp, location</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cols" style="margin-top:clamp(2.6rem,6vh,4rem);align-items:center;border-top:1px solid rgba(255,255,255,.12);padding-top:clamp(2rem,5vh,3rem)">
+      <div>
+        <p class="sub">03C — The trust layer</p>
+        <h3 class="h3"><span style="color:var(--orange)">18</span> supported technologies, one strip.</h3>
+        <p class="body" style="color:rgba(255,255,255,.72);margin-bottom:1.2rem">Eighteen vendor brands across WiFi, CCTV, cabling and smart home — a real asset the business wanted visible, and a real layout problem: logos of wildly different weight and aspect ratio that still had to read as one credential rather than a wall of badges. I normalised them into a single low-contrast strip so the set reads as scope, and no one vendor outranks another.</p>
+        <figure class="brandfig">
+          <img src="https://1124817.eu9.myftpupload.com/wp-content/uploads/2026/04/BackgroundBorder.png" alt="The hero graphic used on the live CMAXX homepage — a network-infrastructure composition supplied as part of the brand assets." loading="lazy" />
+          <figcaption>Live hero graphic — client-supplied brand asset</figcaption>
+        </figure>
+      </div>
+      <div class="techgrid">
+        <div><img src="https://1124817.eu9.myftpupload.com/wp-content/uploads/2026/04/image-16.png" alt="MikroTik" loading="lazy" /></div>
+        <div><img src="https://1124817.eu9.myftpupload.com/wp-content/uploads/2026/04/image-15.png" alt="Aruba" loading="lazy" /></div>
+        <div><img src="https://1124817.eu9.myftpupload.com/wp-content/uploads/2026/04/image-14.png" alt="Cudy" loading="lazy" /></div>
+        <div><img src="https://1124817.eu9.myftpupload.com/wp-content/uploads/2026/04/image-12.png" alt="Reyee" loading="lazy" /></div>
+        <div><img src="https://1124817.eu9.myftpupload.com/wp-content/uploads/2026/04/image-11.png" alt="TP-Link" loading="lazy" /></div>
+        <div><img src="https://1124817.eu9.myftpupload.com/wp-content/uploads/2026/04/image-6.png" alt="ZTE" loading="lazy" /></div>
+        <div><img src="https://1124817.eu9.myftpupload.com/wp-content/uploads/2026/04/image-7-150x99.png" alt="Linkbasic" loading="lazy" /></div>
+        <div><img src="https://1124817.eu9.myftpupload.com/wp-content/uploads/2026/04/image-9.png" alt="Grandstream" loading="lazy" /></div>
+        <div><img src="https://1124817.eu9.myftpupload.com/wp-content/uploads/2026/05/image-21.png" alt="Tenda" loading="lazy" /></div>
+        <div><img src="https://1124817.eu9.myftpupload.com/wp-content/uploads/2026/05/image-26.png" alt="Dahua" loading="lazy" /></div>
+        <div><img src="https://1124817.eu9.myftpupload.com/wp-content/uploads/2026/05/image-25.png" alt="HiLook" loading="lazy" /></div>
+        <div><img src="https://1124817.eu9.myftpupload.com/wp-content/uploads/2026/05/image-24.png" alt="Hikvision" loading="lazy" /></div>
+        <div><img src="https://1124817.eu9.myftpupload.com/wp-content/uploads/2026/05/image-23.png" alt="Ubiquiti" loading="lazy" /></div>
+        <div><img src="https://1124817.eu9.myftpupload.com/wp-content/uploads/2026/05/image-22.png" alt="Edimax" loading="lazy" /></div>
+        <div><img src="https://1124817.eu9.myftpupload.com/wp-content/uploads/2026/06/EZVIZ_Logo-1.jpg" alt="EZVIZ" loading="lazy" /></div>
+        <div><img src="https://1124817.eu9.myftpupload.com/wp-content/uploads/2026/06/eufy-vector-logo.png" alt="eufy" loading="lazy" /></div>
+        <div><img src="https://1124817.eu9.myftpupload.com/wp-content/uploads/2026/06/SONOFF-LOGO.webp" alt="SONOFF" loading="lazy" /></div>
+        <div><img src="https://1124817.eu9.myftpupload.com/wp-content/uploads/2026/06/Screenshot-2026-06-30-121838.png" alt="TP-Link Tapo" loading="lazy" /></div>
+      </div>
+    </div>
+
+    <div style="margin-top:clamp(2.6rem,6vh,4rem)">
+      <p class="sub">03D — Representative journeys</p>
+      <h3 class="h3">Three intents the structure has to serve.</h3>
+      <p class="note-pill">Representative journeys derived from the service structure and intended experience — not validated user research.</p>
+      <div class="jrn">
+        <div><p class="n mono" style="color:var(--teal);margin-bottom:.6rem">Intent 01</p><h4>Find a home WiFi solution</h4><ol role="list"><li><i>→</i>Recognise the symptom — dead zone or slow speed</li><li><i>→</i>Read the matching service line</li><li><i>→</i>Build confidence — reviews, BBBEE, technologies</li><li><i>→</i>Request a free assessment</li></ol><p class="foot">The shortest path in the site. Most likely to arrive on a phone.</p></div>
+        <div><p class="n mono" style="color:var(--teal);margin-bottom:.6rem">Intent 02</p><h4>Find a business connectivity solution</h4><ol role="list"><li><i>→</i>Arrive with an operational problem, often downtime</li><li><i>→</i>Explore the business-facing services</li><li><i>→</i>Cross-check the sector page for their environment</li><li><i>→</i>Enquire, or call directly</li></ol><p class="foot">Higher intent, longer consideration. Needs both the sector route and the service route to exist.</p></div>
+        <div><p class="n mono" style="color:var(--teal);margin-bottom:.6rem">Intent 03</p><h4>Evaluate a technical solution</h4><ol role="list"><li><i>→</i>Arrive already knowing the vocabulary</li><li><i>→</i>Go straight to infrastructure or cloud detail</li><li><i>→</i>Check supported technologies and support model</li><li><i>→</i>Contact a specialist</li></ol><p class="foot">This visitor wants specification, not reassurance — which is why detail is kept, just deferred.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="decisions">
+  <div class="sec__inner">
+    <p class="kicker">04 — Key design decisions</p>
+    <h2 class="h2">Four decisions, and what would prove them <em>right or wrong.</em></h2>
+    <p class="lead">Each block reads the same way: the problem, the decision, the reasoning, what shipped, what actually supports it — and the test I would run next. Where there is no evidence, the block says so.</p>
+    <div style="margin-top:2.4rem">
+      <article class="dec">
+        <div class="dec__head"><div class="l"><span class="dec__n">DECISION 01</span><h3>Lead with the customer's problem, not the service catalogue</h3></div><span class="dec__where">Homepage, above the services grid</span></div>
+        <div class="dec__grid">
+          <div>
+            <p class="dec__lbl">Problem</p><p class="body">A visitor arriving from search has a symptom, not a service name. Opening with a seven-item catalogue asks them to translate their own problem into our vocabulary before anything is useful.</p>
+            <p class="dec__lbl">Decision</p><p class="body">Place a 'Common problems we solve' section — dead zone, slow speed, security vulnerability, business downtime — ahead of the services grid, and let each symptom act as an entry point toward the relevant service line.</p>
+            <p class="dec__lbl">Why</p><p class="body">Recognition is cheaper than recall. If the first thing on the page names the visitor's situation in their own words, the rest of the page is read as relevant rather than browsed as a menu. It also gives the sales conversation a shared starting point.</p>
+          </div>
+          <div>
+            <p class="dec__lbl">Interface — what shipped</p>
+            <ul class="iface" role="list"><li><i>▸</i>Four symptom cards in the customer's language</li><li><i>▸</i>'Is your WiFi or network letting you down?' as the section framing</li><li><i>▸</i>A single 'Speak to a specialist' action for people who don't want to self-diagnose</li><li><i>▸</i>Services grid placed immediately after, so the translation happens on one screen</li></ul>
+          </div>
+        </div>
+        <div class="dec__foot">
+          <div><p class="l1">Evidence / limitation</p><p>Supported by the service offering and how enquiries are described by the business — not by user research. No testing was run on the ordering.</p></div>
+          <div><p class="l2">Next validation</p><p>A/B the symptom-first order against a services-first order, measuring scroll depth to the services grid and assessment-form starts.</p></div>
+        </div>
+      </article>
+      <article class="dec">
+        <div class="dec__head"><div class="l"><span class="dec__n">DECISION 02</span><h3>Progressive disclosure: overview page, then service detail</h3></div><span class="dec__where">Services grid → 7 service pages</span></div>
+        <div class="dec__grid">
+          <div>
+            <p class="dec__lbl">Problem</p><p class="body">Seven service lines, each with four to five sub-services and its own technical detail. Putting that on one page buries the visitor; splitting it too finely makes the site feel bottomless.</p>
+            <p class="dec__lbl">Decision</p><p class="body">Two levels only. The homepage grid gives each service line a one-sentence description plus its sub-services as a scannable list; the dedicated page carries the depth, inclusions and technology detail.</p>
+            <p class="dec__lbl">Why</p><p class="body">The overview answers 'is this relevant to me?' at a glance; the detail page answers 'is this the right level of solution?' for the visitor who has already self-selected. Technical content stays available without taxing the visitor who doesn't need it.</p>
+          </div>
+          <div>
+            <p class="dec__lbl">Interface — what shipped</p>
+            <ul class="iface" role="list"><li><i>▸</i>Service cards with a description plus 4–5 named sub-services</li><li><i>▸</i>One 'Explore service' action per card — no competing links</li><li><i>▸</i>Seven dedicated pages, one level deep, mirrored in the Services submenu</li><li><i>▸</i>Sector and location pages kept as separate routes rather than nested inside services</li></ul>
+          </div>
+        </div>
+        <div class="dec__foot">
+          <div><p class="l1">Evidence / limitation</p><p>The structure is visible in the shipped IA and navigation. No card-sort or tree-test was run to validate the grouping.</p></div>
+          <div><p class="l2">Next validation</p><p>A tree test on the seven category names — can someone place 'my office CCTV isn't recording' in the right service line without help?</p></div>
+        </div>
+      </article>
+      <article class="dec">
+        <div class="dec__head"><div class="l"><span class="dec__n">DECISION 03</span><h3>Contextual CTAs repeated through the journey</h3></div><span class="dec__where">Header, hero, every section, every service page, footer</span></div>
+        <div class="dec__grid">
+          <div>
+            <p class="dec__lbl">Problem</p><p class="body">Enquiry is the only conversion on this site, and visitors reach readiness at different depths — some in the hero, some after the technologies list, some only after reading a service page.</p>
+            <p class="dec__lbl">Decision</p><p class="body">Keep one primary action — 'Get a free assessment' — and repeat it in the local language of each section, with a phone/WhatsApp alternative always beside it rather than hidden on the contact page.</p>
+            <p class="dec__lbl">Why</p><p class="body">A single repeated action avoids splitting intent across competing CTAs, and the assessment framing lowers commitment: it asks for a diagnosis, not a purchase. Offering a call alongside it respects that a lot of South African service enquiries happen by phone or WhatsApp.</p>
+          </div>
+          <div>
+            <p class="dec__lbl">Interface — what shipped</p>
+            <ul class="iface" role="list"><li><i>▸</i>'Get a free assessment' as the standing primary action</li><li><i>▸</i>'Call us now' / WhatsApp as a persistent secondary</li><li><i>▸</i>Section-level variants — 'Speak to a specialist', 'Explore service' — that all resolve to the same funnel</li><li><i>▸</i>Header 'Get in touch' pinned across every page and breakpoint</li></ul>
+          </div>
+        </div>
+        <div class="dec__foot">
+          <div><p class="l1">Evidence / limitation</p><p>CTA placement is verifiable on the live site. Nothing about relative CTA performance is known — no analytics have been shared.</p></div>
+          <div><p class="l2">Next validation</p><p>Instrument each CTA position and compare assessment-form starts by section, then cut the placements that earn nothing.</p></div>
+        </div>
+      </article>
+      <article class="dec">
+        <div class="dec__head"><div class="l"><span class="dec__n">DECISION 04</span><h3>Design the mobile navigation of a deep service menu first</h3></div><span class="dec__where">All breakpoints, mobile-led</span></div>
+        <div class="dec__grid">
+          <div>
+            <p class="dec__lbl">Problem</p><p class="body">Nine top-level destinations, one of which expands into seven service pages. On a phone that is a menu that either hides everything important or scrolls past the fold.</p>
+            <p class="dec__lbl">Decision</p><p class="body">Design the mobile menu as the constraint and let desktop inherit it: a compact drawer with Services expanding in place, contact details surfaced inside the menu, and the primary CTA fixed above it.</p>
+            <p class="dec__lbl">Why</p><p class="body">The majority of visitors arrive on a phone, often mid-problem. If the deepest part of the IA works in a drawer, the desktop version is easy — the reverse is not true. It also forced the service names to stay short enough to read at 320px.</p>
+          </div>
+          <div>
+            <p class="dec__lbl">Interface — what shipped</p>
+            <ul class="iface" role="list"><li><i>▸</i>Single drawer with in-place Services expansion — no nested pages</li><li><i>▸</i>Phone, WhatsApp and email inside the menu, not only in the footer</li><li><i>▸</i>Stacked service cards preserving the sub-service lists at 320px</li><li><i>▸</i>Tap targets and CTA kept above 44px throughout</li></ul>
+          </div>
+        </div>
+        <div class="dec__foot">
+          <div><p class="l1">Evidence / limitation</p><p>Behaviour is verifiable in the live implementation at each breakpoint. No device analytics or mobile-specific testing has been shared with me.</p></div>
+          <div><p class="l2">Next validation</p><p>Check real device split and mobile menu engagement, then test whether surfacing the two or three most-requested services directly in the drawer beats a single Services expander.</p></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--paper2" id="design">
+  <div class="sec__inner">
+    <p class="kicker">05 — Interface</p>
+    <h2 class="h2">Opportunity → design decision → final interface</h2>
+    <p class="lead">CMAXX had no previous website, so there is no honest "before" to compare against. Instead, each screen is shown against the opportunity it was answering.</p>
+    <div style="margin-top:2.4rem">
+      <article class="scr">
+        <div class="scr__copy">
+          <p class="sub">Screen 01 — Homepage</p>
+          <h3>Five questions, answered in order.</h3>
+          <p class="scr__l">Opportunity</p><p class="body">A first-time visitor needs to work out what CMAXX does, whether it applies to them, what is on offer, whether the company can be trusted, and what to do next — without scrolling back up.</p>
+          <p class="scr__l">Design decision</p><p class="body">Sequence the page against those five questions and let each section answer exactly one: positioning, symptoms, services, trust, contact.</p>
+          <ol class="scr__notes" role="list"><li><i>1</i>What does CMAXX do — hero positioning plus three trust markers</li><li><i>2</i>Is this relevant to me — the four symptoms</li><li><i>3</i>What's available — the service grid</li><li><i>4</i>Why trust them — BBBEE, 9+ years, 100+ projects, supported technologies</li><li><i>5</i>What next — assessment, call, WhatsApp</li></ol>
+        </div>
+        <div class="scr__media"><div class="scr__frame"><img src="assets/img/work/cmaxx-mockup.png" alt="Homepage — Homepage — desktop" loading="lazy" /></div></div>
+      </article>
+      <article class="scr">
+        <div class="scr__copy">
+          <p class="sub">Screen 02 — Service discovery</p>
+          <h3>Understand the offering before being asked to enquire.</h3>
+          <p class="scr__l">Opportunity</p><p class="body">The services grid is where the breadth either reads as capability or as confusion.</p>
+          <p class="scr__l">Design decision</p><p class="body">One card per service line, each carrying a plain-language description and its named sub-services, so the visitor can scan for their own words before committing to a click.</p>
+          <ol class="scr__notes" role="list"><li><i>·</i>Equal visual weight across service lines — no hidden hierarchy</li><li><i>·</i>Sub-services named, not summarised</li><li><i>·</i>A single 'Explore service' action per card</li><li><i>·</i>Cross-cutting offers (Smart Home, Public WiFi) given their own bands</li></ol>
+        </div>
+        <div class="scr__media"><div class="scr__ph">Add: services section screenshot</div></div>
+      </article>
+      <article class="scr">
+        <div class="scr__copy">
+          <p class="sub">Screen 03 — Service detail</p>
+          <h3>Depth for the visitor who has already self-selected.</h3>
+          <p class="scr__l">Opportunity</p><p class="body">Someone who clicked into a service has narrowed their intent — they want inclusions, scope and evidence, not another pitch.</p>
+          <p class="scr__l">Design decision</p><p class="body">Open with the value in one line, then inclusions, then supporting technical information, then the assessment CTA. Detail is deferred, never deleted.</p>
+          <ol class="scr__notes" role="list"><li><i>·</i>Headline stating the outcome, not the technology</li><li><i>·</i>Inclusions as a scannable list</li><li><i>·</i>Technical specifics kept below the decision-making content</li><li><i>·</i>Assessment CTA repeated at the end of the page</li></ol>
+        </div>
+        <div class="scr__media"><div class="scr__ph">Add: a service detail page screenshot</div></div>
+      </article>
+      <article class="scr">
+        <div class="scr__copy">
+          <p class="sub">Screen 04 — Contact &amp; conversion</p>
+          <h3>Reduce the cost of starting a conversation.</h3>
+          <p class="scr__l">Opportunity</p><p class="body">The enquiry is the only conversion. Anything that adds doubt or effort at this point undoes the rest of the page.</p>
+          <p class="scr__l">Design decision</p><p class="body">Offer the form plus every direct channel the business actually answers — two numbers, WhatsApp, email, location — and keep the form short enough to complete on a phone.</p>
+          <ol class="scr__notes" role="list"><li><i>·</i>Short form, phone-friendly field order</li><li><i>·</i>Landline, mobile, WhatsApp and email all visible</li><li><i>·</i>Location stated for local-trust reasons</li><li><i>·</i>No conversion claims — nothing has been measured</li></ol>
+        </div>
+        <div class="scr__media"><div class="scr__ph">Add: contact page / mobile menu screenshot</div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--deep-r" id="production">
+  <div class="sec__inner">
+    <p class="kicker">06 — Responsive &amp; production</p>
+    <h2 class="h2">One experience, different contexts.</h2>
+    <p class="lead">Most CMAXX traffic is a person on a phone who just discovered a problem. Mobile was designed as its own set of decisions, not a narrower desktop.</p>
+    <div class="bpgrid">
+      <div><p class="r">320 – 767px</p><b>Mobile</b><ul role="list"><li><i>·</i>Drawer navigation with Services expanding in place</li><li><i>·</i>Single-column stack; service cards keep their sub-service lists</li><li><i>·</i>Hero shortened to positioning, trust markers and both CTAs</li><li><i>·</i>Contact details surfaced inside the menu</li></ul></div>
+      <div><p class="r">768 – 1023px</p><b>Tablet</b><ul role="list"><li><i>·</i>Two-column service and sector grids</li><li><i>·</i>Hero panel moves below the copy rather than beside it</li><li><i>·</i>Trust markers wrap into two rows</li><li><i>·</i>Section padding reduced to keep sections one screen tall</li></ul></div>
+      <div><p class="r">1024px +</p><b>Desktop</b><ul role="list"><li><i>·</i>Full horizontal navigation with the Services submenu</li><li><i>·</i>Three-column service grid; hero copy beside the network panel</li><li><i>·</i>Contact bar with phone and email in the top strip</li><li><i>·</i>Larger editorial type scale for section headings</li></ul></div>
+    </div>
+    <div style="margin-top:clamp(2.6rem,6vh,4rem)">
+      <h3 class="h3">From design to production.</h3>
+      <p class="body" style="color:rgba(255,255,255,.72);max-width:66ch;margin-bottom:1.6rem">I designed and built this site myself in WordPress with Elementor — which means every design decision had to survive a real CMS, a real content set and a real client review, not just a canvas. Design is not finished when the design file is.</p>
+      <ol class="pipe" role="list">
+        <li><p class="s">Design</p><p>IA, content structure, page layouts and the component patterns the client's team would reuse.</p></li>
+        <li><p class="s">Implementation</p><p>Built in WordPress with Elementor by me — layouts, responsive rules, navigation and forms.</p></li>
+        <li><p class="s">QA</p><p>Checked at 320, 768, 1024 and 1440; navigation, forms, links and content passes before launch.</p></li>
+        <li><p class="s">Iteration</p><p>Content and section-level changes after launch as the offering and trust markers were updated.</p></li>
+        <li><p class="s">Live</p><p>In production and still being iterated — including new service and location pages.</p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="outcome">
+  <div class="sec__inner">
+    <p class="kicker">07 — Outcome</p>
+    <h2 class="h2">What shipped — and what I would measure to know if it worked.</h2>
+    <p class="lead">No analytics or conversion data has been shared with me, so there are no performance claims here. The two lists below are deliberately kept apart.</p>
+    <div class="outgrid">
+      <div class="outbox">
+        <p class="mono" style="color:var(--teal-d);margin-bottom:1rem">Delivered</p>
+        <ul class="stack" role="list"><li><span class="y">✓</span>Production website delivered and live</li><li><span class="y">✓</span>Service architecture established across seven service lines</li><li><span class="y">✓</span>Nine-destination navigation, one level deep, maintainable in Elementor</li><li><span class="y">✓</span>Responsive experience implemented from 320px up</li><li><span class="y">✓</span>Symptom-led homepage narrative shipped ahead of the services grid</li><li><span class="y">✓</span>Assessment and direct-contact pathways implemented site-wide</li><li><span class="y">✓</span>SEO structure: semantic headings, descriptive titles, clean URLs</li></ul>
+      </div>
+      <div class="outbox outbox--dash">
+        <p class="mono" style="color:var(--orange-d);margin-bottom:.5rem">Future measurement opportunities</p>
+        <p class="mono" style="color:var(--mut-2);margin-bottom:1rem">Not achieved results</p>
+        <ul class="stack" role="list"><li><span class="o">○</span>Enquiry conversion rate (assessment form completions)</li><li><span class="o">○</span>CTA engagement by section position</li><li><span class="o">○</span>Service-page engagement and drop-off</li><li><span class="o">○</span>Contact-form completion vs. abandonment</li><li><span class="o">○</span>Mobile vs. desktop conversion split</li><li><span class="o">○</span>Service-discovery behaviour — which category a visitor lands in first</li><li><span class="o">○</span>Search performance against symptom-led queries</li></ul>
+      </div>
+    </div>
+    <div class="cols" style="margin-top:clamp(2.6rem,6vh,4rem)">
+      <div>
+        <h3 class="h3">What I learned</h3>
+        <div class="lessons"><div><b>Complexity needs structure before styling</b><p>Most of the value on this project was decided before any layout existed — in grouping seven service lines so a stranger could self-select.</p></div><div><b>The customer's vocabulary beats the company's</b><p>Leading with 'dead zone' rather than 'wireless coverage optimisation' was the single change that made the offering legible.</p></div><div><b>Shipping it myself changed the design</b><p>Building in Elementor meant every pattern had to be reproducible by the client afterwards. That constraint improved the system — fewer, more reusable blocks.</p></div></div>
+      </div>
+      <div>
+        <h3 class="h3">What I would improve next</h3>
+        <ul class="improve stack" role="list"><li><i>→</i>Validate the representative journeys with real users</li><li><i>→</i>Instrument and measure enquiry conversion</li><li><i>→</i>Tree-test the seven service category names</li><li><i>→</i>Test CTA hierarchy and cut placements that earn nothing</li><li><i>→</i>Analyse service-discovery entry points</li><li><i>→</i>Sharpen page content against real search intent</li><li><i>→</i>Iterate the mobile drawer using behavioural data</li></ul>
+        <p class="mono" style="margin-top:1rem;color:var(--mut-2)">The site is live and still being iterated — this list is the current backlog, not completed work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="foot__inner">
+    <div>
+      <h2>Designed &amp; built by Sphamandla Xaba</h2>
+      <p class="m">AX-Channels · Gauteng, South Africa</p>
+    </div>
+    <div class="btnrow" style="margin:0">
+      <a class="btn btn--o" href="https://1124817.eu9.myftpupload.com/" target="_blank" rel="noopener">View live website ↗</a>
+      <a class="btn btn--g" href="index.html#work">More work</a>
+      <a class="btn btn--g" href="mailto:sphamandaxaba@gmail.com">Start a conversation</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var bar = document.getElementById("prog");
+    var links = Array.prototype.slice.call(document.querySelectorAll(".chapnav a"));
+    var secs = links.map(function (a) { return document.querySelector(a.getAttribute("href")); });
+    function onScroll() {
+      var h = document.documentElement;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + "%";
+      var i, active = 0;
+      for (i = 0; i < secs.length; i++) {
+        if (secs[i] && secs[i].getBoundingClientRect().top <= 160) active = i;
+      }
+      links.forEach(function (a, n) { a.classList.toggle("is-on", n === active); });
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  })();
+</script>
+</body>
+</html>
