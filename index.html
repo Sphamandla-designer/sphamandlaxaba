@@ -4,500 +4,438 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sphamandla Xaba® — Product Designer &amp; AI Experience Designer</title>
-  <meta name="description" content="Sphamandla Xaba is a Product Designer & AI Experience Designer based in Gauteng, South Africa — designing enterprise SaaS, AI-powered experiences and premium digital products that solve real business problems." />
+  <meta name="description" content="Sphamandla Xaba is a Product Designer & AI Experience Designer based in Gauteng, South Africa — designing enterprise SaaS, AI-powered experiences and operational software people understand." />
   <meta property="og:title" content="Sphamandla Xaba® — Product Designer &amp; AI Experience Designer" />
-  <meta property="og:description" content="I start from zero, designing only what matters. Product design, AI experiences and design systems." />
+  <meta property="og:description" content="Complex made clear. Enterprise software, AI experiences and design systems — designed and shipped." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://sphamandla-designer.github.io/sphamandlaxaba/assets/img/hero-bg.png" />
-  <meta name="theme-color" content="#060609" />
+  <meta property="og:image" content="https://sphamandla-designer.github.io/sphamandlaxaba/assets/img/hero-editorial.jpg" />
+  <meta name="theme-color" content="#0f1a33" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="assets/fonts/jetbrains-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="assets/img/hero-bg.png" as="image" fetchpriority="high" />
-  <link rel="stylesheet" href="assets/css/home.css?v=neon-9" />
+  <link rel="preload" href="assets/img/hero-editorial.jpg" as="image" fetchpriority="high" />
+  <link rel="stylesheet" href="assets/css/editorial.css?v=ed-1" />
   <script>document.documentElement.classList.add('js');</script>
-  <script type="importmap">{ "imports": { "three": "./assets/js/three.module.min.js" } }</script>
 </head>
 <body>
 
-  <!-- ═══════════════ PRELOADER ═══════════════ -->
-  <div class="loader" id="loader" aria-hidden="true">
-    <div class="loader__inner">
-      <p class="loader__eyebrow">Sphamandla Xaba® — Portfolio ©2026</p>
-      <div class="loader__row">
-        <span class="loader__word">FROM</span>
-        <span class="loader__count" id="loaderCount">000</span>
-        <span class="loader__word loader__word--outline">ZERO</span>
-      </div>
-      <div class="loader__bar"><span id="loaderBar"></span></div>
-      <p class="loader__hint">Only what matters.</p>
+  <!-- ═══════════ UTILITY BAR ═══════════ -->
+  <div class="utility">
+    <div class="wrap">
+      <span class="utility__brand">Gauteng, South Africa · SAST (UTC+2)</span>
+      <nav class="utility__links" aria-label="Utility">
+        <a href="mailto:sphamandaxaba@gmail.com">sphamandaxaba@gmail.com</a>
+        <span class="dot" aria-hidden="true">·</span>
+        <a href="https://wa.me/27609381313" target="_blank" rel="noopener">WhatsApp</a>
+        <span class="dot" aria-hidden="true">·</span>
+        <a href="assets/docs/Sphamandla-Xaba-Resume.pdf" download>Download Resume</a>
+      </nav>
     </div>
-    <div class="loader__curtain loader__curtain--l"></div>
-    <div class="loader__curtain loader__curtain--r"></div>
   </div>
 
-  <!-- ═══════════════ GRAIN ═══════════════ -->
-  <div class="grain" aria-hidden="true"></div>
-
-  <!-- ═══════════════ HEADER ═══════════════ -->
-  <header class="header" id="header">
-    <a href="#top" class="header__logo" data-magnetic aria-label="Sphamandla Xaba — home">
-      <svg viewBox="0 0 24 24" class="header__mark" aria-hidden="true"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg>
-      <span>Sphamandla<sup>®</sup></span>
-    </a>
-    <nav class="header__nav" aria-label="Primary">
-      <a href="#top" class="header__link is-active"><i class="header__dot"></i>Home</a>
-      <a href="#work" class="header__link">Work</a>
-      <a href="#about" class="header__link">About</a>
-      <a href="#services" class="header__link">Services</a>
-      <a href="#contact" class="header__link">Contact</a>
-    </nav>
-    <div class="header__right">
-      <div class="header__meta" aria-hidden="true">
-        <span class="header__meta-label">Timezone</span>
-        <span class="header__meta-time"><b id="clock">6:30pm</b>&nbsp;•&nbsp;<span id="dateNow">12 July, 2026</span></span>
+  <!-- ═══════════ PRIMARY NAV ═══════════ -->
+  <header class="nav" id="nav">
+    <div class="wrap">
+      <a href="#top" class="nav__logo" aria-label="Sphamandla Xaba — home">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg>
+        <span>Sphamandla<sup aria-hidden="true">®</sup></span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#work" class="nav__link" data-spy="work">Work</a>
+        <a href="#philosophy" class="nav__link" data-spy="philosophy">Philosophy</a>
+        <a href="#services" class="nav__link" data-spy="services">Expertise</a>
+        <a href="#about" class="nav__link" data-spy="about">About</a>
+        <a href="#contact" class="nav__link" data-spy="contact">Contact</a>
+      </nav>
+      <div class="nav__right">
+        <a href="#contact" class="btn btn--primary btn--sm">Let's talk</a>
+        <button class="icon-btn nav__burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="drawer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
       </div>
     </div>
   </header>
 
+  <!-- mobile drawer -->
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer__scrim" data-close></div>
+    <nav class="drawer__panel" aria-label="Mobile">
+      <button class="icon-btn drawer__close" data-close aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <a href="#work" class="drawer__link" data-close>Work</a>
+      <a href="#philosophy" class="drawer__link" data-close>Philosophy</a>
+      <a href="#services" class="drawer__link" data-close>Expertise</a>
+      <a href="#about" class="drawer__link" data-close>About</a>
+      <a href="#contact" class="drawer__link" data-close>Contact</a>
+      <div class="drawer__meta">
+        <a class="caption" href="mailto:sphamandaxaba@gmail.com">sphamandaxaba@gmail.com</a>
+        <a class="caption" href="tel:+27601020774">Cell · +27 60 102 0774</a>
+        <a class="caption" href="https://wa.me/27609381313" target="_blank" rel="noopener">WhatsApp · +27 60 938 1313</a>
+      </div>
+    </nav>
+  </div>
+
   <main id="top">
 
-    <!-- ═══════════════ HERO ═══════════════ -->
-    <section class="hero" id="hero">
-      <div class="hero__bg" id="heroBg" aria-hidden="true"></div>
-      <div class="hero__canvas" id="heroCanvas" aria-hidden="true"></div>
-
-      <!-- floating 3D glass objects -->
-      <div class="hero__obj hero__obj--a" id="heroObjA" aria-hidden="true">
-        <div class="obj3d obj3d--dark obj3d--float" style="--s:132px;--z:66px">
-          <div class="obj3d__spin">
-            <span class="obj3d__face"></span><span class="obj3d__face"></span><span class="obj3d__face"></span>
-            <span class="obj3d__face"></span><span class="obj3d__face"></span><span class="obj3d__face"></span>
+    <!-- ═══════════ CAMPAIGN HERO ═══════════ -->
+    <section class="hero" aria-label="Introduction">
+      <img class="hero__img" src="assets/img/hero-editorial.jpg"
+           alt="Laptop showing a logistics website designed by Sphamandla Xaba, photographed on industrial black and orange hardware under a dusk sky" />
+      <div class="hero__scrim" aria-hidden="true"></div>
+      <div class="hero__content">
+        <div class="wrap">
+          <p class="hero__kicker rv">Sphamandla Xaba — Product Designer &amp; AI Experience Designer</p>
+          <h1 class="display hero__title rv">Complex made clear.</h1>
+          <p class="hero__sub rv">
+            I design enterprise software, AI experiences and operational products people
+            understand — then take them all the way to shipped.
+          </p>
+          <div class="hero__actions rv">
+            <a href="#work" class="btn btn--on-image">View work</a>
+            <a href="assets/docs/Sphamandla-Xaba-Resume.pdf" class="link-md" download>Download resume</a>
           </div>
         </div>
       </div>
-      <div class="hero__obj hero__obj--b" id="heroObjB" aria-hidden="true">
-        <div class="obj3d obj3d--dark obj3d--float" style="--s:64px;--z:32px">
-          <div class="obj3d__spin" style="animation-duration: 14s">
-            <span class="obj3d__face"></span><span class="obj3d__face"></span><span class="obj3d__face"></span>
-            <span class="obj3d__face"></span><span class="obj3d__face"></span><span class="obj3d__face"></span>
-          </div>
-        </div>
+    </section>
+
+    <!-- ═══════════ STAT STRIP ═══════════ -->
+    <section class="stats" aria-label="Track record">
+      <div class="wrap">
+        <div class="stat rv"><b>3</b><span>Years experience</span></div>
+        <div class="stat rv"><b>16+</b><span>Projects delivered</span></div>
+        <div class="stat rv"><b>4+</b><span>Projects led</span></div>
+        <div class="stat rv"><b>5</b><span>Core design disciplines</span></div>
       </div>
+    </section>
 
-      <span class="hero__word" id="heroWord" aria-hidden="true">XABA</span>
-
-      <!-- LEFT column -->
-      <div class="hero__left">
-        <p class="hero__eyebrow" data-reveal><span class="hero__eyebrow-bar"></span>Product Designer &amp; AI Experience Designer</p>
-        <h1 class="hero__title" id="heroTitle">
-          <span class="hero__line"><em>I design complex products</em></span>
-          <span class="hero__line"><em>into experiences people <span class="grad">understand.</span></em></span>
-        </h1>
-        <div class="hero__rating" data-reveal>
-          <span class="hero__stars" aria-hidden="true">★★★★★</span>
-          <span class="hero__rating-copy">Enterprise SaaS · AI Experiences · Design Systems</span>
+    <!-- ═══════════ SELECTED WORK ═══════════ -->
+    <section class="sec" id="work">
+      <div class="wrap">
+        <div class="sec__head">
+          <h2 class="sec__title">Selected Work</h2>
+          <span class="caption">Case studies — every project starts with a business problem</span>
         </div>
-        <div class="hero__actions" data-reveal>
-          <a href="#work" class="btn btn--dark" data-magnetic data-cursor="Browse">
-            <span class="btn__text">View my work</span>
-            <span class="btn__orb"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 12L12 2M12 2H4M12 2v8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div class="grid-work">
+          <a href="finos.html" class="pcard rv">
+            <div class="pcard__media">
+              <img src="assets/img/work/finos-mockup.png" alt="FINOS — AI financial operating system command center" loading="lazy" />
+              <span class="pcard__badge">Just In</span>
+            </div>
+            <div class="pcard__meta">
+              <span class="pcard__name">FINOS</span>
+              <span class="pcard__sub">AI Financial Operating System · Concept</span>
+              <span class="pcard__cta">View case study</span>
+            </div>
           </a>
-          <a href="assets/docs/Sphamandla-Xaba-Resume.pdf" class="btn btn--glass" data-magnetic data-cursor="Resume" download>
-            <span class="btn__text">Download Resume</span>
+          <a href="cmaxx.html" class="pcard rv">
+            <div class="pcard__media">
+              <img src="assets/img/work/cmaxx-mockup.jpg" alt="CMAXX WiFi Solutions sign-up experience on a phone, photographed on industrial orange mesh" loading="lazy" />
+              <span class="pcard__badge">Just In</span>
+            </div>
+            <div class="pcard__meta">
+              <span class="pcard__name">CMAXX WiFi Solutions</span>
+              <span class="pcard__sub">Connectivity Service Experience</span>
+              <span class="pcard__cta">View case study</span>
+            </div>
+          </a>
+          <a href="managem.html" class="pcard rv">
+            <div class="pcard__media">
+              <img src="assets/img/work/managem-mockup.png" alt="ManaGem enterprise property-management dashboard on a laptop" loading="lazy" />
+            </div>
+            <div class="pcard__meta">
+              <span class="pcard__name">ManaGem</span>
+              <span class="pcard__sub">Enterprise Property Management</span>
+              <span class="pcard__cta">View case study</span>
+            </div>
+          </a>
+          <a href="whatsapp-ai.html" class="pcard rv">
+            <div class="pcard__media">
+              <img src="assets/img/work/whatsapp-ai-mockup.png" alt="Home Assist AI verification conversation on WhatsApp" loading="lazy" />
+            </div>
+            <div class="pcard__meta">
+              <span class="pcard__name">Home Assist</span>
+              <span class="pcard__sub">AI Claims Verification on WhatsApp</span>
+              <span class="pcard__cta">View case study</span>
+            </div>
+          </a>
+          <a href="wastemart.html" class="pcard rv">
+            <div class="pcard__media">
+              <img src="assets/img/work/wm-driver-v2.jpg" alt="WasteMart driver operations app login on a phone" loading="lazy" />
+            </div>
+            <div class="pcard__meta">
+              <span class="pcard__name">WasteMart</span>
+              <span class="pcard__sub">Field Operations Platform</span>
+              <span class="pcard__cta">View case study</span>
+            </div>
           </a>
         </div>
-        <div class="hero__stats" data-reveal>
-          <div class="hero__stat">
-            <span class="hero__stat-num">3</span>
-            <span class="hero__stat-label">Years<br />experience</span>
-          </div>
-          <div class="hero__stat">
-            <span class="hero__stat-num">16+</span>
-            <span class="hero__stat-label">Projects<br />delivered</span>
-          </div>
-          <div class="hero__stat">
-            <span class="hero__stat-num">4+</span>
-            <span class="hero__stat-label">Projects<br />led</span>
-          </div>
-          <div class="hero__stat">
-            <span class="hero__stat-num">5</span>
-            <span class="hero__stat-label">Core design<br />disciplines</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- widget card (right-top): rotating design principles -->
-      <aside class="hero__widget glass" id="heroWidget" data-tilt>
-        <div class="hero__widget-top">
-          <span class="hero__widget-index mono" id="widgetIndex">01</span>
-          <div class="hero__widget-tile" id="widgetTile">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg>
-          </div>
-          <p class="hero__widget-copy" id="widgetCopy">Strategy before<br />screens.</p>
-        </div>
-        <div class="hero__widget-bottom">
-          <div class="hero__widget-track" aria-hidden="true"><span id="widgetBar"></span></div>
-          <div class="hero__widget-nav">
-            <button aria-label="Previous principle" id="widgetPrev"><svg viewBox="0 0 14 14"><path d="M9 2L4 7l5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-            <button aria-label="Next principle" id="widgetNext"><svg viewBox="0 0 14 14"><path d="M5 2l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          </div>
-        </div>
-      </aside>
-
-      <!-- brands & projects (right-bottom) -->
-      <div class="hero__partners" data-reveal>
-        <p class="hero__partners-label">Brands &amp; Projects</p>
-        <ul class="hero__partners-grid">
-          <li><a href="finos.html"><span class="p-mark">✦</span>FINOS</a></li>
-          <li><a href="managem.html"><span class="p-mark">✦</span>ManaGem</a></li>
-          <li><a href="wastemart.html"><span class="p-mark">✦</span>WasteMart</a></li>
-          <li><a href="whatsapp-ai.html"><span class="p-mark">●</span>Home Assist</a></li>
-          <li><span class="p-mark">❖</span>AX-Channels</li>
-        </ul>
-      </div>
-
-      <div class="hero__strip glass-dark" id="heroStrip">
-        <span data-reveal>• Product Designer &amp; AI Experience Designer</span>
-        <span data-reveal>• Based in Gauteng, SA</span>
-        <a href="#marquee" data-reveal data-cursor="↓">• Scroll Down</a>
       </div>
     </section>
 
-    <!-- ═══════════════ MARQUEE ═══════════════ -->
-    <section class="marquee" id="marquee" aria-hidden="true">
-      <div class="marquee__row" id="marqueeRow">
-        <span>Product Strategy</span><i>✦</i><span>AI Experience Design</span><i>✦</i><span>Enterprise SaaS</span><i>✦</i><span>Design Systems</span><i>✦</i><span>Motion</span><i>✦</i><span>Interaction</span><i>✦</i>
-        <span>Product Strategy</span><i>✦</i><span>AI Experience Design</span><i>✦</i><span>Enterprise SaaS</span><i>✦</i><span>Design Systems</span><i>✦</i><span>Motion</span><i>✦</i><span>Interaction</span><i>✦</i>
-        <span>Product Strategy</span><i>✦</i><span>AI Experience Design</span><i>✦</i><span>Enterprise SaaS</span><i>✦</i><span>Design Systems</span><i>✦</i><span>Motion</span><i>✦</i><span>Interaction</span><i>✦</i>
-      </div>
-    </section>
-
-    <!-- ═══════════════ SELECTED WORK — GLASS CARD CAROUSEL ═══════════════ -->
-    <section class="workcarousel" id="work">
-      <div class="workcarousel__head">
-        <div>
-          <p class="section-tag section-tag--light" data-reveal><span>01</span> — Selected Work</p>
-          <h2 class="section-title section-title--light" data-split>Solving complex problems across<br /><em>enterprise software &amp; AI.</em></h2>
-        </div>
-        <p class="workcarousel__sub" data-reveal>
-          Every project begins with a business challenge — not a screen.
+    <!-- ═══════════ PHILOSOPHY BAND ═══════════ -->
+    <section class="band" id="philosophy">
+      <div class="wrap">
+        <p class="band__kicker rv">Design philosophy</p>
+        <h2 class="display band__title rv">Systems that hold up under real use.</h2>
+        <p class="band__lead rv">
+          Good design isn't the interface — it's everything that has to be true for the
+          interface to work. Before I draw a screen, I want to understand the decision
+          points, the failure states, and the constraints the business is actually
+          operating under. The medium changes. The discipline doesn't.
         </p>
-      </div>
-
-      <div class="workcarousel__grid" data-reveal-group>
-        <a href="finos.html" class="wcard glass-work" data-cursor="View case" data-tilt>
-          <div class="wcard__media"><img src="assets/img/work/finos-mockup.png" alt="FINOS — AI financial operating system command center" loading="lazy" /></div>
-          <div class="wcard__body">
-            <p class="wcard__cat mono">AI UX · Product Strategy · Fintech Concept</p>
-            <h3 class="wcard__name">FINOS</h3>
-            <p class="wcard__desc">Designing an AI financial operating system for better decisions — not just better dashboards. Self-initiated concept, built as a high-fidelity interactive prototype.</p>
-            <span class="wcard__cta">View case study <i aria-hidden="true">→</i></span>
+        <div class="band__grid">
+          <div class="band__cell rv">
+            <b>Context beats convention</b>
+            <p>I design for the South African reality — multilingual, low-bandwidth, income-irregular — instead of importing frameworks built for someone else's market.</p>
           </div>
-        </a>
-        <a href="managem.html" class="wcard glass-work" data-cursor="View case" data-tilt>
-          <div class="wcard__media"><img src="assets/img/work/managem-mockup.png" alt="ManaGem enterprise property-management platform" loading="lazy" /></div>
-          <div class="wcard__body">
-            <p class="wcard__cat mono">Enterprise SaaS · Design Systems</p>
-            <h3 class="wcard__name">ManaGem</h3>
-            <p class="wcard__desc">Redesigning an enterprise property-management platform for speed, scalability and operational efficiency.</p>
-            <span class="wcard__cta">View case study <i aria-hidden="true">→</i></span>
+          <div class="band__cell rv">
+            <b>Trust is a design material</b>
+            <p>Consent, data handling and compliance aren't legal afterthoughts — POPIA and governance thinking get designed in from the first flow.</p>
           </div>
-        </a>
-        <a href="whatsapp-ai.html" class="wcard glass-work" data-cursor="View case" data-tilt>
-          <div class="wcard__media"><img src="assets/img/work/whatsapp-ai-mockup.png" alt="Home Assist WhatsApp verification" loading="lazy" /></div>
-          <div class="wcard__body">
-            <p class="wcard__cat mono">AI UX · Explainable AI · Trust Design</p>
-            <h3 class="wcard__name">Home Assist</h3>
-            <p class="wcard__desc">An AI-assisted WhatsApp verification experience that helps field technicians submit compliant evidence correctly the first time.</p>
-            <span class="wcard__cta">View case study <i aria-hidden="true">→</i></span>
+          <div class="band__cell rv">
+            <b>Unhappy paths are the real work</b>
+            <p>Rejection loops, edge cases, admin overrides — if a system only works in the happy-path demo, it isn't finished.</p>
           </div>
-        </a>
-        <a href="wastemart.html" class="wcard glass-work" data-cursor="View case" data-tilt>
-          <div class="wcard__media"><img src="assets/img/wm/06-jobs.png" alt="WasteMart driver-first mobile experience — jobs mission control" loading="lazy" /></div>
-          <div class="wcard__body">
-            <p class="wcard__cat mono">Operational Systems · Mobile UX</p>
-            <h3 class="wcard__name">WasteMart</h3>
-            <p class="wcard__desc">Improving field operations through a driver-first mobile experience that reduces friction in real-world waste-collection workflows.</p>
-            <span class="wcard__cta">View case study <i aria-hidden="true">→</i></span>
+          <div class="band__cell rv">
+            <b>Depth over breadth</b>
+            <p>I'd rather take one problem all the way to governance-grade than ship ten shallow screens.</p>
           </div>
-        </a>
-      </div>
-      <div class="workcarousel__foot" data-reveal>
-        <a href="#work" class="btn btn--outline" data-magnetic data-cursor="All work">
-          <span class="btn__text">View All Projects</span>
-          <span class="btn__orb btn__orb--light"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 12L12 2M12 2H4M12 2v8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </a>
-      </div>
-    </section>
-
-    <!-- ═══════════════ DESIGN PHILOSOPHY ═══════════════ -->
-    <section class="manifesto" id="philosophy">
-      <div class="manifesto__head">
-        <p class="section-tag" data-reveal><span>02</span> — Design Philosophy</p>
-        <h2 class="section-title" data-split>Designing systems that<br /><em>hold up under real use.</em></h2>
-      </div>
-      <p class="manifesto__text" id="manifestoText">
-        Good design isn't the interface — it's everything that has to be true for the
-        interface to work.
-      </p>
-      <div class="philo">
-        <p class="philo__lead" data-reveal>
-          Before I draw a screen, I want to understand the decision points, the failure
-          states, and the constraints the business is actually operating under — whether
-          that's a WiFi dashboard, a fintech onboarding flow, or a WhatsApp-based
-          verification system. <strong>The medium changes. The discipline doesn't.</strong>
-        </p>
-        <ul class="philo__list">
-          <li data-reveal>
-            <span class="mono">01</span>
-            <p><strong>Context beats convention.</strong> I design for the South African
-            reality — multilingual, low-bandwidth, income-irregular — instead of importing
-            frameworks built for someone else's market.</p>
-          </li>
-          <li data-reveal>
-            <span class="mono">02</span>
-            <p><strong>Trust is a design material.</strong> Consent, data handling, and
-            compliance aren't legal afterthoughts — POPIA and governance thinking get
-            designed in from the first flow, not bolted on before launch.</p>
-          </li>
-          <li data-reveal>
-            <span class="mono">03</span>
-            <p><strong>Unhappy paths are the real design work.</strong> Rejection loops,
-            edge cases, admin overrides — if a system only works in the happy-path demo,
-            it isn't finished.</p>
-          </li>
-          <li data-reveal>
-            <span class="mono">04</span>
-            <p><strong>Depth over breadth-for-its-own-sake.</strong> Whether it's a service
-            blueprint, a design system, or a conversational AI flow, I'd rather take one
-            problem all the way to governance-grade than ship ten shallow screens.</p>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ═══════════════ PHILOSOPHY ═══════════════ -->
-    <section class="problems grad-anim" id="problems">
-      <div class="orb orb--amber orb--float" data-parallax="0.25" style="width:32vw;height:32vw;top:-8%;right:-6%"></div>
-      <div class="orb orb--cool orb--float" data-parallax="0.15" style="width:24vw;height:24vw;bottom:-10%;left:-8%;animation-delay:-5s"></div>
-      <div class="problems__head">
-        <p class="section-tag" data-reveal><span>03</span> — The Problems I Solve</p>
-        <h2 class="section-title" data-split>Most products don't have<br />interface problems. They have<br /><em>decision problems.</em></h2>
-        <p class="problems__lead" data-reveal>I help organisations solve challenges such as:</p>
-      </div>
-      <ul class="problems__grid" data-reveal-group>
-        <li class="problem">
-          <span class="problem__num mono">01</span>
-          <h3>Making AI decisions understandable</h3>
-          <p>Designing confidence, transparency and human oversight into AI-powered experiences.</p>
-        </li>
-        <li class="problem">
-          <span class="problem__num mono">02</span>
-          <h3>Simplifying complex operational workflows</h3>
-          <p>Transforming fragmented enterprise processes into intuitive user journeys.</p>
-        </li>
-        <li class="problem">
-          <span class="problem__num mono">03</span>
-          <h3>Reducing cognitive load</h3>
-          <p>Helping users complete critical tasks with confidence — even in high-pressure environments.</p>
-        </li>
-        <li class="problem">
-          <span class="problem__num mono">04</span>
-          <h3>Building scalable design systems</h3>
-          <p>Creating reusable foundations that enable product teams to move faster while maintaining consistency.</p>
-        </li>
-        <li class="problem">
-          <span class="problem__num mono">05</span>
-          <h3>Aligning business and user needs</h3>
-          <p>Turning stakeholder complexity into products that achieve measurable outcomes.</p>
-        </li>
-      </ul>
-    </section>
-
-    <!-- ═══════════════ EXPERTISE ═══════════════ -->
-    <section class="services" id="services">
-      <div class="services__bg" aria-hidden="true"></div>
-      <div class="services__inner">
-        <div class="services__head">
-          <p class="section-tag section-tag--light" data-reveal><span>04</span> — Expertise</p>
-          <h2 class="section-title section-title--light" data-split>What I bring<br /><em>to product teams</em></h2>
         </div>
-        <ul class="services__grid">
-          <li class="service-card" data-reveal data-tilt>
-            <span class="service-card__num mono">(01)</span>
-            <span class="service-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></span>
-            <h3 class="service-card__name">Product Design</h3>
-            <p class="service-card__tag">Designing intuitive digital products from concept to launch.</p>
-            <p class="service-card__desc">I design enterprise software, SaaS platforms, dashboards, mobile applications, and customer-facing products that simplify complex workflows while supporting business goals.</p>
-            <span class="service-card__arrow" aria-hidden="true">↗</span>
-          </li>
-          <li class="service-card" data-reveal data-tilt>
-            <span class="service-card__num mono">(02)</span>
-            <span class="service-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="10" rx="1.5"/><rect x="14" y="3" width="7" height="6" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="8" height="5" rx="1.5"/></svg></span>
-            <h3 class="service-card__name">Enterprise UX</h3>
-            <p class="service-card__tag">Improving complex systems used by teams every day.</p>
-            <p class="service-card__desc">I redesign internal tools and operational platforms to reduce friction, improve productivity, and create experiences that scale across large organizations.</p>
-            <span class="service-card__arrow" aria-hidden="true">↗</span>
-          </li>
-          <li class="service-card" data-reveal data-tilt>
-            <span class="service-card__num mono">(03)</span>
-            <span class="service-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/></svg></span>
-            <h3 class="service-card__name">AI Experience Design</h3>
-            <p class="service-card__tag">Designing AI experiences people can understand and trust.</p>
-            <p class="service-card__desc">I create AI-powered products that prioritize transparency, confidence, and human oversight — whether through conversational interfaces, AI-assisted workflows, or intelligent automation.</p>
-            <span class="service-card__arrow" aria-hidden="true">↗</span>
-          </li>
-          <li class="service-card" data-reveal data-tilt>
-            <span class="service-card__num mono">(04)</span>
-            <span class="service-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="7" r="3.2"/><rect x="14" y="3.8" width="6.5" height="6.5" rx="1.5"/><rect x="3.8" y="14" width="6.5" height="6.5" rx="1.5"/><path d="M17.2 13.5 20.7 17l-3.5 3.5L13.7 17z"/></svg></span>
-            <h3 class="service-card__name">Design Systems</h3>
-            <p class="service-card__tag">Creating scalable design foundations for growing products.</p>
-            <p class="service-card__desc">I build reusable design systems that help teams design and develop faster while maintaining consistency across products.</p>
-            <span class="service-card__arrow" aria-hidden="true">↗</span>
-          </li>
-        </ul>
       </div>
     </section>
 
-    <!-- ═══════════════ PROCESS ═══════════════ -->
-    <section class="process">
-      <div class="process__head">
-        <p class="section-tag" data-reveal><span>05</span> — How I Work</p>
-        <h2 class="section-title" data-split>Good products are built<br /><em>through better decisions.</em></h2>
-        <p class="process__lead" data-reveal>
-          My process changes with the product, but the principles stay consistent. I begin
-          by understanding how the business operates, where users struggle, and which
-          decisions have the greatest impact. From there I map workflows, identify friction,
-          explore multiple directions, prototype rapidly, and validate with stakeholders
-          before refining the experience into scalable design systems — treating design as
-          a continuous process of reducing uncertainty, not a sequence of deliverables.
-        </p>
-      </div>
-      <div class="process__inner">
-        <article class="process__card glass" data-reveal>
-          <span class="mono">01</span><h3>Understand</h3>
-          <p>How the business operates, where users struggle, and which decisions matter most.</p>
-        </article>
-        <article class="process__card glass" data-reveal>
-          <span class="mono">02</span><h3>Map &amp; explore</h3>
-          <p>Workflows and friction points, then multiple solution directions — not just one.</p>
-        </article>
-        <article class="process__card glass" data-reveal>
-          <span class="mono">03</span><h3>Prototype &amp; validate</h3>
-          <p>Rapid, interactive prototypes tested with stakeholders before development begins.</p>
-        </article>
-        <article class="process__card glass" data-reveal>
-          <span class="mono">04</span><h3>Systemise</h3>
-          <p>Refining the experience into scalable, reusable design systems.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- ═══════════════ ABOUT ═══════════════ -->
-    <section class="about grad-anim" id="about">
-      <div class="orb orb--mint orb--float" data-parallax="0.2" style="width:26vw;height:26vw;top:6%;left:-6%"></div>
-      <div class="about__inner">
-        <div class="about__head">
-          <p class="section-tag" data-reveal><span>06</span> — About</p>
-          <h2 class="section-title" data-split>Not just interfaces.<br /><em>Operating models.</em></h2>
-          <div class="about__obj" data-reveal aria-hidden="true">
-            <div class="obj3d obj3d--dark obj3d--float" style="--s:150px;--z:75px">
-              <div class="obj3d__spin">
-                <span class="obj3d__face"></span><span class="obj3d__face"></span><span class="obj3d__face"></span>
-                <span class="obj3d__face"></span><span class="obj3d__face"></span><span class="obj3d__face"></span>
-              </div>
+    <!-- ═══════════ EXPERTISE ═══════════ -->
+    <section class="sec" id="services">
+      <div class="wrap">
+        <div class="sec__head">
+          <h2 class="sec__title">Expertise</h2>
+          <span class="caption">Five disciplines, one standard</span>
+        </div>
+        <div class="rows" id="expertise">
+          <div class="row">
+            <button class="row__btn" aria-expanded="false">
+              <span>Product Design</span>
+              <svg class="row__chev" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 6l5 5 5-5"/></svg>
+            </button>
+            <div class="row__body">
+              Designing intuitive digital products from concept to launch — enterprise
+              software, SaaS platforms, dashboards, mobile applications and customer-facing
+              products that simplify complex workflows while supporting business goals.
+              <span class="caption">Product strategy · UX design · UI design · User flows · Wireframing · Prototyping · Information architecture</span>
+            </div>
+          </div>
+          <div class="row">
+            <button class="row__btn" aria-expanded="false">
+              <span>Enterprise UX</span>
+              <svg class="row__chev" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 6l5 5 5-5"/></svg>
+            </button>
+            <div class="row__body">
+              Improving complex systems used by teams every day — redesigning internal tools
+              and operational platforms to reduce friction, improve productivity, and create
+              experiences that scale across large organisations.
+              <span class="caption">Workflow optimisation · Dashboard design · Operations systems · Field service applications · Admin portals · Design audits</span>
+            </div>
+          </div>
+          <div class="row">
+            <button class="row__btn" aria-expanded="false">
+              <span>AI Experience Design</span>
+              <svg class="row__chev" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 6l5 5 5-5"/></svg>
+            </button>
+            <div class="row__body">
+              Designing AI experiences people can understand and trust — conversational
+              interfaces, AI-assisted workflows and intelligent automation that prioritise
+              transparency, confidence and human oversight.
+              <span class="caption">Conversational UX · WhatsApp experiences · AI trust patterns · Human-in-the-loop design · AI workflow design</span>
+            </div>
+          </div>
+          <div class="row">
+            <button class="row__btn" aria-expanded="false">
+              <span>Design Systems</span>
+              <svg class="row__chev" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 6l5 5 5-5"/></svg>
+            </button>
+            <div class="row__body">
+              Creating scalable design foundations for growing products — reusable systems
+              that help teams design and develop faster while maintaining consistency.
+              <span class="caption">Component libraries · Design tokens · Accessibility · Interaction patterns · Documentation · Figma systems</span>
+            </div>
+          </div>
+          <div class="row">
+            <button class="row__btn" aria-expanded="false">
+              <span>Design-to-Production</span>
+              <svg class="row__chev" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 6l5 5 5-5"/></svg>
+            </button>
+            <div class="row__body">
+              Design isn't finished when the Figma file is finished. I carry work through
+              implementation, QA and iteration — so what ships matches what was designed.
+              <span class="caption">Prototyping · Implementation collaboration · QA · Launch · Iteration</span>
             </div>
           </div>
         </div>
+
+        <div style="margin-top: var(--sec)">
+          <h3 class="h-md" style="margin-bottom: 12px">The problems I solve</h3>
+          <ul class="plist">
+            <li class="rv"><span class="num">01</span><span><b>Making AI decisions understandable</b> <span>— designing confidence, transparency and human oversight into AI-powered experiences.</span></span></li>
+            <li class="rv"><span class="num">02</span><span><b>Simplifying complex operational workflows</b> <span>— turning fragmented enterprise processes into intuitive journeys.</span></span></li>
+            <li class="rv"><span class="num">03</span><span><b>Reducing cognitive load</b> <span>— helping users complete critical tasks with confidence under pressure.</span></span></li>
+            <li class="rv"><span class="num">04</span><span><b>Building scalable design systems</b> <span>— reusable foundations that keep teams fast and consistent.</span></span></li>
+            <li class="rv"><span class="num">05</span><span><b>Aligning business and user needs</b> <span>— turning stakeholder complexity into measurable outcomes.</span></span></li>
+          </ul>
+        </div>
+
+        <div style="margin-top: var(--sec)">
+          <h3 class="h-md" style="margin-bottom: 12px">How I work</h3>
+          <div class="process">
+            <div class="rv"><i>01</i><b>Understand</b><p>How the business operates, where users struggle, and which decisions matter most.</p></div>
+            <div class="rv"><i>02</i><b>Map &amp; explore</b><p>Workflows and friction points, then multiple solution directions — not just one.</p></div>
+            <div class="rv"><i>03</i><b>Prototype &amp; validate</b><p>Rapid, interactive prototypes tested with stakeholders before development begins.</p></div>
+            <div class="rv"><i>04</i><b>Systemise</b><p>Refining the experience into scalable, reusable design systems.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ ABOUT ═══════════ -->
+    <section class="about" id="about">
+      <div class="wrap">
+        <h2 class="display about__title rv">Not just interfaces. Operating models.</h2>
         <div class="about__body">
-          <p class="about__lead" data-reveal>
-            I'm Sphamandla Xaba, a Product Designer and AI Experience Designer based in
-            Gauteng, South Africa.
-          </p>
-          <p data-reveal>
+          <p class="rv"><strong>I'm Sphamandla Xaba, a Product Designer and AI Experience Designer based in Gauteng, South Africa.</strong></p>
+          <p class="rv">
             I design for the systems businesses actually run on — enterprise workflows,
             AI-powered products, and operational software that has to work when the
-            environment doesn't cooperate.
-          </p>
-          <p data-reveal>
-            Field conditions. Offline states. Compliance requirements. The trust between a
-            driver and a dispatcher who's never met them.
+            environment doesn't cooperate. Field conditions. Offline states. Compliance
+            requirements. The trust between a driver and a dispatcher who's never met them.
             <strong>That's where good design earns its place.</strong>
           </p>
-          <p data-reveal>
-            <strong>Before pixels, I ask what the system needs to be true.</strong> That
-            question runs through every project here — from enterprise verification
-            platforms with governance frameworks to field-operations software designed
-            around the reality of a driver's working day, audit trail included.
+          <p class="rv">
+            <strong>Before pixels, I ask what the system needs to be true.</strong> That question
+            runs through every project here — from enterprise verification platforms with
+            governance frameworks to field-operations software designed around the reality
+            of a driver's working day, audit trail included.
           </p>
-          <p data-reveal>
+          <p class="rv">
             I work well inside ambiguity: taking a vague business problem, mapping the
             operational reality, and turning it into something a team can ship, use, and
             defend. <strong>Not just a set of screens that looks finished.</strong>
           </p>
-          <a href="assets/docs/Sphamandla-Xaba-Profile.pdf" class="btn btn--dark" data-magnetic data-cursor="Profile" target="_blank" rel="noopener" data-reveal>
-            <span class="btn__text">Download Profile</span>
-            <span class="btn__orb"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 12L12 2M12 2H4M12 2v8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          </a>
+          <a href="assets/docs/Sphamandla-Xaba-Resume.pdf" class="btn btn--primary rv" download>Download resume</a>
         </div>
       </div>
     </section>
 
-    <!-- ═══════════════ FOOTER / CONTACT ═══════════════ -->
-    <footer class="footer" id="contact">
-      <div class="footer__inner">
-        <p class="section-tag section-tag--light" data-reveal><span>07</span> — Contact</p>
-        <h2 class="footer__title" data-split>Let's build<br /><em>better products.</em></h2>
-        <p class="footer__sub" data-reveal>Whether you're modernising enterprise software, exploring AI-powered experiences, or improving operational workflows, I'd love to help design products that are both intelligent and genuinely usable. Let's talk.</p>
-        <div class="footer__actions" data-reveal>
-          <a href="mailto:sphamandaxaba@gmail.com" class="btn btn--light btn--big" data-magnetic data-cursor="Email me">
-            <span class="btn__text">Start a Conversation</span>
-            <span class="btn__orb btn__orb--dark"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 12L12 2M12 2H4M12 2v8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          </a>
-          <a href="assets/docs/Sphamandla-Xaba-Resume.pdf" class="btn btn--ghost" data-magnetic data-cursor="PDF" download>
-            <span class="btn__text">Download Resume</span>
-          </a>
-        </div>
-        <div class="footer__meta">
-          <div class="footer__col">
-            <p class="footer__col-label">Contact</p>
-            <a href="mailto:sphamandaxaba@gmail.com">sphamandaxaba@gmail.com</a>
-            <a href="tel:+27601020774">Cell · +27 60 102 0774</a>
-            <a href="https://wa.me/27609381313" target="_blank" rel="noopener">WhatsApp · +27 60 938 1313</a>
-          </div>
-          <div class="footer__col">
-            <p class="footer__col-label">Socials</p>
-            <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
-            <a href="https://dribbble.com/" target="_blank" rel="noopener">Dribbble</a>
-            <a href="https://github.com/Sphamandla-designer" target="_blank" rel="noopener">GitHub</a>
-          </div>
-          <div class="footer__col">
-            <p class="footer__col-label">Location</p>
-            <p>Gauteng, South Africa</p>
-            <p><span id="clockFoot">6:30pm</span> SAST</p>
-          </div>
-          <div class="footer__col">
-            <p class="footer__col-label">Availability</p>
-            <p><span class="footer__pulse"></span>Open to new projects</p>
-            <p>Remote / Worldwide</p>
-          </div>
+    <!-- ═══════════ CONTACT ═══════════ -->
+    <section class="contact" id="contact">
+      <div class="wrap">
+        <p class="contact__status rv"><i aria-hidden="true"></i>Open to new projects · Remote / Worldwide</p>
+        <h2 class="display contact__title rv">Let's build better products.</h2>
+        <div class="contact__actions rv">
+          <a href="mailto:sphamandaxaba@gmail.com" class="btn btn--primary">Start a conversation</a>
+          <a href="https://wa.me/27609381313" class="btn btn--secondary" target="_blank" rel="noopener">WhatsApp me</a>
         </div>
       </div>
-      <span class="footer__word" id="footerWord" aria-hidden="true">XABA</span>
-      <div class="footer__bar">
-        <span class="footer__statement">Designing enterprise software, AI-powered experiences, and digital products from Gauteng, South Africa.</span>
-        <a href="#top" data-cursor="Top">Back to top ↑</a>
-      </div>
-    </footer>
+    </section>
 
   </main>
 
-  <script src="assets/js/gsap.min.js"></script>
-  <script src="assets/js/ScrollTrigger.min.js"></script>
-  <script src="assets/js/lenis.min.js"></script>
-  <script src="assets/js/home.js?v=neon-9" defer></script>
-  <script type="module" src="assets/js/hero-gl.js?v=neon-9"></script>
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__cols">
+        <div class="footer__col">
+          <b>Contact</b>
+          <a href="mailto:sphamandaxaba@gmail.com">sphamandaxaba@gmail.com</a>
+          <a href="tel:+27601020774">Cell · +27 60 102 0774</a>
+          <a href="https://wa.me/27609381313" target="_blank" rel="noopener">WhatsApp · +27 60 938 1313</a>
+        </div>
+        <div class="footer__col">
+          <b>Work</b>
+          <a href="finos.html">FINOS</a>
+          <a href="cmaxx.html">CMAXX WiFi Solutions</a>
+          <a href="managem.html">ManaGem</a>
+          <a href="whatsapp-ai.html">Home Assist</a>
+          <a href="wastemart.html">WasteMart</a>
+        </div>
+        <div class="footer__col">
+          <b>Socials</b>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://dribbble.com/" target="_blank" rel="noopener">Dribbble</a>
+          <a href="https://github.com/Sphamandla-designer" target="_blank" rel="noopener">GitHub</a>
+        </div>
+        <div class="footer__col">
+          <b>Studio</b>
+          <span>Gauteng, South Africa</span>
+          <span>SAST (UTC+2)</span>
+          <span>Open to new projects</span>
+        </div>
+      </div>
+      <div class="footer__fine utility-xs">
+        <span>© <span id="year">2026</span> Sphamandla Xaba® — All rights reserved</span>
+        <span>Designed and built as an editorial system · Gauteng, South Africa</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  (() => {
+    'use strict';
+    const $ = (s, c = document) => c.querySelector(s);
+    const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* year */
+    $('#year').textContent = new Date().getFullYear();
+
+    /* sticky nav hairline */
+    const nav = $('#nav');
+    addEventListener('scroll', () => nav.classList.toggle('is-stuck', scrollY > 8), { passive: true });
+
+    /* drawer */
+    const drawer = $('#drawer');
+    const burger = $('#burger');
+    const setDrawer = (open) => {
+      drawer.classList.toggle('is-open', open);
+      drawer.setAttribute('aria-hidden', String(!open));
+      burger.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    };
+    burger.addEventListener('click', () => setDrawer(true));
+    $$('[data-close]', drawer).forEach((el) => el.addEventListener('click', () => setDrawer(false)));
+    addEventListener('keydown', (e) => { if (e.key === 'Escape') setDrawer(false); });
+
+    /* expertise accordion */
+    $$('#expertise .row').forEach((row) => {
+      const btn = $('.row__btn', row);
+      btn.addEventListener('click', () => {
+        const open = row.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', String(open));
+      });
+    });
+
+    /* reveals */
+    if (!reduced && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); } });
+      }, { rootMargin: '0px 0px -8% 0px' });
+      $$('.rv').forEach((el) => io.observe(el));
+    } else {
+      $$('.rv').forEach((el) => el.classList.add('is-in'));
+    }
+
+    /* scrollspy underline */
+    const spyTargets = ['work', 'philosophy', 'services', 'about', 'contact']
+      .map((id) => document.getElementById(id)).filter(Boolean);
+    if ('IntersectionObserver' in window) {
+      const spy = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) {
+            $$('.nav__link').forEach((l) => l.classList.toggle('is-active', l.dataset.spy === en.target.id));
+          }
+        });
+      }, { rootMargin: '-40% 0px -55% 0px' });
+      spyTargets.forEach((s) => spy.observe(s));
+    }
+  })();
+  </script>
 </body>
 </html>
