@@ -204,7 +204,7 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
 /* ── Campaign hero ─────────────────────────────────────────────── */
 .hero {
   position: relative;
-  height: min(92vh, 860px);
+  height: min(86vh, 820px);
   min-height: 520px;
   overflow: clip;
   background: var(--navy-deep);
@@ -431,3 +431,34 @@ html.js .rv.is-in { opacity: 1; transform: none; }
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
   html.js .rv { opacity: 1; transform: none; }
 }
+
+/* ── v2: restored previous content on the editorial system ─────── */
+.hero__title--long { max-width: none; font-size: clamp(30px, 5.2vw, 74px); }
+.hero__rating { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 20px; }
+.hero__stars { color: #ff4436; font-size: 15px; letter-spacing: 3px; }
+.hero__rating-copy { font-size: 14px; font-weight: 500; color: rgba(255, 255, 255, 0.8); }
+
+.sec__tag {
+  font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--stone); margin-bottom: 16px;
+}
+.sec__statement {
+  font-size: clamp(26px, 3.4vw, 44px); font-weight: 500;
+  line-height: 1.15; letter-spacing: -0.01em;
+  max-width: 26ch;
+}
+.sec__statement em { font-style: italic; }
+.sec__lead { margin-top: 14px; font-size: 16px; line-height: 1.6; color: var(--mute); max-width: 56ch; }
+.sec__body { margin-top: 32px; }
+.sec__foot { margin-top: 32px; }
+
+.pcard__desc { font-size: 14px; font-weight: 400; line-height: 1.55; color: var(--mute); margin-top: 2px; }
+
+.band__text {
+  margin-top: 24px;
+  font-size: clamp(20px, 2.4vw, 28px); font-weight: 500; line-height: 1.35;
+  max-width: 34ch;
+}
+.band__lead strong { color: var(--canvas); font-weight: 500; }
+
+.contact__sub { margin-top: 16px; font-size: 16px; line-height: 1.6; color: var(--charcoal); max-width: 62ch; }
