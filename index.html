@@ -8,13 +8,14 @@
   <meta property="og:title" content="Sphamandla Xaba® — Product Designer &amp; AI Experience Designer" />
   <meta property="og:description" content="I start from zero, designing only what matters. Product design, AI experiences and design systems." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://sphamandla-designer.github.io/sphamandlaxaba/assets/img/hero-hex.jpg" />
-  <meta name="theme-color" content="#0b1226" />
+  <meta property="og:image" content="https://sphamandla-designer.github.io/sphamandlaxaba/assets/img/hero-rings.jpg" />
+  <meta name="theme-color" content="#08080c" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="assets/img/hero-hex.jpg" as="image" fetchpriority="high" />
-  <link rel="stylesheet" href="assets/css/editorial.css?v=ed-2" />
+  <link rel="preload" href="assets/img/hero-rings.jpg" as="image" fetchpriority="high" />
+  <link rel="stylesheet" href="assets/css/editorial.css?v=ed-3" />
   <script>document.documentElement.classList.add('js');</script>
+  <script type="importmap">{ "imports": { "three": "./assets/js/three.module.min.js" } }</script>
 </head>
 <body>
 
@@ -79,11 +80,13 @@
 
     <!-- ═══════════ CAMPAIGN HERO ═══════════ -->
     <section class="hero" aria-label="Introduction">
-      <img class="hero__img" src="assets/img/hero-hex.jpg"
-           alt="Dark navy three-dimensional beveled hexagon pattern with red light glowing through the seams between hexagon clusters" />
+      <img class="hero__img" src="assets/img/hero-rings.jpg"
+           alt="Interlocked dark three-dimensional rings with neon magenta light stripes floating on a black stage" />
       <div class="hero__scrim" aria-hidden="true"></div>
+      <div class="hero__obj3d" id="heroObj3d" aria-hidden="true"></div>
       <div class="hero__content">
         <div class="wrap">
+          <div class="hero__copy">
           <p class="hero__kicker rv">Product Designer &amp; AI Experience Designer</p>
           <h1 class="display hero__title hero__title--long rv">
             I design complex products<br />into experiences people understand.
@@ -95,6 +98,7 @@
           <div class="hero__actions rv">
             <a href="#work" class="btn btn--on-image">View my work</a>
             <a href="assets/docs/Sphamandla-Xaba-Resume.pdf" class="link-md" download>Download Resume</a>
+          </div>
           </div>
         </div>
       </div>
@@ -111,7 +115,7 @@
     </section>
 
     <!-- ═══════════ SELECTED WORK ═══════════ -->
-    <section class="sec" id="work">
+    <section class="sec sec--center" id="work">
       <div class="wrap">
         <p class="sec__tag rv">01 — Selected Work</p>
         <h2 class="sec__statement rv">Solving complex problems across<br /><em>enterprise software &amp; AI.</em></h2>
@@ -181,7 +185,7 @@
     </section>
 
     <!-- ═══════════ DESIGN PHILOSOPHY ═══════════ -->
-    <section class="band" id="philosophy">
+    <section class="band band--center" id="philosophy">
       <div class="wrap">
         <p class="band__kicker rv">02 — Design Philosophy</p>
         <h2 class="display band__title rv">Designing systems that hold up under real use.</h2>
@@ -460,5 +464,6 @@
     }
   })();
   </script>
+  <script type="module" src="assets/js/hero-rings.js?v=1"></script>
 </body>
 </html>
