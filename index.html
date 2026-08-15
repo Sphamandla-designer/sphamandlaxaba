@@ -12,7 +12,7 @@
   <meta name="theme-color" content="#08080c" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="assets/css/editorial.css?v=ed-5" />
+  <link rel="stylesheet" href="assets/css/editorial.css?v=ed-6" />
   <script>document.documentElement.classList.add('js');</script>
   <script type="importmap">{ "imports": { "three": "./assets/js/three.module.min.js" } }</script>
 </head>
@@ -82,7 +82,17 @@
       <img class="hero__img" src="assets/img/hero-rings.jpg"
            alt="Interlocked dark three-dimensional rings with neon magenta light stripes floating on a black stage" />
       <div class="hero__scrim" aria-hidden="true"></div>
-      <div class="hero__obj3d" id="heroObj3d" aria-hidden="true"></div>
+      <div class="hero__stage">
+        <div class="hero__stats hero__stats--l" aria-label="Track record">
+          <div class="stat rv"><b>3</b><span>Years experience</span></div>
+          <div class="stat rv"><b>16+</b><span>Projects delivered</span></div>
+        </div>
+        <div class="hero__obj3d" id="heroObj3d" aria-hidden="true"></div>
+        <div class="hero__stats hero__stats--r" aria-label="Track record continued">
+          <div class="stat rv"><b>4+</b><span>Projects led</span></div>
+          <div class="stat rv"><b>5</b><span>Core design disciplines</span></div>
+        </div>
+      </div>
       <div class="hero__content">
         <div class="wrap">
           <div class="hero__copy">
@@ -103,16 +113,6 @@
       </div>
     </section>
 
-    <!-- ═══════════ STAT STRIP ═══════════ -->
-    <section class="stats" aria-label="Track record">
-      <div class="wrap">
-        <div class="stat rv"><b>3</b><span>Years experience</span></div>
-        <div class="stat rv"><b>16+</b><span>Projects delivered</span></div>
-        <div class="stat rv"><b>4+</b><span>Projects led</span></div>
-        <div class="stat rv"><b>5</b><span>Core design disciplines</span></div>
-      </div>
-    </section>
-
     <!-- ═══════════ SELECTED WORK ═══════════ -->
     <section class="sec sec--center" id="work">
       <div class="wrap">
@@ -123,6 +123,7 @@
           <a href="finos.html" class="pcard rv">
             <div class="pcard__media">
               <img src="assets/img/work/finos-mockup.png" alt="FINOS — AI financial operating system command center" loading="lazy" />
+              <span class="pcard__label">Web App</span>
               <span class="pcard__badge">Just In</span>
             </div>
             <div class="pcard__meta">
@@ -135,6 +136,7 @@
           <a href="managem.html" class="pcard rv">
             <div class="pcard__media">
               <img src="assets/img/work/managem-mockup.png" alt="ManaGem enterprise property-management platform" loading="lazy" />
+              <span class="pcard__label">Web Platform</span>
             </div>
             <div class="pcard__meta">
               <span class="pcard__name">ManaGem</span>
@@ -146,6 +148,7 @@
           <a href="whatsapp-ai.html" class="pcard rv">
             <div class="pcard__media">
               <img src="assets/img/work/whatsapp-ai-mockup.png" alt="Home Assist WhatsApp verification" loading="lazy" />
+              <span class="pcard__label">WhatsApp AI</span>
             </div>
             <div class="pcard__meta">
               <span class="pcard__name">Home Assist</span>
@@ -157,6 +160,7 @@
           <a href="wastemart.html" class="pcard rv">
             <div class="pcard__media">
               <img src="assets/img/work/wm-driver-v2.jpg" alt="WasteMart driver-first mobile experience — jobs mission control" loading="lazy" />
+              <span class="pcard__label">Mobile App</span>
             </div>
             <div class="pcard__meta">
               <span class="pcard__name">WasteMart</span>
@@ -168,6 +172,7 @@
           <a href="cmaxx.html" class="pcard rv">
             <div class="pcard__media">
               <img src="assets/img/work/cmaxx-mockup.jpg" alt="CMAXX WiFi Solutions sign-up experience on a phone, photographed on industrial orange mesh" loading="lazy" />
+              <span class="pcard__label">Website</span>
               <span class="pcard__badge">Just In</span>
             </div>
             <div class="pcard__meta">
@@ -179,53 +184,50 @@
         </div>
       </div>
 
-      <div class="gallery" aria-label="Mockup gallery">
-        <div class="gallery__track">
-          <figure class="gallery__item rv">
-            <img src="assets/img/mockups/inceku.jpg" alt="Inceku Energy utility-management website on a laptop standing on orange industrial machinery" loading="lazy" />
-            <figcaption>Inceku Energy — utility management platform</figcaption>
-          </figure>
-          <figure class="gallery__item rv">
-            <img src="assets/img/mockups/fintech-phone.jpg" alt="Proactive cashflow alert screen on a phone propped against concrete blocks" loading="lazy" />
-            <figcaption>Fintech concept — proactive cashflow decisions</figcaption>
-          </figure>
-          <figure class="gallery__item rv">
-            <img src="assets/img/mockups/lungelo.jpg" alt="Lungelo multilingual sign-in screen on a phone resting on orange metal" loading="lazy" />
-            <figcaption>Lungelo — multilingual field platform</figcaption>
-          </figure>
-          <figure class="gallery__item rv">
-            <img src="assets/img/mockups/cmaxx-dark.jpg" alt="CMAXX WiFi Solutions homepage glowing on a laptop in the dark" loading="lazy" />
-            <figcaption>CMAXX — WiFi, network &amp; security solutions</figcaption>
-          </figure>
-          <figure class="gallery__item rv">
-            <img src="assets/img/mockups/stylebox.jpg" alt="StyleBox fashion curator website on a laptop resting on an armchair" loading="lazy" />
-            <figcaption>StyleBox — personal style curator</figcaption>
-          </figure>
-          <figure class="gallery__item rv">
-            <img src="assets/img/mockups/ax-channels.jpg" alt="AX-Channels web design studio site on a floating laptop among black ribbons" loading="lazy" />
-            <figcaption>AX-Channels — UX-focused web design</figcaption>
-          </figure>
-          <figure class="gallery__item rv">
-            <img src="assets/img/mockups/sgcoal.jpg" alt="SG COAL logistics website on a laptop on industrial hardware under a dusk sky" loading="lazy" />
-            <figcaption>SG COAL — logistics &amp; plant hire</figcaption>
-          </figure>
-          <figure class="gallery__item rv">
-            <img src="assets/img/mockups/dell-dashboard.jpg" alt="Enterprise sales dashboard on a Dell display on a clean wooden desk" loading="lazy" />
-            <figcaption>Enterprise dashboard — operations at a glance</figcaption>
-          </figure>
-        </div>
-        <p class="gallery__hint">Scroll sideways to explore more mockups</p>
-      </div>
-
       <div class="wrap sec__foot rv">
         <a href="#work" class="btn btn--secondary">View All Projects</a>
+      </div>
+    </section>
+
+
+    <!-- ═══════════ EXPERTISE ═══════════ -->
+    <section class="sec" id="services">
+      <div class="wrap">
+        <p class="sec__tag rv">02 — Expertise</p>
+        <h2 class="sec__statement rv">What I bring<br /><em>to product teams</em></h2>
+        <div class="grid-x sec__body" id="expertise">
+          <article class="xcard rv">
+            <span class="xcard__num">(01)</span>
+            <h3>Product Design</h3>
+            <p class="xcard__tag">Designing intuitive digital products from concept to launch.</p>
+            <p class="xcard__desc">I design enterprise software, SaaS platforms, dashboards, mobile applications, and customer-facing products that simplify complex workflows while supporting business goals.</p>
+          </article>
+          <article class="xcard rv">
+            <span class="xcard__num">(02)</span>
+            <h3>Enterprise UX</h3>
+            <p class="xcard__tag">Improving complex systems used by teams every day.</p>
+            <p class="xcard__desc">I redesign internal tools and operational platforms to reduce friction, improve productivity, and create experiences that scale across large organizations.</p>
+          </article>
+          <article class="xcard rv">
+            <span class="xcard__num">(03)</span>
+            <h3>AI Experience Design</h3>
+            <p class="xcard__tag">Designing AI experiences people can understand and trust.</p>
+            <p class="xcard__desc">I create AI-powered products that prioritize transparency, confidence, and human oversight — whether through conversational interfaces, AI-assisted workflows, or intelligent automation.</p>
+          </article>
+          <article class="xcard rv">
+            <span class="xcard__num">(04)</span>
+            <h3>Design Systems</h3>
+            <p class="xcard__tag">Creating scalable design foundations for growing products.</p>
+            <p class="xcard__desc">I build reusable design systems that help teams design and develop faster while maintaining consistency across products.</p>
+          </article>
+        </div>
       </div>
     </section>
 
     <!-- ═══════════ DESIGN PHILOSOPHY ═══════════ -->
     <section class="band band--center" id="philosophy">
       <div class="wrap">
-        <p class="band__kicker rv">02 — Design Philosophy</p>
+        <p class="band__kicker rv">03 — Design Philosophy</p>
         <h2 class="display band__title rv">Designing systems that hold up under real use.</h2>
         <p class="band__text rv">
           Good design isn't the interface — it's everything that has to be true for the
@@ -261,7 +263,7 @@
     <!-- ═══════════ THE PROBLEMS I SOLVE ═══════════ -->
     <section class="sec" id="problems">
       <div class="wrap">
-        <p class="sec__tag rv">03 — The Problems I Solve</p>
+        <p class="sec__tag rv">04 — The Problems I Solve</p>
         <h2 class="sec__statement rv">Most products don't have<br />interface problems. They have<br /><em>decision problems.</em></h2>
         <p class="sec__lead rv">I help organisations solve challenges such as:</p>
         <ul class="plist sec__body">
@@ -271,62 +273,6 @@
           <li class="rv"><span class="num">04</span><span><b>Building scalable design systems</b> <span>— Creating reusable foundations that enable product teams to move faster while maintaining consistency.</span></span></li>
           <li class="rv"><span class="num">05</span><span><b>Aligning business and user needs</b> <span>— Turning stakeholder complexity into products that achieve measurable outcomes.</span></span></li>
         </ul>
-      </div>
-    </section>
-
-    <!-- ═══════════ EXPERTISE ═══════════ -->
-    <section class="sec" id="services" style="padding-top: 0">
-      <div class="wrap">
-        <p class="sec__tag rv">04 — Expertise</p>
-        <h2 class="sec__statement rv">What I bring<br /><em>to product teams</em></h2>
-        <div class="rows sec__body" id="expertise">
-          <div class="row">
-            <button class="row__btn" aria-expanded="false">
-              <span>Product Design</span>
-              <svg class="row__chev" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 6l5 5 5-5"/></svg>
-            </button>
-            <div class="row__body">
-              <strong>Designing intuitive digital products from concept to launch.</strong>
-              I design enterprise software, SaaS platforms, dashboards, mobile applications,
-              and customer-facing products that simplify complex workflows while supporting
-              business goals.
-            </div>
-          </div>
-          <div class="row">
-            <button class="row__btn" aria-expanded="false">
-              <span>Enterprise UX</span>
-              <svg class="row__chev" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 6l5 5 5-5"/></svg>
-            </button>
-            <div class="row__body">
-              <strong>Improving complex systems used by teams every day.</strong>
-              I redesign internal tools and operational platforms to reduce friction, improve
-              productivity, and create experiences that scale across large organizations.
-            </div>
-          </div>
-          <div class="row">
-            <button class="row__btn" aria-expanded="false">
-              <span>AI Experience Design</span>
-              <svg class="row__chev" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 6l5 5 5-5"/></svg>
-            </button>
-            <div class="row__body">
-              <strong>Designing AI experiences people can understand and trust.</strong>
-              I create AI-powered products that prioritize transparency, confidence, and human
-              oversight — whether through conversational interfaces, AI-assisted workflows, or
-              intelligent automation.
-            </div>
-          </div>
-          <div class="row">
-            <button class="row__btn" aria-expanded="false">
-              <span>Design Systems</span>
-              <svg class="row__chev" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 6l5 5 5-5"/></svg>
-            </button>
-            <div class="row__body">
-              <strong>Creating scalable design foundations for growing products.</strong>
-              I build reusable design systems that help teams design and develop faster while
-              maintaining consistency across products.
-            </div>
-          </div>
-        </div>
       </div>
     </section>
 
