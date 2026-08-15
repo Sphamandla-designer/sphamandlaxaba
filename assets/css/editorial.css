@@ -462,3 +462,190 @@ html.js .rv.is-in { opacity: 1; transform: none; }
 .band__lead strong { color: var(--canvas); font-weight: 500; }
 
 .contact__sub { margin-top: 16px; font-size: 16px; line-height: 1.6; color: var(--charcoal); max-width: 62ch; }
+
+/* ═══════════════════════════════════════════════════════════════
+   v3 — NEON RING THEME
+   Palette lifted from the hero image: near-black stage, graphite
+   rings, neon magenta light. Glassmorphism surfaces, soft corner
+   radii, generous open space, selected sections centred.
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+  --ink: #f4f5f9;            /* text on dark */
+  --canvas: #08080c;         /* page stage */
+  --cloud: rgba(255, 255, 255, 0.05);
+  --hairline: rgba(255, 255, 255, 0.16);
+  --hairline-soft: rgba(255, 255, 255, 0.09);
+  --charcoal: #c7c9d4;
+  --mute: #9a9ca9;
+  --stone: #6e7080;
+  --red: #ff2bd4;            /* neon magenta — the signal colour */
+  --navy: #101018;
+  --navy-deep: #050508;
+  --success: #2bd98c;
+  --glass: rgba(255, 255, 255, 0.055);
+  --glass-brd: rgba(255, 255, 255, 0.12);
+  --r-lg: 24px;
+  --r-md: 16px;
+  --sec: 72px;
+}
+@media (max-width: 1023px) { :root { --sec: 48px; } }
+@media (max-width: 599px)  { :root { --sec: 36px; } }
+
+::selection { background: var(--red); color: #fff; }
+
+/* glass primitives */
+.utility { background: rgba(255, 255, 255, 0.04); border-bottom: 1px solid var(--hairline-soft); }
+.nav { background: rgba(8, 8, 12, 0.72); backdrop-filter: blur(18px) saturate(140%); -webkit-backdrop-filter: blur(18px) saturate(140%); }
+.nav.is-stuck { box-shadow: inset 0 -1px 0 var(--hairline-soft); }
+.nav__link::after { background: var(--red); }
+.drawer__panel { background: rgba(14, 14, 20, 0.92); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-left: 1px solid var(--glass-brd); }
+.drawer__scrim { background: rgba(0, 0, 0, 0.6); }
+
+.btn--primary { background: var(--red); color: #fff; }
+.btn--primary:hover { opacity: 1; background: #ff4fdd; }
+.btn--secondary {
+  background: var(--glass); color: var(--ink);
+  border: 1px solid var(--glass-brd);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+}
+.btn--secondary:hover { background: rgba(255, 255, 255, 0.1); }
+.btn--on-image { background: #fff; color: #0a0a0e; }
+.btn--on-image:hover { background: #ffd6f6; }
+.icon-btn:hover { background: rgba(255, 255, 255, 0.08); }
+
+/* ── Hero: ring-knot stage ─────────────────────────────────────── */
+.hero { background: var(--navy-deep); border-bottom: 1px solid var(--hairline-soft); }
+.hero__img { transform: scaleX(-1); object-position: center; opacity: 0.9; }
+.hero__scrim {
+  background:
+    radial-gradient(120% 90% at 22% 50%, rgba(5, 5, 8, 0) 0%, rgba(5, 5, 8, 0.22) 55%, rgba(5, 5, 8, 0.66) 100%),
+    linear-gradient(255deg, rgba(5, 5, 8, 0.88) 0%, rgba(5, 5, 8, 0.5) 38%, rgba(5, 5, 8, 0.06) 66%);
+}
+.hero__obj3d {
+  position: absolute;
+  left: max(0px, calc((100vw - var(--maxw)) / 2 - 40px));
+  top: 50%; transform: translateY(-50%);
+  width: min(46vw, 620px); aspect-ratio: 1 / 1;
+  pointer-events: none;
+}
+.hero__obj3d canvas { width: 100% !important; height: 100% !important; display: block; }
+.hero__content { position: absolute; inset: 0; display: flex; align-items: center; padding-bottom: 0; }
+.hero__content .wrap { width: 100%; display: flex; justify-content: flex-end; }
+.hero__copy { max-width: 620px; }
+.hero__title--long { font-size: clamp(30px, 4.6vw, 66px); }
+.hero__stars { color: var(--red); }
+@media (max-width: 899px) {
+  .hero__obj3d { display: none; }
+  .hero__img { transform: none; object-position: 70% 50%; }
+  .hero__content .wrap { justify-content: flex-start; }
+  .hero__scrim {
+    background: linear-gradient(255deg, rgba(5,5,8,0.45) 0%, rgba(5,5,8,0.75) 100%);
+  }
+}
+
+/* ── Stats: glass tiles ────────────────────────────────────────── */
+.stats { border-bottom: 0; }
+.stats .wrap { gap: 16px; padding-top: 32px; padding-bottom: 0; }
+.stat {
+  background: var(--glass); border: 1px solid var(--glass-brd);
+  border-radius: var(--r-md);
+  padding: 20px 24px;
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+}
+.stat b { color: #fff; }
+
+/* ── Work: glass cards, rounded media ──────────────────────────── */
+.grid-work { gap: 24px; }
+.pcard {
+  background: var(--glass); border: 1px solid var(--glass-brd);
+  border-radius: var(--r-lg);
+  padding: 12px 12px 18px;
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+.pcard:hover { border-color: rgba(255, 43, 212, 0.45); transform: translateY(-3px); }
+.pcard__media { border-radius: var(--r-md); background: rgba(255, 255, 255, 0.04); }
+.pcard__badge {
+  background: rgba(8, 8, 12, 0.72); color: #fff;
+  border: 1px solid rgba(255, 43, 212, 0.5);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+.pcard__meta { padding: 14px 8px 0; }
+.pcard__name { color: #fff; }
+.pcard__cta { color: var(--red); text-decoration-color: rgba(255, 43, 212, 0.5); }
+.pcard:hover .pcard__cta { color: #ff6ae2; }
+
+/* ── Philosophy band: glass panel with magenta aura ────────────── */
+.band { background: transparent; }
+.band .wrap {
+  position: relative;
+  background:
+    radial-gradient(90% 120% at 50% -20%, rgba(255, 43, 212, 0.14) 0%, rgba(255, 43, 212, 0) 55%),
+    var(--glass);
+  border: 1px solid var(--glass-brd);
+  border-radius: var(--r-lg);
+  max-width: calc(var(--maxw) - 2 * var(--gutter));
+  padding-left: clamp(24px, 4vw, 64px); padding-right: clamp(24px, 4vw, 64px);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+}
+.band__grid { border-top: 1px solid var(--hairline-soft); }
+.band__cell p { color: var(--mute); }
+
+/* ── Rows / plist / process on glass ───────────────────────────── */
+.row__btn:hover span { color: #fff; }
+.process { border-top: 0; gap: 16px; }
+.process > div {
+  background: var(--glass); border: 1px solid var(--glass-brd);
+  border-radius: var(--r-md); padding: 24px;
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+}
+.process div b { color: #fff; }
+
+/* ── About: glass panel ────────────────────────────────────────── */
+.about { background: transparent; }
+.about .wrap {
+  background: var(--glass); border: 1px solid var(--glass-brd);
+  border-radius: var(--r-lg);
+  max-width: calc(var(--maxw) - 2 * var(--gutter));
+  padding-left: clamp(24px, 4vw, 64px); padding-right: clamp(24px, 4vw, 64px);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+}
+
+/* ── Contact: centred stage with magenta aura ──────────────────── */
+.contact {
+  background: radial-gradient(70% 90% at 50% 110%, rgba(255, 43, 212, 0.16) 0%, rgba(255, 43, 212, 0) 60%);
+  text-align: center;
+}
+.contact__title { max-width: none; margin-left: auto; margin-right: auto; }
+.contact__sub { margin-left: auto; margin-right: auto; }
+.contact__actions { justify-content: center; }
+
+/* ── Centred sections ──────────────────────────────────────────── */
+.sec--center { text-align: center; }
+.sec--center .sec__statement,
+.sec--center .sec__lead { margin-left: auto; margin-right: auto; }
+.band--center { text-align: center; }
+.band--center .band__title,
+.band--center .band__text,
+.band--center .band__lead { margin-left: auto; margin-right: auto; }
+.band--center .band__grid { text-align: left; }
+.sec--center .grid-work,
+.sec--center .pcard__meta,
+.sec--center .plist,
+.sec--center .rows,
+.sec--center .process { text-align: left; }
+
+.sec__statement em, .band__title { color: #fff; }
+.sec__statement { color: #fff; }
+
+/* footer */
+.footer { border-top: 1px solid var(--hairline-soft); }
+.footer__col a:hover { color: var(--red); }
+
+/* hero + band text stay white on the dark stage */
+.hero__content, .hero__title, .hero__actions .link-md { color: #fff; }
+.hero__actions .link-md:hover { color: rgba(255, 255, 255, 0.75); }
+.band, .band__title { color: #fff; }
+.band__lead { color: rgba(255, 255, 255, 0.8); }
+.hero__title--long { font-size: clamp(28px, 3.3vw, 47px); }
+.hero__copy .hero__kicker { color: rgba(255, 255, 255, 0.75); }
