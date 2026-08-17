@@ -13,21 +13,21 @@
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/outfit-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="assets/css/studio.css?v=st-1" />
+  <link rel="stylesheet" href="assets/css/studio.css?v=st-2" />
   <script>document.documentElement.classList.add('js');</script>
-  <script type="importmap">{ "imports": { "three": "./assets/js/three.module.min.js" } }</script>
 </head>
 <body>
 
   <!-- ═══════════ FLOATING PILL NAV ═══════════ -->
   <header class="nav" id="nav">
     <div class="nav__in">
-      <a href="#top" class="nav__logo" aria-label="Sphamandla Xaba — home">Sphamandla</a>
+      <a href="#top" class="nav__logo" aria-label="Sphamandla Xaba — home">Sphamandla<sup>®</sup></a>
       <nav class="nav__links" aria-label="Primary">
         <a href="#work" class="nav__link" data-spy="work">Case Studies</a>
-        <a href="#what" class="nav__link" data-spy="what">What I Design</a>
+        <a href="#what" class="nav__link" data-spy="what">Process</a>
         <a href="#capabilities" class="nav__link" data-spy="capabilities">Capabilities</a>
         <a href="#about" class="nav__link" data-spy="about">About</a>
+        <a href="#visuals" class="nav__link" data-spy="visuals">Insights</a>
       </nav>
       <div style="display:flex;align-items:center;gap:8px">
         <a href="#contact" class="nav__cta">Contact</a>
@@ -46,9 +46,10 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
       </button>
       <a href="#work" class="drawer__link" data-close>Case Studies</a>
-      <a href="#what" class="drawer__link" data-close>What I Design</a>
+      <a href="#what" class="drawer__link" data-close>Process</a>
       <a href="#capabilities" class="drawer__link" data-close>Capabilities</a>
       <a href="#about" class="drawer__link" data-close>About</a>
+      <a href="#visuals" class="drawer__link" data-close>Insights</a>
       <a href="#contact" class="drawer__link" data-close>Contact</a>
       <div class="drawer__meta">
         <a href="mailto:sphamandaxaba@gmail.com">sphamandaxaba@gmail.com</a>
@@ -87,7 +88,7 @@
           </div>
           <div class="hero__stage rv">
             <span class="hero__word" aria-hidden="true">XABA</span>
-            <div class="hero__canvas" id="sHero" aria-hidden="true"></div>
+            <img class="s-img" src="assets/img/s-chrome.png" alt="Chrome three-dimensional letter S — the Sphamandla brand mark" />
           </div>
         </div>
         <p class="hero__intro rv">
@@ -116,7 +117,7 @@
 
           <article class="wproj">
             <a href="finos.html" class="wproj__media" aria-label="FINOS case study">
-              <img src="assets/img/work/finos-mockup.png" alt="FINOS command center — dashboard, AI financial assistant, portfolio intelligence and decision-support interfaces" loading="lazy" />
+              <img src="assets/img/work/finos-hero.jpg" alt="FINOS command center — dashboard, AI financial assistant, portfolio intelligence and decision-support interfaces" loading="lazy" />
             </a>
             <p class="wproj__num">01 — FINOS</p>
             <h3 class="wproj__title">AI Financial Operating System</h3>
@@ -154,7 +155,7 @@
 
           <article class="wproj">
             <a href="wastemart.html" class="wproj__media" aria-label="WasteMart case study">
-              <img src="assets/img/work/wm-driver-v2.jpg" alt="WasteMart driver operations app on a phone" loading="lazy" />
+              <img src="assets/img/work/wastemart-hero.jpg" alt="WasteMart driver operations app on a phone" loading="lazy" />
             </a>
             <p class="wproj__num">03 — WasteMart</p>
             <h3 class="wproj__title">Designing smarter waste systems</h3>
@@ -238,7 +239,9 @@
               <p>I turn complicated workflows, information architectures and operational processes into understandable digital systems.</p>
             </div>
           </div>
-          <div class="what__canvas rv" id="sWhat" aria-hidden="true"></div>
+          <div class="what__canvas rv" aria-hidden="true">
+            <img class="s-img" src="assets/img/s-chrome.png" alt="" />
+          </div>
           <div class="what__col what__col--r">
             <div class="dcard rv">
               <h3>UX Strategy</h3>
@@ -253,32 +256,28 @@
       </div>
     </section>
 
-    <!-- ═══════════ MOCKUPS — smooth auto-scroll ═══════════ -->
-    <section class="mocks sec" aria-label="Mockup gallery">
-      <div class="wrap mocks__head">
-        <h2 class="mocks__title rv">Selected visuals &amp; mockups</h2>
-        <span class="mocks__hint rv">Auto-scrolling — hover to pause</span>
-      </div>
-      <div class="marq">
-        <div class="marq__track">
-          <div class="marq__item"><img src="assets/img/mockups/inceku.jpg" alt="Inceku Energy utility platform on a laptop" loading="lazy" /></div>
-          <div class="marq__item"><img src="assets/img/mockups/fintech-phone.jpg" alt="Proactive cashflow app on a phone" loading="lazy" /></div>
-          <div class="marq__item"><img src="assets/img/mockups/lungelo.jpg" alt="Lungelo multilingual field app on a phone" loading="lazy" /></div>
-          <div class="marq__item"><img src="assets/img/mockups/cmaxx-dark.jpg" alt="CMAXX WiFi Solutions site on a laptop" loading="lazy" /></div>
-          <div class="marq__item"><img src="assets/img/mockups/stylebox.jpg" alt="StyleBox fashion curator on a laptop" loading="lazy" /></div>
-          <div class="marq__item"><img src="assets/img/mockups/ax-channels.jpg" alt="AX-Channels web design studio site" loading="lazy" /></div>
-          <div class="marq__item"><img src="assets/img/mockups/sgcoal.jpg" alt="SG COAL logistics website on a laptop" loading="lazy" /></div>
-          <div class="marq__item"><img src="assets/img/mockups/dell-dashboard.jpg" alt="Enterprise dashboard on a Dell display" loading="lazy" /></div>
-          <!-- duplicate set for the seamless loop -->
-          <div class="marq__item"><img src="assets/img/mockups/inceku.jpg" alt="" aria-hidden="true" loading="lazy" /></div>
-          <div class="marq__item"><img src="assets/img/mockups/fintech-phone.jpg" alt="" aria-hidden="true" loading="lazy" /></div>
-          <div class="marq__item"><img src="assets/img/mockups/lungelo.jpg" alt="" aria-hidden="true" loading="lazy" /></div>
-          <div class="marq__item"><img src="assets/img/mockups/cmaxx-dark.jpg" alt="" aria-hidden="true" loading="lazy" /></div>
-          <div class="marq__item"><img src="assets/img/mockups/stylebox.jpg" alt="" aria-hidden="true" loading="lazy" /></div>
-          <div class="marq__item"><img src="assets/img/mockups/ax-channels.jpg" alt="" aria-hidden="true" loading="lazy" /></div>
-          <div class="marq__item"><img src="assets/img/mockups/sgcoal.jpg" alt="" aria-hidden="true" loading="lazy" /></div>
-          <div class="marq__item"><img src="assets/img/mockups/dell-dashboard.jpg" alt="" aria-hidden="true" loading="lazy" /></div>
+    <!-- ═══════════ MOCKUPS — large-image carousel ═══════════ -->
+    <section class="mocks sec--dark on-dark" id="visuals" aria-label="Selected visuals">
+      <div class="car" id="car">
+        <div class="car__viewport">
+          <div class="car__track" id="carTrack">
+            <div class="car__slide"><img src="assets/img/mockups/inceku.jpg" alt="Inceku Energy utility platform on a laptop" /></div>
+            <div class="car__slide"><img src="assets/img/mockups/sgcoal.jpg" alt="SG COAL logistics website on a laptop" loading="lazy" /></div>
+            <div class="car__slide"><img src="assets/img/mockups/cmaxx-dark.jpg" alt="CMAXX WiFi Solutions site on a laptop" loading="lazy" /></div>
+            <div class="car__slide"><img src="assets/img/mockups/fintech-phone.jpg" alt="Proactive cashflow app on a phone" loading="lazy" /></div>
+            <div class="car__slide"><img src="assets/img/mockups/lungelo.jpg" alt="Lungelo multilingual field app on a phone" loading="lazy" /></div>
+            <div class="car__slide"><img src="assets/img/mockups/stylebox.jpg" alt="StyleBox fashion curator on a laptop" loading="lazy" /></div>
+            <div class="car__slide"><img src="assets/img/mockups/ax-channels.jpg" alt="AX-Channels web design studio site" loading="lazy" /></div>
+            <div class="car__slide"><img src="assets/img/mockups/dell-dashboard.jpg" alt="Enterprise dashboard on a Dell display" loading="lazy" /></div>
+          </div>
         </div>
+        <button class="car__btn car__btn--prev" id="carPrev" aria-label="Previous mockup">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+        </button>
+        <button class="car__btn car__btn--next" id="carNext" aria-label="Next mockup">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+        <div class="car__dots" id="carDots" role="tablist" aria-label="Mockup slides"></div>
       </div>
     </section>
 
@@ -298,7 +297,9 @@
             to understand.
           </p>
         </div>
-        <div class="caps__cards">
+        <div class="caps__stage">
+          <img class="caps__figure" src="assets/img/figure-3d.png" alt="" aria-hidden="true" />
+          <div class="caps__cards">
           <div class="ccard rv">
             <i>01</i>
             <h3>Systems Thinking</h3>
@@ -319,6 +320,7 @@
             <h3>Visual Craft</h3>
             <p>I care about hierarchy, typography, interaction, consistency and the details that make products feel finished.</p>
           </div>
+          </div>
         </div>
       </div>
     </section>
@@ -327,7 +329,7 @@
     <section class="sec sec--dark on-dark" id="about">
       <div class="wrap about__grid">
         <div class="about__body">
-          <p class="kicker rv">About Me</p>
+          <p class="kicker rv">Value / Capabilities</p>
           <h2 class="display display--md rv" style="margin-top:20px">
             A designer focused on where
             <span class="ol" style="display:block">product design is going next.</span>
@@ -343,7 +345,9 @@
             look good, but figuring out how the experience should actually work.
           </p>
         </div>
-        <span class="about__word rv" aria-hidden="true">XABA</span>
+        <div class="about__portrait rv">
+          <img src="assets/img/portrait-spha.jpg" alt="Portrait of Sphamandla Xaba wearing a white hat with a red band" loading="lazy" />
+        </div>
       </div>
     </section>
 
@@ -389,7 +393,7 @@
         <div class="footer__col">
           <b>Connect with Me</b>
           <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="https://dribbble.com/" target="_blank" rel="noopener">Dribbble</a>
+          <a href="https://dribbble.com/" target="_blank" rel="noopener">Dribble</a>
           <a href="https://www.behance.net/" target="_blank" rel="noopener">Behance</a>
         </div>
       </div>
@@ -404,7 +408,6 @@
   <script src="assets/js/gsap.min.js"></script>
   <script src="assets/js/ScrollTrigger.min.js"></script>
   <script src="assets/js/lenis.min.js"></script>
-  <script src="assets/js/studio.js?v=st-1" defer></script>
-  <script type="module" src="assets/js/hero-s.js?v=st-1"></script>
+  <script src="assets/js/studio.js?v=st-2" defer></script>
 </body>
 </html>

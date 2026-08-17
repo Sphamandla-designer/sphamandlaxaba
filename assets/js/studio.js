@@ -106,3 +106,52 @@
     spyIds.map((id) => document.getElementById(id)).filter(Boolean).forEach((s) => spy.observe(s));
   }
 })();
+
+/* ── mockup carousel: large image, arrows, dots, smooth auto-advance ── */
+(() => {
+  'use strict';
+  const track = document.getElementById('carTrack');
+  if (!track) return;
+  const slides = [...track.children];
+  const dotsBox = document.getElementById('carDots');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let i = 0, timer = null;
+
+  slides.forEach((_, n) => {
+    const d = document.createElement('button');
+    d.className = 'car__dot' + (n === 0 ? ' is-on' : '');
+    d.setAttribute('aria-label', 'Go to mockup ' + (n + 1));
+    d.addEventListener('click', () => { go(n); restart(); });
+    dotsBox.appendChild(d);
+  });
+  const dots = [...dotsBox.children];
+
+  const go = (n) => {
+    i = (n + slides.length) % slides.length;
+    track.style.transform = 'translateX(' + (-i * 100) + '%)';
+    dots.forEach((d, k) => d.classList.toggle('is-on', k === i));
+  };
+  const restart = () => {
+    if (reduced) return;
+    clearInterval(timer);
+    timer = setInterval(() => go(i + 1), 4500);
+  };
+
+  document.getElementById('carPrev').addEventListener('click', () => { go(i - 1); restart(); });
+  document.getElementById('carNext').addEventListener('click', () => { go(i + 1); restart(); });
+  const car = document.getElementById('car');
+  car.addEventListener('mouseenter', () => clearInterval(timer));
+  car.addEventListener('mouseleave', restart);
+
+  /* swipe */
+  let x0 = null;
+  car.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+  car.addEventListener('touchend', (e) => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) { go(i + (dx < 0 ? 1 : -1)); restart(); }
+    x0 = null;
+  }, { passive: true });
+
+  restart();
+})();
