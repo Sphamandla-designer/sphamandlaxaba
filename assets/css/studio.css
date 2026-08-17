@@ -902,3 +902,61 @@ html.js .rv-d2.is-in { transition-delay: 0.16s; }
   .mstrip { overflow-x: auto; }
   .mstrip__track { animation: none; }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   st-6 — RESPONSIVE PASS (mobile & tablet)
+   Single-column stacks below 1024px, fixed zero-width traps,
+   consistent spacing and sizes on small screens.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* strip images always have an intrinsic ratio so they render/load */
+.mstrip__item img { aspect-ratio: 4 / 3; }
+
+@media (max-width: 1023px) {
+  /* hero stacks: S stage on top, copy below */
+  .hero__grid { grid-template-columns: 1fr; gap: 24px; }
+  .hero__stage { order: -1; min-height: clamp(300px, 78vw, 460px); }
+  .hero__word { font-size: clamp(96px, 26vw, 190px); }
+  .hero__title { font-size: clamp(34px, 8.4vw, 56px); }
+  .hero__lead { max-width: none; }
+  .hero__intro { padding-top: 4px; }
+
+  /* about stacks: text then portrait */
+  .about__grid { grid-template-columns: 1fr; gap: 28px; }
+  .about__portrait { justify-self: stretch; max-width: 520px; margin: 0 auto; }
+
+  /* what: S visible between head and cards */
+  .what__canvas { width: 100%; max-width: none; margin: 0; }
+  .what__canvas .s3d { height: clamp(240px, 58vw, 400px); }
+
+  /* gallery cards sized for tablet */
+  .mstrip__item img { height: clamp(220px, 30vw, 340px); }
+
+  /* work rail */
+  .wintro { border-right: 0; padding-right: 0; }
+
+  .footer__word { white-space: normal; font-size: clamp(26px, 6vw, 64px); }
+}
+
+@media (max-width: 599px) {
+  .hero { padding-top: 60px; }
+  .hero__loc { padding-top: 12px; }
+  .hero__stage { min-height: clamp(250px, 72vw, 360px); }
+  .hero__actions { width: 100%; }
+  .hero__actions .btn { flex: 1 1 140px; }
+  .hero__stats { gap: 18px 26px; }
+  .btn { min-height: 48px; padding: 12px 20px; font-size: 14.5px; }
+  .nav__in { padding: 0 18px; min-height: 58px; }
+
+  .wproj { width: 90vw; }
+  .wproj__title { font-size: 21px; }
+  .wproj__tag { padding: 5px 11px; font-size: 10.5px; }
+
+  .dcard, .ccard { padding: 22px; }
+  .mstrip__item { border-radius: 18px; }
+  .mstrip__item img { height: clamp(180px, 52vw, 250px); }
+
+  .contact__actions { width: 100%; }
+  .contact__actions .btn { flex: 1 1 140px; }
+  .footer__bar { flex-direction: column; align-items: flex-start; gap: 8px; }
+}
