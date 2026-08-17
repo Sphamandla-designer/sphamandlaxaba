@@ -778,3 +778,62 @@ html.js .rv-d2.is-in { transition-delay: 0.16s; }
 
 /* footer brand lines stack tight */
 .footer__brand .display--sm { line-height: 1.04; }
+
+/* ═══════════════════════════════════════════════════════════════
+   st-4 — S rotation, social rail, carousel fit, about corrections
+   ═══════════════════════════════════════════════════════════════ */
+
+/* the chrome S spins continuously and smoothly */
+.hero__stage, .what__canvas { perspective: 1400px; }
+.s-img {
+  animation: s-spin 14s linear infinite;
+  filter: drop-shadow(0 26px 52px rgba(16, 18, 24, 0.26));
+}
+@keyframes s-spin {
+  from { transform: rotateY(0deg); }
+  to   { transform: rotateY(360deg); }
+}
+
+/* hero social rail: thin vertical line + icons on the left */
+.hero { position: relative; }
+.hero__social {
+  position: absolute;
+  left: clamp(10px, 1.5vw, 26px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+.hero__social-line {
+  width: 1.5px;
+  height: clamp(44px, 8.5vh, 100px);
+  background: rgba(16, 18, 24, 0.22);
+}
+.hero__social a {
+  display: inline-flex;
+  color: var(--mute);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.hero__social a:hover { color: var(--ink); transform: translateY(-2px); }
+.hero__social svg { width: 19px; height: 19px; fill: currentColor; }
+@media (max-width: 1023px) { .hero__social { display: none; } }
+
+/* mockup slides: sharp, whole image visible, centred large on dark */
+.car__slide { display: flex; justify-content: center; }
+.car__slide img {
+  width: auto;
+  max-width: 100%;
+  height: min(80vh, 840px);
+  object-fit: contain;
+  border-radius: 0;
+}
+@media (max-width: 767px) {
+  .car__slide img { height: auto; width: 100%; max-height: 56vh; }
+}
+
+/* about: image exactly as uploaded, no backdrop */
+.about__portrait { background: transparent; border-radius: 22px; }
+.about__portrait img { aspect-ratio: auto; width: 100%; height: auto; object-fit: unset; }
