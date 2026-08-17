@@ -728,3 +728,53 @@ html.js .rv-d2.is-in { transition-delay: 0.16s; }
 .footer__col a, .footer__col span { font-size: 15px; padding: 6px 0; }
 .footer__word { margin-top: clamp(44px, 5.6vw, 96px); }
 .footer__bar { padding: 22px 0 28px; margin-top: 20px; font-size: 14px; }
+
+/* ═══════════════════════════════════════════════════════════════
+   st-3 — PRECISION PASS
+   Hero title on two lines exactly as designed, tighter overall
+   composition width, staggered What-I-Design cards, true
+   edge-to-edge mockup image, quieter header.
+   ═══════════════════════════════════════════════════════════════ */
+:root { --maxw: 1520px; }
+
+/* header: calmer, tighter, content-width */
+.nav__in { max-width: 1440px; min-height: 62px; }
+.nav__logo { font-size: 15px; letter-spacing: 0.14em; }
+.nav__links { gap: 0; }
+.nav__link { font-size: 14.5px; padding: 8px 11px; }
+.nav__link::after { left: 11px; right: 11px; }
+.nav__cta { padding: 9px 20px; font-size: 14px; }
+
+/* hero title: one line per phrase, as designed */
+.hero__title { font-size: clamp(32px, 4.15vw, 62px); letter-spacing: -0.02em; }
+.hero__title .ol { margin-top: 2px; }
+.hero__grid { grid-template-columns: minmax(0, 11fr) minmax(0, 13fr); }
+.hero__word { font-size: clamp(100px, 13.5vw, 230px); }
+.hero__lead { max-width: 42ch; }
+.hstat b { font-size: clamp(30px, 2.6vw, 44px); }
+
+/* staggered dark cards around the S, per the design */
+@media (min-width: 1024px) {
+  .what__col--l .dcard:first-child { margin-top: -36px; }
+  .what__col--l .dcard:last-child { margin-left: clamp(0px, 3.4vw, 64px); }
+  .what__col--r .dcard:first-child { margin-top: -56px; }
+  .what__col--r .dcard:last-child { margin-top: 28px; }
+}
+
+/* mockups: one large edge-to-edge image, arrows overlaid, dots below */
+.mocks { padding: 0 0 26px; }
+.car__slide { padding: 0; }
+.car__slide img {
+  border-radius: 0;
+  max-height: min(82vh, 900px);
+  width: 100%;
+}
+.car__dots { margin-top: 20px; }
+
+/* rail panels sit a touch smaller so media + copy fit one screen */
+.wproj { width: min(720px, 82vw); }
+.wproj__media { aspect-ratio: 16 / 9.4; }
+.wintro { width: min(460px, 80vw); }
+
+/* footer brand lines stack tight */
+.footer__brand .display--sm { line-height: 1.04; }
