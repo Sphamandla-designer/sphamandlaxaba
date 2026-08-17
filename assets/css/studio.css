@@ -519,3 +519,212 @@ html.js .rv-d2.is-in { transition-delay: 0.16s; }
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
   html.js .rv { opacity: 1; transform: none; }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   st-2 — TIGHTEN PASS (ui-ux-pro-max)
+   Real imagery in place of WebGL. Consistent modular scale,
+   tighter text rhythm, sections sized to fit their viewport,
+   redesigned light header, design-accurate mockup carousel.
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+  --sec: clamp(64px, 7vw, 112px);
+  --gutter: clamp(20px, 3.6vw, 56px);
+}
+
+/* type scale down one notch — clear hierarchy, bounded measures */
+.display { font-size: clamp(38px, 5.2vw, 88px); line-height: 0.99; }
+.display--md { font-size: clamp(28px, 3.5vw, 56px); line-height: 1.04; }
+.display--sm { font-size: clamp(24px, 2.4vw, 38px); }
+.lead { font-size: clamp(16px, 1.15vw, 19px); line-height: 1.6; }
+.kicker { font-size: 13px; letter-spacing: 0.14em; }
+.ol, .on-dark .ol { -webkit-text-stroke-width: 1.6px; }
+
+/* ── Header redesign: quiet light glass bar, tight spacing ─────── */
+.nav {
+  top: 0; left: 0; transform: none;
+  width: 100%;
+  border-radius: 0;
+  background: rgba(241, 241, 243, 0.86);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  color: var(--ink);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+.nav.is-stuck { box-shadow: none; border-bottom-color: var(--line); }
+.nav__in {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  min-height: 64px;
+  padding: 0 var(--gutter);
+  gap: 16px;
+}
+.nav__logo { font-size: 16px; letter-spacing: 0.12em; }
+.nav__logo sup { font-size: 9px; vertical-align: super; }
+.nav__links { gap: 2px; }
+.nav__link { color: var(--ink); font-size: 15px; font-weight: 500; padding: 8px 13px; opacity: 0.62; }
+.nav__link:hover, .nav__link.is-active { opacity: 1; }
+.nav__link::after { background: var(--ink); left: 13px; right: 13px; bottom: 2px; height: 1.5px; }
+.nav__cta {
+  border: 0;
+  background: var(--dark); color: #fff;
+  padding: 10px 22px;
+  font-size: 14.5px;
+}
+.nav__cta:hover { background: #2a2d36; color: #fff; }
+.nav__burger { color: var(--ink); }
+
+/* ── Hero: real chrome S, viewport-fit, tighter rhythm ─────────── */
+.hero { padding-top: 64px; min-height: 100svh; display: flex; flex-direction: column; }
+.hero > .wrap { display: flex; flex-direction: column; flex: 1; }
+.hero__loc { padding-top: 16px; font-size: 14px; }
+.hero__grid { flex: 1; align-items: center; padding-top: 0; gap: clamp(20px, 3vw, 56px); }
+.hero__lead { margin-top: 18px; font-size: clamp(16px, 1.2vw, 20px); }
+.hero__rating { margin-top: 18px; gap: 12px; }
+.hero__stars { font-size: 17px; letter-spacing: 4px; }
+.hero__rating-copy { font-size: 13.5px; }
+.hero__actions { margin-top: 26px; gap: 12px; }
+.btn { min-height: 50px; padding: 12px 28px; font-size: 15px; }
+.hero__stats { margin-top: clamp(28px, 3.6vw, 48px); gap: clamp(24px, 3vw, 48px); }
+.hstat b { font-size: clamp(34px, 2.9vw, 50px); }
+.hstat span { font-size: 13.5px; }
+.hero__stage { min-height: clamp(340px, 36vw, 560px); }
+.hero__word { font-size: clamp(110px, 15vw, 260px); }
+.s-img {
+  position: absolute; inset: 0;
+  margin: auto;
+  height: 100%; width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  z-index: 1;
+  filter: drop-shadow(0 30px 60px rgba(16, 18, 24, 0.28));
+  animation: s-float 7s ease-in-out infinite;
+}
+@keyframes s-float {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50%      { transform: translateY(-16px) rotate(2.5deg); }
+}
+.hero__intro { padding: clamp(20px, 2.6vw, 40px) 0 clamp(28px, 3vw, 48px); font-size: clamp(16px, 1.2vw, 19px); max-width: 58ch; }
+@media (max-width: 1023px) {
+  .hero { min-height: 0; }
+  .hero__stage { min-height: clamp(260px, 58vw, 420px); }
+}
+
+/* ── Work rail: tighter panels ─────────────────────────────────── */
+.wintro { width: min(500px, 82vw); }
+.wintro .kicker { margin-bottom: 16px; }
+.wintro__lead { margin-top: 18px; font-size: 16px; }
+.wintro .btn { margin-top: 26px; }
+.wproj { width: min(780px, 84vw); }
+.wproj__num { margin-top: 20px; font-size: 13px; }
+.wproj__title { margin-top: 6px; font-size: clamp(22px, 1.9vw, 32px); }
+.wproj__desc { margin-top: 10px; font-size: 15px; max-width: 68ch; }
+.wproj__tags { margin-top: 14px; gap: 8px; }
+.wproj__tag { padding: 6px 14px; font-size: 11.5px; }
+.wproj .link-arrow { margin-top: 18px; font-size: 15px; }
+
+/* ── What I design: real S between the cards ───────────────────── */
+.what__head .lead { margin: 18px auto 0; }
+.what__stage { margin-top: clamp(36px, 4.6vw, 72px); }
+.dcard { padding: clamp(22px, 2vw, 32px); border-radius: 18px; }
+.dcard h3 { font-size: 15px; padding-bottom: 12px; margin-bottom: 13px; }
+.dcard p { font-size: 14.5px; }
+.what__canvas { display: flex; align-items: center; justify-content: center; min-height: 0; aspect-ratio: auto; }
+.what__canvas .s-img {
+  position: static;
+  height: clamp(280px, 30vw, 460px);
+  animation-duration: 8s;
+}
+
+/* ── Mockup carousel — large image, arrows, dots (per design) ──── */
+.mocks { padding-top: calc(var(--sec) * 0.8); padding-bottom: calc(var(--sec) * 0.8); }
+.car { position: relative; }
+.car__viewport { overflow: hidden; }
+.car__track {
+  display: flex;
+  transition: transform 0.75s cubic-bezier(0.3, 0.75, 0.25, 1);
+}
+.car__slide { flex: 0 0 100%; padding: 0 var(--gutter); }
+.car__slide img {
+  width: 100%;
+  max-height: min(74vh, 780px);
+  object-fit: cover;
+  border-radius: 20px;
+}
+.car__btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  z-index: 2;
+  width: 54px; height: 54px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  color: #fff;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+.car__btn:hover { background: rgba(255, 255, 255, 0.24); }
+.car__btn:active { transform: translateY(-50%) scale(0.94); }
+.car__btn svg { width: 22px; height: 22px; }
+.car__btn--prev { left: clamp(28px, 4vw, 64px); }
+.car__btn--next { right: clamp(28px, 4vw, 64px); }
+.car__dots { display: flex; justify-content: center; gap: 8px; margin-top: 26px; }
+.car__dot {
+  width: 28px; height: 8px; border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  transition: background 0.25s ease, width 0.25s ease;
+}
+.car__dot.is-on { background: #fff; width: 44px; }
+@media (max-width: 767px) {
+  .car__btn { width: 44px; height: 44px; }
+  .car__slide img { max-height: 52vh; }
+}
+
+/* ── Capabilities: figure standing among the cards ─────────────── */
+.caps__intro .lead { margin-top: 18px; }
+.caps__stage { position: relative; }
+.caps__figure {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -52%);
+  height: 118%;
+  z-index: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 24px 48px rgba(16, 18, 24, 0.25));
+}
+.caps__cards { position: relative; z-index: 1; }
+.ccard {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-radius: 18px;
+  padding: clamp(22px, 2vw, 32px);
+}
+.ccard h3 { font-size: clamp(19px, 1.5vw, 24px); margin-top: 10px; }
+.ccard p { font-size: 14.5px; margin-top: 8px; }
+@media (max-width: 1023px) {
+  .caps__figure { display: none; }
+  .ccard { background: #fff; }
+}
+
+/* ── About: the real portrait ──────────────────────────────────── */
+.about__grid { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); align-items: center; }
+.about__body p { margin-top: 20px; font-size: clamp(16px, 1.2vw, 19px); }
+.about__portrait {
+  border-radius: 22px;
+  overflow: hidden;
+  justify-self: end;
+  max-width: 520px;
+  width: 100%;
+}
+.about__portrait img { width: 100%; aspect-ratio: 4 / 4.6; object-fit: cover; }
+@media (max-width: 1023px) { .about__portrait { justify-self: stretch; max-width: none; } }
+
+/* ── Contact + footer: tighter ─────────────────────────────────── */
+.contact__title { margin-top: 16px; }
+.contact__lead { margin: 20px auto 0; }
+.contact__actions { margin-top: 30px; gap: 12px; }
+.footer { padding-top: calc(var(--sec) * 0.9); }
+.footer__col b { font-size: 17px; margin-bottom: 12px; }
+.footer__col a, .footer__col span { font-size: 15px; padding: 6px 0; }
+.footer__word { margin-top: clamp(44px, 5.6vw, 96px); }
+.footer__bar { padding: 22px 0 28px; margin-top: 20px; font-size: 14px; }
