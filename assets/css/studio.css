@@ -837,3 +837,68 @@ html.js .rv-d2.is-in { transition-delay: 0.16s; }
 /* about: image exactly as uploaded, no backdrop */
 .about__portrait { background: transparent; border-radius: 22px; }
 .about__portrait img { aspect-ratio: auto; width: 100%; height: auto; object-fit: unset; }
+
+/* ═══════════════════════════════════════════════════════════════
+   st-5 — card-strip gallery, extruded 3D S, heavier XABA
+   ═══════════════════════════════════════════════════════════════ */
+
+/* hero watermark: much bolder */
+.hero__word {
+  font-weight: 900;
+  font-stretch: 112%;
+  letter-spacing: 0.08em;
+  color: #cfd0d7;
+}
+
+/* the S as a true 3D slab: stacked layers spun with preserve-3d */
+.s3d {
+  transform-style: preserve-3d;
+  animation: s-spin 14s linear infinite;
+}
+.hero__stage .s3d { position: absolute; inset: 0; z-index: 1; }
+.what__canvas .s3d { position: relative; width: 100%; height: clamp(280px, 30vw, 460px); }
+.s3d__layer {
+  position: absolute; inset: 0;
+  margin: auto;
+  height: 100%; width: auto; max-width: 100%;
+  object-fit: contain;
+}
+.s3d__layer--front { filter: drop-shadow(0 26px 52px rgba(16, 18, 24, 0.26)); }
+.s3d__layer--body { filter: brightness(0.55) contrast(1.05); }
+.s3d--still { animation: none; transform: rotateY(20deg); }
+@media (prefers-reduced-motion: reduce) { .s3d { animation: none; transform: rotateY(20deg); } }
+
+/* ── mockup gallery: rounded card strip, auto-slide, hover pause ── */
+.mocks { background: var(--bg); color: var(--ink); padding: var(--sec) 0; }
+.mstrip { overflow: hidden; }
+.mstrip__track {
+  display: flex;
+  gap: clamp(18px, 2vw, 32px);
+  width: max-content;
+  padding: 8px 0;
+  animation: mstrip-slide 56s linear infinite;
+  will-change: transform;
+}
+.mstrip:hover .mstrip__track { animation-play-state: paused; }
+.mstrip__item {
+  flex: 0 0 auto;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #e2e2e6;
+  box-shadow: 0 18px 44px rgba(16, 18, 24, 0.10);
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.mstrip__item:hover { transform: translateY(-6px) scale(1.02); }
+.mstrip__item img {
+  height: clamp(260px, 44vh, 430px);
+  width: auto;
+  display: block;
+}
+@keyframes mstrip-slide {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mstrip { overflow-x: auto; }
+  .mstrip__track { animation: none; }
+}

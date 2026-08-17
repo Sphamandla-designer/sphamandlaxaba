@@ -13,7 +13,7 @@
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/outfit-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="assets/css/studio.css?v=st-4" />
+  <link rel="stylesheet" href="assets/css/studio.css?v=st-5" />
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -269,28 +269,28 @@
       </div>
     </section>
 
-    <!-- ═══════════ MOCKUPS — large-image carousel ═══════════ -->
-    <section class="mocks sec--dark on-dark" id="visuals" aria-label="Selected visuals">
-      <div class="car" id="car">
-        <div class="car__viewport">
-          <div class="car__track" id="carTrack">
-            <div class="car__slide"><img src="assets/img/mockups/inceku.jpg" alt="Inceku Energy utility platform on a laptop" /></div>
-            <div class="car__slide"><img src="assets/img/mockups/sgcoal.jpg" alt="SG COAL logistics website on a laptop" loading="lazy" /></div>
-            <div class="car__slide"><img src="assets/img/mockups/cmaxx-dark.jpg" alt="CMAXX WiFi Solutions site on a laptop" loading="lazy" /></div>
-            <div class="car__slide"><img src="assets/img/mockups/fintech-phone.jpg" alt="Proactive cashflow app on a phone" loading="lazy" /></div>
-            <div class="car__slide"><img src="assets/img/mockups/lungelo.jpg" alt="Lungelo multilingual field app on a phone" loading="lazy" /></div>
-            <div class="car__slide"><img src="assets/img/mockups/stylebox.jpg" alt="StyleBox fashion curator on a laptop" loading="lazy" /></div>
-            <div class="car__slide"><img src="assets/img/mockups/ax-channels.jpg" alt="AX-Channels web design studio site" loading="lazy" /></div>
-            <div class="car__slide"><img src="assets/img/mockups/dell-dashboard.jpg" alt="Enterprise dashboard on a Dell display" loading="lazy" /></div>
-          </div>
+    <!-- ═══════════ MOCKUPS — sliding card gallery ═══════════ -->
+    <section class="mocks" id="visuals" aria-label="Selected visuals">
+      <div class="mstrip">
+        <div class="mstrip__track">
+          <div class="mstrip__item"><img src="assets/img/mockups/inceku.jpg" alt="Inceku Energy utility platform on a laptop" loading="lazy" /></div>
+          <div class="mstrip__item"><img src="assets/img/mockups/fintech-phone.jpg" alt="Proactive cashflow app on a phone" loading="lazy" /></div>
+          <div class="mstrip__item"><img src="assets/img/mockups/sgcoal.jpg" alt="SG COAL logistics website on a laptop" loading="lazy" /></div>
+          <div class="mstrip__item"><img src="assets/img/mockups/lungelo.jpg" alt="Lungelo multilingual field app on a phone" loading="lazy" /></div>
+          <div class="mstrip__item"><img src="assets/img/mockups/cmaxx-dark.jpg" alt="CMAXX WiFi Solutions site on a laptop" loading="lazy" /></div>
+          <div class="mstrip__item"><img src="assets/img/mockups/stylebox.jpg" alt="StyleBox fashion curator on a laptop" loading="lazy" /></div>
+          <div class="mstrip__item"><img src="assets/img/mockups/ax-channels.jpg" alt="AX-Channels web design studio site" loading="lazy" /></div>
+          <div class="mstrip__item"><img src="assets/img/mockups/dell-dashboard.jpg" alt="Enterprise dashboard on a Dell display" loading="lazy" /></div>
+          <!-- duplicate set for the seamless loop -->
+          <div class="mstrip__item" aria-hidden="true"><img src="assets/img/mockups/inceku.jpg" alt="" loading="lazy" /></div>
+          <div class="mstrip__item" aria-hidden="true"><img src="assets/img/mockups/fintech-phone.jpg" alt="" loading="lazy" /></div>
+          <div class="mstrip__item" aria-hidden="true"><img src="assets/img/mockups/sgcoal.jpg" alt="" loading="lazy" /></div>
+          <div class="mstrip__item" aria-hidden="true"><img src="assets/img/mockups/lungelo.jpg" alt="" loading="lazy" /></div>
+          <div class="mstrip__item" aria-hidden="true"><img src="assets/img/mockups/cmaxx-dark.jpg" alt="" loading="lazy" /></div>
+          <div class="mstrip__item" aria-hidden="true"><img src="assets/img/mockups/stylebox.jpg" alt="" loading="lazy" /></div>
+          <div class="mstrip__item" aria-hidden="true"><img src="assets/img/mockups/ax-channels.jpg" alt="" loading="lazy" /></div>
+          <div class="mstrip__item" aria-hidden="true"><img src="assets/img/mockups/dell-dashboard.jpg" alt="" loading="lazy" /></div>
         </div>
-        <button class="car__btn car__btn--prev" id="carPrev" aria-label="Previous mockup">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
-        </button>
-        <button class="car__btn car__btn--next" id="carNext" aria-label="Next mockup">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
-        </button>
-        <div class="car__dots" id="carDots" role="tablist" aria-label="Mockup slides"></div>
       </div>
     </section>
 
@@ -421,6 +421,6 @@
   <script src="assets/js/gsap.min.js"></script>
   <script src="assets/js/ScrollTrigger.min.js"></script>
   <script src="assets/js/lenis.min.js"></script>
-  <script src="assets/js/studio.js?v=st-2" defer></script>
+  <script src="assets/js/studio.js?v=st-5" defer></script>
 </body>
 </html>
