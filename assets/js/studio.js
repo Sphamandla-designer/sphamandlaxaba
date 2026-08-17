@@ -126,3 +126,121 @@
     }
   });
 })();
+
+/* ── smart preloader: a glass sheet cracks and shatters in 3D ──
+   Smart: skips repeat visits in the same session, skips for
+   reduced motion, waits for the page to actually load (with a
+   minimum dwell and a hard timeout), and can never trap the page
+   thanks to a CSS auto-hide fallback. */
+(() => {
+  'use strict';
+  const pre = document.getElementById('preloader');
+  if (!pre) return;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  let seen = false;
+  try { seen = sessionStorage.getItem('sx-pre') === '1'; sessionStorage.setItem('sx-pre', '1'); } catch (e) {}
+  if (reduced || seen) { pre.remove(); return; }
+
+  document.body.style.overflow = 'hidden';
+  const started = Date.now();
+  const MIN_DWELL = 1200, HARD_CAP = 3200;
+
+  /* impact point, slightly off-centre like a real strike */
+  const CX = 54, CY = 44;
+
+  const buildShards = () => {
+    const N = 11;
+    const angles = [];
+    for (let i = 0; i < N; i++) {
+      angles.push((i / N) * Math.PI * 2 + (Math.sin(i * 12.9898) * 0.5) * 0.5);
+    }
+    const ring1 = angles.map((a, i) => [
+      CX + Math.cos(a) * (16 + (i % 3) * 7),
+      CY + Math.sin(a) * (14 + ((i + 1) % 3) * 6),
+    ]);
+    const ring2 = angles.map((a, i) => [
+      CX + Math.cos(a + 0.16) * 160,
+      CY + Math.sin(a + 0.16) * 160,
+    ]);
+    const frag = document.createDocumentFragment();
+    const shards = [];
+    const poly = (pts) => pts.map(([x, y]) => x.toFixed(2) + '% ' + y.toFixed(2) + '%').join(', ');
+    for (let i = 0; i < N; i++) {
+      const j = (i + 1) % N;
+      const defs = [
+        [[CX, CY], ring1[i], ring1[j]],                    /* inner triangle */
+        [ring1[i], ring2[i], ring2[j], ring1[j]],          /* outer slab */
+      ];
+      defs.forEach((pts, k) => {
+        const d = document.createElement('div');
+        d.className = 'preloader__shard';
+        d.style.clipPath = 'polygon(' + poly(pts) + ')';
+        const mx = pts.reduce((s2, p2) => s2 + p2[0], 0) / pts.length;
+        const my = pts.reduce((s2, p2) => s2 + p2[1], 0) / pts.length;
+        const dx = mx - CX, dy = my - CY;
+        const dist = Math.hypot(dx, dy) || 1;
+        const power = k === 0 ? 1.4 : 2.4;
+        d.dataset.tx = (dx / dist * (26 + dist * power) * 1.6).toFixed(1);
+        d.dataset.ty = (dy / dist * (22 + dist * power) * 1.4 + 46).toFixed(1);  /* gravity pulls down */
+        d.dataset.tz = (240 + (i % 5) * 130).toFixed(0);
+        d.dataset.rx = ((dy / dist) * 70 + (i % 2 ? 24 : -18)).toFixed(0);
+        d.dataset.ry = ((dx / dist) * -60 + (i % 3 ? -20 : 26)).toFixed(0);
+        d.dataset.delay = (Math.min(dist, 60) * 3.2).toFixed(0);
+        frag.appendChild(d);
+        shards.push(d);
+      });
+    }
+    pre.insertBefore(frag, document.getElementById('preCracks'));
+    return { shards, ring1, ring2 };
+  };
+
+  const drawCracks = (ring1, ring2) => {
+    const svg = document.getElementById('preCracks');
+    const ns = 'http://www.w3.org/2000/svg';
+    const add = (x1, y1, x2, y2, delay) => {
+      const l = document.createElementNS(ns, 'line');
+      l.setAttribute('x1', x1); l.setAttribute('y1', y1);
+      l.setAttribute('x2', x2); l.setAttribute('y2', y2);
+      l.style.animationDelay = delay + 'ms';
+      svg.appendChild(l);
+    };
+    ring1.forEach(([x, y], i) => {
+      add(CX, CY, x, y, i * 12);
+      const [ox, oy] = ring2[i];
+      add(x, y, ox, oy, 60 + i * 14);
+      const [nx, ny] = ring1[(i + 1) % ring1.length];
+      add(x, y, nx, ny, 90 + i * 10);
+    });
+  };
+
+  const shatter = () => {
+    const { shards, ring1, ring2 } = buildShards();
+    drawCracks(ring1, ring2);
+    pre.classList.add('is-cracking');
+    setTimeout(() => {
+      document.getElementById('prePane').style.display = 'none';
+      requestAnimationFrame(() => {
+        shards.forEach((d) => {
+          d.style.transitionDelay = d.dataset.delay + 'ms, ' + d.dataset.delay + 'ms';
+          d.style.transform =
+            'translate3d(' + d.dataset.tx + 'vw, ' + d.dataset.ty + 'vh, ' + d.dataset.tz + 'px)' +
+            ' rotateX(' + d.dataset.rx + 'deg) rotateY(' + d.dataset.ry + 'deg)';
+          d.style.opacity = '0';
+        });
+      });
+      document.body.style.overflow = '';
+      setTimeout(() => pre.remove(), 1600);
+    }, 320);
+  };
+
+  let fired = false;
+  const fire = () => {
+    if (fired) return;
+    fired = true;
+    setTimeout(shatter, Math.max(0, MIN_DWELL - (Date.now() - started)));
+  };
+  if (document.readyState === 'complete') fire();
+  else addEventListener('load', fire);
+  setTimeout(fire, HARD_CAP);
+})();
