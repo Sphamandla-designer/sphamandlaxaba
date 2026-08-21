@@ -14,7 +14,7 @@
   <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/outfit-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="assets/css/studio.css?v=st-7" />
-  <link rel="stylesheet" href="assets/css/case-managem.css?v=cm-1" />
+  <link rel="stylesheet" href="assets/css/case-managem.css?v=cm-2" />
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -195,11 +195,11 @@
       </div>
     </section>
 
-    <!-- ═══════════ 06 · KDD 1 — AI CONFIDENCE ═══════════ -->
-    <section class="cs-sec cs-sec--lg cs-kdd" id="kdd-confidence" aria-label="Key design decision: AI confidence">
+    <!-- ═══════════ 06 · AI TRUST MODEL ═══════════ -->
+    <section class="cs-sec cs-sec--lg" id="trust" aria-label="The AI trust model">
       <div class="cs-wrap">
         <header class="cs-sec__head cs-rv">
-          <span class="cs-eyebrow">01</span>
+          <span class="cs-eyebrow">The AI trust model</span>
           <h2 class="cs-h2">Designing AI confidence as an attention system</h2>
           <p class="cs-sub">Raw model scores mean nothing to a business owner. So confidence became a set of UX states that direct human attention: records the system is sure about step back; records that need a person step forward.</p>
         </header>
@@ -209,8 +209,8 @@
           </figure>
           <button class="annot__dot" style="left:24%;top:31%" aria-label="Annotation 1: extraction summary">1<span class="annot__tip" role="tooltip">Every batch opens with a summary — how many records are verified, need review, or look like duplicates.</span></button>
           <button class="annot__dot" style="left:79%;top:60%" aria-label="Annotation 2: confidence states">2<span class="annot__tip" role="tooltip">Each record carries one plain-language state. Colour and wording do the work — no percentages, no jargon.</span></button>
-          <button class="annot__dot" style="left:89.5%;top:38%" aria-label="Annotation 3: accept all verified">3<span class="annot__tip" role="tooltip">High-confidence records can be accepted in one action, so attention goes where it&rsquo;s actually needed.</span></button>
-          <button class="annot__dot" style="left:89.5%;top:23.5%" aria-label="Annotation 4: extraction explanation">4<span class="annot__tip" role="tooltip">&ldquo;How was this extracted?&rdquo; is one tap away — the AI explains itself before anyone has to ask.</span></button>
+          <button class="annot__dot annot__dot--edge" style="left:89.5%;top:38%" aria-label="Annotation 3: accept all verified">3<span class="annot__tip" role="tooltip">High-confidence records can be accepted in one action, so attention goes where it&rsquo;s actually needed.</span></button>
+          <button class="annot__dot annot__dot--edge" style="left:89.5%;top:23.5%" aria-label="Annotation 4: extraction explanation">4<span class="annot__tip" role="tooltip">&ldquo;How was this extracted?&rdquo; is one tap away — the AI explains itself before anyone has to ask.</span></button>
           <ol class="annot__legend" aria-label="Annotations">
             <li><b>1</b><span>Every batch opens with a summary — verified, needs review, possible duplicates.</span></li>
             <li><b>2</b><span>Each record carries one plain-language state. Colour and wording do the work — no percentages.</span></li>
@@ -228,68 +228,75 @@
       </div>
     </section>
 
-    <!-- ═══════════ 07 · KDD 2 — SOURCE TRACEABILITY ═══════════ -->
-    <section class="cs-sec cs-kdd" id="kdd-traceability" aria-label="Key design decision: source traceability">
-      <div class="cs-wrap cs-split cs-split--rev" style="align-items:center">
-        <figure class="cs-fig cs-rv">
-          <div class="shot"><img src="assets/img/case/to-05-extraction.jpg" alt="Take-On AI extraction log showing source files and audit activity" loading="lazy" decoding="async" width="2268" height="1418" /></div>
-          <figcaption>Extraction, file by file — with a live audit trail</figcaption>
-        </figure>
-        <div class="cs-split__copy cs-rv">
-          <span class="cs-eyebrow" style="display:block;margin-bottom:18px">02</span>
-          <h2 class="cs-h2">AI shouldn&rsquo;t ask users to trust it. It should let them verify it.</h2>
-          <p class="cs-body">Every extracted record points back to the document it came from — the exact file, processed in the open, with each step logged and timestamped as it happens.</p>
-          <p class="cs-body">That mattered because the buyer is a larger South African company with its own compliance obligations. A black-box import would have been faster to build and faster to demo. It was rejected: this market will trust a slower, explainable process over a faster, opaque one every time.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════ 08 · KDD 3 — HUMAN IN THE LOOP ═══════════ -->
-    <section class="cs-sec cs-sec--lg cs-kdd" id="kdd-hitl" aria-label="Key design decision: human in the loop">
+    <!-- ═══════════ 07 · KEY DESIGN DECISIONS ═══════════ -->
+    <section class="cs-sec cs-sec--lg" id="decisions" aria-label="Key design decisions">
       <div class="cs-wrap">
         <header class="cs-sec__head cs-rv">
-          <span class="cs-eyebrow">03</span>
-          <h2 class="cs-h2">Nothing goes live without a person saying yes</h2>
-          <p class="cs-sub">Automation does the work; people keep control. Every onboarding runs through two human gates — the client confirms their own data, then the GEMIS team completes a final quality check.</p>
+          <span class="cs-eyebrow">Key design decisions</span>
+          <h2 class="cs-h2">Deliberate trade-offs, made visible</h2>
+          <p class="cs-sub">Two decisions carry the trust model. Both traded speed and spectacle for something this market values more: a process people can inspect and control.</p>
         </header>
-        <div class="hitl cs-rv" role="img" aria-label="Human-in-the-loop workflow: upload, extract, review, client confirmation, GEMIS QA, then ManaGem">
-          <div class="hitl__step"><span class="hitl__node">Upload</span></div>
-          <div class="hitl__step"><span class="hitl__gap" aria-hidden="true"></span><span class="hitl__node">Extract</span></div>
-          <div class="hitl__step"><span class="hitl__gap" aria-hidden="true"></span><span class="hitl__node">Review</span></div>
-          <div class="hitl__step"><span class="hitl__gap" aria-hidden="true"></span><span class="hitl__node">Client confirmation</span></div>
-          <div class="hitl__step"><span class="hitl__gap" aria-hidden="true"></span><span class="hitl__node">GEMIS QA</span></div>
-          <div class="hitl__step"><span class="hitl__gap" aria-hidden="true"></span><span class="hitl__node hitl__node--dark">ManaGem</span></div>
-        </div>
-        <figure class="cs-fig cs-rv" style="margin-top:clamp(32px,4vw,52px)">
-          <div class="shot"><img src="assets/img/case/to-10-confirm.jpg" alt="Take-On confirmation step — the client approves every category before anything goes live" loading="lazy" decoding="async" width="2268" height="1418" /></div>
-          <figcaption>The consent moment — the client approves every category before anything goes live</figcaption>
-        </figure>
-        <div class="hitl-states cs-rv">
-          <figure class="cs-fig">
-            <div class="shot shot--flat"><img src="assets/img/case/to-04-upload-empty.jpg" alt="Take-On upload step, empty state" loading="lazy" decoding="async" width="2268" height="1418" /></div>
-            <figcaption>Upload</figcaption>
-          </figure>
-          <figure class="cs-fig">
-            <div class="shot shot--flat"><img src="assets/img/case/to-08-products.jpg" alt="Take-On product review step" loading="lazy" decoding="async" width="2268" height="1418" /></div>
-            <figcaption>Review — products</figcaption>
-          </figure>
-          <figure class="cs-fig">
-            <div class="shot shot--flat"><img src="assets/img/case/to-09-staff.jpg" alt="Take-On staff review step" loading="lazy" decoding="async" width="2268" height="1418" /></div>
-            <figcaption>Review — staff</figcaption>
-          </figure>
-          <figure class="cs-fig">
-            <div class="shot shot--flat"><img src="assets/img/case/to-12-admin.jpg" alt="GEMIS admin take-on queue for final quality assurance" loading="lazy" decoding="async" width="2268" height="1418" /></div>
-            <figcaption>GEMIS QA queue</figcaption>
-          </figure>
+        <div class="cs-decs">
+
+          <!-- decision 01 — source traceability -->
+          <div class="cs-split" style="align-items:center">
+            <div class="cs-split__copy cs-dec__copy cs-rv">
+              <span class="cs-dec__num">Decision 01</span>
+              <h3 class="cs-dec__title">AI shouldn&rsquo;t ask users to trust it. It should let them verify it.</h3>
+              <p class="cs-body">Every extracted record points back to the document it came from — the exact file, processed in the open, with each step logged and timestamped as it happens.</p>
+              <ul class="cs-chal">
+                <li><b>Why —</b><span>The buyer is a larger South African company with its own compliance obligations. Trust is the purchase decision.</span></li>
+                <li><b>Alternative considered —</b><span>A black-box import: faster to build, faster to demo.</span></li>
+                <li><b>Decision —</b><span>Rejected it. This market will trust a slower, explainable process over a faster, opaque one every time.</span></li>
+              </ul>
+            </div>
+            <figure class="cs-fig cs-rv">
+              <div class="shot"><img src="assets/img/case/to-05-extraction.jpg" alt="Take-On AI extraction log showing source files being processed with a live audit trail" loading="lazy" decoding="async" width="2268" height="1418" /></div>
+              <figcaption>Extraction, file by file — with a live audit trail</figcaption>
+            </figure>
+          </div>
+
+          <!-- decision 02 — human in the loop -->
+          <div>
+            <div class="hitl cs-rv" role="img" aria-label="Human-in-the-loop workflow: upload, extract, review, client confirmation, GEMIS QA, then ManaGem">
+              <div class="hitl__step"><span class="hitl__node">Upload</span></div>
+              <div class="hitl__step"><span class="hitl__gap" aria-hidden="true"></span><span class="hitl__node">Extract</span></div>
+              <div class="hitl__step"><span class="hitl__gap" aria-hidden="true"></span><span class="hitl__node">Review</span></div>
+              <div class="hitl__step"><span class="hitl__gap" aria-hidden="true"></span><span class="hitl__node">Client confirmation</span></div>
+              <div class="hitl__step"><span class="hitl__gap" aria-hidden="true"></span><span class="hitl__node">GEMIS QA</span></div>
+              <div class="hitl__step"><span class="hitl__gap" aria-hidden="true"></span><span class="hitl__node hitl__node--dark">ManaGem</span></div>
+            </div>
+            <div class="cs-split cs-split--rev" style="align-items:center;margin-top:clamp(32px,4vw,52px)">
+              <figure class="cs-fig cs-rv">
+                <div class="shot"><img src="assets/img/case/to-10-confirm.jpg" alt="Take-On confirmation step where the client approves every category before anything goes live" loading="lazy" decoding="async" width="2268" height="1418" /></div>
+                <figcaption>The consent moment — every category approved by the client</figcaption>
+              </figure>
+              <div class="cs-split__copy cs-dec__copy cs-rv">
+                <span class="cs-dec__num">Decision 02</span>
+                <h3 class="cs-dec__title">Nothing goes live without a person saying yes</h3>
+                <p class="cs-body">Every onboarding runs through two human gates — the client confirms their own data, then the GEMIS team completes a final quality check before anything reaches ManaGem.</p>
+                <ul class="cs-chal">
+                  <li><b>Why —</b><span>A business owner has to stay in control of their own customer list, prices and staff records.</span></li>
+                  <li><b>Alternative considered —</b><span>A fully autonomous import — it would demo well and fail the exact trust test this market applies.</span></li>
+                  <li><b>Decision —</b><span>Two-stage confirmation, designed as permanent product behaviour — not a v1 stopgap to be automated away.</span></li>
+                </ul>
+              </div>
+            </div>
+            <figure class="cs-fig cs-fig--narrow cs-rv">
+              <div class="shot shot--flat"><img src="assets/img/case/to-12-admin.jpg" alt="GEMIS admin take-on queue used for the final quality-assurance gate" loading="lazy" decoding="async" width="2268" height="1418" /></div>
+              <figcaption>The second gate — the GEMIS QA queue</figcaption>
+            </figure>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <!-- ═══════════ 09 · KDD 4 — REDUCING ERP FRICTION ═══════════ -->
-    <section class="cs-sec cs-sec--lg cs-kdd" id="kdd-friction" aria-label="Key design decision: reducing ERP friction">
+    <!-- ═══════════ 08 · THE ERP EXPERIENCE ═══════════ -->
+    <section class="cs-sec cs-sec--lg" id="erp" aria-label="The ERP experience">
       <div class="cs-wrap">
         <header class="cs-sec__head cs-rv">
-          <span class="cs-eyebrow">04</span>
+          <span class="cs-eyebrow">The ERP experience</span>
           <h2 class="cs-h2">Making an ERP feel less like an ERP</h2>
           <p class="cs-sub">The people using ManaGem spend six-plus hours a day in it. Three deliberate moves take the traditional ERP friction out of that day.</p>
         </header>
@@ -367,6 +374,26 @@
       </div>
     </section>
 
+    <!-- ═══════════ 10 · PROTOTYPE & VALIDATION ═══════════ -->
+    <section class="cs-sec" id="validation" aria-label="Prototype and validation">
+      <div class="cs-wrap">
+        <div class="proto cs-rv">
+          <div>
+            <b>Prototype</b>
+            <p>High-fidelity and partially interactive. Module views run on representative data, and some actions demonstrate the pattern without executing it — nothing here is presented as production software.</p>
+          </div>
+          <div>
+            <b>Validation</b>
+            <p>Internal and structured: platform walkthroughs and stakeholder review with the product owner, the onboarding team and the director. No external usability testing is claimed.</p>
+          </div>
+          <div>
+            <b>Current status</b>
+            <p>Approved for implementation, pre-production. The next step is observed sessions with the GEMIS onboarding team working against real client documents.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ═══════════ 11 · IMPACT ═══════════ -->
     <section class="cs-sec cs-sec--lg" id="impact" aria-label="Impact">
       <div class="cs-wrap">
@@ -378,9 +405,28 @@
           <div><i>01</i><h3>Onboarding became a product</h3><p>Weeks of manual capture were redesigned into a guided, AI-assisted journey with review built into every step — approved as the platform&rsquo;s next generation.</p></div>
           <div><i>02</i><h3>Trust became a feature</h3><p>Confidence states, source traceability and two-stage confirmation were designed as permanent product behaviour — not a v1 stopgap to be automated away.</p></div>
           <div><i>03</i><h3>Two products, one system</h3><p>A shared design system now covers ManaGem and Take-On, scoped for phased implementation alongside legacy modules.</p></div>
-          <div><i>04</i><h3>Success was defined before launch</h3><p>A measurement framework was agreed up front: onboarding runway, reviewer hours, and the rate of records confirmed without edits.</p></div>
+          <div><i>04</i><h3>The ERP got simpler to live in</h3><p>Search-first entry, one plain-language status system and contextual actions now run consistently across every module.</p></div>
         </div>
-        <p class="cs-impact-note cs-rv">ManaGem is currently pre-production, so production usage metrics are not yet available. The outcomes above describe the approved design direction and the measurement framework agreed for evaluation after rollout.</p>
+        <p class="cs-impact-note cs-rv">ManaGem is currently pre-production, so production usage metrics are not yet available. The outcomes above describe the approved design direction.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 12 · HOW SUCCESS WILL BE MEASURED ═══════════ -->
+    <section class="cs-sec" id="measurement" aria-label="How success will be measured">
+      <div class="cs-wrap">
+        <header class="cs-sec__head cs-rv">
+          <span class="cs-eyebrow">Evidence, defined up front</span>
+          <h2 class="cs-h2">How success will be measured</h2>
+          <p class="cs-sub">A measurement framework was agreed as part of the implementation direction. Every metric below is a future measurement — evaluated after rollout, not claimed before it.</p>
+        </header>
+        <div class="measure cs-rv">
+          <div><i>01</i><h3>Onboarding runway</h3><p>Elapsed time from signed contract to client review complete.</p></div>
+          <div><i>02</i><h3>Reviewer effort</h3><p>GEMIS reviewer hours per onboarding.</p></div>
+          <div><i>03</i><h3>Data quality</h3><p>Share of extracted records confirmed without edits.</p></div>
+          <div><i>04</i><h3>Production visibility</h3><p>Engagement with factory alerts beyond production roles.</p></div>
+          <div><i>05</i><h3>Revenue cycle</h3><p>Enquiry-to-invoice cycle time against the legacy baseline.</p></div>
+          <div><i>06</i><h3>Support burden</h3><p>Onboarding- and navigation-related support requests.</p></div>
+        </div>
       </div>
     </section>
 
