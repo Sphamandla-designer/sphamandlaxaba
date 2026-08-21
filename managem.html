@@ -3,1716 +3,479 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Designing ManaGem: An ERP That Onboards Itself — Case Study — Sphamandla Xaba®</title>
-  <meta name="description" content="How GEM Information Systems rebuilt enterprise software around the one moment that kills most ERP rollouts — day one. A product design case study by Sphamandla Xaba." />
+  <title>ManaGem — Designing an ERP that onboards itself — Sphamandla Xaba®</title>
+  <meta name="description" content="A product design case study: turning a complex enterprise ERP into a system that helps businesses get operational faster — while making AI-assisted onboarding understandable and trustworthy." />
+  <meta property="og:title" content="ManaGem — Designing an ERP that onboards itself" />
+  <meta property="og:description" content="A product design case study by Sphamandla Xaba — enterprise ERP, AI UX, and trust-first onboarding." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://sphamandla-designer.github.io/sphamandlaxaba/assets/img/case/mg-dashboard.jpg" />
+  <meta name="theme-color" content="#f1f1f3" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+  <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/outfit-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="assets/fonts/jetbrains-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="assets/css/studio.css?v=st-7" />
+  <link rel="stylesheet" href="assets/css/case-managem.css?v=cm-1" />
   <script>document.documentElement.classList.add('js');</script>
-  <style>
-    /* ═══════════════════════════════════════════════════════════
-       ManaGem case study — built in the ManaGem Design System V2.0
-       Tokens copied verbatim from the system. Motion follows the
-       system's rules: functional, ≤200ms interactions, 300ms bars.
-       ═══════════════════════════════════════════════════════════ */
-    @font-face {
-      font-family: "Outfit";
-      src: url("assets/fonts/outfit-latin-wght-normal.woff2") format("woff2-variations");
-      font-weight: 100 900;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: "JetBrains Mono";
-      src: url("assets/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2");
-      font-weight: 400;
-      font-display: swap;
-    }
-    :root {
-      --navy: #0F172A; --navy-mid: #1E293B;
-      --sky: #0EA5E9; --sky-hover: #0284C7; --sky-light: #E0F2FE;
-      --emerald: #10B981; --emerald-light: #D1FAE5;
-      --amber: #F59E0B; --amber-light: #FEF3C7;
-      --red: #EF4444; --red-light: #FEE2E2;
-      --purple: #8B5CF6; --purple-light: #EDE9FE;
-      --canvas: #F8FAFC; --white: #FFFFFF;
-      --border: #E2E8F0; --slate-100: #F1F5F9; --slate-300: #CBD5E1;
-      --text: #0F172A; --text-2: #64748B; --slate-400: #94A3B8;
-      --shadow-sm: 0 1px 2px rgba(15,23,42,0.04);
-      --shadow-md: 0 4px 12px rgba(15,23,42,0.06);
-      --shadow-lg: 0 12px 32px rgba(15,23,42,0.10);
-      --font: "Outfit", system-ui, sans-serif;
-      --mono: "JetBrains Mono", ui-monospace, monospace;
-      --pad: clamp(1.25rem, 4vw, 3rem);
-      --measure: 68ch;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    html.lenis { height: auto; scroll-behavior: auto; }
-    body {
-      background: var(--canvas);
-      color: var(--text);
-      font-family: var(--font);
-      font-size: 15px;
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: clip;
-    }
-    img { display: block; max-width: 100%; }
-    a { color: inherit; text-decoration: none; }
-    ul, ol { list-style: none; }
-    button { font: inherit; cursor: pointer; border: 0; background: none; }
-    ::selection { background: var(--sky-light); color: var(--navy); }
-
-    .mono { font-family: var(--mono); }
-    .label {
-      font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--text-2);
-    }
-    .ref { font-family: var(--mono); font-size: 12px; color: var(--sky); }
-
-    /* ── badges (StatusBadge) ── */
-    .badge {
-      display: inline-flex; align-items: center; gap: 5px;
-      font-size: 11px; font-weight: 600; letter-spacing: 0.05em;
-      text-transform: uppercase;
-      padding: 3px 10px; border-radius: 999px; white-space: nowrap;
-    }
-    .badge--emerald { background: var(--emerald-light); color: #047857; }
-    .badge--amber { background: var(--amber-light); color: #B45309; }
-    .badge--red { background: var(--red-light); color: #B91C1C; }
-    .badge--purple { background: var(--purple-light); color: #6D28D9; }
-    .badge--slate { background: var(--slate-100); color: var(--text-2); }
-    .badge--sky { background: var(--sky-light); color: var(--sky-hover); }
-    .badge--navy { background: var(--navy); color: #E2E8F0; }
-
-    /* ── cards ── */
-    .card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      box-shadow: var(--shadow-sm);
-      transition: box-shadow 150ms, transform 150ms;
-    }
-    .card:hover { box-shadow: var(--shadow-md); }
-
-    /* ── top bar (navy rail language) ── */
-    .bar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: var(--navy);
-      color: #E2E8F0;
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 1rem;
-      padding: 0.7rem var(--pad);
-    }
-    .bar__left { display: flex; align-items: center; gap: 1rem; min-width: 0; }
-    .bar__back {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-weight: 600; font-size: 13.5px;
-      transition: color 120ms;
-    }
-    .bar__back:hover { color: var(--sky); }
-    .bar__crumb { font-size: 13px; color: #94A3B8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .bar__crumb b { color: #E2E8F0; font-weight: 500; }
-    .bar__tag { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; color: #94A3B8; }
-    @media (max-width: 720px) { .bar__crumb, .bar__tag { display: none; } }
-
-    /* ── layout ── */
-    main { padding-top: 52px; }
-    .section { padding: clamp(3.5rem, 9vh, 6.5rem) var(--pad); }
-    .section--tight { padding-top: clamp(2rem, 5vh, 3.5rem); }
-    .wrap { max-width: 1180px; margin: 0 auto; }
-    .wrap--narrow { max-width: 860px; margin: 0 auto; }
-    .kicker {
-      font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--sky);
-      display: inline-flex; align-items: center; gap: 8px;
-      margin-bottom: 14px;
-    }
-    .kicker::before { content: ""; width: 18px; height: 1.5px; background: var(--sky); }
-    h1.display {
-      font-size: clamp(30px, 4.6vw, 46px);
-      font-weight: 650; line-height: 1.12; letter-spacing: -0.02em;
-      max-width: 22ch;
-    }
-    h2.h1 { font-size: clamp(22px, 2.6vw, 28px); font-weight: 600; letter-spacing: -0.01em; margin-bottom: 10px; }
-    h3.h2 { font-size: 17px; font-weight: 600; }
-    .dek { font-size: clamp(15.5px, 1.6vw, 18px); color: var(--text-2); max-width: 62ch; }
-    .prose { max-width: var(--measure); color: var(--navy-mid); }
-    .prose p + p { margin-top: 0.9em; }
-    .prose strong { font-weight: 600; }
-    .note { font-size: 12px; color: var(--slate-400); }
-
-    /* ── progress rail ── */
-    .rail {
-      position: fixed; right: 18px; top: 50%; transform: translateY(-50%);
-      z-index: 90; display: none; flex-direction: column; gap: 2px;
-    }
-    @media (min-width: 1400px) { html.js .rail { display: flex; } }
-    .rail a {
-      font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--slate-400);
-      padding: 3px 8px; border-right: 2px solid var(--border);
-      transition: color 120ms, border-color 120ms;
-    }
-    .rail a.is-on { color: var(--sky); border-color: var(--sky); }
-
-    /* ── hero ── */
-    .hero { padding: clamp(4rem, 10vh, 7rem) var(--pad) 0; }
-    .hero__meta {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-      gap: 12px; margin-top: 2.2rem;
-    }
-    .meta-card { padding: 14px 16px; }
-    .meta-card .label { margin-bottom: 4px; }
-    .meta-card p { font-size: 14px; font-weight: 500; }
-
-    /* ── before / after ── */
-    .ba { margin-top: 3rem; }
-    .ba__grid {
-      display: grid; grid-template-columns: 1fr auto 1.25fr;
-      gap: 0; align-items: stretch;
-    }
-    .ba__panel { overflow: clip; border-radius: 12px; position: relative; }
-    .ba__panel img { width: 100%; height: 100%; object-fit: cover; }
-    .ba__panel--before img { filter: grayscale(0.55) sepia(0.12) contrast(0.96); }
-    .ba__cap {
-      position: absolute; left: 12px; bottom: 12px;
-      background: rgba(15,23,42,0.78); color: #E2E8F0;
-      font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 5px 10px; border-radius: 6px;
-    }
-    .ba__bridge {
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 8px; padding: 0 18px;
-    }
-    .ba__line { width: 54px; height: 2px; background: var(--slate-300); border-radius: 2px; overflow: hidden; position: relative; }
-    .ba__line span { position: absolute; inset: 0; background: var(--sky); transform: scaleX(0); transform-origin: left; }
-    .ba__bridge .badge { box-shadow: var(--shadow-sm); }
-    @media (max-width: 880px) {
-      .ba__grid { grid-template-columns: 1fr; gap: 10px; }
-      .ba__bridge { flex-direction: row; padding: 4px 0; }
-    }
-
-    /* ── money chain pipeline ── */
-    .chain {
-      display: grid;
-      grid-template-columns: repeat(10, minmax(96px, 1fr));
-      gap: 8px;
-      overflow-x: auto;
-      padding: 6px 2px 14px;
-      scrollbar-width: thin;
-    }
-    .chain__cell {
-      background: var(--white); border: 1px solid var(--border); border-radius: 10px;
-      padding: 12px 10px 10px; text-align: center; position: relative;
-    }
-    .chain__cell::after {
-      content: "→"; position: absolute; right: -11px; top: 50%; transform: translateY(-50%);
-      color: var(--slate-300); font-size: 12px; z-index: 2;
-    }
-    .chain__cell:last-child::after { content: none; }
-    .chain__icon {
-      width: 30px; height: 30px; border-radius: 8px;
-      display: grid; place-items: center; margin: 0 auto 8px;
-      background: var(--slate-100); color: var(--text-2);
-    }
-    .chain__cell p { font-size: 11.5px; font-weight: 600; line-height: 1.25; }
-    .chain__cell .note { font-size: 9.5px; margin-top: 2px; }
-    .chain__cell--on { border-color: var(--sky); box-shadow: 0 0 0 1px var(--sky) inset; }
-    .chain__cell--on .chain__icon { background: var(--sky-light); color: var(--sky-hover); }
-    .chain__legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 10px; font-size: 12px; color: var(--text-2); }
-    .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
-
-    /* ── stepper ── */
-    .stepper { position: relative; margin-top: 1.6rem; }
-    .stepper__track {
-      position: absolute; left: 16px; right: 16px; top: 15px; height: 2px;
-      background: var(--border);
-    }
-    .stepper__fill { position: absolute; inset: 0; background: var(--sky); transform: scaleX(0); transform-origin: left; }
-    .stepper__row {
-      display: grid; grid-template-columns: repeat(9, 1fr);
-      gap: 6px; position: relative;
-    }
-    .step { text-align: center; position: relative; padding-top: 0; }
-    .step__dot {
-      width: 30px; height: 30px; border-radius: 50%;
-      background: var(--white); border: 2px solid var(--border);
-      display: grid; place-items: center; margin: 0 auto 8px;
-      font-family: var(--mono); font-size: 10.5px; color: var(--text-2);
-      position: relative; z-index: 1;
-      transition: border-color 150ms, color 150ms, background 150ms;
-    }
-    .step.is-on .step__dot { border-color: var(--sky); color: var(--sky-hover); background: var(--sky-light); }
-    .step p { font-size: 11px; font-weight: 600; line-height: 1.25; }
-    .step .note { font-size: 9.5px; }
-    @media (max-width: 880px) {
-      .stepper__row { grid-template-columns: repeat(3, 1fr); row-gap: 18px; }
-      .stepper__track { display: none; }
-    }
-
-    /* ── research cards ── */
-    .grid4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
-    .rcard { padding: 18px; }
-    .rcard .label { color: var(--sky-hover); margin-bottom: 8px; }
-    .rcard h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
-    .rcard p { font-size: 13px; color: var(--text-2); }
-
-    /* ── figure & captions ── */
-    figure.shot { margin-top: 1.8rem; }
-    .shot__frame {
-      border: 1px solid var(--border); border-radius: 12px; overflow: clip;
-      background: var(--white); box-shadow: var(--shadow-md);
-    }
-    figcaption {
-      display: flex; gap: 8px; align-items: baseline;
-      font-size: 12px; color: var(--text-2); margin-top: 10px;
-    }
-    figcaption .ref { font-size: 11px; }
-
-    /* ── failure matrix ── */
-    .matrix-wrap { overflow-x: auto; }
-    .matrix { min-width: 640px; width: 100%; height: auto; }
-
-    /* ── review table recreation ── */
-    .apptable { font-size: 13px; }
-    .apptable__toolbar {
-      display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
-      padding: 12px 14px; border-bottom: 1px solid var(--border);
-    }
-    .apptable__search {
-      flex: 1 1 200px; display: flex; align-items: center; gap: 8px;
-      background: var(--canvas); border: 1px solid var(--border); border-radius: 8px;
-      padding: 7px 11px; color: var(--slate-400); font-size: 13px;
-    }
-    .chip {
-      font-size: 12px; font-weight: 500; color: var(--navy-mid);
-      background: var(--slate-100); border-radius: 999px; padding: 5px 11px;
-    }
-    .apptable table { width: 100%; border-collapse: collapse; }
-    .apptable th {
-      text-align: left; font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--text-2);
-      background: var(--slate-100); padding: 9px 14px; white-space: nowrap;
-    }
-    .apptable td { padding: 11px 14px; border-top: 1px solid var(--border); vertical-align: top; }
-    .apptable tr:hover td { background: #FAFCFE; }
-    .apptable .why { font-size: 12px; color: var(--text-2); margin-top: 3px; }
-    .apptable .src { font-family: var(--mono); font-size: 10.5px; color: var(--slate-400); margin-top: 3px; }
-    .rowacts { display: flex; gap: 10px; font-size: 12.5px; font-weight: 500; white-space: nowrap; }
-    .rowacts .a { color: var(--sky); } .rowacts .e { color: var(--text-2); } .rowacts .r { color: var(--red); }
-    .callouts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 14px; }
-    .co { display: flex; gap: 10px; font-size: 13px; color: var(--navy-mid); }
-    .co i {
-      flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%;
-      background: var(--sky); color: #fff; font-style: normal; font-size: 12px; font-weight: 600;
-      display: grid; place-items: center;
-    }
-
-    /* ── operational insights ── */
-    .insights { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
-    .insight { padding: 18px; display: grid; gap: 12px; align-content: start; }
-    .insight p { font-size: 13px; color: var(--navy-mid); line-height: 1.55; }
-    .insight .label { display: block; margin-bottom: 3px; }
-    .insight p:nth-child(1) .label { color: var(--text-2); }
-    .insight p:nth-child(2) .label { color: #B45309; }
-    .insight p:nth-child(3) .label { color: var(--sky-hover); }
-    .insight p + p { position: relative; padding-top: 12px; border-top: 1px dashed var(--border); }
-
-    /* ── decision log ── */
-    .decisions { display: grid; gap: 10px; }
-    .decision {
-      display: grid; grid-template-columns: 240px 1fr; gap: 18px;
-      padding: 18px;
-    }
-    .decision__name { font-size: 15px; font-weight: 600; }
-    .decision__name .mono { display: block; font-size: 10.5px; color: var(--sky); margin-bottom: 6px; letter-spacing: 0.1em; }
-    .decision__body { font-size: 13.5px; color: var(--navy-mid); }
-    .decision__body p + p { margin-top: 6px; }
-    .decision__body b { font-weight: 600; }
-    .decision__body .rej { color: var(--text-2); }
-    @media (max-width: 720px) { .decision { grid-template-columns: 1fr; gap: 8px; } }
-
-    /* ── principle cards ── */
-    .pcards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
-    .pcard { padding: 18px; }
-    .pcard__icon {
-      width: 34px; height: 34px; border-radius: 9px;
-      background: var(--sky-light); color: var(--sky-hover);
-      display: grid; place-items: center; margin-bottom: 12px;
-    }
-    .pcard h3 { font-size: 14.5px; font-weight: 600; margin-bottom: 5px; }
-    .pcard p { font-size: 12.5px; color: var(--text-2); }
-
-    /* ── IA diagram ── */
-    .ia { display: grid; grid-template-columns: 1fr auto 1.6fr; gap: 16px; align-items: center; }
-    .ia__takeon {
-      border: 1.5px dashed var(--sky); border-radius: 12px;
-      background: var(--sky-light); padding: 18px; text-align: center;
-    }
-    .ia__takeon h3 { font-size: 15px; font-weight: 600; color: var(--sky-hover); }
-    .ia__takeon p { font-size: 11.5px; color: var(--navy-mid); margin-top: 4px; }
-    .ia__arrow { text-align: center; font-size: 11px; color: var(--text-2); font-family: var(--mono); white-space: nowrap; }
-    .ia__arrow span { display: block; font-size: 18px; color: var(--sky); }
-    .ia__mg { border: 1.5px solid var(--navy); border-radius: 14px; padding: 16px; background: var(--white); }
-    .ia__mg > .label { color: var(--navy); margin-bottom: 10px; }
-    .ia__zones { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; }
-    .zone { background: var(--canvas); border: 1px solid var(--border); border-radius: 8px; padding: 10px; }
-    .zone h4 { font-size: 12.5px; font-weight: 600; }
-    .zone p { font-size: 10.5px; color: var(--text-2); line-height: 1.4; margin-top: 3px; }
-    @media (max-width: 880px) { .ia { grid-template-columns: 1fr; } .ia__arrow span { transform: rotate(90deg); } }
-
-    /* ── storyboard ── */
-    .story { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-    .story figure { position: relative; }
-    .story .shot__frame { box-shadow: var(--shadow-sm); }
-    .story figure:not(:last-child)::after {
-      content: "→"; position: absolute; right: -13px; top: 40%;
-      color: var(--slate-400); font-size: 15px; z-index: 2;
-    }
-    @media (max-width: 880px) { .story { grid-template-columns: 1fr; } .story figure::after { content: none !important; } }
-
-    /* ── venn ── */
-    .venn { display: grid; place-items: center; padding: 10px 0; }
-
-    /* ── journey map ── */
-    .journey {
-      display: grid; grid-auto-flow: column; grid-auto-columns: minmax(168px, 1fr);
-      gap: 10px; overflow-x: auto; padding: 6px 2px 16px;
-      scrollbar-width: thin;
-    }
-    .jstep { padding: 14px; position: relative; }
-    .jstep .mono { font-size: 10px; color: var(--sky); letter-spacing: 0.1em; }
-    .jstep__icon {
-      width: 30px; height: 30px; border-radius: 8px;
-      background: var(--slate-100); color: var(--navy-mid);
-      display: grid; place-items: center; margin: 10px 0;
-    }
-    .jstep h4 { font-size: 13px; font-weight: 600; line-height: 1.3; }
-    .jstep p { font-size: 11px; color: var(--text-2); margin-top: 4px; }
-    .jstep--gate { border-color: var(--navy); background: var(--navy); color: #E2E8F0; }
-    .jstep--gate .jstep__icon { background: var(--navy-mid); color: var(--sky); }
-    .jstep--gate p { color: #94A3B8; }
-    .jstep__thumb {
-      width: 100%; aspect-ratio: 16 / 10;
-      object-fit: cover; object-position: top;
-      border-radius: 8px; border: 1px solid var(--border);
-      margin-bottom: 10px; background: var(--slate-100);
-    }
-    .jstep--gate .jstep__thumb { border-color: rgba(255, 255, 255, 0.18); }
-
-    /* ── prototype embed ── */
-    .proto-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
-    .proto-tab {
-      font-size: 13px; font-weight: 600;
-      padding: 8px 16px; border-radius: 999px;
-      border: 1px solid var(--border); background: var(--white); color: var(--text-2);
-      transition: background 120ms, color 120ms, border-color 120ms;
-    }
-    .proto-tab:hover { border-color: var(--sky); color: var(--sky-hover); }
-    .proto-tab.is-on { background: var(--navy); color: #E2E8F0; border-color: var(--navy); }
-    .proto { border-radius: 14px; overflow: clip; border: 1px solid var(--border); box-shadow: var(--shadow-lg); background: var(--white); }
-    .proto__chrome {
-      display: flex; align-items: center; gap: 10px;
-      background: var(--slate-100); border-bottom: 1px solid var(--border);
-      padding: 9px 14px;
-    }
-    .proto__dots { display: flex; gap: 5px; }
-    .proto__dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--slate-300); }
-    .proto__url {
-      flex: 1; text-align: center;
-      font-family: var(--mono); font-size: 11px; color: var(--text-2);
-      background: var(--white); border: 1px solid var(--border); border-radius: 6px;
-      padding: 4px 10px;
-    }
-    .proto iframe { width: 100%; height: min(72vh, 720px); border: 0; display: block; background: var(--navy); }
-    .proto__hint { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 12px; font-size: 12.5px; color: var(--text-2); }
-
-    /* ── before/after alerts ── */
-    .alertpair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: stretch; }
-    .alertpair__before {
-      background: var(--slate-100); border: 1px solid var(--border); border-radius: 12px;
-      padding: 18px; filter: grayscale(1); color: var(--text-2);
-      display: flex; flex-direction: column; gap: 10px; justify-content: center;
-    }
-    .fakebar { height: 12px; border-radius: 4px; background: var(--slate-300); opacity: 0.6; }
-    .fakebar--w60 { width: 60%; } .fakebar--w80 { width: 80%; } .fakebar--w45 { width: 45%; }
-    .alertpair__before p { font-size: 12px; }
-    .alertpair__after { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: center; }
-    .alertpair__after .shot__frame { max-width: 240px; }
-    @media (max-width: 880px) { .alertpair, .alertpair__after { grid-template-columns: 1fr; } }
-
-    /* production card (Delayed) recreation */
-    .prodcard { border-left: 3px solid var(--amber); padding: 14px 16px; }
-    .prodcard .ref { color: var(--sky); }
-    .prodcard h4 { font-size: 14.5px; font-weight: 600; margin: 3px 0 1px; }
-    .prodcard .addr { font-size: 11.5px; color: var(--text-2); }
-    .prodcard__row { display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; color: var(--text-2); margin-top: 10px; }
-    .pbar { height: 6px; background: var(--slate-100); border-radius: 3px; overflow: hidden; margin-top: 5px; }
-    .pbar span { display: block; height: 100%; width: 0; background: var(--amber); border-radius: 3px; transition: width 300ms ease; }
-
-    /* ── trust screen ── */
-    .trust { display: grid; grid-template-columns: 1.1fr 1fr; gap: 14px; }
-    .trust__badges { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 16px; }
-    .tbadge {
-      display: inline-flex; align-items: center; gap: 7px;
-      border: 1px solid var(--border); border-radius: 999px;
-      background: var(--canvas);
-      font-size: 12px; font-weight: 600; padding: 7px 13px;
-    }
-    .tbadge svg { color: var(--emerald); }
-    .consent { display: grid; gap: 9px; }
-    .consent li { display: flex; gap: 10px; font-size: 12.5px; color: var(--navy-mid); align-items: flex-start; }
-    .consent .box {
-      flex: 0 0 auto; width: 16px; height: 16px; margin-top: 2px; border-radius: 4px;
-      background: var(--sky); color: #fff; display: grid; place-items: center;
-    }
-    .consent .group { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-2); margin-top: 6px; }
-    .queue td, .queue th { white-space: nowrap; }
-    .cchips { display: inline-flex; gap: 4px; }
-    .cchip {
-      font-family: var(--mono); font-size: 9px; padding: 2px 6px; border-radius: 4px;
-      background: var(--emerald-light); color: #047857;
-    }
-    .cchip--warn { background: var(--amber-light); color: #B45309; }
-    .pull {
-      border-left: 3px solid var(--sky);
-      background: var(--white); border-radius: 0 12px 12px 0;
-      padding: clamp(1.4rem, 3vw, 2.2rem);
-      font-size: clamp(17px, 2.4vw, 23px);
-      font-weight: 500; line-height: 1.45; letter-spacing: -0.01em;
-      color: var(--navy); max-width: 46ch;
-      box-shadow: var(--shadow-sm);
-    }
-    .pull footer { font-size: 12px; color: var(--text-2); margin-top: 12px; font-weight: 400; }
-    @media (max-width: 880px) { .trust { grid-template-columns: 1fr; } }
-
-    /* ── tradeoffs ── */
-    .tradeoffs { max-width: 620px; }
-    .tradeoffs li { display: flex; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 13.5px; color: var(--navy-mid); }
-    .tradeoffs li:last-child { border-bottom: 0; }
-    .tradeoffs svg { flex: 0 0 auto; color: var(--amber); margin-top: 2px; }
-
-    /* ── stat tiles ── */
-    .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
-    .kpi { padding: 16px 18px; position: relative; }
-    .kpi__icon {
-      position: absolute; top: 14px; right: 14px;
-      width: 28px; height: 28px; border-radius: 8px;
-      display: grid; place-items: center;
-      background: var(--sky-light); color: var(--sky-hover);
-    }
-    .kpi .label { margin-bottom: 6px; }
-    .kpi__value { font-size: 32px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
-    .kpi__delta { font-size: 12px; color: var(--text-2); margin-top: 4px; }
-    .illustrative {
-      display: inline-flex; margin-top: 14px;
-    }
-    .qgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-bottom: 1.6rem; }
-    .qcard { padding: 16px 18px; font-size: 13.5px; color: var(--navy-mid); }
-    .qcard .mono { color: var(--sky); font-size: 10.5px; display: block; margin-bottom: 6px; }
-
-    /* ── reflection ── */
-    .refl { display: grid; gap: 14px; max-width: var(--measure); }
-    .refl h3 { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
-    .refl p { font-size: 14px; color: var(--navy-mid); }
-    .closing {
-      margin-top: 2.4rem;
-      font-size: clamp(19px, 2.8vw, 26px); font-weight: 550; line-height: 1.4;
-      letter-spacing: -0.01em; color: var(--navy); max-width: 30ch;
-    }
-    .closing b { color: var(--sky-hover); font-weight: 650; }
-
-    /* ── footer ── */
-    .foot {
-      background: var(--navy); color: #E2E8F0;
-      padding: clamp(2.5rem, 6vh, 4rem) var(--pad);
-    }
-    .foot .wrap { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; justify-content: space-between; }
-    .foot a { font-weight: 600; transition: color 120ms; }
-    .foot a:hover { color: var(--sky); }
-    .foot .note { color: #64748B; }
-
-    /* ── reveals (functional: small fade+rise, fast) ── */
-    html.js [data-r] { opacity: 0; transform: translateY(14px); }
-    html.js.no-anim [data-r] { opacity: 1; transform: none; }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-      html.js [data-r] { opacity: 1; transform: none; }
-    }
-  </style>
 </head>
 <body>
 
-  <!-- top bar -->
-  <header class="bar">
-    <div class="bar__left">
-      <a href="index.html#work" class="bar__back" data-cursor="Back">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        Sphamandla<sup>®</sup>
-      </a>
-      <span class="bar__crumb">Home / Work / <b>ManaGem</b></span>
+  <!-- ═══════════ FLOATING PILL NAV ═══════════ -->
+  <header class="nav" id="nav">
+    <div class="nav__in">
+      <a href="index.html" class="nav__logo" aria-label="Sphamandla Xaba — home">Sphamandla<sup>®</sup></a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="index.html#work" class="nav__link">Case Studies</a>
+        <a href="index.html#what" class="nav__link">Process</a>
+        <a href="index.html#capabilities" class="nav__link">Capabilities</a>
+        <a href="index.html#about" class="nav__link">About</a>
+        <a href="index.html#visuals" class="nav__link">Insights</a>
+      </nav>
+      <div style="display:flex;align-items:center;gap:8px">
+        <a href="index.html#contact" class="nav__cta">Contact</a>
+        <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="drawer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
     </div>
-    <span class="bar__tag">CASE STUDY · 2026</span>
   </header>
 
-  <!-- progress rail -->
-  <nav class="rail" aria-hidden="true">
-    <a href="#overview" data-rail>Overview</a>
-    <a href="#discovery" data-rail>Discovery</a>
-    <a href="#roles" data-rail>Roles</a>
-    <a href="#insights" data-rail>Insights</a>
-    <a href="#problem" data-rail>Problem</a>
-    <a href="#decisions" data-rail>Decisions</a>
-    <a href="#validation" data-rail>Validation</a>
-    <a href="#flows" data-rail>Flows</a>
-    <a href="#prototype" data-rail>Prototype</a>
-    <a href="#takeon" data-rail>Take-On</a>
-    <a href="#measured" data-rail>Measurement</a>
-    <a href="#access" data-rail>Access</a>
-    <a href="#reflection" data-rail>Reflection</a>
-  </nav>
+  <!-- mobile drawer -->
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer__scrim" data-close></div>
+    <nav class="drawer__panel" aria-label="Mobile">
+      <button class="drawer__close" data-close aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <a href="index.html#work" class="drawer__link" data-close>Case Studies</a>
+      <a href="index.html#what" class="drawer__link" data-close>Process</a>
+      <a href="index.html#capabilities" class="drawer__link" data-close>Capabilities</a>
+      <a href="index.html#about" class="drawer__link" data-close>About</a>
+      <a href="index.html#visuals" class="drawer__link" data-close>Insights</a>
+      <a href="index.html#contact" class="drawer__link" data-close>Contact</a>
+      <div class="drawer__meta">
+        <a href="mailto:sphamandaxaba@gmail.com">sphamandaxaba@gmail.com</a>
+        <a href="tel:+27601020774">Cell · +27 60 102 0774</a>
+        <a href="https://wa.me/27609381313" target="_blank" rel="noopener">WhatsApp · +27 60 938 1313</a>
+      </div>
+    </nav>
+  </div>
 
-  <main>
+  <main id="top">
 
-    <!-- ═══════════ HERO ═══════════ -->
-    <section class="hero" id="overview">
-      <div class="wrap">
-        <p class="kicker" data-r>GEM Information Systems · Product Design Case Study</p>
-        <h1 class="display" data-r>Designing ManaGem: an ERP that onboards itself</h1>
-        <p class="dek" data-r style="margin-top:16px">
-          How GEM Information Systems rebuilt enterprise software around the one moment
-          that kills most ERP rollouts — day one.
-        </p>
-
-        <div class="hero__meta" data-r>
-          <div class="card meta-card"><span class="label">Role</span><p>Lead UI/UX Designer</p></div>
-          <div class="card meta-card"><span class="label">Company</span><p>GEM Information Systems</p></div>
-          <div class="card meta-card"><span class="label">Product</span><p>ManaGem + Take-On · Enterprise ERP</p></div>
-          <div class="card meta-card"><span class="label">Status</span><p>Approved for implementation · pre-production</p></div>
+    <!-- ═══════════ 01 · HERO ═══════════ -->
+    <section class="cs-hero" id="hero" aria-label="Case study introduction">
+      <div class="cs-wrap cs-hero__grid">
+        <div>
+          <span class="cs-eyebrow">Case study — ManaGem</span>
+          <h1 class="cs-display">Designing an ERP that onboards itself</h1>
+          <p class="cs-body cs-hero__lead">Turning a complex enterprise ERP into a system that helps businesses get operational faster — while making AI-assisted onboarding understandable and trustworthy.</p>
+          <div class="cs-hero__meta" aria-label="Project summary">
+            <span class="cs-chip">Lead UI/UX Designer</span>
+            <span class="cs-chip">Enterprise ERP</span>
+            <span class="cs-chip">AI UX</span>
+            <span class="cs-chip">Pre-production</span>
+          </div>
         </div>
-        <p class="note" data-r style="margin-top:12px;max-width:78ch">
-          A real internal product initiative at GEMIS. I led the end-to-end redesign —
-          UX strategy, information architecture, interaction design, interface design,
-          workflows, the design system, prototyping and stakeholder presentations. The
-          redesign was reviewed and approved internally as the direction for
-          implementation; it has not yet entered production, so this case study contains
-          no production analytics and no external usability claims.
-        </p>
+        <div class="cs-hero__stage" aria-hidden="false">
+          <figure class="cs-fig cs-hero__primary">
+            <div class="shot"><img src="assets/img/case/mg-dashboard.jpg" alt="ManaGem executive dashboard" width="2268" height="1418" fetchpriority="high" decoding="async" /></div>
+          </figure>
+          <figure class="cs-fig cs-hero__secondary">
+            <div class="shot"><img src="assets/img/case/to-06-validation.jpg" alt="Take-On validation summary with AI confidence breakdown" width="2268" height="1418" decoding="async" /></div>
+          </figure>
+        </div>
+      </div>
+    </section>
 
-        <!-- before → after -->
-        <div class="ba" data-r>
-          <div class="ba__grid">
-            <figure class="ba__panel ba__panel--before card">
-              <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3GMOZifqmavH53boYn9eGkcXqUc/hf_20260713_162817_830a35c2-0a0b-4f16-add8-f85bc571ce74.png"
-                   alt="Chaotic spreadsheets, scanned ledgers and paperwork — how client data arrives"
-                   onerror="this.closest('.ba__panel').style.background='var(--slate-100)';this.remove()" />
-              <figcaption class="ba__cap">Before — weeks of manual capture</figcaption>
+    <!-- ═══════════ 02 · PROJECT SNAPSHOT ═══════════ -->
+    <section class="cs-snapshot cs-rv" aria-label="Project snapshot">
+      <div class="cs-wrap cs-snapshot__grid">
+        <div><b>Role</b><span>Lead UI/UX Designer</span></div>
+        <div><b>Product</b><span>ManaGem + Take-On · Enterprise ERP</span></div>
+        <div><b>Platform</b><span>Web</span></div>
+        <div><b>Scope</b><span>UX Strategy · Product Design · UI · AI UX · Design System</span></div>
+        <div><b>Status</b><span>Approved for implementation · pre-production</span></div>
+      </div>
+    </section>
+
+    <!-- ═══════════ 03 · CONTEXT / PROBLEM ═══════════ -->
+    <section class="cs-sec cs-sec--lg" id="problem" aria-label="The problem">
+      <div class="cs-wrap cs-split">
+        <div class="cs-split__copy cs-rv">
+          <span class="cs-eyebrow" style="display:block;margin-bottom:18px">The context</span>
+          <h2 class="cs-h2">The problem wasn&rsquo;t the ERP.</h2>
+          <p class="cs-body">GEM Information Systems builds ManaGem, a management platform for trade businesses — companies that run one continuous money chain from customer to payment. The platform itself was capable. The problem was everything that had to happen <strong>before</strong> a client could use it.</p>
+          <p class="cs-body">Every new client meant weeks of manual work: customer ledgers in one format, price lists in another, staff registers in a third — all interpreted, re-typed and verified by hand before the client could log in and see their own business reflected back at them.</p>
+          <blockquote class="cs-pull">In enterprise software, a bad runway is a hidden top-of-funnel leak.</blockquote>
+          <p class="cs-body">Deals stall, momentum dies, and the champion inside the client&rsquo;s business loses the political capital that got the project approved. So the brief became two products designed as one system: <strong>ManaGem</strong>, the core platform, and <strong>Take-On</strong>, an AI-assisted onboarding product that gets a client from signed contract to working system — without a single manual data-entry session.</p>
+        </div>
+        <div class="cs-rv">
+          <div class="flow" role="img" aria-label="Diagram of the manual onboarding process: business documents flow through manual interpretation, data entry and verification before reaching ManaGem">
+            <div class="flow__node flow__node--muted">Business documents</div>
+            <span class="flow__arrow" aria-hidden="true"></span>
+            <div class="flow__node flow__node--muted">Manual interpretation</div>
+            <span class="flow__arrow" aria-hidden="true"></span>
+            <div class="flow__node flow__node--muted">Data entry</div>
+            <span class="flow__arrow" aria-hidden="true"></span>
+            <div class="flow__node flow__node--muted">Verification</div>
+            <span class="flow__arrow" aria-hidden="true"></span>
+            <div class="flow__node flow__node--dark">ManaGem</div>
+          </div>
+          <p class="cs-small flow__note">The old runway: weeks of manual work standing between a signed contract and a usable system.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ 04 · SOLUTION OVERVIEW ═══════════ -->
+    <section class="cs-sec" id="solution" aria-label="The solution">
+      <div class="cs-wrap">
+        <header class="cs-sec__head cs-rv">
+          <span class="cs-eyebrow">The solution</span>
+          <h2 class="cs-h2">From contract to trusted data.</h2>
+          <p class="cs-sub">Take-On reads the client&rsquo;s existing documents, extracts the records ManaGem needs, and routes every one of them through human review — so the system starts life with data people already trust.</p>
+        </header>
+        <div class="cs-trio cs-rv">
+          <figure class="cs-fig">
+            <div class="shot shot--flat"><img src="assets/img/case/to-04-upload.jpg" alt="Take-On document upload with encryption and scan confirmations" loading="lazy" decoding="async" width="2268" height="1418" /></div>
+            <figcaption>01 · Take-On — upload</figcaption>
+          </figure>
+          <figure class="cs-fig">
+            <div class="shot shot--flat"><img src="assets/img/case/to-07-customers.jpg" alt="Take-On review screen with confidence states per record" loading="lazy" decoding="async" width="2268" height="1418" /></div>
+            <figcaption>02 · Review — confirm</figcaption>
+          </figure>
+          <figure class="cs-fig">
+            <div class="shot shot--flat"><img src="assets/img/case/mg-dashboard.jpg" alt="ManaGem dashboard populated with trusted data" loading="lazy" decoding="async" width="2268" height="1418" /></div>
+            <figcaption>03 · ManaGem — operate</figcaption>
+          </figure>
+        </div>
+        <div class="cs-pillars cs-rv">
+          <div class="cs-pillar"><i>Pillar 01</i><h3>Operational clarity</h3><p>Dashboards and modules organised around how the business actually runs — enquiries, production, stock, invoices — not around database tables.</p></div>
+          <div class="cs-pillar"><i>Pillar 02</i><h3>Guided workflows</h3><p>Onboarding is a sequenced, step-by-step journey with progress that is always visible — never a blank import screen and a manual.</p></div>
+          <div class="cs-pillar"><i>Pillar 03</i><h3>Reviewable AI</h3><p>AI does the heavy lifting; people keep the final say. Every extracted record can be inspected, corrected and confirmed before it goes live.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ 05 · PRODUCT MODEL ═══════════ -->
+    <section class="cs-sec" id="model" aria-label="Product model">
+      <div class="cs-wrap">
+        <header class="cs-sec__head cs-rv">
+          <span class="cs-eyebrow">Product thinking</span>
+          <h2 class="cs-h2">Designing around the business, not the database.</h2>
+          <p class="cs-sub">A trade business earns revenue through one chain. ManaGem treats that chain as one coordinated object — which means onboarding can&rsquo;t be half-done: the system only pays for itself once the whole chain is populated and trustworthy.</p>
+        </header>
+        <div class="model cs-rv">
+          <div class="model__inner" role="img" aria-label="Product model diagram: Take-On produces trusted master data which powers ManaGem, whose modules follow the business chain from customer through sales, quotation, production, inventory and delivery to finance">
+            <div class="model__top">
+              <div class="flow__node">Take-On</div>
+              <span class="flow__arrow" aria-hidden="true"></span>
+              <div class="flow__node flow__node--dark">Trusted master data</div>
+              <span class="flow__arrow" aria-hidden="true"></span>
+              <div class="flow__node">ManaGem</div>
+              <span class="flow__arrow" aria-hidden="true"></span>
+            </div>
+            <div class="model__chain">
+              <div class="flow__node">Customer</div>
+              <span class="model__link" aria-hidden="true"></span>
+              <div class="flow__node">Sales</div>
+              <span class="model__link" aria-hidden="true"></span>
+              <div class="flow__node">Quotation</div>
+              <span class="model__link" aria-hidden="true"></span>
+              <div class="flow__node">Production</div>
+              <span class="model__link" aria-hidden="true"></span>
+              <div class="flow__node">Inventory</div>
+              <span class="model__link" aria-hidden="true"></span>
+              <div class="flow__node">Delivery</div>
+              <span class="model__link" aria-hidden="true"></span>
+              <div class="flow__node">Finance</div>
+            </div>
+          </div>
+        </div>
+        <p class="cs-small flow__note cs-rv">If customers land in the system but products don&rsquo;t, sales can&rsquo;t quote. If staff records are missing, jobs can&rsquo;t be assigned. That made onboarding a product in its own right — not a support task bolted onto one.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 06 · KDD 1 — AI CONFIDENCE ═══════════ -->
+    <section class="cs-sec cs-sec--lg cs-kdd" id="kdd-confidence" aria-label="Key design decision: AI confidence">
+      <div class="cs-wrap">
+        <header class="cs-sec__head cs-rv">
+          <span class="cs-eyebrow">01</span>
+          <h2 class="cs-h2">Designing AI confidence as an attention system</h2>
+          <p class="cs-sub">Raw model scores mean nothing to a business owner. So confidence became a set of UX states that direct human attention: records the system is sure about step back; records that need a person step forward.</p>
+        </header>
+        <div class="annot cs-rv">
+          <figure class="cs-fig">
+            <div class="shot"><img src="assets/img/case/to-07-customers.jpg" alt="Take-On customer review screen, annotated" decoding="async" width="2268" height="1418" /></div>
+          </figure>
+          <button class="annot__dot" style="left:24%;top:31%" aria-label="Annotation 1: extraction summary">1<span class="annot__tip" role="tooltip">Every batch opens with a summary — how many records are verified, need review, or look like duplicates.</span></button>
+          <button class="annot__dot" style="left:79%;top:60%" aria-label="Annotation 2: confidence states">2<span class="annot__tip" role="tooltip">Each record carries one plain-language state. Colour and wording do the work — no percentages, no jargon.</span></button>
+          <button class="annot__dot" style="left:89.5%;top:38%" aria-label="Annotation 3: accept all verified">3<span class="annot__tip" role="tooltip">High-confidence records can be accepted in one action, so attention goes where it&rsquo;s actually needed.</span></button>
+          <button class="annot__dot" style="left:89.5%;top:23.5%" aria-label="Annotation 4: extraction explanation">4<span class="annot__tip" role="tooltip">&ldquo;How was this extracted?&rdquo; is one tap away — the AI explains itself before anyone has to ask.</span></button>
+          <ol class="annot__legend" aria-label="Annotations">
+            <li><b>1</b><span>Every batch opens with a summary — verified, needs review, possible duplicates.</span></li>
+            <li><b>2</b><span>Each record carries one plain-language state. Colour and wording do the work — no percentages.</span></li>
+            <li><b>3</b><span>High-confidence records can be accepted in one action, so attention goes where it&rsquo;s needed.</span></li>
+            <li><b>4</b><span>&ldquo;How was this extracted?&rdquo; is one tap away — the AI explains itself before anyone asks.</span></li>
+          </ol>
+        </div>
+        <div class="cs-states cs-rv" aria-label="Confidence states">
+          <span class="cs-state cs-state--ok">Verified</span>
+          <span class="cs-state cs-state--warn">Needs review</span>
+          <span class="cs-state cs-state--dup">Possible duplicate</span>
+          <span class="cs-state cs-state--low">Low confidence</span>
+        </div>
+        <p class="cs-kicker-note cs-rv" style="margin-top:18px">Framed as interface states, not production ML metrics — the states describe how the product asks for attention, and they hold regardless of the model behind them.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════ 07 · KDD 2 — SOURCE TRACEABILITY ═══════════ -->
+    <section class="cs-sec cs-kdd" id="kdd-traceability" aria-label="Key design decision: source traceability">
+      <div class="cs-wrap cs-split cs-split--rev" style="align-items:center">
+        <figure class="cs-fig cs-rv">
+          <div class="shot"><img src="assets/img/case/to-05-extraction.jpg" alt="Take-On AI extraction log showing source files and audit activity" loading="lazy" decoding="async" width="2268" height="1418" /></div>
+          <figcaption>Extraction, file by file — with a live audit trail</figcaption>
+        </figure>
+        <div class="cs-split__copy cs-rv">
+          <span class="cs-eyebrow" style="display:block;margin-bottom:18px">02</span>
+          <h2 class="cs-h2">AI shouldn&rsquo;t ask users to trust it. It should let them verify it.</h2>
+          <p class="cs-body">Every extracted record points back to the document it came from — the exact file, processed in the open, with each step logged and timestamped as it happens.</p>
+          <p class="cs-body">That mattered because the buyer is a larger South African company with its own compliance obligations. A black-box import would have been faster to build and faster to demo. It was rejected: this market will trust a slower, explainable process over a faster, opaque one every time.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ 08 · KDD 3 — HUMAN IN THE LOOP ═══════════ -->
+    <section class="cs-sec cs-sec--lg cs-kdd" id="kdd-hitl" aria-label="Key design decision: human in the loop">
+      <div class="cs-wrap">
+        <header class="cs-sec__head cs-rv">
+          <span class="cs-eyebrow">03</span>
+          <h2 class="cs-h2">Nothing goes live without a person saying yes</h2>
+          <p class="cs-sub">Automation does the work; people keep control. Every onboarding runs through two human gates — the client confirms their own data, then the GEMIS team completes a final quality check.</p>
+        </header>
+        <div class="hitl cs-rv" role="img" aria-label="Human-in-the-loop workflow: upload, extract, review, client confirmation, GEMIS QA, then ManaGem">
+          <div class="hitl__step"><span class="hitl__node">Upload</span></div>
+          <div class="hitl__step"><span class="hitl__gap" aria-hidden="true"></span><span class="hitl__node">Extract</span></div>
+          <div class="hitl__step"><span class="hitl__gap" aria-hidden="true"></span><span class="hitl__node">Review</span></div>
+          <div class="hitl__step"><span class="hitl__gap" aria-hidden="true"></span><span class="hitl__node">Client confirmation</span></div>
+          <div class="hitl__step"><span class="hitl__gap" aria-hidden="true"></span><span class="hitl__node">GEMIS QA</span></div>
+          <div class="hitl__step"><span class="hitl__gap" aria-hidden="true"></span><span class="hitl__node hitl__node--dark">ManaGem</span></div>
+        </div>
+        <figure class="cs-fig cs-rv" style="margin-top:clamp(32px,4vw,52px)">
+          <div class="shot"><img src="assets/img/case/to-10-confirm.jpg" alt="Take-On confirmation step — the client approves every category before anything goes live" loading="lazy" decoding="async" width="2268" height="1418" /></div>
+          <figcaption>The consent moment — the client approves every category before anything goes live</figcaption>
+        </figure>
+        <div class="hitl-states cs-rv">
+          <figure class="cs-fig">
+            <div class="shot shot--flat"><img src="assets/img/case/to-04-upload-empty.jpg" alt="Take-On upload step, empty state" loading="lazy" decoding="async" width="2268" height="1418" /></div>
+            <figcaption>Upload</figcaption>
+          </figure>
+          <figure class="cs-fig">
+            <div class="shot shot--flat"><img src="assets/img/case/to-08-products.jpg" alt="Take-On product review step" loading="lazy" decoding="async" width="2268" height="1418" /></div>
+            <figcaption>Review — products</figcaption>
+          </figure>
+          <figure class="cs-fig">
+            <div class="shot shot--flat"><img src="assets/img/case/to-09-staff.jpg" alt="Take-On staff review step" loading="lazy" decoding="async" width="2268" height="1418" /></div>
+            <figcaption>Review — staff</figcaption>
+          </figure>
+          <figure class="cs-fig">
+            <div class="shot shot--flat"><img src="assets/img/case/to-12-admin.jpg" alt="GEMIS admin take-on queue for final quality assurance" loading="lazy" decoding="async" width="2268" height="1418" /></div>
+            <figcaption>GEMIS QA queue</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ 09 · KDD 4 — REDUCING ERP FRICTION ═══════════ -->
+    <section class="cs-sec cs-sec--lg cs-kdd" id="kdd-friction" aria-label="Key design decision: reducing ERP friction">
+      <div class="cs-wrap">
+        <header class="cs-sec__head cs-rv">
+          <span class="cs-eyebrow">04</span>
+          <h2 class="cs-h2">Making an ERP feel less like an ERP</h2>
+          <p class="cs-sub">The people using ManaGem spend six-plus hours a day in it. Three deliberate moves take the traditional ERP friction out of that day.</p>
+        </header>
+        <div class="cs-erp">
+          <div class="cs-erp__row">
+            <div class="cs-erp__copy cs-rv">
+              <span class="cs-erp__tag">Search first</span>
+              <h3>Find anything before you learn everything</h3>
+              <ul class="cs-chal">
+                <li><b>Challenge —</b><span>Traditional ERPs bury work behind deep navigation trees that demand training before they give value.</span></li>
+                <li><b>Solution —</b><span>Every list view leads with search and live pipeline stats, so users type what they want instead of memorising where it lives.</span></li>
+              </ul>
+            </div>
+            <figure class="cs-fig cs-erp__fig cs-rv">
+              <div class="shot"><img src="assets/img/case/mg-open-enquiries.jpg" alt="ManaGem open enquiries with search-first entry and pipeline statistics" loading="lazy" decoding="async" width="2268" height="1418" /></div>
+              <figcaption>Open enquiries — search-first, stats up front</figcaption>
             </figure>
-            <div class="ba__bridge">
-              <span class="ba__line"><span id="baFill"></span></span>
-              <span class="badge badge--sky">Take-On</span>
-              <span class="ba__line"><span id="baFill2"></span></span>
+          </div>
+          <div class="cs-erp__row cs-erp__row--rev">
+            <div class="cs-erp__copy cs-rv">
+              <span class="cs-erp__tag">Semantic status</span>
+              <h3>Status you can read at a glance</h3>
+              <ul class="cs-chal">
+                <li><b>Challenge —</b><span>Legacy systems speak in codes and abbreviations that only veterans can decode.</span></li>
+                <li><b>Solution —</b><span>Plain-language status chips with consistent colour meaning across every module — the same green means the same thing everywhere.</span></li>
+              </ul>
             </div>
-            <figure class="ba__panel card">
-              <img src="assets/img/case/mg-dashboard.jpg" alt="The ManaGem dashboard, live" />
-              <figcaption class="ba__cap" style="background:rgba(2,132,199,0.85)">After — a working system</figcaption>
+            <figure class="cs-fig cs-erp__fig cs-rv">
+              <div class="shot"><img src="assets/img/case/mg-invoices.jpg" alt="ManaGem invoices with plain-language status chips" loading="lazy" decoding="async" width="2268" height="1418" /></div>
+              <figcaption>Invoices — one status language across the product</figcaption>
+            </figure>
+          </div>
+          <div class="cs-erp__row">
+            <div class="cs-erp__copy cs-rv">
+              <span class="cs-erp__tag">Contextual actions</span>
+              <h3>Actions live where the work happens</h3>
+              <ul class="cs-chal">
+                <li><b>Challenge —</b><span>ERP workflows scatter related actions across menus, screens and modes.</span></li>
+                <li><b>Solution —</b><span>Row-level and page-level actions sit next to the records they affect, so the next step is always in reach.</span></li>
+              </ul>
+            </div>
+            <figure class="cs-fig cs-erp__fig cs-rv">
+              <div class="shot"><img src="assets/img/case/mg-products.jpg" alt="ManaGem products list with contextual actions on each record" loading="lazy" decoding="async" width="2268" height="1418" /></div>
+              <figcaption>Products — actions beside the records they act on</figcaption>
             </figure>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ═══════════ CHALLENGE + SUMMARY ═══════════ -->
-    <section class="section" id="challenge">
-      <div class="wrap--narrow">
-        <p class="kicker" data-r>01 · The challenge</p>
-        <div class="prose" data-r>
-          <p><strong>GEM Information Systems already had a working, feature-complete platform.</strong>
-          Ten modules. Real workflows. A Sandton-based waterproofing and pool-solutions
-          contractor running actual sales, production, stock and debtor operations through
-          the existing GemIS system every day. The redesign documented here — ManaGem and
-          Take-On — is the approved next generation of that platform, developed as an
-          internal initiative and not yet deployed to production.</p>
-          <p>The problem wasn't the software. It was everything that had to happen
-          <em>before</em> the software could be used. Every new client meant weeks of
-          spreadsheet wrangling: customer ledgers in one format, product price lists in
-          another, staff registers in a third, all hand-typed into the system before a
-          client could log in and see their own business reflected back at them. The ERP
-          was excellent. The runway to it was not — and in enterprise software, a bad
-          runway is a hidden top-of-funnel leak: deals stall, momentum dies, and champions
-          inside the client business lose the political capital that got the project
-          approved in the first place.</p>
-          <p>This case study covers two things designed as one system: <strong>ManaGem</strong>,
-          the core management platform, and <strong>Take-On</strong>, the AI-powered
-          onboarding product built to get a client from "signed contract" to "working
-          system" without a single manual data-entry session — while satisfying the
-          compliance expectations that large South African companies rightly hold
-          AI-touched business data to.</p>
-          <p>Together, they answer the one question a CFO or operations director will
-          always ask before signing: <strong>"What actually happens between us saying yes
-          and our team using this?"</strong> The honest, specific, compliance-aware answer
-          to that question is the product this case study documents.</p>
+    <!-- ═══════════ 10 · SYSTEMISATION ═══════════ -->
+    <section class="cs-sec cs-sec--lg" id="system" aria-label="Design system">
+      <div class="cs-wrap">
+        <header class="cs-sec__head cs-rv">
+          <span class="cs-eyebrow">Systemisation</span>
+          <h2 class="cs-h2">One pattern language across two products</h2>
+          <p class="cs-sub">Navigation, tables, forms, dashboards and AI states all draw from one design system — scoped to what a small engineering team can build, and built to phase in alongside legacy modules.</p>
+        </header>
+        <div class="sys cs-rv">
+          <div class="sys__cell sys__cell--tall"><img src="assets/img/case/mg-sidebar.png" alt="ManaGem sidebar navigation" loading="lazy" decoding="async" /><span class="sys__label">Navigation</span></div>
+          <div class="sys__cell"><img src="assets/img/case/mg-staff.jpg" alt="ManaGem staff table pattern" loading="lazy" decoding="async" /><span class="sys__label">Tables</span></div>
+          <div class="sys__cell"><img src="assets/img/case/mg-new-enquiry.jpg" alt="ManaGem new enquiry form pattern" loading="lazy" decoding="async" /><span class="sys__label">Forms</span></div>
+          <div class="sys__cell"><img src="assets/img/case/mg-factory.jpg" alt="ManaGem factory dashboard pattern" loading="lazy" decoding="async" /><span class="sys__label">Dashboards</span></div>
+          <div class="sys__cell"><img src="assets/img/case/to-07-customers.jpg" alt="Take-On AI confidence state pattern" loading="lazy" decoding="async" /><span class="sys__label">AI states</span></div>
+        </div>
+        <div class="sys-note cs-rv" aria-label="One pattern serves multiple modules">
+          <span class="sys-note__one">One pattern</span>
+          <span class="sys-note__arrow" aria-hidden="true">→</span>
+          <span class="sys-note__mod">Sales</span>
+          <span class="sys-note__mod">Inventory</span>
+          <span class="sys-note__mod">Production</span>
+          <span class="sys-note__mod">Finance</span>
+          <span class="sys-note__mod">Onboarding</span>
         </div>
       </div>
     </section>
 
-    <!-- ═══════════ WHY DIFFERENT ═══════════ -->
-    <section class="section section--tight" id="why">
-      <div class="wrap">
-        <p class="kicker" data-r>02 · Why an ERP for trade businesses has to be different</p>
-        <h2 class="h1" data-r>One continuous money chain — not ten disconnected tools</h2>
-        <p class="dek" data-r style="margin-bottom:1.8rem">
-          Off-the-shelf ERPs force contractors into the loosest-fitting category. But a
-          trade business generates revenue through one chain, and ManaGem treats that
-          chain as one coordinated object. Every module is legible by where it sits on
-          the chain — not just what data it stores.
-        </p>
-
-        <div class="chain" data-r>
-          <div class="chain__cell chain__cell--on">
-            <span class="chain__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
-            <p>Customer</p><p class="note">Take-On</p>
-          </div>
-          <div class="chain__cell">
-            <span class="chain__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg></span>
-            <p>Sales</p>
-          </div>
-          <div class="chain__cell">
-            <span class="chain__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg></span>
-            <p>Quotation</p>
-          </div>
-          <div class="chain__cell">
-            <span class="chain__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg></span>
-            <p>Deposit</p>
-          </div>
-          <div class="chain__cell">
-            <span class="chain__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/></svg></span>
-            <p>Production</p>
-          </div>
-          <div class="chain__cell chain__cell--on">
-            <span class="chain__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v3"/><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M9 12h6"/></svg></span>
-            <p>Inventory</p><p class="note">Take-On</p>
-          </div>
-          <div class="chain__cell">
-            <span class="chain__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 18H3a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h11v11a1 1 0 0 1-1 1h-1M14 9h4l4 4v4a1 1 0 0 1-1 1h-2"/><circle cx="7.5" cy="18.5" r="2"/><circle cx="17.5" cy="18.5" r="2"/></svg></span>
-            <p>Delivery</p>
-          </div>
-          <div class="chain__cell">
-            <span class="chain__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8H8M16 12H8M13 16H8"/></svg></span>
-            <p>Invoice</p>
-          </div>
-          <div class="chain__cell">
-            <span class="chain__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h4"/></svg></span>
-            <p>Accounting</p>
-          </div>
-          <div class="chain__cell">
-            <span class="chain__icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg></span>
-            <p>Payment</p>
-          </div>
+    <!-- ═══════════ 11 · IMPACT ═══════════ -->
+    <section class="cs-sec cs-sec--lg" id="impact" aria-label="Impact">
+      <div class="cs-wrap">
+        <header class="cs-sec__head cs-rv">
+          <span class="cs-eyebrow">Impact</span>
+          <h2 class="cs-h2">What changed</h2>
+        </header>
+        <div class="cs-impact cs-rv">
+          <div><i>01</i><h3>Onboarding became a product</h3><p>Weeks of manual capture were redesigned into a guided, AI-assisted journey with review built into every step — approved as the platform&rsquo;s next generation.</p></div>
+          <div><i>02</i><h3>Trust became a feature</h3><p>Confidence states, source traceability and two-stage confirmation were designed as permanent product behaviour — not a v1 stopgap to be automated away.</p></div>
+          <div><i>03</i><h3>Two products, one system</h3><p>A shared design system now covers ManaGem and Take-On, scoped for phased implementation alongside legacy modules.</p></div>
+          <div><i>04</i><h3>Success was defined before launch</h3><p>A measurement framework was agreed up front: onboarding runway, reviewer hours, and the rate of records confirmed without edits.</p></div>
         </div>
-        <div class="chain__legend" data-r>
-          <span><i class="dot" style="background:var(--sky)"></i>Populated by Take-On during onboarding <span class="badge badge--sky" style="margin-left:6px">+ Staff &amp; Suppliers</span></span>
-          <span><i class="dot" style="background:var(--slate-300)"></i>Activates once the business starts operating</span>
-        </div>
+        <p class="cs-impact-note cs-rv">ManaGem is currently pre-production, so production usage metrics are not yet available. The outcomes above describe the approved design direction and the measurement framework agreed for evaluation after rollout.</p>
+      </div>
+    </section>
 
-        <div class="prose" data-r style="margin-top:2rem">
-          <p>A chain-shaped product creates a chain-shaped onboarding problem: you cannot
-          "half-migrate" a contractor. If customers land in ManaGem but products don't,
-          sales reps can't quote. If staff records are missing, jobs can't be assigned.
-          The system only starts paying for itself the moment the <em>whole</em> chain is
-          populated and trustworthy — which made onboarding not a support task bolted onto
-          the product, but <strong>a product in its own right.</strong></p>
+    <!-- ═══════════ 12 · REFLECTION ═══════════ -->
+    <section class="cs-reflect" id="reflection" aria-label="Reflection">
+      <div class="cs-wrap">
+        <span class="cs-eyebrow cs-rv" style="display:block">Reflection</span>
+        <p class="cs-reflect__quote cs-rv">&ldquo;Automation is only valuable when people can understand, control and recover from it.&rdquo;</p>
+        <div class="cs-reflect__body cs-rv">
+          <p>I started this project treating it as an interface modernisation. I finished it treating it as a trust problem wearing a data-migration costume. The blocker was never extraction accuracy — the models were already good enough. The blocker was whether a business owner would hand their customer list to a system they couldn&rsquo;t see into.</p>
+          <ul class="cs-reflect__qs">
+            <li>Every version that leaned harder on &ldquo;AI-powered&rdquo; and softer on &ldquo;you stay in control&rdquo; landed worse in internal review.</li>
+            <li>Enterprise design is negotiated, not decreed — the constraints shaped better decisions than unconstrained ideation would have.</li>
+            <li>Compliance, treated as a designed feature rather than a legal checkbox, turned out to be a genuine asset.</li>
+          </ul>
+          <p class="cs-reflect__close">That is why nothing in Take-On goes live without a person saying yes — and why that will never change.</p>
         </div>
       </div>
     </section>
 
-    <!-- ═══════════ DISCOVERY ═══════════ -->
-    <section class="section" id="discovery">
-      <div class="wrap">
-        <p class="kicker" data-r>03 · How discovery was conducted</p>
-        <h2 class="h1" data-r>A trust problem wearing a data-migration costume</h2>
-        <p class="dek" data-r>
-          Discovery combined internal stakeholder conversations, platform walkthroughs,
-          workflow analysis, existing documentation review and observation of operational
-          processes. No formal external usability testing was conducted — and for an
-          internal enterprise redesign, that was the appropriate scope: the people who
-          onboard clients, own the product and build it work inside GEMIS, the legacy
-          platform was available to walk through end-to-end, and real client workflows
-          were already documented in the business.
-        </p>
-        <p class="note" data-r style="margin-top:8px">
-          <span class="badge badge--slate">Discovery evidence</span>&nbsp; Structured
-          conversations with the GEMIS onboarding team, product owner and internal
-          developers · analysis of the existing platform · client workflow discussions ·
-          review of existing documentation.
-        </p>
-
-        <!-- onboarding journey stepper -->
-        <div class="stepper" data-r>
-          <div class="stepper__track"><span class="stepper__fill" id="stepFill"></span></div>
-          <div class="stepper__row">
-            <div class="step" data-step><span class="step__dot">1</span><p>Signed contract</p></div>
-            <div class="step" data-step><span class="step__dot">2</span><p>Trust &amp; consent</p></div>
-            <div class="step" data-step><span class="step__dot">3</span><p>Company profile</p></div>
-            <div class="step" data-step><span class="step__dot">4</span><p>Document upload</p></div>
-            <div class="step" data-step><span class="step__dot">5</span><p>AI extraction</p></div>
-            <div class="step" data-step><span class="step__dot">6</span><p>Guided validation</p></div>
-            <div class="step" data-step><span class="step__dot">7</span><p>Client confirmation</p></div>
-            <div class="step" data-step><span class="step__dot">8</span><p>GEMIS QA sign-off</p></div>
-            <div class="step" data-step><span class="step__dot">9</span><p>Live in ManaGem</p></div>
-          </div>
+    <!-- ═══════════ 13 · FINAL CTA ═══════════ -->
+    <section class="cs-cta" aria-label="Next steps">
+      <div class="cs-wrap cs-rv">
+        <span class="cs-eyebrow">Next</span>
+        <h2 class="cs-h2">Explore more work</h2>
+        <p class="cs-body" style="margin-left:auto;margin-right:auto">More case studies on designing complex products that make difficult things feel simple.</p>
+        <div class="cs-cta__row">
+          <a href="index.html#work" class="btn btn--dark">View more case studies</a>
+          <a href="mailto:sphamandaxaba@gmail.com" class="btn btn--outline">Start a conversation</a>
         </div>
-        <p class="note" data-r style="margin:10px 0 2.2rem">
-          Once this journey was mapped, it became clear: a client handing over their
-          customer ledger and staff register is handing over the two most sensitive lists
-          in their business. Every design decision in Take-On follows from that one realisation.
-        </p>
-
-        <div class="grid4">
-          <article class="card rcard" data-r>
-            <span class="label">Stakeholder conversations</span>
-            <h3>The people who do the work</h3>
-            <p>Structured conversations with the GEMIS onboarding team, the product owner and internal developers — the people who capture client data, own the roadmap and will build the result.</p>
-          </article>
-          <article class="card rcard" data-r>
-            <span class="label">Platform walkthroughs</span>
-            <h3>Auditing the legacy system</h3>
-            <p>End-to-end walkthroughs of the existing GemIS platform, cataloguing interaction patterns that slowed daily work — always-visible destructive actions, text-only statuses, 15+ near-identical admin tables.</p>
-          </article>
-          <article class="card rcard" data-r>
-            <span class="label">Workflow &amp; document analysis</span>
-            <h3>How the business actually runs</h3>
-            <p>Client workflow discussions and review of existing documentation: what documents businesses actually keep — Excel ledgers, PDF price lists, out-of-date staff registers — and where misreading them concentrates risk.</p>
-          </article>
-          <article class="card rcard" data-r>
-            <span class="label">Process observation</span>
-            <h3>What humans did silently</h3>
-            <p>Observing manual onboarding revealed the invisible steps — duplicate checks, phone-format validation, blank-field flags — that the product would now have to make explicit.</p>
-          </article>
-        </div>
-
-        <!-- failure-mode matrix -->
-        <figure class="shot" data-r>
-          <div class="shot__frame matrix-wrap" style="padding:22px">
-            <svg class="matrix" viewBox="0 0 720 420" font-family="Outfit, sans-serif" aria-label="Failure mode matrix: data completeness vs extraction confidence">
-              <!-- quadrant fills -->
-              <rect x="70" y="20" width="310" height="180" fill="#FEF3C7" opacity="0.35" rx="8"/>
-              <rect x="380" y="20" width="310" height="180" fill="#D1FAE5" opacity="0.45" rx="8"/>
-              <rect x="70" y="200" width="310" height="180" fill="#FEE2E2" opacity="0.45" rx="8"/>
-              <rect x="380" y="200" width="310" height="180" fill="#FEF3C7" opacity="0.35" rx="8"/>
-              <!-- axes -->
-              <line x1="70" y1="200" x2="690" y2="200" stroke="#CBD5E1" stroke-width="1.5"/>
-              <line x1="380" y1="20" x2="380" y2="380" stroke="#CBD5E1" stroke-width="1.5"/>
-              <text x="695" y="204" font-size="11" fill="#64748B" text-anchor="end" transform="rotate(0)"></text>
-              <text x="30" y="110" font-size="11" fill="#64748B" transform="rotate(-90 30 110)" text-anchor="middle">CONFIDENCE — HIGH</text>
-              <text x="30" y="300" font-size="11" fill="#64748B" transform="rotate(-90 30 300)" text-anchor="middle">CONFIDENCE — LOW</text>
-              <text x="225" y="405" font-size="11" fill="#64748B" text-anchor="middle">DATA — MISSING</text>
-              <text x="535" y="405" font-size="11" fill="#64748B" text-anchor="middle">DATA — COMPLETE</text>
-              <!-- records -->
-              <g>
-                <circle cx="590" cy="90" r="7" fill="#10B981"/>
-                <text x="590" y="70" font-size="12.5" font-weight="600" fill="#0F172A" text-anchor="middle">Atlantic Pools (Pty) Ltd</text>
-                <text x="590" y="115" font-size="10.5" fill="#64748B" text-anchor="middle">All fields matched · Verified</text>
-              </g>
-              <g>
-                <circle cx="205" cy="105" r="7" fill="#F59E0B"/>
-                <text x="205" y="85" font-size="12.5" font-weight="600" fill="#0F172A" text-anchor="middle">Ridge &amp; Roof Solutions</text>
-                <text x="205" y="130" font-size="10.5" fill="#64748B" text-anchor="middle">Email column absent · Needs review</text>
-              </g>
-              <g>
-                <circle cx="540" cy="300" r="7" fill="#F59E0B"/>
-                <text x="540" y="280" font-size="12.5" font-weight="600" fill="#0F172A" text-anchor="middle">PoolCare CC</text>
-                <text x="540" y="325" font-size="10.5" fill="#64748B" text-anchor="middle">Truncated scan · Low confidence</text>
-              </g>
-              <g>
-                <circle cx="170" cy="320" r="7" fill="#EF4444"/>
-                <text x="170" y="300" font-size="12.5" font-weight="600" fill="#0F172A" text-anchor="middle">Coastal Marine Yachts</text>
-                <text x="170" y="345" font-size="10.5" fill="#64748B" text-anchor="middle">No contact details at all</text>
-              </g>
-              <!-- duplicate callout -->
-              <g>
-                <rect x="440" y="150" width="235" height="44" rx="8" fill="#EDE9FE"/>
-                <text x="557" y="169" font-size="12" font-weight="600" fill="#6D28D9" text-anchor="middle">Mzansi Construct CC</text>
-                <text x="557" y="185" font-size="10" fill="#6D28D9" text-anchor="middle">Possible duplicate — its own state, not an error</text>
-              </g>
-            </svg>
-          </div>
-          <figcaption><span class="ref">FIG 03</span> The failure-mode matrix, plotted with records from the Take-On prototype's mock dataset. Every quadrant is a designed state. <span class="badge badge--slate">Design artefact</span></figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- ═══════════ OPERATIONAL ROLES FRAMEWORK ═══════════ -->
-    <section class="section" id="roles">
-      <div class="wrap">
-        <p class="kicker" data-r>04 · Operational roles framework</p>
-        <h2 class="h1" data-r>Who the platform serves, in operational terms</h2>
-        <p class="dek" data-r style="margin-bottom:1.6rem">
-          Rather than fictional personas, the redesign was grounded in an operational
-          roles framework — the real functions inside a trade business, what each is
-          accountable for, and what information each needs to make its decisions. Every
-          screen in ManaGem answers to at least one row of this table.
-        </p>
-        <figure class="shot" data-r style="margin-top:0">
-          <div class="shot__frame apptable">
-            <div style="overflow-x:auto">
-            <table>
-              <thead>
-                <tr><th>Operational role</th><th>Primary responsibilities</th><th>Business goals</th><th>Critical decisions</th><th>Information required</th><th>Dependencies</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>Business Owner</strong></td>
-                  <td style="font-size:12.5px">Overall trading performance, approvals, pricing policy, credit policy</td>
-                  <td style="font-size:12.5px">Margin, cash flow, controlled growth</td>
-                  <td style="font-size:12.5px">Pricing and credit terms, capacity investment, hiring, escalations</td>
-                  <td style="font-size:12.5px">Consolidated KPIs, debtors ageing, pipeline vs production load, critical alerts</td>
-                  <td style="font-size:12.5px">Every module — final approver across the chain</td>
-                </tr>
-                <tr>
-                  <td><strong>Sales</strong></td>
-                  <td style="font-size:12.5px">Enquiries, quotations, invoicing, customer relationships</td>
-                  <td style="font-size:12.5px">Conversion, promises the business can keep</td>
-                  <td style="font-size:12.5px">Quote pricing within policy, delivery commitments, follow-up priority</td>
-                  <td style="font-size:12.5px">Price lists, stock availability, production status, customer history and credit state</td>
-                  <td style="font-size:12.5px">Products &amp; Pricing, Factory status, Stock, Debtors</td>
-                </tr>
-                <tr>
-                  <td><strong>Factory</strong></td>
-                  <td style="font-size:12.5px">Scheduling builds, quality control, foreman assignment</td>
-                  <td style="font-size:12.5px">On-time completion, capacity utilisation</td>
-                  <td style="font-size:12.5px">Job sequencing, delay escalation, QC pass/fail</td>
-                  <td style="font-size:12.5px">Job specifications from quotes, material availability, due dates, stage progress</td>
-                  <td style="font-size:12.5px">Sales (incoming jobs), Stock (materials), Delivery</td>
-                </tr>
-                <tr>
-                  <td><strong>Inventory</strong></td>
-                  <td style="font-size:12.5px">Receiving, movements, dispatch, stocktakes, purchasing</td>
-                  <td style="font-size:12.5px">Availability without over-holding capital in stock</td>
-                  <td style="font-size:12.5px">Reorder timing, supplier selection, warehouse and bay allocation</td>
-                  <td style="font-size:12.5px">Stock levels per warehouse/bay, purchase orders, production consumption</td>
-                  <td style="font-size:12.5px">Factory demand, suppliers, Finance (PO approval)</td>
-                </tr>
-                <tr>
-                  <td><strong>Finance</strong></td>
-                  <td style="font-size:12.5px">Invoicing, debtors management, Sage synchronisation, VAT</td>
-                  <td style="font-size:12.5px">Collection days down, clean reconciliation</td>
-                  <td style="font-size:12.5px">Credit-control actions, payment plans, write-off recommendations</td>
-                  <td style="font-size:12.5px">Invoice status, Sage sync state, ageing, deposits received</td>
-                  <td style="font-size:12.5px">Sales invoices, Sage Accounting, Business Owner approvals</td>
-                </tr>
-                <tr>
-                  <td><strong>HR</strong></td>
-                  <td style="font-size:12.5px">Staff records, roles and permissions, user onboarding</td>
-                  <td style="font-size:12.5px">Accurate records, correct system access per person</td>
-                  <td style="font-size:12.5px">Role-to-permission mapping, account provisioning and deactivation</td>
-                  <td style="font-size:12.5px">Staff register, role tiers, module access requirements</td>
-                  <td style="font-size:12.5px">Admin zone; every module consumes its user accounts</td>
-                </tr>
-                <tr>
-                  <td><strong>Operations</strong></td>
-                  <td style="font-size:12.5px">Cross-module coordination, projects, day-to-day escalations</td>
-                  <td style="font-size:12.5px">The chain keeps moving — no stage starves the next</td>
-                  <td style="font-size:12.5px">Prioritisation across jobs, resource allocation, escalation timing</td>
-                  <td style="font-size:12.5px">Cross-module status, alerts, bookings, delivery schedules</td>
-                  <td style="font-size:12.5px">Sales, Factory, Stock and Finance simultaneously</td>
-                </tr>
-              </tbody>
-            </table>
-            </div>
-          </div>
-          <figcaption><span class="ref">TABLE 04</span> Operational roles framework — derived from stakeholder conversations and workflow analysis, not invented personas. <span class="badge badge--slate">Discovery evidence</span></figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- ═══════════ OPERATIONAL INSIGHTS ═══════════ -->
-    <section class="section section--tight" id="insights">
-      <div class="wrap">
-        <p class="kicker" data-r>05 · Operational insights</p>
-        <h2 class="h1" data-r>Observation → business impact → design response</h2>
-        <p class="dek" data-r style="margin-bottom:1.6rem">
-          Discovery findings were recorded as operational insights rather than empathy
-          maps: what was observed in the legacy platform and the business, what it costs,
-          and what the redesign does about it.
-        </p>
-        <div class="insights">
-          <article class="card insight" data-r>
-            <p><span class="label">Observation</span>Sales teams lacked visibility into production progress.</p>
-            <p><span class="label">Business impact</span>Delivery expectations became difficult to communicate accurately.</p>
-            <p><span class="label">Design response</span>Production status became visible earlier in the quotation workflow, and Factory alerts surface in the navigation for downstream roles.</p>
-          </article>
-          <article class="card insight" data-r>
-            <p><span class="label">Observation</span>Status lived as plain text inside records in the legacy platform.</p>
-            <p><span class="label">Business impact</span>Operational state was invisible while scanning lists — delays were found, not seen.</p>
-            <p><span class="label">Design response</span>A semantic StatusBadge system: state legible at a glance, colour reserved exclusively for meaning.</p>
-          </article>
-          <article class="card insight" data-r>
-            <p><span class="label">Observation</span>Every legacy table row carried always-visible Edit and Delete buttons.</p>
-            <p><span class="label">Business impact</span>Visual noise multiplied by every row, and destructive actions sat one accidental click away.</p>
-            <p><span class="label">Design response</span>Row actions moved behind a hover-revealed menu, with confirmation required on anything destructive.</p>
-          </article>
-          <article class="card insight" data-r>
-            <p><span class="label">Observation</span>Every new client required weeks of manual data capture by GEMIS staff.</p>
-            <p><span class="label">Business impact</span>Deals stalled at their highest-energy moment; onboarding consumed skilled internal capacity.</p>
-            <p><span class="label">Design response</span>Take-On — onboarding designed as a product, with AI extraction drafting what humans previously typed.</p>
-          </article>
-          <article class="card insight" data-r>
-            <p><span class="label">Observation</span>Client source documents are inconsistent by nature — one ledger has a phone column, another doesn't.</p>
-            <p><span class="label">Business impact</span>Silent import errors surface weeks later as broken invoices, and the vendor relationship takes the blame.</p>
-            <p><span class="label">Design response</span>Confidence-scored review: every extracted record carries a visible confidence level, a plain-language reason and a route back to its source.</p>
-          </article>
-          <article class="card insight" data-r>
-            <p><span class="label">Observation</span>GEMIS reviewers manage several client onboardings at the same time.</p>
-            <p><span class="label">Business impact</span>Without a way to prioritise, attention went to whoever asked loudest rather than whichever onboarding was blocked.</p>
-            <p><span class="label">Design response</span>The Take-on queue: per-client stage, compliance status, risk level and estimated review effort in one internal view.</p>
-          </article>
-          <article class="card insight" data-r>
-            <p><span class="label">Observation</span>A trade business runs one continuous revenue chain, not a set of departments.</p>
-            <p><span class="label">Business impact</span>Category-shaped modules fragmented that chain and forced constant context-switching.</p>
-            <p><span class="label">Design response</span>Ten modules organised into five zones that mirror the chain — Core, Customers, Sales, Operations, Admin.</p>
-          </article>
-          <article class="card insight" data-r>
-            <p><span class="label">Observation</span>The legacy system had 15+ near-identical single-table admin pages.</p>
-            <p><span class="label">Business impact</span>Navigation waste and inconsistent editing patterns for what was structurally the same task.</p>
-            <p><span class="label">Design response</span>A unified Master Data panel with a category sidebar — one pattern, every reference table.</p>
-          </article>
-          <article class="card insight" data-r>
-            <p><span class="label">Observation</span>Field and factory staff frequently work from phones in variable connectivity.</p>
-            <p><span class="label">Business impact</span>Desktop-only data tables were effectively unusable on site.</p>
-            <p><span class="label">Design response</span>Below 720px every table collapses to labelled cards, and the sidebar becomes a drawer — a rule enforced by the design system.</p>
-          </article>
-          <article class="card insight" data-r>
-            <p><span class="label">Observation</span>Legacy browsing meant paging through as many as 77 pages of records.</p>
-            <p><span class="label">Business impact</span>Finding a record depended on patience rather than the system.</p>
-            <p><span class="label">Design response</span>Search-first list patterns with dismissible filter chips and category grouping.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════ CORE PROBLEM ═══════════ -->
-    <section class="section" id="problem">
-      <div class="wrap">
-        <p class="kicker" data-r>06 · The core design problem</p>
-        <h2 class="h1" data-r>Automation without losing trust</h2>
-        <div class="prose" data-r>
-          <p>Every prior attempt at "self-service data import" in ERP software fails the
-          same way: it either demands the client format their data perfectly — nobody
-          does — or it silently imports whatever it finds and lets errors surface weeks
-          later as broken invoices and missing customers. A client who discovers bad data
-          three weeks in doesn't blame the ledger they uploaded. <strong>They blame the
-          software, and the vendor relationship often never recovers.</strong></p>
-          <p>So in Take-On, nothing is presented as fact. Every extracted record carries a
-          visible confidence signal, a plain-language reason for that confidence, and a
-          pointer back to exactly where it came from. Everything is
-          <em>a well-reasoned draft the client is being asked to confirm.</em></p>
-        </div>
-
-        <!-- Review Customers — the real screen -->
-        <figure class="shot" data-r>
-          <div class="shot__frame">
-            <img src="assets/img/case/to-07-customers.jpg" alt="Take-On Review Customers screen with live confidence tallies — 6 verified, 3 needing review, 1 possible duplicate" loading="lazy" />
-          </div>
-          <div class="callouts">
-            <p class="co" data-r><i>1</i>Confidence badges — <span class="badge badge--emerald">Verified</span> <span class="badge badge--amber">Needs review</span> <span class="badge badge--purple">Possible duplicate</span> <span class="badge badge--red">Low confidence</span> — a spectrum of certainty, never a binary import result.</p>
-            <p class="co" data-r><i>2</i>The tallies do the triage: review the 3, merge the 1, trust the 6. "Accept all verified" is one click.</p>
-            <p class="co" data-r><i>3</i>"How was this extracted?" — every record traces back to its source file, row or page, so trust comes from checking, not from being told to trust.</p>
-          </div>
-          <figcaption style="margin-top:14px"><span class="ref">FIG 04</span> The Review Customers screen, captured live from Take-On — the single most important screen in the product. Coastal Marine Yachts arrives with no contact details; Mzansi Construct CC is flagged as a possible duplicate. Both are states, not errors.</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- ═══════════ DECISION LOG ═══════════ -->
-    <section class="section" id="decisions">
-      <div class="wrap">
-        <p class="kicker" data-r>07 · Decision log</p>
-        <h2 class="h1" data-r>Six decisions, and the alternatives they beat</h2>
-        <p class="note" data-r><span class="badge badge--slate">Internal stakeholder review</span>&nbsp; Each decision below was presented and defended in the internal review with the GEMIS Director, Product Owner and Lead Developer.</p>
-        <div class="decisions" style="margin-top:1.6rem">
-          <article class="card decision" data-r>
-            <h3 class="decision__name"><span class="mono">DECISION 01</span>Confidence badges instead of a binary success / error import</h3>
-            <div class="decision__body">
-              <p>Real-world documents produce a spectrum of certainty. Collapsing it into "imported" or "failed" either hides genuine problems or rejects usable data over a formatting quirk.</p>
-              <p class="rej"><b>Rejected:</b> a single pass/fail validation — it forces an all-or-nothing decision on data the client can't see yet, and gives GEMIS no way to distinguish "two-second glance" from "needs a phone call."</p>
-            </div>
-          </article>
-          <article class="card decision" data-r>
-            <h3 class="decision__name"><span class="mono">DECISION 02</span>Source traceability on every extracted record</h3>
-            <div class="decision__body">
-              <p>Trust in an AI-populated record comes from being able to check it against the original — file, row, page — not from being told to trust the AI.</p>
-              <p class="rej"><b>Rejected:</b> a generic "AI-extracted" tag. It asks for faith at the exact moment the client's instinct is to be most skeptical.</p>
-            </div>
-          </article>
-          <article class="card decision" data-r>
-            <h3 class="decision__name"><span class="mono">DECISION 03</span>Explicit, itemised consent before any document is processed</h3>
-            <div class="decision__body">
-              <p>SA businesses are themselves POPIA responsible parties. They must actively confirm what GEMIS's AI is and isn't doing with their data before a single file uploads.</p>
-              <p class="rej"><b>Rejected:</b> one bundled "I agree to the Terms" checkbox — it hides exactly the facts a compliance-conscious buyer needs to see plainly.</p>
-            </div>
-          </article>
-          <article class="card decision" data-r>
-            <h3 class="decision__name"><span class="mono">DECISION 04</span>A visible GEMIS QA sign-off after the client's own review</h3>
-            <div class="decision__body">
-              <p>Client review catches what the client can see. A second human GEMIS review catches what only someone who has onboarded hundreds of contractors would recognise.</p>
-              <p class="rej"><b>Rejected:</b> client confirmation as the final gate — it puts 100% of the burden on a first-timer and removes the second-pair-of-eyes safeguard enterprise buyers look for.</p>
-            </div>
-          </article>
-          <article class="card decision" data-r>
-            <h3 class="decision__name"><span class="mono">DECISION 05</span>An Admin Queue that shows compliance status, not just progress</h3>
-            <div class="decision__body">
-              <p>POPIA, AI disclosure, encryption and audit trail — each independently checked — tell a reviewer <b>why</b> a client is stuck, not just that they're stuck.</p>
-              <p class="rej"><b>Rejected:</b> a percentage-complete bar. Two clients can both be "60% done" for completely different reasons.</p>
-            </div>
-          </article>
-          <article class="card decision" data-r>
-            <h3 class="decision__name"><span class="mono">DECISION 06</span>Manual entry as a first-class path, not a fallback</h3>
-            <div class="decision__body">
-              <p>Some clients have no digital records at all for a category. Upload-only onboarding would block them entirely.</p>
-              <p class="rej"><b>Rejected:</b> manual entry via support ticket — it punishes exactly the smaller, less digitised businesses GEMIS also serves.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════ STAKEHOLDER VALIDATION & DESIGN EVOLUTION ═══════════ -->
-    <section class="section" id="validation">
-      <div class="wrap">
-        <p class="kicker" data-r>08 · Stakeholder validation</p>
-        <h2 class="h1" data-r>How the redesign was reviewed — and how it changed</h2>
-        <p class="dek" data-r style="margin-bottom:1.6rem">
-          The redesign was validated through a structured internal review rather than
-          external testing. That review was not a formality: it changed the product, and
-          two of its most visible features exist because of it.
-        </p>
-
-        <div class="grid4" style="grid-template-columns:repeat(auto-fit,minmax(250px,1fr))">
-          <article class="card rcard" data-r>
-            <span class="label">Review participants</span>
-            <h3>Three internal stakeholders</h3>
-            <p>The GEMIS Director, the Product Owner and the Lead Developer — commercial accountability, product accountability and implementation accountability in one room.</p>
-          </article>
-          <article class="card rcard" data-r>
-            <span class="label">Objectives</span>
-            <h3>Three questions on the table</h3>
-            <p>Validate workflow feasibility against how the business actually operates · review business alignment · assess implementation practicality within the existing architecture.</p>
-          </article>
-          <article class="card rcard" data-r>
-            <span class="label">Key feedback</span>
-            <h3>Supported, with refinements</h3>
-            <p>Supported: the five-zone shell, confidence-based review in Take-On, and consent-first onboarding. Refinements requested: critical issues must be visible globally, and each module should open with its operational health.</p>
-          </article>
-          <article class="card rcard" data-r>
-            <span class="label">Design changes</span>
-            <h3>The design evolved</h3>
-            <p>Two additions came directly out of review — the Executive Priority Banner and contextual KPI Summary Panels — and the navigation structure was kept compatible with the legacy platform's mental model for a phased rollout.</p>
-          </article>
-        </div>
-        <p class="note" data-r style="margin-top:10px"><span class="badge badge--emerald">Approved for implementation</span>&nbsp; The proposed redesign was approved internally as the direction for implementation.</p>
-
-        <h3 class="h2" data-r style="margin:2.6rem 0 0.4rem">Stakeholder feedback &amp; design evolution</h3>
-        <p class="prose" data-r style="font-size:13.5px;color:var(--text-2);max-width:72ch;margin-bottom:1.2rem">
-          The redesign was not a single-pass solution. Two decisions in particular show
-          how it evolved through collaboration with the people accountable for the
-          business.
-        </p>
-
-        <div class="decisions">
-          <article class="card decision" data-r>
-            <h3 class="decision__name"><span class="mono">EVOLUTION 01</span>Operational priority messaging — the Executive Priority Banner</h3>
-            <div class="decision__body">
-              <p>During the stakeholder review, the Director emphasised that critical operational issues should never be hidden inside individual modules. In response, the Dashboard gained a persistent <b>Executive Priority Banner</b> — a high-visibility red alert strip reserved exclusively for business-critical information: outstanding approvals, overdue quotations, delayed production jobs, compliance issues, inventory shortages and system-wide operational alerts.</p>
-              <p class="rej"><b>Reasoning:</b> the Dashboard is the first screen users see each day. Surfacing urgent issues there reduces the likelihood of missed actions and improves organisational awareness. It is a deliberate hierarchy decision — the banner earns its colour by being rare, scoped to genuine consequence, and forbidden to routine notifications — not a warning message bolted on. <span class="badge badge--slate">Internal stakeholder review</span></p>
-            </div>
-          </article>
-          <article class="card decision" data-r>
-            <h3 class="decision__name"><span class="mono">EVOLUTION 02</span>Executive KPI summaries — contextual panels per module</h3>
-            <div class="decision__body">
-              <p>Stakeholders asked that users understand the health of each business area without navigating multiple screens. In response, key modules — Dashboard, Sales, Projects, Inventory, Finance, Factory, Procurement — open with a <b>contextual KPI Summary Panel</b> showing only the indicators relevant to that module: Sales leads with revenue, open quotations, conversion and outstanding invoices; Inventory with stock value, low-stock items, purchase orders and warehouse utilisation; Factory with active jobs, capacity, delayed orders and completion rate; Finance with cash flow, outstanding payments, monthly revenue and expenses.</p>
-              <p class="rej"><b>Reasoning:</b> rather than forcing users to search for information, each module begins with a concise operational summary that supports faster decisions and situational awareness. These panels are contextual, not generic dashboards — each role sees what is immediately relevant to its responsibilities, which is exactly what the operational roles framework prescribes. <span class="badge badge--slate">Approved for implementation</span></p>
-            </div>
-          </article>
-        </div>
-
-        <blockquote class="pull" data-r style="margin-top:1.6rem">
-          These stakeholder discussions reinforced an important lesson about enterprise
-          software: users don't simply need access to data — they need immediate
-          visibility into what requires attention. The interface shifted from being a
-          collection of screens to becoming a proactive operational decision-support
-          system.
-        </blockquote>
-      </div>
-    </section>
-
-    <!-- ═══════════ PRINCIPLES ═══════════ -->
-    <section class="section section--tight" id="principles">
-      <div class="wrap">
-        <p class="kicker" data-r>09 · Design principles</p>
-        <div class="pcards" style="margin-top:1rem">
-          <article class="card pcard" data-r>
-            <span class="pcard__icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></span>
-            <h3>Nothing is final until a human says so</h3>
-            <p>Every AI screen is a <em>review</em>, never an import log. Verbs are "Review", "Confirm", "Accept" — never "Done".</p>
-          </article>
-          <article class="card pcard" data-r>
-            <span class="pcard__icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span>
-            <h3>Compliance is shown, not just written</h3>
-            <p>POPIA, encryption and audit-trail status are persistent badges on the screens where clients act — not a link to a document.</p>
-          </article>
-          <article class="card pcard" data-r>
-            <span class="pcard__icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg></span>
-            <h3>Every extracted record explains itself</h3>
-            <p>One plain-language line per record: "Account type inferred from credit-terms column." Trust the 36, focus on the 4.</p>
-          </article>
-          <article class="card pcard" data-r>
-            <span class="pcard__icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z"/><path d="m7 16.5-4.74-2.85M7 16.5l5-3M7 16.5v5.17M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z"/><path d="m17 16.5-5-3M17 16.5l4.74-2.85M17 16.5v5.17M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z"/></svg></span>
-            <h3>Designed for scale, not the demo</h3>
-            <p>One review pattern — filter, badge, reason, source, accept/edit/reject — generalises from Customers to any future category.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════ INFORMATION ARCHITECTURE ═══════════ -->
-    <section class="section" id="architecture">
-      <div class="wrap">
-        <p class="kicker" data-r>10 · Information architecture</p>
-        <h2 class="h1" data-r>The trust boundary is the diagram</h2>
-        <p class="dek" data-r style="margin-bottom:1.8rem">
-          Take-On is deliberately <em>not</em> an eleventh module. It lives outside
-          ManaGem entirely and only writes into the five zones once a human has approved
-          what it found. A client should never confuse "data I'm reviewing" with "data
-          that's live in my business."
-        </p>
-        <div class="ia" data-r>
-          <div class="ia__takeon">
-            <h3>Take-On</h3>
-            <p>AI onboarding · its own product<br/>drafts, confidence, review</p>
-          </div>
-          <div class="ia__arrow">on approval,<br/>writes to<span>→</span></div>
-          <div class="ia__mg">
-            <span class="label">ManaGem</span>
-            <div class="ia__zones">
-              <div class="zone"><h4>Core</h4><p>Dashboard — the shared, role-aware home</p></div>
-              <div class="zone"><h4>Customers</h4><p>Customers · Contacts · Warranties</p></div>
-              <div class="zone"><h4>Sales</h4><p>Enquiries · Invoices · Sage · Targets · Reports</p></div>
-              <div class="zone"><h4>Operations</h4><p>Debtors · Products · Projects · Factory · Stock</p></div>
-              <div class="zone"><h4>Admin</h4><p>Staff · Companies · Users · Settings</p></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════ KEY FLOWS ═══════════ -->
-    <section class="section" id="flows">
-      <div class="wrap">
-        <p class="kicker" data-r>11 · Key flows</p>
-        <h2 class="h1" data-r>Where breakdowns cost time, materials or money</h2>
-
-        <!-- Flow 1 -->
-        <h3 class="h2" data-r style="margin:2.2rem 0 0.4rem">Flow 1 — Revenue: enquiry to invoice</h3>
-        <p class="prose" data-r style="font-size:13.5px;color:var(--text-2);max-width:70ch">
-          A sales rep captures a new enquiry, tracks it through open and closed states, and
-          converts it to an invoice — quote templates, sales targets and reporting all one
-          zone away, because a sales manager moves between these constantly.
-        </p>
-        <div class="story" style="margin-top:1.2rem">
-          <figure data-r>
-            <div class="shot__frame"><img src="assets/img/case/mg-new-enquiry.jpg" alt="ManaGem New Enquiry screen" loading="lazy"/></div>
-            <figcaption><span class="ref">01</span> New Enquiry</figcaption>
-          </figure>
-          <figure data-r>
-            <div class="shot__frame"><img src="assets/img/case/mg-open-enquiries.jpg" alt="ManaGem Open Enquiries list showing 51 open records" loading="lazy"/></div>
-            <figcaption><span class="ref">02</span> Open Enquiries — the live <span class="ref">51</span> badge</figcaption>
-          </figure>
-          <figure data-r>
-            <div class="shot__frame"><img src="assets/img/case/mg-invoices.jpg" alt="ManaGem Invoices screen" loading="lazy"/></div>
-            <figcaption><span class="ref">03</span> Invoice — same functional zone</figcaption>
-          </figure>
-        </div>
-
-        <!-- Flow 2 -->
-        <h3 class="h2" data-r style="margin:3rem 0 0.4rem">Flow 2 — Production: the Factory module</h3>
-        <p class="prose" data-r style="font-size:13.5px;color:var(--text-2);max-width:70ch">
-          Production sits in the middle of the money chain — a delay here ripples into
-          delivery, invoicing and customer trust. Build stage, progress, foreman and due
-          date live on one card, with a status badge legible without opening the record.
-        </p>
-        <figure class="shot" data-r style="margin-top:1.2rem">
-          <div class="shot__frame"><img src="assets/img/case/mg-factory.jpg" alt="ManaGem Factory module with live production pipeline" loading="lazy"/></div>
-          <figcaption><span class="ref">FIG 08</span> The Factory dashboard, live — pipeline counts by stage, and the sidebar's Factory entry carrying its own alert badge.</figcaption>
-        </figure>
-
-        <!-- Flow 3 -->
-        <h3 class="h2" data-r style="margin:3rem 0 0.4rem">Flow 3 — Inventory: Stock Control</h3>
-        <div class="venn" data-r>
-          <svg width="min(560px, 92vw)" viewBox="0 0 560 260" font-family="Outfit, sans-serif" aria-label="Factory and Stock Control overlap diagram">
-            <circle cx="210" cy="130" r="105" fill="#E0F2FE" opacity="0.75"/>
-            <circle cx="350" cy="130" r="105" fill="#D1FAE5" opacity="0.65"/>
-            <text x="150" y="126" font-size="15" font-weight="600" fill="#0F172A" text-anchor="middle">Factory</text>
-            <text x="150" y="145" font-size="10.5" fill="#64748B" text-anchor="middle">builds · QC · foremen</text>
-            <text x="412" y="126" font-size="15" font-weight="600" fill="#0F172A" text-anchor="middle">Stock Control</text>
-            <text x="412" y="145" font-size="10.5" fill="#64748B" text-anchor="middle">suppliers · POs · bays</text>
-            <text x="280" y="108" font-size="11.5" font-weight="600" fill="#0369A1" text-anchor="middle">Dispatch</text>
-            <text x="280" y="130" font-size="11.5" font-weight="600" fill="#0369A1" text-anchor="middle">Receive</text>
-            <text x="280" y="152" font-size="11.5" font-weight="600" fill="#0369A1" text-anchor="middle">Movements</text>
-            <text x="280" y="245" font-size="10.5" fill="#64748B" text-anchor="middle">Why these two modules sit adjacent in the navigation</text>
-          </svg>
-        </div>
-
-        <!-- Flow 4 -->
-        <h3 class="h2" data-r style="margin:2.6rem 0 0.4rem">Flow 4 — Client Take-On: signed contract to live system</h3>
-        <p class="prose" data-r style="font-size:13.5px;color:var(--text-2);max-width:70ch;margin-bottom:1.2rem">
-          The full journey, exactly as built in Take-On's step sequence — ending in two
-          separate, sequential gates.
-        </p>
-        <div class="journey">
-          <article class="card jstep" data-r><img class="jstep__thumb" src="assets/img/case/to-01-welcome.jpg" alt="" loading="lazy"/><span class="mono">STEP 01</span><h4>Welcome</h4><p>The product introduces itself and the journey ahead — "nothing goes live until you've confirmed it"</p></article>
-          <article class="card jstep" data-r><img class="jstep__thumb" src="assets/img/case/to-02-trust.jpg" alt="" loading="lazy"/><span class="mono">STEP 02</span><h4>Trust &amp; Compliance</h4><p>Itemised consent before a single upload</p></article>
-          <article class="card jstep" data-r><img class="jstep__thumb" src="assets/img/case/to-03-profile.jpg" alt="" loading="lazy"/><span class="mono">STEP 03</span><h4>Company Profile</h4><p>The business describes itself once</p></article>
-          <article class="card jstep" data-r><img class="jstep__thumb" src="assets/img/case/to-04-upload.jpg" alt="" loading="lazy"/><span class="mono">STEP 04</span><h4>Upload Documents</h4><p>Every file encrypted, virus-scanned and logged the moment it lands</p></article>
-          <article class="card jstep" data-r><img class="jstep__thumb" src="assets/img/case/to-05-extraction.jpg" alt="" loading="lazy"/><span class="mono">STEP 05</span><h4>AI Extraction</h4><p>Structuring into ManaGem's schema, scoring confidence</p></article>
-          <article class="card jstep" data-r><img class="jstep__thumb" src="assets/img/case/to-06-validation.jpg" alt="" loading="lazy"/><span class="mono">STEP 06</span><h4>Validation Summary</h4><p>13 of 22 clean, the rest flagged — before any detail review</p></article>
-          <article class="card jstep" data-r><img class="jstep__thumb" src="assets/img/case/to-07-customers.jpg" alt="" loading="lazy"/><span class="mono">STEPS 07–09</span><h4>Review Customers · Products · Staff</h4><p>One shared pattern, per category</p></article>
-          <article class="card jstep jstep--gate" data-r><img class="jstep__thumb" src="assets/img/case/to-10-confirm.jpg" alt="" loading="lazy"/><span class="mono" style="color:var(--sky)">GATE 1</span><h4>Confirm &amp; Submit</h4><p>The client has confirmed</p></article>
-          <article class="card jstep jstep--gate" data-r><img class="jstep__thumb" src="assets/img/case/to-11-complete.jpg" alt="" loading="lazy"/><span class="mono" style="color:var(--sky)">GATE 2</span><h4>GEMIS QA sign-off</h4><p>A second pair of expert eyes — then live</p></article>
-        </div>
-        <p class="note" data-r style="margin-top:6px">Every thumbnail above is the real screen, captured from the working Take-On build.</p>
-      </div>
-    </section>
-
-    <!-- ═══════════ LIVE PROTOTYPE ═══════════ -->
-    <section class="section" id="prototype">
-      <div class="wrap">
-        <p class="kicker" data-r>12 · The working prototypes</p>
-        <h2 class="h1" data-r>Don't take the screenshots' word for it</h2>
-        <p class="dek" data-r style="margin-bottom:1.6rem">
-          Both products, running live inside this page — the same builds every screenshot
-          in this case study was captured from.
-        </p>
-
-        <div class="grid4" data-r style="margin-bottom:1.6rem">
-          <article class="card rcard">
-            <span class="label">Fully interactive</span>
-            <h3>What you can actually use</h3>
-            <p>The complete Take-On client wizard — consent, simulated secure upload, AI extraction, validation and all three review categories — plus the GEMIS Take-on queue, and ManaGem's shell: login, navigation, Dashboard, Factory, Stock Control and the sales views.</p>
-          </article>
-          <article class="card rcard">
-            <span class="label">Partially interactive</span>
-            <h3>Representative, not wired</h3>
-            <p>Module list views run on representative mock data; some actions — exports, certain drawers and row actions — demonstrate the pattern without executing it.</p>
-          </article>
-          <article class="card rcard">
-            <span class="label">Static concept screens</span>
-            <h3>Documented, not built</h3>
-            <p>Edge and error states, some admin detail views and mobile behaviours are specified in the design system rather than built into these prototypes.</p>
-          </article>
-          <article class="card rcard">
-            <span class="label">Future prototype work</span>
-            <h3>Next to be prototyped</h3>
-            <p>Sage synchronisation flows, the permissions administration journey, offline and connectivity-loss states, and the Executive Priority Banner and per-module KPI panels adopted at stakeholder review.</p>
-          </article>
-        </div>
-        <p class="note" data-r style="margin-bottom:1.2rem"><span class="badge badge--slate">Prototype scope</span>&nbsp; Stated so reviewers know exactly what they are seeing — and what remains concept.</p>
-        <div class="proto-tabs" data-r>
-          <button class="proto-tab is-on" data-proto="ManaGem.html" data-label="ManaGem.html — live prototype">ManaGem — the ERP</button>
-          <button class="proto-tab" data-proto="ManaGem Take-On (Standalone).html" data-label="ManaGem Take-On (Standalone).html — live prototype">Take-On — AI onboarding</button>
-        </div>
-        <div class="proto" data-r>
-          <div class="proto__chrome">
-            <span class="proto__dots"><i></i><i></i><i></i></span>
-            <span class="proto__url" id="protoUrl">ManaGem.html — live prototype</span>
-          </div>
-          <iframe id="protoFrame" src="ManaGem.html" title="Live prototype" loading="lazy"></iframe>
-        </div>
-        <p class="proto__hint" data-r>
-          <span class="badge badge--sky">Interactive</span>
-          <span id="protoHint">Sign in with any username and password, then explore the modules —
-          Dashboard, Factory, Stock Control, Open Enquiries.</span>
-        </p>
-      </div>
-    </section>
-
-    <!-- ═══════════ FACTORY ALERTS DEEP DIVE ═══════════ -->
-    <section class="section" id="alerts">
-      <div class="wrap">
-        <p class="kicker" data-r>13 · Feature deep dive</p>
-        <h2 class="h1" data-r>Factory alerts: making delay visible upstream</h2>
-        <div class="prose" data-r>
-          <p>Production delays and material shortages were previously invisible outside
-          the production module — so sales kept promising delivery dates production
-          couldn't hit. The fix: surface production-affecting events to the roles
-          <em>downstream</em> of production. Scoped to events with genuine consequence —
-          delay risk, material shortfall — never general status chatter.</p>
-        </div>
-        <div class="alertpair" style="margin-top:1.6rem">
-          <div class="alertpair__before" data-r>
-            <span class="label">Before — the old way</span>
-            <span class="fakebar fakebar--w60"></span>
-            <span class="fakebar fakebar--w80"></span>
-            <span class="fakebar fakebar--w45"></span>
-            <p>A sales manager's view: no signal that job P26-031 is three days behind.
-            The first person to find out is the customer.</p>
-          </div>
-          <div class="alertpair__after" data-r>
-            <figure>
-              <div class="shot__frame"><img src="assets/img/case/mg-sidebar.png" alt="ManaGem sidebar with Factory alert badge showing 3" loading="lazy"/></div>
-              <figcaption><span class="ref">FIG 10</span> The Factory nav badge — legible without ever opening the module</figcaption>
-            </figure>
-            <div class="card prodcard">
-              <span class="ref">P26-031</span>
-              <span class="badge badge--amber" style="float:right">Delayed</span>
-              <h4>Vista Bryanston Resi</h4>
-              <p class="addr">7 Vista Close</p>
-              <div class="pbar"><span data-bar="22"></span></div>
-              <div class="prodcard__row"><span>Awaiting Stock · 22%</span><span>Due 24 May</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════ TAKE-ON DEEP DIVE ═══════════ -->
-    <section class="section" id="takeon">
-      <div class="wrap">
-        <p class="kicker" data-r>14 · Feature deep dive</p>
-        <h2 class="h1" data-r>Take-On: trust-first, AI-powered onboarding</h2>
-        <div class="prose" data-r>
-          <p>The blocker was never extraction accuracy — OCR and AI were already good
-          enough. The blocker was trust. A fully automated "black box" import would have
-          been faster to build and faster to demo. It was rejected, because the target
-          buyer — a larger South African company with its own compliance obligations —
-          will trust a slower, explainable process over a faster, opaque one
-          <em>every time</em>.</p>
-        </div>
-
-        <!-- the real Trust & Compliance screen -->
-        <figure class="shot" data-r style="margin-top:1.6rem">
-          <div class="shot__frame">
-            <img src="assets/img/case/to-02-trust.jpg" alt="Take-On Trust and Compliance screen — how your data is handled, with itemised consent" loading="lazy" />
-          </div>
-          <figcaption><span class="ref">FIG 11.1</span> Trust &amp; Compliance, live — shown before any document is uploaded, never after. This is the screen that gets forwarded to a client's legal team, so it stands alone.</figcaption>
-        </figure>
-
-        <div class="trust" style="margin-top:1.2rem">
-          <figure class="shot" data-r style="margin-top:0">
-            <div class="shot__frame">
-              <img src="assets/img/case/to-04-upload.jpg" alt="Take-On secure upload screen — every file encrypted, virus-scanned and logged" loading="lazy" />
-            </div>
-            <figcaption><span class="ref">FIG 11.2</span> Uploading securely — <span class="badge badge--emerald">Encrypted</span> <span class="badge badge--emerald">Scanned</span> confirmed on each file, with manual entry as a first-class path on every card.</figcaption>
-          </figure>
-          <figure class="shot" data-r style="margin-top:0">
-            <div class="shot__frame">
-              <img src="assets/img/case/to-12-admin.jpg" alt="GEMIS Take-on queue — every onboarding with compliance score, risk level and estimated review time" loading="lazy" />
-            </div>
-            <figcaption><span class="ref">FIG 11.3</span> The GEMIS Take-on queue — compliance, risk and estimated review per client, so a reviewer sees <em>why</em> a client is stuck, not just that they are.</figcaption>
-          </figure>
-        </div>
-
-        <blockquote class="pull" data-r style="margin-top:1.6rem">
-          "I understand I will review and confirm every category, and nothing goes
-          live until I approve it and GEMIS completes its check."
-          <footer>— the product's own consent copy. It is, in effect, the thesis statement.</footer>
-        </blockquote>
-      </div>
-    </section>
-
-    <!-- ═══════════ TRADE-OFFS ═══════════ -->
-    <section class="section section--tight" id="tradeoffs">
-      <div class="wrap--narrow">
-        <p class="kicker" data-r>15 · Constraints &amp; trade-offs</p>
-        <h2 class="h1" data-r>The realities the design worked within</h2>
-        <ul class="tradeoffs" data-r style="margin-top:1rem">
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
-            <span><b>Working within an existing ERP architecture.</b> The redesign changes the visual and interaction layer; data structures, module boundaries and the Sage integration were fixed inputs. <span class="badge badge--slate">Engineering constraint</span></span>
-          </li>
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
-            <span><b>Designing around existing business workflows.</b> The client's operation could not pause for the software. Navigation preserves the legacy mental model so retraining cost stays near zero. <span class="badge badge--slate">Implementation consideration</span></span>
-          </li>
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
-            <span><b>Balancing modern UX with implementation feasibility.</b> Every component in the design system was scoped against what a small engineering team can build and maintain — CSS variables and utility classes, one chart library, no runtime CSS-in-JS. <span class="badge badge--slate">Engineering constraint</span></span>
-          </li>
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
-            <span><b>Working within engineering priorities, compatible with existing modules.</b> The design supports phased implementation — redesigned modules must coexist with legacy ones during rollout, which shaped the shared shell and token strategy. Scalability to future products (Take-On is the first) is a design-system requirement, not an afterthought. <span class="badge badge--slate">Implementation consideration</span></span>
-          </li>
-        </ul>
-        <h3 class="h2" data-r style="margin:2rem 0 0.4rem">Deliberate trade-offs</h3>
-        <ul class="tradeoffs" data-r>
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4M12 17h.01"/></svg>
-            <span><b>The AI cannot eliminate the final human sign-off — deliberately.</b> A fully autonomous import would demo well and fail the exact trust test the market applies. The two-stage confirmation is permanent, not a v1 stopgap.</span>
-          </li>
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4M12 17h.01"/></svg>
-            <span><b>Source quality sets a hard ceiling on confidence.</b> A truncated scan will never produce Verified-tier records. The system makes that ceiling visible and explicable — it doesn't disguise it.</span>
-          </li>
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4M12 17h.01"/></svg>
-            <span><b>Manual entry is first-class, but still slower than a clean upload.</b> The goal was to make the difference proportionate to the actual state of a client's data — not to pretend it doesn't exist.</span>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ═══════════ WHAT I MEASURED ═══════════ -->
-    <section class="section" id="measured">
-      <div class="wrap">
-        <p class="kicker" data-r>16 · Success measurement framework</p>
-        <h2 class="h1" data-r>How success will be measured — after deployment</h2>
-        <p class="dek" data-r style="margin-bottom:1.4rem">
-          The redesign has been approved for implementation but has not yet entered
-          production. No production analytics exist, and none are claimed here. The
-          following framework defines the measurements that would be used after
-          deployment.
-        </p>
-        <figure class="shot" data-r style="margin-top:0">
-          <div class="shot__frame apptable">
-            <div style="overflow-x:auto">
-            <table>
-              <thead>
-                <tr><th>Business objective</th><th>Success metric</th><th>How it would be measured</th><th>When it would be evaluated</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>Shorten the onboarding runway</strong></td>
-                  <td style="font-size:12.5px">Elapsed time from signed contract to client review complete</td>
-                  <td style="font-size:12.5px">Take-On stage timestamps, per client</td>
-                  <td style="font-size:12.5px">After each of the first five onboardings</td>
-                </tr>
-                <tr>
-                  <td><strong>Reduce manual capture effort</strong></td>
-                  <td style="font-size:12.5px">GEMIS reviewer hours per onboarding</td>
-                  <td style="font-size:12.5px">Review durations logged in the Take-on queue</td>
-                  <td style="font-size:12.5px">Quarterly</td>
-                </tr>
-                <tr>
-                  <td><strong>Data quality at go-live</strong></td>
-                  <td style="font-size:12.5px">Share of extracted records confirmed without edits vs edited vs rejected</td>
-                  <td style="font-size:12.5px">Take-On review outcome logs, per category</td>
-                  <td style="font-size:12.5px">After every onboarding</td>
-                </tr>
-                <tr>
-                  <td><strong>Production visibility for downstream roles</strong></td>
-                  <td style="font-size:12.5px">Engagement with Factory alerts by non-production roles; delivery-date changes communicated before due date</td>
-                  <td style="font-size:12.5px">Alert interaction events; enquiry timeline entries</td>
-                  <td style="font-size:12.5px">Sixty days after rollout, then quarterly</td>
-                </tr>
-                <tr>
-                  <td><strong>Faster revenue cycle</strong></td>
-                  <td style="font-size:12.5px">Enquiry-to-invoice cycle time</td>
-                  <td style="font-size:12.5px">Sales module timestamps across the enquiry lifecycle</td>
-                  <td style="font-size:12.5px">Quarterly, against pre-rollout baseline from the legacy system</td>
-                </tr>
-                <tr>
-                  <td><strong>Lower support burden</strong></td>
-                  <td style="font-size:12.5px">Onboarding- and navigation-related support requests</td>
-                  <td style="font-size:12.5px">GEMIS support ticket categories</td>
-                  <td style="font-size:12.5px">First two quarters after rollout</td>
-                </tr>
-              </tbody>
-            </table>
-            </div>
-          </div>
-          <figcaption><span class="ref">TABLE 16</span> Measurement framework agreed as part of the implementation direction. <span class="badge badge--slate">Pre-production</span></figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- ═══════════ ACCESSIBILITY ═══════════ -->
-    <section class="section section--tight" id="access">
-      <div class="wrap">
-        <p class="kicker" data-r>17 · Accessibility</p>
-        <h2 class="h1" data-r>Accessible by default — an acceptance criterion, not an enhancement</h2>
-        <p class="dek" data-r style="margin-bottom:1.6rem">
-          The design system treats accessibility as a requirement every component must
-          pass before it ships, aligned with WCAG AA as the enterprise baseline.
-        </p>
-        <div class="pcards" style="grid-template-columns:repeat(auto-fit,minmax(230px,1fr))">
-          <article class="card pcard" data-r>
-            <h3>Keyboard navigation &amp; focus</h3>
-            <p>Every interactive element is reachable and operable by keyboard, with visible focus states specified in the system — power users spend six-plus hours a day here, many of them keyboard-first.</p>
-          </article>
-          <article class="card pcard" data-r>
-            <h3>Contrast</h3>
-            <p>WCAG AA contrast on the light canvas and the dark navy rail alike; secondary text never drops below the system's slate-500, and colour is never the only carrier of state.</p>
-          </article>
-          <article class="card pcard" data-r>
-            <h3>Table readability</h3>
-            <p>44–48px rows, 13px minimum body type, 11px uppercase headers, truncation with tooltips — density without shrinking type below legibility.</p>
-          </article>
-          <article class="card pcard" data-r>
-            <h3>Form validation &amp; error prevention</h3>
-            <p>Inline, plain-language validation; destructive actions demand confirmation; and Take-On's two-gate submission means no irreversible action happens on a single click.</p>
-          </article>
-          <article class="card pcard" data-r>
-            <h3>Touch targets &amp; responsive layouts</h3>
-            <p>44px minimum touch targets; below 720px, tables collapse to labelled cards and the sidebar becomes a drawer — designed for factory floors and site visits, not just desks.</p>
-          </article>
-          <article class="card pcard" data-r>
-            <h3>Loading, empty &amp; reduced-motion states</h3>
-            <p>Designed skeleton loading states, empty states with a clear next action instead of dead ends, and full <span class="ref" style="font-size:11px">prefers-reduced-motion</span> support — motion in the system never exceeds 200ms as it is.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════ REFLECTION ═══════════ -->
-    <section class="section" id="reflection">
-      <div class="wrap--narrow">
-        <p class="kicker" data-r>18 · Reflection</p>
-        <div class="refl">
-          <div data-r>
-            <h3>What surprised me</h3>
-            <p>How much of the real problem lived in the sequence of trust-building rather than in extraction accuracy. The internal consensus was consistent: a business owner will forgive an AI getting a phone number wrong far more readily than a product that doesn't explain what it is doing with their customer list.</p>
-          </div>
-          <div data-r>
-            <h3>How my understanding evolved</h3>
-            <p>I began treating this as an interface modernisation and ended treating it as an operational-visibility problem. The stakeholder review accelerated that shift — the Director's insistence that critical issues be visible globally, and the request for per-module health summaries, reframed the dashboard from a report into a decision-support surface.</p>
-          </div>
-          <div data-r>
-            <h3>How stakeholder feedback shaped the design</h3>
-            <p>The Executive Priority Banner and the contextual KPI panels exist because of the internal review, not despite it. Both came from people accountable for the business rather than from a design preference — which is exactly the provenance an enterprise feature should have.</p>
-          </div>
-          <div data-r>
-            <h3>What I'd validate next</h3>
-            <p>Structured sessions with the GEMIS onboarding team working the Take-on queue against real client documents, and observed walkthroughs of the client wizard with a genuine business owner — the two audiences whose behaviour the design makes the strongest assumptions about.</p>
-          </div>
-          <div data-r>
-            <h3>What I'd measure after launch</h3>
-            <p>The framework above, in order of importance: onboarding runway, reviewer hours, and the confirmed-without-edit rate — the single number that will tell us whether confidence-scored review actually earns the trust it is designed to earn.</p>
-          </div>
-          <div data-r>
-            <h3>Lessons about enterprise product design</h3>
-            <p>Enterprise design is negotiated, not decreed: the constraint set — existing architecture, phased rollout, a small engineering team — did more to shape good decisions than unconstrained ideation would have. And in this category, compliance treated as a designed feature rather than a legal checkbox turned out to be a genuine asset.</p>
-          </div>
-        </div>
-        <p class="closing" data-r>
-          "In internal review, every version that leaned harder on the <b>AI-powered</b>
-          framing and softer on <b>you stay in control</b> landed worse — with the very
-          people who will sell, support and build this product."
-        </p>
       </div>
     </section>
 
   </main>
 
-  <footer class="foot">
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer class="footer">
     <div class="wrap">
-      <a href="index.html#work">← Back to Selected Work</a>
-      <span class="note">ManaGem &amp; Take-On — GEM Information Systems · Case study by Sphamandla Xaba®</span>
-      <a href="whatsapp-ai.html">Next: WhatsApp Conversation AI →</a>
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <p class="display display--sm">Product designer <span class="ol">&amp; AI UX Designer</span></p>
+        </div>
+        <div class="footer__col">
+          <b>Portfolio</b>
+          <a href="index.html#work">Case Studies</a>
+          <a href="index.html#about">About Me</a>
+          <a href="index.html#what">Design Process</a>
+          <a href="assets/docs/Sphamandla-Xaba-Resume.pdf" download>Download CV</a>
+        </div>
+        <div class="footer__col">
+          <b>Contact</b>
+          <a href="https://wa.me/27609381313" target="_blank" rel="noopener">+27 60 938 1313</a>
+          <a href="tel:+27601020774">+27 60 102 0774</a>
+          <a href="mailto:sphamandaxaba@gmail.com">sphamandaxaba@gmail.com</a>
+        </div>
+        <div class="footer__col">
+          <b>Connect with Me</b>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://dribbble.com/" target="_blank" rel="noopener">Dribble</a>
+          <a href="https://www.behance.net/" target="_blank" rel="noopener">Behance</a>
+        </div>
+      </div>
+      <p class="footer__word rv">Designing better ways to interact with technology.</p>
+      <div class="footer__bar">
+        <span>© <span id="year">2026</span> Sphamandla Xaba&nbsp;&nbsp;|&nbsp;&nbsp;Designed &amp; Developed by Me</span>
+        <a href="#top">Back to top ↑</a>
+      </div>
     </div>
   </footer>
 
   <script src="assets/js/gsap.min.js"></script>
   <script src="assets/js/ScrollTrigger.min.js"></script>
   <script src="assets/js/lenis.min.js"></script>
+  <script src="assets/js/studio.js?v=st-7" defer></script>
   <script>
+    /* case-study reveals: hero entrance, workflow stagger, section fades */
     (() => {
       'use strict';
-      gsap.registerPlugin(ScrollTrigger);
-      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reduced) { document.documentElement.classList.add('no-anim'); return; }
-
-      const lenis = new Lenis({ lerp: 0.11, smoothWheel: true });
-      lenis.on('scroll', ScrollTrigger.update);
-      gsap.ticker.add((t) => lenis.raf(t * 1000));
-      gsap.ticker.lagSmoothing(0);
-
-      // reveals — functional: quick fade + small rise
-      document.querySelectorAll('[data-r]').forEach((el) => {
-        gsap.to(el, {
-          opacity: 1, y: 0, duration: 0.45, ease: 'power2.out',
-          scrollTrigger: { trigger: el, start: 'top 88%' },
+      const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const targets = document.querySelectorAll('.cs-rv, .cs-hero, .hitl');
+      if (reduced || !('IntersectionObserver' in window)) {
+        targets.forEach((el) => el.classList.add('is-in'));
+        return;
+      }
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
         });
+      }, { rootMargin: '0px 0px -8% 0px' });
+      targets.forEach((el) => io.observe(el));
+      /* the hero is already in view on load — reveal it immediately */
+      requestAnimationFrame(() => {
+        const hero = document.querySelector('.cs-hero');
+        if (hero) hero.classList.add('is-in');
       });
-
-      // before→after bridge fill (300ms progress-bar rule)
-      ['#baFill', '#baFill2'].forEach((sel, i) => {
-        const el = document.querySelector(sel);
-        if (!el) return;
-        ScrollTrigger.create({
-          trigger: '.ba', start: 'top 75%', once: true,
-          onEnter: () => gsap.to(el, { scaleX: 1, duration: 0.3, delay: i * 0.15, ease: 'power1.inOut' }),
-        });
-      });
-
-      // stepper fill + dots
-      const steps = document.querySelectorAll('[data-step]');
-      ScrollTrigger.create({
-        trigger: '.stepper', start: 'top 80%', once: true,
-        onEnter: () => {
-          gsap.to('#stepFill', { scaleX: 1, duration: 0.9, ease: 'power1.inOut' });
-          steps.forEach((s, i) => setTimeout(() => s.classList.add('is-on'), 90 * i + 120));
-        },
-      });
-
-      // production progress bar
-      document.querySelectorAll('[data-bar]').forEach((el) => {
-        ScrollTrigger.create({
-          trigger: el, start: 'top 90%', once: true,
-          onEnter: () => { el.style.width = el.dataset.bar + '%'; },
-        });
-      });
-
-      // KPI counters
-      document.querySelectorAll('[data-count]').forEach((el) => {
-        const target = Number(el.dataset.count);
-        ScrollTrigger.create({
-          trigger: el, start: 'top 90%', once: true,
-          onEnter: () => {
-            const o = { v: 0 };
-            gsap.to(o, { v: target, duration: 0.9, ease: 'power2.out', onUpdate: () => { el.textContent = Math.round(o.v); } });
-          },
-        });
-      });
-
-      // prototype tabs
-      const protoFrame = document.getElementById('protoFrame');
-      const protoUrl = document.getElementById('protoUrl');
-      const protoHint = document.getElementById('protoHint');
-      const HINTS = {
-        'ManaGem.html': 'Sign in with any username and password, then explore the modules — Dashboard, Factory, Stock Control, Open Enquiries.',
-        'ManaGem Take-On (Standalone).html': 'Walk the onboarding: accept the consents, drop any file into the upload cards, run the AI extraction and review what it found. Toggle to "GEMIS admin" for the queue.',
-      };
-      document.querySelectorAll('.proto-tab').forEach((tab) => {
-        tab.addEventListener('click', () => {
-          document.querySelectorAll('.proto-tab').forEach((t) => t.classList.toggle('is-on', t === tab));
-          protoFrame.src = encodeURI(tab.dataset.proto);
-          protoUrl.textContent = tab.dataset.label;
-          protoHint.textContent = HINTS[tab.dataset.proto] || '';
-        });
-      });
-
-      // progress rail
-      const railLinks = [...document.querySelectorAll('[data-rail]')];
-      railLinks.forEach((a) => {
-        const id = a.getAttribute('href');
-        const sec = document.querySelector(id);
-        if (!sec) return;
-        ScrollTrigger.create({
-          trigger: sec, start: 'top 45%', end: 'bottom 45%',
-          onToggle: (self) => {
-            if (self.isActive) railLinks.forEach((l) => l.classList.toggle('is-on', l === a));
-          },
-        });
-        a.addEventListener('click', (e) => { e.preventDefault(); lenis.scrollTo(id, { duration: 1.1 }); });
-      });
-
-      window.addEventListener('load', () => ScrollTrigger.refresh());
     })();
   </script>
 </body>
