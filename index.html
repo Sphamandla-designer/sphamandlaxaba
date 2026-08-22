@@ -14,7 +14,7 @@
   <meta name="theme-color" content="#e4e2e6" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preload" href="assets/fonts/outfit-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="assets/css/app.css?v=ap-1" />
+  <link rel="stylesheet" href="assets/css/app.css?v=ap-3" />
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -26,15 +26,49 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
 
-    <a class="side__logo" href="#top">Sphamandla X.</a>
+    <a class="side__brand" href="#top">
+      <span class="side__mark" aria-hidden="true">SX</span>
+      <span class="side__logo">Sphamandla X.<span>Product &amp; AI UX Design</span></span>
+    </a>
 
-    <nav class="side__nav" id="sideNav" aria-label="Primary">
-      <a class="side__link is-active" href="#top" data-spy="top">Dashboard</a>
-      <a class="side__link" href="#work" data-spy="work">Case Studies</a>
-      <a class="side__link" href="#process" data-spy="process">Design Process</a>
-      <a class="side__link" href="#capabilities" data-spy="capabilities">Capabilities</a>
-      <a class="side__link" href="#about" data-spy="about">About</a>
-      <a class="side__link" href="#insights" data-spy="insights">Insights</a>
+    <nav id="sideNav" aria-label="Primary">
+      <div class="side__group">
+        <p class="side__label">Overview</p>
+        <a class="side__link is-active" href="#top" data-spy="top">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+          Dashboard
+        </a>
+      </div>
+      <div class="side__group">
+        <p class="side__label">Work</p>
+        <a class="side__link" href="#work" data-spy="work">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg>
+          Case Studies
+        </a>
+        <a class="side__link" href="#process" data-spy="process">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M6 8.5v6a3 3 0 0 0 3 3h6.5"/></svg>
+          Design Process
+        </a>
+        <a class="side__link" href="#insights" data-spy="insights">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 17 4.5-4.5 3.5 3.5 3-3L20 18"/></svg>
+          Insights
+        </a>
+      </div>
+      <div class="side__group">
+        <p class="side__label">Profile</p>
+        <a class="side__link" href="#capabilities" data-spy="capabilities">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 4.5-9 4.5-9-4.5Z"/><path d="m3 12 9 4.5 9-4.5"/><path d="m3 16.5 9 4.5 9-4.5"/></svg>
+          Capabilities
+        </a>
+        <a class="side__link" href="#about" data-spy="about">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg>
+          About
+        </a>
+        <a class="side__link" href="#contact" data-spy="contact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>
+          Contact
+        </a>
+      </div>
     </nav>
 
     <div class="side__spacer"></div>
@@ -105,41 +139,44 @@
         <!-- ═══════════ STATS ═══════════ -->
         <section class="stats rv" aria-label="At a glance">
           <div class="stat stat--dark">
-            <p class="stat__k">Years of Experience</p>
-            <div>
-              <p class="stat__v">03</p>
-              <p class="stat__n">Co. 2 (AX-Channels &amp; GEMIS)</p>
+            <div class="stat__head">
+              <p class="stat__k">Years of Experience</p>
             </div>
+            <p class="stat__v">03</p>
+            <p class="stat__n">Co. 2 (AX-Channels &amp; GEMIS)</p>
           </div>
           <div class="stat">
-            <p class="stat__k">Projects Delivered</p>
-            <div>
-              <p class="stat__v">16+</p>
-              <p class="stat__n">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17 10 11l4 4 6-6"/><path d="M15 9h5v5"/></svg>
-                <b>3 (+23.1%)</b> from last year
-              </p>
+            <div class="stat__head">
+              <p class="stat__k">Projects Delivered</p>
+              <span class="badge badge--up">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17 10 11l4 4 6-6"/><path d="M15 9h5v5"/></svg>
+                +23.1%
+              </span>
             </div>
+            <p class="stat__v">16+</p>
+            <p class="stat__n">3 more than last year</p>
           </div>
           <div class="stat">
-            <p class="stat__k">Projects Led</p>
-            <div>
-              <p class="stat__v">04+</p>
-              <p class="stat__n">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17 10 11l4 4 6-6"/><path d="M15 9h5v5"/></svg>
-                <b>2 (+100%)</b> from last year
-              </p>
+            <div class="stat__head">
+              <p class="stat__k">Projects Led</p>
+              <span class="badge badge--up">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17 10 11l4 4 6-6"/><path d="M15 9h5v5"/></svg>
+                +100%
+              </span>
             </div>
+            <p class="stat__v">04+</p>
+            <p class="stat__n">2 more than last year</p>
           </div>
           <div class="stat">
-            <p class="stat__k">Active Ventures</p>
-            <div>
-              <p class="stat__v">03</p>
-              <p class="stat__n">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17 10 11l4 4 6-6"/><path d="M15 9h5v5"/></svg>
-                <b>1 (+33.3%)</b> from last year
-              </p>
+            <div class="stat__head">
+              <p class="stat__k">Active Ventures</p>
+              <span class="badge badge--up">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17 10 11l4 4 6-6"/><path d="M15 9h5v5"/></svg>
+                +33.3%
+              </span>
             </div>
+            <p class="stat__v">03</p>
+            <p class="stat__n">1 more than last year</p>
           </div>
         </section>
 
@@ -153,9 +190,19 @@
           </div>
           <div class="panel__rule"></div>
 
+          <div class="toolbar">
+            <div class="segbar" role="tablist" aria-label="Filter case studies by discipline">
+              <button class="seg" role="tab" aria-selected="true" data-cat="all">All</button>
+              <button class="seg" role="tab" aria-selected="false" data-cat="product">Product design</button>
+              <button class="seg" role="tab" aria-selected="false" data-cat="ai">AI UX</button>
+              <button class="seg" role="tab" aria-selected="false" data-cat="web">Web</button>
+            </div>
+            <p class="toolbar__count" id="workCount" aria-live="polite">6 case studies</p>
+          </div>
+
           <div class="bento" id="bento">
             <div class="bento__row">
-              <a class="wcard" href="finos.html" data-tags="finos financial fintech ai product web platform dashboard">
+              <a class="wcard" href="finos.html" data-cat="product ai" data-tags="finos financial fintech ai product web platform dashboard">
                 <img class="wcard__img" src="assets/img/home/work-finos.jpg" alt="FINOS financial operating system shown on a laptop and tablet" width="1600" height="1200" fetchpriority="high" decoding="async" />
                 <span class="wcard__go" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
@@ -166,7 +213,7 @@
                   <p class="wcard__d">Designing an AI-powered financial operating system that brings financial intelligence, decision-making and portfolio management into one connected experience.</p>
                 </div>
               </a>
-              <a class="wcard" href="wastemart.html" data-tags="wastemart waste mobile app service design operations">
+              <a class="wcard" href="wastemart.html" data-cat="product" data-tags="wastemart waste mobile app service design operations">
                 <img class="wcard__img" src="assets/img/home/work-wastemart.jpg" alt="WasteMart driver app open on a phone showing a collection workflow" width="1100" height="825" loading="lazy" decoding="async" />
                 <span class="wcard__go" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
@@ -180,7 +227,7 @@
             </div>
 
             <div class="bento__row bento__row--flip">
-              <a class="wcard" href="whatsapp-ai.html" data-tags="whatsapp conversational ux ai assistant chatbot mobile">
+              <a class="wcard" href="whatsapp-ai.html" data-cat="ai" data-tags="whatsapp conversational ux ai assistant chatbot mobile">
                 <img class="wcard__img" src="assets/img/home/work-whatsapp.jpg" alt="WhatsApp Home Assist conversation open on a phone" width="1000" height="750" loading="lazy" decoding="async" />
                 <span class="wcard__go" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
@@ -191,7 +238,7 @@
                   <p class="wcard__d">Exploring how conversational interfaces can simplify everyday service interactions through WhatsApp.</p>
                 </div>
               </a>
-              <a class="wcard" href="managem.html" data-tags="managem gemis erp enterprise ai ux human in the loop web platform take-on">
+              <a class="wcard" href="managem.html" data-cat="product ai" data-tags="managem gemis erp enterprise ai ux human in the loop web platform take-on">
                 <img class="wcard__img" src="assets/img/home/work-managem.jpg" alt="ManaGem enterprise dashboard displayed on a desktop monitor" width="800" height="600" loading="lazy" decoding="async" />
                 <span class="wcard__go" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
@@ -205,7 +252,7 @@
             </div>
 
             <div class="bento__row bento__row--flip">
-              <a class="wcard" href="cmaxx.html" data-tags="cmaxx connectivity wifi web design ux strategy conversion website">
+              <a class="wcard" href="cmaxx.html" data-cat="web" data-tags="cmaxx connectivity wifi web design ux strategy conversion website">
                 <img class="wcard__img" src="assets/img/mockups/cmaxx-dark.jpg" alt="CMAXX WiFi Solutions website shown on a laptop" loading="lazy" decoding="async" />
                 <span class="wcard__go" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
@@ -216,7 +263,7 @@
                   <p class="wcard__d">Redesigning the CMAXX digital experience to make its connectivity offering easier to understand, with a stronger path from discovery to conversion.</p>
                 </div>
               </a>
-              <a class="wcard" href="brand-studio.html" data-tags="brand studio identity visual design systems">
+              <a class="wcard" href="brand-studio.html" data-cat="web" data-tags="brand studio identity visual design systems">
                 <img class="wcard__img" src="assets/img/mockups/ax-channels.jpg" alt="AX-Channels studio website shown on a laptop" loading="lazy" decoding="async" />
                 <span class="wcard__go" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
@@ -449,6 +496,6 @@
     </main>
   </div>
 
-  <script src="assets/js/app.js?v=ap-1" defer></script>
+  <script src="assets/js/app.js?v=ap-3" defer></script>
 </body>
 </html>

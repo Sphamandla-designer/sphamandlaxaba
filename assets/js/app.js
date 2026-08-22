@@ -120,12 +120,18 @@
   if (q && bento) {
     const cards = $$('.wcard', bento);
     const rows = $$('.bento__row', bento);
+    const segs = $$('.seg');
+    const count = $('#workCount');
+    let cat = 'all';
+
     const filter = () => {
       const term = q.value.trim().toLowerCase();
       let shown = 0;
       cards.forEach((card) => {
         const hay = (card.dataset.tags + ' ' + card.textContent).toLowerCase();
-        const hit = !term || hay.includes(term);
+        const matchTerm = !term || hay.includes(term);
+        const matchCat = cat === 'all' || (card.dataset.cat || '').split(' ').includes(cat);
+        const hit = matchTerm && matchCat;
         card.classList.toggle('is-hidden', !hit);
         if (hit) shown++;
       });
@@ -135,8 +141,28 @@
         row.style.display = any ? '' : 'none';
       });
       if (empty) empty.hidden = shown !== 0;
+      if (count) count.textContent = shown + (shown === 1 ? ' case study' : ' case studies');
     };
+
     q.addEventListener('input', filter);
     q.addEventListener('search', filter);
+
+    segs.forEach((seg) => {
+      seg.addEventListener('click', () => {
+        cat = seg.dataset.cat;
+        segs.forEach((s) => s.setAttribute('aria-selected', String(s === seg)));
+        filter();
+      });
+      /* arrow-key movement across the segmented control */
+      seg.addEventListener('keydown', (e) => {
+        const i = segs.indexOf(seg);
+        const next = e.key === 'ArrowRight' ? segs[i + 1] : e.key === 'ArrowLeft' ? segs[i - 1] : null;
+        if (!next) return;
+        e.preventDefault();
+        next.focus();
+        next.click();
+      });
+    });
+    filter();
   }
 })();
