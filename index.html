@@ -14,8 +14,21 @@
   <meta name="theme-color" content="#e4e2e6" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preload" href="assets/fonts/outfit-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="assets/css/app.css?v=ap-3" />
-  <script>document.documentElement.classList.add('js');</script>
+  <link rel="stylesheet" href="assets/css/app.css?v=ap-5" />
+  <script>
+    /* applied before first paint so the theme and rail never flash */
+    (() => {
+      const d = document.documentElement;
+      d.classList.add('js');
+      try {
+        const t = localStorage.getItem('sx-theme');
+        const dark = t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches);
+        if (dark) d.setAttribute('data-theme', 'dark');
+        if (localStorage.getItem('sx-rail') === '1') d.classList.add('rail-collapsed');
+        if (localStorage.getItem('sx-view') === 'list') d.classList.add('view-list');
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -100,11 +113,18 @@
 
     <!-- topbar -->
     <header class="topbar">
-      <form class="search" role="search" id="searchForm" onsubmit="return false">
+      <button class="iconbtn" id="railBtn" data-tip="Collapse sidebar" aria-label="Collapse sidebar" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></svg>
+      </button>
+      <button class="search search--btn" id="cmdkOpen" aria-label="Search case studies, sections and actions">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.2-3.2"/></svg>
-        <label class="sr-only" for="q">Search case studies by name, category or discipline</label>
-        <input id="q" type="search" placeholder="Search experience, role...." autocomplete="off" />
-      </form>
+        Search experience, role....
+        <span class="search__hint" aria-hidden="true"><kbd>⌘</kbd><kbd>K</kbd></span>
+      </button>
+      <button class="iconbtn" id="themeBtn" data-tip="Toggle theme" aria-label="Toggle colour theme">
+        <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z"/></svg>
+        <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
       <div class="who">
         <div class="who__meta">
           <div class="who__role">Super Admin</div>
@@ -197,7 +217,22 @@
               <button class="seg" role="tab" aria-selected="false" data-cat="ai">AI UX</button>
               <button class="seg" role="tab" aria-selected="false" data-cat="web">Web</button>
             </div>
-            <p class="toolbar__count" id="workCount" aria-live="polite">6 case studies</p>
+            <div class="toolbar__right">
+              <p class="toolbar__count" id="workCount" aria-live="polite">6 case studies</p>
+              <div class="filterfield">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.2-3.2"/></svg>
+                <label class="sr-only" for="q">Filter case studies</label>
+                <input id="q" type="search" placeholder="Filter projects" autocomplete="off" />
+              </div>
+              <div class="viewtoggle" role="group" aria-label="Change layout">
+                <button id="viewGrid" data-tip="Grid view" aria-label="Grid view" aria-pressed="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+                </button>
+                <button id="viewList" data-tip="List view" aria-label="List view" aria-pressed="false">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg>
+                </button>
+              </div>
+            </div>
           </div>
 
           <div class="bento" id="bento">
@@ -276,6 +311,50 @@
               </a>
             </div>
           </div>
+          <table class="wtable" id="wtable">
+            <caption class="sr-only">Case studies by discipline and platform</caption>
+            <thead>
+              <tr><th scope="col">Project</th><th scope="col">Discipline</th><th scope="col">Platform</th><th scope="col"><span class="sr-only">Open</span></th></tr>
+            </thead>
+            <tbody>
+              <tr data-cat="product ai" data-tags="finos financial fintech ai product web platform dashboard">
+                <td><a href="finos.html">Financial Operation System</a></td>
+                <td><span class="cell-disc"><span class="badge">Product design</span><span class="badge">AI UX</span></span></td>
+                <td>Web platform</td>
+                <td class="cell-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></td>
+              </tr>
+              <tr data-cat="product" data-tags="wastemart waste mobile app service design operations">
+                <td><a href="wastemart.html">Smarter Waste Systems</a></td>
+                <td><span class="cell-disc"><span class="badge">Product design</span></span></td>
+                <td>Mobile app</td>
+                <td class="cell-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></td>
+              </tr>
+              <tr data-cat="ai" data-tags="whatsapp conversational ux ai assistant chatbot mobile">
+                <td><a href="whatsapp-ai.html">Automation Conversation</a></td>
+                <td><span class="cell-disc"><span class="badge">AI UX</span></span></td>
+                <td>WhatsApp system</td>
+                <td class="cell-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></td>
+              </tr>
+              <tr data-cat="product ai" data-tags="managem gemis erp enterprise ai ux human in the loop web platform take-on">
+                <td><a href="managem.html">Clarity For Enterprise</a></td>
+                <td><span class="cell-disc"><span class="badge">Product design</span><span class="badge">AI UX</span></span></td>
+                <td>Web platform</td>
+                <td class="cell-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></td>
+              </tr>
+              <tr data-cat="web" data-tags="cmaxx connectivity wifi web design ux strategy conversion website">
+                <td><a href="cmaxx.html">Connectivity, Made Clear</a></td>
+                <td><span class="cell-disc"><span class="badge">Web</span></span></td>
+                <td>Website</td>
+                <td class="cell-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></td>
+              </tr>
+              <tr data-cat="web" data-tags="brand studio identity visual design systems">
+                <td><a href="brand-studio.html">Studio Identity Work</a></td>
+                <td><span class="cell-disc"><span class="badge">Web</span></span></td>
+                <td>Brand &amp; web</td>
+                <td class="cell-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></td>
+              </tr>
+            </tbody>
+          </table>
           <p class="bento__empty" id="bentoEmpty" hidden>No case studies match that search.</p>
         </section>
 
@@ -449,7 +528,7 @@
           <h2 id="ctaH">Let's design something meaningful.</h2>
           <p>Open to product design roles and selected freelance work — particularly on complex products, enterprise systems and AI-enabled experiences.</p>
           <div class="cta__row">
-            <a class="btn btn--light" href="mailto:sphamandaxaba@gmail.com">
+            <a class="btn btn--light" href="mailto:sphamandaxaba@gmail.com" data-copy="sphamandaxaba@gmail.com" data-tip="Click to copy">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm9 8.2 8-5.2H4l8 5.2Z"/></svg>
               sphamandaxaba@gmail.com
             </a>
@@ -496,6 +575,28 @@
     </main>
   </div>
 
-  <script src="assets/js/app.js?v=ap-3" defer></script>
+  <!-- ═══════════ COMMAND PALETTE ═══════════ -->
+  <div class="cmdk" id="cmdk" hidden>
+    <div class="cmdk__scrim" data-cmdk-close></div>
+    <div class="cmdk__panel" role="dialog" aria-modal="true" aria-labelledby="cmdkLabel">
+      <h2 class="sr-only" id="cmdkLabel">Search case studies, sections and actions</h2>
+      <div class="cmdk__field">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.2-3.2"/></svg>
+        <input id="cmdkInput" type="text" role="combobox" aria-expanded="true" aria-controls="cmdkList"
+               aria-autocomplete="list" autocomplete="off" placeholder="Search case studies, sections and actions…" />
+        <kbd>Esc</kbd>
+      </div>
+      <div class="cmdk__list" id="cmdkList" role="listbox" aria-label="Results"></div>
+      <div class="cmdk__foot">
+        <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+        <span><kbd>↵</kbd> open</span>
+        <span><kbd>esc</kbd> close</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+
+  <script src="assets/js/app.js?v=ap-5" defer></script>
 </body>
 </html>
