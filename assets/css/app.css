@@ -992,3 +992,142 @@ html.view-list .bento { display: none; }
   .cmdk__scrim, .cmdk__panel, .toast { animation: none; }
   .side { transition: none; }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   SYSTEM LAYER
+   Mono = machine output. Gold = liveness, never decoration.
+   Every element below is backed by real state.
+   ═══════════════════════════════════════════════════════════════ */
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("../fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  /* liveness only: active state, newest entry, available-for-work */
+  --gold: #a4802f;
+  --gold-live: #c9a84c;
+  --gold-bg: rgba(201, 168, 76, 0.12);
+  --gold-bd: rgba(201, 168, 76, 0.4);
+}
+html[data-theme="dark"] { --gold: #d8bb63; }
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: -0.01em;
+  font-variant-ligatures: none;
+}
+
+/* ── status indicator (header) ────────────────────────────────── */
+.status {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  white-space: nowrap;
+  color: var(--ink-2);
+}
+.status__dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--ink-3); flex: 0 0 auto;
+}
+.status--on { border-color: var(--gold-bd); background: var(--gold-bg); color: var(--gold); }
+/* the header runs out of room before the label does, so below the tablet
+   breakpoint the status collapses to its dot and keeps its accessible name */
+@media (max-width: 900px) {
+  .status { padding: 6px; }
+  .status #statusLabel {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+  }
+}
+.status--on .status__dot { background: var(--gold-live); animation: pulse 2.4s var(--ease) infinite; }
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.55); }
+  60%      { box-shadow: 0 0 0 6px rgba(201, 168, 76, 0); }
+}
+
+/* ── session line (returning visitors only) ───────────────────── */
+.sessionline {
+  display: none;
+  margin-top: 14px;
+  color: var(--ink-3);
+}
+.sessionline.is-on { display: block; }
+.sessionline b { color: var(--gold); font-weight: 400; }
+
+/* ── system log ───────────────────────────────────────────────── */
+.log { display: flex; flex-direction: column; }
+.log__row {
+  display: flex; align-items: baseline; gap: var(--sp-4);
+  padding: 11px var(--sp-2);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.16s var(--ease), opacity 0.2s var(--ease);
+}
+.log__row:last-child { border-bottom: 0; }
+.log__row:hover { background: var(--muted-surface); }
+.log__row.is-dim { opacity: 0.32; }
+.log__date {
+  flex: 0 0 auto; width: 74px;
+  color: var(--ink-3);
+}
+.log__label { flex: 1 1 auto; min-width: 0; font-family: var(--font); font-size: var(--t-sm); color: var(--ink); }
+.log__tag {
+  flex: 0 0 auto;
+  padding: 2px 8px; border-radius: var(--r-xs);
+  border: 1px solid var(--border);
+  color: var(--ink-2);
+}
+/* the newest entry is the only live one */
+.log__row--live .log__date,
+.log__row--live .log__tag { color: var(--gold); border-color: var(--gold-bd); }
+.log__row--live .log__date::before { content: "● "; color: var(--gold-live); }
+@media (max-width: 560px) {
+  .log__row { flex-wrap: wrap; gap: 4px var(--sp-3); }
+  .log__label { flex: 1 1 100%; order: 3; }
+}
+
+/* stat cards are now filters into the log */
+.stat--link { cursor: pointer; text-align: left; width: 100%; font: inherit; }
+.stat--link:hover { border-color: var(--border-strong); }
+.stat--link[aria-pressed="true"] { border-color: var(--gold-bd); box-shadow: 0 0 0 1px var(--gold-bd); }
+.stat__hint { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-3); }
+.stat--link[aria-pressed="true"] .stat__hint { color: var(--gold); }
+
+/* ── jump destination flash ───────────────────────────────────── */
+.is-flash { animation: flash 1s var(--ease); }
+@keyframes flash {
+  0%   { box-shadow: 0 0 0 3px var(--gold-bd); }
+  100% { box-shadow: 0 0 0 3px rgba(201, 168, 76, 0); }
+}
+
+/* ── nav micro-labels ─────────────────────────────────────────── */
+.side__link .micro {
+  margin-left: auto; flex: 0 0 auto;
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--ink-3);
+  opacity: 0; transform: translateX(-3px);
+  transition: opacity 0.16s var(--ease), transform 0.16s var(--ease);
+}
+.side__link:hover .micro, .side__link:focus-visible .micro { opacity: 1; transform: none; }
+.side__link.is-active .micro { opacity: 1; color: var(--gold); }
+html.rail-collapsed .side__link .micro { display: none; }
+
+/* mono treatment inside the command palette */
+.cmdk__item span:first-of-type { font-family: var(--font); }
+.cmdk__meta, .cmdk__grouplabel { font-family: var(--font-mono); }
+.cmdk__item--skill svg { color: var(--gold); }
+
+/* stat count-up should not reflow the card while animating */
+.stat__v { font-variant-numeric: tabular-nums; }
+
+@media (prefers-reduced-motion: reduce) {
+  .status--on .status__dot { animation: none; }
+  .is-flash { animation: none; }
+}
