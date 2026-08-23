@@ -65,18 +65,30 @@
   --pad-main: clamp(18px, 2vw, 36px);
   --pad-card: clamp(20px, 1.9vw, 30px);
 
-  /* type */
+  /* ── type scale: the single source of truth ──
+     Fluid rather than fixed so sizes scale smoothly instead of jumping at
+     breakpoints; because every heading resolves to the same token, they
+     stay identical to each other at any viewport width. */
   --font: "Outfit", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --t-logo: clamp(20px, 1.5vw, 25px);
-  --t-nav: clamp(16px, 1.15vw, 19px);
-  --t-h1: clamp(28px, 2.5vw, 42px);
-  --t-h2: clamp(25px, 2.1vw, 35px);
-  --t-h3: clamp(19px, 1.45vw, 25px);
-  --t-band: clamp(29px, 2.9vw, 46px);
-  --t-pill: clamp(16px, 1.35vw, 24px);
-  --t-body: clamp(14.5px, 1vw, 16px);
-  --t-sm: clamp(12.5px, 0.85vw, 13.5px);
-  --t-xs: 11px;
+  --text-xs:   0.75rem;                          /* micro-labels, timestamps, tags */
+  --text-sm:   0.875rem;                         /* captions, secondary metadata   */
+  --text-base: 1rem;                             /* body copy                      */
+  --text-lg:   clamp(1.125rem, 1.4vw, 1.25rem);  /* card titles, sub-headings      */
+  --text-xl:   clamp(1.375rem, 2.2vw, 1.75rem);  /* section intros                 */
+  --text-2xl:  clamp(1.75rem, 3.4vw, 2.5rem);    /* every section H2               */
+  --text-3xl:  clamp(2.25rem, 5vw, 4rem);        /* hero H1 only                   */
+
+  /* legacy names map onto the scale so no rule carries its own value */
+  --t-logo: var(--text-lg);
+  --t-nav:  var(--text-sm);
+  --t-h1:   var(--text-3xl);
+  --t-h2:   var(--text-2xl);
+  --t-h3:   var(--text-lg);
+  --t-band: var(--text-2xl);
+  --t-pill: var(--text-lg);
+  --t-body: var(--text-base);
+  --t-sm:   var(--text-sm);
+  --t-xs:   var(--text-xs);
 
   /* motion */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -1130,4 +1142,247 @@ html.rail-collapsed .side__link .micro { display: none; }
 @media (prefers-reduced-motion: reduce) {
   .status--on .status__dot { animation: none; }
   .is-flash { animation: none; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CORRECTIONS PASS v2
+   Interaction states, boot sequence, mobile, nav, status redesign,
+   discipline chart.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── BUILD 1 — interaction states ─────────────────────────────── */
+
+/* gold focus ring everywhere: reinforces gold = active */
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 6px; }
+.on-dark :focus-visible, .side :focus-visible, .panel--dark :focus-visible { outline-color: var(--gold-live); }
+
+/* case study cards: lift, deepen, and take a gold edge */
+.wcard {
+  border: 1px solid transparent;
+  transition: transform 0.24s var(--ease), box-shadow 0.24s var(--ease), border-color 0.24s var(--ease);
+}
+@media (hover: hover) {
+  .wcard:hover { transform: translateY(-3px); box-shadow: 0 14px 34px -14px rgba(9, 9, 11, 0.42); border-color: var(--gold-bd); }
+}
+.wcard:focus-visible { transform: translateY(-3px); border-color: var(--gold-bd); }
+.wcard:active { transform: scale(0.985); }
+
+/* pressed feedback on everything clickable */
+.btn:active, .iconbtn:active, .seg:active, .stat--link:active,
+.cvcard__btn:active, .viewtoggle button:active, .cmdk__item:active,
+.pill-x > summary:active { transform: scale(0.98); }
+
+/* links draw their underline in from the left */
+.underlink { position: relative; }
+.underlink::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 1.5px;
+  background: var(--gold); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.26s var(--ease);
+}
+.underlink:hover::after, .underlink:focus-visible::after { transform: scaleX(1); }
+.foot__col a, .band__soc a, .panel__more { position: relative; }
+@media (hover: hover) {
+  .foot__col a::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 2px; height: 1px;
+    background: currentColor; transform: scaleX(0); transform-origin: left;
+    transition: transform 0.26s var(--ease);
+  }
+  .foot__col a:hover::after { transform: scaleX(1); }
+}
+
+/* ── BUILD 1 — page transition ────────────────────────────────── */
+@view-transition { navigation: auto; }
+::view-transition-old(root) { animation: vt-out 0.18s var(--ease) both; }
+::view-transition-new(root) { animation: vt-in 0.26s var(--ease) both; }
+@keyframes vt-out { to { opacity: 0; } }
+@keyframes vt-in { from { opacity: 0; } }
+/* fallback for browsers without the View Transitions API */
+html.leaving .main, html.leaving .side { opacity: 0; transition: opacity 0.2s var(--ease); }
+
+/* ── BUILD 2 — boot sequence ──────────────────────────────────── */
+.boot {
+  position: fixed; inset: 0; z-index: 200;
+  background: var(--bg);
+  display: grid; align-content: center; justify-items: start;
+  gap: 7px;
+  padding: 0 clamp(24px, 8vw, 120px);
+}
+.boot[hidden] { display: none; }
+.boot__line {
+  font-family: var(--font-mono); font-size: 12.5px;
+  color: var(--ink-3);
+  opacity: 0;
+  transform: translateY(4px);
+}
+.boot__line.is-on { animation: bootin 0.3s var(--ease) forwards; }
+.boot__line b { color: var(--gold); font-weight: 400; }
+@keyframes bootin { to { opacity: 1; transform: none; } }
+.boot.is-done { opacity: 0; transition: opacity 0.28s var(--ease); pointer-events: none; }
+
+/* image skeletons in the site's own tone, not a grey box */
+.shot-skel { background: var(--muted-surface); }
+img[data-skel] { opacity: 0; transition: opacity 0.4s var(--ease); }
+img[data-skel].is-loaded { opacity: 1; }
+
+/* ── BUILD 6 — status as an editorial flag, no pulse ──────────── */
+.status {
+  display: inline-flex; align-items: baseline; gap: 0;
+  padding: 0; border: 0; background: none;
+  font-family: var(--font-mono); font-size: 12px;
+  color: var(--ink-2); white-space: nowrap;
+  position: relative;
+}
+.status__dot { display: none; }
+.status__br { color: var(--ink-3); }
+.status__txt { position: relative; padding: 0 6px; color: var(--ink); }
+.status--on .status__txt { color: var(--gold); }
+.status__txt::after {
+  content: ""; position: absolute; left: 6px; right: 6px; bottom: -3px; height: 1.5px;
+  background: var(--gold);
+  transform: scaleX(0); transform-origin: left;
+}
+/* a single deliberate draw on load — never a loop */
+.status--on.is-drawn .status__txt::after { animation: draw 0.7s var(--ease) 0.5s forwards; }
+@keyframes draw { to { transform: scaleX(1); } }
+
+/* ── BUILD 7 — discipline chart ───────────────────────────────── */
+.split7 {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(24px, 3.4vw, 56px);
+  align-items: center;
+}
+.donut { display: flex; align-items: center; gap: clamp(18px, 2.4vw, 34px); }
+.donut__svg { flex: 0 0 auto; width: clamp(150px, 15vw, 194px); height: auto; overflow: visible; }
+.donut__seg {
+  fill: none; stroke-width: 18; cursor: pointer;
+  transition: stroke-width 0.22s var(--ease), opacity 0.22s var(--ease);
+  transform-origin: 50% 50%;
+}
+.donut__seg:hover, .donut__seg:focus-visible { stroke-width: 23; }
+.donut__seg[aria-pressed="true"] { stroke-width: 23; }
+.donut.has-sel .donut__seg:not([aria-pressed="true"]) { opacity: 0.35; }
+.donut__hole { text-anchor: middle; }
+.donut__num { font-family: var(--font); font-size: 26px; font-weight: 600; fill: var(--ink); }
+.donut__cap { font-family: var(--font-mono); font-size: 8.5px; fill: var(--ink-3); }
+.donut__key { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.donut__item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 7px 10px; border-radius: var(--r-xs);
+  font-size: var(--text-sm); color: var(--ink);
+  text-align: left; width: 100%;
+  border: 1px solid transparent;
+  transition: background 0.16s var(--ease), border-color 0.16s var(--ease);
+}
+.donut__item:hover { background: var(--muted-surface); }
+.donut__item[aria-pressed="true"] { border-color: var(--gold-bd); background: var(--gold-bg); }
+.donut__swatch { width: 10px; height: 10px; border-radius: 3px; flex: 0 0 auto; }
+.donut__n { margin-left: auto; font-family: var(--font-mono); font-size: 12px; color: var(--ink-2); }
+
+/* recent activity: supporting, not competing */
+.recent__t {
+  font-size: var(--text-sm); font-weight: 600; color: var(--ink-2);
+  margin-bottom: var(--sp-3);
+}
+.recent__row {
+  display: flex; gap: var(--sp-3); align-items: baseline;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: var(--text-sm);
+}
+.recent__row:last-of-type { border-bottom: 0; }
+.recent__row[hidden] { display: none; }
+.recent__date { flex: 0 0 auto; width: 68px; font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-3); }
+.recent__more {
+  margin-top: var(--sp-3);
+  font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-2);
+  padding: 6px 0;
+}
+.recent__more:hover { color: var(--gold); }
+
+@media (max-width: 900px) {
+  .split7 { grid-template-columns: 1fr; }
+  .donut { justify-content: flex-start; }
+}
+@media (max-width: 560px) {
+  .donut { flex-direction: column; align-items: flex-start; gap: var(--sp-4); }
+  .donut__key { width: 100%; }
+}
+
+/* ── BUILD 3 — mobile pass ────────────────────────────────────── */
+@media (max-width: 1024px) {
+  /* full-screen overlay menu, icon + label, never icon-only */
+  .side {
+    width: 100%; max-width: none;
+    padding: 0 clamp(18px, 5vw, 28px) var(--sp-6);
+    border-right: 0;
+  }
+  .side__link { min-height: 48px; font-size: var(--text-base); gap: 14px; padding: 10px var(--sp-3); }
+  .side__link svg { width: 19px; height: 19px; }
+  .side__brand { height: 68px; }
+  .side__close { width: 44px; height: 44px; }
+  /* tooltips are a desktop affordance; on touch they just get in the way */
+  .side [data-tip]::after { display: none; }
+}
+@media (max-width: 768px) {
+  /* stat cards stack full width with generous tap spacing */
+  .stats { grid-template-columns: 1fr; gap: var(--sp-3); }
+  .stat { min-height: 0; padding: var(--sp-4); }
+  .hero__grid { gap: var(--sp-4); }
+}
+@media (max-width: 640px) {
+  .bento__row, .bento__row--flip { grid-template-columns: 1fr; }
+}
+/* the identity block has no room left once the controls are placed */
+@media (max-width: 560px) { .who { display: none; } }
+
+/* 44x44 minimum touch targets — keyed to width as well as pointer type,
+   since a narrow viewport is effectively always touch */
+@media (pointer: coarse), (max-width: 768px) {
+  .seg { min-height: 44px; min-width: 44px; display: inline-flex; align-items: center; justify-content: center; }
+  .iconbtn, .mobar__btn { min-width: 44px; min-height: 44px; }
+  .viewtoggle button { min-width: 44px; min-height: 44px; }
+  .search { min-height: 48px; }
+  .donut__item { min-height: 44px; }
+  .cvcard__btn { min-height: 44px; }
+  .btn { min-height: 44px; }
+  .mobar__logo { display: inline-flex; align-items: center; min-height: 44px; }
+  .foot__col a { padding: 12px 0; }
+  .foot__bar a { display: inline-flex; align-items: center; min-height: 44px; }
+  .band__soc a { width: 44px; height: 44px; border-radius: 12px; }
+  .recent__more { min-height: 44px; }
+  .side__close { width: 44px; height: 44px; }
+  /* the row is the real hit area (stretched ::after); match it explicitly */
+  .wtable td a { min-height: 44px; display: inline-flex; align-items: center; }
+  /* hover-only reveals must not hide content on touch */
+  .side__link .micro { opacity: 1; transform: none; }
+}
+
+/* the discipline table becomes labelled cards, never a scrolling table */
+@media (max-width: 720px) {
+  html.view-list .wtable { display: block; }
+  .wtable tbody tr {
+    display: block;
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    padding: var(--sp-4);
+    margin-bottom: var(--sp-3);
+    background: var(--surface);
+  }
+  .wtable td { display: flex; gap: var(--sp-3); align-items: baseline; padding: 4px 0; }
+  .wtable td::before {
+    content: attr(data-label);
+    flex: 0 0 78px;
+    font-family: var(--font-mono); font-size: 10.5px; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--ink-3);
+  }
+  .wtable td:first-child { font-size: var(--text-lg); font-weight: 600; padding-bottom: var(--sp-2); }
+  .wtable td:first-child::before { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wcard:hover { transform: none; }
+  .status--on.is-drawn .status__txt::after { animation: none; transform: scaleX(1); }
+  .boot__line { opacity: 1; transform: none; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
 }

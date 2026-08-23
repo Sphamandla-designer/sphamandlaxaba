@@ -435,7 +435,7 @@
   /* ── config: single source of truth for availability ── */
   const STATUS = {
     available: true,
-    labelOn: 'available for work',
+    labelOn: 'open to work',
     labelOff: 'not taking new work',
   };
 
@@ -445,6 +445,8 @@
     $('#statusLabel').textContent = STATUS.available ? STATUS.labelOn : STATUS.labelOff;
     status.classList.toggle('status--on', STATUS.available);
     status.hidden = false;
+    /* one deliberate underline draw, never a loop */
+    requestAnimationFrame(() => status.classList.add('is-drawn'));
   }
 
   /* ── BUILD 1 — session memory ──
@@ -478,57 +480,97 @@
     line.classList.add('is-on');
   })();
 
-  /* ── BUILD 2 — activity log ──
-     Dates are the real months these shipped in this repository. */
-  const ENTRIES = [
-    { date: '2026-08', label: 'Rebuilt the portfolio as a stateful dashboard', tag: 'Design systems', cats: ['venture'] },
-    { date: '2026-08', label: 'Rebuilt ManaGem as a product-design case study', tag: 'Enterprise', cats: ['delivered', 'led'] },
-    { date: '2026-08', label: 'Published the CMAXX connectivity redesign', tag: 'Web', cats: ['delivered'] },
-    { date: '2026-08', label: 'Published the FINOS case study', tag: 'AI UX', cats: ['delivered', 'led'] },
-    { date: '2026-07', label: 'Published WhatsApp Home Assist', tag: 'Conversational', cats: ['delivered'] },
-    { date: '2026-07', label: 'Published the WasteMart concept', tag: 'Product', cats: ['delivered'] },
-    { date: '2026-07', label: 'Published studio identity work', tag: 'Brand', cats: ['delivered'] },
+  /* ── BUILD 7 — discipline chart + recent activity ──
+     Counts are derived from the case-study cards themselves, so the chart
+     can never disagree with the grid it filters. */
+  const DISCIPLINES = [
+    { key: 'product', label: 'Product design', color: 'var(--gold-live)' },
+    { key: 'ai',      label: 'AI UX',          color: '#5b5b66' },
+    { key: 'web',     label: 'Web',            color: '#b6b6bf' },
   ];
-  const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  const feed = $('#logFeed');
-  const logCount = $('#logCount');
-
-  if (feed) {
-    feed.innerHTML = ENTRIES.map((e, i) => {
-      const [y, m] = e.date.split('-');
-      const d = MONTHS[+m - 1] + ' ' + y;
-      return '<div class="log__row' + (i === 0 ? ' log__row--live' : '') + '" data-cats="' + e.cats.join(' ') + '">' +
-             '<span class="log__date">' + d + '</span>' +
-             '<span class="log__label">' + e.label + '</span>' +
-             '<span class="log__tag">' + e.tag + '</span></div>';
+  const donut = $('#donut');
+  if (donut) {
+    const cards = $$('#bento .wcard');
+    const counts = DISCIPLINES.map((d) => ({
+      ...d,
+      n: cards.filter((c) => (c.dataset.cat || '').split(' ').includes(d.key)).length,
+    }));
+    const total = counts.reduce((a, c) => a + c.n, 0);
+    const R = 60, C = 2 * Math.PI * R;
+    let offset = 0;
+    const segs = counts.map((c) => {
+      const len = total ? (c.n / total) * C : 0;
+      const seg = '<circle class="donut__seg" data-key="' + c.key + '" role="button" tabindex="0" aria-pressed="false"' +
+        ' aria-label="' + c.label + ': ' + c.n + ' case studies. Filter the work grid."' +
+        ' cx="80" cy="80" r="' + R + '" stroke="' + c.color + '"' +
+        ' stroke-dasharray="' + (len - 2).toFixed(2) + ' ' + (C - len + 2).toFixed(2) + '"' +
+        ' stroke-dashoffset="' + (-offset).toFixed(2) + '" stroke-linecap="butt"></circle>';
+      offset += len;
+      return seg;
     }).join('');
 
-    const rows = $$('.log__row', feed);
-    const setCount = (n) => { if (logCount) logCount.textContent = n + ' / ' + rows.length + ' entries'; };
-    setCount(rows.length);
+    donut.innerHTML =
+      '<svg class="donut__svg" viewBox="0 0 160 160" role="img" aria-label="Case studies by discipline">' +
+      '<g transform="rotate(-90 80 80)">' + segs + '</g>' +
+      '<text class="donut__hole" x="80" y="76"><tspan class="donut__num">' + cards.length + '</tspan></text>' +
+      '<text class="donut__hole donut__cap" x="80" y="94">CASE STUDIES</text></svg>' +
+      '<div class="donut__key">' + counts.map((c) =>
+        '<button class="donut__item" data-key="' + c.key + '" aria-pressed="false">' +
+        '<span class="donut__swatch" style="background:' + c.color + '"></span>' +
+        c.label + '<span class="donut__n">' + c.n + '</span></button>').join('') + '</div>';
 
-    /* stat cards filter the log they summarise */
-    let active = null;
-    const stats = $$('.stat--link');
-    const applyLogFilter = (cat) => {
-      active = cat;
-      let shown = 0;
-      rows.forEach((r) => {
-        const hit = !cat || r.dataset.cats.split(' ').includes(cat);
-        r.classList.toggle('is-dim', !hit);
-        if (hit) shown++;
-      });
-      setCount(shown);
-      stats.forEach((s) => s.setAttribute('aria-pressed', String(!!cat && s.dataset.logFilter === cat)));
+    let sel = null;
+    const pick = (key) => {
+      sel = sel === key ? null : key;
+      donut.classList.toggle('has-sel', !!sel);
+      $$('[data-key]', donut).forEach((el) => el.setAttribute('aria-pressed', String(el.dataset.key === sel)));
+      if (window.__sxFilterWork) window.__sxFilterWork('', sel || 'all');
+      const w = document.getElementById('work');
+      if (w && window.__sxFlashTo) window.__sxFlashTo(w);
     };
-    stats.forEach((s) => {
-      s.addEventListener('click', () => {
-        const next = active === s.dataset.logFilter ? null : s.dataset.logFilter;
-        applyLogFilter(next);
-        flashTo($('#log'));
+    $$('[data-key]', donut).forEach((el) => {
+      el.addEventListener('click', () => pick(el.dataset.key));
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(el.dataset.key); }
       });
     });
   }
+
+  /* recent activity — plain language, capped, with a view-more */
+  const ENTRIES = [
+    { date: 'Aug 2026', label: 'Rebuilt the portfolio as a stateful dashboard' },
+    { date: 'Aug 2026', label: 'Rebuilt the ManaGem case study' },
+    { date: 'Aug 2026', label: 'Published the CMAXX connectivity redesign' },
+    { date: 'Aug 2026', label: 'Published the FINOS case study' },
+    { date: 'Jul 2026', label: 'Published WhatsApp Home Assist' },
+    { date: 'Jul 2026', label: 'Published the WasteMart concept' },
+    { date: 'Jul 2026', label: 'Published studio identity work' },
+  ];
+  const CAP = 5;
+  const recent = $('#recentFeed');
+  const moreBtn = $('#recentMore');
+  if (recent) {
+    recent.innerHTML = ENTRIES.map((e, i) =>
+      '<div class="recent__row"' + (i >= CAP ? ' hidden' : '') + '>' +
+      '<span class="recent__date">' + e.date + '</span>' +
+      '<span>' + e.label + '</span></div>').join('');
+    if (moreBtn && ENTRIES.length > CAP) {
+      let open = false;
+      const paint = () => {
+        $$('.recent__row', recent).forEach((r, i) => { r.hidden = !open && i >= CAP; });
+        moreBtn.textContent = open ? '– show less' : '+ view ' + (ENTRIES.length - CAP) + ' more';
+      };
+      moreBtn.hidden = false;
+      paint();
+      moreBtn.addEventListener('click', () => { open = !open; paint(); });
+    }
+  }
+
+  /* stat cards jump to the breakdown they summarise */
+  $$('.stat--link').forEach((b) => b.addEventListener('click', () => {
+    const t = document.getElementById('log');
+    if (t) flashTo(t);
+  }));
 
   /* ── jump + flash, shared by the palette and the stat cards ── */
   const flashTo = (el) => {
@@ -576,5 +618,66 @@
     m.setAttribute('aria-hidden', 'true');
     m.textContent = '§ ' + String(i + 1).padStart(2, '0') + ' / ' + name;
     a.appendChild(m);
+  });
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   BOOT SEQUENCE + PAGE TRANSITIONS
+   ═══════════════════════════════════════════════════════════════ */
+(() => {
+  'use strict';
+  const root = document.documentElement;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── BUILD 2 — boot sequence ──
+     First visit gets the full sequence; returning visitors get a single
+     fast fade. The flag is set in <head> before the visit counter moves. */
+  const boot = document.getElementById('boot');
+  if (boot) {
+    const full = root.classList.contains('boot-full') && !reduced;
+    const lines = [...boot.querySelectorAll('[data-boot]')];
+    const finish = () => {
+      boot.classList.add('is-done');
+      setTimeout(() => { boot.hidden = true; document.body.style.overflow = ''; }, 300);
+    };
+    if (!full) {
+      /* abbreviated: never make a returning visitor wait */
+      boot.hidden = false;
+      document.body.style.overflow = 'hidden';
+      requestAnimationFrame(() => setTimeout(finish, 120));
+    } else {
+      boot.hidden = false;
+      document.body.style.overflow = 'hidden';
+      lines.forEach((l, i) => setTimeout(() => l.classList.add('is-on'), 120 + i * 300));
+      setTimeout(finish, 120 + lines.length * 300 + 220);
+    }
+  }
+
+  /* ── BUILD 1 — page transition into case studies ──
+     Uses the View Transitions API where available; otherwise fades the
+     shell out before navigating so it is never a hard cut. */
+  const internal = (a) => {
+    const href = a.getAttribute('href') || '';
+    return /^[\w-]+\.html(#.*)?$/.test(href) && a.target !== '_blank' && !a.hasAttribute('download');
+  };
+  if (!reduced && !('startViewTransition' in document)) {
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('a[href]');
+      if (!a || !internal(a) || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+      e.preventDefault();
+      root.classList.add('leaving');
+      setTimeout(() => { location.href = a.getAttribute('href'); }, 190);
+    });
+    /* a cached back-navigation must not land on a faded-out page */
+    addEventListener('pageshow', () => root.classList.remove('leaving'));
+  }
+
+  /* ── BUILD 2 — image skeletons ── */
+  document.querySelectorAll('img[loading="lazy"], img[data-src]').forEach((img) => {
+    if (img.complete && img.naturalWidth) return;
+    img.setAttribute('data-skel', '');
+    const done = () => img.classList.add('is-loaded');
+    img.addEventListener('load', done, { once: true });
+    img.addEventListener('error', done, { once: true });
   });
 })();
