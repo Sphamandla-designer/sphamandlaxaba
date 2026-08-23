@@ -480,7 +480,7 @@
     line.classList.add('is-on');
   })();
 
-  /* ── BUILD 7 — discipline chart + recent activity ──
+  /* ── BUILD 7 — discipline chart ──
      Counts are derived from the case-study cards themselves, so the chart
      can never disagree with the grid it filters. */
   const DISCIPLINES = [
@@ -495,45 +495,108 @@
       ...d,
       n: cards.filter((c) => (c.dataset.cat || '').split(' ').includes(d.key)).length,
     }));
-    const total = counts.reduce((a, c) => a + c.n, 0);
+    const total = counts.reduce((a, c) => a + c.n, 0) || 1;
     const R = 60, C = 2 * Math.PI * R;
     let offset = 0;
     const segs = counts.map((c) => {
-      const len = total ? (c.n / total) * C : 0;
+      const len = (c.n / total) * C;
+      const gap = 2.5;
       const seg = '<circle class="donut__seg" data-key="' + c.key + '" role="button" tabindex="0" aria-pressed="false"' +
-        ' aria-label="' + c.label + ': ' + c.n + ' case studies. Filter the work grid."' +
+        ' aria-label="' + c.label + ': ' + c.n + ' of ' + cards.length + ' case studies. Filter the work grid."' +
         ' cx="80" cy="80" r="' + R + '" stroke="' + c.color + '"' +
-        ' stroke-dasharray="' + (len - 2).toFixed(2) + ' ' + (C - len + 2).toFixed(2) + '"' +
-        ' stroke-dashoffset="' + (-offset).toFixed(2) + '" stroke-linecap="butt"></circle>';
+        ' stroke-dasharray="' + (len - gap).toFixed(2) + ' ' + (C - len + gap).toFixed(2) + '"' +
+        ' style="--dash-start:' + C.toFixed(2) + 'px; --dash-end:' + (-offset).toFixed(2) + 'px;"></circle>';
       offset += len;
       return seg;
     }).join('');
 
     donut.innerHTML =
       '<svg class="donut__svg" viewBox="0 0 160 160" role="img" aria-label="Case studies by discipline">' +
+      '<circle cx="80" cy="80" r="60" fill="none" stroke="var(--muted-surface)" stroke-width="17"></circle>' +
       '<g transform="rotate(-90 80 80)">' + segs + '</g>' +
-      '<text class="donut__hole" x="80" y="76"><tspan class="donut__num">' + cards.length + '</tspan></text>' +
-      '<text class="donut__hole donut__cap" x="80" y="94">CASE STUDIES</text></svg>' +
+      '<g class="donut__hole">' +
+      '<text x="80" y="76" text-anchor="middle" class="donut__num" id="donutNum">' + cards.length + '</text>' +
+      '<text x="80" y="93" text-anchor="middle" class="donut__cap" id="donutCap">CASE STUDIES</text>' +
+      '</g></svg>' +
       '<div class="donut__key">' + counts.map((c) =>
         '<button class="donut__item" data-key="' + c.key + '" aria-pressed="false">' +
         '<span class="donut__swatch" style="background:' + c.color + '"></span>' +
-        c.label + '<span class="donut__n">' + c.n + '</span></button>').join('') + '</div>';
+        '<span>' + c.label + '</span>' +
+        '<span class="donut__n">' + c.n + ' · ' + Math.round((c.n / total) * 100) + '%</span>' +
+        '<span class="donut__bar"><i class="donut__fill" style="--pct:' + ((c.n / total) * 100).toFixed(1) + '%; background:' + c.color + '"></i></span>' +
+        '</button>').join('') +
+        '<button class="donut__clear" id="donutClear" hidden>× clear filter</button></div>';
 
+    const svg = $('.donut__svg', donut);
+    const numEl = $('#donutNum'), capEl = $('#donutCap');
+    const clearBtn = $('#donutClear');
+    const nodes = (key) => $$('[data-key="' + key + '"]', donut);
+
+    /* the centre of the ring is a live readout, not a static total */
+    const setHole = (n, cap) => {
+      svg.classList.add('is-swapping');
+      setTimeout(() => {
+        numEl.textContent = n;
+        capEl.textContent = cap;
+        svg.classList.remove('is-swapping');
+      }, 130);
+    };
     let sel = null;
+    const resetHole = () => {
+      const c = counts.find((x) => x.key === sel);
+      setHole(c ? c.n : cards.length, c ? c.label.toUpperCase() : 'CASE STUDIES');
+    };
+
+    /* hovering either the ring or the legend highlights both */
+    const hot = (key, on) => {
+      donut.classList.toggle('has-hot', on && key !== sel);
+      $$('[data-key]', donut).forEach((el) => el.classList.toggle('is-hot', on && el.dataset.key === key));
+      if (on) {
+        const c = counts.find((x) => x.key === key);
+        setHole(c.n, c.label.toUpperCase());
+      } else resetHole();
+    };
+
     const pick = (key) => {
       sel = sel === key ? null : key;
       donut.classList.toggle('has-sel', !!sel);
       $$('[data-key]', donut).forEach((el) => el.setAttribute('aria-pressed', String(el.dataset.key === sel)));
+      if (clearBtn) clearBtn.hidden = !sel;
+      resetHole();
       if (window.__sxFilterWork) window.__sxFilterWork('', sel || 'all');
       const w = document.getElementById('work');
       if (w && window.__sxFlashTo) window.__sxFlashTo(w);
     };
+
+    const keys = counts.map((c) => c.key);
     $$('[data-key]', donut).forEach((el) => {
-      el.addEventListener('click', () => pick(el.dataset.key));
+      const k = el.dataset.key;
+      el.addEventListener('click', () => pick(k));
+      el.addEventListener('mouseenter', () => hot(k, true));
+      el.addEventListener('mouseleave', () => hot(k, false));
+      el.addEventListener('focus', () => hot(k, true));
+      el.addEventListener('blur', () => hot(k, false));
       el.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(el.dataset.key); }
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(k); return; }
+        const dir = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1
+                  : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0;
+        if (!dir) return;
+        e.preventDefault();
+        const i = keys.indexOf(k);
+        const next = keys[(i + dir + keys.length) % keys.length];
+        const peer = $$('[data-key="' + next + '"]', donut).find((n) => n.tagName === el.tagName) || nodes(next)[0];
+        if (peer) peer.focus();
       });
     });
+    if (clearBtn) clearBtn.addEventListener('click', () => { if (sel) pick(sel); });
+
+    /* draw the ring and the bars once the panel is on screen */
+    if (!reduced && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver((es, obs) => {
+        if (es.some((e) => e.isIntersecting)) { donut.classList.add('is-in'); obs.disconnect(); }
+      }, { rootMargin: '0px 0px -12% 0px' });
+      io.observe(donut);
+    } else donut.classList.add('is-in');
   }
 
   /* recent activity — plain language, capped, with a view-more */
