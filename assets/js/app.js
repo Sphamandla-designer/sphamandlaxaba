@@ -647,9 +647,9 @@
     }
   }
 
-  /* stat cards jump to the breakdown they summarise */
-  $$('.stat--link').forEach((b) => b.addEventListener('click', () => {
-    const t = document.getElementById('log');
+  /* only the card without a sheet jumps to the breakdown it summarises */
+  $$('.stat--link[data-jump]').forEach((b) => b.addEventListener('click', () => {
+    const t = document.getElementById(b.dataset.jump);
     if (t) flashTo(t);
   }));
 
@@ -760,5 +760,178 @@
     const done = () => img.classList.add('is-loaded');
     img.addEventListener('load', done, { once: true });
     img.addEventListener('error', done, { once: true });
+  });
+})();
+
+/* ═══════════════════════════════════════════════════════════════
+   KPI DETAIL SHEETS
+   Each stat card opens the record behind the number. Every fact here
+   comes from the CV or from work already published on this site.
+   ═══════════════════════════════════════════════════════════════ */
+(() => {
+  'use strict';
+  const $ = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+  const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+  const ROLES = [
+    {
+      co: 'Gem Information Systems', when: '2025 — Present', title: 'UI/UX Designer',
+      points: [
+        'Design enterprise SaaS platforms, websites and internal business applications for corporate clients.',
+        'Lead UX and UI design from discovery and wireframing through prototyping and developer handoff.',
+        'Run behavioural research — user interviews, surveys and heatmaps — to find friction and optimise journeys.',
+        'Apply data-informed design through usability testing and iterative optimisation.',
+        'Built and maintain a scalable Figma design system used across multiple teams.',
+      ],
+      stats: [
+        ['+50%', 'task success rate'],
+        ['−25%', 'support tickets'],
+        ['−60%', 'design-to-dev friction'],
+      ],
+    },
+    {
+      co: 'AX-Channels Studio', when: '2023 — 2025', title: 'UI/UX Designer & WordPress Designer',
+      points: [
+        'Delivered digital projects across websites, landing pages and business platforms.',
+        'Led end-to-end design projects from discovery and UX research through implementation.',
+        'Ran UX audits to identify usability issues and improve user journeys.',
+        'Designed responsive WordPress sites focused on usability, accessibility and conversion.',
+        'Worked directly with clients to translate business requirements into digital experiences.',
+      ],
+      stats: [
+        ['16+', 'projects delivered'],
+        ['4+', 'projects led end-to-end'],
+      ],
+    },
+  ];
+
+  /* href only where a case study actually exists on this site */
+  const PROJECTS = [
+    { g: 'Web platforms', items: [
+      ['FINOS', 'Web platform', 'finos.html'],
+      ['ManaGem', 'Web platform', 'managem.html'],
+      ['ECD Connect', 'Web platform'],
+    ]},
+    { g: 'Mobile apps', items: [
+      ['WasteMart', 'Mobile app', 'wastemart.html'],
+      ['NuraCoach', 'Mobile app'],
+      ['ECD Connect', 'Mobile app'],
+      ['Lisa Apartment', 'Mobile app', 'lisa.html'],
+      ['Lungelo', 'Mobile app'],
+      ['ELP App', 'Mobile app'],
+      ['Funda', 'Mobile app'],
+    ]},
+    { g: 'Conversational', items: [
+      ['WhatsApp Automation', 'WhatsApp', 'whatsapp-ai.html'],
+    ]},
+    { g: 'Systems', items: [
+      ['ManaGem Take-On', 'Onboarding system', 'managem.html'],
+    ]},
+    { g: 'Websites', items: [
+      ['CMAXX', 'Website', 'cmaxx.html'],
+      ['GEMIS', 'Website'],
+      ['AX-Channels', 'Website'],
+      ['Kiy Trucking', 'Website'],
+      ['SmartStart', 'Learning website'],
+      ['SG Coal', 'Redesign concept'],
+    ]},
+  ];
+
+  const LED = [
+    { n: 'FINOS', meta: 'AI-powered financial operating system. Owned the product model, the AI interaction patterns and the end-to-end UI.',
+      facts: ['Web platform', 'AI UX', 'Discovery → handoff'], href: 'finos.html' },
+    { n: 'ManaGem Take-On', meta: 'AI-assisted client onboarding for an enterprise ERP. Owned the confidence model, source traceability and the two-gate human review.',
+      facts: ['Onboarding system', 'Human-in-the-loop', 'Approved for build'], href: 'managem.html' },
+    { n: 'WasteMart', meta: 'Service and operations product connecting customers, drivers and back-office workflows.',
+      facts: ['Mobile app', 'Service design', 'Concept → UI'], href: 'wastemart.html' },
+    { n: 'SmartStart', meta: 'Learning website. Led the structure, content hierarchy and responsive build.',
+      facts: ['Learning website', 'IA', 'Responsive'] },
+    { n: 'Lungelo', meta: 'Multilingual field application designed for low-bandwidth, on-site use.',
+      facts: ['Mobile app', 'Multilingual', 'Field use'] },
+  ];
+
+  const ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>';
+
+  const VIEWS = {
+    experience: {
+      title: 'Three years, two companies',
+      sub: 'Where the experience comes from, and what I owned.',
+      html: () => ROLES.map((r) =>
+        '<div class="role"><div class="role__top"><span class="role__co">' + esc(r.co) + '</span>' +
+        '<span class="role__when">' + esc(r.when) + '</span></div>' +
+        '<p class="role__title">' + esc(r.title) + '</p>' +
+        '<ul class="role__list">' + r.points.map((x) => '<li><span>' + esc(x) + '</span></li>').join('') + '</ul>' +
+        '<div class="role__stats">' + r.stats.map((st) =>
+          '<span class="role__stat"><b>' + esc(st[0]) + '</b>' + esc(st[1]) + '</span>').join('') + '</div></div>'
+      ).join(''),
+    },
+    delivered: {
+      title: 'Projects delivered',
+      sub: 'Across enterprise platforms, mobile products, conversational systems and websites.',
+      html: () => PROJECTS.map((grp) =>
+        '<p class="sheet__group">' + esc(grp.g) + ' · ' + grp.items.length + '</p><div class="plist7">' +
+        grp.items.map(([n, t, href]) => {
+          const inner = '<span class="prow__n">' + esc(n) + (href ? ARROW : '') + '</span><span class="prow__t">' + esc(t) + '</span>';
+          return href ? '<a class="prow" href="' + href + '">' + inner + '</a>'
+                      : '<div class="prow">' + inner + '</div>';
+        }).join('') + '</div>'
+      ).join('') +
+      '<p class="sheet__note">Case studies are linked where one is published on this site. The rest are client and studio work delivered at Gem Information Systems and AX-Channels Studio.</p>',
+    },
+    led: {
+      title: 'Projects led',
+      sub: 'Work I owned end to end — from discovery through to developer handoff.',
+      html: () => LED.map((l) =>
+        '<div class="led"><div class="led__top"><span class="led__n">' + esc(l.n) + '</span>' +
+        (l.href ? '<a class="prow__t" href="' + l.href + '" style="margin-left:auto">View case study →</a>' : '') + '</div>' +
+        '<p class="led__meta">' + esc(l.meta) + '</p>' +
+        '<div class="led__facts">' + l.facts.map((f) => '<span class="led__fact">' + esc(f) + '</span>').join('') + '</div></div>'
+      ).join('') +
+      '<p class="sheet__note">The measured results below are practice-level outcomes from my work at Gem Information Systems, not figures attributed to any single project: ' +
+      '<b>+50%</b> task success rate, <b>−25%</b> support tickets, and <b>−60%</b> design-to-development friction after introducing a shared design system.</p>',
+    },
+  };
+
+  const sheet = $('#sheet');
+  if (!sheet) return;
+  const titleEl = $('#sheetTitle'), subEl = $('#sheetSub'), bodyEl = $('#sheetBody');
+  let lastFocus = null;
+
+  const open = (key) => {
+    const v = VIEWS[key];
+    if (!v) return;
+    lastFocus = document.activeElement;
+    titleEl.textContent = v.title;
+    subEl.textContent = v.sub;
+    bodyEl.innerHTML = v.html();
+    bodyEl.scrollTop = 0;
+    sheet.hidden = false;
+    document.body.style.overflow = 'hidden';
+    $('#sheetX').focus();
+  };
+  const close = () => {
+    sheet.hidden = true;
+    document.body.style.overflow = '';
+    if (lastFocus) lastFocus.focus({ preventScroll: true });
+  };
+
+  $$('.stat--link').forEach((b) => {
+    const key = b.dataset.sheet;
+    if (!key) return;
+    b.addEventListener('click', (e) => { e.stopImmediatePropagation(); open(key); });
+  });
+  $$('[data-sheet-close]', sheet).forEach((el) => el.addEventListener('click', close));
+  addEventListener('keydown', (e) => {
+    if (sheet.hidden) return;
+    if (e.key === 'Escape') { e.preventDefault(); close(); }
+    if (e.key === 'Tab') {
+      /* keep focus inside the dialog */
+      const f = $$('a[href],button,[tabindex]:not([tabindex="-1"])', sheet).filter((el) => el.offsetParent);
+      if (!f.length) return;
+      const first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
   });
 })();
