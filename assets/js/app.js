@@ -297,8 +297,8 @@
     })),
     ...$$('.side__link').map((a) => ({
       group: 'Go to',
-      /* read the link's own text, ignoring any appended micro-label */
-      label: [...a.childNodes].filter((n) => n.nodeType === 3).map((n) => n.textContent).join('').trim(),
+      /* the label lives in .lbl so the collapsed rail can hide it */
+      label: (a.querySelector('.lbl') || a).textContent.trim(),
       meta: a.getAttribute('href'),
       icon: ICON.hash,
       keys: 'section jump ' + a.textContent.trim(),
@@ -448,6 +448,24 @@
     /* one deliberate underline draw, never a loop */
     requestAnimationFrame(() => status.classList.add('is-drawn'));
   }
+
+  /* the topbar has no room for the status on small screens, so it moves
+     into the hero where it sits with the other identity information */
+  (() => {
+    const el = document.getElementById('status');
+    const hero = document.querySelector('.hero__grid');
+    const bar = document.querySelector('.topbar');
+    if (!el || !hero || !bar) return;
+    const mq = matchMedia('(max-width: 900px)');
+    const place = () => {
+      const target = mq.matches ? hero : bar;
+      if (el.parentElement !== target) {
+        mq.matches ? hero.appendChild(el) : bar.insertBefore(el, bar.querySelector('.who'));
+      }
+    };
+    place();
+    mq.addEventListener('change', place);
+  })();
 
   /* ── BUILD 1 — session memory ──
      Reads the PREVIOUS visit before writing this one, so "last seen"
