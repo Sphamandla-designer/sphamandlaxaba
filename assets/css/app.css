@@ -842,9 +842,14 @@ kbd {
   html.rail-collapsed .side__link { justify-content: center; padding: 7px 0; }
   html.rail-collapsed .side__group { margin-bottom: var(--sp-4); }
   html.rail-collapsed .side__group + .side__group { border-top: 1px solid var(--border); padding-top: var(--sp-4); }
-  html.rail-collapsed .cvcard { padding: var(--sp-3); text-align: center; }
-  html.rail-collapsed .cvcard__t { justify-content: center; }
-  html.rail-collapsed .cvcard__btn { margin-top: var(--sp-3); padding: 10px 0; }
+  html.rail-collapsed .cvcard { padding: var(--sp-2); text-align: center; background: none; }
+  html.rail-collapsed .cvcard__t { display: none; }
+  html.rail-collapsed .cvcard__btn {
+    margin-top: 0; padding: 0;
+    width: 44px; height: 44px; margin-inline: auto;
+    background: var(--elev); color: var(--elev-fg);
+  }
+  html.rail-collapsed .cvcard__btn svg { width: 18px; height: 18px; }
   .side { transition: width 0.28s var(--ease); }
 }
 /* the rail toggle is desktop-only; the drawer covers small screens */
@@ -1414,4 +1419,84 @@ img[data-skel].is-loaded { opacity: 1; }
   .status--on.is-drawn .status__txt::after { animation: none; transform: scaleX(1); }
   .boot__line { opacity: 1; transform: none; }
   ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MOBILE CORRECTIONS — section by section at 375–430px
+   ═══════════════════════════════════════════════════════════════ */
+
+/* topbar: the trigger must stay one line, and a keyboard hint is
+   meaningless on touch */
+.search--btn {
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  display: flex; align-items: center;
+}
+/* tooltips are a desktop-density affordance; on touch they add nothing and
+   their absolutely-positioned box widens the header's scroll area */
+@media (pointer: coarse), (max-width: 1024px) {
+  [data-tip]::after { content: none; }
+}
+
+@media (max-width: 900px) {
+  .search__hint { display: none; }
+  .search { padding: 0 18px; gap: 10px; }
+  .search svg { width: 18px; height: 18px; }
+  /* relocated into the hero by app.js, where it has room to read */
+  .topbar .status { display: none; }
+}
+/* in the hero the status keeps its full label */
+.hero .status { margin-top: 14px; }
+.hero .status #statusLabel {
+  position: static; width: auto; height: auto; margin: 0;
+  overflow: visible; clip: auto;
+}
+
+/* work toolbar: one intent per row instead of three ragged wraps */
+@media (max-width: 720px) {
+  .toolbar { gap: var(--sp-3); }
+  .segbar { width: 100%; overflow-x: auto; justify-content: flex-start; -webkit-overflow-scrolling: touch; }
+  .segbar::-webkit-scrollbar { display: none; }
+  .seg { flex: 1 0 auto; }
+  .toolbar__right { width: 100%; display: grid; grid-template-columns: 1fr auto; gap: var(--sp-3); align-items: center; }
+  .filterfield { grid-column: 1 / -1; order: -1; }
+  .filterfield input { width: 100%; }
+  .toolbar__count { order: 1; }
+  .viewtoggle { order: 2; justify-self: end; }
+}
+
+/* pills: the label was colliding with the + on narrow screens */
+.pill { gap: var(--sp-3); }
+.pill-x > summary { padding-right: clamp(16px, 4vw, 36px); }
+@media (max-width: 560px) {
+  .pill { font-size: var(--text-base); padding-left: var(--sp-4); }
+  .pill-x > summary { padding-right: var(--sp-4); }
+  .pill__body { padding-left: var(--sp-4); padding-right: var(--sp-4); }
+}
+
+/* work cards: keep the copy readable without turning into a wall */
+@media (max-width: 560px) {
+  .wcard { min-height: 240px; }
+  .wcard__d { font-size: var(--text-sm); }
+  .wcard__body { padding: var(--sp-4); }
+  .wcard__go { top: var(--sp-3); right: var(--sp-3); }
+}
+
+/* insights: smaller frames so the strip reads as a strip */
+@media (max-width: 560px) {
+  .rail__item { width: 62vw; }
+}
+
+/* chart + activity breathe on their own rows */
+@media (max-width: 560px) {
+  .split7 { gap: var(--sp-6); }
+  .donut__svg { width: 148px; }
+  .recent__date { width: 60px; }
+  .recent__row { gap: var(--sp-2); }
+}
+
+/* footer: give the columns real separation once stacked */
+@media (max-width: 720px) {
+  .foot__grid { gap: var(--sp-6); }
+  .foot__col b { margin-bottom: var(--sp-2); }
+  .foot__bar { gap: var(--sp-3); }
 }
