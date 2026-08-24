@@ -287,7 +287,7 @@
 
   /* items are read from the page, so the palette can never drift from it */
   const items = [
-    ...$$('#bento .wcard').map((c) => ({
+    ...$$('#bento .wcard[href]').map((c) => ({
       group: 'Case studies',
       label: c.querySelector('.wcard__t').textContent.trim(),
       meta: c.querySelector('.wcard__cat').textContent.trim(),
@@ -851,6 +851,12 @@
       facts: ['Mobile app', 'Multilingual', 'Field use'] },
   ];
 
+  const VENTURES = [
+    { n: 'Brand Studio', kind: 'UI/UX', meta: 'Product and interface design work for studio, service and small-business clients.' },
+    { n: 'NeuraUX', kind: 'AI UX Automation', meta: 'AI-assisted UX workflows and automation \u2014 applying AI as a design capability, not just a tool.' },
+    { n: 'Nometha Trading', kind: 'Marketing', meta: 'Brand and marketing work supporting a trading business.' },
+  ];
+
   const ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>';
 
   const VIEWS = {
@@ -890,6 +896,15 @@
       ).join('') +
       '<p class="sheet__note">The measured results below are practice-level outcomes from my work at Gem Information Systems, not figures attributed to any single project: ' +
       '<b>+50%</b> task success rate, <b>−25%</b> support tickets, and <b>−60%</b> design-to-development friction after introducing a shared design system.</p>',
+    },
+    ventures: {
+      title: 'Active ventures',
+      sub: 'What I am currently building alongside client work.',
+      html: () => VENTURES.map((v) =>
+        '<div class="led"><div class="led__top"><span class="led__n">' + esc(v.n) + '</span>' +
+        '<span class="led__fact" style="margin-left:auto">' + esc(v.kind) + '</span></div>' +
+        '<p class="led__meta">' + esc(v.meta) + '</p></div>'
+      ).join(''),
     },
   };
 
