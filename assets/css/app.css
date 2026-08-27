@@ -1037,36 +1037,6 @@ html[data-theme="dark"] { --gold: #d8bb63; }
   font-variant-ligatures: none;
 }
 
-/* ── status indicator (header) ────────────────────────────────── */
-.status {
-  display: inline-flex; align-items: center; gap: 7px;
-  padding: 6px 12px;
-  border: 1px solid var(--border);
-  border-radius: var(--r-pill);
-  background: var(--surface);
-  white-space: nowrap;
-  color: var(--ink-2);
-}
-.status__dot {
-  width: 7px; height: 7px; border-radius: 50%;
-  background: var(--ink-3); flex: 0 0 auto;
-}
-.status--on { border-color: var(--gold-bd); background: var(--gold-bg); color: var(--gold); }
-/* the header runs out of room before the label does, so below the tablet
-   breakpoint the status collapses to its dot and keeps its accessible name */
-@media (max-width: 900px) {
-  .status { padding: 6px; }
-  .status #statusLabel {
-    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
-  }
-}
-.status--on .status__dot { background: var(--gold-live); animation: pulse 2.4s var(--ease) infinite; }
-@keyframes pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.55); }
-  60%      { box-shadow: 0 0 0 6px rgba(201, 168, 76, 0); }
-}
-
 /* ── session line (returning visitors only) ───────────────────── */
 .sessionline {
   display: none;
@@ -1142,14 +1112,12 @@ html.rail-collapsed .side__link .micro { display: none; }
 .stat__v { font-variant-numeric: tabular-nums; }
 
 @media (prefers-reduced-motion: reduce) {
-  .status--on .status__dot { animation: none; }
   .is-flash { animation: none; }
 }
 
 /* ═══════════════════════════════════════════════════════════════
    CORRECTIONS PASS v2
-   Interaction states, boot sequence, mobile, nav, status redesign,
-   discipline chart.
+   Interaction states, boot sequence, mobile, nav, discipline chart.
    ═══════════════════════════════════════════════════════════════ */
 
 /* ── BUILD 1 — interaction states ─────────────────────────────── */
@@ -1225,27 +1193,6 @@ html.leaving .main, html.leaving .side { opacity: 0; transition: opacity 0.2s va
 .shot-skel { background: var(--muted-surface); }
 img[data-skel] { opacity: 0; transition: opacity 0.4s var(--ease); }
 img[data-skel].is-loaded { opacity: 1; }
-
-/* ── BUILD 6 — status as an editorial flag, no pulse ──────────── */
-.status {
-  display: inline-flex; align-items: baseline; gap: 0;
-  padding: 0; border: 0; background: none;
-  font-family: var(--font-mono); font-size: 12px;
-  color: var(--ink-2); white-space: nowrap;
-  position: relative;
-}
-.status__dot { display: none; }
-.status__br { color: var(--ink-3); }
-.status__txt { position: relative; padding: 0 6px; color: var(--ink); }
-.status--on .status__txt { color: var(--gold); }
-.status__txt::after {
-  content: ""; position: absolute; left: 6px; right: 6px; bottom: -3px; height: 1.5px;
-  background: var(--gold);
-  transform: scaleX(0); transform-origin: left;
-}
-/* a single deliberate draw on load — never a loop */
-.status--on.is-drawn .status__txt::after { animation: draw 0.7s var(--ease) 0.5s forwards; }
-@keyframes draw { to { transform: scaleX(1); } }
 
 /* ── BUILD 7 — discipline chart ───────────────────────────────── */
 .split7 {
@@ -1418,7 +1365,6 @@ img[data-skel].is-loaded { opacity: 1; }
 
 @media (prefers-reduced-motion: reduce) {
   .wcard:hover { transform: none; }
-  .status--on.is-drawn .status__txt::after { animation: none; transform: scaleX(1); }
   .boot__line { opacity: 1; transform: none; }
   ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
 }
@@ -1445,14 +1391,6 @@ img[data-skel].is-loaded { opacity: 1; }
   .search__hint { display: none; }
   .search { padding: 0 18px; gap: 10px; }
   .search svg { width: 18px; height: 18px; }
-  /* relocated into the hero by app.js, where it has room to read */
-  .topbar .status { display: none; }
-}
-/* in the hero the status keeps its full label */
-.hero .status { margin-top: 14px; }
-.hero .status #statusLabel {
-  position: static; width: auto; height: auto; margin: 0;
-  overflow: visible; clip: auto;
 }
 
 /* work toolbar: one intent per row instead of three ragged wraps */

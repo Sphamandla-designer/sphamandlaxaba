@@ -432,41 +432,6 @@
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ── config: single source of truth for availability ── */
-  const STATUS = {
-    available: true,
-    labelOn: 'open to work',
-    labelOff: 'not taking new work',
-  };
-
-  /* ── BUILD 4 — status indicator ── */
-  const status = $('#status');
-  if (status) {
-    $('#statusLabel').textContent = STATUS.available ? STATUS.labelOn : STATUS.labelOff;
-    status.classList.toggle('status--on', STATUS.available);
-    status.hidden = false;
-    /* one deliberate underline draw, never a loop */
-    requestAnimationFrame(() => status.classList.add('is-drawn'));
-  }
-
-  /* the topbar has no room for the status on small screens, so it moves
-     into the hero where it sits with the other identity information */
-  (() => {
-    const el = document.getElementById('status');
-    const hero = document.querySelector('.hero__grid');
-    const bar = document.querySelector('.topbar');
-    if (!el || !hero || !bar) return;
-    const mq = matchMedia('(max-width: 900px)');
-    const place = () => {
-      const target = mq.matches ? hero : bar;
-      if (el.parentElement !== target) {
-        mq.matches ? hero.appendChild(el) : bar.insertBefore(el, bar.querySelector('.who'));
-      }
-    };
-    place();
-    mq.addEventListener('change', place);
-  })();
-
   /* ── BUILD 1 — session memory ──
      Reads the PREVIOUS visit before writing this one, so "last seen"
      describes the last visit and not the current one. */
