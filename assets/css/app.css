@@ -272,6 +272,13 @@ ul, ol { padding: 0; list-style: none; }
 
 /* topbar */
 .topbar { display: flex; align-items: center; gap: var(--gap); }
+/* the search is width-capped, so nothing in the row absorbs the slack. The
+   actions and the profile are pushed to the right edge instead, so the bar
+   ends on the same line as the panels below it. */
+.topbar__end {
+  display: flex; align-items: center; gap: var(--gap);
+  margin-left: auto; flex: 0 0 auto;
+}
 .search {
   flex: 1 1 auto;
   display: flex; align-items: center; gap: 14px;
