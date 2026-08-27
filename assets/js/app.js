@@ -823,7 +823,7 @@
       ['Funda', 'Mobile app'],
     ]},
     { g: 'Conversational', items: [
-      ['WhatsApp Automation', 'WhatsApp', 'whatsapp-ai.html'],
+      ['WhatsApp Automation', 'WhatsApp', '', true],
     ]},
     { g: 'Systems', items: [
       ['ManaGem Take-On', 'Onboarding system', 'managem.html'],
@@ -877,8 +877,10 @@
       sub: 'Across enterprise platforms, mobile products, conversational systems and websites.',
       html: () => PROJECTS.map((grp) =>
         '<p class="sheet__group">' + esc(grp.g) + ' · ' + grp.items.length + '</p><div class="plist7">' +
-        grp.items.map(([n, t, href]) => {
-          const inner = '<span class="prow__n">' + esc(n) + (href ? ARROW : '') + '</span><span class="prow__t">' + esc(t) + '</span>';
+        grp.items.map(([n, t, href, soon]) => {
+          const badge = soon ? '<span class="wcard__soon wcard__soon--inline">Coming soon</span>' : '';
+          const inner = '<span class="prow__n">' + esc(n) + badge + (href ? ARROW : '') + '</span>' +
+                        '<span class="prow__t">' + esc(t) + '</span>';
           return href ? '<a class="prow" href="' + href + '">' + inner + '</a>'
                       : '<div class="prow">' + inner + '</div>';
         }).join('') + '</div>'

@@ -14,7 +14,7 @@
   <meta name="theme-color" content="#e4e2e6" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preload" href="assets/fonts/outfit-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="assets/css/app.css?v=v6-1" />
+  <link rel="stylesheet" href="assets/css/app.css?v=v6-2" />
   <script>
     /* applied before first paint so the theme and rail never flash */
     (() => {
@@ -265,17 +265,15 @@
             </div>
 
             <div class="bento__row bento__row--flip">
-              <a class="wcard" href="whatsapp-ai.html" data-cat="ai" data-tags="whatsapp conversational ux ai assistant chatbot mobile">
+              <div class="wcard wcard--soon" data-cat="ai" data-tags="whatsapp conversational ux ai assistant chatbot mobile" aria-label="Automation Conversation — case study coming soon">
                 <img class="wcard__img" src="assets/img/home/work-whatsapp.jpg" alt="WhatsApp Home Assist conversation open on a phone" width="1000" height="750" loading="lazy" decoding="async" />
-                <span class="wcard__go" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
-                </span>
+                <span class="wcard__soon">Coming soon</span>
                 <div class="wcard__body">
                   <p class="wcard__cat">WhatsApp system</p>
                   <h3 class="wcard__t">Automation Conversation</h3>
                   <p class="wcard__d">Exploring how conversational interfaces can simplify everyday service interactions through WhatsApp.</p>
                 </div>
-              </a>
+              </div>
               <a class="wcard" href="managem.html" data-cat="product ai" data-tags="managem gemis erp enterprise ai ux human in the loop web platform take-on">
                 <img class="wcard__img" src="assets/img/home/work-managem.jpg" alt="ManaGem enterprise dashboard displayed on a desktop monitor" width="800" height="600" loading="lazy" decoding="async" />
                 <span class="wcard__go" aria-hidden="true">
@@ -331,10 +329,10 @@
                 <td class="cell-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></td>
               </tr>
               <tr data-cat="ai" data-tags="whatsapp conversational ux ai assistant chatbot mobile">
-                <td data-label="Project"><a href="whatsapp-ai.html">Automation Conversation</a></td>
+                <td data-label="Project"><span class="prow__soonrow">Automation Conversation <span class="wcard__soon wcard__soon--inline">Coming soon</span></span></td>
                 <td data-label="Discipline"><span class="cell-disc"><span class="badge">AI UX</span></span></td>
                 <td data-label="Platform">WhatsApp system</td>
-                <td class="cell-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></td>
+                <td class="cell-go"></td>
               </tr>
               <tr data-cat="product ai" data-tags="managem gemis erp enterprise ai ux human in the loop web platform take-on">
                 <td data-label="Project"><a href="managem.html">Clarity For Enterprise</a></td>
@@ -653,6 +651,6 @@
 
   <div class="toasts" id="toasts" role="status" aria-live="polite"></div>
 
-  <script src="assets/js/app.js?v=v6-1" defer></script>
+  <script src="assets/js/app.js?v=v6-2" defer></script>
 </body>
 </html>
