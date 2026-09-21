@@ -14,7 +14,7 @@
   <meta name="theme-color" content="#e4e2e6" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preload" href="assets/fonts/outfit-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="assets/css/app.css?v=v6-5" />
+  <link rel="stylesheet" href="assets/css/app.css?v=v6-6" />
   <script>
     /* applied before first paint so the theme and rail never flash */
     (() => {
@@ -218,7 +218,7 @@
               <button class="seg" role="tab" aria-selected="false" data-cat="web">Web</button>
             </div>
             <div class="toolbar__right">
-              <p class="toolbar__count" id="workCount" aria-live="polite">6 case studies</p>
+              <p class="toolbar__count" id="workCount" aria-live="polite">7 case studies</p>
               <div class="filterfield">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.2-3.2"/></svg>
                 <label class="sr-only" for="q">Filter case studies</label>
@@ -308,6 +308,20 @@
                 </div>
               </div>
             </div>
+
+            <div class="bento__row bento__row--wide">
+              <a class="wcard" href="gemis-studio.html" data-cat="web product" data-tags="gemis studio website web experience services ladder pricing design practice front end build accessibility">
+                <img class="wcard__img" src="assets/img/home/work-gemis-studio.jpg" alt="GEMIS Studio website shown in a browser" width="1620" height="1215" loading="lazy" decoding="async" />
+                <span class="wcard__go" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+                </span>
+                <div class="wcard__body">
+                  <p class="wcard__cat">Studio website</p>
+                  <h3 class="wcard__t">Designed To Be Used</h3>
+                  <p class="wcard__d">The front door for GEM Information Systems&rsquo; design practice &mdash; a published services ladder, work that evidences a named service, and a page that still reads with JavaScript off.</p>
+                </div>
+              </a>
+            </div>
           </div>
           <table class="wtable" id="wtable">
             <caption class="sr-only">Case studies by discipline and platform</caption>
@@ -345,6 +359,12 @@
                 <td data-label="Platform">Website</td>
                 <td class="cell-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></td>
               </tr>
+              <tr data-cat="web product" data-tags="gemis studio website web experience services ladder pricing design practice front end build accessibility">
+                <td data-label="Project"><a href="gemis-studio.html">Designed To Be Used</a></td>
+                <td data-label="Discipline"><span class="cell-disc"><span class="badge">Web</span><span class="badge">Product design</span></span></td>
+                <td data-label="Platform">Studio website</td>
+                <td class="cell-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></td>
+              </tr>
               <tr data-cat="web" data-tags="brand studio identity visual design systems">
                 <td data-label="Project"><span class="prow__soonrow">Studio Identity Work <span class="wcard__soon wcard__soon--inline">Coming soon</span></span></td>
                 <td data-label="Discipline"><span class="cell-disc"><span class="badge">Web</span></span></td>
@@ -361,7 +381,7 @@
           <div class="panel__head">
             <div>
               <h2 id="logH">Work by discipline</h2>
-              <p class="panel__sub">Across six case studies. Select a discipline to filter the work above.</p>
+              <p class="panel__sub">Across seven case studies. Select a discipline to filter the work above.</p>
             </div>
           </div>
           <div class="panel__rule"></div>
@@ -649,6 +669,6 @@
 
   <div class="toasts" id="toasts" role="status" aria-live="polite"></div>
 
-  <script src="assets/js/app.js?v=v6-5" defer></script>
+  <script src="assets/js/app.js?v=v6-6" defer></script>
 </body>
 </html>

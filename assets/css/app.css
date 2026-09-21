@@ -459,6 +459,7 @@ ul, ol { padding: 0; list-style: none; }
 .bento { display: grid; gap: var(--gap-sm); }
 .bento__row { display: grid; gap: var(--gap-sm); grid-template-columns: 2fr 1fr; }
 .bento__row--flip { grid-template-columns: 1fr 2fr; }
+.bento__row--wide { grid-template-columns: 1fr; }
 
 .wcard {
   position: relative;
