@@ -794,6 +794,7 @@
       ['ManaGem Take-On', 'Onboarding system', 'managem.html'],
     ]},
     { g: 'Websites', items: [
+      ['GEMIS Studio', 'Studio website', 'gemis-studio.html'],
       ['CMAXX', 'Website', 'cmaxx.html'],
       ['GEMIS', 'Website'],
       ['AX-Channels', 'Website'],
