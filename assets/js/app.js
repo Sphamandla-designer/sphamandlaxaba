@@ -788,7 +788,7 @@
       ['Funda', 'Mobile app'],
     ]},
     { g: 'Conversational', items: [
-      ['WhatsApp Automation', 'WhatsApp', '', true],
+      ['WhatsApp Automation', 'WhatsApp', 'whatsapp-ai.html'],
     ]},
     { g: 'Systems', items: [
       ['ManaGem Take-On', 'Onboarding system', 'managem.html'],
