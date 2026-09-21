@@ -505,8 +505,8 @@
         '<button class="donut__item" data-key="' + c.key + '" aria-pressed="false">' +
         '<span class="donut__swatch" style="background:' + c.color + '"></span>' +
         '<span>' + c.label + '</span>' +
-        '<span class="donut__n">' + c.n + ' · ' + Math.round((c.n / total) * 100) + '%</span>' +
-        '<span class="donut__bar"><i class="donut__fill" style="--pct:' + ((c.n / total) * 100).toFixed(1) + '%; background:' + c.color + '"></i></span>' +
+        '<span class="donut__n">' + c.n + ' of ' + cards.length + '</span>' +
+        '<span class="donut__bar"><i class="donut__fill" style="--pct:' + ((c.n / cards.length) * 100).toFixed(1) + '%; background:' + c.color + '"></i></span>' +
         '</button>').join('') +
         '<button class="donut__clear" id="donutClear" hidden>× clear filter</button></div>';
 
@@ -584,13 +584,13 @@
 
   /* recent activity — plain language, capped, with a view-more */
   const ENTRIES = [
+    { date: 'Sep 2026', label: 'Published the GEMIS Studio case study' },
     { date: 'Aug 2026', label: 'Rebuilt the portfolio as a stateful dashboard' },
     { date: 'Aug 2026', label: 'Rebuilt the ManaGem case study' },
     { date: 'Aug 2026', label: 'Published the CMAXX connectivity redesign' },
     { date: 'Aug 2026', label: 'Published the FINOS case study' },
     { date: 'Jul 2026', label: 'Published WhatsApp Home Assist' },
     { date: 'Jul 2026', label: 'Published the WasteMart concept' },
-    { date: 'Jul 2026', label: 'Published studio identity work' },
   ];
   const CAP = 5;
   const recent = $('#recentFeed');
