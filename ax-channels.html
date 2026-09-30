@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AX-Channels — Designing A UX-Led Digital Studio — Sphamandla Xaba®</title>
+  <meta name="description" content="Case study: repositioning AX-Channels from a web-design service into a UX-led digital studio — strategy, information architecture, a design system, eight responsive pages and an AI-assisted build, designed as a product rather than a brochure." />
+  <meta property="og:title" content="AX-Channels — Designing A UX-Led Digital Studio" />
+  <meta property="og:description" content="Strategy, information architecture, interface design and AI-assisted implementation, connecting a studio's positioning to the journeys its clients take." />
+  <meta property="og:image" content="assets/img/ax/ax-cover.jpg" />
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+  <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/jetbrains-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <script>document.documentElement.classList.add('js');</script>
+  <style>
+    /* ═══════════════════════════════════════════════════════════
+       AX-Channels — studio site case study
+       Built on the AX-Channels design system itself: Archivo +
+       JetBrains Mono, white page, ink blocks with teal / magenta
+       glows, one magenta accent, pill buttons, stepped spacing.
+       ═══════════════════════════════════════════════════════════ */
+    @font-face { font-family:"Archivo"; src:url("assets/fonts/archivo-latin-wdth-normal.woff2") format("woff2-variations"); font-weight:100 900; font-stretch:62.5% 125%; font-display:swap; }
+    @font-face { font-family:"JetBrains Mono"; src:url("assets/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2"); font-weight:400 700; font-display:swap; }
+
+    :root {
+      /* AX-Channels tokens (assets/css/home.css in the studio repo) */
+      --page:#ffffff;
+      --ink:#0a0a0a;
+      --ink-2:#101014;
+      --night:#1d1e24;
+      --teal:#006275;
+      --glow-teal:0,98,117;
+      --glow-mag:62,18,41;
+      --cyan:92,209,240;
+      --accent:#ff3d8a;      /* on dark  */
+      --accent-ink:#e0176b;  /* on light */
+      --muted:#697080;
+      --muted-2:#73767a;
+      --on-dark-dim:#8a8d95;
+      --rule-light:rgba(10,10,10,.12);
+      --rule-dark:rgba(255,255,255,.14);
+      --font:"Archivo", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      --mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+      --shell:clamp(12px,1.25vw,24px);
+      --block-pad:clamp(16px,2.4vw,44px);
+      --r-block:clamp(16px,1.25vw,24px);
+      --r-soft:clamp(14px,1.15vw,22px);
+      --r-card:8px;
+      --ease:cubic-bezier(.22,.61,.36,1);
+      --section-space:140px;
+      --wrap:1320px;
+    }
+    @media (max-width:1439px){ :root{ --section-space:120px; } }
+    @media (max-width:1023px){ :root{ --section-space:96px; } }
+    @media (max-width:767px) { :root{ --section-space:80px; } }
+    @media (max-width:479px) { :root{ --section-space:72px; } }
+
+    *,*::before,*::after { box-sizing:border-box; }
+    html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+    body { margin:0; background:var(--page); color:var(--ink); font-family:var(--font); font-size:clamp(15px,1.05vw,17px); line-height:1.65; -webkit-font-smoothing:antialiased; overflow-x:clip; }
+    h1,h2,h3,h4,p,figure,ul,ol,dl,dd { margin:0; padding:0; }
+    ul,ol { list-style:none; }
+    img { display:block; max-width:100%; height:auto; }
+    a { color:inherit; text-decoration:none; }
+    button { font:inherit; color:inherit; background:none; border:0; padding:0; cursor:pointer; }
+    ::selection { background:var(--accent-ink); color:#fff; }
+    :focus-visible { outline:2px solid var(--accent-ink); outline-offset:3px; border-radius:4px; }
+    .sr-only { position:absolute!important; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+    .skip { position:absolute; left:16px; top:-100px; z-index:999; padding:10px 18px; background:#fff; color:#000; border-radius:999px; font-size:14px; }
+    .skip:focus { top:12px; }
+
+    .wrap { width:100%; max-width:calc(var(--wrap) + 2*var(--block-pad)); margin-inline:auto; padding-inline:var(--block-pad); }
+    .sec { padding-top:var(--section-space); }
+    .sec--end { padding-bottom:var(--section-space); }
+
+    /* type — the studio's voice: title-case headings, one accent word, mono micro-labels */
+    .eyebrow { font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:var(--accent-ink); display:inline-flex; align-items:center; gap:10px; }
+    .eyebrow b { color:var(--muted-2); font-weight:500; }
+    .dark .eyebrow { color:var(--accent); }
+    .dark .eyebrow b { color:var(--on-dark-dim); }
+    .h1 { font-size:clamp(40px,6.4vw,104px); font-weight:500; line-height:1.02; letter-spacing:-.035em; }
+    .h2 { font-size:clamp(28px,3.3vw,52px); font-weight:500; line-height:1.14; letter-spacing:-.022em; text-wrap:balance; }
+    .h3 { font-size:clamp(19px,1.5vw,24px); font-weight:600; line-height:1.3; letter-spacing:-.01em; }
+    .mark { color:var(--accent-ink); }
+    .dark .mark { color:var(--accent); }
+    .lead { font-size:clamp(17px,1.35vw,22px); line-height:1.7; color:#2a2b30; max-width:60ch; }
+    .dark .lead { color:#d6d7db; }
+    .body { color:var(--muted); max-width:66ch; }
+    .dark .body { color:var(--on-dark-dim); }
+    .body strong, .lead strong { color:var(--ink); font-weight:600; }
+    .dark .body strong, .dark .lead strong { color:#fff; }
+    .body p + p { margin-top:1em; }
+    .small { font-size:13px; color:var(--muted-2); }
+
+    /* section head: heading on the content line, statement opposite */
+    .sec-head { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,40ch); column-gap:clamp(24px,5vw,96px); align-items:end; margin-bottom:clamp(36px,4.5vw,72px); }
+    .sec-head .eyebrow { grid-column:1/-1; margin-bottom:22px; }
+    .sec-head__sub { justify-self:end; text-align:right; font-size:clamp(15px,1.15vw,19px); line-height:1.75; color:#2a2b30; text-wrap:balance; }
+    .dark .sec-head__sub { color:#c9cad0; }
+    @media (max-width:900px){ .sec-head{ grid-template-columns:1fr; } .sec-head__sub{ justify-self:start; text-align:left; margin-top:20px; } }
+
+    /* buttons — every button is the hero's pill */
+    .pill { display:inline-flex; align-items:center; gap:10px; height:clamp(44px,3.1vw,52px); padding-inline:clamp(18px,1.6vw,26px); border-radius:999px; font-size:15px; font-weight:500; white-space:nowrap; transition:background-color .25s var(--ease), transform .25s var(--ease), color .25s var(--ease); }
+    .pill svg { width:14px; height:14px; }
+    .pill--accent { background:var(--accent-ink); color:#fff; }
+    .pill--accent:hover { background:#f32079; }
+    .pill--light { background:#fff; color:var(--ink); }
+    .pill--light:hover { background:#e6e6e6; }
+    .pill--ink { background:var(--ink); color:#fff; }
+    .pill--ink:hover { background:#2a2a2e; }
+    .pill--ghost { border:1px solid var(--rule-dark); color:#fff; }
+    .pill--ghost:hover { background:rgba(255,255,255,.1); }
+    .pill:active { transform:scale(.97); }
+    .chip { display:inline-flex; align-items:center; height:30px; padding-inline:12px; border-radius:999px; background:#000; color:#fff; font-size:12px; white-space:nowrap; }
+    .chip--line { background:transparent; color:var(--ink); border:1px solid var(--rule-light); }
+    .dark .chip--line { color:#fff; border-color:var(--rule-dark); }
+
+    /* dark blocks — the hero's world, carried by band--dark / block--dark */
+    .dark { color:#fff; }
+    .block { margin:0 var(--shell); border-radius:var(--r-block); overflow:clip; position:relative;
+      background:
+        radial-gradient(56% 46% at 80% 0%, rgba(var(--glow-teal),.46), transparent 68%),
+        radial-gradient(50% 44% at 8% 100%, rgba(var(--glow-mag),.62), transparent 66%),
+        var(--ink-2); }
+    .wash { background:
+        radial-gradient(46% 62% at 96% 4%, rgba(var(--glow-teal),.16), transparent 72%),
+        radial-gradient(40% 55% at 0% 92%, rgba(var(--glow-mag),.12), transparent 72%); }
+
+    /* top bar — a slim version of the studio masthead */
+    .bar { position:fixed; top:var(--shell); left:50%; transform:translateX(-50%); z-index:100; display:flex; align-items:center; gap:6px; padding:6px; border-radius:999px;
+      background:rgba(16,18,21,.66); border:1px solid rgba(255,255,255,.1); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); color:#fff; max-width:calc(100% - 2*var(--shell)); }
+    .bar a { display:inline-flex; align-items:center; gap:8px; padding:9px 16px; border-radius:999px; font-size:14px; font-weight:500; white-space:nowrap; transition:background-color .25s var(--ease); }
+    .bar a:hover { background:rgba(255,255,255,.12); }
+    .bar a.is-cta { background:#fff; color:var(--ink); }
+    .bar a.is-cta:hover { background:#e6e6e6; }
+    .bar img { width:26px; max-width:none; flex:none; height:auto; }
+    .bar__sep { width:1px; height:20px; background:rgba(255,255,255,.18); }
+    @media (max-width:640px){ .bar__hide{ display:none!important; } .bar a{ padding:9px 13px; } }
+
+    /* progress rail */
+    .rail { position:fixed; left:14px; top:50%; transform:translateY(-50%); z-index:90; display:none; flex-direction:column; gap:1px; }
+    @media (min-width:1500px){ html.js .rail{ display:flex; } }
+    .rail a { font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted-2); padding:3px 10px; border-left:2px solid var(--rule-light); transition:color .2s, border-color .2s; }
+    .rail a.is-on { color:var(--accent-ink); border-color:var(--accent-ink); }
+    .rail.on-dark a { color:var(--on-dark-dim); border-color:var(--rule-dark); }
+    .rail.on-dark a.is-on { color:var(--accent); border-color:var(--accent); }
+
+    /* reveals */
+    html.js [data-r] { opacity:0; transform:translateY(22px); transition:opacity .85s var(--ease), transform .85s var(--ease); }
+    html.js [data-r].is-in { opacity:1; transform:none; }
+    @media (prefers-reduced-motion:reduce){ html{ scroll-behavior:auto; } html.js [data-r]{ opacity:1; transform:none; transition:none; } *{ transition-duration:.001ms!important; animation-duration:.001ms!important; } }
+
+    /* ── 00 COVER ── */
+    .cover { margin-top:var(--shell); padding:clamp(110px,12vw,170px) 0 0; }
+    .cover__pill { display:inline-flex; align-items:center; gap:10px; height:32px; padding:0 14px 0 5px; border-radius:999px; background:rgba(255,255,255,.9); color:var(--ink);
+      font-family:var(--mono); font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; }
+    .cover__pill i { display:grid; place-items:center; width:22px; height:22px; border-radius:6px; background:var(--accent-ink); color:#fff; font-style:normal; font-size:14px; line-height:1; }
+    .cover h1 { margin-top:26px; }
+    .cover__sub { margin-top:14px; font-size:clamp(22px,2.4vw,38px); font-weight:400; line-height:1.2; letter-spacing:-.02em; color:#fff; max-width:22ch; }
+    .cover__sub span { color:var(--accent); }
+    .cover__row { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:32px; align-items:end; margin-top:clamp(28px,3vw,44px); }
+    .cover__one { font-size:clamp(15px,1.15vw,18px); line-height:1.75; color:#cfd0d5; max-width:52ch; }
+    .cover__cta { display:flex; flex-wrap:wrap; gap:12px; }
+    @media (max-width:900px){ .cover__row{ grid-template-columns:1fr; } }
+    .meta { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); margin-top:clamp(40px,5vw,72px); border-top:1px solid var(--rule-dark); }
+    .meta div { padding:18px 18px 20px 0; }
+    .meta dt { font-family:var(--mono); font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--on-dark-dim); margin-bottom:8px; }
+    .meta dd { font-size:14px; line-height:1.5; color:#fff; }
+    @media (max-width:1100px){ .meta{ grid-template-columns:repeat(3,minmax(0,1fr)); } }
+    @media (max-width:560px){ .meta{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    .cover__shot { margin-top:clamp(28px,3vw,48px); margin-inline:calc(-1*var(--block-pad)); }
+    .cover__shot img { width:100%; }
+
+    /* positioning statement */
+    .statement { display:grid; grid-template-columns:minmax(0,33fr) minmax(0,67fr); column-gap:clamp(24px,4vw,90px); }
+    .statement__label { font-family:var(--mono); font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted-2); padding-top:.7em; }
+    .statement__text { font-size:clamp(24px,2.9vw,46px); font-weight:500; line-height:1.24; letter-spacing:-.022em; }
+    .statement__text span { color:#8c8f98; }
+    @media (max-width:900px){ .statement{ grid-template-columns:1fr; row-gap:18px; } }
+
+    /* figures */
+    .fig { margin-top:clamp(32px,4vw,56px); }
+    .fig img { width:100%; border-radius:var(--r-soft); }
+    .fig--bleed { margin-inline:var(--shell); }
+    .fig--bleed img { border-radius:var(--r-block); }
+    figcaption { margin-top:14px; font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted-2); display:flex; gap:14px; flex-wrap:wrap; }
+    figcaption b { color:var(--accent-ink); font-weight:500; }
+    .dark figcaption { color:var(--on-dark-dim); }
+    .dark figcaption b { color:var(--accent); }
+    .shot { border-radius:var(--r-soft); overflow:hidden; border:1px solid var(--rule-light); box-shadow:0 40px 90px -50px rgba(10,10,20,.45); background:#fff; }
+    .shot img { border-radius:0; }
+
+    /* ── 01 CHALLENGE ── */
+    .tension { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); border-top:1px solid var(--rule-light); margin-top:clamp(32px,4vw,56px); }
+    .tension li { padding:22px 22px 26px 0; border-bottom:1px solid var(--rule-light); display:grid; grid-template-columns:34px 1fr; gap:8px; font-size:15.5px; line-height:1.6; }
+    .tension li span { font-family:var(--mono); font-size:11px; color:var(--accent-ink); padding-top:4px; }
+    @media (max-width:900px){ .tension{ grid-template-columns:1fr 1fr; } }
+    @media (max-width:560px){ .tension{ grid-template-columns:1fr; } }
+    .hmw { margin-top:clamp(40px,5vw,72px); padding:clamp(32px,5vw,80px) var(--block-pad); }
+    .hmw p.eyebrow { margin-bottom:22px; }
+    .hmw q { display:block; font-size:clamp(26px,3.4vw,56px); font-weight:500; line-height:1.16; letter-spacing:-.028em; max-width:26ch; quotes:none; }
+    .hmw q span { color:var(--accent); }
+    .ba { display:grid; grid-template-columns:1fr 1fr; gap:clamp(16px,2vw,28px); margin-top:clamp(40px,5vw,72px); }
+    .ba figure .tag { display:inline-flex; margin-bottom:12px; }
+    @media (max-width:820px){ .ba{ grid-template-columns:1fr; } }
+
+    /* ── 02 GOALS ── */
+    .goals { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); gap:clamp(24px,3vw,48px); }
+    .gcards { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .gcard { border:1px solid var(--rule-light); border-top:2px solid var(--accent-ink); border-radius:var(--r-card); padding:22px 22px 24px; background:#fff; }
+    .gcard .eyebrow { font-size:10.5px; }
+    .gcard h3 { margin:14px 0 8px; }
+    .gcard p { font-size:14.5px; color:var(--muted); line-height:1.65; }
+    .ugoals { border-radius:var(--r-card); background:var(--ink-2); color:#fff; padding:26px; }
+    .ugoals h3 { margin:14px 0 18px; }
+    .ugoals ol { counter-reset:u; display:grid; gap:0; }
+    .ugoals li { counter-increment:u; display:grid; grid-template-columns:40px 1fr; padding:13px 0; border-top:1px solid var(--rule-dark); font-size:15px; color:#dcdde1; }
+    .ugoals li::before { content:"0" counter(u); font-family:var(--mono); font-size:11px; color:var(--accent); padding-top:4px; }
+    @media (max-width:980px){ .goals{ grid-template-columns:1fr; } }
+    @media (max-width:560px){ .gcards{ grid-template-columns:1fr; } }
+
+    /* ── 03 AUDIENCE ── */
+    .aud { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .aud__card { padding:clamp(24px,3vw,40px); border-radius:var(--r-soft); border:1px solid var(--rule-light); background:#fff; }
+    .aud__card .h3 { margin:14px 0 10px; font-size:clamp(22px,2vw,30px); font-weight:500; letter-spacing:-.02em; }
+    .aud__card p { color:var(--muted); }
+    .insight { margin-top:12px; display:grid; grid-template-columns:auto 1fr; gap:clamp(16px,3vw,40px); align-items:center; padding:clamp(24px,3vw,40px); border-radius:var(--r-soft); background:#f3f4f6; }
+    .insight__k { font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent-ink); }
+    .insight p { font-size:clamp(18px,1.6vw,24px); line-height:1.45; letter-spacing:-.01em; }
+    @media (max-width:760px){ .aud{ grid-template-columns:1fr; } .insight{ grid-template-columns:1fr; } }
+
+    /* ── 04 RESEARCH ── */
+    .refs { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:clamp(28px,3vw,44px); align-items:center; }
+    .refs .small { margin-right:8px; }
+    .patterns { border-top:1px solid var(--rule-light); }
+    .pat { display:grid; grid-template-columns:120px minmax(0,1fr) minmax(0,1fr); gap:clamp(16px,3vw,48px); padding:clamp(22px,2.4vw,34px) 0; border-bottom:1px solid var(--rule-light); }
+    .pat__n { font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-ink); padding-top:6px; }
+    .pat h3 { font-size:clamp(19px,1.7vw,26px); font-weight:500; letter-spacing:-.015em; line-height:1.3; }
+    .pat h3 + p { margin-top:8px; color:var(--muted); font-size:15px; }
+    .pat__impl { font-size:15px; line-height:1.65; padding-left:18px; border-left:2px solid var(--accent-ink); }
+    .pat__impl b { display:block; font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted-2); font-weight:500; margin-bottom:6px; }
+    @media (max-width:900px){ .pat{ grid-template-columns:1fr; } }
+
+    /* ── 05 IA ── */
+    .ia { display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr); gap:clamp(24px,3vw,48px); align-items:start; }
+    .tree { border-radius:var(--r-soft); padding:clamp(22px,3vw,40px); }
+    .tree__root img { max-width:none; flex:none; }
+    .tree__root { display:inline-flex; align-items:center; gap:10px; height:44px; padding:0 20px; border-radius:999px; background:#fff; color:var(--ink); font-weight:600; }
+    .tree ul.lvl1 { margin:18px 0 0 22px; border-left:1px solid var(--rule-dark); }
+    .tree .lvl1 > li { position:relative; padding:9px 0 9px 28px; }
+    .tree .lvl1 > li::before { content:""; position:absolute; left:0; top:29px; width:20px; height:1px; background:var(--rule-dark); }
+    .node { display:inline-flex; align-items:center; gap:10px; min-height:40px; padding:6px 16px; border-radius:999px; border:1px solid var(--rule-dark); background:rgba(255,255,255,.04); font-size:15px; font-weight:500; }
+    .node small { font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; color:var(--on-dark-dim); font-weight:400; }
+    .node--accent { border-color:rgba(255,61,138,.5); background:rgba(255,61,138,.1); }
+    .tree ul.lvl2 { margin:10px 0 0 18px; display:flex; flex-wrap:wrap; gap:8px; }
+    .tree .lvl2 li { font-size:13px; padding:7px 12px; border-radius:999px; background:rgba(255,255,255,.08); color:#dcdde1; }
+    .tree__q { display:block; margin-top:6px; font-family:var(--mono); font-size:11px; letter-spacing:.04em; color:var(--accent); }
+    .qmap { display:grid; gap:10px; }
+    .qmap li { padding:18px 20px; border-radius:var(--r-card); border:1px solid var(--rule-light); background:#fff; }
+    .qmap q { display:block; font-size:18px; font-weight:500; letter-spacing:-.01em; quotes:none; }
+    .qmap p { margin-top:6px; font-size:14px; color:var(--muted); }
+    .qmap p b { color:var(--ink); font-weight:600; }
+    @media (max-width:980px){ .ia{ grid-template-columns:1fr; } }
+    .iadiff { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px; }
+    .iadiff > div { padding:22px; border-radius:var(--r-card); border:1px solid var(--rule-light); }
+    .iadiff h4 { font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted-2); font-weight:500; margin-bottom:12px; }
+    .iadiff .chips { display:flex; flex-wrap:wrap; gap:6px; }
+    .iadiff p { margin-top:14px; font-size:14px; color:var(--muted); }
+    .chip--x { background:transparent; color:var(--muted-2); border:1px dashed #c9cbd0; text-decoration:line-through; }
+    @media (max-width:760px){ .iadiff{ grid-template-columns:1fr; } }
+
+    /* ── 06 STRATEGY (hero section, dark) ── */
+    .strat { padding:var(--section-space) 0; }
+    .prin { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:1px; background:var(--rule-dark); border:1px solid var(--rule-dark); border-radius:var(--r-soft); overflow:hidden; }
+    .prin li { background:var(--ink-2); padding:clamp(22px,2vw,30px) clamp(18px,1.6vw,24px) 28px; display:flex; flex-direction:column; gap:12px; min-height:340px; transition:background-color .35s var(--ease); }
+    .prin li:hover { background:#16161c; }
+    .prin__n { font-family:var(--mono); font-size:11px; color:var(--accent); letter-spacing:.1em; }
+    .prin h3 { font-size:clamp(20px,1.7vw,26px); font-weight:500; line-height:1.18; letter-spacing:-.02em; }
+    .prin p { font-size:14.5px; color:#b9bac1; line-height:1.65; }
+    .prin .where { margin-top:auto; padding-top:14px; border-top:1px solid var(--rule-dark); font-size:12.5px; color:var(--on-dark-dim); }
+    .prin .where b { display:block; font-family:var(--mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:500; margin-bottom:4px; }
+    @media (max-width:1180px){ .prin{ grid-template-columns:repeat(2,minmax(0,1fr)); } .prin li{ min-height:0; } .prin li:last-child{ grid-column:1/-1; } }
+    @media (max-width:600px){ .prin{ grid-template-columns:1fr; } }
+
+    /* ── 07 EXPLORATION ── */
+    .iter { display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr); gap:clamp(20px,3vw,48px); align-items:center; padding:clamp(28px,3vw,44px) 0; border-top:1px solid var(--rule-light); }
+    .iter:nth-child(even) .iter__shot { order:2; }
+    .iter__meta { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:14px; }
+    .iter__date { font-family:var(--mono); font-size:11px; letter-spacing:.12em; color:var(--muted-2); }
+    .iter h3 { font-size:clamp(22px,2vw,32px); font-weight:500; line-height:1.18; letter-spacing:-.02em; }
+    .flow { margin-top:18px; display:grid; gap:0; }
+    .flow div { display:grid; grid-template-columns:86px 1fr; gap:12px; padding:11px 0; border-top:1px solid var(--rule-light); font-size:14.5px; line-height:1.6; color:#33353b; }
+    .flow dt { font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted-2); padding-top:3px; }
+    .flow div:last-child dt { color:var(--accent-ink); }
+    .iter--final { border-top:2px solid var(--accent-ink); }
+    @media (max-width:900px){ .iter{ grid-template-columns:1fr; } .iter:nth-child(even) .iter__shot{ order:0; } }
+    .browser { border-radius:12px; overflow:hidden; border:1px solid var(--rule-light); background:#fff; box-shadow:0 40px 90px -50px rgba(10,10,20,.5); }
+    .browser__bar { display:flex; align-items:center; gap:12px; height:34px; padding:0 12px; background:#f3f4f6; border-bottom:1px solid var(--rule-light); }
+    .browser__dots { display:flex; gap:6px; }
+    .browser__dots i { width:9px; height:9px; border-radius:50%; background:#d0d2d6; display:block; }
+    .browser__url { flex:1; max-width:60%; margin:0 auto; height:22px; border-radius:999px; background:#fff; border:1px solid var(--rule-light); font:400 11px/22px var(--mono); color:var(--muted); text-align:center; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+    .dark .browser { border-color:var(--rule-dark); background:#111; }
+    .dark .browser__bar { background:#18181c; border-color:rgba(255,255,255,.08); }
+    .dark .browser__dots i { background:#3b3c42; }
+    .dark .browser__url { background:#0e0e11; border-color:rgba(255,255,255,.1); color:var(--on-dark-dim); }
+
+    /* ── 08 DESIGN SYSTEM ── */
+    .ds { display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:12px; }
+    .tile { border-radius:var(--r-soft); border:1px solid var(--rule-light); background:#fff; padding:clamp(20px,2.2vw,32px); position:relative; overflow:hidden; }
+    .tile--dark { background:var(--ink-2); color:#fff; border-color:transparent;
+      background:radial-gradient(60% 60% at 90% 0%, rgba(var(--glow-teal),.45), transparent 70%), radial-gradient(50% 50% at 0% 100%, rgba(var(--glow-mag),.6), transparent 70%), var(--ink-2); }
+    .tile__k { font-family:var(--mono); font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted-2); display:flex; justify-content:space-between; gap:10px; }
+    .tile--dark .tile__k { color:var(--on-dark-dim); }
+    .t-type { grid-column:span 7; }
+    .t-mono { grid-column:span 5; }
+    .t-scale { grid-column:span 12; }
+    .t-colour { grid-column:span 12; }
+    .t-grid { grid-column:span 6; }
+    .t-space { grid-column:span 6; }
+    .t-comp { grid-column:span 12; }
+    @media (max-width:980px){ .t-type,.t-mono,.t-grid,.t-space{ grid-column:span 12; } }
+    .spec { font-size:clamp(90px,12vw,190px); font-weight:500; line-height:.9; letter-spacing:-.05em; margin-top:18px; }
+    .spec-meta { display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:18px; font-size:13px; color:var(--muted); }
+    .spec-mono { font-family:var(--mono); font-size:clamp(22px,2vw,30px); line-height:1.35; letter-spacing:.14em; text-transform:uppercase; margin-top:22px; color:#fff; }
+    .spec-mono span { color:var(--accent); }
+    .tile p.note { margin-top:18px; font-size:13.5px; color:var(--muted); line-height:1.65; }
+    .tile--dark p.note { color:#b9bac1; }
+    .scale { margin-top:14px; }
+    .scale li { display:grid; grid-template-columns:140px 110px 1fr; gap:16px; align-items:baseline; padding:12px 0; border-top:1px solid var(--rule-light); }
+    .scale li:first-child { border-top:0; }
+    .scale .tok { font-family:var(--mono); font-size:11.5px; color:var(--accent-ink); }
+    .scale .px { font-family:var(--mono); font-size:11.5px; color:var(--muted-2); }
+    .scale .smp { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; letter-spacing:-.02em; }
+    @media (max-width:640px){ .scale li{ grid-template-columns:1fr; gap:4px; } }
+    .swatches { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:10px; margin-top:18px; }
+    .sw { border-radius:12px; overflow:hidden; border:1px solid var(--rule-light); }
+    .sw__c { height:clamp(110px,10vw,150px); position:relative; }
+    .sw__c span { position:absolute; left:14px; bottom:12px; font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; }
+    .sw__i { padding:12px 14px 14px; font-size:13px; }
+    .sw__i b { display:block; font-weight:600; font-size:14px; }
+    .sw__i code { font-family:var(--mono); font-size:11.5px; color:var(--muted-2); }
+    .sw__i p { margin-top:6px; color:var(--muted); font-size:12.5px; line-height:1.5; }
+    .glows { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin-top:10px; }
+    .glows > div { border-radius:12px; border:1px solid var(--rule-light); padding:12px 14px; font-size:12.5px; color:var(--muted); display:flex; gap:12px; align-items:center; }
+    .glows i { width:28px; height:28px; border-radius:8px; flex:none; }
+    .glows code { font-family:var(--mono); font-size:11px; color:var(--ink); display:block; }
+    @media (max-width:900px){ .swatches{ grid-template-columns:repeat(2,minmax(0,1fr)); } .glows{ grid-template-columns:1fr 1fr; } }
+    .gridviz { margin-top:18px; display:grid; gap:10px; }
+    .gridviz__row { display:grid; gap:6px; height:84px; }
+    .gridviz__row i { background:rgba(224,23,107,.1); border:1px dashed rgba(224,23,107,.4); border-radius:4px; }
+    .gridviz__row--d { grid-template-columns:repeat(12,1fr); }
+    .gridviz__row--m { grid-template-columns:repeat(4,1fr); max-width:170px; height:120px; }
+    .gridviz__lbl { font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; color:var(--muted-2); text-transform:uppercase; }
+    .spacing { margin-top:18px; }
+    .spacing li { display:grid; grid-template-columns:110px 1fr 60px; gap:14px; align-items:center; padding:9px 0; border-top:1px solid var(--rule-light); font-size:13px; }
+    .spacing li:first-child { border-top:0; }
+    .spacing .bp { font-family:var(--mono); font-size:11px; color:var(--muted-2); }
+    .spacing .bar-v { height:10px; border-radius:999px; background:linear-gradient(90deg,var(--accent-ink),#ff8fbc); }
+    .spacing .v { font-family:var(--mono); font-size:11.5px; text-align:right; }
+    .comps { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-top:18px; }
+    .comp { border-radius:12px; border:1px solid var(--rule-light); padding:20px; min-height:170px; display:flex; flex-direction:column; gap:14px; }
+    .comp--dark { background:var(--ink-2); border-color:transparent; color:#fff; }
+    .comp__k { font-family:var(--mono); font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted-2); }
+    .comp--dark .comp__k { color:var(--on-dark-dim); }
+    .comp__demo { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+    .comp p { margin-top:auto; font-size:13px; color:var(--muted); line-height:1.55; }
+    .comp--dark p { color:#b9bac1; }
+    .navdemo { display:inline-flex; gap:4px; padding:5px; border-radius:999px; background:rgba(16,18,21,.9); border:1px solid rgba(255,255,255,.1); }
+    .navdemo span { padding:7px 13px; border-radius:999px; font-size:12.5px; font-weight:500; color:#fff; }
+    .navdemo span.on { background:#d8d8d8; color:#101014; }
+    .svcdemo { width:100%; border:1px solid var(--rule-light); border-top:2px solid var(--accent-ink); border-radius:8px; padding:12px 14px; }
+    .svcdemo .eyebrow { font-size:9.5px; display:flex; justify-content:space-between; }
+    .svcdemo b { display:block; margin:8px 0 8px; font-size:14px; }
+    .field { width:100%; }
+    .field label { font-size:12px; color:var(--muted); }
+    .field div { margin-top:6px; border-bottom:1px solid #c9cbd0; padding-bottom:8px; font-size:14px; color:#a4a7ae; }
+    .tagdemo { font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; padding:5px 10px; border-radius:999px; border:1px solid var(--rule-light); }
+    .tagdemo--client { background:var(--ink); color:#fff; border-color:var(--ink); }
+    @media (max-width:980px){ .comps{ grid-template-columns:1fr 1fr; } }
+    @media (max-width:600px){ .comps{ grid-template-columns:1fr; } }
+    .motion { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-top:12px; }
+    .motion > div { border-radius:12px; border:1px solid var(--rule-light); padding:16px 18px; }
+    .motion code { font-family:var(--mono); font-size:12px; color:var(--accent-ink); }
+    .motion p { font-size:13px; color:var(--muted); margin-top:4px; }
+    .motion .track { margin-top:12px; height:4px; border-radius:999px; background:#eceef1; overflow:hidden; }
+    .motion .track i { display:block; height:100%; width:30%; border-radius:999px; background:var(--accent-ink); animation:slide var(--d) var(--ease) infinite alternate; }
+    @keyframes slide { to { transform:translateX(233%); } }
+    @media (max-width:760px){ .motion{ grid-template-columns:1fr; } }
+
+    /* ── 09 FINAL EXPERIENCE ── */
+    .final { display:grid; grid-template-columns:minmax(0,.62fr) minmax(0,1.38fr); gap:clamp(24px,3.5vw,56px); align-items:start; }
+    .anno { position:sticky; top:100px; display:grid; gap:8px; }
+    .anno button { text-align:left; display:grid; grid-template-columns:44px 1fr; gap:6px; padding:18px 18px 18px 16px; border-radius:var(--r-card); border:1px solid var(--rule-dark); transition:background-color .3s var(--ease), border-color .3s var(--ease); }
+    .anno button:hover, .anno button.is-on { background:rgba(255,255,255,.06); border-color:rgba(255,61,138,.55); }
+    .anno__n { font-family:var(--mono); font-size:12px; color:var(--accent); padding-top:3px; }
+    .anno__t { display:block; font-size:18px; font-weight:600; }
+    .anno__p { display:block; font-size:14px; color:#b9bac1; margin-top:4px; line-height:1.6; }
+    .longshot { position:relative; }
+    .longshot__view { height:min(82vh,900px); overflow-y:auto; overscroll-behavior:contain; scroll-behavior:smooth; background:#fff; }
+    .longshot__view img { width:100%; }
+    .longshot__pin { position:absolute; left:10px; z-index:2; width:34px; height:34px; border-radius:50%; background:var(--accent-ink); color:#fff; font-family:var(--mono); font-size:12px; display:grid; place-items:center; box-shadow:0 0 0 6px rgba(224,23,107,.25); pointer-events:none; }
+    .longshot__hint { position:absolute; right:14px; bottom:14px; z-index:3; font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; background:rgba(10,10,10,.8); color:#fff; padding:7px 12px; border-radius:999px; pointer-events:none; }
+    @media (max-width:980px){ .final{ grid-template-columns:1fr; } .anno{ position:static; grid-template-columns:1fr 1fr; order:2; } .longshot{ order:1; } }
+    @media (max-width:560px){ .anno button{ padding:12px; grid-template-columns:30px 1fr; } .anno__t{ font-size:15px; } .anno__p{ display:none; } .longshot__view{ height:70vh; } }
+    .duo { display:grid; grid-template-columns:1fr 1fr; gap:clamp(14px,2vw,28px); margin-top:clamp(32px,4vw,56px); }
+    .duo figure { margin:0; }
+    @media (max-width:820px){ .duo{ grid-template-columns:1fr; } }
+
+    /* ── PROTOTYPE ── */
+    .proto__bar { display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between; margin-bottom:18px; }
+    .seg { display:inline-flex; gap:4px; padding:5px; border-radius:999px; background:rgba(16,18,21,.9); border:1px solid var(--rule-dark); }
+    .seg button { padding:9px 16px; border-radius:999px; font-size:14px; font-weight:500; color:#fff; transition:background-color .25s var(--ease), color .25s var(--ease); }
+    .seg button[aria-pressed="true"] { background:#d8d8d8; color:#101014; }
+    .seg button:hover:not([aria-pressed="true"]) { background:rgba(255,255,255,.12); }
+    .stage { position:relative; margin-inline:auto; transition:max-width .5s var(--ease); }
+    .stage__frame { position:relative; overflow:hidden; background:#000; }
+    .stage[data-device="desktop"] { max-width:100%; }
+    .stage[data-device="desktop"] .stage__frame { border-radius:0 0 12px 12px; }
+    .stage[data-device="tablet"] { max-width:560px; }
+    .stage[data-device="tablet"] .stage__frame { border-radius:26px; border:12px solid #141518; box-shadow:0 0 0 1px #3a3b40; }
+    .stage[data-device="mobile"] { max-width:360px; }
+    .stage[data-device="mobile"] .stage__frame { border-radius:46px; border:11px solid #141518; box-shadow:0 0 0 1px #3a3b40; }
+    .stage[data-device="desktop"] .stage__chrome { display:flex; }
+    .stage__chrome { display:none; border-radius:12px 12px 0 0; }
+    .stage iframe { position:absolute; left:0; top:0; border:0; transform-origin:0 0; background:#fff; }
+    .stage__cover { position:absolute; inset:0; z-index:3; display:grid; place-items:center; background:#030303 center/cover no-repeat; cursor:pointer; }
+    .stage__cover::after { content:""; position:absolute; inset:0; background:rgba(3,3,3,.45); transition:background-color .3s var(--ease); }
+    .stage__cover:hover::after { background:rgba(3,3,3,.25); }
+    .stage__cover span { position:relative; z-index:2; }
+    .proto__foot { display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; margin-top:16px; font-size:13px; color:var(--on-dark-dim); }
+    .proto__foot a { color:var(--accent); text-decoration:underline; text-underline-offset:.25em; }
+
+    /* ── 10 DECISIONS ── */
+    .decs { display:grid; gap:12px; }
+    .dec { display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:clamp(18px,3vw,48px); padding:clamp(22px,2.6vw,36px); border-radius:var(--r-soft); border:1px solid var(--rule-light); background:#fff; align-items:center; }
+    .dec__n { font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-ink); }
+    .dec h3 { margin-top:10px; font-size:clamp(21px,1.9vw,30px); font-weight:500; line-height:1.2; letter-spacing:-.02em; }
+    .dec dl { margin-top:18px; }
+    .dec dl div { display:grid; grid-template-columns:86px 1fr; gap:12px; padding:10px 0; border-top:1px solid var(--rule-light); font-size:14.5px; line-height:1.6; color:#33353b; }
+    .dec dt { font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted-2); padding-top:3px; }
+    .dec dl div:last-child dt { color:var(--accent-ink); }
+    .dec .shot { box-shadow:0 30px 70px -45px rgba(10,10,20,.45); }
+    .dec__ex { border-radius:var(--r-soft); padding:22px; background:#f3f4f6; }
+    .ctas { display:grid; gap:8px; }
+    .ctas li { display:grid; grid-template-columns:1fr 24px 1fr; gap:10px; align-items:center; font-size:14px; }
+    .ctas s { color:var(--muted-2); }
+    .ctas svg { width:16px; height:16px; color:var(--accent-ink); }
+    @media (max-width:900px){ .dec{ grid-template-columns:1fr; } }
+
+    /* ── 11 RESPONSIVE ── */
+    .adapt { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-top:clamp(28px,3vw,48px); }
+    .adapt li { padding:22px; border-radius:var(--r-card); border:1px solid var(--rule-dark); background:rgba(255,255,255,.03); }
+    .adapt b { display:block; font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:500; margin-bottom:8px; }
+    .adapt h3 { font-size:17px; font-weight:600; }
+    .adapt p { margin-top:6px; font-size:14px; color:#b9bac1; line-height:1.6; }
+    @media (max-width:900px){ .adapt{ grid-template-columns:1fr 1fr; } }
+    @media (max-width:560px){ .adapt{ grid-template-columns:1fr; } }
+
+    /* ── 12 WORKFLOW ── */
+    .pipe { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:0; border:1px solid var(--rule-light); border-radius:var(--r-soft); overflow:hidden; }
+    .pipe li { padding:22px 20px 24px; border-right:1px solid var(--rule-light); position:relative; background:#fff; }
+    .pipe li:last-child { border-right:0; }
+    .pipe li::after { content:""; position:absolute; right:-7px; top:30px; width:12px; height:12px; background:#fff; border-top:1px solid var(--rule-light); border-right:1px solid var(--rule-light); transform:rotate(45deg); z-index:2; }
+    .pipe li:last-child::after { display:none; }
+    .pipe__n { font-family:var(--mono); font-size:11px; color:var(--accent-ink); }
+    .pipe h3 { margin:10px 0 6px; font-size:17px; font-weight:600; }
+    .pipe p { font-size:13.5px; color:var(--muted); line-height:1.6; }
+    .pipe .who { display:inline-block; margin-top:12px; font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; padding:4px 9px; border-radius:999px; background:#f1f2f4; color:var(--ink); }
+    .pipe .who--ai { background:rgba(224,23,107,.1); color:var(--accent-ink); }
+    @media (max-width:980px){ .pipe{ grid-template-columns:1fr; } .pipe li{ border-right:0; border-bottom:1px solid var(--rule-light); } .pipe li::after{ display:none; } }
+    .nums { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); margin-top:12px; border-radius:var(--r-soft); overflow:hidden; }
+    .nums div { padding:clamp(22px,2.4vw,34px); border-right:1px solid var(--rule-dark); }
+    .nums div:last-child { border-right:0; }
+    .nums b { display:block; font-size:clamp(40px,4.4vw,72px); font-weight:500; letter-spacing:-.04em; line-height:1; }
+    .nums b sup { font-size:.32em; color:var(--accent); vertical-align:top; margin-left:.3em; letter-spacing:.02em; position:relative; top:.35em; }
+    .nums span { display:block; margin-top:12px; font-size:13.5px; color:#b9bac1; }
+    @media (max-width:760px){ .nums{ grid-template-columns:1fr 1fr; } .nums div:nth-child(2){ border-right:0; } .nums div:nth-child(-n+2){ border-bottom:1px solid var(--rule-dark); } }
+    .role { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px; }
+    .role > div { padding:24px; border-radius:var(--r-card); border:1px solid var(--rule-light); }
+    .role h4 { font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-ink); font-weight:500; margin-bottom:12px; }
+    .role ul li { padding:8px 0; border-top:1px solid var(--rule-light); font-size:14.5px; color:#33353b; }
+    .role ul li:first-child { border-top:0; }
+    @media (max-width:760px){ .role{ grid-template-columns:1fr; } }
+
+    /* ── 13 QA ── */
+    .qa { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+    .qa li { padding:20px 20px 22px; border-radius:var(--r-card); border:1px solid var(--rule-light); background:#fff; }
+    .qa__k { display:flex; justify-content:space-between; font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted-2); }
+    .qa__k i { font-style:normal; color:#0d7a4c; }
+    .qa h3 { margin:10px 0 6px; font-size:16px; font-weight:600; }
+    .qa p { font-size:13.5px; color:var(--muted); line-height:1.6; }
+    .qa code { font-family:var(--mono); font-size:12px; color:var(--ink); background:#f1f2f4; padding:1px 5px; border-radius:4px; }
+    @media (max-width:980px){ .qa{ grid-template-columns:1fr 1fr; } }
+    @media (max-width:600px){ .qa{ grid-template-columns:1fr; } }
+    .honest { margin-top:12px; padding:22px 24px; border-radius:var(--r-card); border-left:3px solid var(--accent-ink); background:#f6f6f8; font-size:15px; color:#33353b; }
+    .honest b { font-weight:600; color:var(--ink); }
+
+    /* ── 14 OUTCOMES ── */
+    .out { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:12px; }
+    .out__list li { display:grid; grid-template-columns:28px 1fr; gap:10px; padding:14px 0; border-top:1px solid var(--rule-dark); font-size:15.5px; color:#e3e4e8; }
+    .out__list li:first-child { border-top:0; }
+    .out__list svg { width:18px; height:18px; color:var(--accent); margin-top:3px; }
+    .metrics { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--rule-dark); border:1px solid var(--rule-dark); border-radius:var(--r-card); overflow:hidden; }
+    .metrics div { background:var(--ink-2); padding:18px; }
+    .metrics b { display:block; font-size:30px; font-weight:500; letter-spacing:-.03em; color:#4a4c55; }
+    .metrics span { display:block; font-size:13px; color:#c9cad0; margin-top:4px; }
+    .metrics em { font-style:normal; font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); }
+    @media (max-width:900px){ .out{ grid-template-columns:1fr; } }
+
+    /* ── 15 REFLECTION ── */
+    .refl { display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px,4vw,64px); }
+    .refl h3 { font-family:var(--mono); font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent-ink); font-weight:500; margin-bottom:18px; }
+    .refl blockquote { margin:0; font-size:clamp(20px,1.9vw,29px); line-height:1.38; letter-spacing:-.018em; }
+    .refl blockquote + p { margin-top:16px; color:var(--muted); font-size:15px; max-width:56ch; }
+    @media (max-width:820px){ .refl{ grid-template-columns:1fr; } }
+
+    /* ── 16 SUMMARY + NEXT ── */
+    .sum { padding:clamp(40px,6vw,96px) var(--block-pad); }
+    .sum__grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(24px,4vw,64px); align-items:end; }
+    .sum__title { font-size:clamp(44px,7vw,120px); font-weight:500; letter-spacing:-.045em; line-height:.95; }
+    .sum dl div { padding:14px 0; border-top:1px solid var(--rule-dark); display:grid; grid-template-columns:110px 1fr; gap:14px; }
+    .sum dt { font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--on-dark-dim); padding-top:4px; }
+    .sum dd { font-size:15px; color:#e3e4e8; }
+    .sum blockquote { margin:clamp(32px,4vw,56px) 0 0; font-size:clamp(20px,2vw,30px); line-height:1.35; letter-spacing:-.018em; max-width:44ch; }
+    @media (max-width:900px){ .sum__grid{ grid-template-columns:1fr; } }
+    .next { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:clamp(40px,5vw,72px); }
+    .ncard { display:block; border-radius:var(--r-soft); overflow:hidden; position:relative; background:#111; }
+    .ncard img { width:100%; aspect-ratio:4/3; object-fit:cover; transition:transform .8s var(--ease); }
+    .ncard:hover img { transform:scale(1.04); }
+    .ncard__b { position:absolute; left:0; right:0; bottom:0; padding:22px; background:linear-gradient(180deg,transparent,rgba(0,0,0,.85)); color:#fff; display:flex; justify-content:space-between; align-items:end; gap:16px; }
+    .ncard__b small { display:block; font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:#c9cad0; }
+    .ncard__b h3 { margin-top:6px; font-size:clamp(20px,2vw,28px); font-weight:500; letter-spacing:-.02em; }
+    .ncard__go { flex:none; width:46px; height:46px; border-radius:50%; background:#fff; color:var(--ink); display:grid; place-items:center; transition:transform .3s var(--ease); }
+    .ncard:hover .ncard__go { transform:rotate(45deg); }
+    .ncard__go svg { width:16px; height:16px; }
+    @media (max-width:760px){ .next{ grid-template-columns:1fr; } }
+    .foot { margin:var(--section-space) var(--shell) var(--shell); padding:22px var(--block-pad); border-radius:var(--r-block); background:#f3f4f6; display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted-2); }
+    .foot a:hover { color:var(--accent-ink); }
+  </style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="bar" aria-label="Case study">
+  <a href="index.html#work" aria-label="Back to all work">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    <span class="bar__hide">All work</span>
+  </a>
+  <span class="bar__sep" aria-hidden="true"></span>
+  <a href="#top"><img src="ax-channels-proto/assets/img/logo/ax-mark-reversed.png" alt="" width="26" height="15" /> <span class="bar__hide">AX-Channels</span><span class="sr-only">AX-Channels, top</span></a>
+  <a class="bar__hide" href="#final">Final work</a>
+  <a class="is-cta" href="#prototype">Prototype
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+  </a>
+</nav>
+
+<nav class="rail" id="rail" aria-label="Sections">
+  <a href="#top">Cover</a><a href="#challenge">Challenge</a><a href="#goals">Goals</a><a href="#audience">Audience</a><a href="#research">Research</a><a href="#ia">Architecture</a><a href="#strategy">UX strategy</a><a href="#exploration">Exploration</a><a href="#system">System</a><a href="#final">Final</a><a href="#prototype">Prototype</a><a href="#decisions">Decisions</a><a href="#responsive">Responsive</a><a href="#workflow">Workflow</a><a href="#testing">Testing</a><a href="#outcomes">Outcomes</a><a href="#reflection">Reflection</a>
+</nav>
+
+<main id="main">
+
+  <!-- ═══════════ 00 · COVER ═══════════ -->
+  <header class="block dark cover" id="top" data-dark>
+    <div class="wrap">
+      <p class="cover__pill" data-r><i>+</i>Case study · Studio website</p>
+      <h1 class="h1" data-r>AX-Channels</h1>
+      <p class="cover__sub" data-r>Designing a <span>UX-led</span> digital studio for modern businesses</p>
+      <div class="cover__row" data-r>
+        <p class="cover__one">A complete digital experience for AX-Channels, designed to position the studio around UX, digital products and performance rather than traditional web development.</p>
+        <div class="cover__cta">
+          <a class="pill pill--accent" href="#prototype">Try the prototype
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+          <a class="pill pill--ghost" href="#final">See the final work</a>
+        </div>
+      </div>
+      <dl class="meta" data-r>
+        <div><dt>Role</dt><dd>Product Designer / UX Strategist</dd></div>
+        <div><dt>Type</dt><dd>Website / Brand Experience</dd></div>
+        <div><dt>Scope</dt><dd>UX Strategy · UI Design · Information Architecture · Responsive Design</dd></div>
+        <div><dt>Tools</dt><dd>Figma · Claude Code</dd></div>
+        <div><dt>Timeline</dt><dd>5 weeks · 26 Aug – 27 Sep 2026</dd></div>
+        <div><dt>Status</dt><dd>Built · pre-launch</dd></div>
+      </dl>
+      <figure class="cover__shot" data-r>
+        <img src="assets/img/ax/ax-cover.jpg" width="2400" height="1500" fetchpriority="high" alt="The AX-Channels website on a laptop, the services overview on a tablet and the homepage on a phone, over the studio's glowing ring artwork" />
+      </figure>
+    </div>
+  </header>
+
+  <!-- positioning -->
+  <section class="sec">
+    <div class="wrap statement" data-r>
+      <p class="statement__label">The project, in one sentence</p>
+      <p class="statement__text">I designed and built a digital studio experience as a product <span>— using UX strategy, information architecture, interface design and AI-assisted implementation to connect business positioning with user journeys.</span></p>
+    </div>
+  </section>
+
+  <!-- ═══════════ 01 · CHALLENGE ═══════════ -->
+  <section class="sec" id="challenge" aria-labelledby="challenge-t">
+    <div class="wrap">
+      <div class="sec-head" data-r>
+        <p class="eyebrow">01 <b>/ The challenge</b></p>
+        <h2 class="h2" id="challenge-t">From A Web-Design Service To A <span class="mark">Credible</span> Digital Studio</h2>
+        <p class="sec-head__sub">AX-Channels needed to evolve from a small web-design service into a more credible digital design studio.</p>
+      </div>
+      <p class="lead" data-r>The studio was already doing more than websites — interfaces, product work, brand systems — but its site said <strong>“Website designs that turn leads to clients”</strong>. The positioning had to widen without losing the plain, commercial clarity that made the old line work.</p>
+
+      <ul class="tension" data-r>
+        <li><span>01</span>The existing positioning focused heavily on websites.</li>
+        <li><span>02</span>The new direction needed to communicate broader UX/UI and digital-product capability.</li>
+        <li><span>03</span>It had to feel credible to businesses while staying understandable to non-designers.</li>
+        <li><span>04</span>Services needed to be clearly differentiated from each other.</li>
+        <li><span>05</span>The experience needed to work exceptionally well on mobile.</li>
+        <li><span>06</span>The site had to convert visitors into enquiries, not simply act as a portfolio.</li>
+      </ul>
+
+      <div class="ba" data-r>
+        <figure>
+          <span class="chip chip--line tag">Before · the web-design positioning</span>
+          <div class="browser"><div class="browser__bar"><div class="browser__dots"><i></i><i></i><i></i></div><div class="browser__url">axchannels.co.za</div></div>
+            <img src="assets/img/ax/ax-iter-02.jpg" width="2160" height="1350" loading="lazy" alt="Earlier AX-Channels homepage: 'Website Designs That Turn Leads To Clients And Move Businesses Forward', with a duplicated 'Our Work' link in the navigation" /></div>
+          <figcaption><b>Before</b> One service, sold as a deliverable. Six nav items, “Our Work” twice.</figcaption>
+        </figure>
+        <figure>
+          <span class="chip tag">After · a UX-led studio</span>
+          <div class="browser"><div class="browser__bar"><div class="browser__dots"><i></i><i></i><i></i></div><div class="browser__url">axchannels.co.za</div></div>
+            <img src="assets/img/ax/ax-iter-05.jpg" width="1440" height="900" loading="lazy" alt="Final AX-Channels homepage: 'Designing the Next Generation of Digital Experiences' with a Start a Project call to action" /></div>
+          <figcaption><b>After</b> A studio position, in plain words, with one next step.</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="block dark hmw" data-r data-dark>
+      <div class="wrap">
+        <p class="eyebrow">Design question</p>
+        <q>How might we position AX-Channels as a <span>UX-led digital studio</span> while making the value of its services immediately understandable to prospective clients?</q>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 02 · GOALS ═══════════ -->
+  <section class="sec wash" id="goals" aria-labelledby="goals-t">
+    <div class="wrap">
+      <div class="sec-head" data-r>
+        <p class="eyebrow">02 <b>/ Business &amp; user goals</b></p>
+        <h2 class="h2" id="goals-t">Design That Serves <span class="mark">The Business</span> And The Buyer</h2>
+        <p class="sec-head__sub">Four things the studio needed from the site, and six things a visitor needs to be able to do on it.</p>
+      </div>
+      <div class="goals">
+        <div class="gcards" data-r>
+          <div class="gcard"><p class="eyebrow">Business · 01</p><h3 class="h3">Positioning</h3><p>Move beyond “web designer” toward a broader digital design studio.</p></div>
+          <div class="gcard"><p class="eyebrow">Business · 02</p><h3 class="h3">Conversion</h3><p>Turn website visitors into qualified enquiries.</p></div>
+          <div class="gcard"><p class="eyebrow">Business · 03</p><h3 class="h3">Clarity</h3><p>Make services, capabilities and engagement options easy to understand.</p></div>
+          <div class="gcard"><p class="eyebrow">Business · 04</p><h3 class="h3">Credibility</h3><p>A visual experience able to compete with more established studios.</p></div>
+        </div>
+        <div class="ugoals dark" data-r>
+          <p class="eyebrow">User goals</p>
+          <h3 class="h3">Visitors should be able to…</h3>
+          <ol>
+            <li>Understand what AX-Channels does.</li>
+            <li>Decide whether the studio is relevant to their business.</li>
+            <li>Understand the services available.</li>
+            <li>See evidence of capability.</li>
+            <li>Understand what working together could look like.</li>
+            <li>Contact AX-Channels with minimal friction.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 03 · AUDIENCE ═══════════ -->
+  <section class="sec" id="audience" aria-labelledby="audience-t">
+    <div class="wrap">
+      <div class="sec-head" data-r>
+        <p class="eyebrow">03 <b>/ Audience</b></p>
+        <h2 class="h2" id="audience-t">Written For People Who <span class="mark">Buy</span> Design, Not People Who Do It</h2>
+      </div>
+      <div class="aud" data-r>
+        <div class="aud__card"><p class="eyebrow">Primary</p><h3 class="h3">SMEs and growing businesses</h3><p>Businesses that need better digital experiences but don’t have an internal product or design team.</p></div>
+        <div class="aud__card"><p class="eyebrow">Secondary</p><h3 class="h3">Founders, marketing teams &amp; organisations</h3><p>People looking for websites, digital products, UX/UI design or strategic design support.</p></div>
+      </div>
+      <div class="insight" data-r>
+        <p class="insight__k">UX implication</p>
+        <p>The audience isn’t made up of designers. The experience therefore prioritises <strong>clarity and business outcomes</strong> over design terminology.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 04 · RESEARCH ═══════════ -->
+  <section class="sec" id="research" aria-labelledby="research-t">
+    <div class="wrap">
+      <div class="sec-head" data-r>
+        <p class="eyebrow">04 <b>/ Research &amp; competitive review</b></p>
+        <h2 class="h2" id="research-t">Five Patterns From Studios <span class="mark">Worth Competing With</span></h2>
+        <p class="sec-head__sub">A focused reference review across digital, UX/product and web studios, local and international — not an exhaustive competitor audit.</p>
+      </div>
+      <div class="refs" data-r>
+        <span class="small">References that shaped specific sections:</span>
+        <span class="chip chip--line">Stodio · hero anatomy</span>
+        <span class="chip chip--line">White Wall · numbers panel</span>
+        <span class="chip chip--line">Trionn · interaction layer</span>
+        <span class="chip chip--line">GEMIS Studio · accent &amp; mono labels</span>
+      </div>
+      <div class="patterns">
+        <div class="pat" data-r><p class="pat__n">Pattern 01</p><div><h3>Strong studios lead with a point of view</h3><p>Before listing services, they say what they believe about design.</p></div><p class="pat__impl"><b>Implication for AX</b>The homepage opens with a studio statement — “We design digital experiences around people and business” — before a single service card.</p></div>
+        <div class="pat" data-r><p class="pat__n">Pattern 02</p><div><h3>Case studies act as proof</h3><p>The strongest sites don’t claim quality; they demonstrate it.</p></div><p class="pat__impl"><b>Implication for AX</b>A belt of real project names sits directly under the hero, and every project is labelled client work, concept or exploration.</p></div>
+        <div class="pat" data-r><p class="pat__n">Pattern 03</p><div><h3>Service architecture matters</h3><p>Visitors need to know exactly what they can hire the studio for.</p></div><p class="pat__impl"><b>Implication for AX</b>Four named services, each with its own page, plus a “Which one do you need?” picker written from the client’s situation.</p></div>
+        <div class="pat" data-r><p class="pat__n">Pattern 04</p><div><h3>Visual differentiation is intentional</h3><p>Typography, spacing, motion and composition create recognisability.</p></div><p class="pat__impl"><b>Implication for AX</b>One typeface, one accent, one ring artwork and one spacing token — used the same way on every page.</p></div>
+        <div class="pat" data-r><p class="pat__n">Pattern 05</p><div><h3>Mobile is not an afterthought</h3><p>The mobile experience carries the same hierarchy as desktop.</p></div><p class="pat__impl"><b>Implication for AX</b>Every section was designed for 390px as well as 1440px, and a dedicated mobile QA pass ran before launch.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 05 · IA ═══════════ -->
+  <section class="sec" id="ia" aria-labelledby="ia-t">
+    <div class="wrap">
+      <div class="sec-head" data-r>
+        <p class="eyebrow">05 <b>/ Information architecture</b></p>
+        <h2 class="h2" id="ia-t">Built Around The Four Questions A Client Asks <span class="mark">Before</span> Getting In Touch</h2>
+      </div>
+      <div class="ia">
+        <div class="tree block dark" style="margin:0" data-r>
+          <span class="tree__root">
+            <img src="ax-channels-proto/assets/img/logo/ax-mark.png" alt="" width="24" height="14" style="width:24px" /> Home
+          </span>
+          <ul class="lvl1">
+            <li><span class="node">About <small>/about</small></span></li>
+            <li><span class="node node--accent">Services <small>/services · overview + picker</small></span>
+              <ul class="lvl2">
+                <li>Website Design &amp; Development</li>
+                <li>Digital Product Design</li>
+                <li>UI/UX Design &amp; UX Strategy</li>
+                <li>Brand Identity Systems</li>
+              </ul>
+              <span class="tree__q">→ “Can you solve my problem?”</span>
+            </li>
+            <li><span class="node">Case Studies <small>/case-studies · 7 projects, filterable</small></span><span class="tree__q">→ “Have you done this before?”</span></li>
+            <li><span class="node">Contact <small>3 drawers, from any page</small></span>
+              <ul class="lvl2"><li>Discuss a project</li><li>Partner with us</li><li>Just want to say hi</li></ul>
+              <span class="tree__q">→ “How can I work with you?”</span>
+            </li>
+          </ul>
+        </div>
+        <div data-r>
+          <p class="lead" style="margin-bottom:22px">The architecture was designed around the questions a prospective client needs answered before making contact.</p>
+          <ol class="qmap">
+            <li><q>What do you do?</q><p>Answered in the <b>hero and studio statement</b> — before the fold ends.</p></li>
+            <li><q>Can you solve my problem?</q><p>Answered by the <b>four service pages</b> and a picker that starts from the situation, not the service name.</p></li>
+            <li><q>Have you done this before?</q><p>Answered by the <b>work belt, selected work and case studies</b>.</p></li>
+            <li><q>How can I work with you?</q><p>Answered by the <b>five-stage process, published pricing, FAQ and enquiry drawers</b>.</p></li>
+          </ol>
+        </div>
+      </div>
+      <div class="iadiff" data-r>
+        <div>
+          <h4>First build · 26 Aug</h4>
+          <div class="chips"><span class="chip chip--line">Work</span><span class="chip chip--line">Capabilities</span><span class="chip chip--line">Approach</span><span class="chip chip--x">Insights</span><span class="chip chip--x">Johannesburg</span><span class="chip chip--x">Start a Project page</span></div>
+          <p>Seven destinations, two of which had nothing to put in them yet.</p>
+        </div>
+        <div>
+          <h4>Shipped · 27 Sep</h4>
+          <div class="chips"><span class="chip">About</span><span class="chip">Services ×4</span><span class="chip">Case Studies</span><span class="chip">Contact drawers</span></div>
+          <p>An empty Insights section undermines credibility more than no Insights section, so it waits until there is writing to fill it. Contact became a drawer so enquiring never means leaving the page you were reading.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 06 · UX STRATEGY ═══════════ -->
+  <section class="sec" id="strategy" aria-labelledby="strategy-t">
+    <div class="block dark strat" data-dark>
+      <div class="wrap">
+        <div class="sec-head" data-r>
+          <p class="eyebrow">06 <b>/ UX strategy</b></p>
+          <h2 class="h2" id="strategy-t">Five Principles, And <span class="mark">Where Each One Shows</span></h2>
+          <p class="sec-head__sub">Principles only earn their place if you can point at the screen where they changed something.</p>
+        </div>
+        <ol class="prin" data-r>
+          <li><span class="prin__n">01</span><h3>Clarity over complexity</h3><p>Services and value propositions are understood without specialist terminology.</p><p class="where"><b>Where it shows</b>“We design websites, user interfaces and digital products that are easy to understand, easy to use and built to perform.”</p></li>
+          <li><span class="prin__n">02</span><h3>Proof before persuasion</h3><p>Show work and evidence before making large claims.</p><p class="where"><b>Where it shows</b>Seven project names in the belt directly under the hero.</p></li>
+          <li><span class="prin__n">03</span><h3>Progressive disclosure</h3><p>The homepage introduces the studio; deeper pages carry the detail.</p><p class="where"><b>Where it shows</b>One card per service on home; a full page per service behind it.</p></li>
+          <li><span class="prin__n">04</span><h3>Low-friction conversion</h3><p>From discovering a service to starting an enquiry without unnecessary steps.</p><p class="where"><b>Where it shows</b>Every “Start a Project” opens the same short drawer in place — there is no contact page to travel to.</p></li>
+          <li><span class="prin__n">05</span><h3>Responsive-first thinking</h3><p>Designed around mobile usage rather than shrinking the desktop layout.</p><p class="where"><b>Where it shows</b>A single pill CTA sits beside the menu on phones at all times.</p></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 07 · EXPLORATION ═══════════ -->
+  <section class="sec" id="exploration" aria-labelledby="explore-t">
+    <div class="wrap">
+      <div class="sec-head" data-r>
+        <p class="eyebrow">07 <b>/ Wireframes &amp; exploration</b></p>
+        <h2 class="h2" id="explore-t">Five Homepages In Five Weeks — <span class="mark">What Each One Taught</span></h2>
+        <p class="sec-head__sub">The direction was explored in high fidelity, in code. Every screen below is rendered from the project’s own commit history.</p>
+      </div>
+      <div class="iters">
+        <article class="iter" data-r>
+          <div class="iter__shot"><div class="browser"><div class="browser__bar"><div class="browser__dots"><i></i><i></i><i></i></div><div class="browser__url">Exploration 01</div></div><img src="assets/img/ax/ax-iter-01.jpg" width="2160" height="1350" loading="lazy" alt="First exploration: 'We turn complexity into digital clarity' with a yellow accent and an abstract dashboard illustration" /></div></div>
+          <div>
+            <div class="iter__meta"><span class="chip chip--line">01 · Point of view</span><span class="iter__date">26 AUG</span></div>
+            <h3>“We turn complexity into digital clarity.”</h3>
+            <dl class="flow">
+              <div><dt>Initial</dt><dd>A “digital product &amp; experience studio” with an illustrated operations dashboard.</dd></div>
+              <div><dt>Problem</dt><dd>Abstract claims. The visual illustrated a product that didn’t exist, and “business systems and intelligent experiences” isn’t how an SME describes its problem.</dd></div>
+              <div><dt>Decision</dt><dd>Keep the ambition, lose the abstraction: say what gets designed, in the client’s words.</dd></div>
+            </dl>
+          </div>
+        </article>
+        <article class="iter" data-r>
+          <div class="iter__shot"><div class="browser"><div class="browser__bar"><div class="browser__dots"><i></i><i></i><i></i></div><div class="browser__url">Exploration 02</div></div><img src="assets/img/ax/ax-iter-02.jpg" width="2160" height="1350" loading="lazy" alt="Second exploration: the web-design positioning, 'Website Designs That Turn Leads To Clients'" /></div></div>
+          <div>
+            <div class="iter__meta"><span class="chip chip--line">02 · Existing direction</span><span class="iter__date">16 SEP</span></div>
+            <h3>“Website designs that turn leads to clients.”</h3>
+            <dl class="flow">
+              <div><dt>Initial</dt><dd>The studio’s existing web-design positioning, implemented as designed.</dd></div>
+              <div><dt>Problem</dt><dd>Clear and commercial — but it boxed the studio into websites. The nav listed “Website Design” and “Mobile App Design” as pages and “Our Work” twice.</dd></div>
+              <div><dt>Decision</dt><dd>Broaden the position; fold every capability under one Services entry.</dd></div>
+            </dl>
+          </div>
+        </article>
+        <article class="iter" data-r>
+          <div class="iter__shot"><div class="browser"><div class="browser__bar"><div class="browser__dots"><i></i><i></i><i></i></div><div class="browser__url">Exploration 03</div></div><img src="assets/img/ax/ax-iter-03.jpg" width="2160" height="1350" loading="lazy" alt="Third exploration: 'Digital experiences that perform' on a saturated orange background with a large portrait" /></div></div>
+          <div>
+            <div class="iter__meta"><span class="chip chip--line">03 · Visual impact</span><span class="iter__date">18 SEP</span></div>
+            <h3>“Digital experiences that perform.”</h3>
+            <dl class="flow">
+              <div><dt>Initial</dt><dd>A loud, editorial hero: saturated orange, a large portrait, stat cards.</dd></div>
+              <div><dt>Problem</dt><dd>It prioritised visual impact and pushed the value proposition down; the orange belonged to no part of the AX identity.</dd></div>
+              <div><dt>Decision</dt><dd>Return to the brand’s own world — ink, teal and magenta — and let the words lead.</dd></div>
+            </dl>
+          </div>
+        </article>
+        <article class="iter" data-r>
+          <div class="iter__shot"><div class="browser"><div class="browser__bar"><div class="browser__dots"><i></i><i></i><i></i></div><div class="browser__url">Exploration 04</div></div><img src="assets/img/ax/ax-iter-04.jpg" width="2160" height="1350" loading="lazy" alt="Fourth exploration: the Figma homepage design with a large 'UX-LED STUDIO' display wordmark, portrait and social icons in the header" /></div></div>
+          <div>
+            <div class="iter__meta"><span class="chip chip--line">04 · Figma design, built</span><span class="iter__date">20 SEP</span></div>
+            <h3>The Figma homepage, implemented to the pixel.</h3>
+            <dl class="flow">
+              <div><dt>Initial</dt><dd>The 1920px Figma artboard, built as drawn: display wordmark, portrait, social icons.</dd></div>
+              <div><dt>Problem</dt><dd>Three things competed with the proposition — the wordmark, the portrait and the icons, which sat exactly where a call to action belongs.</dd></div>
+              <div><dt>Decision</dt><dd>A compact one-line masthead: slim menu, and “Book a Call” replaces the social icons.</dd></div>
+            </dl>
+          </div>
+        </article>
+        <article class="iter iter--final" data-r>
+          <div class="iter__shot"><div class="browser"><div class="browser__bar"><div class="browser__dots"><i></i><i></i><i></i></div><div class="browser__url">axchannels.co.za</div></div><img src="assets/img/ax/ax-iter-05.jpg" width="1440" height="900" loading="lazy" alt="Final homepage hero with the studio ring artwork, the headline, a plain-language description and a single Start a Project call to action" /></div></div>
+          <div>
+            <div class="iter__meta"><span class="chip">05 · Shipped</span><span class="iter__date">27 SEP</span></div>
+            <h3>Hierarchy first, atmosphere second.</h3>
+            <dl class="flow">
+              <div><dt>Initial</dt><dd>Everything from 01–04 that worked: the ring artwork, the plain sentence, the pill CTA.</dd></div>
+              <div><dt>Problem</dt><dd>Early explorations prioritised visual impact but pushed the value proposition too far down the page.</dd></div>
+              <div><dt>Final</dt><dd>The hierarchy was revised to establish what AX-Channels does before introducing supporting visual elements.</dd></div>
+            </dl>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 08 · DESIGN SYSTEM ═══════════ -->
+  <section class="sec wash" id="system" aria-labelledby="system-t">
+    <div class="wrap">
+      <div class="sec-head" data-r>
+        <p class="eyebrow">08 <b>/ Visual design system</b></p>
+        <h2 class="h2" id="system-t">One Typeface, One Accent, <span class="mark">One Rhythm</span></h2>
+        <p class="sec-head__sub">Every value below is a live token in the shipped CSS. Service pages invent no new tokens — they rearrange these.</p>
+      </div>
+      <div class="ds">
+        <div class="tile t-type" data-r>
+          <p class="tile__k"><span>Primary typeface</span><span>Variable · 100–900</span></p>
+          <p class="spec">Archivo</p>
+          <div class="spec-meta"><span>Headings 500, title case</span><span>Emphasis 700–880</span><span>Body 400 · 1.6</span><span>Tracking −.02em on display</span></div>
+          <p class="note">A grotesque with enough width axis to set a 166px display line and a 12px chip from one file. Headings stay at weight 500 — the accent word does the shouting, not the weight.</p>
+        </div>
+        <div class="tile tile--dark t-mono" data-r>
+          <p class="tile__k"><span>Micro-labels</span><span>JetBrains Mono</span></p>
+          <p class="spec-mono">UX-Led <span>+</span> Design<br />Studio <span>·</span> JHB 2023</p>
+          <p class="note">Mono, uppercase, wide tracking — for eyebrows, breadcrumbs, metadata and figures. It marks “system information” so it never gets read as copy.</p>
+        </div>
+
+        <div class="tile t-scale" data-r>
+          <p class="tile__k"><span>Type scale</span><span>Design px at 1920 → fluid clamp()</span></p>
+          <ul class="scale">
+            <li><span class="tok">--fs-h1</span><span class="px">71px · 34 min</span><span class="smp" style="font-size:clamp(28px,3.4vw,52px);font-weight:500">Designing the Next Generation</span></li>
+            <li><span class="tok">--fs-h2</span><span class="px">55px · 27 min</span><span class="smp" style="font-size:clamp(24px,2.6vw,40px);font-weight:500">Services Built On <span class="mark">UX</span>, Not Decoration</span></li>
+            <li><span class="tok">--fs-h4</span><span class="px">40px · 23 min</span><span class="smp" style="font-size:clamp(20px,1.9vw,30px);font-weight:500">Discuss A Project ↗</span></li>
+            <li><span class="tok">--fs-lg</span><span class="px">24px · 16 min</span><span class="smp" style="font-size:clamp(16px,1.3vw,20px)">Web, App &amp; Product Design For Ambitious South African Businesses</span></li>
+            <li><span class="tok">--fs-md</span><span class="px">20px · 15 min</span><span class="smp" style="font-size:16px;color:var(--muted)">We bring UX research, structure and interface design together.</span></li>
+            <li><span class="tok">--fs-sm</span><span class="px">16px · 13 min</span><span class="smp" style="font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-2)">Selected work · 25+ projects</span></li>
+          </ul>
+        </div>
+
+        <div class="tile t-colour" data-r>
+          <p class="tile__k"><span>Colour</span><span>Core palette, as published on the Brand Identity page</span></p>
+          <div class="swatches">
+            <div class="sw"><div class="sw__c" style="background:#0a0a0a;color:#fff"><span>Ink</span></div><div class="sw__i"><b>Ink</b><code>#0A0A0A</code><p>Headings on light, primary pills.</p></div></div>
+            <div class="sw"><div class="sw__c" style="background:#1d1e24;color:#fff"><span>Night</span></div><div class="sw__i"><b>Night</b><code>#1D1E24</code><p>Dark blocks, hero base.</p></div></div>
+            <div class="sw"><div class="sw__c" style="background:#006275;color:#fff"><span>Teal</span></div><div class="sw__i"><b>Teal</b><code>#006275</code><p>The ring’s upper glow.</p></div></div>
+            <div class="sw"><div class="sw__c" style="background:#fff;color:#0a0a0a;border-bottom:1px solid var(--rule-light)"><span>White</span></div><div class="sw__i"><b>White</b><code>#FFFFFF</code><p>The page. Content lives here.</p></div></div>
+            <div class="sw"><div class="sw__c" style="background:linear-gradient(135deg,#e0176b 50%,#ff3d8a 50%);color:#fff"><span>Accent ×2</span></div><div class="sw__i"><b>Accent</b><code>#E0176B · #FF3D8A</code><p>One per heading. Deep on light (4.7:1), bright on dark (5.7:1).</p></div></div>
+          </div>
+          <div class="glows">
+            <div><i style="background:radial-gradient(circle at 70% 30%,rgba(0,98,117,.9),#101014 70%)"></i><span><code>--glow-teal</code>0, 98, 117</span></div>
+            <div><i style="background:radial-gradient(circle at 30% 70%,rgba(62,18,41,1),#101014 70%)"></i><span><code>--glow-mag</code>62, 18, 41</span></div>
+            <div><i style="background:#73767a"></i><span><code>--muted-2</code>#73767A · darkened to AA</span></div>
+            <div><i style="background:#697080"></i><span><code>--muted</code>#697080 · card body</span></div>
+          </div>
+          <p class="note">Both glows are sampled from the hero artwork, then reused as ambient washes on the white sections so the whole page shares the hero’s world. The accent was split into two tokens once contrast testing showed one value couldn’t pass on both grounds.</p>
+        </div>
+
+        <div class="tile t-grid" data-r>
+          <p class="tile__k"><span>Grid</span><span>Content starts on the logo</span></p>
+          <div class="gridviz">
+            <span class="gridviz__lbl">Desktop · 1812px measure · 33 / 67 editorial split</span>
+            <div class="gridviz__row" style="grid-template-columns:33fr 67fr"><i></i><i></i></div>
+            <span class="gridviz__lbl">Section head · heading / 44ch statement</span>
+            <div class="gridviz__row" style="grid-template-columns:1.5fr 1fr;height:40px"><i></i><i></i></div>
+            <span class="gridviz__lbl">Mobile · one column · 16px+ inset</span>
+            <div class="gridviz__row gridviz__row--m" style="grid-template-columns:1fr"><i></i></div>
+          </div>
+          <p class="note"><code style="font-family:var(--mono);font-size:12px">--gutter = --shell + --block-pad</code>. The inset that places the logo inside the hero is the same inset every section, card and panel starts from — so masthead, hero copy and section headings share one vertical line.</p>
+        </div>
+        <div class="tile t-space" data-r>
+          <p class="tile__k"><span>Spacing</span><span>--section-space · stepped</span></p>
+          <ul class="spacing">
+            <li><span class="bp">≥ 1440</span><span class="bar-v" style="width:100%"></span><span class="v">140</span></li>
+            <li><span class="bp">1024–1439</span><span class="bar-v" style="width:85.7%"></span><span class="v">120</span></li>
+            <li><span class="bp">768–1023</span><span class="bar-v" style="width:68.6%"></span><span class="v">96</span></li>
+            <li><span class="bp">480–767</span><span class="bar-v" style="width:57.1%"></span><span class="v">80</span></li>
+            <li><span class="bp">&lt; 480</span><span class="bar-v" style="width:51.4%"></span><span class="v">72</span></li>
+          </ul>
+          <p class="note">One gap per break. The section below a break carries the whole gap; the one above closes at zero — so the space between any two sections is one value, never a sum of two. This case study uses the same token.</p>
+        </div>
+
+        <div class="tile t-comp" data-r>
+          <p class="tile__k"><span>Components</span><span>Live — rendered with the system’s tokens</span></p>
+          <div class="comps">
+            <div class="comp comp--dark"><span class="comp__k">Navigation</span><div class="comp__demo"><span class="navdemo"><span class="on">Home</span><span>Services</span><span>Case Studies</span></span></div><p>A glass pill on the hero. Below 1100px it becomes a panel; the CTA stays outside it.</p></div>
+            <div class="comp"><span class="comp__k">Buttons</span><div class="comp__demo"><span class="pill pill--accent" style="height:42px">Start a Project ↗</span><span class="pill pill--ink" style="height:42px">See Our Work ↗</span></div><p>Every button is the hero’s pill: one height, one padding, one radius. Accent is reserved for the primary action.</p></div>
+            <div class="comp"><span class="comp__k">Service card</span><div class="svcdemo"><span class="eyebrow"><span>UX · Led process</span><span>01</span></span><b>Website Design &amp; Development</b><div class="comp__demo"><span class="chip" style="height:24px;font-size:11px">Responsive</span><span class="chip" style="height:24px;font-size:11px">UI/UX</span><span class="chip" style="height:24px;font-size:11px">CMS</span></div></div><p>Accent hairline on top draws in on hover; chips list what is included.</p></div>
+            <div class="comp"><span class="comp__k">Case-study label</span><div class="comp__demo"><span class="tagdemo tagdemo--client">Client Project</span><span class="tagdemo">Concept</span><span class="tagdemo">Exploration</span></div><p>Every project says what it is, so concept work is never mistaken for client delivery.</p></div>
+            <div class="comp"><span class="comp__k">Form field</span><div class="field"><label>Email (required)</label><div>you@company.co.za</div></div><p>Underline fields, 16px text so iOS never zooms, labels that say “required” in words.</p></div>
+            <div class="comp comp--dark"><span class="comp__k">Section head</span><div class="comp__demo" style="justify-content:space-between;width:100%;align-items:end"><span style="font-size:20px;font-weight:500;letter-spacing:-.02em">Why <span class="mark">AX</span></span><span style="font-size:11px;color:#b9bac1;text-align:right;max-width:18ch">Statement sits opposite, on a shared baseline</span></div><p>Heading holds the content line; the statement sits opposite and stacks left under 900px.</p></div>
+          </div>
+          <div class="motion">
+            <div style="--d:.22s"><code>--dur-fast · .22s</code><p>Micro-interactions: hovers, pills, focus.</p><div class="track"><i style="--d:.22s"></i></div></div>
+            <div><code>--dur-med · .45s</code><p>Component transitions: nav panel, drawers.</p><div class="track"><i style="--d:.45s"></i></div></div>
+            <div><code>--dur-slow · .85s</code><p>Editorial reveals on scroll. Off under reduced motion.</p><div class="track"><i style="--d:.85s"></i></div></div>
+          </div>
+        </div>
+      </div>
+      <figure class="fig" data-r>
+        <div class="shot"><img src="assets/img/ax/ax-sec-services.jpg" width="1440" height="892" loading="lazy" alt="The homepage services section: four service cards, each with an accent hairline, a UX-led process label, chips listing what is included and a photograph with an Explore button" /></div>
+        <figcaption><b>Components in context</b> Section head, service cards, chips and pills on the homepage</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ═══════════ 09 · FINAL EXPERIENCE ═══════════ -->
+  <section class="sec" id="final" aria-labelledby="final-t">
+    <div class="block dark" style="padding:var(--section-space) 0" data-dark>
+      <div class="wrap">
+        <div class="sec-head" data-r>
+          <p class="eyebrow">09 <b>/ The final experience</b></p>
+          <h2 class="h2" id="final-t">The Homepage, <span class="mark">As A Story</span> In Four Beats</h2>
+          <p class="sec-head__sub">Scroll the page inside the frame, or jump to a beat. Only the four areas that carry the argument are annotated.</p>
+        </div>
+        <div class="final">
+          <div class="anno" data-r>
+            <button type="button" data-to="0" class="is-on"><span class="anno__n">01</span><span><strong class="anno__t">Positioning</strong><span class="anno__p">Immediately establishes what AX-Channels does — and for whom.</span></span></button>
+            <button type="button" data-to="31.6"><span class="anno__n">02</span><span><strong class="anno__t">Services</strong><span class="anno__p">A clear route into each of the four capabilities.</span></span></button>
+            <button type="button" data-to="55.7"><span class="anno__n">03</span><span><strong class="anno__t">Proof</strong><span class="anno__p">Real work and evidence, presented before the testimonials.</span></span></button>
+            <button type="button" data-to="91.8"><span class="anno__n">04</span><span><strong class="anno__t">Conversion</strong><span class="anno__p">Three clear next actions — project, partnership or just hello.</span></span></button>
+          </div>
+          <div class="longshot" data-r>
+            <div class="browser">
+              <div class="browser__bar"><div class="browser__dots"><i></i><i></i><i></i></div><div class="browser__url">axchannels.co.za — Home · 1440px</div></div>
+              <div class="longshot__view" id="longView" tabindex="0" aria-label="Full AX-Channels homepage, scrollable">
+                <img src="assets/img/ax/ax-home-full.jpg" width="1440" height="8658" loading="lazy" alt="The complete AX-Channels homepage from hero to footer: work belt, studio statement, numbers, services, why choose us, selected work, testimonials, FAQ and closing call to action" />
+              </div>
+            </div>
+            <span class="longshot__hint" aria-hidden="true">Scroll inside ↕</span>
+          </div>
+        </div>
+
+        <figure class="fig" data-r>
+          <img src="assets/img/ax/ax-service-suite.jpg" width="2400" height="1620" loading="lazy" alt="The four AX-Channels service pages in browser windows: Website Design & Development, Digital Product Design, UI/UX Design & UX Strategy and Brand Identity Systems" />
+          <figcaption><b>Service pages</b> Four services, one shell — each hero answers “what is this and who is it for?” in one line</figcaption>
+        </figure>
+
+        <div class="duo">
+          <figure data-r><div class="shot"><img src="assets/img/ax/ax-sec-work.jpg" width="1440" height="1326" loading="lazy" alt="Selected work section with a FINOS case study card on a dark band" /></div><figcaption><b>03 · Proof</b> Selected work on the dark band</figcaption></figure>
+          <figure data-r><div class="shot"><img src="assets/img/ax/ax-sec-why.jpg" width="1440" height="867" loading="lazy" alt="'Why businesses choose AX-Channels' section with four written commitments and a reply-within-two-days card" /></div><figcaption><b>Credibility</b> Four written commitments, not adjectives</figcaption></figure>
+        </div>
+        <figure class="fig" data-r>
+          <img src="assets/img/ax/ax-pages.jpg" width="2400" height="1500" loading="lazy" alt="The services overview and case studies pages in browser windows, with the mobile selected-work carousel on a phone" />
+          <figcaption><b>Beyond home</b> Services overview · Case studies · Selected work on mobile</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ PROTOTYPE ═══════════ -->
+  <section class="sec" id="prototype" aria-labelledby="proto-t">
+    <div class="block dark" style="padding:var(--section-space) 0" data-dark>
+      <div class="wrap">
+        <div class="sec-head" data-r>
+          <p class="eyebrow">Live prototype <b>/ The real build</b></p>
+          <h2 class="h2" id="proto-t">Don’t Take The Screenshots’ Word For It — <span class="mark">Use It</span></h2>
+          <p class="sec-head__sub">All eight pages, the navigation, the enquiry drawers and the FAQ — running inside this page. Switch devices to see each layout at its true width.</p>
+        </div>
+        <div class="proto__bar" data-r>
+          <div class="seg" role="group" aria-label="Preview device">
+            <button type="button" data-device="desktop" aria-pressed="true">Desktop · 1440</button>
+            <button type="button" data-device="tablet" aria-pressed="false">Tablet · 834</button>
+            <button type="button" data-device="mobile" aria-pressed="false">Mobile · 390</button>
+          </div>
+          <a class="pill pill--light" href="ax-channels-proto/index.html" target="_blank" rel="noopener">Open full screen
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        </div>
+        <div class="stage" id="stage" data-device="desktop" data-r>
+          <div class="browser__bar stage__chrome"><div class="browser__dots"><i></i><i></i><i></i></div><div class="browser__url">axchannels.co.za</div></div>
+          <div class="stage__frame" id="stageFrame">
+            <button type="button" class="stage__cover" id="stageCover" style="background-image:url(assets/img/ax/ax-iter-05.jpg)" aria-label="Launch the AX-Channels prototype">
+              <span class="pill pill--accent">Launch prototype
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+            </button>
+          </div>
+        </div>
+        <p class="proto__foot"><span>Tip: try “Start a Project”, the menu on mobile, and the “Which one do you need?” picker under Services.</span><span>Forms open your email app — nothing is sent from here. <a href="ax-channels-proto/services/" target="_blank" rel="noopener">Services overview ↗</a></span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 10 · KEY DECISIONS ═══════════ -->
+  <section class="sec" id="decisions" aria-labelledby="dec-t">
+    <div class="wrap">
+      <div class="sec-head" data-r>
+        <p class="eyebrow">10 <b>/ Key UX decisions</b></p>
+        <h2 class="h2" id="dec-t">Six Decisions That Did <span class="mark">The Heavy Lifting</span></h2>
+        <p class="sec-head__sub">Each one: the problem, the call, the reason, and what actually shipped.</p>
+      </div>
+      <div class="decs">
+        <article class="dec" data-r>
+          <div>
+            <p class="dec__n">Decision 01</p>
+            <h3>Services were separated by user intent rather than internal capabilities.</h3>
+            <dl>
+              <div><dt>Problem</dt><dd>Clients arrive with a situation (“my site doesn’t convert”), not a service name.</dd></div>
+              <div><dt>Decision</dt><dd>A “Which one do you need?” picker, written as four situations that route to four services.</dd></div>
+              <div><dt>Reason</dt><dd>Nobody should have to learn the studio’s vocabulary to find the right door.</dd></div>
+              <div><dt>Result</dt><dd>Shipped on the services overview, with a fallback line: “Not sure? Ask — we reply within two working days.”</dd></div>
+            </dl>
+          </div>
+          <div class="shot"><img src="assets/img/ax/ax-ev-which.jpg" width="1440" height="700" loading="lazy" alt="'Which one do you need?' section: four situations such as 'You need a website that explains and converts', each linking to a service" /></div>
+        </article>
+        <article class="dec" data-r>
+          <div>
+            <p class="dec__n">Decision 02</p>
+            <h3>Case studies were positioned as evidence rather than decoration.</h3>
+            <dl>
+              <div><dt>Problem</dt><dd>Portfolio grids read as mood boards; mixing concept and client work quietly erodes trust.</dd></div>
+              <div><dt>Decision</dt><dd>Real project names directly under the hero; every card labelled Client Project, Concept or Exploration.</dd></div>
+              <div><dt>Reason</dt><dd>Proof before persuasion — and honest labels are themselves a credibility signal.</dd></div>
+              <div><dt>Result</dt><dd>A filterable case-studies page of seven projects, each saying which kind it is.</dd></div>
+            </dl>
+          </div>
+          <div class="dec__ex"><div class="comp__demo" style="gap:10px"><span class="tagdemo tagdemo--client">Client Project</span><span class="tagdemo">Concept</span><span class="tagdemo">Exploration</span></div>
+            <p style="margin-top:16px;font-size:15px;line-height:1.6">“Client deliveries, a product concept and explorations of where interfaces are heading. <strong>Each card says which.</strong>”</p><p class="small" style="margin-top:8px">— Case studies page, section statement</p></div>
+        </article>
+        <article class="dec" data-r>
+          <div>
+            <p class="dec__n">Decision 03</p>
+            <h3>Pricing was exposed where appropriate to reduce uncertainty.</h3>
+            <dl>
+              <div><dt>Problem</dt><dd>“Contact us for a quote” is where SME buyers leave — they can’t tell if they can afford to ask.</dd></div>
+              <div><dt>Decision</dt><dd>Three website packages published with split-payment options; product, UX and brand work openly “quoted against scope”.</dd></div>
+              <div><dt>Reason</dt><dd>Repeatable work can be priced; bespoke work shouldn’t pretend to be.</dd></div>
+              <div><dt>Result</dt><dd>R2,999 · R5,999 · R8,999, each payable over three months.</dd></div>
+            </dl>
+          </div>
+          <div class="shot"><img src="assets/img/ax/ax-ev-pricing.jpg" width="1440" height="1140" loading="lazy" alt="'Website Packages, Priced In The Open': Starter R2,999, Growth R5,999 marked as the recommendation, and Established R8,999" /></div>
+        </article>
+        <article class="dec" data-r>
+          <div>
+            <p class="dec__n">Decision 04</p>
+            <h3>The mobile navigation was simplified around the highest-value journeys.</h3>
+            <dl>
+              <div><dt>Problem</dt><dd>On a phone the primary action disappeared behind the menu.</dd></div>
+              <div><dt>Decision</dt><dd>Five destinations in the panel; the “Book a Call” pill stays outside it, always visible.</dd></div>
+              <div><dt>Reason</dt><dd>The one action that matters most shouldn’t take two taps.</dd></div>
+              <div><dt>Result</dt><dd>Logo · CTA · menu — the whole mobile masthead.</dd></div>
+            </dl>
+          </div>
+          <figure style="margin:0"><img src="assets/img/ax/ax-mobile.jpg" width="2400" height="1400" loading="lazy" alt="Four phones: the mobile homepage, the open navigation panel, the services section and the project enquiry form" style="border-radius:var(--r-soft)" /></figure>
+        </article>
+        <article class="dec" data-r>
+          <div>
+            <p class="dec__n">Decision 05</p>
+            <h3>CTA language moved from generic contact to action-oriented messaging.</h3>
+            <dl>
+              <div><dt>Problem</dt><dd>“Contact Us” asks the visitor to do the work of deciding why.</dd></div>
+              <div><dt>Decision</dt><dd>Name the action and match it to the page: “Start a Website Project”, “Start a Product Project”, “Start a UX Project”, “Start a Brand Project”.</dd></div>
+              <div><dt>Reason</dt><dd>A specific verb sets a specific expectation — and a shorter form.</dd></div>
+              <div><dt>Result</dt><dd>Three closing routes for three intents, and a form that says “nothing is sent until you press send”.</dd></div>
+            </dl>
+          </div>
+          <div class="dec__ex">
+            <ul class="ctas">
+              <li><s>Contact Us</s><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><b>Start a Project</b></li>
+              <li><s>Get Your Website</s><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><b>Start a Website Project</b></li>
+              <li><s>Social icons</s><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><b>Book a Call</b></li>
+              <li><s>Contact form page</s><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><b>Discuss a project · Partner · Say hi</b></li>
+            </ul>
+          </div>
+        </article>
+        <article class="dec" data-r>
+          <div>
+            <p class="dec__n">Decision 06</p>
+            <h3>Motion was used to reinforce hierarchy rather than compete with content.</h3>
+            <dl>
+              <div><dt>Problem</dt><dd>Early experiments — an animated glow ring, pointer-driven colour in the hero — pulled attention away from the words.</dd></div>
+              <div><dt>Decision</dt><dd>Three duration tokens, and motion only where something changes: entrances, line reveals, counters, hovers, drawers. Only transform and opacity animate.</dd></div>
+              <div><dt>Reason</dt><dd>Motion should tell you what just changed, not ask to be looked at.</dd></div>
+              <div><dt>Result</dt><dd>Motion is additive: with <code style="font-family:var(--mono);font-size:12px">prefers-reduced-motion</code> or no JavaScript, pages render complete and static.</dd></div>
+            </dl>
+          </div>
+          <figure style="margin:0"><img src="assets/img/ax/ax-conversion.jpg" width="2400" height="1400" loading="lazy" alt="The Discuss A Project drawer open over the homepage on a laptop, and the same form on a phone" style="border-radius:var(--r-soft)" /><figcaption><b>Conversion</b> The project drawer on desktop and mobile</figcaption></figure>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 11 · RESPONSIVE ═══════════ -->
+  <section class="sec" id="responsive" aria-labelledby="resp-t">
+    <div class="block dark" style="padding:var(--section-space) 0" data-dark>
+      <div class="wrap">
+        <div class="sec-head" data-r>
+          <p class="eyebrow">11 <b>/ Responsive design</b></p>
+          <h2 class="h2" id="resp-t">Restructured For Each Screen, <span class="mark">Not Shrunk</span></h2>
+          <p class="sec-head__sub">Rather than scaling the desktop interface down, the mobile experience restructures navigation, content density, typography and interaction around smaller screens.</p>
+        </div>
+      </div>
+      <figure class="fig" style="margin-inline:var(--shell)" data-r>
+        <img src="assets/img/ax/ax-responsive.jpg" width="2400" height="1400" loading="lazy" alt="The Website Design & Development page at desktop 1440px on a laptop, tablet 834px and mobile 390px" style="border-radius:var(--r-block)" />
+      </figure>
+      <div class="wrap">
+        <ul class="adapt" data-r>
+          <li><b>Navigation</b><h3>Pill → panel under 1100px</h3><p>The glass pill leaves the row to become a full-width panel; the primary CTA stays in the masthead.</p></li>
+          <li><b>Hierarchy</b><h3>Statements return to the left</h3><p>Below 900px each section head stacks, and its right-aligned statement returns left — ragged-left text is hard to read narrow.</p></li>
+          <li><b>Rhythm</b><h3>Five spacing steps</h3><p>Section gaps step 140 → 120 → 96 → 80 → 72, chosen per layout rather than scaled linearly.</p></li>
+          <li><b>Type</b><h3>Clamped, with floors</h3><p>Every step is fluid between a readable minimum and its 1920px design size, so nothing drops below 11px.</p></li>
+          <li><b>Content density</b><h3>Carousels where grids won’t fit</h3><p>Selected work becomes a paged carousel with large arrows; testimonials auto-slide.</p></li>
+          <li><b>Input</b><h3>Thumb-first forms</h3><p>16px inputs so iOS never zooms, 44px+ targets, and drawers that fill the screen.</p></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 12 · AI WORKFLOW ═══════════ -->
+  <section class="sec" id="workflow" aria-labelledby="flow-t">
+    <div class="wrap">
+      <div class="sec-head" data-r>
+        <p class="eyebrow">12 <b>/ Development &amp; AI workflow</b></p>
+        <h2 class="h2" id="flow-t">AI-Assisted Build, <span class="mark">Designer-Owned</span> Decisions</h2>
+        <p class="sec-head__sub">I used AI-assisted development to accelerate implementation while retaining responsibility for UX decisions, visual direction, interaction design and quality control.</p>
+      </div>
+      <ol class="pipe" data-r>
+        <li><span class="pipe__n">01</span><h3>Strategy</h3><p>Positioning, audience, IA and the four client questions.</p><span class="who">Me</span></li>
+        <li><span class="pipe__n">02</span><h3>Figma</h3><p>A 1920px homepage artboard, service-page designs and reference boards.</p><span class="who">Me</span></li>
+        <li><span class="pipe__n">03</span><h3>AI-assisted build</h3><p>Claude Code implements from the design and a written brief, one reviewable change at a time.</p><span class="who who--ai">Claude Code · directed</span></li>
+        <li><span class="pipe__n">04</span><h3>QA</h3><p>Every change reviewed in the browser against the design and the brief.</p><span class="who">Me</span></li>
+        <li><span class="pipe__n">05</span><h3>Responsive refinement</h3><p>Breakpoints, spacing and touch targets tuned device by device.</p><span class="who">Me + AI</span></li>
+      </ol>
+      <div class="nums block dark" style="margin:12px 0 0" data-r>
+        <div><b>5<sup>wks</sup></b><span>From first commit to pre-launch QA</span></div>
+        <div><b>80</b><span>Commits, each a reviewable design change</span></div>
+        <div><b>36</b><span>Merged pull requests</span></div>
+        <div><b>0</b><span>Frameworks — static, dependency-free HTML &amp; CSS</span></div>
+      </div>
+      <div class="role" data-r>
+        <div><h4>What I owned</h4><ul><li>Positioning, copy direction and information architecture</li><li>Visual direction, the design system and every token value</li><li>Interaction design, motion rules and accessibility calls</li><li>Accepting, rejecting or reworking every change</li></ul></div>
+        <div><h4>What AI accelerated</h4><ul><li>Turning designs and briefs into semantic HTML/CSS</li><li>Repetitive work across eight pages from one shell</li><li>Rapid variants when a section needed a second option</li><li>Audits I then verified — contrast, overlaps, mobile QA</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 13 · TESTING ═══════════ -->
+  <section class="sec" id="testing" aria-labelledby="test-t">
+    <div class="wrap">
+      <div class="sec-head" data-r>
+        <p class="eyebrow">13 <b>/ Testing &amp; iteration</b></p>
+        <h2 class="h2" id="test-t">What Was Checked, <span class="mark">And What It Changed</span></h2>
+        <p class="sec-head__sub">Pre-launch QA across desktop, tablet and mobile. Most items below produced a change in the code.</p>
+      </div>
+      <ul class="qa" data-r>
+        <li><p class="qa__k"><span>Accessibility</span><i>Fixed</i></p><h3>Grey text failed contrast</h3><p>Card eyebrows and testimonial roles darkened to 4.6:1 (<code>#b4b8bf → #73767a</code>) to meet WCAG AA.</p></li>
+        <li><p class="qa__k"><span>Accessibility</span><i>Fixed</i></p><h3>One accent couldn’t pass twice</h3><p>Split into <code>#e0176b</code> for white grounds and <code>#ff3d8a</code> for dark.</p></li>
+        <li><p class="qa__k"><span>Mobile</span><i>Fixed</i></p><h3>iOS zoomed into forms</h3><p>Inputs set to 16px; touch targets raised; form labels and errors tied to fields.</p></li>
+        <li><p class="qa__k"><span>Layout</span><i>Fixed</i></p><h3>Sections overlapped on phones</h3><p>The Approach section overlapped its neighbour on mobile; fixed, then all vertical rhythm moved onto one stepped token.</p></li>
+        <li><p class="qa__k"><span>Performance</span><i>Fixed</i></p><h3>A slow hero on mobile</h3><p>Hero artwork served as WebP and preloaded with high fetch priority; cache-busted assets.</p></li>
+        <li><p class="qa__k"><span>Hierarchy</span><i>Fixed</i></p><h3>Content line drift</h3><p>Masthead, hero and sections started on different lines; all now begin on the logo’s inset.</p></li>
+        <li><p class="qa__k"><span>Navigation</span><i>Checked</i></p><h3>Keyboard &amp; skip link</h3><p>Visible focus rings, a skip link, dialogs that close with Escape.</p></li>
+        <li><p class="qa__k"><span>CTA flows</span><i>Checked</i></p><h3>Every button goes somewhere</h3><p>Each CTA opens a drawer in place, and falls back to a plain email link without JavaScript.</p></li>
+        <li><p class="qa__k"><span>Resilience</span><i>Checked</i></p><h3>Works without the extras</h3><p>Motion is additive: with JavaScript off or reduced motion on, every page renders complete and static.</p></li>
+      </ul>
+      <p class="honest" data-r><b>No moderated usability testing has been run yet.</b> The findings here come from QA and design review, not from observing users. Usability sessions with SME owners are the first post-launch task — especially around whether the service picker routes people correctly.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════ 14 · OUTCOMES ═══════════ -->
+  <section class="sec" id="outcomes" aria-labelledby="out-t">
+    <div class="block dark" style="padding:var(--section-space) 0" data-dark>
+      <div class="wrap">
+        <div class="sec-head" data-r>
+          <p class="eyebrow">14 <b>/ Outcomes</b></p>
+          <h2 class="h2" id="out-t">What Changed — And <span class="mark">What Gets Measured Next</span></h2>
+          <p class="sec-head__sub">The site is pre-launch, so there are no conversion figures here yet. This section updates once there are.</p>
+        </div>
+        <div class="out">
+          <ul class="out__list" data-r>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>New positioning established — from web design to a UX-led studio</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Services reorganised into four, each with its own page</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>UX/UI offering clarified, with a bounded UX-audit entry point</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Responsive system implemented on one stepped spacing token</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>New case-study architecture with honest project labels</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Conversion paths simplified to one drawer from any page</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>An AI-assisted production workflow established and documented</li>
+          </ul>
+          <div data-r>
+            <div class="metrics">
+              <div><b>—</b><span>Enquiries per month</span><em>Tracking from launch</em></div>
+              <div><b>—</b><span>Enquiry conversion rate</span><em>Tracking from launch</em></div>
+              <div><b>—</b><span>Mobile conversion</span><em>Tracking from launch</em></div>
+              <div><b>—</b><span>Qualified leads</span><em>Tracking from launch</em></div>
+              <div><b>—</b><span>Service-page engagement</span><em>Tracking from launch</em></div>
+              <div><b>—</b><span>Exit points by page</span><em>Tracking from launch</em></div>
+            </div>
+            <p class="small" style="margin-top:14px;color:var(--on-dark-dim)">A living product story: the dashes become numbers after launch.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 15 · REFLECTION ═══════════ -->
+  <section class="sec" id="reflection" aria-labelledby="refl-t">
+    <div class="wrap">
+      <div class="sec-head" data-r>
+        <p class="eyebrow">15 <b>/ Reflection</b></p>
+        <h2 class="h2" id="refl-t">What I’d Improve, And <span class="mark">What It Changed</span> In Me</h2>
+      </div>
+      <div class="refl">
+        <div data-r>
+          <h3>What I would improve</h3>
+          <blockquote>The first iterations focused heavily on visual differentiation. Through refinement, I found that the stronger experience came from balancing visual identity with clearer service architecture and conversion paths.</blockquote>
+          <p>Next time the IA and the four client questions come first, in wireframes, before any hero is styled — it would have saved at least two of the five homepages.</p>
+        </div>
+        <div data-r>
+          <h3>What this project changed in my approach</h3>
+          <blockquote>I increasingly treat studio websites as products rather than marketing pages. The design needs to communicate positioning, guide users through decisions and create measurable business value.</blockquote>
+          <p>Working with AI made that sharper, not softer: when implementation is fast, the design decisions are the whole job.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ 16 · SUMMARY + NEXT ═══════════ -->
+  <section class="sec">
+    <div class="block dark sum" data-dark>
+      <div class="wrap" style="padding:0">
+        <div class="sum__grid" data-r>
+          <div>
+            <p class="eyebrow" style="margin-bottom:18px">Project summary</p>
+            <p class="sum__title">AX-<br />Channels</p>
+          </div>
+          <dl>
+            <div><dt>Role</dt><dd>Product Designer / UX Strategist</dd></div>
+            <div><dt>Focus</dt><dd>UX Strategy · UI Design · Information Architecture · Responsive Design · AI-assisted Development</dd></div>
+            <div><dt>Delivered</dt><dd>8 pages · design system · enquiry flows · live prototype</dd></div>
+          </dl>
+        </div>
+        <blockquote data-r>A UX-led digital studio experience designed to communicate AX-Channels’ capabilities, establish a stronger market position and create a clearer path from discovery to enquiry.</blockquote>
+
+        <p class="eyebrow" style="margin-top:clamp(40px,5vw,72px)">Next case study →</p>
+        <div class="next" style="margin-top:18px">
+          <a class="ncard" href="managem.html" data-r>
+            <img src="assets/img/home/work-managem.jpg" width="800" height="600" loading="lazy" alt="ManaGem enterprise dashboard on a desktop monitor" />
+            <div class="ncard__b"><div><small>Web platform · Enterprise &amp; AI</small><h3>ManaGem — Clarity For Enterprise</h3></div><span class="ncard__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></div>
+          </a>
+          <a class="ncard" href="whatsapp-ai.html" data-r>
+            <img src="assets/img/home/work-whatsapp.jpg" width="1000" height="750" loading="lazy" alt="WhatsApp Home Assist conversation open on a phone" />
+            <div class="ncard__b"><div><small>AI UX · Conversational</small><h3>WhatsApp AI Verification System</h3></div><span class="ncard__go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <a href="index.html">← Sphamandla Xaba® · Portfolio</a>
+  <span>AX-Channels · Johannesburg, South Africa</span>
+  <a href="#top">Back to top ↑</a>
+</footer>
+
+<script>
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* reveals */
+  var els = document.querySelectorAll('[data-r]');
+  if (!('IntersectionObserver' in window) || reduce) {
+    els.forEach(function (e) { e.classList.add('is-in'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+    els.forEach(function (e) { io.observe(e); });
+  }
+
+  /* progress rail: active section + dark-ground contrast */
+  var rail = document.getElementById('rail');
+  var links = Array.prototype.slice.call(rail.querySelectorAll('a'));
+  var targets = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+  var darks = Array.prototype.slice.call(document.querySelectorAll('[data-dark]'));
+  function onScroll() {
+    /* anchor jumps can skip past a reveal without it ever intersecting */
+    document.querySelectorAll('[data-r]:not(.is-in)').forEach(function (e) { if (e.getBoundingClientRect().top < window.innerHeight) e.classList.add('is-in'); });
+    var mid = window.innerHeight * 0.4, on = 0;
+    targets.forEach(function (t, i) { if (t && t.getBoundingClientRect().top <= mid) on = i; });
+    links.forEach(function (a, i) { a.classList.toggle('is-on', i === on); });
+    var y = window.innerHeight / 2, isDark = darks.some(function (d) { var r = d.getBoundingClientRect(); return r.top < y && r.bottom > y; });
+    rail.classList.toggle('on-dark', isDark);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  /* final experience: annotation beats scroll the framed homepage */
+  var view = document.getElementById('longView');
+  var btns = Array.prototype.slice.call(document.querySelectorAll('.anno button'));
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var img = view.querySelector('img');
+      view.scrollTop = img.offsetHeight * parseFloat(b.dataset.to) / 100;
+      btns.forEach(function (x) { x.classList.toggle('is-on', x === b); });
+    });
+  });
+  view.addEventListener('scroll', function () {
+    var img = view.querySelector('img'); if (!img.offsetHeight) return;
+    var p = (view.scrollTop + view.clientHeight * 0.3) / img.offsetHeight * 100, on = 0;
+    btns.forEach(function (b, i) { if (p >= parseFloat(b.dataset.to)) on = i; });
+    btns.forEach(function (b, i) { b.classList.toggle('is-on', i === on); });
+  }, { passive: true });
+
+  /* prototype: device widths are the real viewports, scaled to fit */
+  var sizes = { desktop: [1440, 900], tablet: [834, 1194], mobile: [390, 844] };
+  var stage = document.getElementById('stage'), frame = document.getElementById('stageFrame'), cover = document.getElementById('stageCover');
+  var iframe = null, device = 'desktop';
+  function fit() {
+    var s = sizes[device], w = frame.clientWidth, k = w / s[0];
+    frame.style.height = Math.round(s[1] * k) + 'px';
+    if (iframe) { iframe.style.width = s[0] + 'px'; iframe.style.height = s[1] + 'px'; iframe.style.transform = 'scale(' + k + ')'; }
+  }
+  function launch() {
+    if (iframe) return;
+    iframe = document.createElement('iframe');
+    iframe.src = 'ax-channels-proto/index.html';
+    iframe.title = 'AX-Channels website prototype';
+    iframe.setAttribute('loading', 'lazy');
+    frame.appendChild(iframe);
+    cover.remove();
+    fit();
+  }
+  cover.addEventListener('click', launch);
+  document.querySelectorAll('.seg button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      device = b.dataset.device; stage.dataset.device = device;
+      document.querySelectorAll('.seg button').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      requestAnimationFrame(fit); setTimeout(fit, 520);
+    });
+  });
+  window.addEventListener('resize', fit); fit();
+})();
+</script>
+</body>
+</html>

@@ -757,6 +757,7 @@
     },
     {
       co: 'AX-Channels Studio', when: '2023 — 2025', title: 'UI/UX Designer & WordPress Designer',
+      href: 'ax-channels.html', cta: 'AX-Channels case study →',
       points: [
         'Delivered digital projects across websites, landing pages and business platforms.',
         'Led end-to-end design projects from discovery and UX research through implementation.',
@@ -797,7 +798,7 @@
       ['GEMIS Studio', 'Studio website', 'gemis-studio.html'],
       ['CMAXX', 'Website', 'cmaxx.html'],
       ['GEMIS', 'Website'],
-      ['AX-Channels', 'Website'],
+      ['AX-Channels', 'Studio website', 'ax-channels.html'],
       ['Kiy Trucking', 'Website'],
       ['SmartStart', 'Learning website'],
       ['SG Coal', 'Redesign concept'],
@@ -833,6 +834,7 @@
         '<div class="role"><div class="role__top"><span class="role__co">' + esc(r.co) + '</span>' +
         '<span class="role__when">' + esc(r.when) + '</span></div>' +
         '<p class="role__title">' + esc(r.title) + '</p>' +
+        (r.href ? '<a class="prow__t" href="' + r.href + '">' + esc(r.cta) + '</a>' : '') +
         '<ul class="role__list">' + r.points.map((x) => '<li><span>' + esc(x) + '</span></li>').join('') + '</ul>' +
         '<div class="role__stats">' + r.stats.map((st) =>
           '<span class="role__stat"><b>' + esc(st[0]) + '</b>' + esc(st[1]) + '</span>').join('') + '</div></div>'

@@ -1,0 +1,217 @@
+/* ==========================================================================
+   AX-Channels — service page: Digital Product Design.
+
+   Loaded after home.css and service.css. Nothing new is invented here: the
+   hero, breadcrumb, section heads, tiles, process steps, deliverables board,
+   fit cards, case grid, dark redesign band, proof figures, FAQ, closing
+   block and footer all come from those two files unchanged.
+
+   This file adds only what a product page needs that the website page did
+   not: the design-chain spine, neutral comparison bullets, and the section
+   glow assignments that keep the page's light bands alternating the way
+   service.css does.
+   ========================================================================== */
+
+/* Section rhythm — service.css alternates a teal glow on the right with a
+   magenta glow on the left so no two consecutive light sections light the
+   same way. These continue that alternation for the sections this page adds.
+   The order below is the page's actual running order, so it stays checkable:
+   build M · anatomy T · [dark] · included T · work M · [dark] · who T ·
+   engagements M · proof T. */
+.pd-anatomy,
+.pd-who,
+.pd-eng { padding-top: var(--sec-gap); }
+
+.pd-anatomy { background: radial-gradient(46% 62% at 100% 12%, rgba(var(--glow-teal), .20), transparent 72%); }
+.pd-who     { background: radial-gradient(44% 60% at 98% 10%, rgba(var(--glow-teal), .20), transparent 72%); }
+.pd-eng     { background: radial-gradient(42% 58% at 0% 86%,  rgba(var(--glow-mag),  .18), transparent 72%); }
+/* the engagements section lands between pd-who and the proof block, which
+   would leave two magenta bands touching; service.css sets .svc-proof's glow
+   for the website page, and this file only loads here, so flipping it to teal
+   restores the alternation without affecting that page. */
+.svc-proof  { background: radial-gradient(44% 60% at 98% 8%, rgba(var(--glow-teal), .20), transparent 72%); }
+
+/* --------------------------------------------------------------------------
+   The design chain — a product is not a pile of screens, it is one chain of
+   decisions. Drawn as a spine: a continuous rule with a node on each stage,
+   splitting into two columns once there is room for them.
+   -------------------------------------------------------------------------- */
+.pd-chain {
+  margin: clamp(30px, 3.4vw, 64px) 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  /* filled column-first so 01-05 descend the left and 06-09 the right:
+     the chain reads as one continuous drop, not a zigzag across the page */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(5, auto);
+  grid-auto-flow: column;
+  column-gap: clamp(28px, 3.6vw, 76px);
+}
+.pd-stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: clamp(46px, 4.4vw, 78px) minmax(0, 1fr);
+  align-items: start;
+  padding: clamp(16px, 1.7vw, 28px) 0;
+}
+/* the spine: a rule down the number column, joined stage to stage */
+.pd-stage::before {
+  content: "";
+  position: absolute;
+  left: clamp(9px, .86vw, 15px);
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--svc-rule);
+}
+/* the spine stops at the first and last stage of each column rather than
+   running off into the section's padding */
+.pd-chain > :first-child::before,
+.pd-chain > :nth-child(6)::before { top: clamp(16px, 1.7vw, 28px); }
+.pd-chain > :nth-child(5)::before,
+.pd-chain > :last-child::before { bottom: calc(100% - clamp(16px, 1.7vw, 28px)); }
+
+.pd-stage__n {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: clamp(19px, 1.72vw, 30px);
+  height: clamp(19px, 1.72vw, 30px);
+  border: 1px solid var(--svc-rule);
+  border-radius: 50%;
+  background: var(--page);
+  font-family: var(--mono);
+  font-size: var(--fs-2xs);
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--muted-2);
+}
+.pd-stage:hover .pd-stage__n,
+.pd-stage:focus-within .pd-stage__n {
+  border-color: var(--accent-ink);
+  color: var(--accent-ink);
+}
+.pd-stage__t {
+  margin: 0;
+  font-size: var(--fs-md);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -.012em;
+  color: var(--ink);
+}
+.pd-stage__p {
+  margin: .5em 0 0;
+  font-size: var(--fs-sm);
+  line-height: 1.66;
+  color: var(--muted);
+}
+.pd-chain__fine {
+  margin: clamp(22px, 2.2vw, 40px) 0 0;
+  padding-top: clamp(14px, 1.4vw, 24px);
+  border-top: 1px solid var(--svc-rule);
+  font-size: var(--fs-sm);
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 88ch;
+}
+
+/* Process — service.css sets five columns for the website page's five
+   stages. This page has eight, which would leave a ragged 5 + 3. Four
+   columns give two even rows; the 1100px breakpoint in service.css takes
+   over from there. */
+@media (min-width: 1101px) {
+  .svc-process .svc-steps { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+/* --------------------------------------------------------------------------
+   Responsive — the chain is the only thing here that needs recomposing.
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .pd-chain {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    grid-auto-flow: row;
+  }
+  /* one column now, so the spine runs continuously from first to last */
+  .pd-chain > :nth-child(5)::before { bottom: 0; }
+  .pd-chain > :nth-child(6)::before { top: 0; }
+}
+
+@media (max-width: 720px) {
+  .pd-stage { grid-template-columns: clamp(34px, 9vw, 46px) minmax(0, 1fr); }
+  .pd-stage::before { left: clamp(9px, 2.4vw, 15px); }
+}
+
+/* --------------------------------------------------------------------------
+   Engagements — the four routes into a product project, carried by the
+   package card from service.css so they read the same way the website
+   packages do. Everything here is an addition to that card, not a new one:
+   an index, a description in place of the price, and a four-across grid.
+
+   No price appears on these cards, because product work is scoped per
+   product; the note underneath answers the cost question with scope.
+   -------------------------------------------------------------------------- */
+.pd-plans { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+.svc-plan__n {
+  margin: 0 0 clamp(12px, 1.2vw, 20px);
+  font-family: var(--mono);
+  font-size: var(--fs-2xs);
+  font-weight: 500;
+  letter-spacing: .14em;
+  color: var(--accent-ink);
+}
+/* the description sits where the package card carries its price */
+.pd-plan__p {
+  margin: clamp(10px, 1vw, 16px) 0 0;
+  font-size: var(--fs-sm);
+  line-height: 1.66;
+  color: var(--muted);
+}
+/* the list already has flex:1 from service.css, which holds the buttons on
+   one line across the row whatever each description wraps to */
+
+/* Scope note — the answer to "what does it cost", given as scope rather than
+   a number, so it carries weight without becoming a price panel. */
+.pd-scope {
+  display: grid;
+  grid-template-columns: minmax(0, 42fr) minmax(0, 58fr);
+  column-gap: clamp(24px, 3.2vw, 72px);
+  align-items: start;
+  margin: clamp(30px, 3.4vw, 60px) 0 0;
+  padding-top: clamp(24px, 2.6vw, 44px);
+  border-top: 1px solid var(--svc-rule);
+}
+.pd-scope__t {
+  margin: 0;
+  font-size: var(--fs-h5);
+  font-weight: 500;
+  line-height: 1.24;
+  letter-spacing: -.02em;
+  max-width: 22ch;
+}
+.pd-scope__p {
+  margin: 0;
+  font-size: var(--fs-sm);
+  line-height: 1.76;
+  color: var(--muted);
+}
+.pd-scope__p + .pd-scope__p { margin-top: clamp(12px, 1.2vw, 20px); }
+.pd-eng__cta { margin: clamp(28px, 3vw, 54px) 0 0; }
+
+/* Responsive — four cards need their own breakpoints. service.css takes the
+   three packages to 3-up at 1100 and 1-up at 900; four engagements read
+   better 2-up, and holding that down to 720 keeps the row from becoming a
+   very long stack on a tablet. */
+@media (max-width: 1300px) {
+  .pd-plans { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 1100px) {
+  .pd-scope { grid-template-columns: minmax(0, 1fr); row-gap: clamp(14px, 1.6vw, 24px); }
+  .pd-scope__t { max-width: none; }
+}
+@media (max-width: 720px) {
+  .pd-plans { grid-template-columns: minmax(0, 1fr); }
+}

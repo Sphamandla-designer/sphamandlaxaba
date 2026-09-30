@@ -51,6 +51,9 @@ index.html                  # the portfolio (single page)
 managem.html                # ManaGem case study
 wastemart.html              # WasteMart case study
 brand-studio.html           # brand studio explorations
+ax-channels.html            # AX-Channels case study (UX-led studio site)
+ax-channels-proto/          # AX-Channels site build, embedded as the live prototype
+assets/img/ax/              # AX-Channels device mockups, section captures and iteration renders
 assets/css/home.css         # homepage design tokens + styling
 assets/js/home.js           # GSAP/Lenis interaction & scroll choreography
 assets/js/hero-gl.js        # Three.js hero particle field (ES module)
