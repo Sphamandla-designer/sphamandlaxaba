@@ -1633,6 +1633,8 @@ a.prow:hover { background: var(--muted-surface); border-color: var(--border); }
 .facts__v { color: var(--ink); font-weight: 500; }
 .facts__v span { display: block; font-weight: 400; color: var(--ink-2); font-size: 12.5px; margin-top: 2px; }
 .facts__v .ok { color: var(--gold); font-weight: 600; }
+.facts__link { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .22em; transition: color .2s; }
+.facts__link:hover { color: var(--gold); }
 
 /* labelled links instead of bare icons */
 .about2__links {
