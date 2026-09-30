@@ -1,0 +1,150 @@
+/* ==========================================================================
+   AX-Channels — the Services overview and the Case Studies page.
+
+   Loaded after home.css and service.css. Both pages are built from the
+   shared service-page shell (hero, breadcrumb, section heads, process band,
+   case cards, quotes, dark band, closing block, footer, drawers); this file
+   adds only the four things they need that it does not have: the
+   "which service" list, the case-study filter, the featured case and the
+   project status tag. Every value comes from home.css.
+   ========================================================================== */
+
+/* Section rhythm — light bands alternate teal-right / magenta-left. */
+.hub-which,
+.cs-grid-sec { padding-top: var(--sec-gap); }
+.hub-which  { background: radial-gradient(42% 58% at 0% 50%, rgba(var(--glow-mag), .18), transparent 72%); }
+.cs-grid-sec { background: radial-gradient(46% 40% at 100% 6%, rgba(var(--glow-teal), .20), transparent 72%); }
+
+/* --------------------------------------------------------------------------
+   Services overview — which one do you need
+   -------------------------------------------------------------------------- */
+.hub-which__list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(18px, 2vw, 40px) clamp(20px, 2.4vw, 44px);
+  margin: clamp(30px, 3.4vw, 64px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.hub-which__list li {
+  display: flex;
+  flex-direction: column;
+  padding-top: clamp(14px, 1.3vw, 22px);
+  border-top: 1px solid var(--svc-rule);
+}
+.hub-which__list h3 {
+  margin: 0;
+  font-size: var(--fs-md);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -.014em;
+}
+.hub-which__list p { flex: 1; margin: 8px 0 0; font-size: var(--fs-sm); line-height: 1.72; color: var(--muted); }
+.hub-which__list .tlink { margin-top: clamp(14px, 1.4vw, 22px); font-size: var(--fs-sm); color: var(--accent-ink); }
+
+/* --------------------------------------------------------------------------
+   Case studies — filter
+   -------------------------------------------------------------------------- */
+.cs-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: clamp(26px, 3vw, 52px) 0 0;
+}
+.cs-filter[hidden] { display: none; }
+.cs-filter button {
+  height: clamp(36px, 2.6vw, 44px);
+  padding-inline: clamp(14px, 1.2vw, 20px);
+  border: 1px solid var(--svc-rule);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .7);
+  color: var(--ink);
+  font: 500 var(--fs-sm)/1 var(--font);
+  cursor: pointer;
+  transition: background-color .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease);
+}
+.cs-filter button:hover { border-color: var(--ink); }
+.cs-filter button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #fff; }
+.cs-filter button:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 3px; }
+.cs-count {
+  margin: 14px 0 0;
+  font-family: var(--mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+
+/* the project status: what kind of work a card is showing */
+.cs-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin: clamp(14px, 1.4vw, 24px) 0 0;
+}
+.cs-meta .svc-case__cat { margin: 0; }
+.cs-tag {
+  padding: .35em .75em;
+  border: 1px solid var(--svc-rule);
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.cs-tag--client { border-color: var(--accent-ink); color: var(--accent-ink); }
+
+.svc-case[hidden] { display: none; }
+.cs-case .svc-quote { margin: 0 0 clamp(14px, 1.4vw, 22px); }
+.cs-case .svc-quote p { font-size: var(--fs-sm); }
+.cs-soon {
+  font-family: var(--mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+.cs-ext::after { content: " \2197"; }
+
+/* the featured case spans the grid, image and copy side by side */
+.cs-feature {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 58fr) minmax(0, 42fr);
+  gap: clamp(22px, 3vw, 60px);
+  align-items: center;
+}
+.cs-feature .cs-meta { margin-top: 0; }
+.cs-feature .svc-case__t { font-size: var(--fs-h4); }
+
+.cs-note {
+  margin: clamp(26px, 3vw, 52px) 0 0;
+  padding-top: clamp(14px, 1.4vw, 24px);
+  border-top: 1px solid var(--svc-rule);
+  max-width: 88ch;
+  font-size: var(--fs-sm);
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+@media (max-width: 1100px) {
+  .hub-which__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cs-feature { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 720px) {
+  .hub-which__list { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Both pages end on a dark band, and the closing block below is dark too.
+   On the service pages a light FAQ sits between them; here the band holds
+   the closing block off by the section gap itself, so the two never touch. */
+.page-end { margin-bottom: var(--sec-gap); }
+
+/* touch screens: the filter pills keep their size, but the tappable area
+   grows to 44px tall */
+@media (pointer: coarse) {
+  .cs-filter button { position: relative; }
+  .cs-filter button::after { content: ""; position: absolute; inset: -5px -1px; }
+}

@@ -1,0 +1,758 @@
+/* ==========================================================================
+   AX-Channels — service page: Brand Identity Systems.
+
+   Loaded after home.css and service.css. The hero shell, breadcrumb, section
+   heads, problem list, process band, tiles, fit cards, dark band, FAQ,
+   closing block, footer, reveal system and drawers are reused as they are.
+
+   What is new here is what a visual-identity page has to show rather than
+   say: a specimen board in the hero that takes the studio's own identity
+   apart, a three-layer definition, the four-part deliverables panel, and a
+   touchpoint mosaic. Every colour, type step, radius and easing below comes
+   from home.css; nothing is invented.
+   ========================================================================== */
+
+/* Section rhythm — light bands alternate a teal glow on the right with a
+   magenta glow on the left, as service.css does. Running order:
+   problem T · define M · system T · [process] · touch T · who M · vs T ·
+   work M · [start] · faq. */
+.br-define,
+.br-system,
+.br-family,
+.br-touch,
+.br-who,
+.br-work { padding-top: var(--sec-gap); }
+
+.br-define { background: radial-gradient(40% 56% at 0% 50%,  rgba(var(--glow-mag),  .18), transparent 72%); }
+.br-system { background: radial-gradient(46% 62% at 98% 8%,  rgba(var(--glow-teal), .20), transparent 72%); }
+.br-family { background: radial-gradient(40% 56% at 0% 50%,  rgba(var(--glow-mag),  .18), transparent 72%); }
+.br-touch  { background: radial-gradient(46% 60% at 100% 6%, rgba(var(--glow-teal), .20), transparent 72%); }
+.br-who    { background: radial-gradient(40% 56% at 0% 56%,  rgba(var(--glow-mag),  .18), transparent 72%); }
+.br-work   { background: radial-gradient(40% 56% at 0% 52%,  rgba(var(--glow-mag),  .18), transparent 72%); }
+
+.br-link { color: var(--accent-ink); text-decoration: underline; text-underline-offset: .22em; }
+
+/* --------------------------------------------------------------------------
+   Hero — copy left, specimen board right. The board replaces the photograph
+   the other service heroes use as atmosphere: on a brand page the identity
+   itself is the picture, so it is shown rather than faded back.
+   -------------------------------------------------------------------------- */
+.br-hero .svc-hero__in {
+  display: grid;
+  grid-template-columns: minmax(0, 53fr) minmax(0, 47fr);
+  align-items: center;
+  gap: clamp(28px, 4vw, 88px);
+}
+.br-hero .svc-hero__copy { max-width: none; }
+
+.br-board { margin: 0; container-type: inline-size; }
+.br-board__grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-rows: repeat(6, minmax(0, 1fr));
+  gap: clamp(6px, 1.6cqi, 12px);
+  aspect-ratio: 1 / .9;
+}
+.br-cell {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--svc-rule-d);
+  border-radius: clamp(10px, 2.2cqi, 16px);
+  background: rgba(255, 255, 255, .04);
+}
+.br-cell__k {
+  position: absolute;
+  left: clamp(8px, 2.6cqi, 16px);
+  bottom: clamp(7px, 2.2cqi, 14px);
+  font-family: var(--mono);
+  font-size: clamp(9px, 1.9cqi, 11px);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--svc-dim-d);
+}
+
+/* the guidelines, as a finished object */
+.br-cell--book { grid-area: 1 / 1 / 5 / 4; background: var(--numbers-panel); }
+.br-cell--book img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }
+.br-cell--book .br-cell__k {
+  padding: .35em .7em;
+  border-radius: 999px;
+  background: rgba(10, 10, 13, .72);
+  color: #fff;
+}
+
+/* the lockup, with its clear space drawn around it */
+.br-cell--logo {
+  grid-area: 1 / 4 / 3 / 7;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  border-color: transparent;
+}
+.br-cell--logo .br-cell__k { color: var(--muted-2); }
+.br-lockup {
+  position: relative;
+  display: inline-flex;
+  padding: clamp(6px, 2.2cqi, 14px) clamp(10px, 3.2cqi, 20px);
+  outline: 1px dashed rgba(224, 23, 107, .55);
+  margin-bottom: clamp(12px, 3.4cqi, 20px);
+}
+.br-lockup img { display: block; width: auto; height: clamp(30px, 12cqi, 80px); }
+/* clear-space ticks at the corners */
+.br-lockup::before,
+.br-lockup::after {
+  content: "";
+  position: absolute;
+  width: 6px; height: 6px;
+  background: var(--accent-ink);
+  rotate: 45deg;
+}
+.br-lockup::before { top: -3px; left: -3px; }
+.br-lockup::after  { bottom: -3px; right: -3px; }
+
+/* the typeface */
+.br-cell--type {
+  grid-area: 3 / 4 / 5 / 7;
+  padding: clamp(8px, 2.6cqi, 16px);
+  background:
+    radial-gradient(80% 90% at 100% 0%, rgba(var(--glow-teal), .5), transparent 70%),
+    var(--ink-2);
+}
+.br-type__aa {
+  display: block;
+  font-size: clamp(36px, 15cqi, 88px);
+  font-weight: 500;
+  line-height: .9;
+  letter-spacing: -.04em;
+  color: #fff;
+}
+.br-type__name {
+  display: block;
+  margin-top: clamp(4px, 1.2cqi, 8px);
+  font-size: clamp(11px, 2.4cqi, 14px);
+  font-weight: 600;
+  color: #fff;
+}
+
+/* the palette */
+.br-cell--colour {
+  grid-area: 5 / 1 / 7 / 5;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-color: transparent;
+  background: transparent;
+  gap: 0;
+}
+.br-swatch {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(6px, 2cqi, 12px);
+  font-family: var(--mono);
+  font-size: clamp(8px, 1.7cqi, 10.5px);
+  line-height: 1.35;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.br-swatch b { display: block; font-weight: 500; }
+.br-swatch--ink   { background: #0a0a0a; color: #fff; box-shadow: inset 0 0 0 1px var(--svc-rule-d); border-radius: clamp(10px, 2.2cqi, 16px) 0 0 clamp(10px, 2.2cqi, 16px); }
+.br-swatch--night { background: #1d1e24; color: #fff; }
+.br-swatch--teal  { background: #006275; color: #fff; }
+.br-swatch--white { background: #fff; color: var(--ink); border-radius: 0 clamp(10px, 2.2cqi, 16px) clamp(10px, 2.2cqi, 16px) 0; }
+
+/* the one accent */
+.br-cell--accent {
+  grid-area: 5 / 5 / 7 / 7;
+  border-color: transparent;
+  background: var(--accent-ink);
+  padding: clamp(8px, 2.6cqi, 16px);
+}
+.br-cell--accent .br-cell__k { color: #fff; }
+.br-accent__hex {
+  display: block;
+  font-family: var(--mono);
+  font-size: clamp(11px, 2.4cqi, 14px);
+  letter-spacing: .06em;
+  color: #fff;
+}
+/* the magenta stroke of the AX mark, as a graphic element */
+.br-accent__bar {
+  position: absolute;
+  right: 12%;
+  top: -12%;
+  width: 20%;
+  height: 124%;
+  background: rgba(255, 255, 255, .22);
+  transform: skewX(-28deg);
+}
+
+.br-board__cap {
+  margin: clamp(12px, 1.2vw, 20px) 0 0;
+  font-family: var(--mono);
+  font-size: var(--fs-2xs);
+  line-height: 1.6;
+  letter-spacing: .06em;
+  color: var(--svc-dim-d);
+}
+
+/* --------------------------------------------------------------------------
+   What a system is — three layers, read top to bottom.
+   -------------------------------------------------------------------------- */
+.br-define__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 34fr) minmax(0, 66fr);
+  gap: clamp(26px, 3.6vw, 80px);
+  margin-top: clamp(30px, 3.4vw, 64px);
+  align-items: start;
+}
+.br-define__intro p {
+  margin: 0;
+  font-size: var(--fs-lg);
+  line-height: 1.55;
+  letter-spacing: -.012em;
+}
+.br-scope {
+  margin-top: clamp(22px, 2.4vw, 40px);
+  padding: clamp(20px, 2vw, 32px);
+  border-radius: var(--r-soft);
+  color: var(--on-dark);
+  background:
+    radial-gradient(70% 60% at 100% 0%, rgba(var(--glow-teal), .4), transparent 70%),
+    var(--ink-2);
+}
+.br-scope__t {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: var(--fs-2xs);
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.br-scope p {
+  margin: clamp(10px, 1vw, 16px) 0 0;
+  font-size: var(--fs-sm);
+  line-height: 1.7;
+  color: var(--svc-text-d);
+}
+
+.br-layers { margin: 0; padding: 0; list-style: none; border-bottom: 1px solid var(--svc-rule); }
+.br-layer {
+  display: grid;
+  grid-template-columns: minmax(0, 7ch) minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(8px, 1vw, 16px) clamp(18px, 2.4vw, 44px);
+  padding: clamp(20px, 2.2vw, 38px) 0;
+  border-top: 1px solid var(--svc-rule);
+}
+.br-layer__n {
+  font-size: var(--fs-stat);
+  font-weight: 200;
+  line-height: .9;
+  letter-spacing: -.04em;
+  color: var(--accent-ink);
+}
+.br-layer__t {
+  margin: 0;
+  font-size: var(--fs-h5);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -.02em;
+}
+.br-layer__does {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+.br-layer__p { margin: 0; font-size: var(--fs-sm); line-height: 1.72; color: var(--muted); }
+.br-layer__p + .br-layer__p { margin-top: 10px; }
+.br-layer__p b { color: var(--ink); font-weight: 600; }
+
+/* --------------------------------------------------------------------------
+   What we create — four parts in one panel, joined by hairlines rather than
+   set out as four separate cards, because they are one deliverable.
+   -------------------------------------------------------------------------- */
+.br-system__panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: clamp(30px, 3.4vw, 64px);
+  border: 1px solid var(--svc-rule);
+  border-radius: var(--r-soft);
+  background: rgba(255, 255, 255, .72);
+}
+.br-part { padding: clamp(24px, 2.8vw, 52px); }
+.br-part:nth-child(odd)  { border-right: 1px solid var(--svc-rule); }
+.br-part:nth-child(-n+2) { border-bottom: 1px solid var(--svc-rule); }
+.br-part__k {
+  display: flex;
+  align-items: center;
+  gap: .8em;
+  margin: 0;
+  font-family: var(--mono);
+  font-size: var(--fs-2xs);
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+}
+.br-part__k::after { content: ""; flex: 1; height: 1px; background: var(--svc-rule); }
+.br-part__t {
+  margin: clamp(14px, 1.4vw, 24px) 0 0;
+  font-size: var(--fs-h5);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -.02em;
+}
+.br-part__p {
+  margin: clamp(8px, .9vw, 14px) 0 0;
+  max-width: 48ch;
+  font-size: var(--fs-sm);
+  line-height: 1.7;
+  color: var(--muted);
+}
+.br-part .svc-col__list { margin-top: clamp(16px, 1.6vw, 26px); }
+.br-part__note {
+  margin: clamp(14px, 1.4vw, 22px) 0 0;
+  font-family: var(--mono);
+  font-size: var(--fs-2xs);
+  line-height: 1.75;
+  color: var(--muted-2);
+}
+/* the node where the four parts meet */
+.br-system__node {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  padding: .7em 1.2em;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 0 0 0 6px var(--page);
+}
+.br-system__fine {
+  margin: clamp(18px, 1.8vw, 30px) 0 0;
+  max-width: 88ch;
+  font-size: var(--fs-sm);
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.br-process__fine {
+  margin: clamp(22px, 2.2vw, 40px) 0 0;
+  padding-top: clamp(14px, 1.4vw, 24px);
+  border-top: 1px solid var(--svc-rule-d);
+  max-width: 88ch;
+  font-size: var(--fs-sm);
+  line-height: 1.7;
+  color: var(--svc-text-d);
+}
+
+/* --------------------------------------------------------------------------
+   Logo family — the supplied versions, each on the ground it was drawn for.
+   The two full lockups lead at double width; the rest pair up colour and
+   reversed so the difference reads across each row.
+   -------------------------------------------------------------------------- */
+.br-family__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(10px, 1.1vw, 20px);
+  margin-top: clamp(30px, 3.4vw, 64px);
+}
+.br-var {
+  position: relative;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  min-height: clamp(190px, 16vw, 290px);
+  padding: clamp(24px, 2.4vw, 44px) clamp(18px, 2vw, 36px) clamp(46px, 3.8vw, 64px);
+  border-radius: var(--r-soft);
+  border: 1px solid var(--svc-rule);
+}
+.br-var--wide { grid-column: span 2; min-height: clamp(240px, 22vw, 400px); }
+/* sized by what the version contains, so the family reads at one scale:
+   lockups by height, the wider mark-only and mark-and-tagline versions
+   a little shorter */
+.br-var img { display: block; max-width: 100%; width: auto; height: clamp(64px, 6.6vw, 124px); }
+.br-var--wide img { height: clamp(96px, 10vw, 184px); }
+.br-var--m img  { height: clamp(40px, 4vw, 74px); }
+.br-var--mt img { height: clamp(52px, 5.2vw, 96px); }
+.br-var--light { background: #fff; }
+.br-var--dark  { background: var(--hero-ink); border-color: transparent; }
+.br-var--teal  { background: #006275; border-color: transparent; }
+.br-var--stone { background: #e6e3dc; border-color: transparent; }
+.br-var__k {
+  position: absolute;
+  left: clamp(12px, 1.2vw, 20px);
+  bottom: clamp(12px, 1.1vw, 18px);
+  font-family: var(--mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+.br-var__k i { font-style: normal; color: var(--accent-ink); }
+.br-var--dark .br-var__k,
+.br-var--teal .br-var__k { color: rgba(255, 255, 255, .78); }
+.br-var--dark .br-var__k i,
+.br-var--teal .br-var__k i { color: var(--accent); }
+.br-var--stone .br-var__k { color: #5d5f64; }
+.br-family__fine {
+  margin: clamp(22px, 2.2vw, 40px) 0 0;
+  padding-top: clamp(14px, 1.4vw, 24px);
+  border-top: 1px solid var(--svc-rule);
+  max-width: 88ch;
+  font-size: var(--fs-sm);
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* --------------------------------------------------------------------------
+   Touchpoints — one identity across screen, print and product. Each row
+   holds a fixed ratio so the tiles in it share a height whatever their
+   source ratio; images are cropped to it with object-fit.
+   -------------------------------------------------------------------------- */
+.br-mosaic { display: grid; gap: clamp(10px, 1.1vw, 20px); margin-top: clamp(30px, 3.4vw, 64px); }
+.br-mosaic__row { display: grid; gap: inherit; }
+.br-mosaic__row--a { grid-template-columns: 7fr 5fr; aspect-ratio: 12 / 4.9; }
+.br-mosaic__row--b { grid-template-columns: 3fr 3fr 4fr 2fr; aspect-ratio: 12 / 3; }
+
+.br-tp {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  margin: 0;
+  min-height: 0;
+  border-radius: var(--r-soft);
+  background: var(--numbers-panel);
+  container-type: inline-size;
+}
+.br-tp > img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.br-tp--site  > img { object-position: 50% 50%; }
+.br-tp--kit   > img { object-position: 40% 50%; }
+.br-tp--tote  > img { object-position: 50% 58%; }
+.br-tp__k {
+  position: absolute;
+  left: clamp(10px, 1vw, 18px);
+  bottom: clamp(10px, 1vw, 18px);
+  z-index: 2;
+  padding: .45em .8em;
+  border-radius: 999px;
+  background: rgba(10, 10, 13, .76);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.br-tp__k i { font-style: normal; color: var(--accent); }
+
+/* Illustrative tiles, set live from the same system. */
+.br-post {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(12px, 7cqi, 26px);
+  color: #fff;
+  background:
+    radial-gradient(70% 60% at 100% 0%,  rgba(var(--glow-teal), .6), transparent 70%),
+    radial-gradient(70% 60% at 0% 100%,  rgba(var(--glow-mag),  .9), transparent 72%),
+    var(--hero-ink);
+}
+.br-post--light { color: var(--ink); background: #fff; border: 1px solid var(--svc-rule); }
+.br-post__brand { display: block; width: auto; height: clamp(16px, 9cqi, 30px); }
+.br-post__h {
+  margin: 0;
+  font-size: clamp(17px, 12cqi, 40px);
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: -.03em;
+}
+.br-post__h em { font-style: normal; color: var(--accent); }
+.br-post--light .br-post__h em { color: var(--accent-ink); }
+.br-post__n {
+  font-size: clamp(34px, 30cqi, 110px);
+  font-weight: 200;
+  line-height: .82;
+  letter-spacing: -.05em;
+}
+/* kept to the upper right, clear of the headline, so the accent word never
+   lands on the accent colour */
+.br-post__stroke {
+  position: absolute;
+  right: 12%;
+  top: -12%;
+  z-index: -1;
+  width: 14%;
+  height: 48%;
+  background: var(--accent-ink);
+  transform: skewX(-28deg);
+  opacity: .9;
+}
+.br-post .br-tp__k { position: static; align-self: flex-start; }
+.br-post--light .br-tp__k { background: var(--ink); }
+
+.br-slide {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(8px, 4cqi, 22px);
+  padding: clamp(12px, 5cqi, 26px);
+  color: #fff;
+  background:
+    radial-gradient(60% 80% at 100% 100%, rgba(var(--glow-teal), .55), transparent 70%),
+    var(--ink-2);
+}
+.br-slide__meta {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: clamp(8px, 2.6cqi, 11px);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--svc-dim-d);
+}
+.br-slide__h {
+  margin: 0;
+  align-self: end;
+  font-size: clamp(16px, 7.4cqi, 36px);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -.03em;
+}
+.br-slide__h em { font-style: normal; color: var(--accent); }
+.br-slide__lines { align-self: end; display: grid; gap: clamp(5px, 1.6cqi, 9px); }
+.br-slide__lines i { display: block; height: 1px; background: var(--svc-rule-d); }
+.br-slide__lines i:nth-child(1) { background: var(--accent); width: 40%; height: 2px; }
+.br-slide__lines i:nth-child(3) { width: 82%; }
+.br-slide__lines i:nth-child(4) { width: 64%; }
+.br-slide .br-tp__k { grid-column: 1 / -1; position: static; justify-self: start; align-self: end; }
+
+.br-points {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(16px, 1.8vw, 32px);
+  margin: clamp(30px, 3.4vw, 60px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.br-points li { padding-top: clamp(12px, 1.2vw, 20px); border-top: 1px solid var(--svc-rule); }
+.br-points span {
+  font-family: var(--mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: .14em;
+  color: var(--accent-ink);
+}
+.br-points h3 {
+  margin: 8px 0 0;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -.01em;
+}
+.br-points p { margin: 6px 0 0; font-size: var(--fs-sm); line-height: 1.64; color: var(--muted); }
+.br-touch__fine {
+  margin: clamp(22px, 2.2vw, 40px) 0 0;
+  padding-top: clamp(14px, 1.4vw, 24px);
+  border-top: 1px solid var(--svc-rule);
+  max-width: 88ch;
+  font-size: var(--fs-sm);
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* --------------------------------------------------------------------------
+   Who it is for — the shared tile grid, with the sixth tile as a dark note.
+   -------------------------------------------------------------------------- */
+.br-tile--note {
+  color: var(--on-dark);
+  border-color: transparent;
+  background:
+    radial-gradient(60% 70% at 100% 0%, rgba(var(--glow-teal), .46), transparent 70%),
+    radial-gradient(56% 60% at 0% 100%, rgba(var(--glow-mag),  .6), transparent 72%),
+    var(--ink-2);
+}
+.br-tile--note .svc-tile__n { color: var(--accent); }
+.br-tile--note .svc-tile__p { color: var(--svc-text-d); }
+.br-tile--note .cta-pill { margin-top: clamp(16px, 1.6vw, 26px); }
+
+/* --------------------------------------------------------------------------
+   Brand vs website — the fit card shell, made neutral (neither is the wrong
+   service), each ending in the question it answers.
+   -------------------------------------------------------------------------- */
+.br-vs__card { display: flex; flex-direction: column; }
+.br-vs__card ul { flex: 1; }
+.br-vs__card--brand { border-top: 2px solid var(--accent-ink); }
+.br-vs__card--web   { border-top: 2px solid rgba(var(--glow-teal), .6); }
+.br-vs__card--brand li::before { background: var(--accent-ink); }
+.br-vs__card--web   li::before { background: rgba(var(--glow-teal), .8); }
+.br-vs__role {
+  margin: 8px 0 0;
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: var(--muted);
+}
+.br-vs__go {
+  margin: clamp(18px, 1.8vw, 30px) 0 0;
+  padding-top: clamp(14px, 1.4vw, 22px);
+  border-top: 1px solid var(--svc-rule);
+  font-size: var(--fs-sm);
+}
+.br-vs__go b { display: block; margin-bottom: 6px; font-weight: 600; }
+.br-vs__go a { color: var(--accent-ink); }
+
+/* --------------------------------------------------------------------------
+   Selected work — one client identity at feature size, then the studio's
+   own, which the touchpoint section above already shows.
+   -------------------------------------------------------------------------- */
+.br-case {
+  display: grid;
+  grid-template-columns: minmax(0, 58fr) minmax(0, 42fr);
+  gap: clamp(22px, 3vw, 60px);
+  align-items: center;
+  margin-top: clamp(30px, 3.4vw, 64px);
+}
+.br-case__media { margin: 0; overflow: hidden; border-radius: var(--r-soft); background: var(--numbers-panel); }
+.br-case__media img { display: block; width: 100%; height: auto; aspect-ratio: 1400 / 788; object-fit: cover; }
+.br-case .svc-case__cat { margin-top: 0; }
+.br-case .svc-quote { margin-top: clamp(18px, 1.8vw, 30px); }
+.br-case__fine {
+  margin: clamp(14px, 1.4vw, 22px) 0 0;
+  font-family: var(--mono);
+  font-size: var(--fs-2xs);
+  line-height: 1.75;
+  color: var(--muted-2);
+}
+.br-own {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(18px, 2.4vw, 44px);
+  align-items: center;
+  margin-top: clamp(22px, 2.6vw, 48px);
+  padding: clamp(22px, 2.4vw, 42px);
+  border: 1px solid var(--svc-rule);
+  border-radius: var(--r-soft);
+  background: rgba(255, 255, 255, .72);
+}
+.br-own .svc-case__cat { margin: 0; }
+.br-own .svc-case__t { margin-top: clamp(6px, .7vw, 12px); }
+.br-own .svc-case__p { margin-bottom: 0; max-width: 70ch; }
+.br-own__links { display: flex; flex-wrap: wrap; align-items: center; gap: clamp(14px, 1.6vw, 28px); margin: 0; }
+
+/* --------------------------------------------------------------------------
+   How a project begins — three steps on the dark band, then what the scope
+   depends on.
+   -------------------------------------------------------------------------- */
+.br-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 2vw, 40px);
+  margin: clamp(30px, 3.4vw, 62px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.br-steps li { padding-top: clamp(16px, 1.6vw, 26px); border-top: 1px solid var(--svc-rule-d); }
+.br-steps span {
+  font-family: var(--mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: .14em;
+  color: var(--accent);
+}
+.br-steps h3 {
+  margin: clamp(10px, 1vw, 16px) 0 0;
+  font-size: var(--fs-md);
+  font-weight: 500;
+  line-height: 1.26;
+  letter-spacing: -.014em;
+}
+.br-steps p { margin: 8px 0 0; font-size: var(--fs-sm); line-height: 1.68; color: var(--svc-text-d); }
+.br-start__sub {
+  margin: clamp(34px, 3.6vw, 64px) 0 0;
+  font-family: var(--mono);
+  font-size: var(--fs-2xs);
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.br-start .svc-redesign__list { margin-top: clamp(14px, 1.4vw, 24px); }
+.br-start__cta { display: flex; flex-wrap: wrap; gap: clamp(10px, 1vw, 16px); }
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+/* the smallest boards have no room for the typeface label under its name */
+@container (max-width: 420px) {
+  .br-cell--type .br-cell__k { display: none; }
+}
+
+@media (max-width: 1300px) {
+  .br-points { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: clamp(20px, 2.4vw, 32px); }
+}
+@media (max-width: 1100px) {
+  .br-hero .svc-hero__in { grid-template-columns: minmax(0, 1fr); }
+  .br-board { max-width: 620px; }
+  .br-define__grid { grid-template-columns: minmax(0, 1fr); }
+  .br-define__intro { max-width: 70ch; }
+  .br-case { grid-template-columns: minmax(0, 1fr); }
+  .br-mosaic__row--b { grid-template-columns: repeat(2, minmax(0, 1fr)); aspect-ratio: auto; }
+  .br-mosaic__row--b > * { aspect-ratio: 1; }
+  .br-mosaic__row--b > .br-tp--slide { aspect-ratio: 4 / 3; }
+  .br-mosaic__row--b > .br-tp--tote  { aspect-ratio: 4 / 3; }
+}
+@media (max-width: 900px) {
+  .br-family__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .br-system__panel { grid-template-columns: minmax(0, 1fr); }
+  .br-part:nth-child(odd) { border-right: 0; }
+  .br-part:nth-child(-n+3) { border-bottom: 1px solid var(--svc-rule); }
+  .br-system__node { display: none; }
+  .br-own { grid-template-columns: minmax(0, 1fr); }
+  .br-steps { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 720px) {
+  .br-layer { grid-template-columns: minmax(0, 1fr); }
+  .br-layer__n { font-size: var(--fs-h5); }
+  .br-mosaic__row--a { grid-template-columns: minmax(0, 1fr); aspect-ratio: auto; }
+  .br-mosaic__row--a > * { aspect-ratio: 4 / 3; }
+  .br-points { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .br-start__cta .cta-pill { flex: 1 1 auto; justify-content: center; }
+}
+/* "Start a Brand Project" is longer than the label service.css sized its
+   380px cut-off for, and at 390px it squeezed the menu toggle out of round.
+   The same CTA is the first control in the hero directly beneath. */
+@media (max-width: 440px) {
+  .br-hero .masthead__cta { display: none; }
+}
+@media (max-width: 420px) {
+  .br-var { min-height: 160px; padding-bottom: 60px; }
+  .br-var--wide { min-height: 200px; }
+  .br-mosaic__row--b { grid-template-columns: minmax(0, 1fr); }
+  .br-points { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* --------------------------------------------------------------------------
+   Motion — opacity and transform only, and only where it says something:
+   the board's cells settle into place, touchpoint photographs ease on hover.
+   The page is complete and static without it.
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  .js-motion .br-tp > img { transition: transform .9s var(--ease-out); }
+  .js-motion .br-tp:hover > img { transform: scale(1.04); }
+  .js-motion .br-accent__bar,
+  .js-motion .br-post__stroke { transition: transform .9s var(--ease-out); }
+  .js-motion .br-cell--accent:hover .br-accent__bar,
+  .js-motion .br-tp:hover .br-post__stroke { transform: skewX(-28deg) translateX(-18%); }
+  .js-motion .br-layer:hover .br-layer__n { color: var(--ink); }
+  .js-motion .br-layer__n { transition: color .45s var(--ease-out); }
+}

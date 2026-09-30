@@ -797,7 +797,7 @@
       ['GEMIS Studio', 'Studio website', 'gemis-studio.html'],
       ['CMAXX', 'Website', 'cmaxx.html'],
       ['GEMIS', 'Website'],
-      ['AX-Channels', 'Website'],
+      ['AX-Channels', 'Studio website', 'ax-channels.html'],
       ['Kiy Trucking', 'Website'],
       ['SmartStart', 'Learning website'],
       ['SG Coal', 'Redesign concept'],

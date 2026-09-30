@@ -1,0 +1,219 @@
+/* ==========================================================================
+   AX-Channels — service page: UI/UX Design & UX Strategy.
+
+   Loaded after home.css and service.css. Almost the whole page is built from
+   components service.css already defines — the hero, breadcrumb, section
+   heads, the problem list, the two-panel board, the media-and-checklist
+   block, process steps, deliverables board, fit cards, package cards, case
+   grid, dark band, proof figures, FAQ, closing block and footer. Several of
+   those had fallen out of use on the other two pages; this page brings them
+   back rather than writing new ones.
+
+   What is genuinely new here is the five-stage flow, which is this page's
+   argument in one diagram.
+
+   Known duplication: the package-card index, the description slot that sits
+   where the website card carries its price, the four-across grid and the
+   scope note also exist in product.css. They are repeated rather than shared
+   so that building this page did not require editing the product page. Worth
+   promoting into service.css the next time all three pages are touched.
+   ========================================================================== */
+
+/* Section rhythm — service.css alternates a teal glow on the right with a
+   magenta glow on the left so no two consecutive light sections light the
+   same way. The running order on this page is:
+   problem T · flow M · strategy T · [dark] · deliver T · real-use M ·
+   systems T · ai M · vs T · [dark] · engagements T · who M · work T ·
+   proof M. Two of the shared sections need flipping to hold that. */
+.ux-flow,
+.ux-ai,
+.ux-who { padding-top: var(--sec-gap); }
+
+.ux-flow { background: radial-gradient(42% 58% at 0% 84%,  rgba(var(--glow-mag),  .18), transparent 72%); }
+.ux-ai   { background: radial-gradient(40% 56% at 2% 88%,  rgba(var(--glow-mag),  .18), transparent 72%); }
+.ux-who  { background: radial-gradient(40% 56% at 0% 86%,  rgba(var(--glow-mag),  .18), transparent 72%); }
+/* service.css gives these a magenta glow for the pages they were written
+   for; here they land next to magenta sections, so they take teal. */
+.svc-ux   { background: radial-gradient(46% 62% at 96% 10%, rgba(var(--glow-teal), .20), transparent 72%); }
+.svc-work { background: radial-gradient(44% 60% at 98% 10%, rgba(var(--glow-teal), .20), transparent 72%); }
+/* the dark audit band that follows carries the white gap in its own
+   margin-top, so .svc-fit closes at 0 like every other light section */
+
+/* --------------------------------------------------------------------------
+   The five-stage flow — the page's argument in one diagram. Strategy decides
+   what UX structures, UX decides what UI draws, and the prototype is what
+   gets judged before anything is built. Laid out as a connected row that
+   becomes a connected column on narrow screens, so the sequence survives
+   rather than turning into five unrelated cards.
+   -------------------------------------------------------------------------- */
+.ux-flow__steps {
+  margin: clamp(30px, 3.4vw, 64px) 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(12px, 1.2vw, 22px);
+}
+.ux-stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-top: clamp(26px, 2.6vw, 44px);
+}
+/* the rule is the spine; the node marks this stage's place on it */
+.ux-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: var(--svc-rule);
+}
+.ux-stage::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  rotate: 45deg;
+  background: var(--accent-ink);
+}
+.ux-stage__n {
+  display: block;
+  font-family: var(--mono);
+  font-size: var(--fs-2xs);
+  font-weight: 500;
+  letter-spacing: .14em;
+  color: var(--muted-2);
+}
+.ux-stage__t {
+  margin: clamp(10px, 1vw, 16px) 0 0;
+  font-size: var(--fs-md);
+  font-weight: 500;
+  line-height: 1.24;
+  letter-spacing: -.015em;
+  color: var(--ink);
+}
+.ux-stage__p {
+  margin: clamp(8px, .8vw, 13px) 0 0;
+  font-size: var(--fs-sm);
+  line-height: 1.66;
+  color: var(--muted);
+}
+/* the question each stage is actually answering — the point of the diagram.
+   Pushed to the bottom of its stage so all five sit on one line however long
+   each description runs; ragged questions would read as five cards rather
+   than one sequence. */
+.ux-stage__q {
+  margin: clamp(12px, 1.2vw, 20px) 0 0;
+  margin-top: auto;
+  padding-top: clamp(10px, 1vw, 16px);
+  border-top: 1px solid var(--svc-rule);
+  font-family: var(--mono);
+  font-size: var(--fs-2xs);
+  line-height: 1.6;
+  letter-spacing: .02em;
+  color: var(--accent-ink);
+}
+.ux-flow__fine {
+  margin: clamp(22px, 2.2vw, 40px) 0 0;
+  padding-top: clamp(14px, 1.4vw, 24px);
+  border-top: 1px solid var(--svc-rule);
+  max-width: 88ch;
+  font-size: var(--fs-sm);
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* --------------------------------------------------------------------------
+   The two-panel board's second panel is dark, but .svc-seo__list was only
+   ever used in its light first panel — on the page it was written for, the
+   dark side carried .svc-cwv instead. So the list's ink, body colour and
+   rules are all tuned for white and disappear on the dark ground. This page
+   uses the list on both sides, so they are corrected here.
+   -------------------------------------------------------------------------- */
+.svc-seo__panel:last-child .svc-seo__list { color: var(--svc-text-d); }
+.svc-seo__panel:last-child .svc-seo__list b { color: var(--on-dark); }
+.svc-seo__panel:last-child .svc-seo__list li { border-top-color: var(--svc-rule-d); }
+.svc-seo__panel:last-child .svc-seo__fine { border-top-color: var(--svc-rule-d); }
+
+/* --------------------------------------------------------------------------
+   Comparison bullets — the fit card shell from service.css, made neutral.
+   --yes/--no carry a fit judgement, and neither kind of UX is the wrong one.
+   -------------------------------------------------------------------------- */
+.svc-fit__card--a { border-top: 2px solid var(--accent-ink); }
+.svc-fit__card--b { border-top: 2px solid rgba(var(--glow-teal), .55); }
+.svc-fit__card--a li::before { background: var(--accent-ink); }
+.svc-fit__card--b li::before { background: rgba(var(--glow-teal), .75); }
+.ux-vs__fine {
+  margin: clamp(18px, 1.8vw, 30px) 0 0;
+  font-size: var(--fs-sm);
+  line-height: 1.7;
+  color: var(--muted);
+}
+.ux-vs__fine a { color: var(--accent-ink); text-decoration: underline; text-underline-offset: .22em; }
+
+/* --------------------------------------------------------------------------
+   Engagements — the package card from service.css carrying a route in rather
+   than a price. See the duplication note at the top of this file.
+   -------------------------------------------------------------------------- */
+.ux-plans { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.ux-plan__n {
+  margin: 0 0 clamp(12px, 1.2vw, 20px);
+  font-family: var(--mono);
+  font-size: var(--fs-2xs);
+  font-weight: 500;
+  letter-spacing: .14em;
+  color: var(--accent-ink);
+}
+.ux-plan__p {
+  margin: clamp(10px, 1vw, 16px) 0 0;
+  font-size: var(--fs-sm);
+  line-height: 1.66;
+  color: var(--muted);
+}
+.ux-scope {
+  display: grid;
+  grid-template-columns: minmax(0, 42fr) minmax(0, 58fr);
+  column-gap: clamp(24px, 3.2vw, 72px);
+  align-items: start;
+  margin: clamp(30px, 3.4vw, 60px) 0 0;
+  padding-top: clamp(24px, 2.6vw, 44px);
+  border-top: 1px solid var(--svc-rule);
+}
+.ux-scope__t {
+  margin: 0;
+  max-width: 22ch;
+  font-size: var(--fs-h5);
+  font-weight: 500;
+  line-height: 1.24;
+  letter-spacing: -.02em;
+}
+.ux-scope__p {
+  margin: 0;
+  font-size: var(--fs-sm);
+  line-height: 1.76;
+  color: var(--muted);
+}
+.ux-scope__p + .ux-scope__p { margin-top: clamp(12px, 1.2vw, 20px); }
+.ux-eng__cta { margin: clamp(28px, 3vw, 54px) 0 0; }
+
+/* --------------------------------------------------------------------------
+   Responsive — the flow is the only thing here that needs real recomposing.
+   -------------------------------------------------------------------------- */
+@media (max-width: 1300px) {
+  .ux-plans { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 1200px) {
+  /* five across stops being readable well before the shared 1100 breakpoint */
+  .ux-flow__steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: clamp(24px, 3vw, 40px); }
+}
+@media (max-width: 1100px) {
+  .ux-scope { grid-template-columns: minmax(0, 1fr); row-gap: clamp(14px, 1.6vw, 24px); }
+  .ux-scope__t { max-width: none; }
+}
+@media (max-width: 720px) {
+  /* one stage at a time, so the sequence reads as a sequence */
+  .ux-flow__steps { grid-template-columns: minmax(0, 1fr); row-gap: clamp(20px, 5vw, 32px); }
+  .ux-plans { grid-template-columns: minmax(0, 1fr); }
+}
