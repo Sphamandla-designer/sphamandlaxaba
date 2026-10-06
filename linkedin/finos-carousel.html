@@ -1,0 +1,82 @@
+<!doctype html><html><head><meta charset=utf-8><title>FINOS Carousel</title><style>
+@font-face { font-family: Archivo; src: url(file:///home/user/sphamandlaxaba/assets/fonts/archivo-latin-wdth-normal.woff2) format('woff2'); font-weight: 100 900; font-stretch: 62% 125%; }
+* { box-sizing: border-box; margin: 0; }
+@page { size: 1080px 1350px; margin: 0; }
+html, body { background: #0B1526; }
+body { font-family: Archivo, sans-serif; color: #F2F5FA; -webkit-font-smoothing: antialiased; }
+.slide { width: 1080px; height: 1350px; padding: 120px 88px 150px; position: relative; overflow: hidden;
+  display: flex; flex-direction: column; gap: 36px; page-break-after: always;
+  background: radial-gradient(120% 70% at 85% 0%, #111E33 0%, #0B1526 60%); }
+.eyebrow { font-size: 28px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #7FB2FF; }
+h1 { font-size: 62px; line-height: 1.08; font-weight: 600; font-stretch: 92%; letter-spacing: -0.015em; }
+h1.xl { font-size: 80px; line-height: 1.05; }
+h1.accent { color: #7FB2FF; }
+.body, .lede { font-size: 36px; line-height: 1.3; color: #A3B0C4; margin-top: -12px; }
+.lede { font-size: 40px; margin-top: 0; }
+.ink { color: #F2F5FA; }
+.center { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 36px; }
+.spacer { flex: 1; }
+.shot { position: relative; overflow: visible; border-radius: 20px; margin-top: 20px; flex: none;
+  box-shadow: 0 40px 80px -30px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.08); background: #f4f4f4; }
+.crop { position: absolute; inset: 0; overflow: hidden; border-radius: 20px; }
+.crop > img { position: absolute; max-width: none; -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 0px), transparent); }
+.crop::after { content: ''; position: absolute; top: 0; bottom: 0; right: 0; width: 120px; background: linear-gradient(90deg, rgba(244,244,244,0), #f4f4f4); }
+.ring { position: absolute; border: 3px solid #7FB2FF; border-radius: 12px; box-shadow: 0 0 0 6px rgba(127,178,255,.18); }
+.tag { position: absolute; transform: translateY(0); white-space: nowrap; background: #7FB2FF; color: #0B1526;
+  font-size: 32px; font-weight: 600; padding: 12px 22px; border-radius: 999px; z-index: 3; }
+.lead { position: absolute; left: 0; top: 0; overflow: visible; z-index: 2; }
+.lead line { stroke: #7FB2FF; stroke-width: 3; }
+.lead circle { fill: #7FB2FF; }
+.num { position: absolute; width: 56px; height: 56px; border-radius: 50%; background: #7FB2FF; color: #0B1526;
+  font-size: 32px; font-weight: 700; display: grid; place-items: center; box-shadow: 0 6px 16px rgba(0,0,0,.35); }
+.legend { display: flex; gap: 36px; font-size: 32px; color: #A3B0C4; margin-top: 8px; }
+.legend b { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 50%;
+  background: #7FB2FF; color: #0B1526; font-size: 26px; margin-right: 10px; }
+.foot { position: absolute; left: 88px; right: 88px; bottom: 80px; display: flex; justify-content: space-between;
+  font-size: 28px; font-weight: 500; color: #A3B0C4; letter-spacing: .06em; }
+.arr { color: #7FB2FF; font-size: 36px; line-height: 28px; }
+.c1 .bgshot { position: absolute; inset: 0; overflow: hidden; }
+.c1 .bgshot img { position: absolute; width: 2400px; left: -760px; top: -120px; filter: blur(5px) grayscale(.3); opacity: .22; }
+.c1 .bgshot::after { content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(11,21,38,.55) 0%, rgba(11,21,38,.92) 55%, #0B1526 100%); }
+.cover { position: relative; flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 40px; padding-bottom: 60px; }
+.close { gap: 28px; }
+.link { font-size: 36px; color: #7FB2FF; font-weight: 500; }
+.rule { width: 120px; height: 3px; background: #7FB2FF; margin: 28px 0; }
+</style></head><body><section class="slide c1">
+  <div class="bgshot"><img src="file:///home/user/sphamandlaxaba/assets/img/finos/decision-room.jpg"></div>
+  <div class="cover">
+    <div class="eyebrow">FINOS · Case study</div>
+    <h1 class="xl">No CFO will approve R2&nbsp;million because ‘the AI recommended it.’</h1>
+    <p class="lede">3 trust patterns I designed into FINOS.</p>
+  </div><div class="foot"><span>1/9</span><span class=arr>→</span></div></section><section class="slide ">
+  <div class="center">
+    <div class="eyebrow">The problem</div>
+    <h1 class="xl">AI can analyse faster than any finance team.</h1>
+    <h1 class="xl accent">But speed means nothing without trust.</h1>
+  </div><div class="foot"><span>2/9</span><span class=arr>→</span></div></section><section class="slide ">
+  <div class="eyebrow">Pattern 1 · Confidence ratings</div>
+  <h1>The AI shows how sure it is.</h1>
+  <p class="body">Low confidence means ‘check this.’</p><div class="shot" style="width:904px;height:691px"><div class="crop"><img src="file:///home/user/sphamandlaxaba/assets/img/finos/insights.jpg" style="width:3829px;left:-751px;top:-1369px"></div><div class="ring" style="left:12px;top:565px;width:415px;height:82px"></div><div class="tag" style="left:70px;top:720px">Confidence on every insight</div><svg class="lead" width="904" height="691"><line x1="110" y1="720" x2="110" y2="647"/><circle cx="110" cy="647" r="6"/></svg></div><div class="spacer"></div><div class="foot"><span>3/9</span><span class=arr>→</span></div></section><section class="slide ">
+  <div class="eyebrow">Pattern 2 · Visible reasoning</div>
+  <h1>Every recommendation shows the data behind it.</h1><div class="shot" style="width:904px;height:585px"><div class="crop"><img src="file:///home/user/sphamandlaxaba/assets/img/finos/decision-room.jpg" style="width:3829px;left:-2297px;top:-1276px"></div><div class="ring" style="left:11px;top:327px;width:887px;height:242px"></div><div class="tag" style="left:70px;top:635px">The evidence behind it</div><svg class="lead" width="904" height="585"><line x1="110" y1="635" x2="110" y2="569"/><circle cx="110" cy="569" r="6"/></svg></div><div class="spacer"></div><div class="foot"><span>4/9</span><span class=arr>→</span></div></section><section class="slide ">
+  <div class="eyebrow">Pattern 3 · Stated assumptions</div>
+  <h1>‘This forecast assumes Q4 revenue holds.’</h1>
+  <p class="body">Now the CFO can challenge the logic.</p><div class="shot" style="width:904px;height:278px"><div class="crop"><img src="file:///home/user/sphamandlaxaba/assets/img/finos/forecasts.jpg" style="width:3719px;left:-739px;top:-1136px"></div><div class="ring" style="left:10px;top:83px;width:888px;height:108px"></div><div class="tag" style="left:70px;top:320px">Assumptions stated upfront</div><svg class="lead" width="904" height="278"><line x1="110" y1="320" x2="110" y2="191"/><circle cx="110" cy="191" r="6"/></svg></div><div class="spacer"></div><div class="foot"><span>5/9</span><span class=arr>→</span></div></section><section class="slide ">
+  <div class="eyebrow">Where it comes together</div>
+  <h1>Approvals: all three patterns at the moment of decision.</h1><div class="shot" style="width:904px;height:734px"><div class="crop"><img src="file:///home/user/sphamandlaxaba/assets/img/finos/decision-room.jpg" style="width:3254px;left:-1935px;top:-960px"></div><div class="ring" style="left:522px;top:14px;width:364px;height:68px"></div><div class="num" style="left:494px;top:-14px">1</div><div class="ring" style="left:25px;top:147px;width:873px;height:463px"></div><div class="num" style="left:-3px;top:119px">2</div><div class="ring" style="left:25px;top:667px;width:873px;height:66px"></div><div class="num" style="left:-3px;top:639px">3</div></div><div class="legend"><span><b>1</b> Confidence</span><span><b>2</b> Reasoning</span><span><b>3</b> Assumptions</span></div><div class="foot"><span>6/9</span><span class=arr>→</span></div></section><section class="slide ">
+  <div class="eyebrow">What I’d improve</div>
+  <h1>Decision History records what happened, but not why.</h1>
+  <p class="body">That’s my next iteration.</p><div class="shot" style="width:904px;height:558px"><div class="crop"><img src="file:///home/user/sphamandlaxaba/assets/img/finos/history.jpg" style="width:3829px;left:-778px;top:-585px"></div><div class="ring" style="left:108px;top:383px;width:790px;height:114px"></div><div class="tag" style="left:70px;top:620px">What happened, not why</div><svg class="lead" width="904" height="558"><line x1="110" y1="620" x2="110" y2="497"/><circle cx="110" cy="497" r="6"/></svg></div><div class="spacer"></div><div class="foot"><span>7/9</span><span class=arr>→</span></div></section><section class="slide ">
+  <div class="center">
+    <div class="eyebrow">The principle</div>
+    <h1 class="xl">AI in finance shouldn’t replace judgement.</h1>
+    <h1 class="xl accent">It should give people enough context to use their own.</h1>
+  </div><div class="foot"><span>8/9</span><span class=arr>→</span></div></section><section class="slide ">
+  <div class="center close">
+    <h1 class="xl">Sphamandla Xaba</h1>
+    <p class="lede">Product Designer | AI UX for fintech &amp; insurance</p>
+    <p class="link">sphamandla-designer.github.io/sphamandlaxaba</p>
+    <div class="rule"></div>
+    <p class="lede ink">Follow for more on designing trustworthy AI.</p>
+  </div><div class="foot"><span>9/9</span></div></section></body></html>
