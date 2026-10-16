@@ -44,6 +44,36 @@ python3 -m http.server 8000
 # then open http://localhost:8000
 ```
 
+## Role-specific homepages
+
+Three "front door" homepages are generated from `index.html`, so each role
+sees the most relevant work first:
+
+| Path              | For                         |
+| ----------------- | --------------------------- |
+| `/product/`       | Product Designer / UI/UX    |
+| `/ai-ux/`         | AI UX                       |
+| `/web/`           | Web / creative design       |
+
+They share every case study, style, script and asset with `index.html`. Only
+the meta tags, hero, card order/copy/status labels, "What I Design" order and
+(on `/web/`) the position of Selected Visuals differ. All of that lives in
+`tools/doors.config.json`.
+
+**After editing `index.html` or the config, re-run the build and commit the
+output** (GitHub Pages serves the generated files as-is):
+
+```bash
+node tools/build-doors.mjs
+git add product/ ai-ux/ web/
+```
+
+Never edit `product/index.html`, `ai-ux/index.html` or `web/index.html` by
+hand; the next build overwrites them. The script needs Node 18+ and has no
+dependencies. If it stops with an error, a piece of `index.html` it relies on
+(a card, a table row, a "What I Design" block, a meta tag) was renamed or
+removed; update the config or the anchor in the script to match.
+
 ## Structure
 
 ```

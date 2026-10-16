@@ -9,6 +9,10 @@
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* role-specific homepages live one folder deep and set data-root="../",
+     so every site-relative path built in this file is prefixed with it */
+  window.__sxRoot = document.documentElement.dataset.root || '';
+
   /* year */
   const year = $('#year');
   if (year) year.textContent = new Date().getFullYear();
@@ -333,7 +337,7 @@
       },
     })),
     { group: 'Actions', label: 'Download CV', meta: 'PDF', icon: ICON.bolt, keys: 'cv resume download pdf',
-      run: () => { location.href = 'assets/docs/Sphamandla-Xaba-Resume.pdf'; } },
+      run: () => { location.href = (window.__sxRoot || '') + 'assets/docs/Sphamandla-Xaba-Resume.pdf'; } },
     { group: 'Actions', label: 'Copy email address', meta: 'sphamandaxaba@gmail.com', icon: ICON.bolt, keys: 'email copy contact mail',
       run: async () => {
         try { await navigator.clipboard.writeText('sphamandaxaba@gmail.com'); toast('Email address copied'); }
@@ -704,7 +708,7 @@
      shell out before navigating so it is never a hard cut. */
   const internal = (a) => {
     const href = a.getAttribute('href') || '';
-    return /^[\w-]+\.html(#.*)?$/.test(href) && a.target !== '_blank' && !a.hasAttribute('download');
+    return /^(\.\.\/)*[\w-]+\.html(#.*)?$/.test(href) && a.target !== '_blank' && !a.hasAttribute('download');
   };
   if (!reduced && !('startViewTransition' in document)) {
     document.addEventListener('click', (e) => {
@@ -738,6 +742,7 @@
   const $ = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const url = (href) => (window.__sxRoot || '') + href;
 
   const ROLES = [
     {
@@ -834,7 +839,7 @@
         '<div class="role"><div class="role__top"><span class="role__co">' + esc(r.co) + '</span>' +
         '<span class="role__when">' + esc(r.when) + '</span></div>' +
         '<p class="role__title">' + esc(r.title) + '</p>' +
-        (r.href ? '<a class="prow__t" href="' + r.href + '">' + esc(r.cta) + '</a>' : '') +
+        (r.href ? '<a class="prow__t" href="' + url(r.href) + '">' + esc(r.cta) + '</a>' : '') +
         '<ul class="role__list">' + r.points.map((x) => '<li><span>' + esc(x) + '</span></li>').join('') + '</ul>' +
         '<div class="role__stats">' + r.stats.map((st) =>
           '<span class="role__stat"><b>' + esc(st[0]) + '</b>' + esc(st[1]) + '</span>').join('') + '</div></div>'
@@ -849,7 +854,7 @@
           const badge = soon ? '<span class="wcard__soon wcard__soon--inline">Coming soon</span>' : '';
           const inner = '<span class="prow__n">' + esc(n) + badge + (href ? ARROW : '') + '</span>' +
                         '<span class="prow__t">' + esc(t) + '</span>';
-          return href ? '<a class="prow" href="' + href + '">' + inner + '</a>'
+          return href ? '<a class="prow" href="' + url(href) + '">' + inner + '</a>'
                       : '<div class="prow">' + inner + '</div>';
         }).join('') + '</div>'
       ).join('') +
@@ -860,7 +865,7 @@
       sub: 'Work I owned end to end — from discovery through to developer handoff.',
       html: () => LED.map((l) =>
         '<div class="led"><div class="led__top"><span class="led__n">' + esc(l.n) + '</span>' +
-        (l.href ? '<a class="prow__t" href="' + l.href + '" style="margin-left:auto">View case study →</a>' : '') + '</div>' +
+        (l.href ? '<a class="prow__t" href="' + url(l.href) + '" style="margin-left:auto">View case study →</a>' : '') + '</div>' +
         '<p class="led__meta">' + esc(l.meta) + '</p>' +
         '<div class="led__facts">' + l.facts.map((f) => '<span class="led__fact">' + esc(f) + '</span>').join('') + '</div></div>'
       ).join('') +
