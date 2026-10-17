@@ -15,7 +15,7 @@
   <meta name="theme-color" content="#e4e2e6" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preload" href="assets/fonts/outfit-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="assets/css/app.css?v=v7-1" />
+  <link rel="stylesheet" href="assets/css/app.css?v=v7-2" />
   <script>
     (() => {
       /* links written for the old single homepage (#work, #contact …) still
@@ -56,12 +56,11 @@
         <ul class="pick__grid">
           <li>
             <a class="dcard" href="product/" aria-labelledby="dirProductT" aria-describedby="dirProductD">
-              <img class="dcard__img" src="assets/img/case/mg-dashboard.jpg" alt="ManaGem enterprise dashboard: sales summary, enquiries and current projects" width="2268" height="1418" style="--focus: 18% 30%" fetchpriority="high" decoding="async" />
+              <span class="dcard__num" aria-hidden="true">01</span>
               <span class="dcard__go" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
               </span>
               <div class="dcard__body">
-                <span class="dcard__n" aria-hidden="true">01</span>
                 <h2 class="dcard__t" id="dirProductT">Product Design &amp; UI/UX</h2>
                 <p class="dcard__d" id="dirProductD">Enterprise software, business applications, interfaces, and complex user workflows.</p>
                 <p class="dcard__k">Product thinking. UX decisions. Interface design.</p>
@@ -70,12 +69,11 @@
           </li>
           <li>
             <a class="dcard" href="web/" aria-labelledby="dirWebT" aria-describedby="dirWebD">
-              <img class="dcard__img" src="assets/img/mockups/cmaxx-dark.jpg" alt="CMAXX WiFi Solutions website shown on a laptop" width="2200" height="1650" style="--focus: 50% 38%" decoding="async" />
+              <span class="dcard__num" aria-hidden="true">02</span>
               <span class="dcard__go" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
               </span>
               <div class="dcard__body">
-                <span class="dcard__n" aria-hidden="true">02</span>
                 <h2 class="dcard__t" id="dirWebT">Web Design</h2>
                 <p class="dcard__d" id="dirWebD">Responsive websites, landing pages, digital experiences, and website implementation.</p>
                 <p class="dcard__k">UX-led websites. Responsive design. Implementation.</p>
@@ -83,13 +81,12 @@
             </a>
           </li>
           <li>
-            <a class="dcard dcard--phone" href="ai-ux/" aria-labelledby="dirAiT" aria-describedby="dirAiD">
-              <img class="dcard__img" src="assets/img/claims/09-serial-ok.png" alt="WhatsApp verification screen: a serial number read at 98% confidence, with a note that a reviewer confirms it" width="720" height="1450" decoding="async" />
+            <a class="dcard" href="ai-ux/" aria-labelledby="dirAiT" aria-describedby="dirAiD">
+              <span class="dcard__num" aria-hidden="true">03</span>
               <span class="dcard__go" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
               </span>
               <div class="dcard__body">
-                <span class="dcard__n" aria-hidden="true">03</span>
                 <h2 class="dcard__t" id="dirAiT">AI UX</h2>
                 <p class="dcard__d" id="dirAiD">Conversational experiences, AI-enabled workflows, verification journeys, and human handoff.</p>
                 <p class="dcard__k">Conversational design. Trust. Human-AI interaction.</p>
@@ -105,6 +102,16 @@
       <a href="mailto:sphamandaxaba@gmail.com">sphamandaxaba@gmail.com</a>
     </footer>
   </div>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    /* the hover glow follows the pointer; purely decorative */
+    if (matchMedia('(hover: hover) and (prefers-reduced-motion: no-preference)').matches) {
+      document.querySelectorAll('.dcard').forEach((c) => c.addEventListener('pointermove', (e) => {
+        const r = c.getBoundingClientRect();
+        c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      }));
+    }
+  </script>
 </body>
 </html>

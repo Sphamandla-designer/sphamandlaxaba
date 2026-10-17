@@ -1588,72 +1588,115 @@ html.rail-collapsed .side__switch .lbl { display: none; }
 }
 .pick__grid > li { display: flex; }
 
+/* cards: dark glass panels lit by the site's gold accent. A thin band of
+   light travels around each border (staggered per card); on hover the
+   border brightens, a soft spotlight follows the pointer and the card
+   lifts. The light is drawn with an animatable custom property, so
+   browsers without @property simply show a static gold edge. */
+@property --glow-angle { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+
 .dcard {
+  --glow-angle: 0deg;
+  --mx: 50%; --my: 30%;
   position: relative; isolation: isolate;
   display: flex; flex-direction: column; justify-content: flex-end;
   width: 100%;
-  min-height: clamp(360px, 54vh, 560px);
+  min-height: clamp(320px, 46vh, 470px);
   border-radius: var(--r-lg);
   overflow: hidden;
-  background: #14161a;
+  background:
+    radial-gradient(120% 70% at 50% -10%, rgba(201, 168, 76, 0.10), transparent 60%),
+    linear-gradient(180deg, #17181c 0%, #0d0e11 100%);
   color: #fff;
-  border: 1px solid transparent;
-  transition: transform 0.24s var(--ease), box-shadow 0.24s var(--ease), border-color 0.24s var(--ease);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 18px 40px -24px rgba(9, 9, 11, 0.55);
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
 }
-html[data-theme="dark"] .dcard { border-color: var(--border); }
-.dcard__img {
-  position: absolute; inset: 0; z-index: 0;
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: var(--focus, center);
-  transition: transform 0.9s var(--ease);
-}
+/* travelling border light */
 .dcard::before {
-  content: ""; position: absolute; inset: 0; z-index: 1;
-  background: linear-gradient(180deg, rgba(6, 8, 12, 0.08) 0%, rgba(6, 8, 12, 0.3) 38%, rgba(6, 8, 12, 0.88) 66%, rgba(6, 8, 12, 0.97) 100%);
+  content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(from var(--glow-angle),
+    rgba(255, 255, 255, 0.10) 0deg, rgba(255, 255, 255, 0.10) 230deg,
+    rgba(201, 168, 76, 0.5) 280deg, #fff3cf 315deg, rgba(201, 168, 76, 0.5) 345deg,
+    rgba(255, 255, 255, 0.10) 360deg);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  animation: dcard-orbit 9s linear infinite;
+  opacity: 1;
+  transition: opacity 0.35s var(--ease);
+}
+.pick__grid > li:nth-child(2) .dcard::before { animation-delay: -3s; }
+.pick__grid > li:nth-child(3) .dcard::before { animation-delay: -6s; }
+@keyframes dcard-orbit { to { --glow-angle: 360deg; } }
+/* soft halo outside the card that travels with the border light */
+.pick__grid > li { position: relative; isolation: isolate; }
+.pick__grid > li::before {
+  --glow-angle: 0deg;
+  content: ""; position: absolute; inset: 4px; z-index: -1; pointer-events: none;
+  border-radius: var(--r-lg);
+  background: conic-gradient(from var(--glow-angle), transparent 0deg 250deg, rgba(201, 168, 76, 0.95) 300deg 335deg, transparent 360deg);
+  filter: blur(16px);
+  opacity: 0.4;
+  animation: dcard-orbit 9s linear infinite;
+  transition: opacity 0.35s var(--ease);
+}
+.pick__grid > li:nth-child(2)::before { animation-delay: -3s; }
+.pick__grid > li:nth-child(3)::before { animation-delay: -6s; }
+.pick__grid > li:hover::before, .pick__grid > li:focus-within::before { opacity: 0.85; animation-duration: 3.5s; }
+/* pointer spotlight */
+.dcard::after {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(420px circle at var(--mx) var(--my), rgba(201, 168, 76, 0.20), transparent 55%);
+  opacity: 0;
+  transition: opacity 0.35s var(--ease);
+}
+/* numeral: the card's only ornament, a soft fill that warms to gold */
+.dcard__num {
+  position: absolute; z-index: 1; top: clamp(4px, 1.4vh, 14px); left: clamp(16px, 1.6vw, 26px);
+  font-size: clamp(5.5rem, 9vw, 9rem); font-weight: 600; line-height: 1;
+  letter-spacing: -0.06em; font-variant-numeric: tabular-nums;
+  color: rgba(255, 255, 255, 0.06);
+  transition: color 0.35s var(--ease), text-shadow 0.35s var(--ease);
 }
 .dcard__body { position: relative; z-index: 2; padding: clamp(20px, 1.9vw, 30px); }
-/* a phone screen is shown as a screen on the dark card, not stretched edge
-   to edge, so its light UI never sits behind the card's text */
-.dcard--phone .dcard__img {
-  inset: auto; top: clamp(20px, 3vh, 32px); left: 50%; translate: -50% 0;
-  width: min(54%, 240px); height: auto; aspect-ratio: 720 / 1450;
-  object-fit: cover; object-position: top;
-  border-radius: 22px;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
-}
-.dcard__n {
-  font-family: var(--font-mono); font-size: var(--t-xs);
-  letter-spacing: 0.08em; color: rgba(255, 255, 255, 0.72);
-}
 .dcard__t {
-  margin-top: 10px;
   font-size: clamp(1.375rem, 2vw, 1.875rem); font-weight: 600;
   letter-spacing: -0.025em; line-height: 1.1;
 }
-.dcard__d { margin-top: 10px; font-size: var(--t-sm); line-height: 1.6; color: rgba(255, 255, 255, 0.84); max-width: 38ch; }
+.dcard__d { margin-top: 10px; font-size: var(--t-sm); line-height: 1.6; color: rgba(255, 255, 255, 0.82); max-width: 38ch; }
 .dcard__k {
   margin-top: 14px; padding-top: 14px;
-  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
   font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.02em;
   color: rgba(255, 255, 255, 0.72);
 }
 .dcard__go {
-  position: absolute; z-index: 3;
+  position: absolute; z-index: 4;
   top: clamp(14px, 1.2vw, 20px); right: clamp(14px, 1.2vw, 20px);
-  width: clamp(44px, 3.6vw, 56px); height: clamp(44px, 3.6vw, 56px);
+  width: clamp(44px, 3.6vw, 52px); height: clamp(44px, 3.6vw, 52px);
   border-radius: 50%;
-  background: #fff; color: #09090b;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #fff;
   display: grid; place-items: center;
-  transition: transform var(--dur) var(--ease);
+  transition: transform var(--dur) var(--ease), background 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
 .dcard__go svg { width: 42%; height: 42%; }
+
+/* lit state: hover (pointer devices) and keyboard focus look the same */
 @media (hover: hover) {
-  .dcard:hover { transform: translateY(-3px); box-shadow: 0 14px 34px -14px rgba(9, 9, 11, 0.42); border-color: var(--gold-bd); }
-  .dcard:hover .dcard__img { transform: scale(1.045); }
-  .dcard:hover .dcard__go { transform: translate(2px, -2px) scale(1.06); }
+  .dcard:hover { transform: translateY(-4px); box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08) inset, 0 0 0 1px var(--gold-bd), 0 24px 60px -22px rgba(201, 168, 76, 0.45); }
+  .dcard:hover::before { opacity: 1; animation-duration: 3.5s; }
+  .dcard:hover::after { opacity: 1; }
+  .dcard:hover .dcard__num { color: rgba(201, 168, 76, 0.32); text-shadow: 0 0 40px rgba(201, 168, 76, 0.35); }
+  .dcard:hover .dcard__go { background: var(--gold-live); border-color: var(--gold-live); color: #09090b; transform: translate(2px, -2px); box-shadow: 0 0 24px rgba(201, 168, 76, 0.55); }
 }
-.dcard:focus-visible { transform: translateY(-3px); border-color: var(--gold-bd); outline: 2px solid var(--gold-live); outline-offset: 4px; }
-.dcard:focus-visible .dcard__go { transform: translate(2px, -2px) scale(1.06); }
+.dcard:focus-visible { outline: 2px solid var(--gold-live); outline-offset: 4px; transform: translateY(-4px); box-shadow: 0 0 0 1px var(--gold-bd), 0 24px 60px -22px rgba(201, 168, 76, 0.45); }
+.dcard:focus-visible::before { opacity: 1; animation-duration: 3.5s; }
+.dcard:focus-visible .dcard__num { color: rgba(201, 168, 76, 0.32); }
+.dcard:focus-visible .dcard__go { background: var(--gold-live); border-color: var(--gold-live); color: #09090b; }
 .dcard:active { transform: scale(0.985); }
 
 .pick__foot {
@@ -1667,8 +1710,8 @@ html[data-theme="dark"] .dcard { border-color: var(--border); }
 @media (max-width: 900px) {
   .pick__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .pick__grid > li:first-child { grid-column: 1 / -1; }
-  .pick__grid > li:first-child .dcard { min-height: clamp(260px, 34vh, 380px); }
-  .dcard { min-height: clamp(300px, 40vh, 420px); }
+  .pick__grid > li:first-child .dcard { min-height: clamp(240px, 30vh, 340px); }
+  .dcard { min-height: clamp(280px, 36vh, 380px); }
 }
 /* phone: compact rows so all three choices fit with little scrolling */
 @media (max-width: 640px) {
@@ -1677,17 +1720,16 @@ html[data-theme="dark"] .dcard { border-color: var(--border); }
   .pick__head p { font-size: var(--text-base); }
   .pick__grid { grid-template-columns: 1fr; gap: var(--sp-3); flex: 0 0 auto; }
   .pick__main > nav { flex: 0 0 auto; }
-  .pick__grid > li:first-child .dcard, .dcard { min-height: 168px; }
+  .pick__grid > li:first-child .dcard, .dcard { min-height: 160px; }
   .dcard__body { padding: 16px 64px 16px 16px; }
-  .dcard__t { margin-top: 6px; font-size: 1.25rem; }
+  .dcard__t { font-size: 1.25rem; }
   .dcard__d { margin-top: 6px; font-size: 13px; line-height: 1.5; }
   .dcard__k { display: none; }
-  .dcard::before { background: linear-gradient(180deg, rgba(6, 8, 12, 0.5) 0%, rgba(6, 8, 12, 0.88) 45%, rgba(6, 8, 12, 0.96) 100%); }
+  .dcard__num { font-size: 4.5rem; top: auto; bottom: 6px; left: auto; right: 14px; }
   .dcard__go { width: 40px; height: 40px; top: 14px; right: 14px; }
-  .dcard--phone .dcard__img { top: 12px; width: 30%; border-radius: 14px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .dcard, .dcard__img, .dcard__go { transition: none; }
-  .dcard:hover, .dcard:focus-visible, .dcard:active,
-  .dcard:hover .dcard__img, .dcard:hover .dcard__go, .dcard:focus-visible .dcard__go { transform: none; }
+  .dcard::before, .pick__grid > li::before { animation: none; --glow-angle: 300deg; }
+  .dcard, .dcard::after, .dcard__go, .dcard__num { transition: none; }
+  .dcard:hover, .dcard:focus-visible, .dcard:active, .dcard:hover .dcard__go { transform: none; }
 }
