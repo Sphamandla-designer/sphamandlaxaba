@@ -4,37 +4,27 @@
   "cards": {
     "whatsapp-ai.html": {
       "title": "AI governance for claims verification",
-      "desc": "An AI-assisted WhatsApp verification system for a leading SA insurer, covering confidence thresholds, explainable outcomes, a service blueprint and a multi-role prototype, across a four-phase enterprise engagement.",
-      "label": "Client work · Enterprise"
+      "desc": "An AI-assisted WhatsApp verification system designed for an insurance client in a GEMIS pilot: confidence thresholds, explainable outcomes, a service blueprint and a multi-role prototype, across four phases."
     },
     "managem.html": {
       "title": "An ERP that onboards itself",
-      "desc": "Lead designer on an enterprise ERP and its AI-assisted onboarding product, which turns client documents into reviewed, trusted data with two human approval gates.",
-      "label": "Client work · Approved for implementation"
+      "desc": "Lead designer on an enterprise ERP and its AI-assisted onboarding product, which turns client documents into reviewed, trusted data with two human approval gates."
     },
     "wastemart.html": {
       "title": "Field workflows for waste collection",
-      "desc": "A driver and collection mobile app for a waste-services business, designed for fast, on-the-road use and now being built by engineers.",
-      "label": "Client work · In development"
+      "desc": "A driver and collection mobile app for a waste-services client, designed for fast, on-the-road use and built out as a 29-screen working prototype."
     },
     "finos.html": {
       "title": "An AI operating system for CFOs",
-      "desc": "An AI-native financial operating system that explores how confidence ratings, visible reasoning and stated assumptions earn a finance leader's trust.",
-      "label": "Self-initiated concept",
-      "concept": true
+      "desc": "An AI-native financial operating system that explores how confidence ratings, visible reasoning and stated assumptions earn a finance leader's trust."
     },
     "cmaxx.html": {
       "title": "Connectivity, made clear",
-      "desc": "A redesign of the CMAXX WiFi Solutions website that makes the offering easier to understand, with a clearer path from discovery to enquiry.",
-      "label": "Client work · Website"
+      "desc": "A redesign of the CMAXX WiFi Solutions website that makes the offering easier to understand, with a clearer path from discovery to enquiry."
     },
     "gemis-studio.html": {
       "title": "A studio site designed to be used",
-      "desc": "The front door for GEM Information Systems' design practice: a published services ladder, work tied to named services, and a page that still works with JavaScript off.",
-      "label": "Client work · Website"
-    },
-    "ax-channels.html": {
-      "label": "Studio website"
+      "desc": "The front door for GEM Information Systems' design practice: a published services ladder, work tied to named services, and a page that still works with JavaScript off."
     }
   },
 
@@ -66,7 +56,7 @@
       "title": "Sphamandla Xaba, AI UX Designer",
       "h1": "AI UX Designer: making AI judgment legible and trustworthy",
       "intro": "I design AI-assisted products where a person stays accountable for the result. That means confidence states people can read, outputs that explain themselves, review gates, and governance built into the interface rather than bolted on.",
-      "ogImage": "assets/img/ha/ha-09-serial-ok.png",
+      "ogImage": "assets/img/claims/09-serial-ok.png",
       "cards": ["whatsapp-ai.html", "managem.html", "finos.html", "wastemart.html", "gemis-studio.html", "cmaxx.html"],
       "design": ["ai", "conversational", "product", "web"]
     },
@@ -77,8 +67,7 @@
       "intro": "I design and build responsive websites that make an offering easy to understand and easy to act on, from information architecture and UI through to a fast, accessible build.",
       "ogImage": "assets/img/mockups/cmaxx-dark.jpg",
       "cards": ["cmaxx.html", "gemis-studio.html", "managem.html", "whatsapp-ai.html", "wastemart.html", "finos.html", "ax-channels.html"],
-      "design": ["web", "product", "ai", "conversational"],
-      "visualsAfterWork": true
+      "design": ["web", "product", "ai", "conversational"]
     }
   ]
 }
