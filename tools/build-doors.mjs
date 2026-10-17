@@ -2,15 +2,16 @@
 /* ═══════════════════════════════════════════════════════════════
    build-doors — generates the role-specific homepages
      /product/index.html   /ai-ux/index.html   /web/index.html
-   from index.html + tools/doors.config.json.
+   from home.html (the general homepage) + tools/doors.config.json.
+   index.html is the direction selection screen that links to them.
 
-   index.html is the single source of truth: edit it, then run
+   home.html is the single source of truth: edit it, then run
      node tools/build-doors.mjs
    and commit the regenerated files. No dependencies.
 
-   Every edit below is anchored on markup that exists in index.html
+   Every edit below is anchored on markup that exists in home.html
    and throws if the anchor is missing or ambiguous, so a later change
-   to index.html fails the build loudly instead of shipping a door that
+   to home.html fails the build loudly instead of shipping a door that
    silently lost a section.
    ═══════════════════════════════════════════════════════════════ */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
@@ -19,12 +20,11 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const SOURCE = join(ROOT, 'index.html');
+const SOURCE = join(ROOT, 'home.html');
 const CONFIG = join(ROOT, 'tools', 'doors.config.json');
 
 const fail = (msg) => { throw new Error('build-doors: ' + msg); };
 const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-const NUMBERS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'];
 
 /* replace exactly one occurrence of a string or regex */
 const replaceOnce = (html, find, repl, what) => {
@@ -81,16 +81,17 @@ const setHead = (html, door, siteUrl) => {
   html = replaceOnce(html, /<meta name="description" content="[^"]*" \/>/, `<meta name="description" content="${desc}" />`, 'meta description');
   html = replaceOnce(html, /<meta property="og:title" content="[^"]*" \/>/, `<meta property="og:title" content="${title}" />`, 'og:title');
   html = replaceOnce(html, /<meta property="og:description" content="[^"]*" \/>/, `<meta property="og:description" content="${desc}" />`, 'og:description');
-  html = replaceOnce(html, /<meta property="og:url" content="[^"]*" \/>/,
-    `<meta property="og:url" content="${url}" />\n  <link rel="canonical" href="${url}" />`, 'og:url');
+  html = replaceOnce(html, /<meta property="og:url" content="[^"]*" \/>/, `<meta property="og:url" content="${url}" />`, 'og:url');
+  html = replaceOnce(html, /<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${url}" />`, 'canonical');
   html = replaceOnce(html, /<meta property="og:image" content="[^"]*" \/>/, `<meta property="og:image" content="${img}" />`, 'og:image');
   html = replaceOnce(html, /<meta name="twitter:card" content="[^"]*" \/>/,
     '<meta name="twitter:card" content="summary_large_image" />\n' +
     `  <meta name="twitter:title" content="${title}" />\n` +
     `  <meta name="twitter:description" content="${desc}" />\n` +
     `  <meta name="twitter:image" content="${img}" />`, 'twitter:card');
-  /* app.js reads this to build site-relative links one folder up */
-  html = replaceOnce(html, /<html lang="en">/, '<html lang="en" data-root="../">', '<html lang="en">');
+  /* app.js reads data-root to build site-relative links one folder up, and
+     data-door so case studies can link back to this homepage */
+  html = replaceOnce(html, /<html lang="en">/, `<html lang="en" data-root="../" data-door="${door.dir}">`, '<html lang="en">');
   return html;
 };
 
@@ -125,11 +126,9 @@ const hrefOf = (text) => (/href="([^"]+)"/.exec(text) || fail('element without h
 const rewriteCard = (text, copy, first) => {
   if (copy.title) text = replaceOnce(text, /<h3 class="wcard__t">[\s\S]*?<\/h3>/, `<h3 class="wcard__t">${esc(copy.title)}</h3>`, 'card title');
   if (copy.desc) text = replaceOnce(text, /<p class="wcard__d">[\s\S]*?<\/p>/, `<p class="wcard__d">${esc(copy.desc)}</p>`, 'card description');
-  if (copy.label) {
-    /* top of the card body, so the eyebrow stays attached to its title */
-    text = replaceOnce(text, /([ \t]*)<p class="wcard__cat">/,
-      (m, ind) => `${ind}<p class="wcard__status${copy.concept ? ' wcard__status--concept' : ''}">${esc(copy.label)}</p>\n${m}`, 'card category anchor');
-  }
+  /* status labels are not configurable here: they come from home.html, so a
+     project's status is stated in exactly one place */
+  if (!/<p class="wcard__status[^"]*">/.test(text)) fail('card without a status label in home.html');
   /* the first card is the LCP image; the rest load lazily */
   text = text.replace(/\s(fetchpriority="high"|loading="lazy")/g, '');
   return replaceOnce(text, /(<img class="wcard__img"[^>]*?)( decoding="async")/,
@@ -142,9 +141,8 @@ const setCards = (html, door, cards) => {
   const byHref = new Map(findAll(html, /<a class="wcard"/, bento.start, bento.end).map((c) => [hrefOf(c.text), c.text]));
   const rows = [];
   door.cards.forEach((href, i) => {
-    if (!byHref.has(href)) fail(`card "${href}" not found in index.html`);
-    if (!cards[href]) fail(`card "${href}" has no entry in config.cards`);
-    const card = rewriteCard(byHref.get(href), cards[href], i === 0);
+    if (!byHref.has(href)) fail(`card "${href}" not found in home.html`);
+    const card = rewriteCard(byHref.get(href), cards[href] || {}, i === 0);
     if (i % 2 === 0) rows.push([card]); else rows[rows.length - 1].push(card);
   });
   /* pairs alternate wide-left / wide-right; a lone last card spans the row */
@@ -158,8 +156,8 @@ const setCards = (html, door, cards) => {
   const tbody = findElement(html, /<tbody>/, html.indexOf('id="wtable"'), '#wtable tbody');
   const trs = new Map(findAll(html, /<tr\b/, tbody.start, tbody.end).map((t) => [hrefOf(t.text), t.text]));
   const body = door.cards.map((href) => {
-    let tr = trs.get(href) || fail(`table row "${href}" not found in index.html`);
-    const copy = cards[href];
+    let tr = trs.get(href) || fail(`table row "${href}" not found in home.html`);
+    const copy = cards[href] || {};
     if (copy.title) tr = replaceOnce(tr, /(<a href="[^"]+">)[\s\S]*?(<\/a>)/, `$1${esc(copy.title)}$2`, 'table title');
     return '              ' + tr;
   }).join('\n');
@@ -168,7 +166,6 @@ const setCards = (html, door, cards) => {
   /* counts written into the markup */
   const n = door.cards.length;
   html = replaceOnce(html, /(<p class="toolbar__count" id="workCount"[^>]*>)\d+ case studies(<\/p>)/, `$1${n} case studies$2`, 'work count');
-  html = replaceOnce(html, /Across \w+ case studies/, `Across ${NUMBERS[n] || n} case studies`, '"Across N case studies"');
   return html;
 };
 
@@ -182,30 +179,9 @@ const setDesign = (html, door, keys) => {
     if (!b) fail(`What I Design block "${summary}" not found`);
     byKey.set(key, b.text);
   }
-  if (door.design.length !== blocks.length) fail(`door "${door.dir}" orders ${door.design.length} design blocks, index.html has ${blocks.length}`);
+  if (door.design.length !== blocks.length) fail(`door "${door.dir}" orders ${door.design.length} design blocks, home.html has ${blocks.length}`);
   const body = door.design.map((k) => '              ' + (byKey.get(k) || fail(`unknown design key "${k}"`))).join('\n');
   return splice(html, list.start, list.end, `<div class="plist plist--dark">\n${body}\n            </div>`);
-};
-
-/* ── Selected Visuals directly after Case Studies ────────────── */
-const moveVisuals = (html) => {
-  const marker = '        <!-- ═══════════ INSIGHTS ═══════════ -->\n';
-  const from = html.indexOf(marker);
-  if (from < 0 || html.indexOf(marker, from + 1) >= 0) fail('expected one INSIGHTS comment');
-  const section = findElement(html, /<section class="panel rv" id="insights"/, from, '#insights section');
-  const block = html.slice(from, section.end) + '\n';
-  html = splice(html, from, section.end + 1, '');
-  /* blank line separation is kept by inserting after the work section + its blank line */
-  const work = findElement(html, /<section class="panel rv" id="work"/, 0, '#work section');
-  html = splice(html, work.end + 1, work.end + 1, '\n' + block.replace(/\n$/, ''));
-
-  /* keep the sidebar in document order so scrollspy picks the right link */
-  const link = findElement(html, /<a class="side__link" href="#insights"/, 0, 'Visuals nav link');
-  const lineStart = html.lastIndexOf('\n', link.start);
-  const linkText = html.slice(lineStart, link.end);
-  html = splice(html, lineStart, link.end, '');
-  const workLink = findElement(html, /<a class="side__link" href="#work"/, 0, 'Case Studies nav link');
-  return splice(html, workLink.end, workLink.end, linkText);
 };
 
 /* ── paths: one folder deeper, cache-busted by content ───────── */
@@ -222,7 +198,7 @@ const contentHash = (path) => {
 const isRelative = (v) => v !== '' && !/^(#|[a-z][a-z0-9+.-]*:|\/\/|\/)/i.test(v);
 
 const rewritePaths = (html) => {
-  /* a door may be cached separately from index.html, so its CSS/JS
+  /* a door may be cached separately from home.html, so its CSS/JS
      query string follows the file's content rather than a hand-bumped tag */
   html = html.replace(/\b(href|src)="(assets\/[^"?#]+\.(?:css|js))\?v=[^"]*"/g, (m, attr, path) => `${attr}="${path}?v=${contentHash(path)}"`);
   return html.replace(/\b(href|src|data-src|poster|srcset)="([^"]*)"/g, (m, attr, value) => {
@@ -244,10 +220,9 @@ for (const door of config.doors) {
   html = setStats(html, config.shared);
   html = setCards(html, door, config.cards);
   html = setDesign(html, door, config.designKeys);
-  if (door.visualsAfterWork) html = moveVisuals(html);
   html = rewritePaths(html);
   html = replaceOnce(html, '<!DOCTYPE html>\n',
-    '<!DOCTYPE html>\n<!-- Generated by tools/build-doors.mjs from index.html + tools/doors.config.json. Do not edit by hand. -->\n', 'doctype');
+    '<!DOCTYPE html>\n<!-- Generated by tools/build-doors.mjs from home.html + tools/doors.config.json. Do not edit by hand. -->\n', 'doctype');
 
   const out = join(ROOT, door.dir, 'index.html');
   mkdirSync(dirname(out), { recursive: true });

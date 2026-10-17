@@ -13,6 +13,14 @@
      so every site-relative path built in this file is prefixed with it */
   window.__sxRoot = document.documentElement.dataset.root || '';
 
+  /* remember which homepage this tab came through, so case studies can
+     send the visitor back to it (assets/js/return.js reads this) */
+  try {
+    const door = document.documentElement.dataset.door;
+    if (door) sessionStorage.setItem('sx-door', door);
+    else sessionStorage.removeItem('sx-door');
+  } catch (e) {}
+
   /* year */
   const year = $('#year');
   if (year) year.textContent = new Date().getFullYear();
@@ -93,16 +101,20 @@
 
   /* ── scrollspy ── */
   const links = $$('.side__link');
+  /* #top wraps the whole page and is always in view, so it is not observed:
+     it is the active link only while nothing else is in the band */
   const sections = links
+    .filter((l) => l.dataset.spy !== 'top')
     .map((l) => document.getElementById(l.dataset.spy))
     .filter(Boolean);
   if (sections.length && 'IntersectionObserver' in window) {
     const visible = new Set();
     const paint = () => {
-      /* the topmost section currently in the band wins, so overlapping
-         observers can't leave a stale link highlighted */
-      const winner = sections.find((s) => visible.has(s.id));
-      const id = winner ? winner.id : (scrollY < 200 ? 'top' : null);
+      /* the lowest section in the band wins: near the end of the page two
+         short sections can share the band, and the one being scrolled to is
+         the later one. Deterministic either way, so no stale highlight. */
+      const winner = sections.filter((s) => visible.has(s.id)).pop();
+      const id = scrollY < 200 && !winner ? 'top' : winner ? winner.id : null;
       if (!id) return;
       links.forEach((l) => l.classList.toggle('is-active', l.dataset.spy === id));
     };
@@ -115,6 +127,13 @@
     }, { rootMargin: '-20% 0px -65% 0px' });
     sections.forEach((s) => spy.observe(s));
     addEventListener('scroll', () => { if (scrollY < 200) paint(); }, { passive: true });
+    /* the band can sit below the last section at the very bottom of the page */
+    addEventListener('scroll', () => {
+      if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) {
+        const last = sections[sections.length - 1];
+        links.forEach((l) => l.classList.toggle('is-active', l.dataset.spy === last.id));
+      }
+    }, { passive: true });
   }
 
   /* ── case-study search ── */
@@ -163,7 +182,7 @@
       q.value = term || '';
       if (category) {
         cat = category;
-        segs.forEach((s) => s.setAttribute('aria-selected', String(s.dataset.cat === category)));
+        segs.forEach((s) => s.setAttribute('aria-pressed', String(s.dataset.cat === category)));
       }
       filter();
     };
@@ -171,7 +190,7 @@
     segs.forEach((seg) => {
       seg.addEventListener('click', () => {
         cat = seg.dataset.cat;
-        segs.forEach((s) => s.setAttribute('aria-selected', String(s === seg)));
+        segs.forEach((s) => s.setAttribute('aria-pressed', String(s === seg)));
         filter();
       });
       /* arrow-key movement across the segmented control */
@@ -427,8 +446,7 @@
 
 /* ═══════════════════════════════════════════════════════════════
    SYSTEM LAYER
-   Session memory, activity log, status, count-up, jump-flash.
-   Every element here is driven by real state or real data.
+   Count-up, jump-flash, nav micro-labels.
    ═══════════════════════════════════════════════════════════════ */
 (() => {
   'use strict';
@@ -436,185 +454,9 @@
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ── BUILD 1 — session memory ──
-     Reads the PREVIOUS visit before writing this one, so "last seen"
-     describes the last visit and not the current one. */
-  (() => {
-    const line = $('#sessionLine');
-    if (!line) return;
-    let visits, prev;
-    try {
-      visits = parseInt(localStorage.getItem('sx-visits') || '0', 10) || 0;
-      prev = localStorage.getItem('sx-last');
-      localStorage.setItem('sx-visits', String(visits + 1));
-      localStorage.setItem('sx-last', new Date().toISOString());
-    } catch (e) {
-      return;                       /* private browsing: stay silent */
-    }
-    if (visits < 1 || !prev) return;  /* first visit earns nothing */
-
-    const ago = (iso) => {
-      const secs = Math.max(0, (Date.now() - new Date(iso).getTime()) / 1000);
-      const units = [['week', 604800], ['day', 86400], ['hour', 3600], ['minute', 60]];
-      for (const [name, size] of units) {
-        const n = Math.floor(secs / size);
-        if (n >= 1) return n + ' ' + name + (n > 1 ? 's' : '') + ' ago';
-      }
-      return 'moments ago';
-    };
-    const n = String(visits + 1).padStart(2, '0');
-    line.innerHTML = 'session_' + n + ' · last seen <b>' + ago(prev) + '</b>';
-    line.classList.add('is-on');
-  })();
-
-  /* ── BUILD 7 — discipline chart ──
-     Counts are derived from the case-study cards themselves, so the chart
-     can never disagree with the grid it filters. */
-  const DISCIPLINES = [
-    { key: 'product', label: 'Product design', color: 'var(--gold-live)' },
-    { key: 'ai',      label: 'AI UX',          color: '#5b5b66' },
-    { key: 'web',     label: 'Web',            color: '#b6b6bf' },
-  ];
-  const donut = $('#donut');
-  if (donut) {
-    const cards = $$('#bento .wcard');
-    const counts = DISCIPLINES.map((d) => ({
-      ...d,
-      n: cards.filter((c) => (c.dataset.cat || '').split(' ').includes(d.key)).length,
-    }));
-    const total = counts.reduce((a, c) => a + c.n, 0) || 1;
-    const R = 60, C = 2 * Math.PI * R;
-    let offset = 0;
-    const segs = counts.map((c) => {
-      const len = (c.n / total) * C;
-      const gap = 2.5;
-      const seg = '<circle class="donut__seg" data-key="' + c.key + '" role="button" tabindex="0" aria-pressed="false"' +
-        ' aria-label="' + c.label + ': ' + c.n + ' of ' + cards.length + ' case studies. Filter the work grid."' +
-        ' cx="80" cy="80" r="' + R + '" stroke="' + c.color + '"' +
-        ' stroke-dasharray="' + (len - gap).toFixed(2) + ' ' + (C - len + gap).toFixed(2) + '"' +
-        ' style="--dash-start:' + C.toFixed(2) + 'px; --dash-end:' + (-offset).toFixed(2) + 'px;"></circle>';
-      offset += len;
-      return seg;
-    }).join('');
-
-    donut.innerHTML =
-      '<svg class="donut__svg" viewBox="0 0 160 160" role="img" aria-label="Case studies by discipline">' +
-      '<circle cx="80" cy="80" r="60" fill="none" stroke="var(--muted-surface)" stroke-width="17"></circle>' +
-      '<g transform="rotate(-90 80 80)">' + segs + '</g>' +
-      '<g class="donut__hole">' +
-      '<text x="80" y="76" text-anchor="middle" class="donut__num" id="donutNum">' + cards.length + '</text>' +
-      '<text x="80" y="93" text-anchor="middle" class="donut__cap" id="donutCap">CASE STUDIES</text>' +
-      '</g></svg>' +
-      '<div class="donut__key">' + counts.map((c) =>
-        '<button class="donut__item" data-key="' + c.key + '" aria-pressed="false">' +
-        '<span class="donut__swatch" style="background:' + c.color + '"></span>' +
-        '<span>' + c.label + '</span>' +
-        '<span class="donut__n">' + c.n + ' of ' + cards.length + '</span>' +
-        '<span class="donut__bar"><i class="donut__fill" style="--pct:' + ((c.n / cards.length) * 100).toFixed(1) + '%; background:' + c.color + '"></i></span>' +
-        '</button>').join('') +
-        '<button class="donut__clear" id="donutClear" hidden>× clear filter</button></div>';
-
-    const svg = $('.donut__svg', donut);
-    const numEl = $('#donutNum'), capEl = $('#donutCap');
-    const clearBtn = $('#donutClear');
-    const nodes = (key) => $$('[data-key="' + key + '"]', donut);
-
-    /* the centre of the ring is a live readout, not a static total */
-    const setHole = (n, cap) => {
-      svg.classList.add('is-swapping');
-      setTimeout(() => {
-        numEl.textContent = n;
-        capEl.textContent = cap;
-        svg.classList.remove('is-swapping');
-      }, 130);
-    };
-    let sel = null;
-    const resetHole = () => {
-      const c = counts.find((x) => x.key === sel);
-      setHole(c ? c.n : cards.length, c ? c.label.toUpperCase() : 'CASE STUDIES');
-    };
-
-    /* hovering either the ring or the legend highlights both */
-    const hot = (key, on) => {
-      donut.classList.toggle('has-hot', on && key !== sel);
-      $$('[data-key]', donut).forEach((el) => el.classList.toggle('is-hot', on && el.dataset.key === key));
-      if (on) {
-        const c = counts.find((x) => x.key === key);
-        setHole(c.n, c.label.toUpperCase());
-      } else resetHole();
-    };
-
-    const pick = (key) => {
-      sel = sel === key ? null : key;
-      donut.classList.toggle('has-sel', !!sel);
-      $$('[data-key]', donut).forEach((el) => el.setAttribute('aria-pressed', String(el.dataset.key === sel)));
-      if (clearBtn) clearBtn.hidden = !sel;
-      resetHole();
-      if (window.__sxFilterWork) window.__sxFilterWork('', sel || 'all');
-      const w = document.getElementById('work');
-      if (w && window.__sxFlashTo) window.__sxFlashTo(w);
-    };
-
-    const keys = counts.map((c) => c.key);
-    $$('[data-key]', donut).forEach((el) => {
-      const k = el.dataset.key;
-      el.addEventListener('click', () => pick(k));
-      el.addEventListener('mouseenter', () => hot(k, true));
-      el.addEventListener('mouseleave', () => hot(k, false));
-      el.addEventListener('focus', () => hot(k, true));
-      el.addEventListener('blur', () => hot(k, false));
-      el.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(k); return; }
-        const dir = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1
-                  : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0;
-        if (!dir) return;
-        e.preventDefault();
-        const i = keys.indexOf(k);
-        const next = keys[(i + dir + keys.length) % keys.length];
-        const peer = $$('[data-key="' + next + '"]', donut).find((n) => n.tagName === el.tagName) || nodes(next)[0];
-        if (peer) peer.focus();
-      });
-    });
-    if (clearBtn) clearBtn.addEventListener('click', () => { if (sel) pick(sel); });
-
-    /* draw the ring and the bars once the panel is on screen */
-    if (!reduced && 'IntersectionObserver' in window) {
-      const io = new IntersectionObserver((es, obs) => {
-        if (es.some((e) => e.isIntersecting)) { donut.classList.add('is-in'); obs.disconnect(); }
-      }, { rootMargin: '0px 0px -12% 0px' });
-      io.observe(donut);
-    } else donut.classList.add('is-in');
-  }
-
-  /* recent activity — plain language, capped, with a view-more */
-  const ENTRIES = [
-    { date: 'Sep 2026', label: 'Published the GEMIS Studio case study' },
-    { date: 'Aug 2026', label: 'Rebuilt the portfolio as a stateful dashboard' },
-    { date: 'Aug 2026', label: 'Rebuilt the ManaGem case study' },
-    { date: 'Aug 2026', label: 'Published the CMAXX connectivity redesign' },
-    { date: 'Aug 2026', label: 'Published the FINOS case study' },
-    { date: 'Jul 2026', label: 'Published WhatsApp Home Assist' },
-    { date: 'Jul 2026', label: 'Published the WasteMart concept' },
-  ];
-  const CAP = 5;
-  const recent = $('#recentFeed');
-  const moreBtn = $('#recentMore');
-  if (recent) {
-    recent.innerHTML = ENTRIES.map((e, i) =>
-      '<div class="recent__row"' + (i >= CAP ? ' hidden' : '') + '>' +
-      '<span class="recent__date">' + e.date + '</span>' +
-      '<span>' + e.label + '</span></div>').join('');
-    if (moreBtn && ENTRIES.length > CAP) {
-      let open = false;
-      const paint = () => {
-        $$('.recent__row', recent).forEach((r, i) => { r.hidden = !open && i >= CAP; });
-        moreBtn.textContent = open ? '– show less' : '+ view ' + (ENTRIES.length - CAP) + ' more';
-      };
-      moreBtn.hidden = false;
-      paint();
-      moreBtn.addEventListener('click', () => { open = !open; paint(); });
-    }
-  }
+  /* the visit counter behind the old boot sequence and session line is
+     gone; clear what earlier versions stored in this browser */
+  try { localStorage.removeItem('sx-visits'); localStorage.removeItem('sx-last'); } catch (e) {}
 
   /* only the card without a sheet jumps to the breakdown it summarises */
   $$('.stat--link[data-jump]').forEach((b) => b.addEventListener('click', () => {
@@ -672,36 +514,12 @@
 })();
 
 /* ═══════════════════════════════════════════════════════════════
-   BOOT SEQUENCE + PAGE TRANSITIONS
+   PAGE TRANSITIONS + IMAGE SKELETONS
    ═══════════════════════════════════════════════════════════════ */
 (() => {
   'use strict';
   const root = document.documentElement;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* ── BUILD 2 — boot sequence ──
-     First visit gets the full sequence; returning visitors get a single
-     fast fade. The flag is set in <head> before the visit counter moves. */
-  const boot = document.getElementById('boot');
-  if (boot) {
-    const full = root.classList.contains('boot-full') && !reduced;
-    const lines = [...boot.querySelectorAll('[data-boot]')];
-    const finish = () => {
-      boot.classList.add('is-done');
-      setTimeout(() => { boot.hidden = true; document.body.style.overflow = ''; }, 300);
-    };
-    if (!full) {
-      /* abbreviated: never make a returning visitor wait */
-      boot.hidden = false;
-      document.body.style.overflow = 'hidden';
-      requestAnimationFrame(() => setTimeout(finish, 120));
-    } else {
-      boot.hidden = false;
-      document.body.style.overflow = 'hidden';
-      lines.forEach((l, i) => setTimeout(() => l.classList.add('is-on'), 120 + i * 300));
-      setTimeout(finish, 120 + lines.length * 300 + 220);
-    }
-  }
 
   /* ── BUILD 1 — page transition into case studies ──
      Uses the View Transitions API where available; otherwise fades the
@@ -750,8 +568,6 @@
       points: [
         'Design enterprise SaaS platforms, websites and internal business applications for corporate clients.',
         'Lead UX and UI design from discovery and wireframing through prototyping and developer handoff.',
-        'Run behavioural research — user interviews, surveys and heatmaps — to find friction and optimise journeys.',
-        'Apply data-informed design through usability testing and iterative optimisation.',
         'Built and maintain a scalable Figma design system used across multiple teams.',
       ],
       stats: [
@@ -762,10 +578,9 @@
     },
     {
       co: 'AX-Channels Studio', when: '2023 — 2025', title: 'UI/UX Designer & WordPress Designer',
-      href: 'ax-channels.html', cta: 'AX-Channels case study →',
       points: [
         'Delivered digital projects across websites, landing pages and business platforms.',
-        'Led end-to-end design projects from discovery and UX research through implementation.',
+        'Led end-to-end design projects from discovery through implementation.',
         'Ran UX audits to identify usability issues and improve user journeys.',
         'Designed responsive WordPress sites focused on usability, accessibility and conversion.',
         'Worked directly with clients to translate business requirements into digital experiences.',
@@ -780,30 +595,29 @@
   /* href only where a case study actually exists on this site */
   const PROJECTS = [
     { g: 'Web platforms', items: [
-      ['FINOS', 'Web platform', 'finos.html'],
+      ['FINOS', 'Self-initiated concept', 'finos.html'],
       ['ManaGem', 'Web platform', 'managem.html'],
       ['ECD Connect', 'Web platform'],
     ]},
     { g: 'Mobile apps', items: [
-      ['WasteMart', 'Mobile app', 'wastemart.html'],
+      ['WasteMart', 'Mobile app · Client work', 'wastemart.html'],
       ['NuraCoach', 'Mobile app'],
       ['ECD Connect', 'Mobile app'],
-      ['Lisa Apartment', 'Mobile app', 'lisa.html'],
       ['Lungelo', 'Mobile app'],
       ['ELP App', 'Mobile app'],
       ['Funda', 'Mobile app'],
     ]},
     { g: 'Conversational', items: [
-      ['WhatsApp Automation', 'WhatsApp', 'whatsapp-ai.html'],
+      ['WhatsApp claims verification', 'WhatsApp · GEMIS pilot', 'whatsapp-ai.html'],
     ]},
     { g: 'Systems', items: [
-      ['ManaGem Take-On', 'Onboarding system', 'managem.html'],
+      ['ManaGem Take-On', 'Onboarding system · Approved for implementation', 'managem.html'],
     ]},
     { g: 'Websites', items: [
-      ['GEMIS Studio', 'Studio website', 'gemis-studio.html'],
+      ['GEMIS Studio', 'Official GEMIS website', 'gemis-studio.html'],
       ['CMAXX', 'Website', 'cmaxx.html'],
       ['GEMIS', 'Website'],
-      ['AX-Channels', 'Studio website', 'ax-channels.html'],
+      ['AX-Channels', 'Studio website · Pre-launch', 'ax-channels.html'],
       ['Kiy Trucking', 'Website'],
       ['SmartStart', 'Learning website'],
       ['SG Coal', 'Redesign concept'],
@@ -812,11 +626,11 @@
 
   const LED = [
     { n: 'FINOS', meta: 'AI-powered financial operating system. Owned the product model, the AI interaction patterns and the end-to-end UI.',
-      facts: ['Web platform', 'AI UX', 'Discovery → handoff'], href: 'finos.html' },
+      facts: ['Web platform', 'AI UX', 'Self-initiated concept'], href: 'finos.html' },
     { n: 'ManaGem Take-On', meta: 'AI-assisted client onboarding for an enterprise ERP. Owned the confidence model, source traceability and the two-gate human review.',
-      facts: ['Onboarding system', 'Human-in-the-loop', 'Approved for build'], href: 'managem.html' },
+      facts: ['Onboarding system', 'Human-in-the-loop', 'Approved for implementation'], href: 'managem.html' },
     { n: 'WasteMart', meta: 'Service and operations product connecting customers, drivers and back-office workflows.',
-      facts: ['Mobile app', 'Service design', 'Concept → UI'], href: 'wastemart.html' },
+      facts: ['Mobile app', 'Client work', '29-screen prototype'], href: 'wastemart.html' },
     { n: 'SmartStart', meta: 'Learning website. Led the structure, content hierarchy and responsive build.',
       facts: ['Learning website', 'IA', 'Responsive'] },
     { n: 'Lungelo', meta: 'Multilingual field application designed for low-bandwidth, on-site use.',
@@ -824,7 +638,7 @@
   ];
 
   const VENTURES = [
-    { n: 'Brand Studio', kind: 'UI/UX', meta: 'Product and interface design work for studio, service and small-business clients.' },
+    { n: 'Brand Studio', kind: 'Brand & UI', meta: 'Brand identity and interface design, offered to small businesses and start-ups.' },
     { n: 'NeuraUX', kind: 'AI UX Automation', meta: 'AI-assisted UX workflows and automation \u2014 applying AI as a design capability, not just a tool.' },
     { n: 'Nometha Trading', kind: 'Marketing', meta: 'Brand and marketing work supporting a trading business.' },
   ];
@@ -834,19 +648,19 @@
   const VIEWS = {
     experience: {
       title: 'Three years, two companies',
-      sub: 'Where the experience comes from, and what I owned.',
+      sub: 'Where the experience comes from, and what I owned. Figures are as stated on my CV.',
       html: () => ROLES.map((r) =>
         '<div class="role"><div class="role__top"><span class="role__co">' + esc(r.co) + '</span>' +
         '<span class="role__when">' + esc(r.when) + '</span></div>' +
         '<p class="role__title">' + esc(r.title) + '</p>' +
         (r.href ? '<a class="prow__t" href="' + url(r.href) + '">' + esc(r.cta) + '</a>' : '') +
         '<ul class="role__list">' + r.points.map((x) => '<li><span>' + esc(x) + '</span></li>').join('') + '</ul>' +
-        '<div class="role__stats">' + r.stats.map((st) =>
-          '<span class="role__stat"><b>' + esc(st[0]) + '</b>' + esc(st[1]) + '</span>').join('') + '</div></div>'
+        (r.stats ? '<div class="role__stats">' + r.stats.map((st) =>
+          '<span class="role__stat"><b>' + esc(st[0]) + '</b>' + esc(st[1]) + '</span>').join('') + '</div>' : '') + '</div>'
       ).join(''),
     },
     delivered: {
-      title: 'Projects delivered',
+      title: 'Project history',
       sub: 'Across enterprise platforms, mobile products, conversational systems and websites.',
       html: () => PROJECTS.map((grp) =>
         '<p class="sheet__group">' + esc(grp.g) + ' · ' + grp.items.length + '</p><div class="plist7">' +
@@ -858,23 +672,22 @@
                       : '<div class="prow">' + inner + '</div>';
         }).join('') + '</div>'
       ).join('') +
-      '<p class="sheet__note">Case studies are linked where one is published on this site. The rest are client and studio work delivered at Gem Information Systems and AX-Channels Studio.</p>',
+      '<p class="sheet__note">Case studies are linked where one is published on this site, with their status. The rest are client and studio projects from Gem Information Systems and AX-Channels Studio that have no published case study. The 16+ delivered figure is my AX-Channels Studio total, as stated on my CV; this list also includes GEMIS work.</p>',
     },
     led: {
       title: 'Projects led',
-      sub: 'Work I owned end to end — from discovery through to developer handoff.',
+      sub: 'Projects where I led the design. Status is shown on each.',
       html: () => LED.map((l) =>
         '<div class="led"><div class="led__top"><span class="led__n">' + esc(l.n) + '</span>' +
         (l.href ? '<a class="prow__t" href="' + url(l.href) + '" style="margin-left:auto">View case study →</a>' : '') + '</div>' +
         '<p class="led__meta">' + esc(l.meta) + '</p>' +
         '<div class="led__facts">' + l.facts.map((f) => '<span class="led__fact">' + esc(f) + '</span>').join('') + '</div></div>'
       ).join('') +
-      '<p class="sheet__note">The measured results below are practice-level outcomes from my work at Gem Information Systems, not figures attributed to any single project: ' +
-      '<b>+50%</b> task success rate, <b>−25%</b> support tickets, and <b>−60%</b> design-to-development friction after introducing a shared design system.</p>',
+      '<p class="sheet__note">The 4+ figure is my AX-Channels Studio total, as stated on my CV; this list also includes GEMIS and self-initiated work.</p>',
     },
     ventures: {
-      title: 'Active ventures',
-      sub: 'What I am currently building alongside client work.',
+      title: 'Ventures',
+      sub: 'What I run alongside client work.',
       html: () => VENTURES.map((v) =>
         '<div class="led"><div class="led__top"><span class="led__n">' + esc(v.n) + '</span>' +
         '<span class="led__fact" style="margin-left:auto">' + esc(v.kind) + '</span></div>' +

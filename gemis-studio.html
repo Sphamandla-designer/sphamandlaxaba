@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GEMIS® Studio — Designing The Front Door For A Design Practice — Sphamandla Xaba®</title>
   <meta name="description" content="Designing and building GEMIS Studio — the product and interface design practice of GEM Information Systems: a published services ladder, work that evidences a named service, and a site that stays readable with JavaScript off." />
+  <meta property="og:title" content="GEMIS® Studio — Designing The Front Door For A Design Practice" />
+  <meta property="og:description" content="Designing and building GEMIS Studio, the product and interface design practice of GEM Information Systems." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://sphamandla-designer.github.io/sphamandlaxaba/assets/img/home/work-gemis-studio.jpg" />
+  <meta property="og:url" content="https://sphamandla-designer.github.io/sphamandlaxaba/gemis-studio.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://sphamandla-designer.github.io/sphamandlaxaba/gemis-studio.html" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preload" href="assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
@@ -156,7 +163,7 @@
 
     /* before / after */
     .ba { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:1.6rem; }
-    .ba__col { padding:20px; }
+    .ba__col { padding:20px; min-width:0; } /* let the nowrap code line scroll instead of widening the page */
     .ba__col--before { border-color:rgba(255,122,18,.34); background:rgba(255,122,18,.05); }
     .ba__col--after { border-color:rgba(255,31,122,.34); background:rgba(255,31,122,.05); }
     .ba__tag { font-family:var(--font-mono); font-size:10px; letter-spacing:.09em; text-transform:uppercase; }
@@ -293,7 +300,7 @@
           is the studio's real advantage (<strong>designed and built under one roof</strong>, with
           developer handoff already in the price) and also the thing a prospect quietly doubts:
           is this a studio, or a department with a landing page?</p>
-          <p>The brief I set myself was to answer that on the page rather than in a call. Three
+          <p>The brief was to answer that on the page rather than in a call. Three
           things had to be true of the site before it was worth building: the
           <strong>prices are published</strong>, every claim is <strong>attached to named
           evidence</strong>, and the commitments are stated as rules, not adjectives.</p>
@@ -564,5 +571,6 @@
       window.addEventListener('load', () => ScrollTrigger.refresh());
     })();
   </script>
+  <script src="assets/js/return.js" defer></script>
 </body>
 </html>
