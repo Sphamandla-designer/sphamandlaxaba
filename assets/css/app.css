@@ -5,9 +5,19 @@
    "spha product design portfolio" design.
    ═══════════════════════════════════════════════════════════════ */
 
+/* Geist and Geist Mono, self-hosted as variable woff2. latin-ext is a
+   separate face so the common case only downloads the latin subset. */
 @font-face {
-  font-family: "Outfit";
-  src: url("../fonts/outfit-latin-wght-normal.woff2") format("woff2-variations");
+  font-family: "Geist";
+  src: url("../fonts/geist-latin-wght-normal.woff2") format("woff2-variations");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist";
+  src: url("../fonts/geist-latin-ext-wght-normal.woff2") format("woff2-variations");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
   font-weight: 100 900;
   font-display: swap;
 }
@@ -69,7 +79,7 @@
      Fluid rather than fixed so sizes scale smoothly instead of jumping at
      breakpoints; because every heading resolves to the same token, they
      stay identical to each other at any viewport width. */
-  --font: "Outfit", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --text-xs:   0.75rem;                          /* micro-labels, timestamps, tags */
   --text-sm:   0.875rem;                         /* captions, secondary metadata   */
   --text-base: 1rem;                             /* body copy                      */
@@ -1013,14 +1023,22 @@ html.view-list .bento { display: none; }
    ═══════════════════════════════════════════════════════════════ */
 
 @font-face {
-  font-family: "JetBrains Mono";
-  src: url("../fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2");
-  font-weight: 400;
+  font-family: "Geist Mono";
+  src: url("../fonts/geist-mono-latin-wght-normal.woff2") format("woff2-variations");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist Mono";
+  src: url("../fonts/geist-mono-latin-ext-wght-normal.woff2") format("woff2-variations");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  font-weight: 100 900;
   font-display: swap;
 }
 
 :root {
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   /* accent — used sparingly: active state, selected filter, focus ring,
      newest entry. #C62828 clears AA on white (5.62:1); the -hi variant is
      for accent on an inverted surface, where the base red is too dark. */
