@@ -248,10 +248,13 @@
 
   /* ── theme ── */
   const themeBtn = $('#themeBtn');
-  const setTheme = (dark, announce) => {
+  /* persist only a deliberate choice: storing the value we derived from the
+     operating system would freeze it, and the visitor could never follow
+     their system theme again */
+  const setTheme = (dark, announce, persist = true) => {
     root.classList.add('theming');
     dark ? root.setAttribute('data-theme', 'dark') : root.removeAttribute('data-theme');
-    store('sx-theme', dark ? 'dark' : 'light');
+    if (persist) store('sx-theme', dark ? 'dark' : 'light');
     const meta = document.querySelector('meta[name="theme-color"]');
     if (meta) meta.setAttribute('content', dark ? '#0a0a0c' : '#e4e2e6');
     if (themeBtn) themeBtn.setAttribute('data-tip', dark ? 'Switch to light' : 'Switch to dark');
@@ -259,9 +262,16 @@
     if (announce) toast(dark ? 'Dark theme on' : 'Light theme on');
   };
   if (themeBtn) {
-    setTheme(root.getAttribute('data-theme') === 'dark', false);
+    setTheme(root.getAttribute('data-theme') === 'dark', false, false);
     themeBtn.addEventListener('click', () => setTheme(root.getAttribute('data-theme') !== 'dark', true));
   }
+  /* follow the system while the visitor has not chosen for themselves */
+  const sysDark = matchMedia('(prefers-color-scheme: dark)');
+  sysDark.addEventListener('change', (e) => {
+    let chosen = null;
+    try { chosen = localStorage.getItem('sx-theme'); } catch (err) {}
+    if (!chosen) setTheme(e.matches, false, false);
+  });
 
   /* ── collapsible rail ── */
   const railBtn = $('#railBtn');
