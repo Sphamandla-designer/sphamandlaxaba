@@ -1,0 +1,153 @@
+/* ═══════════════════════════════════════════════════════════════
+   Homepage additions
+   Page-scoped layouts for the two blocks app.css does not already
+   cover: the three specialisms, and the evidence-linked capability
+   columns. Everything structural — tokens, the shell, panels,
+   buttons, the type scale — comes from app.css, so this file never
+   redefines a colour or a size that already has a token.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── sidebar labels ──
+   The scrollspy chip app.css appends to each nav link is flex: 0 0 auto,
+   so a long section id squeezes its label onto two lines. Labels never
+   wrap; the chip truncates instead. */
+.side__link .lbl { white-space: nowrap; }
+.side__link .micro { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ── specialisms ──
+   Three buttons that filter the work grid below, rather than three
+   decorative cards: the category is the navigation. */
+.specs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap);
+}
+/* AI UX is a capability that cuts across the other three, so its card
+   filters by theme rather than by category */
+.spec--ai { border-style: dashed; }
+.spec--ai[aria-pressed="true"] { border-style: solid; }
+.spec {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-2);
+  text-align: left;
+  padding: var(--pad-card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  cursor: pointer;
+  transition: border-color 0.16s var(--ease), transform 0.16s var(--ease);
+}
+.spec:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+.spec[aria-pressed="true"] { border-color: var(--ink); }
+.spec__n {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+}
+.spec__t {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.spec__d {
+  font-size: var(--text-sm);
+  line-height: 1.55;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+.spec__go {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: auto; padding-top: var(--sp-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+  transition: gap 0.16s var(--ease), color 0.16s var(--ease);
+}
+.spec__go svg { width: 13px; height: 13px; }
+.spec:hover .spec__go { gap: 10px; color: var(--ink); }
+
+/* the cross-cutting line under the three */
+.specs__ai {
+  display: flex; align-items: flex-start; gap: var(--sp-3);
+  margin: var(--gap) 0 0;
+  padding: var(--sp-4) var(--sp-5);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  background: var(--muted-surface);
+  font-size: var(--text-sm);
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+.specs__ai svg { width: 17px; height: 17px; flex: 0 0 auto; margin-top: 2px; color: var(--ink-3); }
+.specs__ai b { color: var(--ink); font-weight: 600; }
+
+/* ── role line on a project card ──
+   Extends the existing card body rather than replacing it: the verified
+   role sits with the status and category it belongs beside. */
+.wcard__role {
+  display: flex; align-items: baseline; gap: 8px;
+  margin: 10px 0 0;
+  font-size: var(--text-xs);
+  line-height: 1.45;
+  color: var(--on-dark-2);
+}
+.wcard__role span {
+  flex: 0 0 auto;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--on-dark-2);
+  opacity: 0.75;
+}
+
+/* ── capabilities, each tied to the work that evidences it ────── */
+.capcols { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); }
+.capcol > h3 {
+  margin: 0 0 var(--sp-4);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.capcol ul { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--sp-4); }
+.capcol li { font-size: var(--text-sm); }
+.capcol b { display: block; font-weight: 600; margin-bottom: 2px; }
+.capcol span { color: var(--ink-2); }
+.capcol em {
+  display: block; margin-top: 4px;
+  font-style: normal;
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+}
+
+/* ── closing line under the contact buttons ───────────────────── */
+.cta__where {
+  margin: var(--sp-5) 0 0;
+  font-size: var(--text-sm);
+  color: var(--on-dark-2);
+}
+
+/* ── responsive ───────────────────────────────────────────────── */
+@media (max-width: 1240px) {
+  .specs { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 1100px) {
+  .capcols { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 720px) {
+  .specs,
+  .capcols { grid-template-columns: 1fr; }
+  .spec__go { padding-top: var(--sp-2); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spec,
+  .spec__go { transition: none; }
+  .spec:hover { transform: none; }
+  .spec:hover .spec__go { gap: 6px; }
+}

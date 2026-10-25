@@ -113,6 +113,31 @@ img, svg, video { max-width: 100%; height: auto; }
   }
   [data-case-main] { padding-left: 228px !important; }
 }
+/* ── back to the portfolio ──
+   The converted page had no route home, so this is the only way out of
+   the case study. Fixed top-right, clear of the chapter rail. */
+.finos-back {
+  position: fixed; top: 16px; right: 16px; z-index: 70;
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 9px 15px;
+  font: 600 12.5px/1 Inter, system-ui, -apple-system, sans-serif;
+  letter-spacing: .01em;
+  color: #111111;
+  background: rgba(255, 255, 255, .92);
+  border: 1px solid #E5E5E5;
+  border-radius: 999px;
+  backdrop-filter: saturate(140%) blur(8px);
+  box-shadow: 0 1px 3px rgba(17, 17, 17, .07);
+  transition: border-color .18s ease, gap .18s ease;
+}
+.finos-back:hover { border-color: #111111; gap: 10px; }
+.finos-back svg { width: 13px; height: 13px; }
+@media (max-width: 560px) { .finos-back { top: 10px; right: 10px; padding: 8px 13px; } }
+@media (prefers-reduced-motion: reduce) {
+  .finos-back { transition: none; }
+  .finos-back:hover { gap: 7px; }
+}
+
 [data-chapter-rail] a { transition: color .18s ease; }
 [data-chapter-rail] a[aria-current="true"] { color: #111111 !important; font-weight: 700 !important; }
 [data-chapter-rail] a:hover { color: #007D48 !important; }
@@ -159,6 +184,7 @@ img, svg, video { max-width: 100%; height: auto; }
 </style>
 </head>
 <body>
+<a class="finos-back" href="index.html#work"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Portfolio</a>
 <div id="dc-root"><div class="sc-host" data-sc-name="finos"><div data-dc-tpl="6" style="position: relative; background: rgb(255, 255, 255);"><nav data-chapter-rail="" data-dc-tpl="7" aria-label="Case study chapters" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap;">
   <div data-dc-tpl="8" style="font-family: &quot;Bebas Neue&quot;, sans-serif; font-size: 19px; letter-spacing: 0.22em; color: rgb(17, 17, 17); margin-bottom: 24px;">FINOS</div>
   <ol data-dc-tpl="9" style="list-style: none; margin: 0px; padding: 0px; display: flex; flex-direction: column; gap: 12px;">
@@ -4913,5 +4939,4 @@ img, svg, video { max-width: 100%; height: auto; }
 })();
 </script>
 
-  <script src="assets/js/return.js" defer></script>
 </body></html>

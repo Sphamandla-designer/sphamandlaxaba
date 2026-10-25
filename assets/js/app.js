@@ -9,17 +9,9 @@
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* role-specific homepages live one folder deep and set data-root="../",
-     so every site-relative path built in this file is prefixed with it */
+  /* the site is a single homepage at the root, so site-relative paths
+     need no prefix. Kept as a hook in case a page is ever nested again. */
   window.__sxRoot = document.documentElement.dataset.root || '';
-
-  /* remember which homepage this tab came through, so case studies can
-     send the visitor back to it (assets/js/return.js reads this) */
-  try {
-    const door = document.documentElement.dataset.door;
-    if (door) sessionStorage.setItem('sx-door', door);
-    else sessionStorage.removeItem('sx-door');
-  } catch (e) {}
 
   /* year */
   const year = $('#year');
@@ -187,10 +179,31 @@
       filter();
     };
 
+    /* the three specialism cards are the same filter by another route:
+       picking one narrows the grid and scrolls to it */
+    $$('.spec[data-filter]').forEach((spec) => {
+      spec.setAttribute('aria-pressed', 'false');
+      spec.addEventListener('click', () => {
+        const want = spec.dataset.filter;
+        const already = spec.getAttribute('aria-pressed') === 'true';
+        /* AI UX cuts across the three categories, so it narrows by theme
+           instead of by category and leaves the segments on "All" */
+        if (want === 'ai') window.__sxFilterWork(already ? '' : 'aiux', 'all');
+        else window.__sxFilterWork('', already ? 'all' : want);
+        $$('.spec[data-filter]').forEach((s) => s.setAttribute('aria-pressed', String(!already && s === spec)));
+        const t = document.getElementById('work');
+        if (t && window.__sxFlashTo) window.__sxFlashTo(t);
+        else if (t) t.scrollIntoView({ block: 'start' });
+      });
+    });
+
     segs.forEach((seg) => {
       seg.addEventListener('click', () => {
         cat = seg.dataset.cat;
         segs.forEach((s) => s.setAttribute('aria-pressed', String(s === seg)));
+        /* a direct toolbar choice clears any specialism card selection */
+        $$('.spec[data-filter]').forEach((s) =>
+          s.setAttribute('aria-pressed', String(s.dataset.filter === cat)));
         filter();
       });
       /* arrow-key movement across the segmented control */
@@ -333,15 +346,15 @@
     })),
     /* skills jump to the work panel with the matching filter applied */
     ...[
-      { label: 'AI UX', term: 'ai', cat: 'ai' },
+      { label: 'SaaS dashboards', term: '', cat: 'saas' },
+      { label: 'Mobile apps', term: '', cat: 'mobile' },
+      { label: 'Websites', term: '', cat: 'web' },
+      { label: 'AI UX', term: 'aiux', cat: 'all' },
       { label: 'Enterprise', term: 'enterprise', cat: 'all' },
       { label: 'WhatsApp', term: 'whatsapp', cat: 'all' },
-      { label: 'Conversational UX', term: 'conversational', cat: 'all' },
       { label: 'Fintech', term: 'fintech', cat: 'all' },
-      { label: 'Mobile', term: 'mobile', cat: 'all' },
-      { label: 'Design systems', term: 'design systems', cat: 'all' },
-      { label: 'Product design', term: '', cat: 'product' },
-      { label: 'Web', term: '', cat: 'web' },
+      { label: 'Field operations', term: 'field operations', cat: 'all' },
+      { label: 'Design systems', term: 'design system', cat: 'all' },
     ].map((s) => ({
       group: 'Skills',
       label: s.label,
@@ -637,11 +650,6 @@
       facts: ['Mobile app', 'Multilingual', 'Field use'] },
   ];
 
-  const VENTURES = [
-    { n: 'Brand Studio', kind: 'Brand & UI', meta: 'Brand identity and interface design, offered to small businesses and start-ups.' },
-    { n: 'NeuraUX', kind: 'AI UX Automation', meta: 'AI-assisted UX workflows and automation \u2014 applying AI as a design capability, not just a tool.' },
-    { n: 'Nometha Trading', kind: 'Marketing', meta: 'Brand and marketing work supporting a trading business.' },
-  ];
 
   const ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>';
 
@@ -684,15 +692,6 @@
         '<div class="led__facts">' + l.facts.map((f) => '<span class="led__fact">' + esc(f) + '</span>').join('') + '</div></div>'
       ).join('') +
       '<p class="sheet__note">The 4+ figure is my AX-Channels Studio total, as stated on my CV; this list also includes GEMIS and self-initiated work.</p>',
-    },
-    ventures: {
-      title: 'Ventures',
-      sub: 'What I run alongside client work.',
-      html: () => VENTURES.map((v) =>
-        '<div class="led"><div class="led__top"><span class="led__n">' + esc(v.n) + '</span>' +
-        '<span class="led__fact" style="margin-left:auto">' + esc(v.kind) + '</span></div>' +
-        '<p class="led__meta">' + esc(v.meta) + '</p></div>'
-      ).join(''),
     },
   };
 
