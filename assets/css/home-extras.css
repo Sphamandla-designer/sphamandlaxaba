@@ -179,3 +179,144 @@
 @media (max-width: 720px) {
   .tools__row { grid-template-columns: 1fr; gap: 3px; }
 }
+
+/* ── reference-led dashboard details (Efferd) ───────────────────────
+   Three patterns taken from the reference: a stat tile that leads with
+   an icon chip, a breadcrumb that names where you are, and utility
+   links pinned under the sidebar card. The reference's deltas and
+   sparklines are deliberately NOT copied — there is no real telemetry
+   behind this page and inventing some would be a lie. */
+
+/* stat tile: icon chip above the label */
+.stat__ico {
+  width: 30px; height: 30px; border-radius: 9px;
+  display: grid; place-items: center;
+  background: var(--muted-surface);
+  border: 1px solid var(--border);
+  color: var(--ink-2);
+  margin-bottom: 13px;
+}
+.stat__ico svg { width: 15px; height: 15px; }
+.stat--dark .stat__ico {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.14);
+  color: var(--elev-fg);
+}
+.stat__head { margin-bottom: 0; }
+
+/* breadcrumb */
+.crumb {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 0 var(--sp-3) 0 var(--sp-2);
+  font-size: var(--t-sm); font-weight: 500; color: var(--ink);
+  white-space: nowrap;
+}
+.crumb svg { width: 15px; height: 15px; color: var(--ink-3); flex: 0 0 auto; }
+@media (max-width: 1100px) { .crumb { display: none; } }
+
+/* sidebar utility links */
+.side__foot {
+  display: flex; flex-direction: column; gap: 2px;
+  padding: var(--sp-3) 0 2px;
+}
+.side__foot a {
+  display: flex; align-items: center; gap: 10px;
+  padding: 7px var(--sp-2);
+  border-radius: 8px;
+  font-size: var(--t-sm); color: var(--ink-2);
+  transition: color 0.16s var(--ease), background 0.16s var(--ease);
+}
+.side__foot a svg { width: 14px; height: 14px; flex: 0 0 auto; opacity: 0.8; }
+.side__foot a:hover { color: var(--ink); background: var(--muted-surface); }
+.rail-collapsed .side__foot a span,
+.rail-collapsed .side__foot a { justify-content: center; }
+.rail-collapsed .side__foot a { font-size: 0; gap: 0; }
+.rail-collapsed .side__foot a svg { font-size: initial; }
+
+/* ── dashboard row: the reference's list + table pair ──────────────── */
+.drow {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: var(--gap-sm);
+}
+.dsh { display: flex; flex-direction: column; padding: clamp(20px, 1.7vw, 28px); }
+.dsh__head { margin-bottom: clamp(14px, 1.3vw, 20px); }
+.dsh__head h2 {
+  font-size: var(--t-h3); font-weight: 600; letter-spacing: -0.015em;
+  color: var(--ink);
+}
+.dsh__head p { margin-top: 4px; font-size: var(--t-sm); color: var(--ink-2); }
+.dsh__more {
+  margin-top: auto; padding-top: clamp(13px, 1.2vw, 18px);
+  align-self: flex-start;
+  font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-2);
+  background: none; border: 0; cursor: pointer;
+  transition: color 0.16s var(--ease);
+}
+.dsh__more:hover { color: var(--accent); }
+
+/* the "who is on duty" list */
+.orgs { display: flex; flex-direction: column; }
+.orgs li {
+  display: flex; align-items: center; gap: var(--sp-3);
+  padding: 13px 0;
+  border-top: 1px solid var(--line);
+}
+.orgs li:first-child { border-top: 0; padding-top: 0; }
+.orgs__mark {
+  width: 34px; height: 34px; flex: 0 0 auto;
+  border-radius: 10px; display: grid; place-items: center;
+  background: var(--muted-surface); border: 1px solid var(--border);
+  font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+  color: var(--ink-2); letter-spacing: 0.02em;
+}
+.orgs__body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.orgs__co { font-size: var(--t-sm); font-weight: 600; color: var(--ink); }
+.orgs__co a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .2em; }
+.orgs__meta { font-size: 12px; color: var(--ink-2); }
+.orgs li .dpill { margin-left: auto; flex: 0 0 auto; }
+
+/* status pill, reference-style: quiet by default, accent only for "now" */
+.dpill {
+  display: inline-flex; align-items: center;
+  padding: 3px 9px; border-radius: var(--r-pill);
+  border: 1px solid var(--border);
+  background: var(--muted-surface);
+  font-size: 11.5px; font-weight: 500; line-height: 1.4;
+  color: var(--ink-2); white-space: nowrap;
+}
+.dpill--on {
+  border-color: var(--accent-bd); background: var(--accent-bg); color: var(--accent);
+}
+
+/* the "recent conversations" table */
+.dtable { width: 100%; border-collapse: collapse; }
+.dtable th {
+  text-align: left; padding: 0 var(--sp-3) 10px 0;
+  font-size: 11.5px; font-weight: 500; color: var(--ink-3);
+  border-bottom: 1px solid var(--line);
+}
+.dtable th:last-child, .dtable td:last-child { padding-right: 0; text-align: right; }
+.dtable td {
+  padding: 12px var(--sp-3) 12px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: var(--t-sm); color: var(--ink-2); vertical-align: middle;
+}
+.dtable tbody tr:last-child td { border-bottom: 0; }
+.dtable td a { color: var(--ink); font-weight: 500; }
+.dtable td a:hover { color: var(--accent); }
+.dtable tbody tr { transition: background 0.16s var(--ease); }
+.dtable tbody tr:hover { background: var(--muted-surface); }
+
+@media (max-width: 1100px) { .drow { grid-template-columns: 1fr; } }
+@media (max-width: 620px) {
+  /* the table turns into stacked records rather than scrolling sideways */
+  .dtable thead { display: none; }
+  .dtable tbody tr { display: block; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .dtable tbody tr:last-child { border-bottom: 0; }
+  .dtable td { display: flex; gap: var(--sp-3); padding: 3px 0; border: 0; text-align: left !important; }
+  .dtable td::before {
+    content: attr(data-label);
+    flex: 0 0 5.5rem; color: var(--ink-3); font-size: 11.5px;
+  }
+}
