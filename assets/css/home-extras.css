@@ -151,3 +151,31 @@
   .spec:hover { transform: none; }
   .spec:hover .spec__go { gap: 6px; }
 }
+
+/* ── tools & skills: a compact, scannable strip closing Capabilities ──
+   Deliberately a <dl>: each row is a label and the things under it, which
+   is what it actually is, and it reads that way to a screen reader too. */
+.tools__h {
+  font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--ink-2);
+  margin-bottom: clamp(14px, 1.2vw, 20px);
+}
+.tools__grid { display: grid; gap: 0; }
+.tools__row {
+  display: grid;
+  grid-template-columns: minmax(150px, 15rem) 1fr;
+  gap: clamp(12px, 2vw, 28px);
+  padding: 11px 0;
+  border-top: 1px solid var(--line);
+}
+.tools__row:first-child { border-top: 0; padding-top: 0; }
+.tools__row dt {
+  font-size: var(--t-sm); font-weight: 600; color: var(--ink);
+}
+.tools__row dd {
+  margin: 0;
+  font-size: var(--t-sm); line-height: 1.6; color: var(--ink-2);
+}
+@media (max-width: 720px) {
+  .tools__row { grid-template-columns: 1fr; gap: 3px; }
+}

@@ -3,33 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sphamandla Xaba — Product Designer | AI UI/UX</title>
-  <meta name="description" content="Sphamandla Xaba — Product Designer and AI UI/UX designer in Johannesburg, South Africa. I design digital products and intelligent user experiences across websites, mobile apps and SaaS systems." />
-  <meta property="og:title" content="Sphamandla Xaba — Product Designer | AI UI/UX" />
-  <meta property="og:description" content="I design digital products and intelligent user experiences across websites, mobile apps and SaaS systems, making complex workflows easier to understand and use." />
+  <title>Sphamandla Xaba — Product Designer | UI/UX Designer</title>
+  <meta name="description" content="Sphamandla Xaba — Product Designer and UI/UX Designer in Johannesburg, South Africa. I design intuitive digital products across enterprise software, websites and mobile applications, with a focus on complex workflows and AI-enabled experiences." />
+  <meta property="og:title" content="Sphamandla Xaba — Product Designer | UI/UX Designer" />
+  <meta property="og:description" content="I design intuitive digital products across enterprise software, websites and mobile applications, with a focus on complex workflows and AI-enabled experiences." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sphamandla-designer.github.io/sphamandlaxaba/" />
   <link rel="canonical" href="https://sphamandla-designer.github.io/sphamandlaxaba/" />
   <meta property="og:image" content="https://sphamandla-designer.github.io/sphamandlaxaba/assets/img/case/mg-dashboard.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="theme-color" content="#e4e2e6" />
+  <meta name="theme-color" content="#e4e2e6" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0a0a0c" media="(prefers-color-scheme: dark)" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preload" href="assets/fonts/outfit-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="assets/css/app.css?v=v8-1" />
-  <link rel="stylesheet" href="assets/css/home-extras.css?v=v8-1" />
   <script>
     /* applied before first paint so the theme and rail never flash */
     (() => {
       const d = document.documentElement;
       d.classList.add('js');
       try {
-        /* light is the default — dark only when explicitly chosen */
-        if (localStorage.getItem('sx-theme') === 'dark') d.setAttribute('data-theme', 'dark');
+        /* a stored choice always wins; a first-time visitor gets whatever
+           their operating system is set to */
+        const saved = localStorage.getItem('sx-theme');
+        const dark = saved ? saved === 'dark'
+                           : matchMedia('(prefers-color-scheme: dark)').matches;
+        if (dark) d.setAttribute('data-theme', 'dark');
         if (localStorage.getItem('sx-rail') === '1') d.classList.add('rail-collapsed');
         if (localStorage.getItem('sx-view') === 'list') d.classList.add('view-list');
       } catch (e) {}
     })();
   </script>
+  <link rel="stylesheet" href="assets/css/app.css?v=v9-0" />
+  <link rel="stylesheet" href="assets/css/home-extras.css?v=v9-0" />
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -42,7 +47,7 @@
 
     <a class="side__brand" href="#top">
       <span class="side__mark" aria-hidden="true">SX</span>
-      <span class="side__logo">Sphamandla X.<span>Product Design &amp; AI UI/UX</span></span>
+      <span class="side__logo">Sphamandla X.<span>Product Designer | UI/UX</span></span>
     </a>
 
     <nav id="sideNav" aria-label="Primary">
@@ -129,7 +134,7 @@
         </button>
         <div class="who">
           <div class="who__meta">
-            <div class="who__role">Product Designer | AI UI/UX</div>
+            <div class="who__role">Product Designer | UI/UX</div>
             <div class="who__name">Sphamandla Xaba</div>
           </div>
           <div class="who__av" aria-hidden="true">
@@ -146,13 +151,13 @@
       <section class="hero" aria-label="Introduction">
         <div class="hero__grid">
           <div class="hero__copy">
-            <p class="eyebrow">Product Design &amp; AI UI/UX</p>
-            <h1>Product Designer | AI UI/UX</h1>
-            <p class="hero__lead">I design digital products and intelligent user experiences across websites, mobile apps and SaaS systems, making complex workflows easier to understand and use.</p>
+            <p class="eyebrow">Enterprise Software &middot; Websites &middot; Mobile Apps</p>
+            <h1>Product Designer | UI/UX Designer</h1>
+            <p class="hero__lead">I design intuitive digital products across enterprise software, websites and mobile applications, with a focus on complex workflows and AI-enabled experiences.</p>
           </div>
           <p class="place">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-            Johannesburg, SA
+            Johannesburg, South Africa
           </p>
         </div>
       </section>
@@ -308,17 +313,17 @@
                   <p class="wcard__role"><span>Role</span>Product Designer</p>
                 </div>
               </a>
-              <a class="wcard" href="finos.html" data-cat="saas" data-tags="aiux finos financial fintech ai concept saas dashboard decision support cfo">
-                <img class="wcard__img" src="assets/img/home/work-finos.jpg" alt="FINOS financial operating system shown on a laptop and tablet" width="1600" height="1200" loading="lazy" decoding="async" />
+              <a class="wcard" href="ax-channels.html" data-cat="web" data-tags="ax-channels studio website ux strategy information architecture design system responsive brand">
+                <img class="wcard__img" src="assets/img/ax/ax-card.jpg" alt="AX-Channels studio website on a laptop and a phone, over the studio's glowing ring artwork" width="1600" height="1200" loading="lazy" decoding="async" />
                 <span class="wcard__go" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
                 </span>
                 <div class="wcard__body">
-                  <p class="wcard__status wcard__status--concept">Self-initiated concept</p>
-                  <p class="wcard__cat">AI UX · Product Strategy · SaaS</p>
-                  <h3 class="wcard__t">An AI Operating System For CFOs</h3>
-                  <p class="wcard__d">A concept exploring how visible reasoning, stated assumptions and readable confidence let an AI support a consequential financial decision while a person stays accountable for it.</p>
-                  <p class="wcard__role"><span>Role</span>Product Designer · UX Strategist · AI UX</p>
+                  <p class="wcard__status">Client work · Pre-launch</p>
+                  <p class="wcard__cat">Website Design · UX Strategy · Design System</p>
+                  <h3 class="wcard__t">A Studio, Designed As A Product</h3>
+                  <p class="wcard__d">Repositioning AX-Channels from a web-design service into a UX-led digital studio &mdash; strategy, information architecture, a design system and an AI-assisted build across eight responsive pages.</p>
+                  <p class="wcard__role"><span>Role</span>Product Designer / UX Strategist</p>
                 </div>
               </a>
             </div>
@@ -337,17 +342,17 @@
                   <p class="wcard__role"><span>Role</span>UI/UX Designer, at AX-Channels</p>
                 </div>
               </a>
-              <a class="wcard" href="ax-channels.html" data-cat="web" data-tags="ax-channels studio website ux strategy information architecture design system responsive brand">
-                <img class="wcard__img" src="assets/img/ax/ax-card.jpg" alt="AX-Channels studio website on a laptop and a phone, over the studio's glowing ring artwork" width="1600" height="1200" loading="lazy" decoding="async" />
+              <a class="wcard" href="finos.html" data-cat="saas" data-tags="aiux finos financial fintech ai concept saas dashboard decision support cfo">
+                <img class="wcard__img" src="assets/img/home/work-finos.jpg" alt="FINOS financial operating system shown on a laptop and tablet" width="1600" height="1200" loading="lazy" decoding="async" />
                 <span class="wcard__go" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
                 </span>
                 <div class="wcard__body">
-                  <p class="wcard__status">Client work · Pre-launch</p>
-                  <p class="wcard__cat">Website Design · UX Strategy · Design System</p>
-                  <h3 class="wcard__t">A Studio, Designed As A Product</h3>
-                  <p class="wcard__d">Repositioning AX-Channels from a web-design service into a UX-led digital studio &mdash; strategy, information architecture, a design system and an AI-assisted build across eight responsive pages.</p>
-                  <p class="wcard__role"><span>Role</span>Product Designer / UX Strategist</p>
+                  <p class="wcard__status wcard__status--concept">Self-initiated concept</p>
+                  <p class="wcard__cat">AI UX · Product Strategy · SaaS</p>
+                  <h3 class="wcard__t">An AI Operating System For CFOs</h3>
+                  <p class="wcard__d">A concept exploring how visible reasoning, stated assumptions and readable confidence let an AI support a consequential financial decision while a person stays accountable for it.</p>
+                  <p class="wcard__role"><span>Role</span>Product Designer · UX Strategist · AI UX</p>
                 </div>
               </a>
             </div>
@@ -392,10 +397,10 @@
                 <td data-label="Role">Product Designer</td>
                 <td class="cell-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></td>
               </tr>
-              <tr data-cat="saas" data-tags="aiux finos financial fintech ai concept saas dashboard decision support cfo">
-                <td data-label="Project"><a href="finos.html">An AI Operating System For CFOs</a></td>
-                <td data-label="Specialism"><span class="cell-disc"><span class="badge">SaaS dashboard</span><span class="badge">AI UI/UX</span></span></td>
-                <td data-label="Role">Product Designer · AI UX</td>
+              <tr data-cat="web" data-tags="ax-channels studio website ux strategy information architecture design system responsive brand">
+                <td data-label="Project"><a href="ax-channels.html">A Studio, Designed As A Product</a></td>
+                <td data-label="Specialism"><span class="cell-disc"><span class="badge">Website</span><span class="badge">UX strategy</span></span></td>
+                <td data-label="Role">Product Designer / UX Strategist</td>
                 <td class="cell-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></td>
               </tr>
               <tr data-cat="web" data-tags="cmaxx connectivity wifi website web design ux strategy conversion responsive">
@@ -404,10 +409,10 @@
                 <td data-label="Role">UI/UX Designer</td>
                 <td class="cell-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></td>
               </tr>
-              <tr data-cat="web" data-tags="ax-channels studio website ux strategy information architecture design system responsive brand">
-                <td data-label="Project"><a href="ax-channels.html">A Studio, Designed As A Product</a></td>
-                <td data-label="Specialism"><span class="cell-disc"><span class="badge">Website</span><span class="badge">UX strategy</span></span></td>
-                <td data-label="Role">Product Designer / UX Strategist</td>
+              <tr data-cat="saas" data-tags="aiux finos financial fintech ai concept saas dashboard decision support cfo">
+                <td data-label="Project"><a href="finos.html">An AI Operating System For CFOs</a></td>
+                <td data-label="Specialism"><span class="cell-disc"><span class="badge">SaaS dashboard</span><span class="badge">AI UI/UX</span></span></td>
+                <td data-label="Role">Product Designer · AI UX</td>
                 <td class="cell-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></td>
               </tr>
               <tr data-cat="web" data-tags="gemis studio website services ladder pricing design practice front end build accessibility">
@@ -546,6 +551,33 @@
             </div>
 
           </div>
+
+          <div class="panel__rule"></div>
+          <div class="tools">
+            <h3 class="tools__h">Tools &amp; skills</h3>
+            <dl class="tools__grid">
+              <div class="tools__row">
+                <dt>Design</dt>
+                <dd>Figma · FigJam · Figma Make · Framer · WordPress · Elementor</dd>
+              </div>
+              <div class="tools__row">
+                <dt>Research &amp; testing</dt>
+                <dd>User interviews · Surveys · Usability testing · Maze · Hotjar · Microsoft Clarity</dd>
+              </div>
+              <div class="tools__row">
+                <dt>AI in the workflow</dt>
+                <dd>ChatGPT · Claude · Claude Code · Gemini · Google Stitch · Lovable · UXPilot</dd>
+              </div>
+              <div class="tools__row">
+                <dt>Handoff &amp; delivery</dt>
+                <dd>Basic HTML &amp; CSS · Jira · Notion · Slack</dd>
+              </div>
+              <div class="tools__row">
+                <dt>Conversational &amp; automation</dt>
+                <dd>Voiceflow · ManyChat · Make · Zapier · Basic n8n</dd>
+              </div>
+            </dl>
+          </div>
         </section>
 
         <!-- ═══════════ ABOUT ═══════════ -->
@@ -557,7 +589,7 @@
 
           <div class="about2__grid">
             <div class="about2__bio">
-              <p>I'm Sphamandla Xaba, a Product Designer working across UX, UI and AI UX from Johannesburg. Over three years I've designed websites, mobile products and SaaS platforms — taking work from discovery and research through to developer handoff.</p>
+              <p>I'm Sphamandla Xaba, a Product Designer and UI/UX Designer based in Johannesburg, South Africa. Over three years I've designed enterprise software, websites and mobile applications — taking work from discovery and research through to developer handoff.</p>
               <p>Most of what I do sits behind the interface: onboarding that has to earn trust, operational dashboards people live in all day, AI-assisted review where someone still has to be accountable for the result. The screens are the easy part.</p>
               <blockquote class="about2__pull">My job is to make complexity legible — not to pretend it isn't there.</blockquote>
             </div>
@@ -595,7 +627,7 @@
         <section class="panel panel--dark cta rv" id="contact" aria-labelledby="ctaH">
           <p class="eyebrow">Contact</p>
           <h2 id="ctaH">Let's design something meaningful.</h2>
-          <p>Open to Product Designer and UI/UX roles, and selected freelance work — across websites, mobile apps, SaaS dashboard systems and AI UX.</p>
+          <p>Open to Product Designer and UI/UX Designer roles, and selected freelance work — across enterprise software, websites and mobile applications.</p>
           <div class="cta__row">
             <a class="btn btn--light" href="mailto:sphamandaxaba@gmail.com" data-copy="sphamandaxaba@gmail.com" data-tip="Click to copy">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm9 8.2 8-5.2H4l8 5.2Z"/></svg>
@@ -612,7 +644,7 @@
           <div class="foot__grid">
             <div class="foot__brand">
               Sphamandla Xaba<sup>®</sup>
-              <span>Product Designer | AI UI/UX &mdash; Johannesburg.</span>
+              <span>Product Designer | UI/UX Designer &mdash; Johannesburg, South Africa.</span>
             </div>
             <div class="foot__col">
               <b>Portfolio</b>
@@ -685,6 +717,6 @@
 
   <div class="toasts" id="toasts" role="status" aria-live="polite"></div>
 
-  <script src="assets/js/app.js?v=v8-1" defer></script>
+  <script src="assets/js/app.js?v=v9-0" defer></script>
 </body>
 </html>
