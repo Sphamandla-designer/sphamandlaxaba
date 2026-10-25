@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Public landing pages only. The root URL is the direction selection screen; the three
-     directions follow it. Excluded on purpose: home.html (the general homepage, kept as the
-     source for the direction pages and for old #section links), lisa.html (case study in progress),
-     brand-studio.html (not linked from the site), the *-proto.html prototypes and the
-     ManaGem prototype bundles (reached from their case studies), 404.html. -->
+<!-- Public landing pages only. The root URL is the single Product Design & AI UI/UX
+     homepage. Excluded on purpose: home.html and the retired /product/, /web/ and
+     /ai-ux/ paths (redirect stubs kept so older shared links still resolve),
+     lisa.html (case study in progress), brand-studio.html (not linked from the site),
+     the *-proto.html prototypes and the ManaGem prototype bundles (reached from their
+     case studies), 404.html. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://sphamandla-designer.github.io/sphamandlaxaba/</loc></url>
-  <url><loc>https://sphamandla-designer.github.io/sphamandlaxaba/product/</loc></url>
-  <url><loc>https://sphamandla-designer.github.io/sphamandlaxaba/ai-ux/</loc></url>
-  <url><loc>https://sphamandla-designer.github.io/sphamandlaxaba/web/</loc></url>
   <url><loc>https://sphamandla-designer.github.io/sphamandlaxaba/managem.html</loc></url>
   <url><loc>https://sphamandla-designer.github.io/sphamandlaxaba/whatsapp-ai.html</loc></url>
-  <url><loc>https://sphamandla-designer.github.io/sphamandlaxaba/finos.html</loc></url>
   <url><loc>https://sphamandla-designer.github.io/sphamandlaxaba/wastemart.html</loc></url>
+  <url><loc>https://sphamandla-designer.github.io/sphamandlaxaba/finos.html</loc></url>
   <url><loc>https://sphamandla-designer.github.io/sphamandlaxaba/cmaxx.html</loc></url>
-  <url><loc>https://sphamandla-designer.github.io/sphamandlaxaba/gemis-studio.html</loc></url>
   <url><loc>https://sphamandla-designer.github.io/sphamandlaxaba/ax-channels.html</loc></url>
+  <url><loc>https://sphamandla-designer.github.io/sphamandlaxaba/gemis-studio.html</loc></url>
 </urlset>
