@@ -93,6 +93,15 @@
 
   /* ── scrollspy ── */
   const links = $$('.side__link');
+  /* the topbar breadcrumb names the section the sidebar is highlighting,
+     so the two can never disagree about where you are */
+  const crumbEl = document.getElementById('crumbNow');
+  const crumb = (id) => {
+    if (!crumbEl) return;
+    const link = links.find((l) => l.dataset.spy === id);
+    const lbl = link && link.querySelector('.lbl');
+    if (lbl) crumbEl.textContent = lbl.textContent.trim();
+  };
   /* #top wraps the whole page and is always in view, so it is not observed:
      it is the active link only while nothing else is in the band */
   const sections = links
@@ -109,6 +118,7 @@
       const id = scrollY < 200 && !winner ? 'top' : winner ? winner.id : null;
       if (!id) return;
       links.forEach((l) => l.classList.toggle('is-active', l.dataset.spy === id));
+      crumb(id);
     };
     const spy = new IntersectionObserver((entries) => {
       entries.forEach((en) => {
