@@ -52,10 +52,24 @@ main:focus { outline: none; }
 .muted { color: var(--body); }
 .small { font: var(--body-sm); }
 
-.js [data-reveal] { opacity: 0; transform: translateY(12px); transition: opacity 600ms var(--ease), transform 600ms var(--ease); }
+.js [data-reveal] { opacity: 0; transform: translateY(20px); transition: opacity 700ms var(--ease), transform 700ms var(--ease); transition-delay: calc(var(--i, 0) * 90ms); }
 .js [data-reveal].is-in { opacity: 1; transform: none; }
+
+/* Cross-document page transitions where supported */
+@view-transition { navigation: auto; }
+::view-transition-old(root) { animation: 220ms var(--ease) both fadeOut; }
+::view-transition-new(root) { animation: 320ms var(--ease) both fadeIn; }
+@keyframes fadeOut { to { opacity: 0; } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } }
+
+/* Images reveal as they load */
+.js img[loading='lazy'] { opacity: 0; transition: opacity 600ms var(--ease); }
+.js img[loading='lazy'].is-loaded, .js img[loading='lazy'][data-loaded] { opacity: 1; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-  .js [data-reveal] { opacity: 1; transform: none; }
+  .js [data-reveal], .js [data-stagger], .js [data-words] .w > span { opacity: 1; transform: none; animation: none; }
+  .js img[loading='lazy'] { opacity: 1; }
+  .hero__visual canvas { display: none; } .hero__grid-fallback { display: block; }
+  .js .cs-cover .fig { clip-path: none; animation: none; } .js .cs-hero > * { opacity: 1; animation: none; }
 }
