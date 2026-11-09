@@ -7,37 +7,26 @@ nothing missing is presented as fact. Supply the item, replace the
 
 ## ManaGEM ERP
 
-- [ ] **Who uses ManaGEM day to day, and in which industries.** Confirm the primary user roles (for example sales managers, factory leads, bookkeepers) and the type of businesses using the live product. Do not include client names without approval.
-- [ ] **Which ManaGEM decisions were shared, and who built what.** List any product areas designed by someone else, decisions made jointly with the product owner, and the size or make-up of the development team.
-- [ ] **Current status of Take-On.** Confirm whether Take-On is live in the product, in development or a design direction, and update this decision’s wording to match.
-- [ ] **An approved demonstration of the live product.** Supply either a public or approved demo link, or a short screen recording (MP4/WebM, under 60 seconds, demo data only). Never use a client’s data.
-- [ ] **Verified outcome for ManaGEM.** Confirm the launch date and what is live today. Add usage figures or feedback only if they can be verified and shared.
-- [ ] **ManaGEM: team and collaborators (product owner, developers, others) — names or roles**
-- [ ] **ManaGEM: project timeline (start date, key milestones, launch date)**
+- [ ] **ManaGEM: who uses it day to day, and in which industries**
+- [ ] **ManaGEM: decisions made jointly, and who built what**
+- [ ] **ManaGEM: confirm whether Take-On is live, in development or a design direction**
+- [ ] **ManaGEM: approved demo link or short screen recording (demo data only)**
+- [ ] **ManaGEM: verified outcome — launch date, and usage or feedback if it can be shared**
+- [ ] **ManaGEM: team and collaborators**
+- [ ] **ManaGEM: timeline and launch date**
 
-## WasteMart Mobile App
+## WasteMart
 
-- [ ] **WasteMart: what the wider product is and who the client is.** Confirm what WasteMart offers beyond the driver app (for example a customer portal or office system), and whether the client can be named.
-- [ ] **Screenshot of the sync strip in the offline and failed states.** Export from the WasteMart design file or prototype.
-- [ ] **Screenshot of the end-of-day reason-code sheet.** Export from the WasteMart design file or prototype.
-- [ ] **WasteMart type ramp and exact colour tokens.** Export the typography styles and colour variables from the design file to replace the sampled values.
-- [ ] **Which WasteMart features are implemented and which are still in development.** A short list from the development team, plus screenshots of the implemented build if they can be shared.
-- [ ] **WasteMart: collaborators — client contact, developers, product owner**
+- [ ] **WasteMart: the wider product and whether the client can be named**
+- [ ] **WasteMart: which features are implemented, plus build screenshots**
 - [ ] **WasteMart: design timeline and when development started**
 
-## GEMIS Corporate Website
+## GEMIS Website
 
-- [ ] **What the GEMIS corporate website needed to communicate.** The audiences it serves (for example prospective clients, partners, job seekers) and the main messages or offers the site had to carry.
-- [ ] **The real reasons for the redesign.** What prompted it — for example a new offer, outdated content, a rebrand or structural problems. Only include issues that genuinely applied; do not invent problems with the previous site.
-- [ ] **How the collaboration with the development team worked.** Team size, how designs were handed over (Figma, specs, reviews), how often you met, and any decisions you made together during the build.
-- [ ] **The site map and navigation of the redesigned website.** A list of the pages and how they are grouped, the main navigation labels, and one or two key journeys (for example “a prospective client looking for a service”). A FigJam or Figma export is ideal.
-- [ ] **The visual language of the redesigned site.** Typefaces, colour palette, layout grid, image treatment and the main component patterns — ideally exported from the design file.
-- [ ] **Homepage screenshot, with the decisions behind its structure.** Use a real screenshot of the live website (PNG or JPG, at least 1600px wide for desktop, 780px for mobile).
-- [ ] **Two or three important inner pages (for example services, products, about), each with its main design decision.** Use a real screenshot of the live website (PNG or JPG, at least 1600px wide for desktop, 780px for mobile).
-- [ ] **Desktop screenshots of the live site.** Use a real screenshot of the live website (PNG or JPG, at least 1600px wide for desktop, 780px for mobile).
-- [ ] **Mobile screenshots of the live site, and any responsive decisions worth explaining (navigation, content order).** Use a real screenshot of the live website (PNG or JPG, at least 1600px wide for desktop, 780px for mobile).
-- [ ] **A link to the live website, and evidence of the implementation.** The public URL, plus one or two screenshots of the built site that show where it matches the design.
-- [ ] **Your reflection on the GEMIS redesign.** What you learned about leading a redesign, what you would improve, and what the project shows about working with developers.
-- [ ] **GEMIS website: project timeline and launch date**
-- [ ] **GEMIS website: the live URL**
-- [ ] **Cover image: the redesigned GEMIS homepage on desktop.** Use a real screenshot of the live website (PNG or JPG, at least 1600px wide for desktop, 780px for mobile).
+- [ ] **GEMIS website: audiences and key messages**
+- [ ] **GEMIS website: real reasons for the redesign**
+- [ ] **GEMIS website: how the collaboration with developers worked**
+- [ ] **GEMIS website: sitemap, visual direction, key page decisions, responsive screens, reflection**
+- [ ] **GEMIS website: timeline and launch date**
+- [ ] **GEMIS website: live URL**
+- [ ] **GEMIS website: desktop and mobile mockups or screenshots of the live site**

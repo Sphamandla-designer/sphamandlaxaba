@@ -1,52 +1,54 @@
 // Shared page shell and reusable components.
-// Components are plain functions that return HTML strings. `ctx` carries the
-// page's depth so every internal link and asset path is relative — the site
-// works the same under a local server and under the GitHub Pages sub-path.
+// Components are plain functions returning HTML strings. `ctx` carries the
+// page depth so every link and asset path is relative — the site works the
+// same under a local server and under the GitHub Pages sub-path.
 
 import { site, nav } from './site.mjs';
 import { readFileSync } from 'node:fs';
 
-const imgMeta = JSON.parse(
-  readFileSync(new URL('./content/images.json', import.meta.url), 'utf8'),
-);
+const imgMeta = JSON.parse(readFileSync(new URL('./content/images.json', import.meta.url), 'utf8'));
 
 // ---------------------------------------------------------------- utilities
 
 export const esc = (s = '') =>
-  String(s)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
+  String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
-/** Resolve a site-relative path for a page at `ctx.depth`. */
+export const html = (strings, ...values) => strings.reduce((out, s, i) => out + s + (values[i] ?? ''), '');
+
+/** Resolve a site-relative path for the page at ctx.depth (absolute for 404). */
 export function url(ctx, path = '') {
   const prefix = ctx.absolute ? site.basePath : '../'.repeat(ctx.depth);
   if (/^(https?:|mailto:|tel:|#)/.test(path)) return path;
   if (path === '' || path === 'index.html') return prefix || './';
-  if (path.startsWith('index.html#')) return (prefix || '') + path.slice(10);
+  if (path.startsWith('index.html#')) return prefix + path.slice(10);
   return prefix + path;
 }
 
-const html = (strings, ...values) =>
-  strings.reduce((out, s, i) => out + s + (values[i] ?? ''), '');
-export { html };
-
-/** Collected during a build — every placeholder becomes a line in CONTENT-NEEDED.md */
+/**
+ * Missing content is never shown as fact — and, to keep pages clean, it is
+ * not shown at all. Each gap is recorded here and written to
+ * CONTENT-NEEDED.md by the build.
+ */
 export const placeholderLog = [];
+export function todo(ctx, need, detail = '') {
+  placeholderLog.push({ page: ctx.page, need, detail });
+  return '';
+}
 
 // --------------------------------------------------------------- components
 
 export const icon = {
-  arrow: '<svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>',
-  external: '<svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>',
-  download: '<svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>',
-  sun: '<svg class="i i-sun" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3 3l1.4 1.4M11.6 11.6 13 13M3 13l1.4-1.4M11.6 4.4 13 3" stroke="currentColor" stroke-width="1.5"/></svg>',
-  moon: '<svg class="i i-moon" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 9.5A5.5 5.5 0 0 1 6.5 3 5.5 5.5 0 1 0 13 9.5Z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>',
-  copy: '<svg class="i" viewBox="0 0 16 16" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3 10.5V2.5h8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>',
+  arrow: '<svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>',
+  external: '<svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>',
+  download: '<svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>',
+  sun: '<svg class="i i-sun" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3 3l1.4 1.4M11.6 11.6 13 13M3 13l1.4-1.4M11.6 4.4 13 3" stroke="currentColor" stroke-width="1.6"/></svg>',
+  moon: '<svg class="i i-moon" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 9.5A5.5 5.5 0 0 1 6.5 3 5.5 5.5 0 1 0 13 9.5Z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>',
+  copy: '<svg class="i" viewBox="0 0 16 16" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 10.5V3.5A1 1 0 0 1 4 2.5h6.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>',
+  menu: '<svg class="i i-menu" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 5h12M2 11h12" stroke="currentColor" stroke-width="1.6"/></svg>',
+  close: '<svg class="i i-close" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" stroke-width="1.6"/></svg>',
 };
 
-/** Button / link styled as a button. variant: primary | secondary | text */
+/** Pill button. variant: primary (black) | secondary (white) | subtle (gray) */
 export function button(ctx, { label, href, variant = 'primary', ic = 'arrow', download = false, external = false }) {
   const attrs = [
     `href="${esc(url(ctx, href))}"`,
@@ -54,89 +56,50 @@ export function button(ctx, { label, href, variant = 'primary', ic = 'arrow', do
     download ? 'download' : '',
     external ? 'target="_blank" rel="noopener"' : '',
   ].filter(Boolean).join(' ');
-  const extra = external ? '<span class="sr-only"> (opens in a new tab)</span>' : '';
-  return `<a ${attrs}><span>${esc(label)}</span>${icon[ic] || ''}${extra}</a>`;
+  return `<a ${attrs}><span>${esc(label)}</span>${icon[ic] || ''}${external ? '<span class="sr-only"> (opens in a new tab)</span>' : ''}</a>`;
 }
 
 export const cvButton = (ctx, variant = 'secondary', label = 'Download CV') =>
   button(ctx, { label, href: site.cv, variant, ic: 'download', download: true });
 
-/** Status with a shape marker — never colour alone. kind: live | progress | draft */
+/** Status in words with a shape marker — never colour alone. */
 export const status = (label, kind = 'live') =>
   `<span class="status status--${kind}"><span class="status__mark" aria-hidden="true"></span>${esc(label)}</span>`;
 
-export const tags = (list) =>
-  `<ul class="tags" role="list">${list.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>`;
-
-/** Definition-list metadata grid. items: [[term, value(html)]] */
+/** Compact key/value list. items: [[term, value(html)]] — empty values are dropped. */
 export const meta = (items, cls = '') =>
   `<dl class="meta ${cls}">${items
-    .map(([k, v]) => `<div class="meta__row"><dt>${esc(k)}</dt><dd>${v}</dd></div>`)
+    .filter(([, v]) => v)
+    .map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${v}</dd></div>`)
     .join('')}</dl>`;
 
-/**
- * Responsive image. `key` is "folder/basename" as recorded in images.json.
- * Every image gets explicit width/height so nothing shifts as it loads.
- */
-export function img(ctx, key, alt, { sizes = '100vw', eager = false, cls = '' } = {}) {
+/** Responsive image with explicit dimensions (no layout shift). */
+export function img(ctx, key, alt, { sizes = '100vw', eager = false } = {}) {
   const m = imgMeta[key];
   if (!m) throw new Error(`Unknown image: ${key}`);
   const [folder, base] = key.split('/');
-  const src = (w) =>
-    url(ctx, `assets/images/${folder}/${base}${m.sizes.length > 1 ? `-${w}` : ''}.webp`);
+  const src = (w) => url(ctx, `assets/images/${folder}/${base}${m.sizes.length > 1 ? `-${w}` : ''}.webp`);
   const widest = Math.min(Math.max(...m.sizes), m.w);
   const h = Math.round((m.h * widest) / m.w);
-  const srcset =
-    m.sizes.length > 1 ? ` srcset="${m.sizes.map((w) => `${src(w)} ${w}w`).join(', ')}" sizes="${sizes}"` : '';
-  return `<img class="${cls}" src="${src(widest)}"${srcset} width="${widest}" height="${h}" alt="${esc(alt)}" ${
+  const srcset = m.sizes.length > 1 ? ` srcset="${m.sizes.map((w) => `${src(w)} ${w}w`).join(', ')}" sizes="${sizes}"` : '';
+  return `<img src="${src(widest)}"${srcset} width="${widest}" height="${h}" alt="${esc(alt)}" ${
     eager ? 'fetchpriority="high"' : 'loading="lazy"'
   } decoding="async">`;
 }
 
-/**
- * A figure. frame: browser | phone | plain. `zoom` makes it open in the viewer.
- */
-export function figure(ctx, { key, alt, caption, frame = 'browser', sizes, cls = '', zoom = true, eager = false }) {
+/** Figure in 16px card chrome. kind: screen | phone | mockup. Opens in the viewer. */
+export function figure(ctx, { key, alt, caption = '', kind = 'screen', sizes, eager = false }) {
   const m = imgMeta[key];
   const [folder, base] = key.split('/');
   const full = url(ctx, `assets/images/${folder}/${base}${m.sizes.length > 1 ? `-${Math.max(...m.sizes)}` : ''}.webp`);
-  const picture = img(ctx, key, alt, { sizes, eager });
-  const framed =
-    frame === 'browser'
-      ? `<div class="frame frame--browser"><div class="frame__bar" aria-hidden="true"><i></i><i></i><i></i></div>${picture}</div>`
-      : frame === 'phone'
-      ? `<div class="frame frame--phone">${picture}</div>`
-      : `<div class="frame frame--plain">${picture}</div>`;
-  const body = zoom
-    ? `<a class="zoom" href="${full}" data-zoom data-caption="${esc(caption || alt)}" aria-label="Enlarge: ${esc(alt)}">${framed}</a>`
-    : framed;
-  return `<figure class="fig ${cls}">${body}${caption ? `<figcaption>${caption}</figcaption>` : ''}</figure>`;
+  return `<figure class="fig fig--${kind}"><a class="zoom" href="${full}" data-zoom data-caption="${esc(caption || alt)}" aria-label="Enlarge: ${esc(alt)}">${img(ctx, key, alt, { sizes, eager })}</a>${
+    caption ? `<figcaption>${esc(caption)}</figcaption>` : ''
+  }</figure>`;
 }
 
-/**
- * A clearly marked content placeholder. It is visible on purpose: missing
- * evidence is shown as missing, never dressed up as fact. Each one is also
- * written to CONTENT-NEEDED.md at build time.
- */
-export function placeholder(ctx, { need, detail = '', page = ctx.page, shape = 'block' }) {
-  placeholderLog.push({ page, need, detail });
-  return `<aside class="ph ph--${shape}" role="note" aria-label="Placeholder: content needed">
-    <p class="ph__label"><span aria-hidden="true">◌</span> Placeholder — content needed</p>
-    <p class="ph__need">${esc(need)}</p>
-    ${detail ? `<p class="ph__detail">${esc(detail)}</p>` : ''}
-  </aside>`;
-}
-
-/** Short inline placeholder, for a single missing fact inside metadata. */
-export function phInline(ctx, need, label = 'To be confirmed') {
-  placeholderLog.push({ page: ctx.page, need, detail: '' });
-  return `<span class="ph-inline" title="${esc(need)}"><span aria-hidden="true">◌</span> ${esc(label)}<span class="sr-only"> — placeholder: ${esc(need)}</span></span>`;
-}
-
-/** Section heading with index number and kicker. */
-export const sectionHead = ({ num, kicker, title, intro = '', id = '' }) => `
+/** Section heading. */
+export const sectionHead = ({ title, intro = '', id = '' }) => `
   <header class="shead">
-    <p class="shead__kicker"><span class="shead__num">${esc(num)}</span>${esc(kicker)}</p>
     <h2 class="shead__title"${id ? ` id="${id}"` : ''}>${title}</h2>
     ${intro ? `<p class="shead__intro">${intro}</p>` : ''}
   </header>`;
@@ -145,81 +108,67 @@ export const sectionHead = ({ num, kicker, title, intro = '', id = '' }) => `
 
 function header(ctx) {
   const links = nav
-    .map((n) => {
-      const current = ctx.navKey === n.key ? ' aria-current="page"' : '';
-      return `<li><a href="${esc(url(ctx, n.href))}"${current}>${n.label}</a></li>`;
-    })
+    .map((n) => `<li><a class="nav-link" href="${esc(url(ctx, n.href))}"${ctx.navKey === n.key ? ' aria-current="page"' : ''}>${n.label}</a></li>`)
     .join('');
   return `
   <a class="skip" href="#main">Skip to content</a>
-  <header class="site-header" data-header>
-    <div class="site-header__inner wrap">
-      <a class="wordmark" href="${url(ctx, '')}" aria-label="Sphamandla Xaba — home">
-        <span class="wordmark__name">Sphamandla Xaba</span>
-        <span class="wordmark__role">Product Designer</span>
-      </a>
+  <header class="nav-bar" data-header>
+    <div class="nav-bar__inner wrap">
+      <a class="wordmark" href="${url(ctx, '')}">Sphamandla Xaba</a>
       <nav class="site-nav" aria-label="Primary">
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" data-nav-toggle>
-          <span class="nav-toggle__label">Menu</span><span class="nav-toggle__bars" aria-hidden="true"><i></i><i></i></span>
-        </button>
         <div class="site-menu" id="site-menu" data-nav-menu>
-          <ul class="site-menu__list" role="list">${links}
-            <li class="site-menu__cv"><a href="${url(ctx, site.cv)}" download>Download CV ${icon.download}</a></li>
-          </ul>
+          <ul class="site-menu__list" role="list">${links}</ul>
+          <a class="btn btn--primary site-menu__cv" href="${url(ctx, site.cv)}" download><span>Download CV</span>${icon.download}</a>
         </div>
       </nav>
-      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark theme">
-        ${icon.sun}${icon.moon}
-      </button>
+      <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch to dark theme">${icon.sun}${icon.moon}</button>
+      <button class="icon-btn nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu" data-nav-toggle>${icon.menu}${icon.close}</button>
     </div>
   </header>`;
 }
 
 function footer(ctx) {
-  const year = new Date().getFullYear();
   return `
-  <footer class="site-footer">
-    <div class="wrap site-footer__grid">
-      <div class="site-footer__sign">
-        <p class="site-footer__name">Sphamandla Xaba</p>
-        <p class="muted">Product Designer · UI/UX<br>${esc(site.location)}</p>
+  <footer class="footer">
+    <div class="wrap footer__grid">
+      <div>
+        <p class="footer__name">Sphamandla Xaba</p>
+        <p class="footer__muted">Product Designer · UI/UX<br>${esc(site.location)}</p>
       </div>
-      <nav class="site-footer__nav" aria-label="Footer">
-        <p class="label">Work</p>
+      <nav aria-label="Work">
+        <p class="footer__head">Work</p>
         <ul role="list">
           <li><a href="${url(ctx, 'work/managem/')}">ManaGEM ERP</a></li>
-          <li><a href="${url(ctx, 'work/wastemart/')}">WasteMart Mobile App</a></li>
-          <li><a href="${url(ctx, 'work/gemis/')}">GEMIS Corporate Website</a></li>
+          <li><a href="${url(ctx, 'work/wastemart/')}">WasteMart</a></li>
+          <li><a href="${url(ctx, 'work/gemis/')}">GEMIS Website</a></li>
         </ul>
       </nav>
-      <nav class="site-footer__nav" aria-label="Contact">
-        <p class="label">Contact</p>
+      <nav aria-label="Contact">
+        <p class="footer__head">Contact</p>
         <ul role="list">
-          <li><a href="mailto:${site.email}">${site.email}</a></li>
+          <li><a href="mailto:${site.email}">Email</a></li>
           <li><a href="${site.linkedin}" target="_blank" rel="noopener">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a></li>
-          <li><a href="${url(ctx, site.cv)}" download>Download CV</a></li>
+          <li><a href="${url(ctx, site.cv)}" download>CV (PDF)</a></li>
         </ul>
       </nav>
     </div>
-    <div class="wrap site-footer__base">
-      <p class="muted">© ${year} Sphamandla Xaba. Designed and built by Sphamandla Xaba.</p>
-      <a class="muted" href="#top">Back to top ↑</a>
+    <div class="wrap footer__base">
+      <p>© ${new Date().getFullYear()} Sphamandla Xaba</p>
+      <a href="#top">Back to top</a>
     </div>
   </footer>
   <dialog class="viewer" data-viewer aria-label="Image viewer">
     <form method="dialog" class="viewer__bar">
       <p class="viewer__caption" data-viewer-caption></p>
-      <button class="viewer__close" type="submit" aria-label="Close image viewer">Close <span aria-hidden="true">×</span></button>
+      <button class="btn btn--secondary" type="submit">Close</button>
     </form>
     <div class="viewer__stage"><img data-viewer-img alt=""></div>
   </dialog>`;
 }
 
-/**
- * Full HTML document.
- * page: { path, depth, title, description, navKey, body, ogImage, bodyClass }
- */
-export function documentShell(ctx, { title, description, body, ogImage = 'assets/images/og-default.jpg', bodyClass = '', noindex = false }) {
+const THEME_BOOT = `(function(){var t;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.dataset.theme=t;document.documentElement.classList.add('js')})();`;
+
+export function documentShell(ctx, { title, description, body, bodyClass = '', noindex = false, ogImage = 'assets/images/og-default.jpg' }) {
   const canonical = site.origin + site.basePath + ctx.path.replace(/index\.html$/, '');
   const fullTitle = title ? `${title} — Sphamandla Xaba` : 'Sphamandla Xaba — Product Designer | UI/UX';
   return `<!doctype html>
@@ -231,17 +180,14 @@ export function documentShell(ctx, { title, description, body, ogImage = 'assets
 <meta name="description" content="${esc(description)}">
 ${noindex ? '<meta name="robots" content="noindex">' : `<link rel="canonical" href="${canonical}">`}
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Sphamandla Xaba — Product Designer">
 <meta property="og:title" content="${esc(fullTitle)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${canonical}">
 <meta property="og:image" content="${site.origin + site.basePath + ogImage}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#f6f5f2" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="${url(ctx, 'assets/favicon.svg')}" type="image/svg+xml">
-<link rel="preload" href="${url(ctx, 'assets/fonts/inter-tight-latin-wght-normal.woff2')}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="${url(ctx, 'assets/fonts/inter-latin-wght-normal.woff2')}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${url(ctx, 'assets/css/site.css')}">
 <script>${THEME_BOOT}</script>
 <script src="${url(ctx, 'assets/js/main.js')}" defer></script>
@@ -256,6 +202,3 @@ ${footer(ctx)}
 </html>
 `;
 }
-
-// Runs before first paint so the saved / system theme is applied without a flash.
-const THEME_BOOT = `(function(){try{var t=localStorage.getItem('theme');}catch(e){}if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.dataset.theme=t;document.documentElement.classList.add('js');})();`;

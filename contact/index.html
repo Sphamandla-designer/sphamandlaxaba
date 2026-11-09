@@ -7,115 +7,89 @@
 <meta name="description" content="Contact Sphamandla Xaba, Product Designer (UI/UX) in Johannesburg — email, LinkedIn and CV.">
 <link rel="canonical" href="https://sphamandla-designer.github.io/sphamandlaxaba/contact/">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Sphamandla Xaba — Product Designer">
 <meta property="og:title" content="Contact — Sphamandla Xaba">
 <meta property="og:description" content="Contact Sphamandla Xaba, Product Designer (UI/UX) in Johannesburg — email, LinkedIn and CV.">
 <meta property="og:url" content="https://sphamandla-designer.github.io/sphamandlaxaba/contact/">
 <meta property="og:image" content="https://sphamandla-designer.github.io/sphamandlaxaba/assets/images/og-default.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#f6f5f2" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="../assets/fonts/inter-tight-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../assets/css/site.css">
-<script>(function(){try{var t=localStorage.getItem('theme');}catch(e){}if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.dataset.theme=t;document.documentElement.classList.add('js');})();</script>
+<script>(function(){var t;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.dataset.theme=t;document.documentElement.classList.add('js')})();</script>
 <script src="../assets/js/main.js" defer></script>
 </head>
 <body class="page-contact" id="top">
 
   <a class="skip" href="#main">Skip to content</a>
-  <header class="site-header" data-header>
-    <div class="site-header__inner wrap">
-      <a class="wordmark" href="../" aria-label="Sphamandla Xaba — home">
-        <span class="wordmark__name">Sphamandla Xaba</span>
-        <span class="wordmark__role">Product Designer</span>
-      </a>
+  <header class="nav-bar" data-header>
+    <div class="nav-bar__inner wrap">
+      <a class="wordmark" href="../">Sphamandla Xaba</a>
       <nav class="site-nav" aria-label="Primary">
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" data-nav-toggle>
-          <span class="nav-toggle__label">Menu</span><span class="nav-toggle__bars" aria-hidden="true"><i></i><i></i></span>
-        </button>
         <div class="site-menu" id="site-menu" data-nav-menu>
-          <ul class="site-menu__list" role="list"><li><a href="../#work">Work</a></li><li><a href="../#approach">Approach</a></li><li><a href="../about/">About</a></li><li><a href="../contact/" aria-current="page">Contact</a></li>
-            <li class="site-menu__cv"><a href="../assets/docs/Sphamandla-Xaba-CV.pdf" download>Download CV <svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></li>
-          </ul>
+          <ul class="site-menu__list" role="list"><li><a class="nav-link" href="../#work">Work</a></li><li><a class="nav-link" href="../#approach">Approach</a></li><li><a class="nav-link" href="../about/">About</a></li><li><a class="nav-link" href="../contact/" aria-current="page">Contact</a></li></ul>
+          <a class="btn btn--primary site-menu__cv" href="../assets/docs/Sphamandla-Xaba-CV.pdf" download><span>Download CV</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
         </div>
       </nav>
-      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark theme">
-        <svg class="i i-sun" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3 3l1.4 1.4M11.6 11.6 13 13M3 13l1.4-1.4M11.6 4.4 13 3" stroke="currentColor" stroke-width="1.5"/></svg><svg class="i i-moon" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 9.5A5.5 5.5 0 0 1 6.5 3 5.5 5.5 0 1 0 13 9.5Z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
-      </button>
+      <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch to dark theme"><svg class="i i-sun" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3 3l1.4 1.4M11.6 11.6 13 13M3 13l1.4-1.4M11.6 4.4 13 3" stroke="currentColor" stroke-width="1.6"/></svg><svg class="i i-moon" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 9.5A5.5 5.5 0 0 1 6.5 3 5.5 5.5 0 1 0 13 9.5Z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      <button class="icon-btn nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu" data-nav-toggle><svg class="i i-menu" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 5h12M2 11h12" stroke="currentColor" stroke-width="1.6"/></svg><svg class="i i-close" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" stroke-width="1.6"/></svg></button>
     </div>
   </header>
 <main id="main" tabindex="-1">
 
-  <section class="contact-page wrap" aria-labelledby="contact-h">
-    <p class="eyebrow">Contact</p>
-    <h1 class="page-hero__title" id="contact-h">Let’s talk about your product.</h1>
-    <div class="contact-page__grid">
-      <div class="contact-page__intro prose">
-        <p class="lead">I’m open to product designer and UI/UX designer roles, and to collaborating with teams building better digital experiences.</p>
-        <p>Email is the best way to reach me. If you’re hiring, a line about the role and the team is plenty to start with. If you’d like to see ManaGEM working, ask for a walkthrough.</p>
-        <dl class="meta meta--compact">
-          <div class="meta__row"><dt>Based in</dt><dd>Johannesburg, South Africa</dd></div>
-          <div class="meta__row"><dt>Time zone</dt><dd>South Africa Standard Time (UTC+2)</dd></div>
-          <div class="meta__row"><dt>Phone</dt><dd><a href="tel:+27601020774">+27 60 102 0774</a></dd></div>
-        </dl>
+  <section class="hero" aria-labelledby="contact-h">
+    <div class="wrap hero__grid">
+      <div class="hero__text">
+        <h1 class="hero__title" id="contact-h">Let’s talk.</h1>
+        <p class="hero__copy">Open to product designer and UI/UX roles. Email is the quickest way to reach me.</p>
+        <p class="muted small">Johannesburg, South Africa · UTC+2 · <a class="link-mute" href="tel:+27601020774">+27 60 102 0774</a></p>
       </div>
-      <div class="contact-page__links">
-  <ul class="contact-links" role="list">
+      <div class="card card--form">
+  <ul class="contact" role="list">
     <li>
-      <span class="label">Email</span>
-      <span class="contact-links__row">
-        <a class="contact-links__big" href="mailto:sphamandaxaba@gmail.com">sphamandaxaba@gmail.com</a>
-        <button class="copy" type="button" data-copy="sphamandaxaba@gmail.com"><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3 10.5V2.5h8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg><span data-copy-label>Copy</span></button>
-      </span>
+      <a class="contact__link" href="mailto:sphamandaxaba@gmail.com">sphamandaxaba@gmail.com</a>
+      <button class="btn btn--subtle btn--sm" type="button" data-copy="sphamandaxaba@gmail.com"><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 10.5V3.5A1 1 0 0 1 4 2.5h6.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span data-copy-label>Copy</span></button>
     </li>
-    <li>
-      <span class="label">LinkedIn</span>
-      <a class="contact-links__big" href="https://www.linkedin.com/in/sphamandla-xaba-ba1602287/" target="_blank" rel="noopener">Sphamandla Xaba <svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg><span class="sr-only"> (opens in a new tab)</span></a>
-    </li>
-    <li>
-      <span class="label">CV</span>
-      <a class="contact-links__big" href="../assets/docs/Sphamandla-Xaba-CV.pdf" download>Download CV (PDF) <svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
-    </li>
+    <li><a class="contact__link" href="https://www.linkedin.com/in/sphamandla-xaba-ba1602287/" target="_blank" rel="noopener">LinkedIn <svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span class="sr-only"> (opens in a new tab)</span></a></li>
+    <li><a class="contact__link" href="../assets/docs/Sphamandla-Xaba-CV.pdf" download>Download CV <svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></li>
   </ul>
   <p class="sr-only" role="status" aria-live="polite" data-copy-status></p></div>
     </div>
   </section>
 </main>
 
-  <footer class="site-footer">
-    <div class="wrap site-footer__grid">
-      <div class="site-footer__sign">
-        <p class="site-footer__name">Sphamandla Xaba</p>
-        <p class="muted">Product Designer · UI/UX<br>Johannesburg, South Africa</p>
+  <footer class="footer">
+    <div class="wrap footer__grid">
+      <div>
+        <p class="footer__name">Sphamandla Xaba</p>
+        <p class="footer__muted">Product Designer · UI/UX<br>Johannesburg, South Africa</p>
       </div>
-      <nav class="site-footer__nav" aria-label="Footer">
-        <p class="label">Work</p>
+      <nav aria-label="Work">
+        <p class="footer__head">Work</p>
         <ul role="list">
           <li><a href="../work/managem/">ManaGEM ERP</a></li>
-          <li><a href="../work/wastemart/">WasteMart Mobile App</a></li>
-          <li><a href="../work/gemis/">GEMIS Corporate Website</a></li>
+          <li><a href="../work/wastemart/">WasteMart</a></li>
+          <li><a href="../work/gemis/">GEMIS Website</a></li>
         </ul>
       </nav>
-      <nav class="site-footer__nav" aria-label="Contact">
-        <p class="label">Contact</p>
+      <nav aria-label="Contact">
+        <p class="footer__head">Contact</p>
         <ul role="list">
-          <li><a href="mailto:sphamandaxaba@gmail.com">sphamandaxaba@gmail.com</a></li>
+          <li><a href="mailto:sphamandaxaba@gmail.com">Email</a></li>
           <li><a href="https://www.linkedin.com/in/sphamandla-xaba-ba1602287/" target="_blank" rel="noopener">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a></li>
-          <li><a href="../assets/docs/Sphamandla-Xaba-CV.pdf" download>Download CV</a></li>
+          <li><a href="../assets/docs/Sphamandla-Xaba-CV.pdf" download>CV (PDF)</a></li>
         </ul>
       </nav>
     </div>
-    <div class="wrap site-footer__base">
-      <p class="muted">© 2026 Sphamandla Xaba. Designed and built by Sphamandla Xaba.</p>
-      <a class="muted" href="#top">Back to top ↑</a>
+    <div class="wrap footer__base">
+      <p>© 2026 Sphamandla Xaba</p>
+      <a href="#top">Back to top</a>
     </div>
   </footer>
   <dialog class="viewer" data-viewer aria-label="Image viewer">
     <form method="dialog" class="viewer__bar">
       <p class="viewer__caption" data-viewer-caption></p>
-      <button class="viewer__close" type="submit" aria-label="Close image viewer">Close <span aria-hidden="true">×</span></button>
+      <button class="btn btn--secondary" type="submit">Close</button>
     </form>
     <div class="viewer__stage"><img data-viewer-img alt=""></div>
   </dialog>
