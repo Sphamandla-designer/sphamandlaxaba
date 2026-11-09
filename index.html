@@ -37,25 +37,22 @@
   </header>
 <main id="main" tabindex="-1">
 
-  <section class="hero" aria-labelledby="hero-h">
-    <div class="wrap hero__grid">
-      <div class="hero__text">
-        <p class="hero__eyebrow">Product Designer · UI/UX · South Africa</p>
-        <h1 class="hero__title" id="hero-h">I design digital products that make complex workflows simpler.</h1>
-        <p class="hero__copy">Enterprise systems, mobile apps and websites — turning complex requirements into clear, practical products.</p>
-        <ul class="chips" role="list" aria-label="Specialisations"><li>Enterprise systems</li><li>Mobile apps</li><li>SaaS &amp; dashboards</li><li>Websites</li><li>UX/UI</li></ul>
-      </div>
-      <div class="hero__card card card--form">
-        <p class="hero__card-title">Selected work</p>
-        <ul class="inputs" role="list">
-          <li><a class="input-row" href="work/managem/"><span class="input-row__dot" aria-hidden="true"></span><span class="input-row__label">ManaGEM ERP</span><span class="input-row__value">Enterprise</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></li><li><a class="input-row" href="work/wastemart/"><span class="input-row__dot" aria-hidden="true"></span><span class="input-row__label">WasteMart</span><span class="input-row__value">Mobile</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></li><li><a class="input-row" href="work/gemis/"><span class="input-row__dot" aria-hidden="true"></span><span class="input-row__label">GEMIS Website</span><span class="input-row__value">Web</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></li>
-        </ul>
-        <div class="hero__actions">
-          <a href="#work" class="btn btn--primary"><span>Explore selected work</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
-          <a href="assets/docs/Sphamandla-Xaba-CV.pdf" class="btn btn--subtle" download><span>Download CV</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
-        </div>
-      </div>
+  <section class="hero hero--home" aria-labelledby="hero-h">
+    <div class="hero__visual" aria-hidden="true" data-hero-visual>
+      <canvas data-hero-canvas></canvas>
+      <svg class="hero__grid-fallback" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0 50h100M50 0v100M0 25h100M0 75h100M25 0v100M75 0v100" stroke="currentColor" stroke-width="0.15" fill="none"/></svg>
     </div>
+    <div class="wrap hero__inner">
+      <p class="hero__eyebrow" data-stagger>Product Designer · UI/UX · South Africa</p>
+      <h1 class="hero__title" id="hero-h" data-words>I design digital products that make complex workflows simpler.</h1>
+      <p class="hero__copy" data-stagger>Enterprise systems, mobile apps and websites — turning complex requirements into clear, practical products.</p>
+      <div class="btn-row hero__actions" data-stagger>
+        <a href="#work" class="btn btn--primary"><span>Explore selected work</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+        <a href="assets/docs/Sphamandla-Xaba-CV.pdf" class="btn btn--secondary" download><span>Download CV</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+      </div>
+      <ul class="chips" role="list" aria-label="Specialisations" data-stagger><li>Enterprise systems</li><li>Mobile apps</li><li>SaaS &amp; dashboards</li><li>Websites</li><li>UX/UI</li></ul>
+    </div>
+    <a class="hero__scroll" href="#work" aria-label="Scroll to selected work"><span></span></a>
   </section>
   <section class="section" id="work" aria-labelledby="work-h" tabindex="-1">
     <div class="wrap">
@@ -64,46 +61,49 @@
     <h2 class="shead__title" id="work-h">Selected work</h2>
     
   </header>
-      <div class="stack">
-  <article class="promo card card--soft" aria-labelledby="p-managem">
-    <a class="promo__media" href="work/managem/" tabindex="-1" aria-hidden="true"><img src="assets/images/mockups/managem-1600.webp" srcset="assets/images/mockups/managem-1600.webp 1600w, assets/images/mockups/managem-960.webp 960w" sizes="(min-width: 1120px) 560px, 100vw" width="1600" height="1200" alt="" loading="lazy" decoding="async"></a>
-    <div class="promo__text">
-      <p class="promo__cat">ManaGEM ERP · Enterprise · ERP · SaaS</p>
-      <h3 class="promo__title" id="p-managem">Designing an ERP around how a business actually runs.</h3>
-      <p class="promo__summary">One clear structure for sales, operations and admin — so a large product stays easy to find your way around.</p>
-      <span class="status status--live"><span class="status__mark" aria-hidden="true"></span>Live product</span>
-      <div class="btn-row"><a href="work/managem/" class="btn btn--primary"><span>View case study</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></div>
-    </div>
+      <div class="tiles">
+  <article class="tile card card--soft" aria-labelledby="p-managem" data-reveal style="--i:0">
+    <a class="tile__link" href="work/managem/" aria-labelledby="p-managem">
+      <div class="tile__media"><img src="assets/images/mockups/managem-1600.webp" srcset="assets/images/mockups/managem-1600.webp 1600w, assets/images/mockups/managem-960.webp 960w" sizes="(min-width: 1120px) 380px, (min-width: 768px) 45vw, 100vw" width="1600" height="1200" alt="" loading="lazy" decoding="async"></div>
+      <div class="tile__text">
+        <p class="tile__cat">Enterprise · ERP · SaaS</p>
+        <h3 class="tile__title" id="p-managem">Designing an ERP around how a business actually runs.</h3>
+        <p class="tile__summary">One clear structure for sales, operations and admin — so a large product stays easy to find your way around.</p>
+        <div class="tile__foot"><span class="status status--live"><span class="status__mark" aria-hidden="true"></span>Live product</span><span class="btn btn--primary btn--sm tile__cta"><span>View</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span></div>
+      </div>
+    </a>
   </article>
-  <article class="promo card card--dark promo--flip" aria-labelledby="p-wastemart">
-    <a class="promo__media" href="work/wastemart/" tabindex="-1" aria-hidden="true"><img src="assets/images/mockups/wastemart-1600.webp" srcset="assets/images/mockups/wastemart-1600.webp 1600w, assets/images/mockups/wastemart-960.webp 960w" sizes="(min-width: 1120px) 560px, 100vw" width="1600" height="1200" alt="" loading="lazy" decoding="async"></a>
-    <div class="promo__text">
-      <p class="promo__cat">WasteMart · Mobile · UX/UI · Interaction design</p>
-      <h3 class="promo__title" id="p-wastemart">A driver app where the next step is always obvious.</h3>
-      <p class="promo__summary">A mobile workflow for waste-collection drivers — jobs, evidence, sign-off and end of day, built for the field.</p>
-      <span class="status status--progress"><span class="status__mark" aria-hidden="true"></span>Design complete · In development</span>
-      <div class="btn-row"><a href="work/wastemart/" class="btn btn--secondary"><span>View case study</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></div>
-    </div>
+  <article class="tile card card--soft" aria-labelledby="p-wastemart" data-reveal style="--i:1">
+    <a class="tile__link" href="work/wastemart/" aria-labelledby="p-wastemart">
+      <div class="tile__media"><img src="assets/images/mockups/wastemart-1600.webp" srcset="assets/images/mockups/wastemart-1600.webp 1600w, assets/images/mockups/wastemart-960.webp 960w" sizes="(min-width: 1120px) 380px, (min-width: 768px) 45vw, 100vw" width="1600" height="1200" alt="" loading="lazy" decoding="async"></div>
+      <div class="tile__text">
+        <p class="tile__cat">Mobile · UX/UI · Interaction design</p>
+        <h3 class="tile__title" id="p-wastemart">A driver app where the next step is always obvious.</h3>
+        <p class="tile__summary">A mobile workflow for waste-collection drivers — jobs, evidence, sign-off and end of day, built for the field.</p>
+        <div class="tile__foot"><span class="status status--progress"><span class="status__mark" aria-hidden="true"></span>Design complete · In development</span><span class="btn btn--primary btn--sm tile__cta"><span>View</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span></div>
+      </div>
+    </a>
   </article>
-  <article class="promo card card--soft" aria-labelledby="p-gemis">
-    <div class="promo__media promo__media--type" aria-hidden="true"><span>GEMIS</span></div>
-    <div class="promo__text">
-      <p class="promo__cat">GEMIS Website · Web · Information architecture · Design leadership</p>
-      <h3 class="promo__title" id="p-gemis">Redesigning the GEMIS corporate website.</h3>
-      <p class="promo__summary">Led the redesign of the company website and worked with the development team that built it.</p>
-      <span class="status status--live"><span class="status__mark" aria-hidden="true"></span>Live website</span>
-      <div class="btn-row"><a href="work/gemis/" class="btn btn--primary"><span>View case study</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></div>
-    </div>
+  <article class="tile card card--soft" aria-labelledby="p-gemis" data-reveal style="--i:2">
+    <a class="tile__link" href="work/gemis/" aria-labelledby="p-gemis">
+      <div class="tile__media"><div class="tile__type" aria-hidden="true"><span>GEMIS</span></div></div>
+      <div class="tile__text">
+        <p class="tile__cat">Web · Information architecture · Design leadership</p>
+        <h3 class="tile__title" id="p-gemis">Redesigning the GEMIS corporate website.</h3>
+        <p class="tile__summary">Led the redesign of the company website and worked with the development team that built it.</p>
+        <div class="tile__foot"><span class="status status--live"><span class="status__mark" aria-hidden="true"></span>Live website</span><span class="btn btn--primary btn--sm tile__cta"><span>View</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span></div>
+      </div>
+    </a>
   </article></div>
       <h3 class="subhead">More work</h3>
       <div class="more">
-        <article class="card more__card">
+        <article class="card more__card" data-reveal>
           <img src="assets/images/mockups/gemis-studio-1600.webp" srcset="assets/images/mockups/gemis-studio-1600.webp 1600w, assets/images/mockups/gemis-studio-960.webp 960w" sizes="(min-width: 768px) 560px, 100vw" width="1600" height="1200" alt="GEMIS Studio website services page" loading="lazy" decoding="async">
           <div class="more__text">
             <h4 class="more__name"><a href="https://sphamandla-designer.github.io/gemis-site/studio/" target="_blank" rel="noopener">GEMIS Studio website <svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span class="sr-only"> (opens in a new tab)</span></a></h4>
             <p class="more__note">Design and front-end build for the GEMIS design practice.</p>
           </div>
-        </article><article class="card more__card">
+        </article><article class="card more__card" data-reveal>
           <img src="assets/images/mockups/finos-1600.webp" srcset="assets/images/mockups/finos-1600.webp 1600w, assets/images/mockups/finos-960.webp 960w" sizes="(min-width: 768px) 560px, 100vw" width="1600" height="1200" alt="FINOS dashboard concept shown on a laptop" loading="lazy" decoding="async">
           <div class="more__text">
             <h4 class="more__name">FINOS</h4>
@@ -122,7 +122,7 @@
     
   </header>
         <ol class="steps" role="list">
-          <li><span class="steps__n">1</span><h3>Understand</h3><p>The product, the business and the people using it.</p></li><li><span class="steps__n">2</span><h3>Structure</h3><p>Information, navigation and journeys.</p></li><li><span class="steps__n">3</span><h3>Design</h3><p>Clear interfaces and interaction patterns.</p></li><li><span class="steps__n">4</span><h3>Refine</h3><p>Remove inconsistencies, improve usability.</p></li><li><span class="steps__n">5</span><h3>Collaborate</h3><p>Work closely with developers to ship it.</p></li>
+          <li data-reveal style="--i:0"><span class="steps__n">1</span><h3>Understand</h3><p>The product, the business and the people using it.</p></li><li data-reveal style="--i:1"><span class="steps__n">2</span><h3>Structure</h3><p>Information, navigation and journeys.</p></li><li data-reveal style="--i:2"><span class="steps__n">3</span><h3>Design</h3><p>Clear interfaces and interaction patterns.</p></li><li data-reveal style="--i:3"><span class="steps__n">4</span><h3>Refine</h3><p>Remove inconsistencies, improve usability.</p></li><li data-reveal style="--i:4"><span class="steps__n">5</span><h3>Collaborate</h3><p>Work closely with developers to ship it.</p></li>
         </ol>
       </div>
     </div>
@@ -135,7 +135,7 @@
     
   </header>
       <div class="caps">
-        <div class="card card--soft caps__card"><h3>Product design</h3><ul role="list"><li>Product thinking</li><li>Workflow design</li><li>Information architecture</li><li>User journeys</li></ul></div><div class="card card--soft caps__card"><h3>UX/UI design</h3><ul role="list"><li>Interaction design</li><li>Wireframing</li><li>Prototyping</li><li>Responsive design</li></ul></div><div class="card card--soft caps__card"><h3>Enterprise & SaaS</h3><ul role="list"><li>ERP interfaces</li><li>Dashboards</li><li>Data-heavy screens</li><li>Business workflows</li></ul></div><div class="card card--soft caps__card"><h3>Digital experiences</h3><ul role="list"><li>Corporate websites</li><li>Redesigns</li><li>Mobile apps</li><li>Design systems</li></ul></div>
+        <div class="card card--soft caps__card" data-reveal style="--i:0"><h3>Product design</h3><ul role="list"><li>Product thinking</li><li>Workflow design</li><li>Information architecture</li><li>User journeys</li></ul></div><div class="card card--soft caps__card" data-reveal style="--i:1"><h3>UX/UI design</h3><ul role="list"><li>Interaction design</li><li>Wireframing</li><li>Prototyping</li><li>Responsive design</li></ul></div><div class="card card--soft caps__card" data-reveal style="--i:2"><h3>Enterprise & SaaS</h3><ul role="list"><li>ERP interfaces</li><li>Dashboards</li><li>Data-heavy screens</li><li>Business workflows</li></ul></div><div class="card card--soft caps__card" data-reveal style="--i:3"><h3>Digital experiences</h3><ul role="list"><li>Corporate websites</li><li>Redesigns</li><li>Mobile apps</li><li>Design systems</li></ul></div>
       </div>
     </div>
   </section>
@@ -174,7 +174,7 @@
   </section>
   <section class="section" aria-labelledby="about-h">
     <div class="wrap">
-      <article class="promo card card--soft">
+      <article class="promo card card--soft" data-reveal>
         <div class="promo__media promo__media--portrait"><img src="assets/images/about/portrait-spha.webp" width="900" height="932" alt="Portrait of Sphamandla Xaba" loading="lazy" decoding="async"></div>
         <div class="promo__text">
           <h2 class="promo__title" id="about-h">Hi, I’m Sphamandla.</h2>

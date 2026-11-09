@@ -5,46 +5,39 @@ import { timeline, closingCta } from './partials.mjs';
 const specialisms = ['Enterprise systems', 'Mobile apps', 'SaaS & dashboards', 'Websites', 'UX/UI'];
 
 const hero = (ctx) => html`
-  <section class="hero" aria-labelledby="hero-h">
-    <div class="wrap hero__grid">
-      <div class="hero__text">
-        <p class="hero__eyebrow">Product Designer · UI/UX · South Africa</p>
-        <h1 class="hero__title" id="hero-h">I design digital products that make complex workflows simpler.</h1>
-        <p class="hero__copy">Enterprise systems, mobile apps and websites — turning complex requirements into clear, practical products.</p>
-        <ul class="chips" role="list" aria-label="Specialisations">${specialisms.map((s) => `<li>${esc(s)}</li>`).join('')}</ul>
-      </div>
-      <div class="hero__card card card--form">
-        <p class="hero__card-title">Selected work</p>
-        <ul class="inputs" role="list">
-          ${projects
-            .map(
-              (p) => `<li><a class="input-row" href="${url(ctx, `work/${p.slug}/`)}"><span class="input-row__dot" aria-hidden="true"></span><span class="input-row__label">${esc(p.name)}</span><span class="input-row__value">${esc(p.category.split(' · ')[0])}</span>${icon.arrow}</a></li>`,
-            )
-            .join('')}
-        </ul>
-        <div class="hero__actions">
-          ${button(ctx, { label: 'Explore selected work', href: 'index.html#work' })}
-          ${cvButton(ctx, 'subtle')}
-        </div>
-      </div>
+  <section class="hero hero--home" aria-labelledby="hero-h">
+    <div class="hero__visual" aria-hidden="true" data-hero-visual>
+      <canvas data-hero-canvas></canvas>
+      <svg class="hero__grid-fallback" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0 50h100M50 0v100M0 25h100M0 75h100M25 0v100M75 0v100" stroke="currentColor" stroke-width="0.15" fill="none"/></svg>
     </div>
+    <div class="wrap hero__inner">
+      <p class="hero__eyebrow" data-stagger>Product Designer · UI/UX · South Africa</p>
+      <h1 class="hero__title" id="hero-h" data-words>I design digital products that make complex workflows simpler.</h1>
+      <p class="hero__copy" data-stagger>Enterprise systems, mobile apps and websites — turning complex requirements into clear, practical products.</p>
+      <div class="btn-row hero__actions" data-stagger>
+        ${button(ctx, { label: 'Explore selected work', href: 'index.html#work' })}
+        ${cvButton(ctx, 'secondary')}
+      </div>
+      <ul class="chips" role="list" aria-label="Specialisations" data-stagger>${specialisms.map((s) => `<li>${esc(s)}</li>`).join('')}</ul>
+    </div>
+    <a class="hero__scroll" href="#work" aria-label="Scroll to selected work"><span></span></a>
   </section>`;
 
 function projectCard(ctx, p, i) {
-  const dark = i === 1; // alternating rhythm: white → black → white
   const media = p.cover
-    ? `<a class="promo__media" href="${url(ctx, `work/${p.slug}/`)}" tabindex="-1" aria-hidden="true">${img(ctx, p.cover.key, '', { sizes: '(min-width: 1120px) 560px, 100vw' })}</a>`
-    : `<div class="promo__media promo__media--type" aria-hidden="true"><span>GEMIS</span></div>`;
+    ? img(ctx, p.cover.key, '', { sizes: '(min-width: 1120px) 380px, (min-width: 768px) 45vw, 100vw' })
+    : `<div class="tile__type" aria-hidden="true"><span>GEMIS</span></div>`;
   return html`
-  <article class="promo card ${dark ? 'card--dark' : 'card--soft'}${i % 2 ? ' promo--flip' : ''}" aria-labelledby="p-${p.slug}">
-    ${media}
-    <div class="promo__text">
-      <p class="promo__cat">${esc(p.name)} · ${esc(p.category)}</p>
-      <h3 class="promo__title" id="p-${p.slug}">${esc(p.title)}</h3>
-      <p class="promo__summary">${esc(p.summary)}</p>
-      ${status(p.status.label, p.status.kind)}
-      <div class="btn-row">${button(ctx, { label: 'View case study', href: `work/${p.slug}/`, variant: dark ? 'secondary' : 'primary' })}</div>
-    </div>
+  <article class="tile card card--soft" aria-labelledby="p-${p.slug}" data-reveal style="--i:${i}">
+    <a class="tile__link" href="${url(ctx, `work/${p.slug}/`)}" aria-labelledby="p-${p.slug}">
+      <div class="tile__media">${media}</div>
+      <div class="tile__text">
+        <p class="tile__cat">${esc(p.category)}</p>
+        <h3 class="tile__title" id="p-${p.slug}">${esc(p.title)}</h3>
+        <p class="tile__summary">${esc(p.summary)}</p>
+        <div class="tile__foot">${status(p.status.label, p.status.kind)}<span class="btn btn--primary btn--sm tile__cta"><span>View</span>${icon.arrow}</span></div>
+      </div>
+    </a>
   </article>`;
 }
 
@@ -52,12 +45,12 @@ const work = (ctx) => html`
   <section class="section" id="work" aria-labelledby="work-h" tabindex="-1">
     <div class="wrap">
       ${sectionHead({ title: 'Selected work', id: 'work-h' })}
-      <div class="stack">${projects.map((p, i) => projectCard(ctx, p, i)).join('')}</div>
+      <div class="tiles">${projects.map((p, i) => projectCard(ctx, p, i)).join('')}</div>
       <h3 class="subhead">More work</h3>
       <div class="more">
         ${moreWork
           .map(
-            (m) => `<article class="card more__card">
+            (m) => `<article class="card more__card" data-reveal>
           ${img(ctx, m.image.key, m.image.alt, { sizes: '(min-width: 768px) 560px, 100vw' })}
           <div class="more__text">
             <h4 class="more__name">${m.href ? `<a href="${m.href}" target="_blank" rel="noopener">${esc(m.name)} ${icon.external}<span class="sr-only"> (opens in a new tab)</span></a>` : esc(m.name)}</h4>
@@ -84,7 +77,7 @@ const approach = () => {
       <div class="card card--soft approach">
         ${sectionHead({ title: 'How I work', id: 'approach-h' })}
         <ol class="steps" role="list">
-          ${stages.map(([t, d], i) => `<li><span class="steps__n">${i + 1}</span><h3>${t}</h3><p>${d}</p></li>`).join('')}
+          ${stages.map(([t, d], i) => `<li data-reveal style="--i:${i}"><span class="steps__n">${i + 1}</span><h3>${t}</h3><p>${d}</p></li>`).join('')}
         </ol>
       </div>
     </div>
@@ -103,7 +96,7 @@ const capabilities = () => {
     <div class="wrap">
       ${sectionHead({ title: 'Capabilities', id: 'cap-h' })}
       <div class="caps">
-        ${Object.entries(groups).map(([k, l]) => `<div class="card card--soft caps__card"><h3>${k}</h3><ul role="list">${l.map((x) => `<li>${x}</li>`).join('')}</ul></div>`).join('')}
+        ${Object.entries(groups).map(([k, l], i) => `<div class="card card--soft caps__card" data-reveal style="--i:${i}"><h3>${k}</h3><ul role="list">${l.map((x) => `<li>${x}</li>`).join('')}</ul></div>`).join('')}
       </div>
     </div>
   </section>`;
@@ -120,7 +113,7 @@ const experienceSection = (ctx) => html`
 const aboutPreview = (ctx) => html`
   <section class="section" aria-labelledby="about-h">
     <div class="wrap">
-      <article class="promo card card--soft">
+      <article class="promo card card--soft" data-reveal>
         <div class="promo__media promo__media--portrait">${img(ctx, 'about/portrait-spha', 'Portrait of Sphamandla Xaba', { sizes: '(min-width: 1120px) 560px, 100vw' })}</div>
         <div class="promo__text">
           <h2 class="promo__title" id="about-h">Hi, I’m Sphamandla.</h2>
