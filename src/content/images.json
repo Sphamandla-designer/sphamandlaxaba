@@ -187,29 +187,6 @@
 600
 ]
 },
-"gemis-studio/gs-01-hero": {
-"w": 2160,
-"h": 1350,
-"sizes": [
-1600,
-960
-]
-},
-"gemis-studio/gs-03-ladder": {
-"w": 2160,
-"h": 1350,
-"sizes": [
-1600,
-960
-]
-},
-"finos/finos-hero": {
-"w": 2200,
-"h": 1802,
-"sizes": [
-1200
-]
-},
 "about/portrait-spha": {
 "w": 1200,
 "h": 1243,
@@ -236,6 +213,38 @@
 "h": 1688,
 "sizes": [
 600
+]
+},
+"mockups/managem": {
+"w": 2000,
+"h": 1500,
+"sizes": [
+1600,
+960
+]
+},
+"mockups/wastemart": {
+"w": 2200,
+"h": 1650,
+"sizes": [
+1600,
+960
+]
+},
+"mockups/finos": {
+"w": 2375,
+"h": 1781,
+"sizes": [
+1600,
+960
+]
+},
+"mockups/gemis-studio": {
+"w": 1620,
+"h": 1215,
+"sizes": [
+1600,
+960
 ]
 }
 }

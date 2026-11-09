@@ -4,321 +4,240 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sphamandla Xaba — Product Designer | UI/UX</title>
-<meta name="description" content="Sphamandla Xaba is a South African Product Designer (UI/UX) designing enterprise systems, mobile applications and digital experiences that make complex workflows simpler.">
+<meta name="description" content="Sphamandla Xaba — South African Product Designer (UI/UX) designing enterprise systems, mobile apps and websites that make complex workflows simpler.">
 <link rel="canonical" href="https://sphamandla-designer.github.io/sphamandlaxaba/">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Sphamandla Xaba — Product Designer">
 <meta property="og:title" content="Sphamandla Xaba — Product Designer | UI/UX">
-<meta property="og:description" content="Sphamandla Xaba is a South African Product Designer (UI/UX) designing enterprise systems, mobile applications and digital experiences that make complex workflows simpler.">
+<meta property="og:description" content="Sphamandla Xaba — South African Product Designer (UI/UX) designing enterprise systems, mobile apps and websites that make complex workflows simpler.">
 <meta property="og:url" content="https://sphamandla-designer.github.io/sphamandlaxaba/">
 <meta property="og:image" content="https://sphamandla-designer.github.io/sphamandlaxaba/assets/images/og-default.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#f6f5f2" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="assets/fonts/inter-tight-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/site.css">
-<script>(function(){try{var t=localStorage.getItem('theme');}catch(e){}if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.dataset.theme=t;document.documentElement.classList.add('js');})();</script>
+<script>(function(){var t;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.dataset.theme=t;document.documentElement.classList.add('js')})();</script>
 <script src="assets/js/main.js" defer></script>
 </head>
 <body class="page-home" id="top">
 
   <a class="skip" href="#main">Skip to content</a>
-  <header class="site-header" data-header>
-    <div class="site-header__inner wrap">
-      <a class="wordmark" href="./" aria-label="Sphamandla Xaba — home">
-        <span class="wordmark__name">Sphamandla Xaba</span>
-        <span class="wordmark__role">Product Designer</span>
-      </a>
+  <header class="nav-bar" data-header>
+    <div class="nav-bar__inner wrap">
+      <a class="wordmark" href="./">Sphamandla Xaba</a>
       <nav class="site-nav" aria-label="Primary">
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" data-nav-toggle>
-          <span class="nav-toggle__label">Menu</span><span class="nav-toggle__bars" aria-hidden="true"><i></i><i></i></span>
-        </button>
         <div class="site-menu" id="site-menu" data-nav-menu>
-          <ul class="site-menu__list" role="list"><li><a href="#work">Work</a></li><li><a href="#approach">Approach</a></li><li><a href="about/">About</a></li><li><a href="contact/">Contact</a></li>
-            <li class="site-menu__cv"><a href="assets/docs/Sphamandla-Xaba-CV.pdf" download>Download CV <svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></li>
-          </ul>
+          <ul class="site-menu__list" role="list"><li><a class="nav-link" href="#work">Work</a></li><li><a class="nav-link" href="#approach">Approach</a></li><li><a class="nav-link" href="about/">About</a></li><li><a class="nav-link" href="contact/">Contact</a></li></ul>
+          <a class="btn btn--primary site-menu__cv" href="assets/docs/Sphamandla-Xaba-CV.pdf" download><span>Download CV</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
         </div>
       </nav>
-      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark theme">
-        <svg class="i i-sun" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3 3l1.4 1.4M11.6 11.6 13 13M3 13l1.4-1.4M11.6 4.4 13 3" stroke="currentColor" stroke-width="1.5"/></svg><svg class="i i-moon" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 9.5A5.5 5.5 0 0 1 6.5 3 5.5 5.5 0 1 0 13 9.5Z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
-      </button>
+      <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch to dark theme"><svg class="i i-sun" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3 3l1.4 1.4M11.6 11.6 13 13M3 13l1.4-1.4M11.6 4.4 13 3" stroke="currentColor" stroke-width="1.6"/></svg><svg class="i i-moon" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 9.5A5.5 5.5 0 0 1 6.5 3 5.5 5.5 0 1 0 13 9.5Z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      <button class="icon-btn nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu" data-nav-toggle><svg class="i i-menu" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 5h12M2 11h12" stroke="currentColor" stroke-width="1.6"/></svg><svg class="i i-close" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" stroke-width="1.6"/></svg></button>
     </div>
   </header>
 <main id="main" tabindex="-1">
 
   <section class="hero" aria-labelledby="hero-h">
     <div class="wrap hero__grid">
-      <p class="hero__eyebrow eyebrow">Product Designer · UI/UX · South Africa</p>
-      <h1 class="hero__title" id="hero-h">I design digital products that make complex workflows simpler<span class="dot">.</span></h1>
-      <div class="hero__aside">
-        <p class="hero__copy">I work across enterprise systems, mobile applications and digital experiences, translating complex requirements into clear, practical and intuitive products.</p>
-        <div class="btn-row">
-          <a href="#work" class="btn btn--primary"><span>Explore selected work</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
-          <a href="assets/docs/Sphamandla-Xaba-CV.pdf" class="btn btn--secondary" download><span>Download CV</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
+      <div class="hero__text">
+        <p class="hero__eyebrow">Product Designer · UI/UX · South Africa</p>
+        <h1 class="hero__title" id="hero-h">I design digital products that make complex workflows simpler.</h1>
+        <p class="hero__copy">Enterprise systems, mobile apps and websites — turning complex requirements into clear, practical products.</p>
+        <ul class="chips" role="list" aria-label="Specialisations"><li>Enterprise systems</li><li>Mobile apps</li><li>SaaS &amp; dashboards</li><li>Websites</li><li>UX/UI</li></ul>
+      </div>
+      <div class="hero__card card card--form">
+        <p class="hero__card-title">Selected work</p>
+        <ul class="inputs" role="list">
+          <li><a class="input-row" href="work/managem/"><span class="input-row__dot" aria-hidden="true"></span><span class="input-row__label">ManaGEM ERP</span><span class="input-row__value">Enterprise</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></li><li><a class="input-row" href="work/wastemart/"><span class="input-row__dot" aria-hidden="true"></span><span class="input-row__label">WasteMart</span><span class="input-row__value">Mobile</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></li><li><a class="input-row" href="work/gemis/"><span class="input-row__dot" aria-hidden="true"></span><span class="input-row__label">GEMIS Website</span><span class="input-row__value">Web</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></li>
+        </ul>
+        <div class="hero__actions">
+          <a href="#work" class="btn btn--primary"><span>Explore selected work</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+          <a href="assets/docs/Sphamandla-Xaba-CV.pdf" class="btn btn--subtle" download><span>Download CV</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
         </div>
       </div>
-      <nav class="hero__index" aria-label="Selected work index">
-        <p class="label">Index — selected work</p>
-        <ol role="list">
-          <li><a href="work/managem/"><span class="hero__index-num">01</span><span class="hero__index-name">ManaGEM ERP</span><span class="hero__index-cat">Enterprise · ERP · SaaS</span><span class="status status--live"><span class="status__mark" aria-hidden="true"></span>Live product</span></a></li><li><a href="work/wastemart/"><span class="hero__index-num">02</span><span class="hero__index-name">WasteMart Mobile App</span><span class="hero__index-cat">Mobile · UX/UI · Interaction design</span><span class="status status--progress"><span class="status__mark" aria-hidden="true"></span>Design complete · Development underway</span></a></li><li><a href="work/gemis/"><span class="hero__index-num">03</span><span class="hero__index-name">GEMIS Corporate Website</span><span class="hero__index-cat">Web · Information architecture · Design leadership</span><span class="status status--live"><span class="status__mark" aria-hidden="true"></span>Live website</span></a></li>
-        </ol>
-      </nav>
-      <ul class="hero__specs" role="list" aria-label="Specialisations">
-        <li>Enterprise Systems</li><li>Mobile Applications</li><li>SaaS &amp; Dashboard Systems</li><li>Digital Experiences</li><li>UX/UI Design</li>
-      </ul>
     </div>
   </section>
-  <section class="snapshot section" aria-labelledby="snap-h">
-    <div class="wrap snapshot__grid">
-      <h2 class="sr-only" id="snap-h">Professional snapshot</h2>
-      <p class="label snapshot__label">01 — Snapshot</p>
-      <p class="snapshot__statement">I approach design as more than the interface. I focus on understanding the underlying problem, structuring the experience and making thoughtful decisions that help digital products work better for the people using them.</p>
-      <dl class="facts">
-        <div class="facts__item"><dt>Product design</dt><dd>Information architecture, workflows and design systems for an ERP and a field-operations app.</dd></div><div class="facts__item"><dt>UX/UI design</dt><dd>Websites, landing pages and business platforms since 2023.</dd></div><div class="facts__item"><dt>Enterprise software</dt><dd>Designing ERP and business systems at Gem Information Systems since 2025.</dd></div><div class="facts__item"><dt>Design to development</dt><dd>Designs handed over to — and built with — development teams.</dd></div>
-      </dl>
-    </div>
-  </section>
-  <section class="work section" id="work" aria-labelledby="work-h" tabindex="-1">
+  <section class="section" id="work" aria-labelledby="work-h" tabindex="-1">
     <div class="wrap">
       
   <header class="shead">
-    <p class="shead__kicker"><span class="shead__num">02</span>Selected work</p>
-    <h2 class="shead__title" id="work-h">Three products, three kinds of complexity.</h2>
-    <p class="shead__intro">An enterprise ERP, a mobile app for field operations and a corporate website — each with a case study showing what I owned and why I made the decisions I did.</p>
+    <h2 class="shead__title" id="work-h">Selected work</h2>
+    
   </header>
-      <div class="features">
-  <article class="feature feature--managem" aria-labelledby="f-managem">
-    <p class="feature__num" aria-hidden="true">01</p>
-    <div class="feature__media"><a href="work/managem/" tabindex="-1" aria-hidden="true" class="feature__imglink"><div class="frame frame--browser"><div class="frame__bar"><i></i><i></i><i></i></div><img class="" src="assets/images/managem/mg-dashboard-1600.webp" srcset="assets/images/managem/mg-dashboard-1600.webp 1600w, assets/images/managem/mg-dashboard-960.webp 960w" sizes="(min-width: 1024px) 66vw, 100vw" width="1600" height="1000" alt="" loading="lazy" decoding="async"></div></a></div>
-    
-    <div class="feature__text">
-      <p class="feature__name">ManaGEM ERP</p>
-      <h3 class="feature__title" id="f-managem"><a href="work/managem/">Designing an ERP experience around the complexity of business operations.</a></h3>
-      <p class="feature__summary">Product design work focused on shaping an ERP experience, making UX/UI decisions and structuring practical digital workflows.</p>
-      <dl class="meta meta--compact"><div class="meta__row"><dt>Category</dt><dd>Enterprise Product Design · ERP · SaaS</dd></div><div class="meta__row"><dt>Status</dt><dd><span class="status status--live"><span class="status__mark" aria-hidden="true"></span>Live product</span></dd></div><div class="meta__row"><dt>Role</dt><dd>Owned most UX/UI and product design decisions.</dd></div></dl>
-      <a class="link-arrow" href="work/managem/" aria-label="Explore case study: ManaGEM ERP">Explore case study <svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
+      <div class="stack">
+  <article class="promo card card--soft" aria-labelledby="p-managem">
+    <a class="promo__media" href="work/managem/" tabindex="-1" aria-hidden="true"><img src="assets/images/mockups/managem-1600.webp" srcset="assets/images/mockups/managem-1600.webp 1600w, assets/images/mockups/managem-960.webp 960w" sizes="(min-width: 1120px) 560px, 100vw" width="1600" height="1200" alt="" loading="lazy" decoding="async"></a>
+    <div class="promo__text">
+      <p class="promo__cat">ManaGEM ERP · Enterprise · ERP · SaaS</p>
+      <h3 class="promo__title" id="p-managem">Designing an ERP around how a business actually runs.</h3>
+      <p class="promo__summary">One clear structure for sales, operations and admin — so a large product stays easy to find your way around.</p>
+      <span class="status status--live"><span class="status__mark" aria-hidden="true"></span>Live product</span>
+      <div class="btn-row"><a href="work/managem/" class="btn btn--primary"><span>View case study</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></div>
     </div>
   </article>
-  <article class="feature feature--wastemart" aria-labelledby="f-wastemart">
-    <p class="feature__num" aria-hidden="true">02</p>
-    <div class="feature__media feature__media--phones"><a href="work/wastemart/" tabindex="-1" aria-hidden="true" class="feature__imglink"><div class="frame frame--phone"><img class="" src="assets/images/wastemart/04-startday-ready.webp" width="600" height="1298" alt="" loading="lazy" decoding="async"></div><div class="frame frame--phone"><img class="" src="assets/images/wastemart/06-jobs.webp" width="600" height="1298" alt="" loading="lazy" decoding="async"></div><div class="frame frame--phone"><img class="" src="assets/images/wastemart/07-job-detail.webp" width="600" height="1298" alt="" loading="lazy" decoding="async"></div></a></div>
-    
-    <div class="feature__text">
-      <p class="feature__name">WasteMart Mobile App</p>
-      <h3 class="feature__title" id="f-wastemart"><a href="work/wastemart/">Designing a focused mobile experience for WasteMart.</a></h3>
-      <p class="feature__summary">A mobile application design project focused on translating product requirements into a structured, usable mobile experience.</p>
-      <dl class="meta meta--compact"><div class="meta__row"><dt>Category</dt><dd>Mobile Product Design · UX/UI · Interaction Design</dd></div><div class="meta__row"><dt>Status</dt><dd><span class="status status--progress"><span class="status__mark" aria-hidden="true"></span>Design complete · Development underway</span></dd></div><div class="meta__row"><dt>Role</dt><dd>Product Designer — designed the driver app end to end and built its interactive prototype.</dd></div></dl>
-      <a class="link-arrow" href="work/wastemart/" aria-label="Explore case study: WasteMart Mobile App">Explore case study <svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
+  <article class="promo card card--dark promo--flip" aria-labelledby="p-wastemart">
+    <a class="promo__media" href="work/wastemart/" tabindex="-1" aria-hidden="true"><img src="assets/images/mockups/wastemart-1600.webp" srcset="assets/images/mockups/wastemart-1600.webp 1600w, assets/images/mockups/wastemart-960.webp 960w" sizes="(min-width: 1120px) 560px, 100vw" width="1600" height="1200" alt="" loading="lazy" decoding="async"></a>
+    <div class="promo__text">
+      <p class="promo__cat">WasteMart · Mobile · UX/UI · Interaction design</p>
+      <h3 class="promo__title" id="p-wastemart">A driver app where the next step is always obvious.</h3>
+      <p class="promo__summary">A mobile workflow for waste-collection drivers — jobs, evidence, sign-off and end of day, built for the field.</p>
+      <span class="status status--progress"><span class="status__mark" aria-hidden="true"></span>Design complete · In development</span>
+      <div class="btn-row"><a href="work/wastemart/" class="btn btn--secondary"><span>View case study</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></div>
     </div>
   </article>
-  <article class="feature feature--gemis" aria-labelledby="f-gemis">
-    <p class="feature__num" aria-hidden="true">03</p>
-    <div class="feature__media feature__media--type" aria-hidden="true">
-      <div class="typeplate"><span>GEMIS</span><span class="typeplate__sub">Corporate website · redesign</span></div>
-    </div>
-    
-    <div class="feature__text">
-      <p class="feature__name">GEMIS Corporate Website</p>
-      <h3 class="feature__title" id="f-gemis"><a href="work/gemis/">Redesigning the GEMIS digital experience.</a></h3>
-      <p class="feature__summary">A corporate website redesign led through UX/UI design and collaboration with a development team.</p>
-      <dl class="meta meta--compact"><div class="meta__row"><dt>Category</dt><dd>Web UX/UI · Information Architecture · Design Leadership</dd></div><div class="meta__row"><dt>Status</dt><dd><span class="status status--live"><span class="status__mark" aria-hidden="true"></span>Live website</span></dd></div><div class="meta__row"><dt>Role</dt><dd>Led the redesign and worked with a development team.</dd></div></dl>
-      <a class="link-arrow" href="work/gemis/" aria-label="Explore case study: GEMIS Corporate Website">Explore case study <svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
+  <article class="promo card card--soft" aria-labelledby="p-gemis">
+    <div class="promo__media promo__media--type" aria-hidden="true"><span>GEMIS</span></div>
+    <div class="promo__text">
+      <p class="promo__cat">GEMIS Website · Web · Information architecture · Design leadership</p>
+      <h3 class="promo__title" id="p-gemis">Redesigning the GEMIS corporate website.</h3>
+      <p class="promo__summary">Led the redesign of the company website and worked with the development team that built it.</p>
+      <span class="status status--live"><span class="status__mark" aria-hidden="true"></span>Live website</span>
+      <div class="btn-row"><a href="work/gemis/" class="btn btn--primary"><span>View case study</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></div>
     </div>
   </article></div>
+      <h3 class="subhead">More work</h3>
       <div class="more">
-        <h3 class="more__title">More work</h3>
-        <ul class="more__list" role="list">
-          <li class="more__item">
-            <div class="more__media"><img class="" src="assets/images/gemis-studio/gs-01-hero-1600.webp" srcset="assets/images/gemis-studio/gs-01-hero-1600.webp 1600w, assets/images/gemis-studio/gs-01-hero-960.webp 960w" sizes="(min-width: 1024px) 200px, 40vw" width="1600" height="1000" alt="GEMIS Studio website hero with the headline “Designed to be used.”" loading="lazy" decoding="async"></div>
-            <div class="more__text">
-              <p class="more__meta">Web design · Front-end · Live</p>
-              <h4 class="more__name"><a href="https://sphamandla-designer.github.io/gemis-site/studio/" target="_blank" rel="noopener">GEMIS Design Studio Website <svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg><span class="sr-only"> (opens in a new tab)</span></a></h4>
-              <p class="more__note">Website for the product and interface design practice of GEM Information Systems — a published services ladder, with each case study tied to a named service. Design and front-end build.</p>
-            </div>
-          </li><li class="more__item">
-            <div class="more__media"><img class="" src="assets/images/finos/finos-hero.webp" width="1200" height="983" alt="FINOS concept dashboard displayed on a laptop" loading="lazy" decoding="async"></div>
-            <div class="more__text">
-              <p class="more__meta">Self-initiated · Product concept</p>
-              <h4 class="more__name">FINOS</h4>
-              <p class="more__note">A self-initiated concept for a financial operating system: cash flow, forecasts, risk and decisions brought into one workspace. Personal exploration, not client work.</p>
-            </div>
-          </li><li class="more__item">
-            <div class="more__media"><span class="more__blank" aria-hidden="true">Supports<br>ManaGEM</span></div>
-            <div class="more__text">
-              <p class="more__meta">Web · Supports the ManaGEM case study</p>
-              <h4 class="more__name">ManaGEM Landing Page</h4>
-              <p class="more__note">The public landing page for ManaGEM. It supports the ERP case study rather than standing on its own.</p>
-            </div>
-          </li>
-        </ul>
+        <article class="card more__card">
+          <img src="assets/images/mockups/gemis-studio-1600.webp" srcset="assets/images/mockups/gemis-studio-1600.webp 1600w, assets/images/mockups/gemis-studio-960.webp 960w" sizes="(min-width: 768px) 560px, 100vw" width="1600" height="1200" alt="GEMIS Studio website services page" loading="lazy" decoding="async">
+          <div class="more__text">
+            <h4 class="more__name"><a href="https://sphamandla-designer.github.io/gemis-site/studio/" target="_blank" rel="noopener">GEMIS Studio website <svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span class="sr-only"> (opens in a new tab)</span></a></h4>
+            <p class="more__note">Design and front-end build for the GEMIS design practice.</p>
+          </div>
+        </article><article class="card more__card">
+          <img src="assets/images/mockups/finos-1600.webp" srcset="assets/images/mockups/finos-1600.webp 1600w, assets/images/mockups/finos-960.webp 960w" sizes="(min-width: 768px) 560px, 100vw" width="1600" height="1200" alt="FINOS dashboard concept shown on a laptop" loading="lazy" decoding="async">
+          <div class="more__text">
+            <h4 class="more__name">FINOS</h4>
+            <p class="more__note">Self-initiated concept for a personal financial operating system.</p>
+          </div>
+        </article>
       </div>
     </div>
   </section>
-  <section class="approach section section--alt" id="approach" aria-labelledby="approach-h" tabindex="-1">
+  <section class="section" id="approach" aria-labelledby="approach-h" tabindex="-1">
     <div class="wrap">
-      
+      <div class="card card--soft approach">
+        
   <header class="shead">
-    <p class="shead__kicker"><span class="shead__num">03</span>Approach</p>
-    <h2 class="shead__title" id="approach-h">A thoughtful approach to designing digital products.</h2>
-    <p class="shead__intro">Good product design requires more than attractive interfaces. It requires understanding the problem, making informed decisions and creating experiences that work in practice.</p>
+    <h2 class="shead__title" id="approach-h">How I work</h2>
+    
   </header>
-      <ol class="stages" role="list">
-        <li class="stage">
-          <p class="stage__num">01</p>
-          <h3 class="stage__title">Understand</h3>
-          <p class="stage__desc">Understand the product, business context, users and requirements.</p>
-          <p class="stage__example"><span class="label">In practice</span>On WasteMart, I started from four questions a driver must be able to answer at any moment — what now, what’s done, what’s left, what if it goes wrong. <a href="work/wastemart/#challenge" class="stage__link">See it<span class="sr-only">: Understand example</span> →</a></p>
-        </li><li class="stage">
-          <p class="stage__num">02</p>
-          <h3 class="stage__title">Structure</h3>
-          <p class="stage__desc">Organise information, define navigation and map meaningful user journeys.</p>
-          <p class="stage__example"><span class="label">In practice</span>ManaGEM’s navigation is grouped the way the business runs — customers, sales, operations, admin — not the way its data is stored. <a href="work/managem/#structure" class="stage__link">See it<span class="sr-only">: Structure example</span> →</a></p>
-        </li><li class="stage">
-          <p class="stage__num">03</p>
-          <h3 class="stage__title">Design</h3>
-          <p class="stage__desc">Translate requirements into intuitive interfaces and interaction patterns.</p>
-          <p class="stage__example"><span class="label">In practice</span>WasteMart’s primary button changes with the job’s state, so the next action is always the obvious one. <a href="work/wastemart/#decisions" class="stage__link">See it<span class="sr-only">: Design example</span> →</a></p>
-        </li><li class="stage">
-          <p class="stage__num">04</p>
-          <h3 class="stage__title">Refine</h3>
-          <p class="stage__desc">Review the experience, resolve inconsistencies and improve usability.</p>
-          <p class="stage__example"><span class="label">In practice</span>ManaGEM’s statuses were brought into one plain-language set, so the same colour means the same thing in every module. <a href="work/managem/#decisions" class="stage__link">See it<span class="sr-only">: Refine example</span> →</a></p>
-        </li><li class="stage">
-          <p class="stage__num">05</p>
-          <h3 class="stage__title">Collaborate</h3>
-          <p class="stage__desc">Work towards implementation through clear communication and collaboration.</p>
-          <p class="stage__example"><span class="label">In practice</span>The GEMIS website redesign was built by a development team working from my designs. <a href="work/gemis/#role" class="stage__link">See it<span class="sr-only">: Collaborate example</span> →</a></p>
-        </li>
-      </ol>
-      <p class="small muted approach__note">This is how I like to work. Not every project had room for every stage; each case study says what actually happened.</p>
+        <ol class="steps" role="list">
+          <li><span class="steps__n">1</span><h3>Understand</h3><p>The product, the business and the people using it.</p></li><li><span class="steps__n">2</span><h3>Structure</h3><p>Information, navigation and journeys.</p></li><li><span class="steps__n">3</span><h3>Design</h3><p>Clear interfaces and interaction patterns.</p></li><li><span class="steps__n">4</span><h3>Refine</h3><p>Remove inconsistencies, improve usability.</p></li><li><span class="steps__n">5</span><h3>Collaborate</h3><p>Work closely with developers to ship it.</p></li>
+        </ol>
+      </div>
     </div>
   </section>
-  <section class="capabilities section" aria-labelledby="cap-h">
+  <section class="section" aria-labelledby="cap-h">
     <div class="wrap">
       
   <header class="shead">
-    <p class="shead__kicker"><span class="shead__num">04</span>Capabilities</p>
-    <h2 class="shead__title" id="cap-h">What I bring to a product team.</h2>
+    <h2 class="shead__title" id="cap-h">Capabilities</h2>
     
   </header>
       <div class="caps">
-        <div class="caps__col"><p class="caps__num">A</p><h3 class="caps__title">Product Design</h3><ul role="list"><li>Product thinking</li><li>Workflow design</li><li>Information architecture</li><li>User journeys</li><li>Product structure</li></ul></div><div class="caps__col"><p class="caps__num">B</p><h3 class="caps__title">UX/UI Design</h3><ul role="list"><li>User experience design</li><li>Interface design</li><li>Interaction design</li><li>Wireframing</li><li>Prototyping</li><li>Responsive design</li></ul></div><div class="caps__col"><p class="caps__num">C</p><h3 class="caps__title">Enterprise & SaaS</h3><ul role="list"><li>ERP interfaces</li><li>Dashboard systems</li><li>Data-heavy interfaces</li><li>Business workflows</li><li>Complex application experiences</li></ul></div><div class="caps__col"><p class="caps__num">D</p><h3 class="caps__title">Digital Experiences</h3><ul role="list"><li>Corporate websites</li><li>Website redesigns</li><li>Mobile applications</li><li>Digital interface systems</li></ul></div>
+        <div class="card card--soft caps__card"><h3>Product design</h3><ul role="list"><li>Product thinking</li><li>Workflow design</li><li>Information architecture</li><li>User journeys</li></ul></div><div class="card card--soft caps__card"><h3>UX/UI design</h3><ul role="list"><li>Interaction design</li><li>Wireframing</li><li>Prototyping</li><li>Responsive design</li></ul></div><div class="card card--soft caps__card"><h3>Enterprise & SaaS</h3><ul role="list"><li>ERP interfaces</li><li>Dashboards</li><li>Data-heavy screens</li><li>Business workflows</li></ul></div><div class="card card--soft caps__card"><h3>Digital experiences</h3><ul role="list"><li>Corporate websites</li><li>Redesigns</li><li>Mobile apps</li><li>Design systems</li></ul></div>
       </div>
     </div>
   </section>
-  <section class="experience section section--alt" aria-labelledby="exp-h">
+  <section class="section" aria-labelledby="exp-h">
     <div class="wrap">
       
   <header class="shead">
-    <p class="shead__kicker"><span class="shead__num">05</span>Experience</p>
-    <h2 class="shead__title" id="exp-h">Where I’ve done the work.</h2>
+    <h2 class="shead__title" id="exp-h">Experience</h2>
     
   </header>
       
-  <ol class="timeline" role="list">
+  <div class="rows">
     
-      <li class="timeline__item">
-        <div class="timeline__when">
-          <p class="timeline__dates">2025 — Present</p>
-          <p class="timeline__now"><span aria-hidden="true">●</span> Current role</p>
+      <details class="row">
+        <summary>
+          <span class="row__main"><span class="row__title">Gem Information Systems (GEMIS)</span><span class="row__sub">UI/UX Designer</span></span>
+          <span class="row__meta">2025 — Present</span>
+        </summary>
+        <div class="row__body">
+          <ul class="list" role="list"><li>Design enterprise SaaS platforms, websites and internal business applications for corporate clients.</li><li>Lead UX and UI design activities from discovery, wireframing and prototyping through developer handoff.</li><li>Maintain a Figma design system used across teams to keep products consistent.</li><li>Work closely with developers and stakeholders to bring designs to implementation.</li></ul>
+          <p class="row__links"><a href="work/managem/">ManaGEM ERP</a> · <a href="work/gemis/">GEMIS Corporate Website</a></p>
         </div>
-        <div class="timeline__what">
-          <h3 class="timeline__org">Gem Information Systems (GEMIS)</h3>
-          <p class="timeline__role">UI/UX Designer</p>
-          <ul class="timeline__points"><li>Design enterprise SaaS platforms, websites and internal business applications for corporate clients.</li><li>Lead UX and UI design activities from discovery, wireframing and prototyping through developer handoff.</li><li>Maintain a Figma design system used across teams to keep products consistent.</li><li>Work closely with developers and stakeholders to bring designs to implementation.</li></ul>
-          <p class="timeline__work"><span class="label">Case studies</span> <a href="work/managem/">ManaGEM ERP</a><span aria-hidden="true"> · </span><a href="work/gemis/">GEMIS Corporate Website</a></p>
-        </div>
-      </li>
-      <li class="timeline__item">
-        <div class="timeline__when">
-          <p class="timeline__dates">2023 — 2025</p>
+      </details>
+      <details class="row">
+        <summary>
+          <span class="row__main"><span class="row__title">AX-Channels Studio</span><span class="row__sub">UI/UX Designer &amp; WordPress Designer</span></span>
+          <span class="row__meta">2023 — 2025</span>
+        </summary>
+        <div class="row__body">
+          <ul class="list" role="list"><li>Designed websites, landing pages and business platforms for clients.</li><li>Led end-to-end design projects from discovery through implementation.</li><li>Ran UX audits to find usability issues and improve user journeys.</li><li>Designed responsive WordPress websites, working directly with clients to turn business requirements into usable experiences.</li></ul>
           
         </div>
-        <div class="timeline__what">
-          <h3 class="timeline__org">AX-Channels Studio</h3>
-          <p class="timeline__role">UI/UX Designer &amp; WordPress Designer</p>
-          <ul class="timeline__points"><li>Designed websites, landing pages and business platforms for clients.</li><li>Led end-to-end design projects from discovery through implementation.</li><li>Ran UX audits to find usability issues and improve user journeys.</li><li>Designed responsive WordPress websites, working directly with clients to turn business requirements into usable experiences.</li></ul>
-          
+      </details>
+  </div>
+    </div>
+  </section>
+  <section class="section" aria-labelledby="about-h">
+    <div class="wrap">
+      <article class="promo card card--soft">
+        <div class="promo__media promo__media--portrait"><img src="assets/images/about/portrait-spha.webp" width="900" height="932" alt="Portrait of Sphamandla Xaba" loading="lazy" decoding="async"></div>
+        <div class="promo__text">
+          <h2 class="promo__title" id="about-h">Hi, I’m Sphamandla.</h2>
+          <p class="promo__summary">A Johannesburg-based product designer. I design enterprise software, mobile apps and websites at Gem Information Systems — and I like finding the structure that makes a complex product feel simple.</p>
+          <div class="btn-row"><a href="about/" class="btn btn--primary"><span>More about me</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></div>
         </div>
-      </li>
-  </ol>
-      <div class="btn-row"><a href="assets/docs/Sphamandla-Xaba-CV.pdf" class="btn btn--secondary" download><span>Download full CV</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></div>
+      </article>
     </div>
   </section>
-  <section class="about-preview section" aria-labelledby="about-h">
-    <div class="wrap about-preview__grid">
-      <div class="about-preview__media"><img class="" src="assets/images/about/portrait-spha.webp" width="900" height="932" alt="Portrait of Sphamandla Xaba" loading="lazy" decoding="async"></div>
-      <div class="about-preview__text">
-        <p class="label">06 — About</p>
-        <h2 class="about-preview__title" id="about-h">Hi, I’m Sphamandla.</h2>
-        <p>I’m a product designer in Johannesburg. I started out designing websites and landing pages for clients at a design studio, and now design enterprise software, mobile apps and websites at Gem Information Systems.</p>
-        <p>The work I enjoy most is the messy middle: taking a product with lots of moving parts and finding the structure that makes it feel simple. I like working close to developers, because a design only counts once it works in someone’s hands.</p>
-        <a href="about/" class="btn btn--secondary"><span>More about me</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
-      </div>
-    </div>
-  </section>
-  <section class="closing" aria-labelledby="closing-h">
-    <div class="wrap closing__grid">
-      <p class="eyebrow">Contact</p>
-      <h2 class="closing__title" id="closing-h">Have a product or experience that needs thoughtful design?</h2>
-      <p class="closing__copy">I’m open to opportunities to contribute to meaningful digital products and collaborate with teams building better experiences.</p>
-      <div class="closing__links">
-  <ul class="contact-links" role="list">
+  <section class="section" aria-labelledby="closing-h">
+    <div class="wrap">
+      <div class="card card--dark closing">
+        <div class="closing__text">
+          <h2 class="closing__title" id="closing-h">Have a product that needs thoughtful design?</h2>
+          <p class="closing__copy">I’m open to product design roles and collaborations.</p>
+        </div>
+        
+  <ul class="contact" role="list">
     <li>
-      <span class="label">Email</span>
-      <span class="contact-links__row">
-        <a class="contact-links__big" href="mailto:sphamandaxaba@gmail.com">sphamandaxaba@gmail.com</a>
-        <button class="copy" type="button" data-copy="sphamandaxaba@gmail.com"><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3 10.5V2.5h8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg><span data-copy-label>Copy</span></button>
-      </span>
+      <a class="contact__link" href="mailto:sphamandaxaba@gmail.com">sphamandaxaba@gmail.com</a>
+      <button class="btn btn--subtle btn--sm" type="button" data-copy="sphamandaxaba@gmail.com"><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 10.5V3.5A1 1 0 0 1 4 2.5h6.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span data-copy-label>Copy</span></button>
     </li>
-    <li>
-      <span class="label">LinkedIn</span>
-      <a class="contact-links__big" href="https://www.linkedin.com/in/sphamandla-xaba-ba1602287/" target="_blank" rel="noopener">Sphamandla Xaba <svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg><span class="sr-only"> (opens in a new tab)</span></a>
-    </li>
-    <li>
-      <span class="label">CV</span>
-      <a class="contact-links__big" href="assets/docs/Sphamandla-Xaba-CV.pdf" download>Download CV (PDF) <svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
-    </li>
+    <li><a class="contact__link" href="https://www.linkedin.com/in/sphamandla-xaba-ba1602287/" target="_blank" rel="noopener">LinkedIn <svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span class="sr-only"> (opens in a new tab)</span></a></li>
+    <li><a class="contact__link" href="assets/docs/Sphamandla-Xaba-CV.pdf" download>Download CV <svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></li>
   </ul>
-  <p class="sr-only" role="status" aria-live="polite" data-copy-status></p></div>
+  <p class="sr-only" role="status" aria-live="polite" data-copy-status></p>
+      </div>
     </div>
   </section>
 </main>
 
-  <footer class="site-footer">
-    <div class="wrap site-footer__grid">
-      <div class="site-footer__sign">
-        <p class="site-footer__name">Sphamandla Xaba</p>
-        <p class="muted">Product Designer · UI/UX<br>Johannesburg, South Africa</p>
+  <footer class="footer">
+    <div class="wrap footer__grid">
+      <div>
+        <p class="footer__name">Sphamandla Xaba</p>
+        <p class="footer__muted">Product Designer · UI/UX<br>Johannesburg, South Africa</p>
       </div>
-      <nav class="site-footer__nav" aria-label="Footer">
-        <p class="label">Work</p>
+      <nav aria-label="Work">
+        <p class="footer__head">Work</p>
         <ul role="list">
           <li><a href="work/managem/">ManaGEM ERP</a></li>
-          <li><a href="work/wastemart/">WasteMart Mobile App</a></li>
-          <li><a href="work/gemis/">GEMIS Corporate Website</a></li>
+          <li><a href="work/wastemart/">WasteMart</a></li>
+          <li><a href="work/gemis/">GEMIS Website</a></li>
         </ul>
       </nav>
-      <nav class="site-footer__nav" aria-label="Contact">
-        <p class="label">Contact</p>
+      <nav aria-label="Contact">
+        <p class="footer__head">Contact</p>
         <ul role="list">
-          <li><a href="mailto:sphamandaxaba@gmail.com">sphamandaxaba@gmail.com</a></li>
+          <li><a href="mailto:sphamandaxaba@gmail.com">Email</a></li>
           <li><a href="https://www.linkedin.com/in/sphamandla-xaba-ba1602287/" target="_blank" rel="noopener">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a></li>
-          <li><a href="assets/docs/Sphamandla-Xaba-CV.pdf" download>Download CV</a></li>
+          <li><a href="assets/docs/Sphamandla-Xaba-CV.pdf" download>CV (PDF)</a></li>
         </ul>
       </nav>
     </div>
-    <div class="wrap site-footer__base">
-      <p class="muted">© 2026 Sphamandla Xaba. Designed and built by Sphamandla Xaba.</p>
-      <a class="muted" href="#top">Back to top ↑</a>
+    <div class="wrap footer__base">
+      <p>© 2026 Sphamandla Xaba</p>
+      <a href="#top">Back to top</a>
     </div>
   </footer>
   <dialog class="viewer" data-viewer aria-label="Image viewer">
     <form method="dialog" class="viewer__bar">
       <p class="viewer__caption" data-viewer-caption></p>
-      <button class="viewer__close" type="submit" aria-label="Close image viewer">Close <span aria-hidden="true">×</span></button>
+      <button class="btn btn--secondary" type="submit">Close</button>
     </form>
     <div class="viewer__stage"><img data-viewer-img alt=""></div>
   </dialog>

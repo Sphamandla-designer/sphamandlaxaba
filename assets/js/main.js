@@ -46,7 +46,7 @@
 
   function setMenu(open) {
     navToggle.setAttribute('aria-expanded', String(open));
-    navToggle.querySelector('.nav-toggle__label').textContent = open ? 'Close' : 'Menu';
+    navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     menu.classList.toggle('is-open', open);
     document.body.style.overflow = open ? 'hidden' : '';
   }
@@ -63,15 +63,13 @@
         navToggle.focus();
       }
     });
-    window.matchMedia('(min-width: 900px)').addEventListener('change', function (e) {
+    window.matchMedia('(min-width: 1120px)').addEventListener('change', function (e) {
       if (e.matches) setMenu(false);
     });
   }
 
   // ------------------------------------------------------ scroll reveal
-  var revealTargets = document.querySelectorAll(
-    '.shead, .snapshot__statement, .facts__item, .feature, .more__item, .stage, .caps__col, .timeline__item, .about-preview__grid > *, .cs-section__head, .decision, .fig, .flow, .tree, .points li, .principles li, .closing__title'
-  );
+  var revealTargets = document.querySelectorAll('.promo, .more__card, .caps__card, .decision, .tree__group, .cs-section__title, .shead');
   if ('IntersectionObserver' in window && !reduceMotion.matches) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -136,21 +134,4 @@
     });
   });
 
-  // ---------------------------------------- case-study contents highlight
-  var tocLinks = document.querySelectorAll('.cs-toc a');
-  if (tocLinks.length && 'IntersectionObserver' in window) {
-    var map = {};
-    tocLinks.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
-    var current = null;
-    var tocIO = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          if (current) { current.classList.remove('is-active'); current.removeAttribute('aria-current'); }
-          current = map[entry.target.id];
-          if (current) { current.classList.add('is-active'); current.setAttribute('aria-current', 'location'); }
-        }
-      });
-    }, { rootMargin: '-30% 0px -60% 0px' });
-    document.querySelectorAll('.cs-section').forEach(function (s) { tocIO.observe(s); });
-  }
 })();

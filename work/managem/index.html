@@ -4,375 +4,195 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ManaGEM ERP — Case study — Sphamandla Xaba</title>
-<meta name="description" content="Case study: designing the ManaGEM ERP — information architecture, plain-language status, search-first lists and guided workflows for trade businesses.">
+<meta name="description" content="Case study: designing the ManaGEM ERP — navigation, plain-language status and guided workflows for trade businesses.">
 <link rel="canonical" href="https://sphamandla-designer.github.io/sphamandlaxaba/work/managem/">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Sphamandla Xaba — Product Designer">
 <meta property="og:title" content="ManaGEM ERP — Case study — Sphamandla Xaba">
-<meta property="og:description" content="Case study: designing the ManaGEM ERP — information architecture, plain-language status, search-first lists and guided workflows for trade businesses.">
+<meta property="og:description" content="Case study: designing the ManaGEM ERP — navigation, plain-language status and guided workflows for trade businesses.">
 <meta property="og:url" content="https://sphamandla-designer.github.io/sphamandlaxaba/work/managem/">
 <meta property="og:image" content="https://sphamandla-designer.github.io/sphamandlaxaba/assets/images/og-default.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#f6f5f2" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="../../assets/fonts/inter-tight-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../../assets/css/site.css">
-<script>(function(){try{var t=localStorage.getItem('theme');}catch(e){}if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.dataset.theme=t;document.documentElement.classList.add('js');})();</script>
+<script>(function(){var t;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.dataset.theme=t;document.documentElement.classList.add('js')})();</script>
 <script src="../../assets/js/main.js" defer></script>
 </head>
 <body class="page-case page-case--managem" id="top">
 
   <a class="skip" href="#main">Skip to content</a>
-  <header class="site-header" data-header>
-    <div class="site-header__inner wrap">
-      <a class="wordmark" href="../../" aria-label="Sphamandla Xaba — home">
-        <span class="wordmark__name">Sphamandla Xaba</span>
-        <span class="wordmark__role">Product Designer</span>
-      </a>
+  <header class="nav-bar" data-header>
+    <div class="nav-bar__inner wrap">
+      <a class="wordmark" href="../../">Sphamandla Xaba</a>
       <nav class="site-nav" aria-label="Primary">
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" data-nav-toggle>
-          <span class="nav-toggle__label">Menu</span><span class="nav-toggle__bars" aria-hidden="true"><i></i><i></i></span>
-        </button>
         <div class="site-menu" id="site-menu" data-nav-menu>
-          <ul class="site-menu__list" role="list"><li><a href="../../#work" aria-current="page">Work</a></li><li><a href="../../#approach">Approach</a></li><li><a href="../../about/">About</a></li><li><a href="../../contact/">Contact</a></li>
-            <li class="site-menu__cv"><a href="../../assets/docs/Sphamandla-Xaba-CV.pdf" download>Download CV <svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a></li>
-          </ul>
+          <ul class="site-menu__list" role="list"><li><a class="nav-link" href="../../#work" aria-current="page">Work</a></li><li><a class="nav-link" href="../../#approach">Approach</a></li><li><a class="nav-link" href="../../about/">About</a></li><li><a class="nav-link" href="../../contact/">Contact</a></li></ul>
+          <a class="btn btn--primary site-menu__cv" href="../../assets/docs/Sphamandla-Xaba-CV.pdf" download><span>Download CV</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
         </div>
       </nav>
-      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark theme">
-        <svg class="i i-sun" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3 3l1.4 1.4M11.6 11.6 13 13M3 13l1.4-1.4M11.6 4.4 13 3" stroke="currentColor" stroke-width="1.5"/></svg><svg class="i i-moon" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 9.5A5.5 5.5 0 0 1 6.5 3 5.5 5.5 0 1 0 13 9.5Z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
-      </button>
+      <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch to dark theme"><svg class="i i-sun" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3 3l1.4 1.4M11.6 11.6 13 13M3 13l1.4-1.4M11.6 4.4 13 3" stroke="currentColor" stroke-width="1.6"/></svg><svg class="i i-moon" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 9.5A5.5 5.5 0 0 1 6.5 3 5.5 5.5 0 1 0 13 9.5Z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      <button class="icon-btn nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu" data-nav-toggle><svg class="i i-menu" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 5h12M2 11h12" stroke="currentColor" stroke-width="1.6"/></svg><svg class="i i-close" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" stroke-width="1.6"/></svg></button>
     </div>
   </header>
 <main id="main" tabindex="-1">
 
-  <article class="case case--managem">
+  <article class="case">
     <header class="cs-hero wrap">
-      <nav class="crumbs" aria-label="Breadcrumb">
-        <ol role="list"><li><a href="../../#work">Selected work</a></li><li aria-current="page">ManaGEM ERP</li></ol>
-      </nav>
-      <div class="cs-hero__grid">
-        <div class="cs-hero__num" aria-hidden="true">01</div>
-        <div class="cs-hero__text">
-          <p class="eyebrow">Enterprise Product Design · ERP · SaaS</p>
-          <h1 class="cs-hero__title">Designing an ERP experience around the complexity of business operations.</h1>
-          <p class="cs-hero__lede">ManaGEM is an ERP for trade businesses. My job was to make a product with a lot of moving parts — enquiries, quotes, production, stock, invoices, staff — feel like one coherent tool that people can find their way around without training.</p>
-        </div>
-        <div class="cs-hero__meta">
-          <dl class="meta "><div class="meta__row"><dt>Project</dt><dd>ManaGEM ERP</dd></div><div class="meta__row"><dt>Status</dt><dd><span class="status status--live"><span class="status__mark" aria-hidden="true"></span>Live product</span></dd></div><div class="meta__row"><dt>Platform</dt><dd>Web application</dd></div><div class="meta__row"><dt>My role</dt><dd>Owned most UX/UI and product design decisions.</dd></div><div class="meta__row"><dt>Team</dt><dd><span class="ph-inline" title="ManaGEM: team and collaborators (product owner, developers, others) — names or roles"><span aria-hidden="true">◌</span> To be confirmed<span class="sr-only"> — placeholder: ManaGEM: team and collaborators (product owner, developers, others) — names or roles</span></span></dd></div><div class="meta__row"><dt>Timeline</dt><dd><span class="ph-inline" title="ManaGEM: project timeline (start date, key milestones, launch date)"><span aria-hidden="true">◌</span> To be confirmed<span class="sr-only"> — placeholder: ManaGEM: project timeline (start date, key milestones, launch date)</span></span></dd></div></dl>
+      <a class="back" href="../../#work">← Selected work</a>
+      <p class="cs-hero__cat">Enterprise · ERP · SaaS</p>
+      <h1 class="cs-hero__title">Designing an ERP around how a business actually runs.</h1>
+      <p class="cs-hero__lede">ManaGEM is an ERP for trade businesses — from first enquiry to paid invoice. My job: make a product with many moving parts feel like one simple tool.</p>
+      <dl class="meta meta--row"><div><dt>Role</dt><dd>Owned most UX/UI and product design decisions</dd></div><div><dt>Platform</dt><dd>Web application</dd></div><div><dt>Status</dt><dd><span class="status status--live"><span class="status__mark" aria-hidden="true"></span>Live product</span></dd></div></dl>
+    </header>
+    <div class="cs-cover wrap"><figure class="fig fig--mockup"><a class="zoom" href="../../assets/images/mockups/managem-1600.webp" data-zoom data-caption="ManaGEM dashboard shown on a laptop" aria-label="Enlarge: ManaGEM dashboard shown on a laptop"><img src="../../assets/images/mockups/managem-1600.webp" srcset="../../assets/images/mockups/managem-1600.webp 1600w, ../../assets/images/mockups/managem-960.webp 960w" sizes="(min-width: 1200px) 1136px, 100vw" width="1600" height="1200" alt="ManaGEM dashboard shown on a laptop" fetchpriority="high" decoding="async"></a></figure></div>
+    
+    <section class="cs-section" id="context" aria-labelledby="context-h">
+      <div class="wrap">
+        <h2 class="cs-section__title" id="context-h">Context</h2>
+        <div class="cs-section__body">
+        <p class="lead">Trade businesses run one chain: enquiry, quote, production, stock, invoice, payment. ManaGEM puts that chain in one system.</p>
+        
+  <ol class="flow" aria-label="The business chain"><li>Customer</li><li>Enquiry &amp; quote</li><li>Production</li><li>Stock</li><li>Invoice</li><li>Payment</li></ol>
         </div>
       </div>
-    </header>
-    <div class="cs-cover wrap"><figure class="fig "><a class="zoom" href="../../assets/images/managem/mg-dashboard-1600.webp" data-zoom data-caption="The ManaGEM dashboard. All screens in this case study use demo data (“Demo Waterproofing”), not client data." aria-label="Enlarge: ManaGEM dashboard: enquiry, quote, sales and opportunity totals, a sales summary chart, monthly performance bars and current project cards"><div class="frame frame--browser"><div class="frame__bar" aria-hidden="true"><i></i><i></i><i></i></div><img class="" src="../../assets/images/managem/mg-dashboard-1600.webp" srcset="../../assets/images/managem/mg-dashboard-1600.webp 1600w, ../../assets/images/managem/mg-dashboard-960.webp 960w" sizes="(min-width: 1280px) 1200px, 100vw" width="1600" height="1000" alt="ManaGEM dashboard: enquiry, quote, sales and opportunity totals, a sales summary chart, monthly performance bars and current project cards" fetchpriority="high" decoding="async"></div></a><figcaption>The ManaGEM dashboard. All screens in this case study use demo data (“Demo Waterproofing”), not client data.</figcaption></figure></div>
-    <div class="cs-layout wrap">
-      <nav class="cs-toc" aria-label="Case study sections">
-        <p class="label">In this case study</p>
-        <ol role="list"><li><a href="#context"><span>01</span>Context</a></li><li><a href="#challenge"><span>02</span>Challenge</a></li><li><a href="#role"><span>03</span>My role</a></li><li><a href="#structure"><span>04</span>Structure</a></li><li><a href="#decisions"><span>05</span>Decisions</a></li><li><a href="#interface"><span>06</span>Interface</a></li><li><a href="#demo"><span>07</span>Demo</a></li><li><a href="#outcome"><span>08</span>Reflection</a></li></ol>
-      </nav>
-      <div class="cs-body">
-    <section class="cs-section" id="context" aria-labelledby="context-h">
-      <header class="cs-section__head">
-        <p class="cs-section__num">01</p>
-        <h2 class="cs-section__title" id="context-h">Product context</h2>
-      </header>
-      <div class="cs-section__body">
-        <div class="prose">
-          <p class="lead">GEM Information Systems builds ManaGEM, a management platform for trade businesses: companies that run one continuous chain from a customer’s first enquiry through to a paid invoice.</p>
-          <p>A single company might take an enquiry, send a quote, build the order in its factory, draw down stock, invoice the customer and chase the payment. In many businesses those steps live in separate spreadsheets, inboxes and accounting tools. ManaGEM brings them into one system, with modules for customers, sales, operations and administration, and support for running more than one company from the same login.</p>
-          <p>Because the product follows that chain, its structure matters: if customers are in the system but products are not, sales can’t quote; if staff records are missing, work can’t be assigned. The interface has to make those connections easy to follow.</p>
-        </div>
-        <aside class="ph ph--block" role="note" aria-label="Placeholder: content needed">
-    <p class="ph__label"><span aria-hidden="true">◌</span> Placeholder — content needed</p>
-    <p class="ph__need">Who uses ManaGEM day to day, and in which industries.</p>
-    <p class="ph__detail">Confirm the primary user roles (for example sales managers, factory leads, bookkeepers) and the type of businesses using the live product. Do not include client names without approval.</p>
-  </aside></div>
-    </section>
-    <section class="cs-section" id="challenge" aria-labelledby="challenge-h">
-      <header class="cs-section__head">
-        <p class="cs-section__num">02</p>
-        <h2 class="cs-section__title" id="challenge-h">The challenge</h2>
-      </header>
-      <div class="cs-section__body">
-        <div class="prose">
-          <p class="lead">The challenge wasn’t a single screen. It was keeping a large product understandable as it grew.</p>
-        </div>
-        <ul class="points" role="list">
-          <li><h3>Depth without getting lost</h3><p>An ERP like this has dozens of areas. Traditional ERPs hide work behind deep navigation trees that people only learn through training.</p></li>
-          <li><h3>Status people can actually read</h3><p>Every record — an enquiry, a build, an invoice — moves through states. Legacy systems tend to express those in codes and abbreviations only long-time users can decode.</p></li>
-          <li><h3>Related actions in one place</h3><p>ERP workflows often scatter the actions for one record across menus, screens and modes, so the next step is hard to find.</p></li>
-          <li><h3>Getting a new client running</h3><p>Before a client could use ManaGEM, their customer lists, price lists and staff registers had to be interpreted and re-typed by hand — weeks of manual work between signing and using the system.</p></li>
-        </ul></div>
     </section>
     <section class="cs-section" id="role" aria-labelledby="role-h">
-      <header class="cs-section__head">
-        <p class="cs-section__num">03</p>
+      <div class="wrap">
         <h2 class="cs-section__title" id="role-h">My role</h2>
-      </header>
-      <div class="cs-section__body">
-        <p class="statement">Owned most UX/UI and product design decisions.</p>
-        <div class="split">
-          <div class="prose">
-            <h3 class="h4">What that meant in practice</h3>
-            <ul>
-              <li>Structured the information architecture and navigation model — how modules are grouped and how people move between them.</li>
-              <li>Designed the shared patterns that every module uses: list views, tables, filters, status chips, forms and dashboard cards.</li>
-              <li>Designed the core workflows shown here, including the dashboard, enquiries, invoicing, products and pricing, factory, stock control and staff records.</li>
-              <li>Designed Take-On, the guided onboarding flow for bringing a new client’s data into ManaGEM.</li>
-              <li>Maintained the design system the product is built from, scoped to what the engineering team could build.</li>
-            </ul>
-          </div>
-          <div class="prose">
-            <h3 class="h4">Where others contributed</h3>
-            <p>Design direction was reviewed through platform walkthroughs with the product owner, the onboarding team and the director. Development was carried out by the engineering team.</p>
-          </div>
+        <div class="cs-section__body">
+        <p class="lead">Owned most UX/UI and product design decisions.</p>
+        <ul class="list" role="list"><li>Information architecture and navigation</li><li>Shared patterns: lists, tables, status, forms, dashboards</li><li>Core workflows — enquiries, invoicing, factory, stock, staff</li><li>Take-On, the guided onboarding flow</li><li>The design system the team builds from</li></ul>
+        <p class="muted">Reviewed with the product owner, onboarding team and director. Built by the engineering team.</p>
         </div>
-        <aside class="ph ph--block" role="note" aria-label="Placeholder: content needed">
-    <p class="ph__label"><span aria-hidden="true">◌</span> Placeholder — content needed</p>
-    <p class="ph__need">Which ManaGEM decisions were shared, and who built what.</p>
-    <p class="ph__detail">List any product areas designed by someone else, decisions made jointly with the product owner, and the size or make-up of the development team.</p>
-  </aside></div>
+      </div>
     </section>
     <section class="cs-section" id="structure" aria-labelledby="structure-h">
-      <header class="cs-section__head">
-        <p class="cs-section__num">04</p>
-        <h2 class="cs-section__title" id="structure-h">Product structure</h2>
-      </header>
-      <div class="cs-section__body">
-        <div class="prose">
-          <p class="lead">Navigation is grouped by how the business works, not by how the data is stored.</p>
-          <p>The sidebar has five groups. A company switcher at the top lets people who manage more than one business change context without logging out.</p>
-        </div>
+      <div class="wrap">
+        <h2 class="cs-section__title" id="structure-h">Structure</h2>
+        <div class="cs-section__body">
+        <p class="lead">Navigation follows how the business works, not how the data is stored.</p>
         
-  <div class="tree">
-    <p class="tree__root">ManaGEM</p>
-    <div class="tree__groups">
-      <div class="tree__group"><p class="tree__name">Core</p><ul role="list"><li>Dashboard</li></ul></div><div class="tree__group"><p class="tree__name">Customers</p><ul role="list"><li>Customers</li><li>Customer contacts</li><li>Warranties</li></ul></div><div class="tree__group"><p class="tree__name">Sales</p><ul role="list"><li>New enquiry</li><li>Open enquiries</li><li>Closed enquiries</li><li>Invoices</li><li>Sage invoices</li><li>Inspection reports</li><li>Sales targets</li><li>Quote templates</li><li>Reports</li><li>Master data</li></ul></div><div class="tree__group"><p class="tree__name">Operations</p><ul role="list"><li>Debtors management</li><li>Products &amp; pricing</li><li>Projects</li><li>Factory</li><li>Stock control</li></ul></div><div class="tree__group"><p class="tree__name">Admin</p><ul role="list"><li>Staff records</li><li>My companies</li></ul></div>
-    </div>
-    <p class="tree__note">Taken from the live navigation. Counts in the sidebar (for example open enquiries, factory alerts) show where work is waiting.</p>
-  </div>
-        <div class="split split--media">
-          <div class="prose">
-            <h3 class="h4">The chain the product follows</h3>
-            
-  <ol class="flow flow--dense" aria-label="Business chain">
-    <li><span class="flow__n">01</span><span class="flow__t">Customer</span></li><li><span class="flow__n">02</span><span class="flow__t">Enquiry &amp; quote</span></li><li><span class="flow__n">03</span><span class="flow__t">Production</span></li><li><span class="flow__n">04</span><span class="flow__t">Stock</span></li><li><span class="flow__n">05</span><span class="flow__t">Invoice</span></li><li><span class="flow__n">06</span><span class="flow__t">Payment</span></li>
-  </ol>
-            <h3 class="h4">One workflow, step by step</h3>
-            <p>Capturing a new enquiry is split into four steps, with progress always visible, so a long form never arrives as one wall of fields:</p>
-            
-  <ol class="flow" aria-label="New enquiry steps">
-    <li><span class="flow__n">01</span><span class="flow__t">Customer</span><span class="flow__d">Who it is, and where the lead came from</span></li><li><span class="flow__n">02</span><span class="flow__t">Site &amp; scope</span><span class="flow__d">Where the work is and what it involves</span></li><li><span class="flow__n">03</span><span class="flow__t">Schedule</span><span class="flow__d">When it needs to happen</span></li><li><span class="flow__n">04</span><span class="flow__t">Review</span><span class="flow__d">Check before it is created</span></li>
-  </ol>
-          </div>
-          <figure class="fig fig--narrow"><a class="zoom" href="../../assets/images/managem/mg-sidebar.webp" data-zoom data-caption="The sidebar, with the company switcher at the top." aria-label="Enlarge: ManaGEM sidebar navigation grouped into Core, Customers, Sales, Operations and Admin"><div class="frame frame--plain"><img class="" src="../../assets/images/managem/mg-sidebar.webp" width="435" height="1418" alt="ManaGEM sidebar navigation grouped into Core, Customers, Sales, Operations and Admin" loading="lazy" decoding="async"></div></a><figcaption>The sidebar, with the company switcher at the top.</figcaption></figure>
-        </div></div>
+  <div class="tree"><div class="tree__group"><p class="tree__name">Customers</p><ul role="list"><li>Customers</li><li>Contacts</li><li>Warranties</li></ul></div><div class="tree__group"><p class="tree__name">Sales</p><ul role="list"><li>Enquiries</li><li>Invoices</li><li>Quote templates</li><li>Reports</li></ul></div><div class="tree__group"><p class="tree__name">Operations</p><ul role="list"><li>Products &amp; pricing</li><li>Projects</li><li>Factory</li><li>Stock</li></ul></div><div class="tree__group"><p class="tree__name">Admin</p><ul role="list"><li>Staff records</li><li>Companies</li></ul></div></div></div>
+      </div>
     </section>
     <section class="cs-section" id="decisions" aria-labelledby="decisions-h">
-      <header class="cs-section__head">
-        <p class="cs-section__num">05</p>
-        <h2 class="cs-section__title" id="decisions-h">Key design decisions</h2>
-      </header>
-      <div class="cs-section__body">
-  <article class="decision" aria-labelledby="dec-managem-01">
-    <header class="decision__head">
-      <p class="decision__num">Decision 01</p>
-      <h3 class="decision__title" id="dec-managem-01">Lead every list with search and live counts</h3>
-    </header>
-    <dl class="decision__grid">
-      <div><dt>The challenge</dt><dd>People were expected to remember where things lived in a deep menu before the product was useful to them.</dd></div>
-      <div><dt>Considerations</dt><dd>Deeper menus and saved filters would help experienced users but do little for someone new. Search only helps if it is the first thing you see.</dd></div>
-      <div><dt>My decision</dt><dd>Every list view opens with a search field and a row of live counts for the stages of that workflow, followed by tabs, filters and export.</dd></div>
-      <div><dt>Rationale</dt><dd>People can type what they want instead of navigating to it, and the counts answer “how much is waiting?” before they scroll.</dd></div>
-    </dl>
-    <div class="decision__evidence"><p class="label">Evidence</p><figure class="fig "><a class="zoom" href="../../assets/images/managem/mg-open-enquiries-1600.webp" data-zoom data-caption="Open enquiries — stage counts and search come before the table." aria-label="Enlarge: Open enquiries list with stage counts, search, filters and a table of enquiries with status chips"><div class="frame frame--browser"><div class="frame__bar" aria-hidden="true"><i></i><i></i><i></i></div><img class="" src="../../assets/images/managem/mg-open-enquiries-1600.webp" srcset="../../assets/images/managem/mg-open-enquiries-1600.webp 1600w, ../../assets/images/managem/mg-open-enquiries-960.webp 960w" sizes="(min-width: 1024px) 760px, 100vw" width="1600" height="1000" alt="Open enquiries list with stage counts, search, filters and a table of enquiries with status chips" loading="lazy" decoding="async"></div></a><figcaption>Open enquiries — stage counts and search come before the table.</figcaption></figure></div>
+      <div class="wrap">
+        <h2 class="cs-section__title" id="decisions-h">Key decisions</h2>
+        <div class="cs-section__body">
+  <article class="decision card">
+    <div class="decision__text">
+      <p class="decision__num">01</p>
+      <h3 class="decision__title">Search first</h3>
+      <dl class="decision__list">
+        <div><dt>Problem</dt><dd>People had to learn a deep menu before the product was useful.</dd></div>
+        <div><dt>Decision</dt><dd>Every list opens with search and live counts per stage.</dd></div>
+        <div><dt>Why</dt><dd>Type what you want instead of hunting for it.</dd></div>
+      </dl>
+    </div>
+    <div class="decision__media"><figure class="fig fig--screen"><a class="zoom" href="../../assets/images/managem/mg-open-enquiries-1600.webp" data-zoom data-caption="Open enquiries list with stage counts and search above the table" aria-label="Enlarge: Open enquiries list with stage counts and search above the table"><img src="../../assets/images/managem/mg-open-enquiries-1600.webp" srcset="../../assets/images/managem/mg-open-enquiries-1600.webp 1600w, ../../assets/images/managem/mg-open-enquiries-960.webp 960w" sizes="(min-width: 1120px) 600px, 100vw" width="1600" height="1000" alt="Open enquiries list with stage counts and search above the table" loading="lazy" decoding="async"></a></figure></div>
   </article>
-  <article class="decision" aria-labelledby="dec-managem-02">
-    <header class="decision__head">
-      <p class="decision__num">Decision 02</p>
-      <h3 class="decision__title" id="dec-managem-02">One plain-language status system across every module</h3>
-    </header>
-    <dl class="decision__grid">
-      <div><dt>The challenge</dt><dd>Each module had its own way of describing state, so the same idea could look different from one screen to the next.</dd></div>
-      <div><dt>Considerations</dt><dd>Module-specific colours would allow more variety, but people would have to relearn them on every screen.</dd></div>
-      <div><dt>My decision</dt><dd>A single set of status chips with plain words — Paid, Partial, Unpaid, Overdue; Repeat customer, Scheduled, Quoted — and consistent colour meaning everywhere.</dd></div>
-      <div><dt>Rationale</dt><dd>Status is the thing people scan for most. Words carry the meaning, so the chips still work for people who can’t distinguish the colours, and the same colour means the same thing in every module.</dd></div>
-    </dl>
-    <div class="decision__evidence"><p class="label">Evidence</p><figure class="fig "><a class="zoom" href="../../assets/images/managem/mg-invoices-1600.webp" data-zoom data-caption="Invoices — status reads as words first, colour second." aria-label="Enlarge: Invoices screen with totals for billed, paid, outstanding and overdue, and a table where each invoice has a status chip"><div class="frame frame--browser"><div class="frame__bar" aria-hidden="true"><i></i><i></i><i></i></div><img class="" src="../../assets/images/managem/mg-invoices-1600.webp" srcset="../../assets/images/managem/mg-invoices-1600.webp 1600w, ../../assets/images/managem/mg-invoices-960.webp 960w" sizes="(min-width: 1024px) 760px, 100vw" width="1600" height="1000" alt="Invoices screen with totals for billed, paid, outstanding and overdue, and a table where each invoice has a status chip" loading="lazy" decoding="async"></div></a><figcaption>Invoices — status reads as words first, colour second.</figcaption></figure></div>
+  <article class="decision card">
+    <div class="decision__text">
+      <p class="decision__num">02</p>
+      <h3 class="decision__title">One status language</h3>
+      <dl class="decision__list">
+        <div><dt>Problem</dt><dd>Each module described state differently.</dd></div>
+        <div><dt>Decision</dt><dd>One set of plain-word status pills — Paid, Overdue, Scheduled — used everywhere.</dd></div>
+        <div><dt>Why</dt><dd>Words carry the meaning; the same colour means the same thing in every module.</dd></div>
+      </dl>
+    </div>
+    <div class="decision__media"><figure class="fig fig--screen"><a class="zoom" href="../../assets/images/managem/mg-invoices-1600.webp" data-zoom data-caption="Invoices list where each row has a plain-word status" aria-label="Enlarge: Invoices list where each row has a plain-word status"><img src="../../assets/images/managem/mg-invoices-1600.webp" srcset="../../assets/images/managem/mg-invoices-1600.webp 1600w, ../../assets/images/managem/mg-invoices-960.webp 960w" sizes="(min-width: 1120px) 600px, 100vw" width="1600" height="1000" alt="Invoices list where each row has a plain-word status" loading="lazy" decoding="async"></a></figure></div>
   </article>
-  <article class="decision" aria-labelledby="dec-managem-03">
-    <header class="decision__head">
-      <p class="decision__num">Decision 03</p>
-      <h3 class="decision__title" id="dec-managem-03">Put actions where the work happens</h3>
-    </header>
-    <dl class="decision__grid">
-      <div><dt>The challenge</dt><dd>Related actions were spread across menus, so finding the next step meant leaving the record you were working on.</dd></div>
-      <div><dt>Considerations</dt><dd>A global action menu is consistent but far from the record. Inline actions are closer but can clutter tables.</dd></div>
-      <div><dt>My decision</dt><dd>Primary page actions (New product, New job) sit at the top right of each page; sync, export and record-level actions sit beside the lists they affect.</dd></div>
-      <div><dt>Rationale</dt><dd>The next step is always within reach of the thing it acts on, and the page-level button is always in the same place.</dd></div>
-    </dl>
-    <div class="decision__evidence"><p class="label">Evidence</p><figure class="fig "><a class="zoom" href="../../assets/images/managem/mg-products-1600.webp" data-zoom data-caption="Products &amp; pricing — actions sit beside the records they change." aria-label="Enlarge: Products and pricing list with tabs for variations, components and kits, and actions beside the table"><div class="frame frame--browser"><div class="frame__bar" aria-hidden="true"><i></i><i></i><i></i></div><img class="" src="../../assets/images/managem/mg-products-1600.webp" srcset="../../assets/images/managem/mg-products-1600.webp 1600w, ../../assets/images/managem/mg-products-960.webp 960w" sizes="(min-width: 1024px) 760px, 100vw" width="1600" height="1000" alt="Products and pricing list with tabs for variations, components and kits, and actions beside the table" loading="lazy" decoding="async"></div></a><figcaption>Products & pricing — actions sit beside the records they change.</figcaption></figure></div>
+  <article class="decision card">
+    <div class="decision__text">
+      <p class="decision__num">03</p>
+      <h3 class="decision__title">Production as a pipeline</h3>
+      <dl class="decision__list">
+        <div><dt>Problem</dt><dd>Factory work moves in stages that sales and finance also need to see.</dd></div>
+        <div><dt>Decision</dt><dd>Five stages at a glance: Pending, In build, QC, Ready, Invoiced.</dd></div>
+        <div><dt>Why</dt><dd>It mirrors how the work actually moves.</dd></div>
+      </dl>
+    </div>
+    <div class="decision__media"><figure class="fig fig--screen"><a class="zoom" href="../../assets/images/managem/mg-factory-1600.webp" data-zoom data-caption="Factory dashboard with a five-stage production pipeline" aria-label="Enlarge: Factory dashboard with a five-stage production pipeline"><img src="../../assets/images/managem/mg-factory-1600.webp" srcset="../../assets/images/managem/mg-factory-1600.webp 1600w, ../../assets/images/managem/mg-factory-960.webp 960w" sizes="(min-width: 1120px) 600px, 100vw" width="1600" height="1000" alt="Factory dashboard with a five-stage production pipeline" loading="lazy" decoding="async"></a></figure></div>
   </article>
-  <article class="decision" aria-labelledby="dec-managem-04">
-    <header class="decision__head">
-      <p class="decision__num">Decision 04</p>
-      <h3 class="decision__title" id="dec-managem-04">Show production as a pipeline, not a list</h3>
-    </header>
-    <dl class="decision__grid">
-      <div><dt>The challenge</dt><dd>Factory work moves through clear stages, and people outside production need to know where an order is without opening it.</dd></div>
-      <div><dt>Considerations</dt><dd>A plain table of jobs is complete but makes it hard to see bottlenecks at a glance.</dd></div>
-      <div><dt>My decision</dt><dd>The factory dashboard leads with counts for pending jobs, active builds and work ready to invoice, then a five-stage pipeline: Pending, In build, QC check, Ready, Invoiced.</dd></div>
-      <div><dt>Rationale</dt><dd>The pipeline mirrors how the work actually moves, and the “Not invoiced” count links production straight back to finance.</dd></div>
-    </dl>
-    <div class="decision__evidence"><p class="label">Evidence</p><figure class="fig "><a class="zoom" href="../../assets/images/managem/mg-factory-1600.webp" data-zoom data-caption="Factory — the production pipeline, with recent activity below." aria-label="Enlarge: Factory dashboard with counts for pending, active, ready-to-invoice and completed jobs, a production pipeline and recent activity"><div class="frame frame--browser"><div class="frame__bar" aria-hidden="true"><i></i><i></i><i></i></div><img class="" src="../../assets/images/managem/mg-factory-1600.webp" srcset="../../assets/images/managem/mg-factory-1600.webp 1600w, ../../assets/images/managem/mg-factory-960.webp 960w" sizes="(min-width: 1024px) 760px, 100vw" width="1600" height="1000" alt="Factory dashboard with counts for pending, active, ready-to-invoice and completed jobs, a production pipeline and recent activity" loading="lazy" decoding="async"></div></a><figcaption>Factory — the production pipeline, with recent activity below.</figcaption></figure></div>
-  </article>
-  <article class="decision" aria-labelledby="dec-managem-05">
-    <header class="decision__head">
-      <p class="decision__num">Decision 05</p>
-      <h3 class="decision__title" id="dec-managem-05">Make onboarding a guided, reviewable flow</h3>
-    </header>
-    <dl class="decision__grid">
-      <div><dt>The challenge</dt><dd>Getting a new client running meant weeks of re-typing their customer, product and staff records by hand.</dd></div>
-      <div><dt>Considerations</dt><dd>A fully automatic import would be quicker to demonstrate, but a business owner has to trust what goes into their system. A black box would fail that test.</dd></div>
-      <div><dt>My decision</dt><dd>Take-On: the client uploads their existing documents, records are extracted for review, each one carries a plain-language state, and nothing goes live until the client confirms it and the GEMIS team completes a final check.</dd></div>
-      <div><dt>Rationale</dt><dd>Automation only helps if people can understand, correct and approve what it did. Two human checks keep the client in control of their own data.</dd></div>
-    </dl>
-    <div class="decision__evidence"><p class="label">Evidence</p><div class="duo"><figure class="fig "><a class="zoom" href="../../assets/images/managem/to-06-validation-1600.webp" data-zoom data-caption="Each record is marked verified, needs review or possible duplicate." aria-label="Enlarge: Take-On validation screen summarising records as verified, needing review or possible duplicates"><div class="frame frame--browser"><div class="frame__bar" aria-hidden="true"><i></i><i></i><i></i></div><img class="" src="../../assets/images/managem/to-06-validation-1600.webp" srcset="../../assets/images/managem/to-06-validation-1600.webp 1600w, ../../assets/images/managem/to-06-validation-960.webp 960w" sizes="(min-width: 1024px) 380px, 100vw" width="1600" height="1000" alt="Take-On validation screen summarising records as verified, needing review or possible duplicates" loading="lazy" decoding="async"></div></a><figcaption>Each record is marked verified, needs review or possible duplicate.</figcaption></figure><figure class="fig "><a class="zoom" href="../../assets/images/managem/to-10-confirm-1600.webp" data-zoom data-caption="The client confirms each category before anything goes live." aria-label="Enlarge: Take-On confirmation screen where the client approves each category of data"><div class="frame frame--browser"><div class="frame__bar" aria-hidden="true"><i></i><i></i><i></i></div><img class="" src="../../assets/images/managem/to-10-confirm-1600.webp" srcset="../../assets/images/managem/to-10-confirm-1600.webp 1600w, ../../assets/images/managem/to-10-confirm-960.webp 960w" sizes="(min-width: 1024px) 380px, 100vw" width="1600" height="1000" alt="Take-On confirmation screen where the client approves each category of data" loading="lazy" decoding="async"></div></a><figcaption>The client confirms each category before anything goes live.</figcaption></figure></div>
-          <aside class="ph ph--block" role="note" aria-label="Placeholder: content needed">
-    <p class="ph__label"><span aria-hidden="true">◌</span> Placeholder — content needed</p>
-    <p class="ph__need">Current status of Take-On.</p>
-    <p class="ph__detail">Confirm whether Take-On is live in the product, in development or a design direction, and update this decision’s wording to match.</p>
-  </aside></div>
+  <article class="decision card">
+    <div class="decision__text">
+      <p class="decision__num">04</p>
+      <h3 class="decision__title">Onboarding people can trust</h3>
+      <dl class="decision__list">
+        <div><dt>Problem</dt><dd>New clients waited weeks while their data was re-typed by hand.</dd></div>
+        <div><dt>Decision</dt><dd>Take-On: upload documents, review each extracted record, confirm before anything goes live.</dd></div>
+        <div><dt>Why</dt><dd>Automation only helps if people can check and correct it.</dd></div>
+      </dl>
+    </div>
+    <div class="decision__media"><figure class="fig fig--screen"><a class="zoom" href="../../assets/images/managem/to-06-validation-1600.webp" data-zoom data-caption="Take-On review screen marking records as verified, needs review or duplicate" aria-label="Enlarge: Take-On review screen marking records as verified, needs review or duplicate"><img src="../../assets/images/managem/to-06-validation-1600.webp" srcset="../../assets/images/managem/to-06-validation-1600.webp 1600w, ../../assets/images/managem/to-06-validation-960.webp 960w" sizes="(min-width: 1120px) 600px, 100vw" width="1600" height="1000" alt="Take-On review screen marking records as verified, needs review or duplicate" loading="lazy" decoding="async"></a></figure></div>
   </article></div>
+      </div>
     </section>
-    <section class="cs-section" id="interface" aria-labelledby="interface-h">
-      <header class="cs-section__head">
-        <p class="cs-section__num">06</p>
-        <h2 class="cs-section__title" id="interface-h">Interface design</h2>
-      </header>
-      <div class="cs-section__body">
-        <div class="prose"><p class="lead">The screens below are grouped by workflow. They share one layout: breadcrumbs and global search at the top, the page title and primary action, summary counts, then the work itself.</p></div>
-        <div class="workflow">
-          <h3 class="workflow__title"><span>Sales</span> From a new lead to an open enquiry</h3>
-          <div class="duo">
-            <figure class="fig "><a class="zoom" href="../../assets/images/managem/mg-new-enquiry-1600.webp" data-zoom data-caption="New enquiry — a four-step form with progress at the top." aria-label="Enlarge: New enquiry form, step one of four: customer information"><div class="frame frame--browser"><div class="frame__bar" aria-hidden="true"><i></i><i></i><i></i></div><img class="" src="../../assets/images/managem/mg-new-enquiry-1600.webp" srcset="../../assets/images/managem/mg-new-enquiry-1600.webp 1600w, ../../assets/images/managem/mg-new-enquiry-960.webp 960w" sizes="(min-width: 1024px) 480px, 100vw" width="1600" height="1000" alt="New enquiry form, step one of four: customer information" loading="lazy" decoding="async"></div></a><figcaption>New enquiry — a four-step form with progress at the top.</figcaption></figure>
-            <figure class="fig "><a class="zoom" href="../../assets/images/managem/mg-open-enquiries-1600.webp" data-zoom data-caption="Open enquiries — every lead, its stage and its owner." aria-label="Enlarge: Open enquiries table with status chips and sales reps"><div class="frame frame--browser"><div class="frame__bar" aria-hidden="true"><i></i><i></i><i></i></div><img class="" src="../../assets/images/managem/mg-open-enquiries-1600.webp" srcset="../../assets/images/managem/mg-open-enquiries-1600.webp 1600w, ../../assets/images/managem/mg-open-enquiries-960.webp 960w" sizes="(min-width: 1024px) 480px, 100vw" width="1600" height="1000" alt="Open enquiries table with status chips and sales reps" loading="lazy" decoding="async"></div></a><figcaption>Open enquiries — every lead, its stage and its owner.</figcaption></figure>
-          </div>
+    <section class="cs-section cs-section--dark" id="demo" aria-labelledby="demo-h">
+      <div class="wrap">
+        <h2 class="cs-section__title" id="demo-h">See it working</h2>
+        <div class="cs-section__body">
+        <p class="lead">ManaGEM is live, so it isn’t public. I’m happy to walk you through it with demo data.</p>
+        <div class="btn-row">
+          <a href="mailto:sphamandaxaba@gmail.com?subject=ManaGEM%20walkthrough" class="btn btn--secondary"><span>Request a walkthrough</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+          <a href="../../prototypes/managem.html" class="btn btn--subtle" target="_blank" rel="noopener"><span>Open design prototype</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span class="sr-only"> (opens in a new tab)</span></a>
         </div>
-        <div class="workflow">
-          <h3 class="workflow__title"><span>Operations</span> Building and stocking the order</h3>
-          <div class="duo">
-            <figure class="fig "><a class="zoom" href="../../assets/images/managem/mg-factory-1600.webp" data-zoom data-caption="Factory — jobs by stage." aria-label="Enlarge: Factory production dashboard and pipeline"><div class="frame frame--browser"><div class="frame__bar" aria-hidden="true"><i></i><i></i><i></i></div><img class="" src="../../assets/images/managem/mg-factory-1600.webp" srcset="../../assets/images/managem/mg-factory-1600.webp 1600w, ../../assets/images/managem/mg-factory-960.webp 960w" sizes="(min-width: 1024px) 480px, 100vw" width="1600" height="1000" alt="Factory production dashboard and pipeline" loading="lazy" decoding="async"></div></a><figcaption>Factory — jobs by stage.</figcaption></figure>
-            <figure class="fig "><a class="zoom" href="../../assets/images/managem/mg-stock-1600.webp" data-zoom data-caption="Stock control — value, low-stock alerts and recent movements." aria-label="Enlarge: Stock control dashboard with stock value, low stock items, warehouse capacity and recent movements"><div class="frame frame--browser"><div class="frame__bar" aria-hidden="true"><i></i><i></i><i></i></div><img class="" src="../../assets/images/managem/mg-stock-1600.webp" srcset="../../assets/images/managem/mg-stock-1600.webp 1600w, ../../assets/images/managem/mg-stock-960.webp 960w" sizes="(min-width: 1024px) 480px, 100vw" width="1600" height="1000" alt="Stock control dashboard with stock value, low stock items, warehouse capacity and recent movements" loading="lazy" decoding="async"></div></a><figcaption>Stock control — value, low-stock alerts and recent movements.</figcaption></figure>
-          </div>
         </div>
-        <div class="workflow">
-          <h3 class="workflow__title"><span>Admin</span> The people doing the work</h3>
-          <figure class="fig "><a class="zoom" href="../../assets/images/managem/mg-staff-1600.webp" data-zoom data-caption="Staff records — department and employment type use the same chip pattern as sales and finance." aria-label="Enlarge: Staff members table with department, employment type and job title"><div class="frame frame--browser"><div class="frame__bar" aria-hidden="true"><i></i><i></i><i></i></div><img class="" src="../../assets/images/managem/mg-staff-1600.webp" srcset="../../assets/images/managem/mg-staff-1600.webp 1600w, ../../assets/images/managem/mg-staff-960.webp 960w" sizes="(min-width: 1280px) 960px, 100vw" width="1600" height="1000" alt="Staff members table with department, employment type and job title" loading="lazy" decoding="async"></div></a><figcaption>Staff records — department and employment type use the same chip pattern as sales and finance.</figcaption></figure>
-        </div></div>
-    </section>
-    <section class="cs-section" id="demo" aria-labelledby="demo-h">
-      <header class="cs-section__head">
-        <p class="cs-section__num">07</p>
-        <h2 class="cs-section__title" id="demo-h">Live product demonstration</h2>
-      </header>
-      <div class="cs-section__body">
-        <div class="demo">
-          <div class="demo__media">
-            <figure class="fig "><a class="zoom" href="../../assets/images/managem/mg-login-1600.webp" data-zoom data-caption="The ManaGEM sign-in screen." aria-label="Enlarge: ManaGEM sign-in screen with the line “Run your business with clarity.”"><div class="frame frame--browser"><div class="frame__bar" aria-hidden="true"><i></i><i></i><i></i></div><img class="" src="../../assets/images/managem/mg-login-1600.webp" srcset="../../assets/images/managem/mg-login-1600.webp 1600w, ../../assets/images/managem/mg-login-960.webp 960w" sizes="(min-width: 1024px) 640px, 100vw" width="1600" height="1000" alt="ManaGEM sign-in screen with the line “Run your business with clarity.”" loading="lazy" decoding="async"></div></a><figcaption>The ManaGEM sign-in screen.</figcaption></figure>
-          </div>
-          <div class="demo__text prose">
-            <p class="label">Walkthrough</p>
-            <h3 class="h3">See ManaGEM working</h3>
-            <p>ManaGEM is a live product, so the full system isn’t public. I’m happy to walk you through it on a call — the navigation, the sales-to-invoice workflow and the decisions behind them — using demo data.</p>
-            <div class="btn-row">
-              <a href="mailto:sphamandaxaba@gmail.com?subject=ManaGEM%20walkthrough%20request" class="btn btn--primary"><span>Request a product walkthrough</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
-              <a href="../../prototypes/managem.html" class="btn btn--secondary" target="_blank" rel="noopener"><span>Open the design prototype</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg><span class="sr-only"> (opens in a new tab)</span></a>
-            </div>
-            <p class="small muted">The design prototype is a high-fidelity, partly interactive model of the product with demo data. Some actions show the pattern without carrying it out.</p>
-          </div>
-        </div>
-        <aside class="ph ph--block" role="note" aria-label="Placeholder: content needed">
-    <p class="ph__label"><span aria-hidden="true">◌</span> Placeholder — content needed</p>
-    <p class="ph__need">An approved demonstration of the live product.</p>
-    <p class="ph__detail">Supply either a public or approved demo link, or a short screen recording (MP4/WebM, under 60 seconds, demo data only). Never use a client’s data.</p>
-  </aside></div>
+      </div>
     </section>
     <section class="cs-section" id="outcome" aria-labelledby="outcome-h">
-      <header class="cs-section__head">
-        <p class="cs-section__num">08</p>
-        <h2 class="cs-section__title" id="outcome-h">Outcome and reflection</h2>
-      </header>
-      <div class="cs-section__body">
-        <div class="split">
-          <div class="prose">
-            <h3 class="h4">What was delivered</h3>
-            <ul>
-              <li>An information architecture and navigation model covering customers, sales, operations and admin.</li>
-              <li>Designs for the core workflows, from a new enquiry through production, stock and invoicing.</li>
-              <li>One set of shared patterns — search-first lists, plain-language status, contextual actions, step-by-step forms.</li>
-              <li>The Take-On onboarding flow and the design system used across both.</li>
-            </ul>
-          </div>
-          <div class="prose">
-            <h3 class="h4">What I learned</h3>
-            <p>I started out treating this as an interface update and finished treating it as a problem of trust and structure. People don’t need more features on screen; they need to know where they are, what state their work is in and what happens next.</p>
-            <p>Enterprise design is negotiated. The constraints — a small engineering team, new modules phasing in next to older ones — pushed me towards a smaller set of patterns that work everywhere, which turned out to be the most useful thing I designed.</p>
-            <h3 class="h4">What I’d do next</h3>
-            <p>Watch people use the product with their own work: how they find things, where the status language helps or confuses, and how long it takes a new client to get running.</p>
-          </div>
+      <div class="wrap">
+        <h2 class="cs-section__title" id="outcome-h">Outcome</h2>
+        <div class="cs-section__body">
+        <ul class="list" role="list"><li>A navigation model covering customers, sales, operations and admin</li><li>Core workflows from enquiry to invoice</li><li>One shared pattern library and design system</li></ul>
+        <p class="quote">“People don’t need more on screen. They need to know where they are, what state their work is in, and what happens next.”</p>
         </div>
-        <aside class="ph ph--block" role="note" aria-label="Placeholder: content needed">
-    <p class="ph__label"><span aria-hidden="true">◌</span> Placeholder — content needed</p>
-    <p class="ph__need">Verified outcome for ManaGEM.</p>
-    <p class="ph__detail">Confirm the launch date and what is live today. Add usage figures or feedback only if they can be verified and shared.</p>
-  </aside></div>
-    </section></div>
-    </div>
-    <nav class="cs-next" aria-label="Next case study">
-      <a class="cs-next__link wrap" href="../../work/wastemart/">
-        <span class="label">Next case study · 02</span>
-        <span class="cs-next__name">WasteMart Mobile App</span>
-        <span class="cs-next__title">Designing a focused mobile experience for WasteMart.</span>
-        <span class="cs-next__cta">Explore case study <svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+      </div>
+    </section>
+    <nav class="wrap cs-next" aria-label="Next case study">
+      <a class="cs-next__card card card--dark" href="../../work/wastemart/">
+        <span class="cs-next__label">Next case study</span>
+        <span class="cs-next__name">WasteMart</span>
+        <span class="btn btn--secondary" aria-hidden="true"><span>Explore</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span>
       </a>
     </nav>
   </article>
 </main>
 
-  <footer class="site-footer">
-    <div class="wrap site-footer__grid">
-      <div class="site-footer__sign">
-        <p class="site-footer__name">Sphamandla Xaba</p>
-        <p class="muted">Product Designer · UI/UX<br>Johannesburg, South Africa</p>
+  <footer class="footer">
+    <div class="wrap footer__grid">
+      <div>
+        <p class="footer__name">Sphamandla Xaba</p>
+        <p class="footer__muted">Product Designer · UI/UX<br>Johannesburg, South Africa</p>
       </div>
-      <nav class="site-footer__nav" aria-label="Footer">
-        <p class="label">Work</p>
+      <nav aria-label="Work">
+        <p class="footer__head">Work</p>
         <ul role="list">
           <li><a href="../../work/managem/">ManaGEM ERP</a></li>
-          <li><a href="../../work/wastemart/">WasteMart Mobile App</a></li>
-          <li><a href="../../work/gemis/">GEMIS Corporate Website</a></li>
+          <li><a href="../../work/wastemart/">WasteMart</a></li>
+          <li><a href="../../work/gemis/">GEMIS Website</a></li>
         </ul>
       </nav>
-      <nav class="site-footer__nav" aria-label="Contact">
-        <p class="label">Contact</p>
+      <nav aria-label="Contact">
+        <p class="footer__head">Contact</p>
         <ul role="list">
-          <li><a href="mailto:sphamandaxaba@gmail.com">sphamandaxaba@gmail.com</a></li>
+          <li><a href="mailto:sphamandaxaba@gmail.com">Email</a></li>
           <li><a href="https://www.linkedin.com/in/sphamandla-xaba-ba1602287/" target="_blank" rel="noopener">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a></li>
-          <li><a href="../../assets/docs/Sphamandla-Xaba-CV.pdf" download>Download CV</a></li>
+          <li><a href="../../assets/docs/Sphamandla-Xaba-CV.pdf" download>CV (PDF)</a></li>
         </ul>
       </nav>
     </div>
-    <div class="wrap site-footer__base">
-      <p class="muted">© 2026 Sphamandla Xaba. Designed and built by Sphamandla Xaba.</p>
-      <a class="muted" href="#top">Back to top ↑</a>
+    <div class="wrap footer__base">
+      <p>© 2026 Sphamandla Xaba</p>
+      <a href="#top">Back to top</a>
     </div>
   </footer>
   <dialog class="viewer" data-viewer aria-label="Image viewer">
     <form method="dialog" class="viewer__bar">
       <p class="viewer__caption" data-viewer-caption></p>
-      <button class="viewer__close" type="submit" aria-label="Close image viewer">Close <span aria-hidden="true">×</span></button>
+      <button class="btn btn--secondary" type="submit">Close</button>
     </form>
     <div class="viewer__stage"><img data-viewer-img alt=""></div>
   </dialog>
