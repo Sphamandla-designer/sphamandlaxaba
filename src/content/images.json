@@ -1,0 +1,241 @@
+{
+"managem/mg-dashboard": {
+"w": 2268,
+"h": 1418,
+"sizes": [
+1600,
+960
+]
+},
+"managem/mg-open-enquiries": {
+"w": 2268,
+"h": 1418,
+"sizes": [
+1600,
+960
+]
+},
+"managem/mg-new-enquiry": {
+"w": 2268,
+"h": 1418,
+"sizes": [
+1600,
+960
+]
+},
+"managem/mg-invoices": {
+"w": 2268,
+"h": 1418,
+"sizes": [
+1600,
+960
+]
+},
+"managem/mg-products": {
+"w": 2268,
+"h": 1418,
+"sizes": [
+1600,
+960
+]
+},
+"managem/mg-stock": {
+"w": 2268,
+"h": 1418,
+"sizes": [
+1600,
+960
+]
+},
+"managem/mg-factory": {
+"w": 2268,
+"h": 1418,
+"sizes": [
+1600,
+960
+]
+},
+"managem/mg-staff": {
+"w": 2268,
+"h": 1418,
+"sizes": [
+1600,
+960
+]
+},
+"managem/mg-login": {
+"w": 2268,
+"h": 1418,
+"sizes": [
+1600,
+960
+]
+},
+"managem/to-04-upload": {
+"w": 2268,
+"h": 1418,
+"sizes": [
+1600,
+960
+]
+},
+"managem/to-06-validation": {
+"w": 2268,
+"h": 1418,
+"sizes": [
+1600,
+960
+]
+},
+"managem/to-10-confirm": {
+"w": 2268,
+"h": 1418,
+"sizes": [
+1600,
+960
+]
+},
+"managem/to-12-admin": {
+"w": 2268,
+"h": 1418,
+"sizes": [
+1600,
+960
+]
+},
+"managem/mg-sidebar": {
+"w": 435,
+"h": 1418,
+"sizes": [
+435
+]
+},
+"wastemart/01-login": {
+"w": 780,
+"h": 1688,
+"sizes": [
+600
+]
+},
+"wastemart/04-startday-ready": {
+"w": 780,
+"h": 1688,
+"sizes": [
+600
+]
+},
+"wastemart/06-jobs": {
+"w": 780,
+"h": 1688,
+"sizes": [
+600
+]
+},
+"wastemart/07-job-detail": {
+"w": 780,
+"h": 1688,
+"sizes": [
+600
+]
+},
+"wastemart/08-checkin-confirm": {
+"w": 780,
+"h": 1688,
+"sizes": [
+600
+]
+},
+"wastemart/09-capture-top": {
+"w": 780,
+"h": 1688,
+"sizes": [
+600
+]
+},
+"wastemart/10-bin-mismatch": {
+"w": 780,
+"h": 1688,
+"sizes": [
+600
+]
+},
+"wastemart/11-scan": {
+"w": 780,
+"h": 1688,
+"sizes": [
+600
+]
+},
+"wastemart/12-signoff": {
+"w": 780,
+"h": 1688,
+"sizes": [
+600
+]
+},
+"wastemart/14-manifest-saved": {
+"w": 780,
+"h": 1688,
+"sizes": [
+600
+]
+},
+"wastemart/17-activity": {
+"w": 780,
+"h": 1688,
+"sizes": [
+600
+]
+},
+"gemis-studio/gs-01-hero": {
+"w": 2160,
+"h": 1350,
+"sizes": [
+1600,
+960
+]
+},
+"gemis-studio/gs-03-ladder": {
+"w": 2160,
+"h": 1350,
+"sizes": [
+1600,
+960
+]
+},
+"finos/finos-hero": {
+"w": 2200,
+"h": 1802,
+"sizes": [
+1200
+]
+},
+"about/portrait-spha": {
+"w": 1200,
+"h": 1243,
+"sizes": [
+900
+]
+},
+"wastemart/16-jobs-progress": {
+"w": 780,
+"h": 1688,
+"sizes": [
+600
+]
+},
+"wastemart/18-shift": {
+"w": 780,
+"h": 1688,
+"sizes": [
+600
+]
+},
+"wastemart/19-endday-review": {
+"w": 780,
+"h": 1688,
+"sizes": [
+600
+]
+}
+}

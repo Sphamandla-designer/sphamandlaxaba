@@ -1,8 +1,5 @@
-# Crawlers only read robots.txt at the root of a host. This site is a GitHub
-# Pages project site (served under /sphamandlaxaba/), so this file is not
-# consulted by search engines at its current address. It is kept so the
-# sitemap location is documented; submit the sitemap in Google Search Console.
+# On a GitHub Pages project site this file is not at the host root, so
+# crawlers will not read it. It applies as-is if the site moves to its own domain.
 User-agent: *
 Allow: /
-
 Sitemap: https://sphamandla-designer.github.io/sphamandlaxaba/sitemap.xml
