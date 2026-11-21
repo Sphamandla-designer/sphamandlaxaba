@@ -66,13 +66,20 @@ sitemap.xml robots.txt CONTENT-NEEDED.md                                 ← gen
 
 ## ManaGEM case study
 
-`work/managem/` is the flagship case study and has its own editorial layout:
-`case-managem.mjs` exports a `render()` that `renderCase` uses instead of the
-generic template. Its screenshots in `assets/images/managem/` are captured from
-the two design prototypes (`prototypes/managem.html` and
-`ManaGem Take-On (Standalone).html`) at 1440×900 @2x and show demo data only.
-Claims on the page are limited to the redesign brief and what the
-prototypes show; open questions are logged in `CONTENT-NEEDED.md`.
+ManaGEM has a two-level reading experience:
+
+| Route | Source | Purpose |
+| --- | --- | --- |
+| `work/managem/` | `src/content/case-managem.mjs` | Quick case study (default, ~3 min): role, challenge, four decisions with evidence, Take-On, interface showcase, status |
+| `work/managem/full/` | `src/content/case-managem-full.mjs` | Full case study (~8 min): context, workflow analysis, annotated screen anatomy, all six decisions, full Take-On journey, more screens, reflection |
+
+Both pages share components from `src/content/managem-parts.mjs` and styles
+from `src/styles/04-case-managem.css` (quick-only rules are prefixed `mq-`,
+full-only `mf-`). The full route is registered in `extraPages` in
+`src/build.mjs`. Screenshots in `assets/images/managem/` and recordings in
+`assets/video/managem/` are captured from the two design prototypes and show
+demo data only. Claims are limited to the redesign brief and what the
+prototypes show; open questions are listed in `CONTENT-NEEDED.md`.
 
 ## Design system
 
