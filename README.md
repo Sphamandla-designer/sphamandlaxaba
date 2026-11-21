@@ -28,6 +28,7 @@ node src/build.mjs
 | Project titles, status, summaries, roles, “More work” | `src/content/projects.mjs` |
 | Experience, education, tools | `src/content/experience.mjs` |
 | A case study's sections | `src/content/case-managem.mjs`, `case-wastemart.mjs`, `case-gemis.mjs` |
+| The ManaGEM case study's layout and styles | `render()` in `src/content/case-managem.mjs`, `src/styles/04-case-managem.css` |
 | Homepage, About, Contact | `src/pages/*.mjs` |
 | Shared components (buttons, figures, placeholders, header, footer) | `src/layout.mjs`, `src/case.mjs` |
 | Styles and design tokens | `src/styles/01-tokens.css` … `03-components.css` (built into `assets/css/site.css`) |
@@ -62,6 +63,17 @@ assets/docs/         CV (PDF)
 src/                 build script, content, components, styles
 sitemap.xml robots.txt CONTENT-NEEDED.md                                 ← generated
 ```
+
+## ManaGEM case study
+
+`work/managem/` is the flagship case study and has its own editorial layout:
+`case-managem.mjs` exports a `render()` that `renderCase` uses instead of the
+generic template. Its screenshots in `assets/images/managem/` are captured from
+the two design prototypes (`prototypes/managem.html` and
+`ManaGem Take-On (Standalone).html`) at 1440×900 @2x and show demo data only.
+It is the one page that uses a restrained red accent (`--accent`, scoped to
+`.mx`). Claims on the page are limited to the redesign brief and what the
+prototypes show; open questions are logged in `CONTENT-NEEDED.md`.
 
 ## Design system
 

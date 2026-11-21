@@ -39,9 +39,9 @@ const casePages = projects.map((p) => ({
   navKey: 'work',
   slug: p.slug,
   title: `${p.name} — Case study`,
+  ogImage: p.ogImage,
   description: p.description,
   bodyClass: `page-case page-case--${p.slug}`,
-  ogImage: undefined,
   render: (ctx) => renderCase(ctx, caseContent[p.slug]),
 }));
 
