@@ -446,5 +446,119 @@
 1600,
 960
 ]
+},
+"managem/legacy-customers": {
+"w": 1892,
+"h": 899,
+"sizes": [
+1600,
+960
+]
+},
+"managem/legacy-dashboard": {
+"w": 1900,
+"h": 886,
+"sizes": [
+1600,
+960
+]
+},
+"managem/legacy-invoices": {
+"w": 1896,
+"h": 896,
+"sizes": [
+1600,
+960
+]
+},
+"managem/legacy-products": {
+"w": 1898,
+"h": 902,
+"sizes": [
+1600,
+960
+]
+},
+"managem/legacy-projects": {
+"w": 1890,
+"h": 900,
+"sizes": [
+1600,
+960
+]
+},
+"managem/legacy-purchase-orders": {
+"w": 1896,
+"h": 892,
+"sizes": [
+1600,
+960
+]
+},
+"managem/legacy-receipts": {
+"w": 1902,
+"h": 897,
+"sizes": [
+1600,
+960
+]
+},
+"managem/legacy-suppliers": {
+"w": 1897,
+"h": 904,
+"sizes": [
+1600,
+960
+]
+},
+"managem/legacy-warranties": {
+"w": 1916,
+"h": 899,
+"sizes": [
+1600,
+960
+]
+},
+"managem/legacy-nav": {
+"w": 430,
+"h": 1608,
+"sizes": [
+430
+]
+},
+"managem/pat-summary": {
+"w": 1600,
+"h": 140,
+"sizes": [
+1600
+]
+},
+"managem/pat-filters": {
+"w": 1600,
+"h": 80,
+"sizes": [
+1600
+]
+},
+"managem/pat-table": {
+"w": 1600,
+"h": 294,
+"sizes": [
+1600
+]
+},
+"managem/pat-stepper": {
+"w": 1600,
+"h": 112,
+"sizes": [
+1600
+]
+},
+"managem/pat-form": {
+"w": 1600,
+"h": 481,
+"sizes": [
+1600
+]
 }
 }
