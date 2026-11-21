@@ -35,6 +35,9 @@ export function renderCase(ctx, content) {
   const p = projects.find((x) => x.slug === content.slug);
   const next = projects[(projects.indexOf(p) + 1) % projects.length];
 
+  // A case study can supply its own layout (see case-managem.mjs).
+  if (content.render) return content.render(ctx, { p, next });
+
   const sections = content.sections
     .map(
       (s) => html`

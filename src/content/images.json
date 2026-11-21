@@ -1,115 +1,4 @@
 {
-"managem/mg-dashboard": {
-"w": 2268,
-"h": 1418,
-"sizes": [
-1600,
-960
-]
-},
-"managem/mg-open-enquiries": {
-"w": 2268,
-"h": 1418,
-"sizes": [
-1600,
-960
-]
-},
-"managem/mg-new-enquiry": {
-"w": 2268,
-"h": 1418,
-"sizes": [
-1600,
-960
-]
-},
-"managem/mg-invoices": {
-"w": 2268,
-"h": 1418,
-"sizes": [
-1600,
-960
-]
-},
-"managem/mg-products": {
-"w": 2268,
-"h": 1418,
-"sizes": [
-1600,
-960
-]
-},
-"managem/mg-stock": {
-"w": 2268,
-"h": 1418,
-"sizes": [
-1600,
-960
-]
-},
-"managem/mg-factory": {
-"w": 2268,
-"h": 1418,
-"sizes": [
-1600,
-960
-]
-},
-"managem/mg-staff": {
-"w": 2268,
-"h": 1418,
-"sizes": [
-1600,
-960
-]
-},
-"managem/mg-login": {
-"w": 2268,
-"h": 1418,
-"sizes": [
-1600,
-960
-]
-},
-"managem/to-04-upload": {
-"w": 2268,
-"h": 1418,
-"sizes": [
-1600,
-960
-]
-},
-"managem/to-06-validation": {
-"w": 2268,
-"h": 1418,
-"sizes": [
-1600,
-960
-]
-},
-"managem/to-10-confirm": {
-"w": 2268,
-"h": 1418,
-"sizes": [
-1600,
-960
-]
-},
-"managem/to-12-admin": {
-"w": 2268,
-"h": 1418,
-"sizes": [
-1600,
-960
-]
-},
-"managem/mg-sidebar": {
-"w": 435,
-"h": 1418,
-"sizes": [
-435
-]
-},
 "wastemart/01-login": {
 "w": 780,
 "h": 1688,
@@ -242,6 +131,317 @@
 "mockups/gemis-studio": {
 "w": 1620,
 "h": 1215,
+"sizes": [
+1600,
+960
+]
+},
+"managem/mg-customers": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/mg-dashboard": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/mg-debtors": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/mg-detail-attention": {
+"w": 2400,
+"h": 580,
+"sizes": [
+1600,
+960
+]
+},
+"managem/mg-detail-pipeline": {
+"w": 2400,
+"h": 600,
+"sizes": [
+1600,
+960
+]
+},
+"managem/mg-detail-review": {
+"w": 2400,
+"h": 1180,
+"sizes": [
+1600,
+960
+]
+},
+"managem/mg-detail-sage": {
+"w": 2400,
+"h": 840,
+"sizes": [
+1600,
+960
+]
+},
+"managem/mg-enquiry-review": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/mg-factory": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/mg-invoices": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/mg-login": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/mg-new-enquiry": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/mg-open-enquiries": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/mg-products": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/mg-projects": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/mg-reports": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/mg-sage-invoices": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/mg-sidebar": {
+"w": 480,
+"h": 2480,
+"sizes": [
+480
+]
+},
+"managem/mg-staff": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/mg-stock-alerts": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/mg-stock": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/mg-warranties": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/to-01-welcome": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/to-02-consent": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/to-02-trust": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/to-03-profile": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/to-04-upload": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/to-05-extraction": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/to-06-validation": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/to-07-customers": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/to-07-duplicate": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/to-07-lowconf": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/to-07-record": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/to-08-products": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/to-09-staff": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/to-10-confirm": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/to-10-declaration": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/to-11-complete": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/to-12-admin": {
+"w": 2880,
+"h": 1800,
 "sizes": [
 1600,
 960

@@ -7,13 +7,11 @@ nothing missing is presented as fact. Supply the item, replace the
 
 ## ManaGEM ERP
 
-- [ ] **ManaGEM: who uses it day to day, and in which industries**
-- [ ] **ManaGEM: decisions made jointly, and who built what**
-- [ ] **ManaGEM: confirm whether Take-On is live, in development or a design direction**
-- [ ] **ManaGEM: approved demo link or short screen recording (demo data only)**
-- [ ] **ManaGEM: verified outcome — launch date, and usage or feedback if it can be shared**
-- [ ] **ManaGEM: team and collaborators**
-- [ ] **ManaGEM: timeline and launch date**
+- [ ] **ManaGEM: team, collaborators and project timeline** — left off the page until they can be confirmed.
+- [ ] **ManaGEM: screenshots of the original (pre-redesign) interface** — needed for annotated "before" images and before-and-after comparisons. Neither supplied file contains the legacy UI.
+- [ ] **ManaGEM: designed save-confirmation states (saving, saved, error)** — the supplied prototype shows the review-then-commit pattern but contains no explicit saved/toast state, so none is shown.
+- [ ] **ManaGEM: which parts of the core redesign are in production** — the page currently says "design complete" and makes no production claim. Confirm before stating anything stronger.
+- [ ] **ManaGEM: confirm the sample company name in the Take-On prototype ("SBS Waterproofing") may be shown publicly** — it appears in the Take-On screenshots as sample data.
 
 ## WasteMart
 

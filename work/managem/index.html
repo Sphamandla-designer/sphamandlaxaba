@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ManaGEM ERP — Case study — Sphamandla Xaba</title>
-<meta name="description" content="Case study: designing the ManaGEM ERP — navigation, plain-language status and guided workflows for trade businesses.">
+<meta name="description" content="Case study: redesigning the ManaGEM ERP — navigation, information and workflows — and designing Take-On, a guided, AI-assisted client onboarding prototype.">
 <link rel="canonical" href="https://sphamandla-designer.github.io/sphamandlaxaba/work/managem/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="ManaGEM ERP — Case study — Sphamandla Xaba">
-<meta property="og:description" content="Case study: designing the ManaGEM ERP — navigation, plain-language status and guided workflows for trade businesses.">
+<meta property="og:description" content="Case study: redesigning the ManaGEM ERP — navigation, information and workflows — and designing Take-On, a guided, AI-assisted client onboarding prototype.">
 <meta property="og:url" content="https://sphamandla-designer.github.io/sphamandlaxaba/work/managem/">
 <meta property="og:image" content="https://sphamandla-designer.github.io/sphamandlaxaba/assets/images/og-default.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -37,125 +37,658 @@
   </header>
 <main id="main" tabindex="-1">
 
-  <article class="case">
-    <header class="cs-hero wrap">
-      <a class="back" href="../../#work">← Selected work</a>
-      <p class="cs-hero__cat">Enterprise · ERP · SaaS</p>
-      <h1 class="cs-hero__title">Designing an ERP around how a business actually runs.</h1>
-      <p class="cs-hero__lede">ManaGEM is an ERP for trade businesses — from first enquiry to paid invoice. My job: make a product with many moving parts feel like one simple tool.</p>
-      <dl class="meta meta--row"><div><dt>Role</dt><dd>Owned most UX/UI and product design decisions</dd></div><div><dt>Platform</dt><dd>Web application</dd></div><div><dt>Status</dt><dd><span class="status status--live"><span class="status__mark" aria-hidden="true"></span>Live product</span></dd></div></dl>
-    </header>
-    <div class="cs-cover wrap"><figure class="fig fig--mockup"><a class="zoom" href="../../assets/images/mockups/managem-1600.webp" data-zoom data-caption="ManaGEM dashboard shown on a laptop" aria-label="Enlarge: ManaGEM dashboard shown on a laptop"><img src="../../assets/images/mockups/managem-1600.webp" srcset="../../assets/images/mockups/managem-1600.webp 1600w, ../../assets/images/mockups/managem-960.webp 960w" sizes="(min-width: 1200px) 1136px, 100vw" width="1600" height="1200" alt="ManaGEM dashboard shown on a laptop" fetchpriority="high" decoding="async"></a></figure></div>
+  <article class="case mx">
     
-    <section class="cs-section" id="context" aria-labelledby="context-h">
+  <header class="mx-hero wrap">
+    <a class="back" href="../../#work">← Selected work</a>
+    <p class="mx-eyebrow">Case study <span aria-hidden="true">·</span> Enterprise ERP <span aria-hidden="true">·</span> Product redesign</p>
+    <h1 class="mx-title">Reimagining ManaGEM</h1>
+    <p class="mx-sub">Redesigning an established business management platform, simplifying complex workflows, and designing a more structured approach to client onboarding.</p>
+    <div class="btn-row">
+      <a href="#overview" class="btn btn--primary"><span>Read the case study</span></a>
+      <a href="../../prototypes/managem.html" class="btn btn--secondary" target="_blank" rel="noopener"><span>Open the prototype</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span class="sr-only"> (opens in a new tab)</span></a>
+    </div>
+    <dl class="mx-herometa">
+      <div><dt>My role</dt><dd>Product Design, UX/UI Design, Workflow Redesign</dd></div>
+      <div><dt>Organisation</dt><dd>GEMIS</dd></div>
+      <div><dt>Project type</dt><dd>Existing product redesign and onboarding experience design</dd></div>
+      <div><dt>Status</dt><dd><span class="status status--live"><span class="status__mark" aria-hidden="true"></span>Core redesign: designed</span><span class="status status--progress"><span class="status__mark" aria-hidden="true"></span>Take-On: prototype complete, development underway</span></dd></div>
+    </dl>
+  </header>
+  <div class="mx-stage">
+    <div class="wrap">
+      <figure class="fig mx-shot mx-shot--framed">
+    <div class="mx-chrome"><div class="mx-chrome__bar" aria-hidden="true"><i></i><i></i><i></i></div><a class="zoom" href="../../assets/images/managem/mg-dashboard-1600.webp" data-zoom data-caption="The redesigned dashboard — the first screen a user sees after signing in." aria-label="Enlarge: The redesigned ManaGEM dashboard: grouped navigation on the left, a messages banner, four headline figures, a sales summary chart and current projects"><img src="../../assets/images/managem/mg-dashboard-1600.webp" srcset="../../assets/images/managem/mg-dashboard-1600.webp 1600w, ../../assets/images/managem/mg-dashboard-960.webp 960w" sizes="(min-width: 1264px) 1200px, 100vw" width="1600" height="1000" alt="The redesigned ManaGEM dashboard: grouped navigation on the left, a messages banner, four headline figures, a sales summary chart and current projects" fetchpriority="high" decoding="async"></a></div>
+    <figcaption><span>The redesigned dashboard — the first screen a user sees after signing in.</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+    </div>
+  </div>
+    <nav class="mx-chapters" aria-label="Case study sections" data-chapters>
       <div class="wrap">
-        <h2 class="cs-section__title" id="context-h">Context</h2>
-        <div class="cs-section__body">
-        <p class="lead">Trade businesses run one chain: enquiry, quote, production, stock, invoice, payment. ManaGEM puts that chain in one system.</p>
-        
-  <ol class="flow" aria-label="The business chain"><li>Customer</li><li>Enquiry &amp; quote</li><li>Production</li><li>Stock</li><li>Invoice</li><li>Payment</li></ol>
+        <p class="mx-chapters__name" aria-hidden="true">ManaGEM</p>
+        <ol role="list"><li><a href="#overview">Overview</a></li><li><a href="#product">Product</a></li><li><a href="#challenge">Challenge</a></li><li><a href="#role">My role</a></li><li><a href="#analysis">Analysis</a></li><li><a href="#core">Core redesign</a></li><li><a href="#takeon">Take-On</a></li><li><a href="#decisions">UX decisions</a></li><li><a href="#screens">Screens</a></li><li><a href="#status">Status</a></li><li><a href="#reflection">Reflection</a></li></ol>
+        <a class="btn btn--primary mx-chapters__cta" href="../../prototypes/managem.html" target="_blank" rel="noopener">Prototype<span class="sr-only"> (opens in a new tab)</span></a>
+      </div>
+      <span class="mx-progress" aria-hidden="true" data-progress></span>
+    </nav>
+    
+  <section class="mx-sec" id="overview" aria-labelledby="overview-h" data-chapter>
+    <div class="wrap">
+    
+  <header class="mx-head">
+    <p class="mx-kicker"><span class="mx-kicker__n">01</span>Project overview</p>
+    <div class="mx-head__main">
+      <h2 class="mx-h2" id="overview-h">A substantial redesign of a product that already existed — not a new product.</h2>
+      
+    </div>
+  </header>
+    <div class="mx-split">
+      <div class="mx-brief">
+        <div>
+          <h3 class="mx-label">What it is</h3>
+          <p>ManaGEM is a business management (ERP) platform developed by GEMIS. It grew from a template bought around 2015 into a system that other businesses could run on.</p>
+        </div>
+        <div>
+          <h3 class="mx-label">The problem</h3>
+          <p>The original experience had become hard for new clients to understand and navigate, and bringing a new client onto the platform depended on collecting and capturing their information by hand.</p>
+        </div>
+        <div>
+          <h3 class="mx-label">What I did</h3>
+          <p>I rethought the product screen by screen and workflow by workflow, redesigned its interface, and designed Take-On — an AI-assisted onboarding experience for new clients.</p>
         </div>
       </div>
-    </section>
-    <section class="cs-section" id="role" aria-labelledby="role-h">
-      <div class="wrap">
-        <h2 class="cs-section__title" id="role-h">My role</h2>
-        <div class="cs-section__body">
-        <p class="lead">Owned most UX/UI and product design decisions.</p>
-        <ul class="list" role="list"><li>Information architecture and navigation</li><li>Shared patterns: lists, tables, status, forms, dashboards</li><li>Core workflows — enquiries, invoicing, factory, stock, staff</li><li>Take-On, the guided onboarding flow</li><li>The design system the team builds from</li></ul>
-        <p class="muted">Reviewed with the product owner, onboarding team and director. Built by the engineering team.</p>
+      <dl class="mx-facts">
+        <div><dt>Product</dt><dd>ManaGEM</dd></div>
+        <div><dt>Organisation</dt><dd>GEMIS</dd></div>
+        <div><dt>Project</dt><dd>ERP product redesign and onboarding experience design</dd></div>
+        <div><dt>My role</dt><dd>Product Design, UX/UI Design, Workflow Redesign</dd></div>
+        <div><dt>Scope</dt><dd>Existing product experience, navigation, interface, workflows, and the Take-On onboarding prototype</dd></div>
+        <div><dt>Take-On status</dt><dd>UX/UI prototype completed; development underway</dd></div>
+      </dl>
+    </div>
+    </div>
+  </section>
+    
+  <section class="mx-sec mx-sec--soft" id="product" aria-labelledby="product-h" data-chapter>
+    <div class="wrap">
+    
+  <header class="mx-head">
+    <p class="mx-kicker"><span class="mx-kicker__n">02</span>Understanding the product</p>
+    <div class="mx-head__main">
+      <h2 class="mx-h2" id="product-h">One platform. Multiple connected business workflows.</h2>
+      <p class="mx-intro">ManaGEM follows a piece of work from the first enquiry to the final payment. Each stage belongs to a different part of the business, but they all describe the same job — which is why the product needs careful information architecture rather than a collection of separate screens.</p>
+    </div>
+  </header>
+    <ol class="mx-flow" role="list" aria-label="How work moves through ManaGEM">
+      <li><span class="mx-flow__n">01</span><strong>Enquiry</strong><span>A lead is captured and tracked through the sales pipeline.</span></li><li><span class="mx-flow__n">02</span><strong>Quote</strong><span>The enquiry is priced and quoted from the product catalogue.</span></li><li><span class="mx-flow__n">03</span><strong>Job</strong><span>Accepted work becomes a project, or a build in the factory.</span></li><li><span class="mx-flow__n">04</span><strong>Stock</strong><span>Materials are purchased, stored, moved and dispatched.</span></li><li><span class="mx-flow__n">05</span><strong>Invoice</strong><span>Completed work is billed and passed to accounting.</span></li><li><span class="mx-flow__n">06</span><strong>Payment</strong><span>Outstanding balances are followed up in debtors.</span></li>
+    </ol>
+    <div class="mx-shared">
+      <p class="mx-label">Shared by every stage</p>
+      <ul role="list"><li>Customers and contacts</li><li>Products and pricing</li><li>Staff records</li><li>Reports</li><li>Accounting sync (Sage)</li></ul>
+    </div>
+    <p class="mx-aside">A record created in one stage is read in the next. If an enquiry, a quote or an invoice is hard to find or unclear in one place, the confusion travels down the chain.</p></div>
+  </section>
+    
+  <section class="mx-sec mx-sec--band" id="challenge" aria-labelledby="challenge-h" data-chapter>
+    <div class="wrap">
+    
+  <header class="mx-head">
+    <p class="mx-kicker"><span class="mx-kicker__n">03</span>The challenge</p>
+    <div class="mx-head__main">
+      <h2 class="mx-h2" id="challenge-h">The brief was not to make the platform look better. It was to make it easier to understand.</h2>
+      
+    </div>
+  </header>
+    <ol class="mx-themes" role="list">
+      <li><span class="mx-themes__n" aria-hidden="true">01</span><h3 class="mx-h3">Complexity</h3><p>The existing system was difficult for new clients to understand and navigate, and it carried features that made the experience more complicated than it needed to be.</p></li><li><span class="mx-themes__n" aria-hidden="true">02</span><h3 class="mx-h3">Operational clarity</h3><p>Certain information — invoice-related data in particular — did not consistently reflect as users expected.</p></li><li><span class="mx-themes__n" aria-hidden="true">03</span><h3 class="mx-h3">Limited feedback</h3><p>Users had little visibility of messages, notifications or tasks needing their attention. Forms did not clearly confirm a save, so people clicked save again and risked creating duplicate actions.</p></li><li><span class="mx-themes__n" aria-hidden="true">04</span><h3 class="mx-h3">Product consistency</h3><p>The interface did not adequately reflect GEMIS branding, and features needed a more deliberate organisation.</p></li>
+    </ol>
+    <div class="mx-callout">
+      <p class="mx-label">And before any of that — onboarding</p>
+      <p class="mx-callout__text">New clients relied heavily on manual information collection and entry before they could use the platform at all. That created a second opportunity: to rethink how a business arrives in ManaGEM.</p>
+    </div>
+    <p class="mx-note">These are the problems as they were set out in the redesign brief. No screenshots of the original interface were available for this case study, so they are described rather than illustrated — and no user research findings are claimed.</p>
+    </div>
+  </section>
+    
+  <section class="mx-sec" id="role" aria-labelledby="role-h" data-chapter>
+    <div class="wrap">
+    
+  <header class="mx-head">
+    <p class="mx-kicker"><span class="mx-kicker__n">04</span>My role and ownership</p>
+    <div class="mx-head__main">
+      <h2 class="mx-h2" id="role-h">I owned the product experience: how it is organised, how it flows, and how it looks.</h2>
+      
+    </div>
+  </header>
+    <div class="mx-split mx-split--role">
+      <div class="mx-prose">
+        <p class="mx-statement">I took ownership of rethinking the ManaGEM experience across its major screens and workflows.</p>
+        <p>Rather than approaching the project as a visual refresh, I examined how existing functionality connected, where the experience created unnecessary complexity, and how the product could become easier to navigate.</p>
+        <p>I redesigned the interface, reconsidered workflow structures, and worked to preserve the functionality the business already depended on while creating a more coherent experience around it.</p>
+      </div>
+      <div class="mx-own">
+        <div>
+          <h3 class="mx-label">What I did</h3>
+          <ul class="mx-ticks" role="list">
+            <li>Rethought the product screen by screen and workflow by workflow</li>
+            <li>Redesigned the overall interface</li>
+            <li>Reconsidered how existing functions connect across the product</li>
+            <li>Kept working features and improved how they are used</li>
+            <li>Simplified areas that were unnecessarily complicated</li>
+            <li>Made product experience and workflow decisions</li>
+            <li>Designed the Take-On onboarding experience end to end</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="mx-label">Outside my role</h3>
+          <ul class="mx-crosses" role="list">
+            <li>Backend development</li>
+            <li>Database changes</li>
+            <li>AI models and extraction logic</li>
+            <li>Technical integrations</li>
+          </ul>
         </div>
       </div>
-    </section>
-    <section class="cs-section" id="structure" aria-labelledby="structure-h">
-      <div class="wrap">
-        <h2 class="cs-section__title" id="structure-h">Structure</h2>
-        <div class="cs-section__body">
-        <p class="lead">Navigation follows how the business works, not how the data is stored.</p>
-        
-  <div class="tree"><div class="tree__group"><p class="tree__name">Customers</p><ul role="list"><li>Customers</li><li>Contacts</li><li>Warranties</li></ul></div><div class="tree__group"><p class="tree__name">Sales</p><ul role="list"><li>Enquiries</li><li>Invoices</li><li>Quote templates</li><li>Reports</li></ul></div><div class="tree__group"><p class="tree__name">Operations</p><ul role="list"><li>Products &amp; pricing</li><li>Projects</li><li>Factory</li><li>Stock</li></ul></div><div class="tree__group"><p class="tree__name">Admin</p><ul role="list"><li>Staff records</li><li>Companies</li></ul></div></div></div>
-      </div>
-    </section>
-    <section class="cs-section" id="decisions" aria-labelledby="decisions-h">
-      <div class="wrap">
-        <h2 class="cs-section__title" id="decisions-h">Key decisions</h2>
-        <div class="cs-section__body">
-  <article class="decision card">
-    <div class="decision__text">
-      <p class="decision__num">01</p>
-      <h3 class="decision__title">Search first</h3>
-      <dl class="decision__list">
-        <div><dt>Problem</dt><dd>People had to learn a deep menu before the product was useful.</dd></div>
-        <div><dt>Decision</dt><dd>Every list opens with search and live counts per stage.</dd></div>
-        <div><dt>Why</dt><dd>Type what you want instead of hunting for it.</dd></div>
-      </dl>
+    </div></div>
+  </section>
+    
+  <section class="mx-sec" id="analysis" aria-labelledby="analysis-h" data-chapter>
+    <div class="wrap">
+    
+  <header class="mx-head">
+    <p class="mx-kicker"><span class="mx-kicker__n">05</span>Understanding the existing system</p>
+    <div class="mx-head__main">
+      <h2 class="mx-h2" id="analysis-h">Before changing how it looked, I worked out how it fitted together.</h2>
+      <p class="mx-intro">This was product and workflow analysis: working through the existing system against the redesign brief. It was not formal user research, and I have not described it as such.</p>
     </div>
-    <div class="decision__media"><figure class="fig fig--screen"><a class="zoom" href="../../assets/images/managem/mg-open-enquiries-1600.webp" data-zoom data-caption="Open enquiries list with stage counts and search above the table" aria-label="Enlarge: Open enquiries list with stage counts and search above the table"><img src="../../assets/images/managem/mg-open-enquiries-1600.webp" srcset="../../assets/images/managem/mg-open-enquiries-1600.webp 1600w, ../../assets/images/managem/mg-open-enquiries-960.webp 960w" sizes="(min-width: 1120px) 600px, 100vw" width="1600" height="1000" alt="Open enquiries list with stage counts and search above the table" loading="lazy" decoding="async"></a></figure></div>
+  </header>
+    <div class="mx-method">
+      <div><span class="mx-method__n">1</span><h3 class="mx-label">Inventory</h3><p>List every function the business relies on, so that nothing that works is lost in the redesign.</p></div>
+      <div><span class="mx-method__n">2</span><h3 class="mx-label">Relationships</h3><p>Trace how a record moves between modules — enquiry to quote, job to invoice, invoice to accounting.</p></div>
+      <div><span class="mx-method__n">3</span><h3 class="mx-label">Friction</h3><p>Take each problem in the brief and find the places in the product where it actually shows up.</p></div>
+    </div>
+    <div class="mx-map" role="table" aria-label="Each problem in the brief, what was examined, and the design response">
+      <div class="mx-map__head" role="row"><span role="columnheader">Problem in the brief</span><span role="columnheader">What I examined</span><span role="columnheader">Design response</span></div>
+      <div class="mx-map__row" role="row"><span role="cell" data-label="Problem in the brief"><strong>Hard for new clients to navigate</strong></span><span role="cell" data-label="What I examined">Every destination in the product, and which ones belong to the same part of the business</span><span role="cell" data-label="Design response"><a href="#core-A"><b class="mx-map__tag">A</b>Grouped navigation</a></span></div><div class="mx-map__row" role="row"><span role="cell" data-label="Problem in the brief"><strong>Invoice information not reflecting as expected</strong></span><span role="cell" data-label="What I examined">Everywhere invoice data appears: invoices, the accounting sync and debtors</span><span role="cell" data-label="Design response"><a href="#core-B"><b class="mx-map__tag">B</b>Readable records and visible state</a></span></div><div class="mx-map__row" role="row"><span role="cell" data-label="Problem in the brief"><strong>Little visibility of messages, notifications and tasks</strong></span><span role="cell" data-label="What I examined">Where items needing attention live, and whether they are visible without searching</span><span role="cell" data-label="Design response"><a href="#core-C"><b class="mx-map__tag">C</b>Operational visibility</a></span></div><div class="mx-map__row" role="row"><span role="cell" data-label="Problem in the brief"><strong>No clear confirmation that a form saved</strong></span><span role="cell" data-label="What I examined">How multi-field forms commit, and what the user sees before and after</span><span role="cell" data-label="Design response"><a href="#core-D"><b class="mx-map__tag">D</b>Form feedback</a></span></div><div class="mx-map__row" role="row"><span role="cell" data-label="Problem in the brief"><strong>Interface did not reflect GEMIS branding</strong></span><span role="cell" data-label="What I examined">The sign-in screen, the product shell and shared components</span><span role="cell" data-label="Design response"><a href="#core-E"><b class="mx-map__tag">E</b>One product language</a></span></div><div class="mx-map__row" role="row"><span role="cell" data-label="Problem in the brief"><strong>Unnecessary features adding complexity</strong></span><span role="cell" data-label="What I examined">Which functions are separate destinations and which belong inside a module</span><span role="cell" data-label="Design response"><a href="#core-F"><b class="mx-map__tag">F</b>Simplifying</a></span></div><div class="mx-map__row" role="row"><span role="cell" data-label="Problem in the brief"><strong>Onboarding depended on manual capture</strong></span><span role="cell" data-label="What I examined">What a new client has to supply: company details, customers, products, staff</span><span role="cell" data-label="Design response"><a href="#takeon"><b class="mx-map__tag">→</b>ManaGEM Take-On</a></span></div>
+    </div></div>
+  </section>
+    
+  <section class="mx-sec" id="core" aria-labelledby="core-h" data-chapter>
+    <div class="wrap">
+    <div class="mx-part">
+      <p class="mx-part__n">Initiative 01</p>
+      <p class="mx-part__name">ManaGEM Core Experience</p>
+      <p class="mx-part__desc">The redesign of the established ERP: its navigation, how it presents information, and its workflows.</p>
+    </div>
+    
+  <header class="mx-head">
+    <p class="mx-kicker"><span class="mx-kicker__n">06</span>Redesigning the core experience</p>
+    <div class="mx-head__main">
+      <h2 class="mx-h2" id="core-h">Six decisions that shaped the redesign.</h2>
+      
+    </div>
+  </header>
+
+    
+  <article class="mx-decision" aria-labelledby="core-A">
+    <div class="mx-decision__text">
+      <p class="mx-decision__letter" aria-hidden="true">A</p>
+      <h3 class="mx-h3" id="core-A">A more coherent navigation experience</h3>
+      <dl class="mx-beats">
+        <div><dt>What was difficult</dt><dd>A new client has to find their way around two dozen destinations before the product becomes useful to them.</dd></div>
+        <div><dt>Why it mattered</dt><dd>If people cannot tell where they are or where a task lives, every other improvement is hidden behind that confusion.</dd></div>
+        <div><dt>The decision</dt><dd>Organise navigation by the part of the business it serves, not as one long list — and always show the user where they are.</dd></div>
+        <div><dt>In the interface</dt><dd>Five labelled groups, a breadcrumb on every page, a search field in the top bar, and counts beside the items that have open work.</dd></div>
+      </dl>
+      <p class="mx-shows"><span>Demonstrates</span>Information architecture</p>
+    </div>
+    <div class="mx-decision__media">
+        <div class="mx-navmap">
+          <figure class="fig mx-shot mx-shot--sidebar">
+    <a class="zoom" href="../../assets/images/managem/mg-sidebar.webp" data-zoom data-caption="The full sidebar." aria-label="Enlarge: The redesigned ManaGEM sidebar with its five labelled groups: Core, Customers, Sales, Operations and Admin"><img src="../../assets/images/managem/mg-sidebar.webp" width="480" height="2480" alt="The redesigned ManaGEM sidebar with its five labelled groups: Core, Customers, Sales, Operations and Admin" loading="lazy" decoding="async"></a>
+    <figcaption><span>The full sidebar.</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+          <div class="mx-tree" aria-label="Navigation groups in the redesign">
+            <div><p class="mx-tree__g">Core<span>1</span></p><ul role="list"><li>Dashboard</li></ul></div><div><p class="mx-tree__g">Customers<span>3</span></p><ul role="list"><li>Customers</li><li>Customer Contacts</li><li>Warranties</li></ul></div><div><p class="mx-tree__g">Sales<span>10</span></p><ul role="list"><li>New Enquiry</li><li>Open Enquiries</li><li>Closed Enquiries</li><li>Invoices</li><li>Sage Invoices</li><li>Inspection Reports</li><li>Sales Targets</li><li>Quote Templates</li><li>Reports</li><li>Master Data</li></ul></div><div><p class="mx-tree__g">Operations<span>5</span></p><ul role="list"><li>Debtors Management</li><li>Products &amp; Pricing</li><li>Projects Module</li><li>Factory</li><li>Stock Control</li></ul></div><div><p class="mx-tree__g">Admin<span>5</span></p><ul role="list"><li>Staff Records</li><li>My Companies</li><li>Manage Users</li><li>Master Data</li><li>Settings</li></ul></div>
+          </div>
+        </div></div>
   </article>
-  <article class="decision card">
-    <div class="decision__text">
-      <p class="decision__num">02</p>
-      <h3 class="decision__title">One status language</h3>
-      <dl class="decision__list">
-        <div><dt>Problem</dt><dd>Each module described state differently.</dd></div>
-        <div><dt>Decision</dt><dd>One set of plain-word status pills — Paid, Overdue, Scheduled — used everywhere.</dd></div>
-        <div><dt>Why</dt><dd>Words carry the meaning; the same colour means the same thing in every module.</dd></div>
+
+    
+  <article class="mx-decision mx-decision--flip" aria-labelledby="core-B">
+    <div class="mx-decision__text">
+      <p class="mx-decision__letter" aria-hidden="true">B</p>
+      <h3 class="mx-h3" id="core-B">Making important information easier to understand</h3>
+      <dl class="mx-beats">
+        <div><dt>What was difficult</dt><dd>Business records are dense, and invoice information in particular was not reflecting the way users expected.</dd></div>
+        <div><dt>Why it mattered</dt><dd>People act on what a screen tells them. If the state of an invoice is unclear, the follow-up is wrong or late.</dd></div>
+        <div><dt>The decision</dt><dd>Give every list the same anatomy, lead with totals, and put the state of each record into plain words.</dd></div>
+        <div><dt>In the interface</dt><dd>Invoices open with billed, paid, outstanding and overdue totals; each row says Paid, Partial, Unpaid or Overdue. The accounting view shows whether each invoice is Synced, Pending or in Error, and when it last synced.</dd></div>
       </dl>
+      <p class="mx-shows"><span>Demonstrates</span>Data-heavy UI design</p>
     </div>
-    <div class="decision__media"><figure class="fig fig--screen"><a class="zoom" href="../../assets/images/managem/mg-invoices-1600.webp" data-zoom data-caption="Invoices list where each row has a plain-word status" aria-label="Enlarge: Invoices list where each row has a plain-word status"><img src="../../assets/images/managem/mg-invoices-1600.webp" srcset="../../assets/images/managem/mg-invoices-1600.webp 1600w, ../../assets/images/managem/mg-invoices-960.webp 960w" sizes="(min-width: 1120px) 600px, 100vw" width="1600" height="1000" alt="Invoices list where each row has a plain-word status" loading="lazy" decoding="async"></a></figure></div>
+    <div class="mx-decision__media">
+        <figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/mg-invoices-1600.webp" data-zoom data-caption="Invoices: totals first, then a status in words on every row." aria-label="Enlarge: Invoices list with four summary totals above a table where each invoice has a plain-word status"><img src="../../assets/images/managem/mg-invoices-1600.webp" srcset="../../assets/images/managem/mg-invoices-1600.webp 1600w, ../../assets/images/managem/mg-invoices-960.webp 960w" sizes="(min-width: 1264px) 700px, 100vw" width="1600" height="1000" alt="Invoices list with four summary totals above a table where each invoice has a plain-word status" loading="lazy" decoding="async"></a>
+    <figcaption><span>Invoices: totals first, then a status in words on every row.</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+        <figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/mg-detail-sage-1600.webp" data-zoom data-caption="The accounting view makes sync state visible per invoice. This is the designed interface; data accuracy itself is an engineering concern." aria-label="Enlarge: Sage Invoices screen showing a connected indicator, counts of synced, pending and errored invoices, and a last-sync time per row"><img src="../../assets/images/managem/mg-detail-sage-1600.webp" srcset="../../assets/images/managem/mg-detail-sage-1600.webp 1600w, ../../assets/images/managem/mg-detail-sage-960.webp 960w" sizes="(min-width: 1264px) 700px, 100vw" width="1600" height="560" alt="Sage Invoices screen showing a connected indicator, counts of synced, pending and errored invoices, and a last-sync time per row" loading="lazy" decoding="async"></a>
+    <figcaption><span>The accounting view makes sync state visible per invoice. This is the designed interface; data accuracy itself is an engineering concern.</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure></div>
   </article>
-  <article class="decision card">
-    <div class="decision__text">
-      <p class="decision__num">03</p>
-      <h3 class="decision__title">Production as a pipeline</h3>
-      <dl class="decision__list">
-        <div><dt>Problem</dt><dd>Factory work moves in stages that sales and finance also need to see.</dd></div>
-        <div><dt>Decision</dt><dd>Five stages at a glance: Pending, In build, QC, Ready, Invoiced.</dd></div>
-        <div><dt>Why</dt><dd>It mirrors how the work actually moves.</dd></div>
+
+    
+  <article class="mx-decision" aria-labelledby="core-C">
+    <div class="mx-decision__text">
+      <p class="mx-decision__letter" aria-hidden="true">C</p>
+      <h3 class="mx-h3" id="core-C">Improving operational visibility</h3>
+      <dl class="mx-beats">
+        <div><dt>What was difficult</dt><dd>Users had limited visibility of messages, notifications and tasks that needed their attention.</dd></div>
+        <div><dt>Why it mattered</dt><dd>Work that nobody notices does not get done — and in a connected system, one missed item delays the next stage.</dd></div>
+        <div><dt>The decision</dt><dd>Bring what needs attention to the places people already look, instead of expecting them to go and check.</dd></div>
+        <div><dt>In the interface</dt><dd>A messages banner at the top of the dashboard, a notification indicator in the top bar, counts in the navigation, and alert panels inside modules such as low stock.</dd></div>
       </dl>
+      <p class="mx-shows"><span>Demonstrates</span>Systems thinking</p>
     </div>
-    <div class="decision__media"><figure class="fig fig--screen"><a class="zoom" href="../../assets/images/managem/mg-factory-1600.webp" data-zoom data-caption="Factory dashboard with a five-stage production pipeline" aria-label="Enlarge: Factory dashboard with a five-stage production pipeline"><img src="../../assets/images/managem/mg-factory-1600.webp" srcset="../../assets/images/managem/mg-factory-1600.webp 1600w, ../../assets/images/managem/mg-factory-960.webp 960w" sizes="(min-width: 1120px) 600px, 100vw" width="1600" height="1000" alt="Factory dashboard with a five-stage production pipeline" loading="lazy" decoding="async"></a></figure></div>
+    <div class="mx-decision__media">
+        <figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/mg-detail-attention-1600.webp" data-zoom data-caption="Messages are surfaced on the dashboard, above the figures." aria-label="Enlarge: Top of the dashboard with a banner reading &quot;You have 4 new messages&quot; above four headline figures"><img src="../../assets/images/managem/mg-detail-attention-1600.webp" srcset="../../assets/images/managem/mg-detail-attention-1600.webp 1600w, ../../assets/images/managem/mg-detail-attention-960.webp 960w" sizes="(min-width: 1264px) 700px, 100vw" width="1600" height="387" alt="Top of the dashboard with a banner reading &quot;You have 4 new messages&quot; above four headline figures" loading="lazy" decoding="async"></a>
+    <figcaption><span>Messages are surfaced on the dashboard, above the figures.</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+        <figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/mg-stock-alerts-1600.webp" data-zoom data-caption="Inside Stock Control, low-stock items and open purchase orders sit beside day-to-day activity." aria-label="Enlarge: Stock Control dashboard showing recent movements, open purchase orders and a low stock alerts panel"><img src="../../assets/images/managem/mg-stock-alerts-1600.webp" srcset="../../assets/images/managem/mg-stock-alerts-1600.webp 1600w, ../../assets/images/managem/mg-stock-alerts-960.webp 960w" sizes="(min-width: 1264px) 700px, 100vw" width="1600" height="1000" alt="Stock Control dashboard showing recent movements, open purchase orders and a low stock alerts panel" loading="lazy" decoding="async"></a>
+    <figcaption><span>Inside Stock Control, low-stock items and open purchase orders sit beside day-to-day activity.</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+        <p class="mx-note">This is the design direction for surfacing attention. I am not claiming specific notification behaviour as implemented.</p></div>
   </article>
-  <article class="decision card">
-    <div class="decision__text">
-      <p class="decision__num">04</p>
-      <h3 class="decision__title">Onboarding people can trust</h3>
-      <dl class="decision__list">
-        <div><dt>Problem</dt><dd>New clients waited weeks while their data was re-typed by hand.</dd></div>
-        <div><dt>Decision</dt><dd>Take-On: upload documents, review each extracted record, confirm before anything goes live.</dd></div>
-        <div><dt>Why</dt><dd>Automation only helps if people can check and correct it.</dd></div>
+
+    
+  <article class="mx-decision mx-decision--flip" aria-labelledby="core-D">
+    <div class="mx-decision__text">
+      <p class="mx-decision__letter" aria-hidden="true">D</p>
+      <h3 class="mx-h3" id="core-D">Clearer form feedback</h3>
+      <dl class="mx-beats">
+        <div><dt>What was difficult</dt><dd>Forms did not make it clear that information had saved, so users clicked save repeatedly.</dd></div>
+        <div><dt>Why it mattered</dt><dd>Repeated saves can create duplicate actions — and uncertainty about whether work was kept erodes trust in the whole system.</dd></div>
+        <div><dt>The decision</dt><dd>Make the moment of commitment unmistakable: show progress through the form, ask for one review, and offer one final action.</dd></div>
+        <div><dt>In the interface</dt><dd>New Enquiry is a four-step form with a visible stepper. The last step summarises what will be created and has a single Create Enquiry button; the user then lands on the enquiry list.</dd></div>
       </dl>
+      <p class="mx-shows"><span>Demonstrates</span>Interaction design</p>
     </div>
-    <div class="decision__media"><figure class="fig fig--screen"><a class="zoom" href="../../assets/images/managem/to-06-validation-1600.webp" data-zoom data-caption="Take-On review screen marking records as verified, needs review or duplicate" aria-label="Enlarge: Take-On review screen marking records as verified, needs review or duplicate"><img src="../../assets/images/managem/to-06-validation-1600.webp" srcset="../../assets/images/managem/to-06-validation-1600.webp 1600w, ../../assets/images/managem/to-06-validation-960.webp 960w" sizes="(min-width: 1120px) 600px, 100vw" width="1600" height="1000" alt="Take-On review screen marking records as verified, needs review or duplicate" loading="lazy" decoding="async"></a></figure></div>
+    <div class="mx-decision__media">
+        <figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/mg-new-enquiry-1600.webp" data-zoom data-caption="Step 1 of 4 — required fields are marked and progress is always visible." aria-label="Enlarge: Step one of the New Enquiry form with a four-step progress indicator and required fields marked"><img src="../../assets/images/managem/mg-new-enquiry-1600.webp" srcset="../../assets/images/managem/mg-new-enquiry-1600.webp 1600w, ../../assets/images/managem/mg-new-enquiry-960.webp 960w" sizes="(min-width: 1264px) 700px, 100vw" width="1600" height="1000" alt="Step one of the New Enquiry form with a four-step progress indicator and required fields marked" loading="lazy" decoding="async"></a>
+    <figcaption><span>Step 1 of 4 — required fields are marked and progress is always visible.</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+        <figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/mg-detail-review-1600.webp" data-zoom data-caption="Step 4 — a review of everything entered, then one clear commit." aria-label="Enlarge: Final review step of New Enquiry summarising customer, site, schedule and estimated value above one Create Enquiry button"><img src="../../assets/images/managem/mg-detail-review-1600.webp" srcset="../../assets/images/managem/mg-detail-review-1600.webp 1600w, ../../assets/images/managem/mg-detail-review-960.webp 960w" sizes="(min-width: 1264px) 700px, 100vw" width="1600" height="787" alt="Final review step of New Enquiry summarising customer, site, schedule and estimated value above one Create Enquiry button" loading="lazy" decoding="async"></a>
+    <figcaption><span>Step 4 — a review of everything entered, then one clear commit.</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+        </div>
+  </article>
+
+    
+  <article class="mx-decision" aria-labelledby="core-E">
+    <div class="mx-decision__text">
+      <p class="mx-decision__letter" aria-hidden="true">E</p>
+      <h3 class="mx-h3" id="core-E">A more consistent product language</h3>
+      <dl class="mx-beats">
+        <div><dt>What was difficult</dt><dd>The interface did not adequately reflect GEMIS branding, and the product did not read as one system.</dd></div>
+        <div><dt>Why it mattered</dt><dd>Consistency is how people transfer what they learned on one screen to the next. In an ERP that saving is repeated across every module.</dd></div>
+        <div><dt>The decision</dt><dd>Carry the GEMIS identity through the shell and build each module from the same small set of parts.</dd></div>
+        <div><dt>In the interface</dt><dd>A branded sign-in and sidebar, and one page anatomy — title, summary figures, tabs, filters, table — reused from Factory to Staff Records.</dd></div>
+      </dl>
+      <p class="mx-shows"><span>Demonstrates</span>UI craft and consistency</p>
+    </div>
+    <div class="mx-decision__media">
+        <figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/mg-login-1600.webp" data-zoom data-caption="Sign-in carries the GEMIS identity from the first screen." aria-label="Enlarge: ManaGEM sign-in screen with the GemIS mark, the line &quot;Run your business with clarity&quot; and a sign-in form"><img src="../../assets/images/managem/mg-login-1600.webp" srcset="../../assets/images/managem/mg-login-1600.webp 1600w, ../../assets/images/managem/mg-login-960.webp 960w" sizes="(min-width: 1264px) 700px, 100vw" width="1600" height="1000" alt="ManaGEM sign-in screen with the GemIS mark, the line &quot;Run your business with clarity&quot; and a sign-in form" loading="lazy" decoding="async"></a>
+    <figcaption><span>Sign-in carries the GEMIS identity from the first screen.</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+        <div class="mx-pair">
+          <figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/mg-factory-1600.webp" data-zoom data-caption="Factory" aria-label="Enlarge: Factory module with summary figures and a five-stage production pipeline"><img src="../../assets/images/managem/mg-factory-1600.webp" srcset="../../assets/images/managem/mg-factory-1600.webp 1600w, ../../assets/images/managem/mg-factory-960.webp 960w" sizes="(min-width: 1264px) 340px, 50vw" width="1600" height="1000" alt="Factory module with summary figures and a five-stage production pipeline" loading="lazy" decoding="async"></a>
+    <figcaption><span>Factory</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+          <figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/mg-staff-1600.webp" data-zoom data-caption="Staff Records" aria-label="Enlarge: Staff Members list using the same tabs, filters and table pattern"><img src="../../assets/images/managem/mg-staff-1600.webp" srcset="../../assets/images/managem/mg-staff-1600.webp 1600w, ../../assets/images/managem/mg-staff-960.webp 960w" sizes="(min-width: 1264px) 340px, 50vw" width="1600" height="1000" alt="Staff Members list using the same tabs, filters and table pattern" loading="lazy" decoding="async"></a>
+    <figcaption><span>Staff Records</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+        </div></div>
+  </article>
+
+    
+  <article class="mx-decision mx-decision--flip" aria-labelledby="core-F">
+    <div class="mx-decision__text">
+      <p class="mx-decision__letter" aria-hidden="true">F</p>
+      <h3 class="mx-h3" id="core-F">Simplifying the experience</h3>
+      <dl class="mx-beats">
+        <div><dt>What was difficult</dt><dd>Unnecessary features and scattered functions made the system more complicated than the work it supported.</dd></div>
+        <div><dt>Why it mattered</dt><dd>Complexity that does not serve a task is a cost every user pays on every visit.</dd></div>
+        <div><dt>The decision</dt><dd>Reconsider how features are organised before reconsidering whether they exist — keep what the business depends on, and put related functions together.</dd></div>
+        <div><dt>In the interface</dt><dd>Related functions live inside their module as tabs: Stock Control holds suppliers, purchase orders, stores, movements and stock takes in one place, and the dashboard offers shortcuts to the most common tasks.</dd></div>
+      </dl>
+      <p class="mx-shows"><span>Demonstrates</span>Product judgement</p>
+    </div>
+    <div class="mx-decision__media">
+        <figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/mg-stock-1600.webp" data-zoom data-caption="Stock Control: twelve related areas organised as tabs within one module." aria-label="Enlarge: Stock Control with its sub-areas arranged as tabs across the top of a single module"><img src="../../assets/images/managem/mg-stock-1600.webp" srcset="../../assets/images/managem/mg-stock-1600.webp 1600w, ../../assets/images/managem/mg-stock-960.webp 960w" sizes="(min-width: 1264px) 700px, 100vw" width="1600" height="1000" alt="Stock Control with its sub-areas arranged as tabs across the top of a single module" loading="lazy" decoding="async"></a>
+    <figcaption><span>Stock Control: twelve related areas organised as tabs within one module.</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+        <p class="mx-note">I describe this as reorganisation. I am not claiming that specific features were removed.</p></div>
   </article></div>
+  </section>
+    
+  <section class="mx-sec mx-sec--band" id="takeon" aria-labelledby="takeon-h" data-chapter>
+    <div class="wrap">
+    <div class="mx-part">
+      <p class="mx-part__n">Initiative 02</p>
+      <p class="mx-part__name">ManaGEM Take-On</p>
+      <p class="mx-part__desc">A new onboarding experience: from submitting business information, through AI-assisted extraction and review, to a final GEMIS check.</p>
+      <p class="mx-part__status"><span class="status status--progress"><span class="status__mark" aria-hidden="true"></span>Designed prototype · development underway</span></p>
+    </div>
+    
+  <header class="mx-head">
+    <p class="mx-kicker"><span class="mx-kicker__n">07</span>Rethinking client onboarding</p>
+    <div class="mx-head__main">
+      <h2 class="mx-h2" id="takeon-h">From manual information capture to a guided onboarding experience.</h2>
+      <p class="mx-intro">A redesigned product is still hard to start using if getting into it is slow. New clients have to provide their business information before the platform is useful to them, and the traditional approach relied on collecting and capturing that information by hand. Take-On is my design for a more structured route in — an extension of the same redesign, not a separate product.</p>
+    </div>
+  </header>
+    <div class="mx-phases" aria-hidden="true"><div><strong>Prepare</strong><span>Steps 1–3</span></div><div><strong>Provide</strong><span>Steps 4</span></div><div><strong>Process</strong><span>Steps 5–6</span></div><div><strong>Review</strong><span>Steps 7–9</span></div><div><strong>Submit</strong><span>Steps 10–11</span></div></div>
+    <div class="mx-railbar">
+      <p class="mx-railhint" id="rail-hint">The complete journey, in order. Scroll sideways to move through all eleven steps; select any screen to enlarge it.</p>
+      <div class="mx-railbtns">
+        <button type="button" data-rail-prev aria-label="Previous step" aria-controls="takeon-rail"><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+        <button type="button" data-rail-next aria-label="Next step" aria-controls="takeon-rail"><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
       </div>
-    </section>
-    <section class="cs-section cs-section--dark" id="demo" aria-labelledby="demo-h">
-      <div class="wrap">
-        <h2 class="cs-section__title" id="demo-h">See it working</h2>
-        <div class="cs-section__body">
-        <p class="lead">ManaGEM is live, so it isn’t public. I’m happy to walk you through it with demo data.</p>
-        <div class="btn-row">
-          <a href="mailto:sphamandaxaba@gmail.com?subject=ManaGEM%20walkthrough" class="btn btn--secondary"><span>Request a walkthrough</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
-          <a href="../../prototypes/managem.html" class="btn btn--subtle" target="_blank" rel="noopener"><span>Open design prototype</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span class="sr-only"> (opens in a new tab)</span></a>
-        </div>
-        </div>
+    </div>
+    <ol class="mx-rail" id="takeon-rail" role="list" tabindex="0" aria-labelledby="rail-hint" data-rail>
+      <li class="mx-rail__item">
+        <div class="mx-rail__meta"><span class="mx-rail__n">01</span><h3 class="mx-rail__t">Welcome</h3><p>Explains the four stages and what the client will need, before asking for anything.</p></div>
+        <figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/to-01-welcome-1600.webp" data-zoom data-caption="Take-On welcome screen describing upload, AI structuring, review and the GEMIS final check" aria-label="Enlarge: Take-On welcome screen describing upload, AI structuring, review and the GEMIS final check"><img src="../../assets/images/managem/to-01-welcome-1600.webp" srcset="../../assets/images/managem/to-01-welcome-1600.webp 1600w, ../../assets/images/managem/to-01-welcome-960.webp 960w" sizes="(min-width: 900px) 640px, 84vw" width="1600" height="1000" alt="Take-On welcome screen describing upload, AI structuring, review and the GEMIS final check" loading="lazy" decoding="async"></a>
+    <figcaption><span class="mx-src">Take-On prototype · sample data</span></figcaption>
+  </figure>
+      </li><li class="mx-rail__item">
+        <div class="mx-rail__meta"><span class="mx-rail__n">02</span><h3 class="mx-rail__t">Trust and compliance</h3><p>A plain-language summary of how data is handled, with explicit consent.</p></div>
+        <figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/to-02-trust-1600.webp" data-zoom data-caption="Trust and compliance screen with four data-handling summaries and a data processing agreement" aria-label="Enlarge: Trust and compliance screen with four data-handling summaries and a data processing agreement"><img src="../../assets/images/managem/to-02-trust-1600.webp" srcset="../../assets/images/managem/to-02-trust-1600.webp 1600w, ../../assets/images/managem/to-02-trust-960.webp 960w" sizes="(min-width: 900px) 640px, 84vw" width="1600" height="1000" alt="Trust and compliance screen with four data-handling summaries and a data processing agreement" loading="lazy" decoding="async"></a>
+    <figcaption><span class="mx-src">Take-On prototype · sample data</span></figcaption>
+  </figure>
+      </li><li class="mx-rail__item">
+        <div class="mx-rail__meta"><span class="mx-rail__n">03</span><h3 class="mx-rail__t">Company profile</h3><p>The basic company details that set up the client’s workspace.</p></div>
+        <figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/to-03-profile-1600.webp" data-zoom data-caption="Company profile form with registered name, registration number, contact details and industry" aria-label="Enlarge: Company profile form with registered name, registration number, contact details and industry"><img src="../../assets/images/managem/to-03-profile-1600.webp" srcset="../../assets/images/managem/to-03-profile-1600.webp 1600w, ../../assets/images/managem/to-03-profile-960.webp 960w" sizes="(min-width: 900px) 640px, 84vw" width="1600" height="1000" alt="Company profile form with registered name, registration number, contact details and industry" loading="lazy" decoding="async"></a>
+    <figcaption><span class="mx-src">Take-On prototype · sample data</span></figcaption>
+  </figure>
+      </li><li class="mx-rail__item">
+        <div class="mx-rail__meta"><span class="mx-rail__n">04</span><h3 class="mx-rail__t">Document upload</h3><p>One labelled drop area per kind of information, required or optional.</p></div>
+        <figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/to-04-upload-1600.webp" data-zoom data-caption="Upload screen with separate areas for customer list, product and price list, staff records and supplier list" aria-label="Enlarge: Upload screen with separate areas for customer list, product and price list, staff records and supplier list"><img src="../../assets/images/managem/to-04-upload-1600.webp" srcset="../../assets/images/managem/to-04-upload-1600.webp 1600w, ../../assets/images/managem/to-04-upload-960.webp 960w" sizes="(min-width: 900px) 640px, 84vw" width="1600" height="1000" alt="Upload screen with separate areas for customer list, product and price list, staff records and supplier list" loading="lazy" decoding="async"></a>
+    <figcaption><span class="mx-src">Take-On prototype · sample data</span></figcaption>
+  </figure>
+      </li><li class="mx-rail__item">
+        <div class="mx-rail__meta"><span class="mx-rail__n">05</span><h3 class="mx-rail__t">AI extraction</h3><p>Processing shown as a readable log rather than a spinner.</p></div>
+        <figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/to-05-extraction-1600.webp" data-zoom data-caption="Extraction screen with running counts, an extraction log and an audit activity list" aria-label="Enlarge: Extraction screen with running counts, an extraction log and an audit activity list"><img src="../../assets/images/managem/to-05-extraction-1600.webp" srcset="../../assets/images/managem/to-05-extraction-1600.webp 1600w, ../../assets/images/managem/to-05-extraction-960.webp 960w" sizes="(min-width: 900px) 640px, 84vw" width="1600" height="1000" alt="Extraction screen with running counts, an extraction log and an audit activity list" loading="lazy" decoding="async"></a>
+    <figcaption><span class="mx-src">Take-On prototype · sample data</span></figcaption>
+  </figure>
+      </li><li class="mx-rail__item">
+        <div class="mx-rail__meta"><span class="mx-rail__n">06</span><h3 class="mx-rail__t">Validation summary</h3><p>What was found and how confident the system is, before any detail.</p></div>
+        <figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/to-06-validation-1600.webp" data-zoom data-caption="Validation summary with document and record counts, validation results and a confidence breakdown" aria-label="Enlarge: Validation summary with document and record counts, validation results and a confidence breakdown"><img src="../../assets/images/managem/to-06-validation-1600.webp" srcset="../../assets/images/managem/to-06-validation-1600.webp 1600w, ../../assets/images/managem/to-06-validation-960.webp 960w" sizes="(min-width: 900px) 640px, 84vw" width="1600" height="1000" alt="Validation summary with document and record counts, validation results and a confidence breakdown" loading="lazy" decoding="async"></a>
+    <figcaption><span class="mx-src">Take-On prototype · sample data</span></figcaption>
+  </figure>
+      </li><li class="mx-rail__item">
+        <div class="mx-rail__meta"><span class="mx-rail__n">07</span><h3 class="mx-rail__t">Customer review</h3><p>Every extracted customer with a status, filterable by what needs attention.</p></div>
+        <figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/to-07-customers-1600.webp" data-zoom data-caption="Customer review table where each record is marked verified, needs review, possible duplicate or low confidence" aria-label="Enlarge: Customer review table where each record is marked verified, needs review, possible duplicate or low confidence"><img src="../../assets/images/managem/to-07-customers-1600.webp" srcset="../../assets/images/managem/to-07-customers-1600.webp 1600w, ../../assets/images/managem/to-07-customers-960.webp 960w" sizes="(min-width: 900px) 640px, 84vw" width="1600" height="1000" alt="Customer review table where each record is marked verified, needs review, possible duplicate or low confidence" loading="lazy" decoding="async"></a>
+    <figcaption><span class="mx-src">Take-On prototype · sample data</span></figcaption>
+  </figure>
+      </li><li class="mx-rail__item">
+        <div class="mx-rail__meta"><span class="mx-rail__n">08</span><h3 class="mx-rail__t">Product review</h3><p>The same review pattern, applied to products and pricing.</p></div>
+        <figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/to-08-products-1600.webp" data-zoom data-caption="Product and pricing review table with the same status column and filters" aria-label="Enlarge: Product and pricing review table with the same status column and filters"><img src="../../assets/images/managem/to-08-products-1600.webp" srcset="../../assets/images/managem/to-08-products-1600.webp 1600w, ../../assets/images/managem/to-08-products-960.webp 960w" sizes="(min-width: 900px) 640px, 84vw" width="1600" height="1000" alt="Product and pricing review table with the same status column and filters" loading="lazy" decoding="async"></a>
+    <figcaption><span class="mx-src">Take-On prototype · sample data</span></figcaption>
+  </figure>
+      </li><li class="mx-rail__item">
+        <div class="mx-rail__meta"><span class="mx-rail__n">09</span><h3 class="mx-rail__t">Staff review</h3><p>The same pattern again for staff records.</p></div>
+        <figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/to-09-staff-1600.webp" data-zoom data-caption="Staff review table with verified, needs review and low confidence records" aria-label="Enlarge: Staff review table with verified, needs review and low confidence records"><img src="../../assets/images/managem/to-09-staff-1600.webp" srcset="../../assets/images/managem/to-09-staff-1600.webp 1600w, ../../assets/images/managem/to-09-staff-960.webp 960w" sizes="(min-width: 900px) 640px, 84vw" width="1600" height="1000" alt="Staff review table with verified, needs review and low confidence records" loading="lazy" decoding="async"></a>
+    <figcaption><span class="mx-src">Take-On prototype · sample data</span></figcaption>
+  </figure>
+      </li><li class="mx-rail__item">
+        <div class="mx-rail__meta"><span class="mx-rail__n">10</span><h3 class="mx-rail__t">Confirmation and submission</h3><p>Overall readiness, outstanding issues and a final declaration.</p></div>
+        <figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/to-10-confirm-1600.webp" data-zoom data-caption="Final confirmation screen with a readiness score, per-category totals and a list of issues to fix" aria-label="Enlarge: Final confirmation screen with a readiness score, per-category totals and a list of issues to fix"><img src="../../assets/images/managem/to-10-confirm-1600.webp" srcset="../../assets/images/managem/to-10-confirm-1600.webp 1600w, ../../assets/images/managem/to-10-confirm-960.webp 960w" sizes="(min-width: 900px) 640px, 84vw" width="1600" height="1000" alt="Final confirmation screen with a readiness score, per-category totals and a list of issues to fix" loading="lazy" decoding="async"></a>
+    <figcaption><span class="mx-src">Take-On prototype · sample data</span></figcaption>
+  </figure>
+      </li><li class="mx-rail__item">
+        <div class="mx-rail__meta"><span class="mx-rail__n">11</span><h3 class="mx-rail__t">Completion</h3><p>Confirms the submission and explains that GEMIS reviews it next.</p></div>
+        <figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/to-11-complete-1600.webp" data-zoom data-caption="Completion screen confirming the submission was sent for GEMIS review, with a reference number" aria-label="Enlarge: Completion screen confirming the submission was sent for GEMIS review, with a reference number"><img src="../../assets/images/managem/to-11-complete-1600.webp" srcset="../../assets/images/managem/to-11-complete-1600.webp 1600w, ../../assets/images/managem/to-11-complete-960.webp 960w" sizes="(min-width: 900px) 640px, 84vw" width="1600" height="1000" alt="Completion screen confirming the submission was sent for GEMIS review, with a reference number" loading="lazy" decoding="async"></a>
+    <figcaption><span class="mx-src">Take-On prototype · sample data</span></figcaption>
+  </figure>
+      </li>
+    </ol>
+    <div class="mx-proto">
+      <h3 class="mx-label">Reading these screens correctly</h3>
+      <ul class="mx-proto__list" role="list">
+        <li><strong>It is a prototype.</strong> The UX/UI design is complete and development is underway. It is not presented here as a released feature.</li>
+        <li><strong>The processing is simulated.</strong> The extraction, confidence scores and timings on screen are designed states, not output from a live AI integration or measured results.</li>
+        <li><strong>The records are samples.</strong> Company names, customers, products and staff are placeholder data, not client data.</li>
+        <li><strong>The legal and security wording is draft content.</strong> Statements about POPIA, encryption and audit trails show where that information belongs in the flow; they still need technical and legal validation.</li>
+      </ul>
+    </div></div>
+  </section>
+    
+  <section class="mx-sec" id="decisions" aria-labelledby="decisions-h" data-chapter>
+    <div class="wrap">
+    
+  <header class="mx-head">
+    <p class="mx-kicker"><span class="mx-kicker__n">08</span>Key UX decisions</p>
+    <div class="mx-head__main">
+      <h2 class="mx-h2" id="decisions-h">Five decisions about how much to trust automation — and how to show it.</h2>
+      <p class="mx-intro">The principle behind all five: AI-assisted extraction is not treated as infallible or autonomous. People should be able to understand, inspect and correct information before it is submitted.</p>
+    </div>
+  </header>
+
+    
+  <article class="mx-key" aria-labelledby="key-01">
+    <div class="mx-key__text">
+      <p class="mx-key__n" aria-hidden="true">01</p>
+      <h3 class="mx-h3" id="key-01">Flexible document onboarding</h3>
+      <p class="mx-key__reason">Clients already hold this information somewhere — in a spreadsheet, a price list, a scanned page. Asking them to retype it record by record is the manual work the brief set out to reduce.</p>
+      <ul class="mx-ticks" role="list"><li>One drop area per kind of information, so nothing needs to be labelled or sorted first</li><li>Accepted formats are stated on every area: PDF, XLSX, CSV, DOCX, JPG, PNG</li><li>Required and optional categories are marked, and the screen says what is still missing</li><li>No document? Each category can be typed in manually instead</li></ul>
+    </div>
+    <div class="mx-key__media"><figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/to-04-upload-1600.webp" data-zoom data-caption="Upload: one area per category, with each file’s state shown on the file itself." aria-label="Enlarge: Upload screen with files added to the customer and product areas, each file marked encrypted and scanned"><img src="../../assets/images/managem/to-04-upload-1600.webp" srcset="../../assets/images/managem/to-04-upload-1600.webp 1600w, ../../assets/images/managem/to-04-upload-960.webp 960w" sizes="(min-width: 1264px) 700px, 100vw" width="1600" height="1000" alt="Upload screen with files added to the customer and product areas, each file marked encrypted and scanned" loading="lazy" decoding="async"></a>
+    <figcaption><span>Upload: one area per category, with each file’s state shown on the file itself.</span><span class="mx-src">Take-On prototype · sample data</span></figcaption>
+  </figure></div>
+  </article>
+
+    
+  <article class="mx-key" aria-labelledby="key-02">
+    <div class="mx-key__text">
+      <p class="mx-key__n" aria-hidden="true">02</p>
+      <h3 class="mx-h3" id="key-02">Transparent processing</h3>
+      <p class="mx-key__reason">A progress spinner asks people to trust something they cannot see. If a system is going to read a company’s records, it should say what it is doing while it does it.</p>
+      <ul class="mx-ticks" role="list"><li>A running log names each document as it is read</li><li>Counts of customers, products, staff and flagged records update as the step progresses</li><li>An activity list records each stage with a time</li></ul>
+    </div>
+    <div class="mx-key__media"><figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/to-05-extraction-1600.webp" data-zoom data-caption="Processing explained in words. In the prototype this step is simulated." aria-label="Enlarge: Extraction screen with counts of customers, products, staff and flagged records above an extraction log and an audit activity list"><img src="../../assets/images/managem/to-05-extraction-1600.webp" srcset="../../assets/images/managem/to-05-extraction-1600.webp 1600w, ../../assets/images/managem/to-05-extraction-960.webp 960w" sizes="(min-width: 1264px) 700px, 100vw" width="1600" height="1000" alt="Extraction screen with counts of customers, products, staff and flagged records above an extraction log and an audit activity list" loading="lazy" decoding="async"></a>
+    <figcaption><span>Processing explained in words. In the prototype this step is simulated.</span><span class="mx-src">Take-On prototype · sample data</span></figcaption>
+  </figure></div>
+  </article>
+
+    
+  <article class="mx-key" aria-labelledby="key-03">
+    <div class="mx-key__text">
+      <p class="mx-key__n" aria-hidden="true">03</p>
+      <h3 class="mx-h3" id="key-03">Confidence-based validation</h3>
+      <p class="mx-key__reason">Reviewing every record with equal care is slow, and people stop reading. The design separates what looks ready from what needs attention, so effort goes where it matters.</p>
+      <ul class="mx-ticks" role="list"><li>A summary first: how many records were found and how they break down</li><li>Four plain-language states — Verified, Needs review, Possible duplicate, Low confidence</li><li>State is carried by a word and an icon, not by colour alone</li><li>Filters jump straight to the records that need a decision</li></ul>
+    </div>
+    <div class="mx-key__media">
+        <figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/to-06-validation-1600.webp" data-zoom data-caption="The summary sets expectations before the detail." aria-label="Enlarge: Validation summary showing documents processed, records detected, validation results by type and a confidence breakdown"><img src="../../assets/images/managem/to-06-validation-1600.webp" srcset="../../assets/images/managem/to-06-validation-1600.webp 1600w, ../../assets/images/managem/to-06-validation-960.webp 960w" sizes="(min-width: 1264px) 700px, 100vw" width="1600" height="1000" alt="Validation summary showing documents processed, records detected, validation results by type and a confidence breakdown" loading="lazy" decoding="async"></a>
+    <figcaption><span>The summary sets expectations before the detail.</span><span class="mx-src">Take-On prototype · sample data</span></figcaption>
+  </figure>
+        <figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/to-07-customers-1600.webp" data-zoom data-caption="Every row carries its state; filters isolate what needs attention." aria-label="Enlarge: Customer review table with a status on every row and filters for needs review, duplicates and verified"><img src="../../assets/images/managem/to-07-customers-1600.webp" srcset="../../assets/images/managem/to-07-customers-1600.webp 1600w, ../../assets/images/managem/to-07-customers-960.webp 960w" sizes="(min-width: 1264px) 700px, 100vw" width="1600" height="1000" alt="Customer review table with a status on every row and filters for needs review, duplicates and verified" loading="lazy" decoding="async"></a>
+    <figcaption><span>Every row carries its state; filters isolate what needs attention.</span><span class="mx-src">Take-On prototype · sample data</span></figcaption>
+  </figure></div>
+  </article>
+
+    
+  <article class="mx-key" aria-labelledby="key-04">
+    <div class="mx-key__text">
+      <p class="mx-key__n" aria-hidden="true">04</p>
+      <h3 class="mx-h3" id="key-04">Human-in-the-loop review</h3>
+      <p class="mx-key__reason">An extracted record is a suggestion until someone who knows the business agrees with it. So the design shows the evidence behind each record and leaves the decision with the client.</p>
+      <ul class="mx-ticks" role="list"><li>Each record shows its source document, the original text and a confidence score</li><li>A missing or doubtful field is called out — “Email not found in source document”</li><li>Every field stays editable; a record can be confirmed or rejected</li><li>Possible duplicates offer three explicit choices: merge with existing, keep both, or discard</li></ul>
+    </div>
+    <div class="mx-key__media">
+        <figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/to-07-record-1600.webp" data-zoom data-caption="Reviewing one record: where it came from, what is missing, and room to correct it." aria-label="Enlarge: Review record panel showing the source document, extracted text, reasoning, a warning that the email was not found, and editable fields"><img src="../../assets/images/managem/to-07-record-1600.webp" srcset="../../assets/images/managem/to-07-record-1600.webp 1600w, ../../assets/images/managem/to-07-record-960.webp 960w" sizes="(min-width: 1264px) 700px, 100vw" width="1600" height="1000" alt="Review record panel showing the source document, extracted text, reasoning, a warning that the email was not found, and editable fields" loading="lazy" decoding="async"></a>
+    <figcaption><span>Reviewing one record: where it came from, what is missing, and room to correct it.</span><span class="mx-src">Take-On prototype · sample data</span></figcaption>
+  </figure>
+        <figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/to-07-duplicate-1600.webp" data-zoom data-caption="A possible duplicate: the match is explained and the choice is the client’s." aria-label="Enlarge: Review record panel for a possible duplicate, showing the matched existing customer and options to discard, keep both or merge"><img src="../../assets/images/managem/to-07-duplicate-1600.webp" srcset="../../assets/images/managem/to-07-duplicate-1600.webp 1600w, ../../assets/images/managem/to-07-duplicate-960.webp 960w" sizes="(min-width: 1264px) 700px, 100vw" width="1600" height="1000" alt="Review record panel for a possible duplicate, showing the matched existing customer and options to discard, keep both or merge" loading="lazy" decoding="async"></a>
+    <figcaption><span>A possible duplicate: the match is explained and the choice is the client’s.</span><span class="mx-src">Take-On prototype · sample data</span></figcaption>
+  </figure></div>
+  </article>
+
+    
+  <article class="mx-key" aria-labelledby="key-05">
+    <div class="mx-key__text">
+      <p class="mx-key__n" aria-hidden="true">05</p>
+      <h3 class="mx-h3" id="key-05">GEMIS verification</h3>
+      <p class="mx-key__reason">Automation does not remove the need for oversight. The flow ends by handing over to a person at GEMIS, and it says so — rather than implying that submitting means the data is live.</p>
+      <ul class="mx-ticks" role="list"><li>The final step lists outstanding issues before the client submits</li><li>The completion screen is titled “Submitted for GEMIS review”, not “Done”</li><li>A GEMIS-side queue shows each company’s progress and what is awaiting sign-off</li></ul>
+    </div>
+    <div class="mx-key__media">
+        <figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/to-10-confirm-1600.webp" data-zoom data-caption="Before submitting: what is ready, and what still needs attention." aria-label="Enlarge: Final confirmation screen with a readiness score, totals per category and a list of issues recommended to fix before submitting"><img src="../../assets/images/managem/to-10-confirm-1600.webp" srcset="../../assets/images/managem/to-10-confirm-1600.webp 1600w, ../../assets/images/managem/to-10-confirm-960.webp 960w" sizes="(min-width: 1264px) 700px, 100vw" width="1600" height="1000" alt="Final confirmation screen with a readiness score, totals per category and a list of issues recommended to fix before submitting" loading="lazy" decoding="async"></a>
+    <figcaption><span>Before submitting: what is ready, and what still needs attention.</span><span class="mx-src">Take-On prototype · sample data</span></figcaption>
+  </figure>
+        <figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/to-12-admin-1600.webp" data-zoom data-caption="The GEMIS side: a queue of submissions awaiting a human check." aria-label="Enlarge: GEMIS admin view listing companies in the take-on queue with their progress, status and flagged items"><img src="../../assets/images/managem/to-12-admin-1600.webp" srcset="../../assets/images/managem/to-12-admin-1600.webp 1600w, ../../assets/images/managem/to-12-admin-960.webp 960w" sizes="(min-width: 1264px) 700px, 100vw" width="1600" height="1000" alt="GEMIS admin view listing companies in the take-on queue with their progress, status and flagged items" loading="lazy" decoding="async"></a>
+    <figcaption><span>The GEMIS side: a queue of submissions awaiting a human check.</span><span class="mx-src">Take-On prototype · sample data</span></figcaption>
+  </figure></div>
+  </article></div>
+  </section>
+    
+  <section class="mx-sec mx-sec--soft" id="screens" aria-labelledby="screens-h" data-chapter>
+    <div class="wrap">
+    
+  <header class="mx-head">
+    <p class="mx-kicker"><span class="mx-kicker__n">09</span>Final product experience</p>
+    <div class="mx-head__main">
+      <h2 class="mx-h2" id="screens-h">More of the product, at a size you can read.</h2>
+      <p class="mx-intro">Select any screen to open it full size. Everything here comes from the two design prototypes.</p>
+    </div>
+  </header>
+    <div class="mx-gallery">
+      <figure class="fig mx-shot mx-gallery__wide">
+    <a class="zoom" href="../../assets/images/managem/mg-open-enquiries-1600.webp" data-zoom data-caption="Open Enquiries — the sales pipeline, with counts per stage above the list." aria-label="Enlarge: Open Enquiries list with tabs, pipeline stage counts, filters and a table of leads"><img src="../../assets/images/managem/mg-open-enquiries-1600.webp" srcset="../../assets/images/managem/mg-open-enquiries-1600.webp 1600w, ../../assets/images/managem/mg-open-enquiries-960.webp 960w" sizes="(min-width: 1264px) 1200px, 100vw" width="1600" height="1000" alt="Open Enquiries list with tabs, pipeline stage counts, filters and a table of leads" loading="lazy" decoding="async"></a>
+    <figcaption><span>Open Enquiries — the sales pipeline, with counts per stage above the list.</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure><figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/mg-projects-1600.webp" data-zoom data-caption="Projects — current jobs with foreman, dates and progress." aria-label="Enlarge: Current Jobs list in the Projects module with progress bars"><img src="../../assets/images/managem/mg-projects-1600.webp" srcset="../../assets/images/managem/mg-projects-1600.webp 1600w, ../../assets/images/managem/mg-projects-960.webp 960w" sizes="(min-width: 900px) 590px, 100vw" width="1600" height="1000" alt="Current Jobs list in the Projects module with progress bars" loading="lazy" decoding="async"></a>
+    <figcaption><span>Projects — current jobs with foreman, dates and progress.</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure><figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/mg-debtors-1600.webp" data-zoom data-caption="Debtors Management — outstanding balances and ageing by customer." aria-label="Enlarge: Debtors Management with outstanding totals and an ageing column"><img src="../../assets/images/managem/mg-debtors-1600.webp" srcset="../../assets/images/managem/mg-debtors-1600.webp 1600w, ../../assets/images/managem/mg-debtors-960.webp 960w" sizes="(min-width: 900px) 590px, 100vw" width="1600" height="1000" alt="Debtors Management with outstanding totals and an ageing column" loading="lazy" decoding="async"></a>
+    <figcaption><span>Debtors Management — outstanding balances and ageing by customer.</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure><figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/mg-products-1600.webp" data-zoom data-caption="Products &amp; Pricing — the catalogue, with pricing, tax and stock." aria-label="Enlarge: Products and Pricing catalogue table"><img src="../../assets/images/managem/mg-products-1600.webp" srcset="../../assets/images/managem/mg-products-1600.webp 1600w, ../../assets/images/managem/mg-products-960.webp 960w" sizes="(min-width: 900px) 590px, 100vw" width="1600" height="1000" alt="Products and Pricing catalogue table" loading="lazy" decoding="async"></a>
+    <figcaption><span>Products &amp; Pricing — the catalogue, with pricing, tax and stock.</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure><figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/mg-warranties-1600.webp" data-zoom data-caption="Warranties — active warranties and maintenance that is due or overdue." aria-label="Enlarge: Warranties list with maintenance status per warranty"><img src="../../assets/images/managem/mg-warranties-1600.webp" srcset="../../assets/images/managem/mg-warranties-1600.webp 1600w, ../../assets/images/managem/mg-warranties-960.webp 960w" sizes="(min-width: 900px) 590px, 100vw" width="1600" height="1000" alt="Warranties list with maintenance status per warranty" loading="lazy" decoding="async"></a>
+    <figcaption><span>Warranties — active warranties and maintenance that is due or overdue.</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure><figure class="fig mx-shot mx-gallery__wide">
+    <a class="zoom" href="../../assets/images/managem/mg-reports-1600.webp" data-zoom data-caption="Reports — one report at a time, with its parameters and totals." aria-label="Enlarge: Quotes report with report types, parameters and results"><img src="../../assets/images/managem/mg-reports-1600.webp" srcset="../../assets/images/managem/mg-reports-1600.webp 1600w, ../../assets/images/managem/mg-reports-960.webp 960w" sizes="(min-width: 1264px) 1200px, 100vw" width="1600" height="1000" alt="Quotes report with report types, parameters and results" loading="lazy" decoding="async"></a>
+    <figcaption><span>Reports — one report at a time, with its parameters and totals.</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure><figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/mg-customers-1600.webp" data-zoom data-caption="Customers — account type, status and accounting link." aria-label="Enlarge: Customers list with account type and status columns"><img src="../../assets/images/managem/mg-customers-1600.webp" srcset="../../assets/images/managem/mg-customers-1600.webp 1600w, ../../assets/images/managem/mg-customers-960.webp 960w" sizes="(min-width: 900px) 590px, 100vw" width="1600" height="1000" alt="Customers list with account type and status columns" loading="lazy" decoding="async"></a>
+    <figcaption><span>Customers — account type, status and accounting link.</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure><figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/to-08-products-1600.webp" data-zoom data-caption="Take-On — reviewing extracted products and pricing." aria-label="Enlarge: Take-On product review table with a status per record"><img src="../../assets/images/managem/to-08-products-1600.webp" srcset="../../assets/images/managem/to-08-products-1600.webp 1600w, ../../assets/images/managem/to-08-products-960.webp 960w" sizes="(min-width: 900px) 590px, 100vw" width="1600" height="1000" alt="Take-On product review table with a status per record" loading="lazy" decoding="async"></a>
+    <figcaption><span>Take-On — reviewing extracted products and pricing.</span><span class="mx-src">Take-On prototype · sample data</span></figcaption>
+  </figure><figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/to-10-declaration-1600.webp" data-zoom data-caption="Take-On — compliance status and the final declaration before submitting." aria-label="Enlarge: Take-On final declaration with a compliance checklist and a confirmation checkbox"><img src="../../assets/images/managem/to-10-declaration-1600.webp" srcset="../../assets/images/managem/to-10-declaration-1600.webp 1600w, ../../assets/images/managem/to-10-declaration-960.webp 960w" sizes="(min-width: 900px) 590px, 100vw" width="1600" height="1000" alt="Take-On final declaration with a compliance checklist and a confirmation checkbox" loading="lazy" decoding="async"></a>
+    <figcaption><span>Take-On — compliance status and the final declaration before submitting.</span><span class="mx-src">Take-On prototype · sample data</span></figcaption>
+  </figure><figure class="fig mx-shot">
+    <a class="zoom" href="../../assets/images/managem/to-11-complete-1600.webp" data-zoom data-caption="Take-On — submitted, and waiting for GEMIS review." aria-label="Enlarge: Take-On completion screen with a submission reference"><img src="../../assets/images/managem/to-11-complete-1600.webp" srcset="../../assets/images/managem/to-11-complete-1600.webp 1600w, ../../assets/images/managem/to-11-complete-960.webp 960w" sizes="(min-width: 900px) 590px, 100vw" width="1600" height="1000" alt="Take-On completion screen with a submission reference" loading="lazy" decoding="async"></a>
+    <figcaption><span>Take-On — submitted, and waiting for GEMIS review.</span><span class="mx-src">Take-On prototype · sample data</span></figcaption>
+  </figure>
+    </div>
+    <div class="btn-row mx-links">
+      <a href="../../prototypes/managem.html" class="btn btn--primary" target="_blank" rel="noopener"><span>Open the core redesign prototype</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span class="sr-only"> (opens in a new tab)</span></a>
+      <a href="../../ManaGem%20Take-On%20(Standalone).html" class="btn btn--secondary" target="_blank" rel="noopener"><span>Open the Take-On prototype</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span class="sr-only"> (opens in a new tab)</span></a>
+    </div>
+    <p class="mx-fine">Both prototypes are built for desktop screens and use demo data.</p></div>
+  </section>
+    
+  <section class="mx-sec" id="status" aria-labelledby="status-h" data-chapter>
+    <div class="wrap">
+    
+  <header class="mx-head">
+    <p class="mx-kicker"><span class="mx-kicker__n">10</span>Outcome and implementation status</p>
+    <div class="mx-head__main">
+      <h2 class="mx-h2" id="status-h">What exists today, stated precisely.</h2>
+      
+    </div>
+  </header>
+    <div class="mx-status">
+      <div class="mx-status__col">
+        <p class="mx-label">01 — Core ManaGEM redesign</p>
+        <p class="mx-status__state"><span class="status status--live"><span class="status__mark" aria-hidden="true"></span>Design complete</span></p>
+        <p>The redesigned experience is designed across the product’s main areas — dashboard, customers, sales, invoicing, debtors, products, projects, factory, stock and staff — and delivered as an interactive prototype.</p>
+        <p>This case study makes no claim about how much of the redesign is in production.</p>
       </div>
-    </section>
-    <section class="cs-section" id="outcome" aria-labelledby="outcome-h">
-      <div class="wrap">
-        <h2 class="cs-section__title" id="outcome-h">Outcome</h2>
-        <div class="cs-section__body">
-        <ul class="list" role="list"><li>A navigation model covering customers, sales, operations and admin</li><li>Core workflows from enquiry to invoice</li><li>One shared pattern library and design system</li></ul>
-        <p class="quote">“People don’t need more on screen. They need to know where they are, what state their work is in, and what happens next.”</p>
-        </div>
+      <div class="mx-status__col">
+        <p class="mx-label">02 — ManaGEM Take-On</p>
+        <p class="mx-status__state"><span class="status status--progress"><span class="status__mark" aria-hidden="true"></span>Prototype complete · development underway</span></p>
+        <p>The Take-On UX/UI prototype has been completed, and development is underway.</p>
+        <p>The AI processing in the prototype is simulated. It is not described here as a live integration, and clients are not presented as using it.</p>
       </div>
-    </section>
-    <nav class="wrap cs-next" aria-label="Next case study">
-      <a class="cs-next__card card card--dark" href="../../work/wastemart/">
-        <span class="cs-next__label">Next case study</span>
-        <span class="cs-next__name">WasteMart</span>
-        <span class="btn btn--secondary" aria-hidden="true"><span>Explore</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span>
+    </div>
+    <div class="mx-unclaimed">
+      <h3 class="mx-label">Not claimed</h3>
+      <p>No business results are attributed to this work. I have not measured — and do not claim — reduced onboarding time, eliminated manual work, or changes in revenue, conversion or productivity. None of the designs were validated through user testing that I can document.</p>
+    </div>
+    
+    </div>
+  </section>
+    
+  <section class="mx-sec" id="reflection" aria-labelledby="reflection-h" data-chapter>
+    <div class="wrap">
+    
+  <header class="mx-head">
+    <p class="mx-kicker"><span class="mx-kicker__n">11</span>Reflection</p>
+    <div class="mx-head__main">
+      <h2 class="mx-h2" id="reflection-h">What this project changed about how I work.</h2>
+      
+    </div>
+  </header>
+    <div class="mx-reflect">
+      <p class="mx-statement">The most useful thing I did on ManaGEM happened before I designed anything: working out what each screen was for, and what it was connected to.</p>
+      <div class="mx-prose">
+        <p>In a system like this, a screen is never only a screen. The enquiry form decides what the pipeline can show. The invoice list is only as clear as the status it is given. Navigation, data, forms and feedback kept turning out to be the same problem seen from different sides, and I got better results once I stopped treating them as separate pieces of work.</p>
+        <p>Preserving what already worked was harder than replacing it. It meant understanding why a function existed before deciding where it belonged, and accepting that the right answer was often to move something rather than redesign it.</p>
+        <p>Take-On taught me to be careful with automation. The interesting design work was not the extraction step — it was everything around it: showing what the system did, admitting what it was unsure about, and keeping a person responsible for the final answer.</p>
+        <p>What I would want next is evidence. The decisions here are reasoned from the brief and the product, and the honest next step is to watch new clients use them.</p>
+      </div>
+    </div></div>
+  </section>
+    <nav class="wrap mx-next" aria-label="Next case study">
+      <a class="mx-next__link" href="../../work/wastemart/">
+        <span class="mx-next__label">Next project</span>
+        <span class="mx-next__name">WasteMart</span>
+        <span class="mx-next__sum">A driver app where the next step is always obvious.</span>
+        <span class="mx-next__arrow"><span>View case study</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span>
       </a>
     </nav>
   </article>

@@ -4,7 +4,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: 88px; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: 64px; }
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 
 body {
@@ -12,7 +12,8 @@ body {
   background: var(--canvas);
   color: var(--ink);
   font: var(--body-md);
-  font-feature-settings: 'ss01';
+  letter-spacing: -0.022em;
+  font-feature-settings: 'ss03';
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
 }
@@ -21,12 +22,13 @@ img, svg { display: block; max-width: 100%; height: auto; }
 h1, h2, h3, h4, p, ul, ol, dl, dd, figure { margin: 0; }
 ul[role='list'], ol[role='list'] { list-style: none; padding: 0; }
 button { font: inherit; color: inherit; }
-h1, h2, h3, h4 { letter-spacing: 0; text-wrap: balance; }
+h1, h2, h3, h4 { letter-spacing: -0.012em; font-weight: 600; text-wrap: balance; }
+small, figcaption { letter-spacing: -0.016em; }
 p, li, dd { text-wrap: pretty; }
 
 a { color: inherit; text-underline-offset: 0.2em; }
 
-:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 4px; }
+:focus-visible { outline: 2px solid var(--primary-focus); outline-offset: 3px; border-radius: 4px; }
 main:focus { outline: none; }
 
 .sr-only {
@@ -46,7 +48,7 @@ main:focus { outline: none; }
 .skip:focus { transform: none; }
 
 .wrap { width: 100%; max-width: calc(var(--container) + 2 * var(--gutter)); margin-inline: auto; padding-inline: var(--gutter); }
-.section { padding-block: var(--3xl); }
+.section { padding-block: var(--4xl); }
 
 .lead { font: var(--body-lg); }
 .muted { color: var(--body); }

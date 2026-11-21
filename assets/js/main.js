@@ -69,7 +69,7 @@
   }
 
   // ------------------------------------------------------ scroll reveal
-  var revealTargets = document.querySelectorAll('[data-reveal], .decision, .tree__group, .cs-section__title, .shead, .rows .row, .fig');
+  var revealTargets = document.querySelectorAll('[data-reveal], .decision, .tree__group, .cs-section__title, .shead, .rows .row, .fig, .mx-head, .mx-part, .mx-decision__text, .mx-key__text, .mx-themes li, .mx-flow li, .mx-map__row');
   if ('IntersectionObserver' in window && !reduceMotion.matches) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -155,6 +155,66 @@
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (en) { en.forEach(function (e) { if (e.isIntersecting) { cancelAnimationFrame(raf); draw(); } else cancelAnimationFrame(raf); }); }).observe(wrap);
     }
+  }
+
+  // ------------------------------- case-study chapters & reading progress
+  var chapterNav = document.querySelector('[data-chapters]');
+  if (chapterNav) {
+    var chapterLinks = Array.prototype.slice.call(chapterNav.querySelectorAll('ol a[href^="#"]'));
+    var chapterEls = chapterLinks.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+    var bar = chapterNav.querySelector('[data-progress]');
+    var article = chapterNav.closest('article');
+    var activeIdx = -1, ticking = false;
+    function updateChapters() {
+      ticking = false;
+      var line = window.innerHeight * 0.35, idx = -1;
+      for (var i = 0; i < chapterEls.length; i++) {
+        if (chapterEls[i] && chapterEls[i].getBoundingClientRect().top <= line) idx = i;
+      }
+      if (idx !== activeIdx) {
+        if (activeIdx > -1) chapterLinks[activeIdx].removeAttribute('aria-current');
+        activeIdx = idx;
+        if (idx > -1) {
+          var link = chapterLinks[idx], list = link.closest('ol');
+          link.setAttribute('aria-current', 'true');
+          // Keep the active chapter in view inside the horizontally scrolling list.
+          var target = link.offsetLeft - (list.clientWidth - link.offsetWidth) / 2;
+          if (list.scrollTo) list.scrollTo({ left: target, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+        }
+      }
+      if (bar && article) {
+        var r = article.getBoundingClientRect();
+        var total = r.height - window.innerHeight;
+        bar.style.setProperty('--p', total > 0 ? Math.min(1, Math.max(0, -r.top / total)).toFixed(4) : 0);
+      }
+    }
+    function queueChapters() { if (!ticking) { ticking = true; requestAnimationFrame(updateChapters); } }
+    window.addEventListener('scroll', queueChapters, { passive: true });
+    window.addEventListener('resize', queueChapters, { passive: true });
+    updateChapters();
+  }
+
+  // ------------------------------------------- horizontal journey rail
+  var rail = document.querySelector('[data-rail]');
+  if (rail) {
+    var prevBtn = document.querySelector('[data-rail-prev]');
+    var nextBtn = document.querySelector('[data-rail-next]');
+    var railStep = function () {
+      var first = rail.children[0], second = rail.children[1];
+      return second ? second.offsetLeft - first.offsetLeft : rail.clientWidth;
+    };
+    var railState = function () {
+      if (prevBtn) prevBtn.disabled = rail.scrollLeft <= 2;
+      if (nextBtn) nextBtn.disabled = rail.scrollLeft >= rail.scrollWidth - rail.clientWidth - 2;
+    };
+    var railMove = function (dir) {
+      rail.scrollBy({ left: dir * railStep(), behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+    };
+    if (prevBtn) prevBtn.addEventListener('click', function () { railMove(-1); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { railMove(1); });
+    rail.addEventListener('scroll', railState, { passive: true });
+    window.addEventListener('resize', railState, { passive: true });
+    railState();
   }
 
   // -------------------------------------------------------- image viewer
