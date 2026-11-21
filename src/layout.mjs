@@ -170,7 +170,8 @@ const THEME_BOOT = `(function(){var t;try{t=localStorage.getItem('theme')}catch(
 
 export function documentShell(ctx, { title, description, body, bodyClass = '', noindex = false, ogImage = 'assets/images/og-default.jpg' }) {
   const canonical = site.origin + site.basePath + ctx.path.replace(/index\.html$/, '');
-  const fullTitle = title ? `${title} — Sphamandla Xaba` : 'Sphamandla Xaba — Product Designer | UI/UX';
+  // A title that already names the site (contains ' | ') is used as written.
+  const fullTitle = title ? (title.includes(' | ') ? title : `${title} — Sphamandla Xaba`) : 'Sphamandla Xaba — Product Designer | UI/UX';
   return `<!doctype html>
 <html lang="en-ZA">
 <head>

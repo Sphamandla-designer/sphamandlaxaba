@@ -23,9 +23,7 @@ nothing missing is presented as fact. Supply the item, replace the
 
 ## ManaGEM ERP
 
-- [ ] **ManaGEM: screenshots of the original (pre-redesign) interface** — needed for before-and-after comparisons. Neither supplied file contains the legacy UI.
-- [ ] **ManaGEM: team, collaborators and project timeline** — left off both pages until they can be confirmed.
-- [ ] **ManaGEM: designed save-confirmation states (saving, saved, error)** — the prototype shows review-then-commit but has no explicit saved/toast state, so none is shown.
-- [ ] **ManaGEM: which parts of the core redesign are in production** — both pages say "design complete" and make no production claim.
-- [ ] **ManaGEM: confirm the sample company name in the Take-On prototype ("SBS Waterproofing") may be shown publicly** — it appears in the Take-On screenshots and videos as sample data.
-- [ ] **ManaGEM: confirm who produced the product film and that it may be shown in the portfolio** — used as the opening visual of the quick case study.
+- [ ] **ManaGEM: designed save-confirmation states (saving, saved, error)** — the prototype shows review-then-commit but no explicit saved/toast state, so none is shown.
+- [ ] **ManaGEM: team, collaborators and project timeline** — left off both pages until confirmed.
+- [ ] **ManaGEM: confirm the sample company name in the Take-On prototype ("SBS Waterproofing") may be shown publicly** — it is also the account name in the legacy screenshots, where it has been redacted.
+- [ ] **ManaGEM: confirm who produced the product film and that it may be shown** — used in the Product background section of the full case study.

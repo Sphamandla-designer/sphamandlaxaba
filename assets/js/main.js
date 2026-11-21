@@ -69,7 +69,7 @@
   }
 
   // ------------------------------------------------------ scroll reveal
-  var revealTargets = document.querySelectorAll('[data-reveal], .decision, .tree__group, .cs-section__title, .shead, .rows .row, .fig, .mx-head, .mx-part, .mx-feat__head, .mx-feat__media, .mx-beats, .mx-card, .mx-chain li, .mx-problem, .mx-steps li, .mx-map, .mx-counts li, .mx-phases > li, .mx-caveats li, .mx-lessons article, .mx-gallery .mx-shot, .mx-status, .mq-problems li, .mq-process li, .mq-dec__text, .mq-dec__media, .mq-journey li, .mq-show .mx-shot, .mq-status > div, .mf-legend, .mf-ia__groups, .mf-split');
+  var revealTargets = document.querySelectorAll('[data-reveal], .decision, .tree__group, .cs-section__title, .shead, .rows .row, .fig, .mx-head, .mx-part, .mx-feat__head, .mx-feat__media, .mx-beats, .mx-card, .mx-chain li, .mx-problem, .mx-steps li, .mx-map, .mx-counts li, .mx-phases > li, .mx-caveats li, .mx-lessons article, .mx-gallery .mx-shot, .mx-status, .mq-seven li, .mq-steps li, .mq-dec__head, .mq-dec__media, .mq-strip li, .mq-show .mx-shot, .mx-statuslist, .mx-flowmap, .mf-legend, .mf-ia__groups, .mf-split, .mf-legacy__item, .mf-modules li, .mf-measures li, .mf-pattern, .mf-approach li');
   if ('IntersectionObserver' in window && !reduceMotion.matches) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -276,6 +276,19 @@
       else videoFigs.forEach(function (f) { if (f._resume) { f._resume = false; var v = f.querySelector('video'); if (v) v.play().catch(function () {}); } });
     });
   }
+
+  // ------------------------------------------------ before / after compare
+  document.querySelectorAll('[data-compare]').forEach(function (fig) {
+    var bar = fig.querySelector('.mx-compare__bar');
+    if (bar) bar.hidden = false;
+    fig.querySelectorAll('[data-compare-show]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var view = btn.getAttribute('data-compare-show');
+        fig.setAttribute('data-view', view);
+        fig.querySelectorAll('[data-compare-show]').forEach(function (b) { b.setAttribute('aria-pressed', String(b === btn)); });
+      });
+    });
+  });
 
   // -------------------------------------------------------- image viewer
   var viewer = document.querySelector('[data-viewer]');

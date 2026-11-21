@@ -66,20 +66,27 @@ sitemap.xml robots.txt CONTENT-NEEDED.md                                 ← gen
 
 ## ManaGEM case study
 
-ManaGEM has a two-level reading experience:
+Two levels of the same story:
 
-| Route | Source | Purpose |
+| Route | Source | Reading |
 | --- | --- | --- |
-| `work/managem/` | `src/content/case-managem.mjs` | Quick case study (default, ~3 min): role, challenge, four decisions with evidence, Take-On, interface showcase, status |
-| `work/managem/full/` | `src/content/case-managem-full.mjs` | Full case study (~8 min): context, workflow analysis, annotated screen anatomy, all six decisions, full Take-On journey, more screens, reflection |
+| `work/managem/` | `src/content/case-managem.mjs` | Recruiter overview, 2–3 min — hero, at a glance, challenge, approach, four decisions with before/after evidence, Take-On, redesigned interface, status |
+| `work/managem/full/` | `src/content/case-managem-full.mjs` | Full case study, 7–10 min — background, the original interface analysed, design problem, approach, detailed design stories, reusable patterns, Take-On, evaluation plan, implementation status, reflection |
 
-Both pages share components from `src/content/managem-parts.mjs` and styles
-from `src/styles/04-case-managem.css` (quick-only rules are prefixed `mq-`,
-full-only `mf-`). The full route is registered in `extraPages` in
-`src/build.mjs`. Screenshots in `assets/images/managem/` and recordings in
-`assets/video/managem/` are captured from the two design prototypes and show
-demo data only. Claims are limited to the redesign brief and what the
-prototypes show; open questions are listed in `CONTENT-NEEDED.md`.
+Shared components (screenshots, video, before/after compare, status list,
+workflow diagram) live in `src/content/managem-parts.mjs`; styles in
+`src/styles/04-case-managem.css`. The full route is registered in
+`extraPages` in `src/build.mjs`.
+
+**Images.** `assets/images/managem/mg-*` and `to-*` are captured from the two
+design prototypes (demo data). `legacy-*` are screenshots of the original
+interface with every client name, contact detail and financial figure replaced
+by grey bars, produced by `src/redact-legacy.py`. **Never commit unredacted
+originals** — the site is public. `pat-*` are crops of the redesigned screens.
+
+**Status wording** is defined once in `STATUS` in `managem-parts.mjs`. Do not
+describe the redesign as live until it is released. Open questions are in
+`CONTENT-NEEDED.md`.
 
 ## Design system
 

@@ -14,6 +14,7 @@
 //  - Take-On is a designed prototype with development underway; its AI
 //    processing is simulated and its legal/security copy is prototype content.
 
+import { readFileSync } from 'node:fs';
 import { esc, url, img, icon } from '../shared.mjs';
 
 export const SRC_CORE = 'Core redesign prototype · demo data';
@@ -34,13 +35,19 @@ export const glyph = {
   back: '<svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8H3M7 4 3 8l4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>',
 };
 
-const full = (ctx, key) => url(ctx, `assets/images/${key}${key.endsWith('mg-sidebar') ? '' : '-1600'}.webp`);
+const imgMeta = JSON.parse(readFileSync(new URL('./images.json', import.meta.url), 'utf8'));
+/** The largest file for an image: images with one size have no width suffix. */
+const full = (ctx, key) => {
+  const m = imgMeta[key];
+  const suffix = m && m.sizes.length > 1 ? `-${Math.max(...m.sizes)}` : '';
+  return url(ctx, `assets/images/${key}${suffix}.webp`);
+};
 
 /** A real product screenshot; every shot opens in the image viewer. */
-export function shot(ctx, key, alt, { caption = '', source = SRC_CORE, sizes = '(min-width: 1264px) 1200px, 100vw', cls = '', inner = '' } = {}) {
+export function shot(ctx, key, alt, { caption = '', source = SRC_CORE, sizes = '(min-width: 1264px) 1200px, 100vw', cls = '', inner = '', eager = false } = {}) {
   const k = `managem/${key}`;
   return `<figure class="mx-shot${cls ? ` ${cls}` : ''}">
-    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="${full(ctx, k)}" data-zoom data-caption="${esc(caption || alt)}" aria-label="Enlarge: ${esc(alt)}">${img(ctx, k, alt, { sizes })}</a>${inner}</div>
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="${full(ctx, k)}" data-zoom data-caption="${esc(caption || alt)}" aria-label="Enlarge: ${esc(alt)}">${img(ctx, k, alt, { sizes, eager })}</a>${inner}</div>
     <figcaption>${caption ? `<span>${esc(caption)}</span>` : ''}<span class="mx-src">${esc(source)}</span></figcaption>
   </figure>`;
 }
@@ -132,3 +139,69 @@ export const nextProject = (ctx, next) => `
         </a>
       </div>
     </nav>`;
+
+// ------------------------------------------------- before / after compare
+
+export const SRC_LEGACY = 'Original interface · client data redacted';
+
+/** One frame, two versions. Without JavaScript both are shown, stacked. */
+export function compare(ctx, { before, after, caption = '', view = 'after', sizes = '(min-width: 1264px) 1200px, 100vw' }) {
+  const pane = (which, [key, alt], label) => {
+    const k = `managem/${key}`;
+    return `<div class="mx-compare__pane" data-pane="${which}">
+        <p class="mx-compare__label"><span class="mx-compare__dot mx-compare__dot--${which}" aria-hidden="true"></span>${label}</p>
+        <a class="zoom mx-frame" href="${full(ctx, k)}" data-zoom data-caption="${esc(`${label}: ${alt}`)}" aria-label="Enlarge: ${esc(alt)}">${img(ctx, k, alt, { sizes })}</a>
+      </div>`;
+  };
+  return `<figure class="mx-compare" data-compare data-view="${view}">
+    <div class="mx-compare__bar" hidden>
+      <div class="mx-seg" role="group" aria-label="Choose which version to show">
+        <button type="button" data-compare-show="before" aria-pressed="${view === 'before'}">Original</button>
+        <button type="button" data-compare-show="after" aria-pressed="${view === 'after'}">Redesign</button>
+      </div>
+    </div>
+    <div class="mx-compare__panes">
+      ${pane('before', before, SRC_LEGACY)}
+      ${pane('after', after, 'Redesign · demo data')}
+    </div>
+    ${caption ? `<figcaption><span>${esc(caption)}</span></figcaption>` : ''}
+  </figure>`;
+}
+
+// ------------------------------------------------------- project status
+
+/** The agreed status of every part of the project. One source for both pages. */
+export const STATUS = [
+  ['Product redesign', 'Design completed', 'live'],
+  ['Core product', 'Development underway', 'progress'],
+  ['Customer release', 'Awaiting coordinated release', 'pending'],
+  ['Take-On', 'UX/UI prototype completed; development underway', 'progress'],
+  ['Production validation', 'Pending release', 'pending'],
+];
+
+export const statusList = () => `
+  <dl class="mx-statuslist">
+    ${STATUS.map(([k, v, kind]) => `<div><dt>${k}</dt><dd><span class="status status--${kind}"><span class="status__mark" aria-hidden="true"></span>${v}</span></dd></div>`).join('')}
+  </dl>`;
+
+/** Simplified business workflow. */
+export const WORKFLOW = [
+  ['Enquiry', 'A lead is captured and tracked.'],
+  ['Quotation', 'The work is priced from the product catalogue.'],
+  ['Job', 'Accepted work becomes a project or a factory build.'],
+  ['Stock / Production', 'Materials are bought, stored, dispatched or built.'],
+  ['Invoice', 'Completed work is billed and synced to accounting.'],
+  ['Payment', 'Outstanding balances are followed up.'],
+];
+
+export const workflowDiagram = (label = 'A simplified business workflow in ManaGEM') => `
+  <figure class="mx-flowmap">
+    <ol class="mx-flowmap__steps" role="list" aria-label="${esc(label)}">
+      ${WORKFLOW.map(([t, d], i) => `<li><span class="mx-flowmap__n">${String(i + 1).padStart(2, '0')}</span><strong>${t}</strong><span class="mx-flowmap__d">${d}</span></li>`).join('')}
+    </ol>
+    <div class="mx-flowmap__shared" aria-label="Records shared by every stage">
+      <span>Shared records</span>
+      <ul role="list"><li>Customers & suppliers</li><li>Products & pricing</li><li>Staff</li><li>Reports</li><li>Accounting sync</li></ul>
+    </div>
+    <figcaption>A simplified view. Not every business uses every stage, or in this order — but each stage reads records created by the one before it.</figcaption>
+  </figure>`;
