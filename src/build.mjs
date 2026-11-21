@@ -21,6 +21,7 @@ import notfound from './pages/notfound.mjs';
 import managem from './content/case-managem.mjs';
 import wastemart from './content/case-wastemart.mjs';
 import gemis from './content/case-gemis.mjs';
+import managemFull from './content/case-managem-full.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const out = (rel, content) => {
@@ -45,7 +46,21 @@ const casePages = projects.map((p) => ({
   render: (ctx) => renderCase(ctx, caseContent[p.slug]),
 }));
 
-const pages = [home, ...casePages, about, contact, notfound];
+// The ManaGEM case study has a second, in-depth reading at its own route.
+const extraPages = [
+  {
+    path: 'work/managem/full/index.html',
+    page: 'ManaGEM ERP',
+    navKey: 'work',
+    slug: 'managem',
+    title: 'ManaGEM ERP — Full case study',
+    description: 'The full ManaGEM case study: product context, workflow analysis, every design decision with its reasoning, and the complete Take-On onboarding journey.',
+    bodyClass: 'page-case page-case--managem page-case--full',
+    render: (ctx) => managemFull.render(ctx),
+  },
+];
+
+const pages = [home, ...casePages, ...extraPages, about, contact, notfound];
 
 for (const p of pages) {
   const ctx = { path: p.path, depth: depthOf(p.path), page: p.page, navKey: p.navKey, slug: p.slug, absolute: p.path === '404.html' };
@@ -109,7 +124,12 @@ for (const [from, to] of Object.entries(legacy)) {
 // ------------------------------------------------- content still needed
 
 const byPage = {};
-for (const ph of placeholderLog) (byPage[ph.page] ||= []).push(ph);
+const seen = new Set();
+for (const ph of placeholderLog) {
+  if (seen.has(ph.page + ph.need)) continue; // the same gap can be logged by both ManaGEM pages
+  seen.add(ph.page + ph.need);
+  (byPage[ph.page] ||= []).push(ph);
+}
 const md = [
   '# Content still needed',
   '',

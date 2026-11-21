@@ -69,7 +69,7 @@
   }
 
   // ------------------------------------------------------ scroll reveal
-  var revealTargets = document.querySelectorAll('[data-reveal], .decision, .tree__group, .cs-section__title, .shead, .rows .row, .fig, .mx-head, .mx-part, .mx-feat__head, .mx-feat__media, .mx-beats, .mx-card, .mx-chain li, .mx-problem, .mx-steps li, .mx-map, .mx-counts li, .mx-phases > li, .mx-caveats li, .mx-lessons article, .mx-gallery .mx-shot, .mx-status');
+  var revealTargets = document.querySelectorAll('[data-reveal], .decision, .tree__group, .cs-section__title, .shead, .rows .row, .fig, .mx-head, .mx-part, .mx-feat__head, .mx-feat__media, .mx-beats, .mx-card, .mx-chain li, .mx-problem, .mx-steps li, .mx-map, .mx-counts li, .mx-phases > li, .mx-caveats li, .mx-lessons article, .mx-gallery .mx-shot, .mx-status, .mq-problems li, .mq-process li, .mq-dec__text, .mq-dec__media, .mq-journey li, .mq-show .mx-shot, .mq-status > div, .mf-legend, .mf-ia__groups, .mf-split');
   if ('IntersectionObserver' in window && !reduceMotion.matches) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
