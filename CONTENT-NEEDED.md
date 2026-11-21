@@ -23,7 +23,10 @@ nothing missing is presented as fact. Supply the item, replace the
 
 ## ManaGEM ERP
 
-- [ ] **ManaGEM: designed save-confirmation states (saving, saved, error)** — the design-system section now specifies saving, saved and error states, rebuilt for the portfolio; confirm they match what the development team is building.
-- [ ] **ManaGEM: team, collaborators and project timeline** — left off both pages until confirmed.
-- [ ] **ManaGEM: confirm the sample company name in the Take-On prototype ("SBS Waterproofing") may be shown publicly** — it is also the account name in the legacy screenshots, where it has been redacted.
-- [ ] **ManaGEM: confirm who produced the product film and that it may be shown** — used in the Product background section of the full case study.
+- [ ] **ManaGEM: publication clearance for the other nine original screenshots** — only the three navigation crops are approved; the nine remain unused.
+- [ ] **ManaGEM: publication clearance for the product film and the linked redesign / Take-On prototypes** — none is embedded or linked on the three ManaGEM pages; the raw files are still served from the repository root.
+- [ ] **ManaGEM: confirm whether the original client company and its records may be named** — all Take-On captures and videos use "Sample Trading (Pty) Ltd"; the redesign's company switcher reads "Demo Waterproofing".
+- [ ] **ManaGEM: decide on git-history exposure of the nine unredacted screenshots (commit e0b5bd7, public repository)** — no history rewrite has been done; it needs explicit authorisation.
+- [ ] **ManaGEM: root file "Screenshot 2026-11-21 235617.png" still shows the username** — the published crop removes it; the raw file in the root is still served publicly.
+- [ ] **ManaGEM: confirm that the names and contact details in the redesign and Take-On prototypes are fictitious** — e.g. Delta Group, Alex Carter, Mzansi Construct CC, MST Group, phone numbers and emails in Take-On captures; only the client company was anonymised.
+- [ ] **ManaGEM: confirm the onboarding detail that some prospective clients reportedly disengaged** — used once, as "reportedly", in the full case study.

@@ -560,5 +560,378 @@
 "sizes": [
 1600
 ]
+},
+"managem/nav-original-sales": {
+"w": 436,
+"h": 1598,
+"sizes": [
+436
+]
+},
+"managem/nav-original-products": {
+"w": 436,
+"h": 1760,
+"sizes": [
+436
+]
+},
+"managem/nav-original-projects": {
+"w": 430,
+"h": 1816,
+"sizes": [
+430
+]
+},
+"managem/ds-sidebar-expanded": {
+"w": 480,
+"h": 1800,
+"sizes": [
+480
+]
+},
+"managem/ds-sidebar-collapsed": {
+"w": 128,
+"h": 1800,
+"sizes": [
+128
+]
+},
+"managem/ds-user": {
+"w": 480,
+"h": 108,
+"sizes": [
+480
+]
+},
+"managem/ds-topbar": {
+"w": 1600,
+"h": 75,
+"sizes": [
+1600
+]
+},
+"managem/ds-search-focus": {
+"w": 762,
+"h": 70,
+"sizes": [
+762
+]
+},
+"managem/ds-kpi-grid": {
+"w": 1600,
+"h": 165,
+"sizes": [
+1600
+]
+},
+"managem/ds-kpi-hover": {
+"w": 552,
+"h": 238,
+"sizes": [
+552
+]
+},
+"managem/ds-quick-actions": {
+"w": 1600,
+"h": 165,
+"sizes": [
+1600
+]
+},
+"managem/ds-nav-hover": {
+"w": 440,
+"h": 646,
+"sizes": [
+440
+]
+},
+"managem/ds-pipeline": {
+"w": 1600,
+"h": 108,
+"sizes": [
+1600
+]
+},
+"managem/ds-toolbar": {
+"w": 1600,
+"h": 78,
+"sizes": [
+1600
+]
+},
+"managem/ds-table-invoices": {
+"w": 1600,
+"h": 697,
+"sizes": [
+1600
+]
+},
+"managem/ds-pager": {
+"w": 1600,
+"h": 75,
+"sizes": [
+1600
+]
+},
+"managem/ds-bulk-bar": {
+"w": 916,
+"h": 90,
+"sizes": [
+916
+]
+},
+"managem/ds-table-selected": {
+"w": 1600,
+"h": 818,
+"sizes": [
+1600
+]
+},
+"managem/ds-tabs-enquiries": {
+"w": 1600,
+"h": 53,
+"sizes": [
+1600
+]
+},
+"managem/ds-tabs-factory": {
+"w": 1600,
+"h": 53,
+"sizes": [
+1600
+]
+},
+"managem/ds-funnel": {
+"w": 1600,
+"h": 161,
+"sizes": [
+1600
+]
+},
+"managem/ds-subtabs-stock": {
+"w": 1600,
+"h": 64,
+"sizes": [
+1600
+]
+},
+"managem/ds-empty": {
+"w": 1600,
+"h": 406,
+"sizes": [
+1600
+]
+},
+"managem/ds-row-hover": {
+"w": 1600,
+"h": 82,
+"sizes": [
+1600
+]
+},
+"managem/ds-drawer": {
+"w": 960,
+"h": 837,
+"sizes": [
+960
+]
+},
+"managem/ds-form-focus": {
+"w": 1600,
+"h": 626,
+"sizes": [
+1600
+]
+},
+"managem/ds-card-sales": {
+"w": 1476,
+"h": 692,
+"sizes": [
+1476
+]
+},
+"managem/ds-kpi-sage": {
+"w": 1600,
+"h": 136,
+"sizes": [
+1600
+]
+},
+"managem/ds-m-dashboard": {
+"w": 780,
+"h": 1688,
+"sizes": [
+780
+]
+},
+"managem/ds-m-menu": {
+"w": 780,
+"h": 1688,
+"sizes": [
+780
+]
+},
+"managem/ds-m-invoices": {
+"w": 780,
+"h": 1688,
+"sizes": [
+780
+]
+},
+"managem/ds-to-stepper": {
+"w": 1600,
+"h": 72,
+"sizes": [
+1600
+]
+},
+"managem/ds-to-btn-disabled": {
+"w": 324,
+"h": 74,
+"sizes": [
+324
+]
+},
+"managem/ds-to-btn-enabled": {
+"w": 324,
+"h": 74,
+"sizes": [
+324
+]
+},
+"managem/ds-to-dropzone-empty": {
+"w": 1164,
+"h": 446,
+"sizes": [
+1164
+]
+},
+"managem/ds-to-dropzone-files": {
+"w": 1164,
+"h": 646,
+"sizes": [
+1164
+]
+},
+"managem/ds-land-hero": {
+"w": 1440,
+"h": 1560,
+"sizes": [
+1440
+]
+},
+"managem/ds-land-tour": {
+"w": 1440,
+"h": 1224,
+"sizes": [
+1440
+]
+},
+"managem/ds-land-start": {
+"w": 1440,
+"h": 1205,
+"sizes": [
+1440
+]
+},
+"managem/ds-land-pricing": {
+"w": 1440,
+"h": 1260,
+"sizes": [
+1440
+]
+},
+"managem/to-02-consent-empty": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/to-04-upload-empty": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"managem/ds-x-p-actions": {
+"w": 480,
+"h": 116,
+"sizes": [
+480
+]
+},
+"managem/ds-x-t-actions": {
+"w": 558,
+"h": 96,
+"sizes": [
+558
+]
+},
+"managem/ds-x-l-actions": {
+"w": 970,
+"h": 188,
+"sizes": [
+970
+]
+},
+"managem/ds-x-p-form": {
+"w": 1150,
+"h": 600,
+"sizes": [
+1150
+]
+},
+"managem/ds-x-t-form": {
+"w": 1280,
+"h": 600,
+"sizes": [
+1280
+]
+},
+"managem/ds-x-l-form": {
+"w": 1178,
+"h": 840,
+"sizes": [
+1178
+]
+},
+"managem/ds-x-p-status": {
+"w": 972,
+"h": 652,
+"sizes": [
+972
+]
+},
+"managem/ds-x-t-valid": {
+"w": 1388,
+"h": 580,
+"sizes": [
+1388
+]
+},
+"managem/ds-x-l-status": {
+"w": 792,
+"h": 428,
+"sizes": [
+792
+]
+},
+"managem/ds-x-p-cards": {
+"w": 1184,
+"h": 286,
+"sizes": [
+1184
+]
+},
+"managem/ds-x-l-cards": {
+"w": 680,
+"h": 1004,
+"sizes": [
+680
+]
 }
 }

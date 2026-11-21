@@ -6,7 +6,7 @@ export const projects = [
     slug: 'managem',
     name: 'ManaGEM ERP',
     category: 'Enterprise software · ERP · Product redesign',
-    status: { label: 'Design complete · In development', kind: 'progress' },
+    status: { label: 'Design approved · In development', kind: 'progress' },
     title: 'Reimagining the experience behind everyday business operations.',
     summary: 'Redesigning an established ERP platform to make complex business workflows clearer, more consistent and easier to navigate.',
     role: 'Product Design / UX/UI Design',

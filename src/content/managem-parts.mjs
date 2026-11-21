@@ -22,6 +22,10 @@ export const SRC_TAKEON = 'Take-On prototype · sample data';
 export const TAKEON_FILE = 'ManaGem%20Take-On%20(Standalone).html';
 export const QUICK = 'work/managem/';
 export const FULL = 'work/managem/full/';
+export const DS = 'work/managem/design-system/';
+export const ORIGINAL_NAV = 'Original interface · approved for publication';
+/** Confirmed review wording. Use exactly; do not shorten or extend. */
+export const REVIEW = 'The redesigned prototype was reviewed with the GEMIS manager and full-stack developer. Its navigation, data synchronisation and user flows were tested. Following the review, the manager approved the design direction, which is now being implemented.';
 const VID = 'assets/video/managem/';
 
 export const glyph = {
@@ -37,7 +41,7 @@ export const glyph = {
 
 const imgMeta = JSON.parse(readFileSync(new URL('./images.json', import.meta.url), 'utf8'));
 /** The largest file for an image: images with one size have no width suffix. */
-const full = (ctx, key) => {
+export const full = (ctx, key) => {
   const m = imgMeta[key];
   const suffix = m && m.sizes.length > 1 ? `-${Math.max(...m.sizes)}` : '';
   return url(ctx, `assets/images/${key}${suffix}.webp`);
@@ -174,7 +178,7 @@ export function compare(ctx, { before, after, caption = '', view = 'after', size
 
 /** The agreed status of every part of the project. One source for both pages. */
 export const STATUS = [
-  ['Product redesign', 'Design completed', 'live'],
+  ['Product redesign', 'Design approved by the manager', 'live'],
   ['Core product', 'Development underway', 'progress'],
   ['Customer release', 'Awaiting coordinated release', 'pending'],
   ['Take-On', 'UX/UI prototype completed; development underway', 'progress'],
@@ -207,3 +211,16 @@ export const workflowDiagram = (label = 'A simplified business workflow in ManaG
     </div>
     <figcaption>A simplified view. Not every business uses every stage, or in this order — but each stage reads records created by the one before it.</figcaption>
   </figure>`;
+
+/**
+ * The same design system in the three experiences it was applied to — used
+ * by the overview and the full case study to lead into the design-system page.
+ */
+export function dsApplied(ctx) {
+  const sz = '(min-width: 1264px) 440px, (min-width: 640px) 33vw, 100vw';
+  return `<div class="mq-applied" aria-label="The design system applied in three experiences">
+    ${shot(ctx, 'mg-dashboard', 'The redesigned ManaGEM dashboard', { caption: 'Product redesign', sizes: sz })}
+    ${shot(ctx, 'to-06-validation', 'The Take-On validation summary', { caption: 'Take-On', source: SRC_TAKEON, sizes: sz })}
+    ${shot(ctx, 'ds-land-hero', 'The ManaGEM landing page hero', { caption: 'Landing page', source: 'ManaGEM landing page', sizes: sz })}
+  </div>`;
+}
