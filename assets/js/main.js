@@ -69,7 +69,7 @@
   }
 
   // ------------------------------------------------------ scroll reveal
-  var revealTargets = document.querySelectorAll('[data-reveal], .decision, .tree__group, .cs-section__title, .shead, .rows .row, .fig, .mx-head, .mx-part, .mx-decision__text, .mx-key__text, .mx-themes li, .mx-flow li, .mx-map__row');
+  var revealTargets = document.querySelectorAll('[data-reveal], .decision, .tree__group, .cs-section__title, .shead, .rows .row, .fig, .mx-head, .mx-part, .mx-feat__head, .mx-feat__media, .mx-beats, .mx-card, .mx-chain li, .mx-problem, .mx-steps li, .mx-map, .mx-counts li, .mx-phases > li, .mx-caveats li, .mx-lessons article, .mx-gallery .mx-shot, .mx-status');
   if ('IntersectionObserver' in window && !reduceMotion.matches) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -215,6 +215,66 @@
     rail.addEventListener('scroll', railState, { passive: true });
     window.addEventListener('resize', railState, { passive: true });
     railState();
+  }
+
+  // ------------------------------------------------- autoplaying videos
+  // Muted, looping screen recordings. Each starts when it scrolls into view
+  // and pauses when it leaves, so only what is on screen downloads or plays.
+  // Phones get the small file via <source media>; slow connections and Data
+  // Saver get it everywhere. Data Saver, 2G and reduced-motion users get a
+  // poster and a play button instead of autoplay. Without JS: native controls.
+  var videoFigs = document.querySelectorAll('[data-video]');
+  if (videoFigs.length) {
+    var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection || {};
+    var saveData = !!conn.saveData;
+    var netType = conn.effectiveType || '';
+    var slowNet = saveData || /2g|3g/.test(netType);
+    var noAutoplay = reduceMotion.matches || saveData || /2g/.test(netType);
+
+    videoFigs.forEach(function (fig) {
+      var v = fig.querySelector('video');
+      var btn = fig.querySelector('[data-video-toggle]');
+      if (!v || !btn) return;
+      v.removeAttribute('controls');
+      btn.hidden = false;
+      var needsLoad = false;
+      if (slowNet) {
+        var sources = v.querySelectorAll('source');
+        if (sources.length > 1) { sources[0].removeAttribute('media'); for (var i = 1; i < sources.length; i++) sources[i].remove(); needsLoad = true; }
+      }
+      var userPaused = false, inView = false;
+      var sync = function () {
+        var playing = !v.paused && !v.ended;
+        fig.classList.toggle('is-playing', playing);
+        btn.setAttribute('aria-label', playing ? 'Pause video' : 'Play video');
+      };
+      // Re-run source selection only when the video is first needed.
+      var play = function () { if (needsLoad) { needsLoad = false; v.load(); } var p = v.play(); if (p && p.catch) p.catch(sync); };
+      var toggle = function () { if (v.paused) { userPaused = false; play(); } else { userPaused = true; v.pause(); } };
+      v.addEventListener('play', sync);
+      v.addEventListener('pause', sync);
+      btn.addEventListener('click', toggle);
+      v.addEventListener('click', toggle);
+      fig._setInView = function (visible) {
+        inView = visible;
+        if (visible) { if (!noAutoplay && !userPaused) play(); }
+        else if (!v.paused) v.pause();
+      };
+      sync();
+    });
+
+    if ('IntersectionObserver' in window) {
+      var videoIO = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { e.target._setInView(e.isIntersecting && e.intersectionRatio >= 0.2); });
+      }, { threshold: [0, 0.2, 0.6] });
+      videoFigs.forEach(function (f) { if (f._setInView) videoIO.observe(f); });
+    } else if (!noAutoplay) {
+      videoFigs.forEach(function (f) { if (f._setInView) f._setInView(true); });
+    }
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) videoFigs.forEach(function (f) { var v = f.querySelector('video'); if (v && !v.paused) { v.pause(); f._resume = true; } });
+      else videoFigs.forEach(function (f) { if (f._resume) { f._resume = false; var v = f.querySelector('video'); if (v) v.play().catch(function () {}); } });
+    });
   }
 
   // -------------------------------------------------------- image viewer
