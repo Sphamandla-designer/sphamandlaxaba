@@ -8,10 +8,11 @@ nothing missing is presented as fact. Supply the item, replace the
 ## ManaGEM ERP
 
 - [ ] **ManaGEM: team, collaborators and project timeline** — left off the page until they can be confirmed.
-- [ ] **ManaGEM: screenshots of the original (pre-redesign) interface** — needed for annotated "before" images and before-and-after comparisons. Neither supplied file contains the legacy UI.
-- [ ] **ManaGEM: designed save-confirmation states (saving, saved, error)** — the supplied prototype shows the review-then-commit pattern but contains no explicit saved/toast state, so none is shown.
-- [ ] **ManaGEM: which parts of the core redesign are in production** — the page currently says "design complete" and makes no production claim. Confirm before stating anything stronger.
-- [ ] **ManaGEM: confirm the sample company name in the Take-On prototype ("SBS Waterproofing") may be shown publicly** — it appears in the Take-On screenshots as sample data.
+- [ ] **ManaGEM: screenshots of the original (pre-redesign) interface** — needed for before-and-after comparisons. Neither supplied file contains the legacy UI.
+- [ ] **ManaGEM: designed save-confirmation states (saving, saved, error)** — the prototype shows review-then-commit but has no explicit saved/toast state, so none is shown.
+- [ ] **ManaGEM: which parts of the core redesign are in production** — the page says "design complete" and makes no production claim.
+- [ ] **ManaGEM: confirm the sample company name in the Take-On prototype ("SBS Waterproofing") may be shown publicly** — it appears in the Take-On screenshots and videos as sample data.
+- [ ] **ManaGEM: confirm who produced the product film and that it may be shown in the portfolio** — used as the opening visual, captioned as the product film.
 
 ## WasteMart
 

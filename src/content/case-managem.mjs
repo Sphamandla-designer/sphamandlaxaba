@@ -1,91 +1,133 @@
-// ManaGEM case study — a flagship page with its own layout (see `render`).
+// ManaGEM case study — flagship page with its own layout (see `render`).
 //
 // Evidence rules for this file:
-//  - Every screenshot is captured from the two supplied prototypes
-//    (prototypes/managem.html and "ManaGem Take-On (Standalone).html").
-//    They show demo / sample data, never client data.
-//  - Problems are the seven items in the redesign brief. Nothing else is
-//    claimed as a finding: no research sessions, quotes or metrics.
+//  - Screenshots and flow videos are captured from the two supplied prototypes
+//    (prototypes/managem.html and "ManaGem Take-On (Standalone).html") and show
+//    demo / sample data, never client data.
+//  - The opening film is the ManaGEM product film supplied in the repository.
+//    Its promotional lines are GEMIS marketing, not results of this project.
+//  - Problems are the seven items in the redesign brief. No research sessions,
+//    quotes or metrics are claimed. Counts on the page are counts of what the
+//    prototypes contain, not outcomes.
 //  - Take-On is a designed prototype with development underway. Its AI
 //    processing is simulated; its legal and security copy is prototype content.
-//  - Anything that could not be verified is left off the page and logged with
-//    todo(...) so it appears in CONTENT-NEEDED.md.
+//  - Anything unverified is left off the page and logged with todo(...).
 
 import { esc, url, img, todo, button, status, icon } from '../shared.mjs';
 
 const SRC_CORE = 'Core redesign prototype · demo data';
 const SRC_TAKEON = 'Take-On prototype · sample data';
 const TAKEON_FILE = 'ManaGem%20Take-On%20(Standalone).html';
+const VID = 'assets/video/managem/';
+
+// ------------------------------------------------------------ components
+
+const glyph = {
+  play: '<svg class="i i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.2v9.6L13 8z" fill="currentColor"/></svg>',
+  pause: '<svg class="i i-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 3h2.4v10H4.5zM9.1 3h2.4v10H9.1z" fill="currentColor"/></svg>',
+  maze: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4zM4 9h7M15 4v7M9 14h11M9 14v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>',
+  doc: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v4h4M9 12h6M9 16h4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>',
+  bell: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15zM10 20.5a2 2 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>',
+  layers: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5zM3 13l9 5 9-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>',
+  inbox: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13l2.5-8h11L20 13v6H4zM4 13h5l1 2h4l1-2h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>',
+};
 
 const full = (ctx, key) => url(ctx, `assets/images/${key}${key.endsWith('mg-sidebar') ? '' : '-1600'}.webp`);
 
-/** A real product screenshot. framed adds browser chrome; every shot opens in the viewer. */
-function shot(ctx, key, alt, { caption = '', source = SRC_CORE, framed = false, sizes = '(min-width: 1264px) 700px, 100vw', eager = false, cls = '' } = {}) {
+/** A real product screenshot; every shot opens in the viewer. */
+function shot(ctx, key, alt, { caption = '', source = SRC_CORE, sizes = '(min-width: 1264px) 1200px, 100vw', cls = '' } = {}) {
   const k = `managem/${key}`;
-  const image = `<a class="zoom" href="${full(ctx, k)}" data-zoom data-caption="${esc(caption || alt)}" aria-label="Enlarge: ${esc(alt)}">${img(ctx, k, alt, { sizes, eager })}</a>`;
-  return `<figure class="fig mx-shot${framed ? ' mx-shot--framed' : ''}${cls ? ` ${cls}` : ''}">
-    ${framed ? `<div class="mx-chrome"><div class="mx-chrome__bar" aria-hidden="true"><i></i><i></i><i></i></div>${image}</div>` : image}
+  return `<figure class="mx-shot${cls ? ` ${cls}` : ''}">
+    <a class="zoom mx-frame" href="${full(ctx, k)}" data-zoom data-caption="${esc(caption || alt)}" aria-label="Enlarge: ${esc(alt)}">${img(ctx, k, alt, { sizes })}</a>
     <figcaption>${caption ? `<span>${esc(caption)}</span>` : ''}<span class="mx-src">${esc(source)}</span></figcaption>
   </figure>`;
 }
 
-const kicker = (n, label) => `<p class="mx-kicker"><span class="mx-kicker__n">${n}</span>${esc(label)}</p>`;
-
-const head = (id, n, label, title, intro = '') => `
-  <header class="mx-head">
-    ${kicker(n, label)}
-    <div class="mx-head__main">
-      <h2 class="mx-h2" id="${id}-h">${title}</h2>
-      ${intro ? `<p class="mx-intro">${intro}</p>` : ''}
+/**
+ * An autoplaying, muted, looping screen recording. Nothing downloads until it
+ * nears the viewport (preload="none"); assets/js/main.js picks the small file
+ * on phones and slow connections, pauses it off screen, and leaves it paused
+ * for reduced-motion and data-saver users. Without JavaScript it shows native
+ * controls. The pause button satisfies WCAG 2.2.2 for moving content.
+ */
+function video(ctx, name, label, { caption = '', source = SRC_CORE, big = '1280', small = '768', poster = `${name}-poster.webp`, w = 1280, h = 800, hero = false, cls = '' } = {}) {
+  const src = (s) => url(ctx, `${VID}${name}-${s}.mp4`);
+  return `<figure class="mx-video${hero ? ' mx-video--hero' : ''}${cls ? ` ${cls}` : ''}" data-video${hero ? ' data-video-eager' : ''}>
+    <div class="mx-frame mx-video__frame">
+      <video muted loop playsinline controls preload="none" width="${w}" height="${h}" poster="${url(ctx, VID + poster)}" aria-label="${esc(label)}">
+        <source src="${src(small)}" type="video/mp4" media="(max-width: 767px)">
+        <source src="${src(big)}" type="video/mp4">
+      </video>
+      <button class="mx-video__toggle" type="button" data-video-toggle aria-label="Play video" hidden>${glyph.play}${glyph.pause}</button>
     </div>
+    <figcaption>${caption ? `<span>${esc(caption)}</span>` : ''}<span class="mx-src">${esc(source)}</span></figcaption>
+  </figure>`;
+}
+
+const head = ({ id, n, label, title, intro = '', align = 'center' }) => `
+  <header class="mx-head mx-head--${align}">
+    <p class="mx-kicker"><span class="mx-kicker__n">${n}</span>${esc(label)}</p>
+    <h2 class="mx-h2" id="${id}-h">${title}</h2>
+    ${intro ? `<p class="mx-intro">${intro}</p>` : ''}
   </header>`;
 
-const section = (id, body, mod = '') => `
-  <section class="mx-sec${mod ? ` mx-sec--${mod}` : ''}" id="${id}" aria-labelledby="${id}-h" data-chapter>
+const section = (id, body, mod = '', label = `${id}-h`) => `
+  <section class="mx-sec${mod ? ` mx-sec--${mod}` : ''}" id="${id}" aria-labelledby="${label}"${/^core-|^key-/.test(id) ? '' : ' data-chapter'}>
     <div class="wrap">${body}</div>
   </section>`;
 
 const note = (text) => `<p class="mx-note">${text}</p>`;
+const ticks = (items) => `<ul class="mx-ticks" role="list">${items.map((d) => `<li>${d}</li>`).join('')}</ul>`;
 
-/** One core-redesign decision, told in the same five beats each time. */
-function decision(ctx, { letter, title, difficulty, why, choice, result, shows, media, flip = false }) {
+/** A design decision as a feature tile: header, one big visual, four beats. */
+function feature({ id, tag, title, lede, media, beats, shows }) {
   return `
-  <article class="mx-decision${flip ? ' mx-decision--flip' : ''}" aria-labelledby="core-${letter}">
-    <div class="mx-decision__text">
-      <p class="mx-decision__letter" aria-hidden="true">${letter}</p>
-      <h3 class="mx-h3" id="core-${letter}">${title}</h3>
-      <dl class="mx-beats">
-        <div><dt>What was difficult</dt><dd>${difficulty}</dd></div>
-        <div><dt>Why it mattered</dt><dd>${why}</dd></div>
-        <div><dt>The decision</dt><dd>${choice}</dd></div>
-        <div><dt>In the interface</dt><dd>${result}</dd></div>
-      </dl>
-      <p class="mx-shows"><span>Demonstrates</span>${shows}</p>
-    </div>
-    <div class="mx-decision__media">${media}</div>
-  </article>`;
+    <article class="mx-feat" aria-labelledby="${id}-t">
+      <header class="mx-feat__head">
+        <p class="mx-feat__tag">${tag}</p>
+        <h3 class="mx-feat__title" id="${id}-t">${title}</h3>
+        <p class="mx-feat__lede">${lede}</p>
+      </header>
+      <div class="mx-feat__media">${media}</div>
+      <dl class="mx-beats">${beats.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>
+      ${shows ? `<p class="mx-shows"><span>Demonstrates</span> ${shows}</p>` : ''}
+    </article>`;
 }
 
-/** One Take-On UX decision. */
-function keyDecision(ctx, { n, title, reason, detail, media }) {
-  return `
-  <article class="mx-key" aria-labelledby="key-${n}">
-    <div class="mx-key__text">
-      <p class="mx-key__n" aria-hidden="true">${n}</p>
-      <h3 class="mx-h3" id="key-${n}">${title}</h3>
-      <p class="mx-key__reason">${reason}</p>
-      <ul class="mx-ticks" role="list">${detail.map((d) => `<li>${d}</li>`).join('')}</ul>
+// ----------------------------------------------------------------- hero
+
+const hero = (ctx) => `
+  <header class="mx-hero" aria-labelledby="mx-title">
+    <div class="wrap mx-hero__text">
+      <a class="back" href="${url(ctx, 'index.html#work')}">← Selected work</a>
+      <p class="mx-eyebrow">Case study · Enterprise ERP · Product redesign</p>
+      <h1 class="mx-title" id="mx-title">Reimagining ManaGEM</h1>
+      <p class="mx-sub">Redesigning an established business management platform, simplifying complex workflows, and designing a more structured approach to client onboarding.</p>
+      <div class="btn-row">
+        ${button(ctx, { label: 'Read the case study', href: '#overview', variant: 'primary', ic: '' })}
+        ${button(ctx, { label: 'Open the prototype', href: 'prototypes/managem.html', variant: 'secondary', ic: 'external', external: true })}
+      </div>
     </div>
-    <div class="mx-key__media">${media}</div>
-  </article>`;
-}
+    <div class="wrap mx-hero__film">
+      ${video(ctx, 'film', 'ManaGEM product film: the redesigned dashboard, navigation, stock, factory, debtors and invoicing screens', {
+        caption: 'ManaGEM product film, featuring the redesigned interface. Its promotional lines are GEMIS marketing, not results of this project.',
+        source: 'Product film',
+        big: '1280',
+        small: '640',
+        poster: 'film-poster-1280.webp',
+        w: 1280,
+        h: 720,
+        hero: true,
+      })}
+    </div>
+  </header>`;
 
 const chapters = [
   ['overview', 'Overview'],
   ['product', 'Product'],
   ['challenge', 'Challenge'],
   ['role', 'My role'],
-  ['analysis', 'Analysis'],
+  ['approach', 'Approach'],
   ['core', 'Core redesign'],
   ['takeon', 'Take-On'],
   ['decisions', 'UX decisions'],
@@ -94,314 +136,300 @@ const chapters = [
   ['reflection', 'Reflection'],
 ];
 
-// --------------------------------------------------------------- sections
-
-const hero = (ctx) => `
-  <header class="mx-hero wrap">
-    <a class="back" href="${url(ctx, 'index.html#work')}">← Selected work</a>
-    <p class="mx-eyebrow">Case study <span aria-hidden="true">·</span> Enterprise ERP <span aria-hidden="true">·</span> Product redesign</p>
-    <h1 class="mx-title">Reimagining ManaGEM</h1>
-    <p class="mx-sub">Redesigning an established business management platform, simplifying complex workflows, and designing a more structured approach to client onboarding.</p>
-    <div class="btn-row">
-      ${button(ctx, { label: 'Read the case study', href: '#overview', variant: 'primary', ic: '' })}
-      ${button(ctx, { label: 'Open the prototype', href: 'prototypes/managem.html', variant: 'secondary', ic: 'external', external: true })}
-    </div>
-    <dl class="mx-herometa">
-      <div><dt>My role</dt><dd>Product Design, UX/UI Design, Workflow Redesign</dd></div>
-      <div><dt>Organisation</dt><dd>GEMIS</dd></div>
-      <div><dt>Project type</dt><dd>Existing product redesign and onboarding experience design</dd></div>
-      <div><dt>Status</dt><dd>${status('Core redesign: designed', 'live')}${status('Take-On: prototype complete, development underway', 'progress')}</dd></div>
-    </dl>
-  </header>
-  <div class="mx-stage">
-    <div class="wrap">
-      ${shot(ctx, 'mg-dashboard', 'The redesigned ManaGEM dashboard: grouped navigation on the left, a messages banner, four headline figures, a sales summary chart and current projects', {
-        caption: 'The redesigned dashboard — the first screen a user sees after signing in.',
-        framed: true,
-        eager: true,
-        sizes: '(min-width: 1264px) 1200px, 100vw',
-      })}
-    </div>
-  </div>`;
+// ------------------------------------------------------------- sections
 
 const overview = (ctx) =>
   section(
     'overview',
     `
-    ${head('overview', '01', 'Project overview', 'A substantial redesign of a product that already existed — not a new product.')}
-    <div class="mx-split">
-      <div class="mx-brief">
-        <div>
-          <h3 class="mx-label">What it is</h3>
-          <p>ManaGEM is a business management (ERP) platform developed by GEMIS. It grew from a template bought around 2015 into a system that other businesses could run on.</p>
-        </div>
-        <div>
-          <h3 class="mx-label">The problem</h3>
-          <p>The original experience had become hard for new clients to understand and navigate, and bringing a new client onto the platform depended on collecting and capturing their information by hand.</p>
-        </div>
-        <div>
-          <h3 class="mx-label">What I did</h3>
-          <p>I rethought the product screen by screen and workflow by workflow, redesigned its interface, and designed Take-On — an AI-assisted onboarding experience for new clients.</p>
-        </div>
-      </div>
-      <dl class="mx-facts">
-        <div><dt>Product</dt><dd>ManaGEM</dd></div>
-        <div><dt>Organisation</dt><dd>GEMIS</dd></div>
-        <div><dt>Project</dt><dd>ERP product redesign and onboarding experience design</dd></div>
-        <div><dt>My role</dt><dd>Product Design, UX/UI Design, Workflow Redesign</dd></div>
-        <div><dt>Scope</dt><dd>Existing product experience, navigation, interface, workflows, and the Take-On onboarding prototype</dd></div>
-        <div><dt>Take-On status</dt><dd>UX/UI prototype completed; development underway</dd></div>
-      </dl>
+    ${head({ id: 'overview', n: '01', label: 'At a glance', title: 'A substantial redesign of a product that already existed.' })}
+    <div class="mx-tldr">
+      <article class="mx-card">
+        <p class="mx-card__k">The product</p>
+        <p>ManaGEM is a business management (ERP) platform by GEMIS. It grew from a template bought around 2015 into a system other businesses run on.</p>
+      </article>
+      <article class="mx-card">
+        <p class="mx-card__k">The problem</p>
+        <p>New clients found it hard to understand and navigate, and getting onto it depended on collecting and capturing their information by hand.</p>
+      </article>
+      <article class="mx-card mx-card--accent">
+        <p class="mx-card__k">What I did</p>
+        <p>Rethought the product screen by screen and workflow by workflow, redesigned the interface, and designed Take-On, an AI-assisted onboarding flow.</p>
+      </article>
     </div>
+    <dl class="mx-facts">
+      <div><dt>My role</dt><dd>Product Design, UX/UI Design, Workflow Redesign</dd></div>
+      <div><dt>Organisation</dt><dd>GEMIS</dd></div>
+      <div><dt>Project</dt><dd>ERP product redesign and onboarding experience design</dd></div>
+      <div><dt>Scope</dt><dd>Navigation, interface, workflows, and the Take-On prototype</dd></div>
+      <div><dt>Status</dt><dd>${status('Core redesign: designed', 'live')}${status('Take-On: prototype complete, development underway', 'progress')}</dd></div>
+    </dl>
+    <ul class="mx-counts" role="list" aria-label="Scope of the design, counted from the prototypes">
+      <li><strong>2</strong><span>connected initiatives</span></li>
+      <li><strong>24</strong><span>navigation destinations, in 5 groups</span></li>
+      <li><strong>6</strong><span>core design decisions</span></li>
+      <li><strong>11</strong><span>steps in the onboarding flow</span></li>
+    </ul>
     ${todo(ctx, 'ManaGEM: team, collaborators and project timeline', '— left off the page until they can be confirmed.')}`,
   );
 
 const flowNodes = [
-  ['Enquiry', 'A lead is captured and tracked through the sales pipeline.'],
-  ['Quote', 'The enquiry is priced and quoted from the product catalogue.'],
-  ['Job', 'Accepted work becomes a project, or a build in the factory.'],
-  ['Stock', 'Materials are purchased, stored, moved and dispatched.'],
-  ['Invoice', 'Completed work is billed and passed to accounting.'],
-  ['Payment', 'Outstanding balances are followed up in debtors.'],
+  ['Enquiry', 'A lead is captured and tracked.'],
+  ['Quote', 'It is priced from the catalogue.'],
+  ['Job', 'Accepted work becomes a project or build.'],
+  ['Stock', 'Materials are bought, stored and dispatched.'],
+  ['Invoice', 'Finished work is billed.'],
+  ['Payment', 'Balances are followed up in debtors.'],
 ];
 
-const product = (ctx) =>
+const product = () =>
   section(
     'product',
     `
-    ${head('product', '02', 'Understanding the product', 'One platform. Multiple connected business workflows.', 'ManaGEM follows a piece of work from the first enquiry to the final payment. Each stage belongs to a different part of the business, but they all describe the same job — which is why the product needs careful information architecture rather than a collection of separate screens.')}
-    <ol class="mx-flow" role="list" aria-label="How work moves through ManaGEM">
-      ${flowNodes.map(([t, d], i) => `<li><span class="mx-flow__n">${String(i + 1).padStart(2, '0')}</span><strong>${t}</strong><span>${d}</span></li>`).join('')}
+    ${head({ id: 'product', n: '02', label: 'Understanding the product', title: 'One platform. Multiple connected business workflows.', intro: 'ManaGEM follows a piece of work from the first enquiry to the final payment. Every stage belongs to a different part of the business, but they all describe the same job.' })}
+    <ol class="mx-chain" role="list" aria-label="How work moves through ManaGEM">
+      ${flowNodes.map(([t, d], i) => `<li><span class="mx-chain__n">${String(i + 1).padStart(2, '0')}</span><strong>${t}</strong><span class="mx-chain__d">${d}</span></li>`).join('')}
     </ol>
     <div class="mx-shared">
-      <p class="mx-label">Shared by every stage</p>
-      <ul role="list"><li>Customers and contacts</li><li>Products and pricing</li><li>Staff records</li><li>Reports</li><li>Accounting sync (Sage)</li></ul>
+      <p>Shared by every stage</p>
+      <ul role="list"><li>Customers & contacts</li><li>Products & pricing</li><li>Staff</li><li>Reports</li><li>Sage accounting sync</li></ul>
     </div>
-    <p class="mx-aside">A record created in one stage is read in the next. If an enquiry, a quote or an invoice is hard to find or unclear in one place, the confusion travels down the chain.</p>`,
+    <p class="mx-pull">A record created in one stage is read in the next. If it is hard to find or unclear in one place, the confusion travels down the chain.</p>`,
     'soft',
   );
 
-const themes = [
-  ['Complexity', 'The existing system was difficult for new clients to understand and navigate, and it carried features that made the experience more complicated than it needed to be.'],
-  ['Operational clarity', 'Certain information — invoice-related data in particular — did not consistently reflect as users expected.'],
-  ['Limited feedback', 'Users had little visibility of messages, notifications or tasks needing their attention. Forms did not clearly confirm a save, so people clicked save again and risked creating duplicate actions.'],
-  ['Product consistency', 'The interface did not adequately reflect GEMIS branding, and features needed a more deliberate organisation.'],
+const problems = [
+  ['maze', 'Complexity', 'Difficult for new clients to understand and navigate, with features that added complication.'],
+  ['doc', 'Operational clarity', 'Invoice-related information in particular did not consistently reflect as expected.'],
+  ['bell', 'Limited feedback', 'Little visibility of messages and tasks, and no clear sign that a form had saved — so people saved twice.'],
+  ['layers', 'Product consistency', 'The interface did not reflect GEMIS branding, and features needed more deliberate organisation.'],
 ];
 
 const challenge = (ctx) =>
   section(
     'challenge',
     `
-    ${head('challenge', '03', 'The challenge', 'The brief was not to make the platform look better. It was to make it easier to understand.')}
-    <ol class="mx-themes" role="list">
-      ${themes.map(([t, d], i) => `<li><span class="mx-themes__n" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span><h3 class="mx-h3">${t}</h3><p>${d}</p></li>`).join('')}
+    ${head({ id: 'challenge', n: '03', label: 'The challenge', title: 'Not to make it look better. To make it easier to understand.' })}
+    <ol class="mx-problems" role="list">
+      ${problems.map(([g, t, d], i) => `<li class="mx-problem"><span class="mx-problem__icon">${glyph[g]}</span><p class="mx-problem__n">0${i + 1}</p><h3 class="mx-problem__t">${t}</h3><p>${d}</p></li>`).join('')}
+      <li class="mx-problem mx-problem--wide"><span class="mx-problem__icon">${glyph.inbox}</span><p class="mx-problem__n">05 · Onboarding</p><h3 class="mx-problem__t">Getting started was manual</h3><p>New clients relied on manual information collection and entry before they could use the platform at all — a second opportunity, and the reason for Take-On.</p></li>
     </ol>
-    <div class="mx-callout">
-      <p class="mx-label">And before any of that — onboarding</p>
-      <p class="mx-callout__text">New clients relied heavily on manual information collection and entry before they could use the platform at all. That created a second opportunity: to rethink how a business arrives in ManaGEM.</p>
-    </div>
-    ${note('These are the problems as they were set out in the redesign brief. No screenshots of the original interface were available for this case study, so they are described rather than illustrated — and no user research findings are claimed.')}
-    ${todo(ctx, 'ManaGEM: screenshots of the original (pre-redesign) interface', '— needed for annotated "before" images and before-and-after comparisons. Neither supplied file contains the legacy UI.')}`,
+    ${note('These are the problems as set out in the redesign brief. No screenshots of the original interface were available, so they are described rather than shown, and no user research findings are claimed.')}
+    ${todo(ctx, 'ManaGEM: screenshots of the original (pre-redesign) interface', '— needed for before-and-after comparisons. Neither supplied file contains the legacy UI.')}`,
     'band',
   );
 
-const role = (ctx) =>
+const role = () =>
   section(
     'role',
     `
-    ${head('role', '04', 'My role and ownership', 'I owned the product experience: how it is organised, how it flows, and how it looks.')}
-    <div class="mx-split mx-split--role">
-      <div class="mx-prose">
-        <p class="mx-statement">I took ownership of rethinking the ManaGEM experience across its major screens and workflows.</p>
-        <p>Rather than approaching the project as a visual refresh, I examined how existing functionality connected, where the experience created unnecessary complexity, and how the product could become easier to navigate.</p>
-        <p>I redesigned the interface, reconsidered workflow structures, and worked to preserve the functionality the business already depended on while creating a more coherent experience around it.</p>
-      </div>
-      <div class="mx-own">
-        <div>
-          <h3 class="mx-label">What I did</h3>
-          <ul class="mx-ticks" role="list">
-            <li>Rethought the product screen by screen and workflow by workflow</li>
-            <li>Redesigned the overall interface</li>
-            <li>Reconsidered how existing functions connect across the product</li>
-            <li>Kept working features and improved how they are used</li>
-            <li>Simplified areas that were unnecessarily complicated</li>
-            <li>Made product experience and workflow decisions</li>
-            <li>Designed the Take-On onboarding experience end to end</li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="mx-label">Outside my role</h3>
-          <ul class="mx-crosses" role="list">
-            <li>Backend development</li>
-            <li>Database changes</li>
-            <li>AI models and extraction logic</li>
-            <li>Technical integrations</li>
-          </ul>
-        </div>
-      </div>
+    ${head({ id: 'role', n: '04', label: 'My role and ownership', title: 'I owned the product experience: how it is organised, how it flows, and how it looks.' })}
+    <p class="mx-statement">I took ownership of rethinking ManaGEM across its major screens and workflows — examining how existing functionality connected, where the experience created unnecessary complexity, and how the product could become easier to navigate, while keeping what the business depended on.</p>
+    <div class="mx-own">
+      <article class="mx-card">
+        <p class="mx-card__k">What I did</p>
+        ${ticks(['Rethought the product screen by screen and workflow by workflow', 'Redesigned the overall interface', 'Reconsidered how existing functions connect', 'Kept working features and improved how they are used', 'Simplified unnecessarily complicated areas', 'Made product experience and workflow decisions', 'Designed the Take-On onboarding experience end to end'])}
+      </article>
+      <article class="mx-card mx-card--quiet">
+        <p class="mx-card__k">Outside my role</p>
+        <ul class="mx-crosses" role="list"><li>Backend development</li><li>Database changes</li><li>AI models and extraction logic</li><li>Technical integrations</li></ul>
+      </article>
     </div>`,
   );
 
 const briefMap = [
-  ['Hard for new clients to navigate', 'Every destination in the product, and which ones belong to the same part of the business', 'A', 'Grouped navigation'],
-  ['Invoice information not reflecting as expected', 'Everywhere invoice data appears: invoices, the accounting sync and debtors', 'B', 'Readable records and visible state'],
-  ['Little visibility of messages, notifications and tasks', 'Where items needing attention live, and whether they are visible without searching', 'C', 'Operational visibility'],
-  ['No clear confirmation that a form saved', 'How multi-field forms commit, and what the user sees before and after', 'D', 'Form feedback'],
-  ['Interface did not reflect GEMIS branding', 'The sign-in screen, the product shell and shared components', 'E', 'One product language'],
-  ['Unnecessary features adding complexity', 'Which functions are separate destinations and which belong inside a module', 'F', 'Simplifying'],
-  ['Onboarding depended on manual capture', 'What a new client has to supply: company details, customers, products, staff', '→', 'ManaGEM Take-On'],
+  ['Hard for new clients to navigate', 'A', 'Grouped navigation'],
+  ['Invoice information not reflecting as expected', 'B', 'Readable records and visible state'],
+  ['Little visibility of messages and tasks', 'C', 'Operational visibility'],
+  ['No clear confirmation that a form saved', 'D', 'Form feedback'],
+  ['Interface did not reflect GEMIS branding', 'E', 'One product language'],
+  ['Unnecessary features adding complexity', 'F', 'Simplifying'],
+  ['Onboarding depended on manual capture', '→', 'ManaGEM Take-On'],
 ];
 
-const analysis = (ctx) =>
+const approach = () =>
   section(
-    'analysis',
+    'approach',
     `
-    ${head('analysis', '05', 'Understanding the existing system', 'Before changing how it looked, I worked out how it fitted together.', 'This was product and workflow analysis: working through the existing system against the redesign brief. It was not formal user research, and I have not described it as such.')}
-    <div class="mx-method">
-      <div><span class="mx-method__n">1</span><h3 class="mx-label">Inventory</h3><p>List every function the business relies on, so that nothing that works is lost in the redesign.</p></div>
-      <div><span class="mx-method__n">2</span><h3 class="mx-label">Relationships</h3><p>Trace how a record moves between modules — enquiry to quote, job to invoice, invoice to accounting.</p></div>
-      <div><span class="mx-method__n">3</span><h3 class="mx-label">Friction</h3><p>Take each problem in the brief and find the places in the product where it actually shows up.</p></div>
-    </div>
-    <div class="mx-map" role="table" aria-label="Each problem in the brief, what was examined, and the design response">
-      <div class="mx-map__head" role="row"><span role="columnheader">Problem in the brief</span><span role="columnheader">What I examined</span><span role="columnheader">Design response</span></div>
+    ${head({ id: 'approach', n: '05', label: 'Understanding the existing system', title: 'Before changing how it looked, I worked out how it fitted together.', intro: 'Product and workflow analysis of the existing system against the brief — not formal user research.' })}
+    <ol class="mx-steps" role="list">
+      <li><span>1</span><h3>Inventory</h3><p>List every function the business relies on, so nothing that works is lost.</p></li>
+      <li><span>2</span><h3>Relationships</h3><p>Trace how a record moves: enquiry to quote, job to invoice, invoice to accounting.</p></li>
+      <li><span>3</span><h3>Friction</h3><p>Find where each problem in the brief actually shows up in the product.</p></li>
+    </ol>
+    <div class="mx-map" role="table" aria-label="Each problem in the brief and the design response">
+      <div class="mx-map__row mx-map__row--head" role="row"><span role="columnheader">Problem in the brief</span><span role="columnheader">Design response</span></div>
       ${briefMap
-        .map(
-          ([p, e, l, r]) => `<div class="mx-map__row" role="row"><span role="cell" data-label="Problem in the brief"><strong>${p}</strong></span><span role="cell" data-label="What I examined">${e}</span><span role="cell" data-label="Design response"><a href="#${l === '→' ? 'takeon' : `core-${l}`}"><b class="mx-map__tag">${l}</b>${r}</a></span></div>`,
-        )
+        .map(([p, l, r]) => `<div class="mx-map__row" role="row"><span role="cell">${p}</span><span role="cell"><a href="#${l === '→' ? 'takeon' : `core-${l}`}"><b class="mx-map__tag">${l}</b>${r}</a></span></div>`)
         .join('')}
     </div>`,
+    'soft',
   );
 
-const navGroups = [
-  ['Core', ['Dashboard']],
-  ['Customers', ['Customers', 'Customer Contacts', 'Warranties']],
-  ['Sales', ['New Enquiry', 'Open Enquiries', 'Closed Enquiries', 'Invoices', 'Sage Invoices', 'Inspection Reports', 'Sales Targets', 'Quote Templates', 'Reports', 'Master Data']],
-  ['Operations', ['Debtors Management', 'Products & Pricing', 'Projects Module', 'Factory', 'Stock Control']],
-  ['Admin', ['Staff Records', 'My Companies', 'Manage Users', 'Master Data', 'Settings']],
-];
+const navGroups = [['Core', 1], ['Customers', 3], ['Sales', 10], ['Operations', 5], ['Admin', 5]];
 
-const core = (ctx) =>
+const coreIntro = () =>
   section(
     'core',
     `
     <div class="mx-part">
       <p class="mx-part__n">Initiative 01</p>
-      <p class="mx-part__name">ManaGEM Core Experience</p>
-      <p class="mx-part__desc">The redesign of the established ERP: its navigation, how it presents information, and its workflows.</p>
-    </div>
-    ${head('core', '06', 'Redesigning the core experience', 'Six decisions that shaped the redesign.')}
-
-    ${decision(ctx, {
-      letter: 'A',
-      title: 'A more coherent navigation experience',
-      difficulty: 'A new client has to find their way around two dozen destinations before the product becomes useful to them.',
-      why: 'If people cannot tell where they are or where a task lives, every other improvement is hidden behind that confusion.',
-      choice: 'Organise navigation by the part of the business it serves, not as one long list — and always show the user where they are.',
-      result: 'Five labelled groups, a breadcrumb on every page, a search field in the top bar, and counts beside the items that have open work.',
-      shows: 'Information architecture',
-      media: `
-        <div class="mx-navmap">
-          ${shot(ctx, 'mg-sidebar', 'The redesigned ManaGEM sidebar with its five labelled groups: Core, Customers, Sales, Operations and Admin', { caption: 'The full sidebar.', sizes: '240px', cls: 'mx-shot--sidebar' })}
-          <div class="mx-tree" aria-label="Navigation groups in the redesign">
-            ${navGroups.map(([g, items]) => `<div><p class="mx-tree__g">${g}<span>${items.length}</span></p><ul role="list">${items.map((i) => `<li>${esc(i)}</li>`).join('')}</ul></div>`).join('')}
-          </div>
-        </div>`,
-    })}
-
-    ${decision(ctx, {
-      letter: 'B',
-      flip: true,
-      title: 'Making important information easier to understand',
-      difficulty: 'Business records are dense, and invoice information in particular was not reflecting the way users expected.',
-      why: 'People act on what a screen tells them. If the state of an invoice is unclear, the follow-up is wrong or late.',
-      choice: 'Give every list the same anatomy, lead with totals, and put the state of each record into plain words.',
-      result: 'Invoices open with billed, paid, outstanding and overdue totals; each row says Paid, Partial, Unpaid or Overdue. The accounting view shows whether each invoice is Synced, Pending or in Error, and when it last synced.',
-      shows: 'Data-heavy UI design',
-      media: `
-        ${shot(ctx, 'mg-invoices', 'Invoices list with four summary totals above a table where each invoice has a plain-word status', { caption: 'Invoices: totals first, then a status in words on every row.' })}
-        ${shot(ctx, 'mg-detail-sage', 'Sage Invoices screen showing a connected indicator, counts of synced, pending and errored invoices, and a last-sync time per row', { caption: 'The accounting view makes sync state visible per invoice. This is the designed interface; data accuracy itself is an engineering concern.' })}`,
-    })}
-
-    ${decision(ctx, {
-      letter: 'C',
-      title: 'Improving operational visibility',
-      difficulty: 'Users had limited visibility of messages, notifications and tasks that needed their attention.',
-      why: 'Work that nobody notices does not get done — and in a connected system, one missed item delays the next stage.',
-      choice: 'Bring what needs attention to the places people already look, instead of expecting them to go and check.',
-      result: 'A messages banner at the top of the dashboard, a notification indicator in the top bar, counts in the navigation, and alert panels inside modules such as low stock.',
-      shows: 'Systems thinking',
-      media: `
-        ${shot(ctx, 'mg-detail-attention', 'Top of the dashboard with a banner reading "You have 4 new messages" above four headline figures', { caption: 'Messages are surfaced on the dashboard, above the figures.' })}
-        ${shot(ctx, 'mg-stock-alerts', 'Stock Control dashboard showing recent movements, open purchase orders and a low stock alerts panel', { caption: 'Inside Stock Control, low-stock items and open purchase orders sit beside day-to-day activity.' })}
-        ${note('This is the design direction for surfacing attention. I am not claiming specific notification behaviour as implemented.')}`,
-    })}
-
-    ${decision(ctx, {
-      letter: 'D',
-      flip: true,
-      title: 'Clearer form feedback',
-      difficulty: 'Forms did not make it clear that information had saved, so users clicked save repeatedly.',
-      why: 'Repeated saves can create duplicate actions — and uncertainty about whether work was kept erodes trust in the whole system.',
-      choice: 'Make the moment of commitment unmistakable: show progress through the form, ask for one review, and offer one final action.',
-      result: 'New Enquiry is a four-step form with a visible stepper. The last step summarises what will be created and has a single Create Enquiry button; the user then lands on the enquiry list.',
-      shows: 'Interaction design',
-      media: `
-        ${shot(ctx, 'mg-new-enquiry', 'Step one of the New Enquiry form with a four-step progress indicator and required fields marked', { caption: 'Step 1 of 4 — required fields are marked and progress is always visible.' })}
-        ${shot(ctx, 'mg-detail-review', 'Final review step of New Enquiry summarising customer, site, schedule and estimated value above one Create Enquiry button', { caption: 'Step 4 — a review of everything entered, then one clear commit.' })}
-        ${todo(ctx, 'ManaGEM: designed save-confirmation states (saving, saved, error)', '— the supplied prototype shows the review-then-commit pattern but contains no explicit saved/toast state, so none is shown.')}`,
-    })}
-
-    ${decision(ctx, {
-      letter: 'E',
-      title: 'A more consistent product language',
-      difficulty: 'The interface did not adequately reflect GEMIS branding, and the product did not read as one system.',
-      why: 'Consistency is how people transfer what they learned on one screen to the next. In an ERP that saving is repeated across every module.',
-      choice: 'Carry the GEMIS identity through the shell and build each module from the same small set of parts.',
-      result: 'A branded sign-in and sidebar, and one page anatomy — title, summary figures, tabs, filters, table — reused from Factory to Staff Records.',
-      shows: 'UI craft and consistency',
-      media: `
-        ${shot(ctx, 'mg-login', 'ManaGEM sign-in screen with the GemIS mark, the line "Run your business with clarity" and a sign-in form', { caption: 'Sign-in carries the GEMIS identity from the first screen.' })}
-        <div class="mx-pair">
-          ${shot(ctx, 'mg-factory', 'Factory module with summary figures and a five-stage production pipeline', { caption: 'Factory', sizes: '(min-width: 1264px) 340px, 50vw' })}
-          ${shot(ctx, 'mg-staff', 'Staff Members list using the same tabs, filters and table pattern', { caption: 'Staff Records', sizes: '(min-width: 1264px) 340px, 50vw' })}
-        </div>`,
-    })}
-
-    ${decision(ctx, {
-      letter: 'F',
-      flip: true,
-      title: 'Simplifying the experience',
-      difficulty: 'Unnecessary features and scattered functions made the system more complicated than the work it supported.',
-      why: 'Complexity that does not serve a task is a cost every user pays on every visit.',
-      choice: 'Reconsider how features are organised before reconsidering whether they exist — keep what the business depends on, and put related functions together.',
-      result: 'Related functions live inside their module as tabs: Stock Control holds suppliers, purchase orders, stores, movements and stock takes in one place, and the dashboard offers shortcuts to the most common tasks.',
-      shows: 'Product judgement',
-      media: `
-        ${shot(ctx, 'mg-stock', 'Stock Control with its sub-areas arranged as tabs across the top of a single module', { caption: 'Stock Control: twelve related areas organised as tabs within one module.' })}
-        ${note('I describe this as reorganisation. I am not claiming that specific features were removed.')}`,
-    })}`,
+      <h2 class="mx-part__name" id="core-h">ManaGEM Core Experience</h2>
+      <p class="mx-part__desc">The redesign of the established ERP: its navigation, how it presents information, and its workflows. Six decisions, A to F.</p>
+      <ol class="mx-jump" role="list">${['Navigation', 'Information', 'Visibility', 'Form feedback', 'Consistency', 'Simplifying'].map((t, i) => `<li><a href="#core-${'ABCDEF'[i]}"><b>${'ABCDEF'[i]}</b>${t}</a></li>`).join('')}</ol>
+    </div>`,
   );
 
-const journey = [
-  ['to-01-welcome', 'Welcome', 'Explains the four stages and what the client will need, before asking for anything.', 'Take-On welcome screen describing upload, AI structuring, review and the GEMIS final check'],
-  ['to-02-trust', 'Trust and compliance', 'A plain-language summary of how data is handled, with explicit consent.', 'Trust and compliance screen with four data-handling summaries and a data processing agreement'],
-  ['to-03-profile', 'Company profile', 'The basic company details that set up the client’s workspace.', 'Company profile form with registered name, registration number, contact details and industry'],
-  ['to-04-upload', 'Document upload', 'One labelled drop area per kind of information, required or optional.', 'Upload screen with separate areas for customer list, product and price list, staff records and supplier list'],
-  ['to-05-extraction', 'AI extraction', 'Processing shown as a readable log rather than a spinner.', 'Extraction screen with running counts, an extraction log and an audit activity list'],
-  ['to-06-validation', 'Validation summary', 'What was found and how confident the system is, before any detail.', 'Validation summary with document and record counts, validation results and a confidence breakdown'],
-  ['to-07-customers', 'Customer review', 'Every extracted customer with a status, filterable by what needs attention.', 'Customer review table where each record is marked verified, needs review, possible duplicate or low confidence'],
-  ['to-08-products', 'Product review', 'The same review pattern, applied to products and pricing.', 'Product and pricing review table with the same status column and filters'],
-  ['to-09-staff', 'Staff review', 'The same pattern again for staff records.', 'Staff review table with verified, needs review and low confidence records'],
-  ['to-10-confirm', 'Confirmation and submission', 'Overall readiness, outstanding issues and a final declaration.', 'Final confirmation screen with a readiness score, per-category totals and a list of issues to fix'],
-  ['to-11-complete', 'Completion', 'Confirms the submission and explains that GEMIS reviews it next.', 'Completion screen confirming the submission was sent for GEMIS review, with a reference number'],
-];
+const coreDecisions = (ctx) =>
+  [
+    section(
+      'core-A',
+      feature({
+        id: 'core-A',
+        tag: 'A · Navigation',
+        title: 'A more coherent navigation experience',
+        lede: 'Twenty-four destinations, organised by the part of the business they serve.',
+        media: `${video(ctx, 'flow-navigation', 'Moving through the redesigned sidebar from the dashboard to Open Enquiries, Invoices, Debtors, Factory and Stock Control', { caption: 'Moving between connected modules from one grouped sidebar.' })}
+          <ul class="mx-groups" role="list" aria-label="Navigation groups">${navGroups.map(([g, n]) => `<li><strong>${g}</strong><span>${n}</span></li>`).join('')}</ul>`,
+        beats: [
+          ['Problem', 'New clients had to learn many destinations before the product was useful.'],
+          ['Why it mattered', 'If people cannot tell where a task lives, every other improvement stays hidden.'],
+          ['Decision', 'Group navigation by business area, and always show where the user is.'],
+          ['In the interface', 'Five labelled groups, a breadcrumb on every page, top-bar search, and counts on items with open work.'],
+        ],
+        shows: 'Information architecture',
+      }),
+      'soft',
+      'core-A-t',
+    ),
+    section(
+      'core-B',
+      feature({
+        id: 'core-B',
+        tag: 'B · Information',
+        title: 'Making important information easier to understand',
+        lede: 'Totals first, then the state of every record in plain words.',
+        media: `<div class="mx-duo">
+          ${shot(ctx, 'mg-invoices', 'Invoices list with four summary totals above a table where each invoice has a plain-word status', { caption: 'Invoices: billed, paid, outstanding and overdue, then a status on every row.', sizes: '(min-width: 1264px) 600px, 100vw' })}
+          ${shot(ctx, 'mg-sage-invoices', 'Sage Invoices screen with synced, pending and error counts and a last-sync time per invoice', { caption: 'Accounting sync: Synced, Pending or Error, and when it last ran.', sizes: '(min-width: 1264px) 600px, 100vw' })}
+        </div>`,
+        beats: [
+          ['Problem', 'Records are dense, and invoice information did not always reflect as expected.'],
+          ['Why it mattered', 'People act on what a screen tells them. An unclear invoice means a wrong or late follow-up.'],
+          ['Decision', 'One list anatomy everywhere: summary totals, filters, then a plain-word status per row.'],
+          ['In the interface', 'Paid, Partial, Unpaid, Overdue on invoices; sync state per invoice in the accounting view.'],
+        ],
+        shows: 'Data-heavy UI design',
+      }),
+      '',
+      'core-B-t',
+    ),
+    section(
+      'core-C',
+      feature({
+        id: 'core-C',
+        tag: 'C · Visibility',
+        title: 'Improving operational visibility',
+        lede: 'What needs attention is brought to where people already look.',
+        media: `<div class="mx-duo">
+          ${shot(ctx, 'mg-dashboard', 'Dashboard with a messages banner above four headline figures, charts and current projects', { caption: 'A messages banner sits at the top of the dashboard.', sizes: '(min-width: 1264px) 600px, 100vw' })}
+          ${shot(ctx, 'mg-stock-alerts', 'Stock Control with recent movements, open purchase orders and a low stock alerts panel', { caption: 'Low stock and open orders sit beside day-to-day activity.', sizes: '(min-width: 1264px) 600px, 100vw' })}
+        </div>${note('This is the design direction for surfacing attention. Specific notification behaviour is not claimed as implemented.')}`,
+        beats: [
+          ['Problem', 'Little visibility of messages, notifications and tasks needing attention.'],
+          ['Why it mattered', 'Unnoticed work does not get done — and one missed item delays the next stage.'],
+          ['Decision', 'Surface attention in the dashboard, top bar, navigation and module panels.'],
+          ['In the interface', 'A messages banner, a notification indicator, navigation counts and low-stock alerts.'],
+        ],
+        shows: 'Systems thinking',
+      }),
+      'soft',
+      'core-C-t',
+    ),
+    section(
+      'core-D',
+      feature({
+        id: 'core-D',
+        tag: 'D · Form feedback',
+        title: 'Clearer form feedback',
+        lede: 'Visible progress, one review, and one final action.',
+        media: `${video(ctx, 'flow-enquiry', 'Filling in the four-step New Enquiry form, reviewing it, and pressing Create Enquiry, which returns to the enquiry list', { caption: 'New Enquiry: four steps, a review of everything entered, then a single commit.' })}
+          ${todo(ctx, 'ManaGEM: designed save-confirmation states (saving, saved, error)', '— the prototype shows review-then-commit but has no explicit saved/toast state, so none is shown.')}`,
+        beats: [
+          ['Problem', 'Forms did not make it clear that information had saved, so users clicked save again.'],
+          ['Why it mattered', 'Repeated saves can create duplicate actions, and doubt erodes trust in the system.'],
+          ['Decision', 'Make the moment of commitment unmistakable instead of hiding it in a long form.'],
+          ['In the interface', 'A four-step stepper, a review screen, one Create Enquiry button, then the enquiry list.'],
+        ],
+        shows: 'Interaction design',
+      }),
+      '',
+      'core-D-t',
+    ),
+    section(
+      'core-E',
+      feature({
+        id: 'core-E',
+        tag: 'E · Consistency',
+        title: 'A more consistent product language',
+        lede: 'The GEMIS identity in the shell, and one page anatomy in every module.',
+        media: `<div class="mx-trio">
+          ${shot(ctx, 'mg-login', 'ManaGEM sign-in screen carrying the GemIS mark and the line Run your business with clarity', { caption: 'Sign-in', sizes: '(min-width: 1264px) 800px, 100vw', cls: 'mx-trio__main' })}
+          ${shot(ctx, 'mg-factory', 'Factory module with summary figures and a production pipeline', { caption: 'Factory', sizes: '(min-width: 1264px) 400px, 50vw' })}
+          ${shot(ctx, 'mg-staff', 'Staff Members list with the same tabs, filters and table pattern', { caption: 'Staff Records', sizes: '(min-width: 1264px) 400px, 50vw' })}
+        </div>`,
+        beats: [
+          ['Problem', 'The interface did not reflect GEMIS branding or read as one system.'],
+          ['Why it mattered', 'Consistency lets people reuse what they learned on one screen everywhere else.'],
+          ['Decision', 'Carry the GEMIS identity through the shell; build modules from a small set of parts.'],
+          ['In the interface', 'A branded sign-in and sidebar; title, summary, tabs, filters and table in every module.'],
+        ],
+        shows: 'UI craft',
+      }),
+      'soft',
+      'core-E-t',
+    ),
+    section(
+      'core-F',
+      feature({
+        id: 'core-F',
+        tag: 'F · Simplifying',
+        title: 'Simplifying the experience',
+        lede: 'Reorganise before removing: related functions live together.',
+        media: `${shot(ctx, 'mg-stock', 'Stock Control with twelve related areas arranged as tabs across one module', { caption: 'Stock Control: suppliers, orders, stores, movements and stock takes as tabs in one module.' })}${note('Described as reorganisation. No claim is made that specific features were removed.')}`,
+        beats: [
+          ['Problem', 'Unnecessary features and scattered functions made the system more complicated.'],
+          ['Why it mattered', 'Complexity that does not serve a task is a cost paid on every visit.'],
+          ['Decision', 'Keep what the business depends on, and put related functions together.'],
+          ['In the interface', 'Module tabs instead of separate destinations, and dashboard shortcuts to common tasks.'],
+        ],
+        shows: 'Product judgement',
+      }),
+      '',
+      'core-F-t',
+    ),
+  ].join('');
 
 const phases = [
-  ['Prepare', '1–3'],
-  ['Provide', '4'],
-  ['Process', '5–6'],
-  ['Review', '7–9'],
-  ['Submit', '10–11'],
+  ['Prepare', [['01', 'Welcome'], ['02', 'Trust & compliance'], ['03', 'Company profile']]],
+  ['Provide', [['04', 'Document upload']]],
+  ['Process', [['05', 'AI extraction'], ['06', 'Validation summary']]],
+  ['Review', [['07', 'Customers'], ['08', 'Products'], ['09', 'Staff']]],
+  ['Submit', [['10', 'Confirm & submit'], ['11', 'Complete · GEMIS check']]],
+];
+
+const journey = [
+  ['to-01-welcome', 'Welcome', 'Take-On welcome screen describing upload, AI structuring, review and the GEMIS check'],
+  ['to-02-trust', 'Trust & compliance', 'Trust and compliance screen with plain-language data-handling summaries'],
+  ['to-03-profile', 'Company profile', 'Company profile form with registered name, contact details and industry'],
+  ['to-04-upload', 'Document upload', 'Upload screen with separate areas for customers, products, staff and suppliers'],
+  ['to-05-extraction', 'AI extraction', 'Extraction screen with running counts and an extraction log'],
+  ['to-06-validation', 'Validation summary', 'Validation summary with record counts and a confidence breakdown'],
+  ['to-07-customers', 'Customer review', 'Customer review table with a status on every record'],
+  ['to-08-products', 'Product review', 'Product and pricing review table'],
+  ['to-09-staff', 'Staff review', 'Staff review table'],
+  ['to-10-confirm', 'Confirm & submit', 'Final confirmation with readiness, totals and issues to fix'],
+  ['to-11-complete', 'Complete', 'Completion screen confirming the submission was sent for GEMIS review'],
 ];
 
 const takeon = (ctx) =>
@@ -410,116 +438,87 @@ const takeon = (ctx) =>
     `
     <div class="mx-part">
       <p class="mx-part__n">Initiative 02</p>
-      <p class="mx-part__name">ManaGEM Take-On</p>
-      <p class="mx-part__desc">A new onboarding experience: from submitting business information, through AI-assisted extraction and review, to a final GEMIS check.</p>
+      <h2 class="mx-part__name" id="takeon-h">ManaGEM Take-On</h2>
+      <p class="mx-part__desc">From manual information capture to a guided onboarding experience: upload what you have, review what the system extracted, and hand over to GEMIS for a final check.</p>
       <p class="mx-part__status">${status('Designed prototype · development underway', 'progress')}</p>
     </div>
-    ${head('takeon', '07', 'Rethinking client onboarding', 'From manual information capture to a guided onboarding experience.', 'A redesigned product is still hard to start using if getting into it is slow. New clients have to provide their business information before the platform is useful to them, and the traditional approach relied on collecting and capturing that information by hand. Take-On is my design for a more structured route in — an extension of the same redesign, not a separate product.')}
-    <div class="mx-phases" aria-hidden="true">${phases.map(([p, r]) => `<div><strong>${p}</strong><span>Steps ${r}</span></div>`).join('')}</div>
+    ${video(ctx, 'flow-takeon-upload', 'Uploading a customer list, price lists, staff and supplier files, running the extraction, and arriving at the validation summary', { caption: 'Upload, processing and validation summary. The processing in the prototype is simulated.', source: SRC_TAKEON })}
+    <h3 class="mx-subh">Eleven steps, five phases</h3>
+    <ol class="mx-phases" role="list">
+      ${phases.map(([p, steps]) => `<li><p class="mx-phases__p">${p}</p><ol role="list">${steps.map(([n, t]) => `<li><span>${n}</span>${t}</li>`).join('')}</ol></li>`).join('')}
+    </ol>
     <div class="mx-railbar">
-      <p class="mx-railhint" id="rail-hint">The complete journey, in order. Scroll sideways to move through all eleven steps; select any screen to enlarge it.</p>
+      <p class="mx-railhint" id="rail-hint">Every screen, in order — scroll sideways or use the arrows; select a screen to enlarge it.</p>
       <div class="mx-railbtns">
-        <button type="button" data-rail-prev aria-label="Previous step" aria-controls="takeon-rail">${icon.arrow}</button>
-        <button type="button" data-rail-next aria-label="Next step" aria-controls="takeon-rail">${icon.arrow}</button>
+        <button type="button" data-rail-prev aria-label="Previous screen" aria-controls="takeon-rail">${icon.arrow}</button>
+        <button type="button" data-rail-next aria-label="Next screen" aria-controls="takeon-rail">${icon.arrow}</button>
       </div>
     </div>
     <ol class="mx-rail" id="takeon-rail" role="list" tabindex="0" aria-labelledby="rail-hint" data-rail>
-      ${journey
-        .map(
-          ([key, t, d, alt], i) => `<li class="mx-rail__item">
-        <div class="mx-rail__meta"><span class="mx-rail__n">${String(i + 1).padStart(2, '0')}</span><h3 class="mx-rail__t">${t}</h3><p>${d}</p></div>
-        ${shot(ctx, key, alt, { source: SRC_TAKEON, sizes: '(min-width: 900px) 640px, 84vw' })}
-      </li>`,
-        )
-        .join('')}
+      ${journey.map(([key, t, alt], i) => `<li class="mx-rail__item"><p class="mx-rail__t"><span>${String(i + 1).padStart(2, '0')}</span>${t}</p>${shot(ctx, key, alt, { source: SRC_TAKEON, sizes: '(min-width: 900px) 560px, 80vw' })}</li>`).join('')}
     </ol>
-    <div class="mx-proto">
-      <h3 class="mx-label">Reading these screens correctly</h3>
-      <ul class="mx-proto__list" role="list">
-        <li><strong>It is a prototype.</strong> The UX/UI design is complete and development is underway. It is not presented here as a released feature.</li>
-        <li><strong>The processing is simulated.</strong> The extraction, confidence scores and timings on screen are designed states, not output from a live AI integration or measured results.</li>
-        <li><strong>The records are samples.</strong> Company names, customers, products and staff are placeholder data, not client data.</li>
-        <li><strong>The legal and security wording is draft content.</strong> Statements about POPIA, encryption and audit trails show where that information belongs in the flow; they still need technical and legal validation.</li>
+    <div class="mx-caveats">
+      <h3 class="mx-subh">Reading these screens correctly</h3>
+      <ul role="list">
+        <li><strong>A prototype</strong>The UX/UI design is complete and development is underway. Not a released feature.</li>
+        <li><strong>Simulated processing</strong>Extraction, confidence scores and timings are designed states, not live AI output or measured results.</li>
+        <li><strong>Sample records</strong>Companies, customers, products and staff are placeholder data.</li>
+        <li><strong>Draft legal wording</strong>POPIA, encryption and audit statements show where that content belongs; they still need technical and legal validation.</li>
       </ul>
     </div>`,
     'band',
   );
 
-const decisions = (ctx) =>
+const decisionsIntro = () =>
   section(
     'decisions',
-    `
-    ${head('decisions', '08', 'Key UX decisions', 'Five decisions about how much to trust automation — and how to show it.', 'The principle behind all five: AI-assisted extraction is not treated as infallible or autonomous. People should be able to understand, inspect and correct information before it is submitted.')}
-
-    ${keyDecision(ctx, {
-      n: '01',
-      title: 'Flexible document onboarding',
-      reason: 'Clients already hold this information somewhere — in a spreadsheet, a price list, a scanned page. Asking them to retype it record by record is the manual work the brief set out to reduce.',
-      detail: ['One drop area per kind of information, so nothing needs to be labelled or sorted first', 'Accepted formats are stated on every area: PDF, XLSX, CSV, DOCX, JPG, PNG', 'Required and optional categories are marked, and the screen says what is still missing', 'No document? Each category can be typed in manually instead'],
-      media: shot(ctx, 'to-04-upload', 'Upload screen with files added to the customer and product areas, each file marked encrypted and scanned', { caption: 'Upload: one area per category, with each file’s state shown on the file itself.', source: SRC_TAKEON }),
-    })}
-
-    ${keyDecision(ctx, {
-      n: '02',
-      title: 'Transparent processing',
-      reason: 'A progress spinner asks people to trust something they cannot see. If a system is going to read a company’s records, it should say what it is doing while it does it.',
-      detail: ['A running log names each document as it is read', 'Counts of customers, products, staff and flagged records update as the step progresses', 'An activity list records each stage with a time'],
-      media: shot(ctx, 'to-05-extraction', 'Extraction screen with counts of customers, products, staff and flagged records above an extraction log and an audit activity list', { caption: 'Processing explained in words. In the prototype this step is simulated.', source: SRC_TAKEON }),
-    })}
-
-    ${keyDecision(ctx, {
-      n: '03',
-      title: 'Confidence-based validation',
-      reason: 'Reviewing every record with equal care is slow, and people stop reading. The design separates what looks ready from what needs attention, so effort goes where it matters.',
-      detail: ['A summary first: how many records were found and how they break down', 'Four plain-language states — Verified, Needs review, Possible duplicate, Low confidence', 'State is carried by a word and an icon, not by colour alone', 'Filters jump straight to the records that need a decision'],
-      media: `
-        ${shot(ctx, 'to-06-validation', 'Validation summary showing documents processed, records detected, validation results by type and a confidence breakdown', { caption: 'The summary sets expectations before the detail.', source: SRC_TAKEON })}
-        ${shot(ctx, 'to-07-customers', 'Customer review table with a status on every row and filters for needs review, duplicates and verified', { caption: 'Every row carries its state; filters isolate what needs attention.', source: SRC_TAKEON })}`,
-    })}
-
-    ${keyDecision(ctx, {
-      n: '04',
-      title: 'Human-in-the-loop review',
-      reason: 'An extracted record is a suggestion until someone who knows the business agrees with it. So the design shows the evidence behind each record and leaves the decision with the client.',
-      detail: ['Each record shows its source document, the original text and a confidence score', 'A missing or doubtful field is called out — “Email not found in source document”', 'Every field stays editable; a record can be confirmed or rejected', 'Possible duplicates offer three explicit choices: merge with existing, keep both, or discard'],
-      media: `
-        ${shot(ctx, 'to-07-record', 'Review record panel showing the source document, extracted text, reasoning, a warning that the email was not found, and editable fields', { caption: 'Reviewing one record: where it came from, what is missing, and room to correct it.', source: SRC_TAKEON })}
-        ${shot(ctx, 'to-07-duplicate', 'Review record panel for a possible duplicate, showing the matched existing customer and options to discard, keep both or merge', { caption: 'A possible duplicate: the match is explained and the choice is the client’s.', source: SRC_TAKEON })}`,
-    })}
-
-    ${keyDecision(ctx, {
-      n: '05',
-      title: 'GEMIS verification',
-      reason: 'Automation does not remove the need for oversight. The flow ends by handing over to a person at GEMIS, and it says so — rather than implying that submitting means the data is live.',
-      detail: ['The final step lists outstanding issues before the client submits', 'The completion screen is titled “Submitted for GEMIS review”, not “Done”', 'A GEMIS-side queue shows each company’s progress and what is awaiting sign-off'],
-      media: `
-        ${shot(ctx, 'to-10-confirm', 'Final confirmation screen with a readiness score, totals per category and a list of issues recommended to fix before submitting', { caption: 'Before submitting: what is ready, and what still needs attention.', source: SRC_TAKEON })}
-        ${shot(ctx, 'to-12-admin', 'GEMIS admin view listing companies in the take-on queue with their progress, status and flagged items', { caption: 'The GEMIS side: a queue of submissions awaiting a human check.', source: SRC_TAKEON })}`,
-    })}`,
+    `${head({ id: 'decisions', n: '08', label: 'Key UX decisions', title: 'Five decisions about how much to trust automation — and how to show it.', intro: 'AI-assisted extraction is never treated as infallible. People should be able to understand, inspect and correct information before it is submitted.' })}
+    <ol class="mx-jump mx-jump--light" role="list">${['Flexible upload', 'Transparent processing', 'Confidence', 'Human review', 'GEMIS verification'].map((t, i) => `<li><a href="#key-${i + 1}"><b>0${i + 1}</b>${t}</a></li>`).join('')}</ol>`,
   );
 
+const keyDecisions = (ctx) =>
+  [
+    ['1', 'Flexible document onboarding', 'Clients upload what they already hold instead of retyping it record by record.',
+      shot(ctx, 'to-04-upload', 'Upload screen with files added to the customer and product areas, each marked encrypted and scanned', { caption: 'One area per category, each file’s state shown on the file itself.', source: SRC_TAKEON }),
+      [['Why', 'Retyping every record is the manual work the brief set out to reduce.'], ['Design', 'One drop area per category, with required ones marked.'], ['Detail', 'Accepted formats stated on every area: PDF, XLSX, CSV, DOCX, JPG, PNG.'], ['Fallback', 'No document? Each category can be typed in manually.']]],
+    ['2', 'Transparent processing', 'The system says what it is doing while it does it.',
+      shot(ctx, 'to-05-extraction', 'Extraction screen with running counts above an extraction log and an audit activity list', { caption: 'Processing explained in words. In the prototype this step is simulated.', source: SRC_TAKEON }),
+      [['Why', 'A spinner asks for trust in something people cannot see.'], ['Design', 'A running log names each document as it is read.'], ['Detail', 'Counts of customers, products, staff and flagged records update live.'], ['Record', 'An activity list logs each stage with a time.']]],
+    ['3', 'Confidence-based validation', 'Effort goes to the records that need it.',
+      `<div class="mx-duo">${shot(ctx, 'to-06-validation', 'Validation summary with record counts, validation results and a confidence breakdown', { caption: 'A summary sets expectations before the detail.', source: SRC_TAKEON, sizes: '(min-width: 1264px) 600px, 100vw' })}${shot(ctx, 'to-07-customers', 'Customer review table with a status on every row and filters for needs review, duplicates and verified', { caption: 'Every row carries its state; filters isolate what needs a decision.', source: SRC_TAKEON, sizes: '(min-width: 1264px) 600px, 100vw' })}</div>`,
+      [['Why', 'Equal care on every record is slow, and people stop reading.'], ['Design', 'Four states: Verified, Needs review, Possible duplicate, Low confidence.'], ['Detail', 'Each state uses a word and an icon, never colour alone.'], ['Speed', 'Filters jump straight to what needs a decision.']]],
+    ['4', 'Human-in-the-loop review', 'An extracted record is a suggestion until the client agrees with it.',
+      video(ctx, 'flow-takeon-review', 'Filtering the customer review table, opening a record with a missing email, then resolving a possible duplicate by merging it', { caption: 'Filter, inspect the evidence behind a record, then resolve a duplicate.', source: SRC_TAKEON }),
+      [['Why', 'Only someone who knows the business can confirm what the system read.'], ['Evidence', 'Source document, original text and a confidence score on every record.'], ['Gaps', 'Missing fields are called out: “Email not found in source document”.'], ['Control', 'Edit, confirm or reject; for duplicates, merge, keep both or discard.']]],
+    ['5', 'GEMIS verification', 'Submitting hands over to a person — it does not make data live.',
+      video(ctx, 'flow-takeon-submit', 'Reviewing outstanding issues, confirming the declaration, submitting for GEMIS review, then viewing the GEMIS take-on queue', { caption: 'Outstanding issues, the declaration, submission, and the GEMIS queue.', source: SRC_TAKEON }),
+      [['Why', 'Automation does not remove the need for oversight.'], ['Design', 'Outstanding issues are listed before the client submits.'], ['Wording', 'The last screen says “Submitted for GEMIS review”, not “Done”.'], ['Other side', 'A GEMIS queue shows each company’s progress and sign-offs.']]],
+  ]
+    .map(([n, title, lede, media, beats], i) =>
+      section(`key-${n}`, feature({ id: `key-${n}`, tag: `0${n} · Take-On`, title, lede, media, beats }), i % 2 ? '' : 'soft', `key-${n}-t`),
+    )
+    .join('');
+
 const gallery = [
-  ['mg-open-enquiries', 'Open Enquiries — the sales pipeline, with counts per stage above the list.', 'Open Enquiries list with tabs, pipeline stage counts, filters and a table of leads', 'wide', SRC_CORE],
-  ['mg-projects', 'Projects — current jobs with foreman, dates and progress.', 'Current Jobs list in the Projects module with progress bars', '', SRC_CORE],
-  ['mg-debtors', 'Debtors Management — outstanding balances and ageing by customer.', 'Debtors Management with outstanding totals and an ageing column', '', SRC_CORE],
-  ['mg-products', 'Products & Pricing — the catalogue, with pricing, tax and stock.', 'Products and Pricing catalogue table', '', SRC_CORE],
-  ['mg-warranties', 'Warranties — active warranties and maintenance that is due or overdue.', 'Warranties list with maintenance status per warranty', '', SRC_CORE],
-  ['mg-reports', 'Reports — one report at a time, with its parameters and totals.', 'Quotes report with report types, parameters and results', 'wide', SRC_CORE],
-  ['mg-customers', 'Customers — account type, status and accounting link.', 'Customers list with account type and status columns', '', SRC_CORE],
-  ['to-08-products', 'Take-On — reviewing extracted products and pricing.', 'Take-On product review table with a status per record', '', SRC_TAKEON],
-  ['to-10-declaration', 'Take-On — compliance status and the final declaration before submitting.', 'Take-On final declaration with a compliance checklist and a confirmation checkbox', '', SRC_TAKEON],
-  ['to-11-complete', 'Take-On — submitted, and waiting for GEMIS review.', 'Take-On completion screen with a submission reference', '', SRC_TAKEON],
+  ['mg-open-enquiries', 'Open Enquiries — the sales pipeline with counts per stage.', 'Open Enquiries list with stage counts, filters and a table of leads', 'wide', SRC_CORE],
+  ['mg-projects', 'Projects — current jobs with foreman, dates and progress.', 'Current Jobs list with progress bars', '', SRC_CORE],
+  ['mg-debtors', 'Debtors — balances and ageing by customer.', 'Debtors Management with outstanding totals and ageing', '', SRC_CORE],
+  ['mg-products', 'Products & Pricing — the catalogue.', 'Products and Pricing catalogue table', '', SRC_CORE],
+  ['mg-warranties', 'Warranties — maintenance due and overdue.', 'Warranties list with maintenance status', '', SRC_CORE],
+  ['mg-reports', 'Reports — one report at a time, with its parameters.', 'Quotes report with report types, parameters and results', 'wide', SRC_CORE],
+  ['to-07-duplicate', 'Take-On — a possible duplicate, explained.', 'Take-On review panel for a possible duplicate with merge options', '', SRC_TAKEON],
+  ['to-12-admin', 'Take-On — the GEMIS take-on queue.', 'GEMIS admin queue of companies awaiting sign-off', '', SRC_TAKEON],
 ];
 
 const screens = (ctx) =>
   section(
     'screens',
     `
-    ${head('screens', '09', 'Final product experience', 'More of the product, at a size you can read.', 'Select any screen to open it full size. Everything here comes from the two design prototypes.')}
+    ${head({ id: 'screens', n: '09', label: 'Final product experience', title: 'More of the product, at a size you can read.', intro: 'Select any screen to open it full size.' })}
     <div class="mx-gallery">
-      ${gallery.map(([k, c, a, size, src]) => shot(ctx, k, a, { caption: c, source: src, cls: size ? `mx-gallery__${size}` : '', sizes: size ? '(min-width: 1264px) 1200px, 100vw' : '(min-width: 900px) 590px, 100vw' })).join('')}
+      ${gallery.map(([k, c, a, size, src]) => shot(ctx, k, a, { caption: c, source: src, cls: size ? 'mx-gallery__wide' : '', sizes: size ? '(min-width: 1264px) 1200px, 100vw' : '(min-width: 834px) 590px, 100vw' })).join('')}
     </div>
-    <div class="btn-row mx-links">
+    <div class="btn-row mx-center">
       ${button(ctx, { label: 'Open the core redesign prototype', href: 'prototypes/managem.html', variant: 'primary', ic: 'external', external: true })}
       ${button(ctx, { label: 'Open the Take-On prototype', href: TAKEON_FILE, variant: 'secondary', ic: 'external', external: true })}
     </div>
@@ -531,43 +530,40 @@ const statusSection = (ctx) =>
   section(
     'status',
     `
-    ${head('status', '10', 'Outcome and implementation status', 'What exists today, stated precisely.')}
+    ${head({ id: 'status', n: '10', label: 'Outcome and implementation status', title: 'What exists today, stated precisely.' })}
     <div class="mx-status">
-      <div class="mx-status__col">
-        <p class="mx-label">01 — Core ManaGEM redesign</p>
+      <article class="mx-card">
+        <p class="mx-card__k">01 · Core ManaGEM redesign</p>
         <p class="mx-status__state">${status('Design complete', 'live')}</p>
-        <p>The redesigned experience is designed across the product’s main areas — dashboard, customers, sales, invoicing, debtors, products, projects, factory, stock and staff — and delivered as an interactive prototype.</p>
-        <p>This case study makes no claim about how much of the redesign is in production.</p>
-      </div>
-      <div class="mx-status__col">
-        <p class="mx-label">02 — ManaGEM Take-On</p>
+        <p>Designed across dashboard, customers, sales, invoicing, debtors, products, projects, factory, stock and staff, and delivered as an interactive prototype. No claim is made about how much is in production.</p>
+      </article>
+      <article class="mx-card">
+        <p class="mx-card__k">02 · ManaGEM Take-On</p>
         <p class="mx-status__state">${status('Prototype complete · development underway', 'progress')}</p>
-        <p>The Take-On UX/UI prototype has been completed, and development is underway.</p>
-        <p>The AI processing in the prototype is simulated. It is not described here as a live integration, and clients are not presented as using it.</p>
-      </div>
+        <p>The Take-On UX/UI prototype has been completed, and development is underway. The AI processing is simulated; it is not described as live, and clients are not presented as using it.</p>
+      </article>
     </div>
-    <div class="mx-unclaimed">
-      <h3 class="mx-label">Not claimed</h3>
-      <p>No business results are attributed to this work. I have not measured — and do not claim — reduced onboarding time, eliminated manual work, or changes in revenue, conversion or productivity. None of the designs were validated through user testing that I can document.</p>
-    </div>
-    ${todo(ctx, 'ManaGEM: which parts of the core redesign are in production', '— the page currently says "design complete" and makes no production claim. Confirm before stating anything stronger.')}
-    ${todo(ctx, 'ManaGEM: confirm the sample company name in the Take-On prototype ("SBS Waterproofing") may be shown publicly', '— it appears in the Take-On screenshots as sample data.')}`,
+    <p class="mx-unclaimed"><strong>Not claimed:</strong> reduced onboarding time, eliminated manual work, or any change in revenue, conversion or productivity. No user testing is claimed.</p>
+    ${todo(ctx, 'ManaGEM: which parts of the core redesign are in production', '— the page says "design complete" and makes no production claim.')}
+    ${todo(ctx, 'ManaGEM: confirm the sample company name in the Take-On prototype ("SBS Waterproofing") may be shown publicly', '— it appears in the Take-On screenshots and videos as sample data.')}
+    ${todo(ctx, 'ManaGEM: confirm who produced the product film and that it may be shown in the portfolio', '— used as the opening visual, captioned as the product film.')}`,
   );
 
-const reflection = (ctx) =>
+const reflection = () =>
   section(
     'reflection',
     `
-    ${head('reflection', '11', 'Reflection', 'What this project changed about how I work.')}
+    ${head({ id: 'reflection', n: '11', label: 'Reflection', title: 'What this project changed about how I work.' })}
     <div class="mx-reflect">
       <p class="mx-statement">The most useful thing I did on ManaGEM happened before I designed anything: working out what each screen was for, and what it was connected to.</p>
-      <div class="mx-prose">
-        <p>In a system like this, a screen is never only a screen. The enquiry form decides what the pipeline can show. The invoice list is only as clear as the status it is given. Navigation, data, forms and feedback kept turning out to be the same problem seen from different sides, and I got better results once I stopped treating them as separate pieces of work.</p>
-        <p>Preserving what already worked was harder than replacing it. It meant understanding why a function existed before deciding where it belonged, and accepting that the right answer was often to move something rather than redesign it.</p>
-        <p>Take-On taught me to be careful with automation. The interesting design work was not the extraction step — it was everything around it: showing what the system did, admitting what it was unsure about, and keeping a person responsible for the final answer.</p>
-        <p>What I would want next is evidence. The decisions here are reasoned from the brief and the product, and the honest next step is to watch new clients use them.</p>
+      <div class="mx-lessons">
+        <article><h3>Screens are never only screens</h3><p>The enquiry form decides what the pipeline can show; the invoice list is only as clear as its status. Navigation, data, forms and feedback kept turning out to be one problem.</p></article>
+        <article><h3>Keeping is harder than replacing</h3><p>Preserving what worked meant understanding why a function existed before deciding where it belonged — often the answer was to move it, not redesign it.</p></article>
+        <article><h3>Design around the automation</h3><p>The interesting work in Take-On was not extraction. It was showing what the system did, admitting what it was unsure of, and keeping a person responsible.</p></article>
+        <article><h3>Next: evidence</h3><p>These decisions are reasoned from the brief and the product. The honest next step is to watch new clients use them.</p></article>
       </div>
     </div>`,
+    'soft',
   );
 
 export default {
@@ -589,20 +585,24 @@ export default {
     ${product(ctx)}
     ${challenge(ctx)}
     ${role(ctx)}
-    ${analysis(ctx)}
-    ${core(ctx)}
+    ${approach(ctx)}
+    ${coreIntro(ctx)}
+    ${coreDecisions(ctx)}
     ${takeon(ctx)}
-    ${decisions(ctx)}
+    ${decisionsIntro(ctx)}
+    ${keyDecisions(ctx)}
     ${screens(ctx)}
     ${statusSection(ctx)}
     ${reflection(ctx)}
-    <nav class="wrap mx-next" aria-label="Next case study">
-      <a class="mx-next__link" href="${url(ctx, `work/${next.slug}/`)}">
-        <span class="mx-next__label">Next project</span>
-        <span class="mx-next__name">${esc(next.name)}</span>
-        <span class="mx-next__sum">${esc(next.title)}</span>
-        <span class="mx-next__arrow"><span>View case study</span>${icon.arrow}</span>
-      </a>
+    <nav class="mx-next" aria-label="Next case study">
+      <div class="wrap">
+        <a class="mx-next__link" href="${url(ctx, `work/${next.slug}/`)}">
+          <span class="mx-next__label">Next project</span>
+          <span class="mx-next__name">${esc(next.name)}</span>
+          <span class="mx-next__sum">${esc(next.title)}</span>
+          <span class="mx-next__btn"><span>View case study</span>${icon.arrow}</span>
+        </a>
+      </div>
     </nav>
   </article>`;
   },
