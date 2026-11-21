@@ -23,7 +23,7 @@ nothing missing is presented as fact. Supply the item, replace the
 
 ## ManaGEM ERP
 
-- [ ] **ManaGEM: designed save-confirmation states (saving, saved, error)** — the prototype shows review-then-commit but no explicit saved/toast state, so none is shown.
+- [ ] **ManaGEM: designed save-confirmation states (saving, saved, error)** — the design-system section now specifies saving, saved and error states, rebuilt for the portfolio; confirm they match what the development team is building.
 - [ ] **ManaGEM: team, collaborators and project timeline** — left off both pages until confirmed.
 - [ ] **ManaGEM: confirm the sample company name in the Take-On prototype ("SBS Waterproofing") may be shown publicly** — it is also the account name in the legacy screenshots, where it has been redacted.
 - [ ] **ManaGEM: confirm who produced the product film and that it may be shown** — used in the Product background section of the full case study.

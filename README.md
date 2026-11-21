@@ -75,7 +75,14 @@ Two levels of the same story:
 
 Shared components (screenshots, video, before/after compare, status list,
 workflow diagram) live in `src/content/managem-parts.mjs`; styles in
-`src/styles/04-case-managem.css`. The full route is registered in
+`src/styles/04-case-managem.css`.
+
+**Design system.** `src/content/managem-ds.mjs` renders the ManaGEM design
+system as live, animated components using the redesign's own tokens and
+typefaces (Outfit and JetBrains Mono, self-hosted in `assets/fonts/`, OFL).
+Styles are in `src/styles/05-managem-ds.css`; the animation controller is the
+`[data-ds]` block in `assets/js/main.js`. Loops run only while the board is on
+screen, and reduced-motion users see final static states. The full route is registered in
 `extraPages` in `src/build.mjs`.
 
 **Images.** `assets/images/managem/mg-*` and `to-*` are captured from the two

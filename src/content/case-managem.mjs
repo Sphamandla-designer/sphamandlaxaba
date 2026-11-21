@@ -5,6 +5,7 @@
 // (case-managem-full.mjs). Evidence rules are in managem-parts.mjs.
 
 import { url, icon } from '../shared.mjs';
+import { designSystem } from './managem-ds.mjs';
 import {
   SRC_CORE, SRC_TAKEON, SRC_LEGACY, FULL,
   shot, video, head, section, chapterNav, nextProject, compare, statusList, workflowDiagram,
@@ -15,6 +16,7 @@ const chapters = [
   ['challenge', 'Challenge'],
   ['approach', 'Approach'],
   ['decisions', 'Decisions'],
+  ['system', 'Design system'],
   ['takeon', 'Take-On'],
   ['interface', 'Interface'],
   ['status', 'Status'],
@@ -38,11 +40,13 @@ const hero = (ctx) => `
     <div class="wrap">
       <a class="back" href="${url(ctx, 'index.html#work')}">← Selected work</a>
       <div class="mq-hero__text">
-        <p class="mq-hero__cat">ManaGEM · Product design case study</p>
+        <p class="mq-hero__cat">Case study · ManaGEM ERP redesign</p>
         <h1 class="mq-title" id="mq-title">Reimagining the experience behind everyday business operations.</h1>
-        <p class="mq-sub">Redesigning an established ERP platform to make complex business workflows clearer, more consistent and easier to navigate.</p>
       </div>
-      <dl class="mq-herometa">${meta.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>
+      <div class="mq-hero__under">
+        <p class="mq-sub">Redesigning an established ERP platform to make complex business workflows clearer, more consistent and easier to navigate.</p>
+        <dl class="mq-herometa">${meta.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>
+      </div>
       <div class="mq-hero__shot">
         <div class="mq-browser">
           <div class="mq-browser__bar" aria-hidden="true"><i></i><i></i><i></i><span>ManaGEM · Dashboard</span></div>
@@ -62,7 +66,7 @@ const glance = () =>
     <div class="mq-glance">
       <div class="mq-glance__lead">
         <p class="mx-kicker"><span class="mx-kicker__n">01</span>At a glance</p>
-        <h2 class="mx-h2" id="glance-h">One system for the whole job, from first enquiry to final payment.</h2>
+        <h2 class="mx-h2" id="glance-h">ManaGEM runs a business from first enquiry to final payment.</h2>
         <p class="mq-lede">ManaGEM is GEMIS’s business management platform. A single piece of work passes through sales, operations and finance inside it — so a screen is never only a screen. It is one step in a chain other people depend on.</p>
       </div>
       <dl class="mq-glance__facts">
@@ -91,7 +95,7 @@ const challenge = (ctx) =>
   section(
     'challenge',
     `
-    ${head({ id: 'challenge', n: '02', label: 'The challenge', title: 'An established system with growing complexity.', intro: 'ManaGEM started from a template bought around 2015 and grew feature by feature. These were the problems in the product when the redesign began.' })}
+    ${head({ id: 'challenge', n: '02', label: 'The challenge', title: 'An established system with growing complexity.', intro: 'ManaGEM began as a template bought around 2015 and grew one feature at a time. By the time the redesign started, these seven problems had built up.' })}
     <ol class="mq-seven" role="list">
       ${problems.map(([t, d], i) => `<li><span class="mq-n">0${i + 1}</span><div><h3>${t}</h3><p>${d}</p></div></li>`).join('')}
     </ol>
@@ -115,7 +119,7 @@ const approach = () =>
   section(
     'approach',
     `
-    ${head({ id: 'approach', n: '03', label: 'My approach', title: 'Redesigning the system, not just the screens.', intro: 'I worked through ManaGEM screen by screen and workflow by workflow, reconsidering how its functions connect before deciding how any one screen should look — and preserving the features businesses already depend on.' })}
+    ${head({ id: 'approach', n: '03', label: 'My approach', title: 'Redesigning the system, not just the screens.', intro: 'I reviewed ManaGEM screen by screen and workflow by workflow. Before changing how any screen looked, I worked out how it connected to the others — and kept every feature businesses rely on.' })}
     ${workflowDiagram()}
     <ol class="mq-steps" role="list">
       ${approachSteps.map(([t, d], i) => `<li><span class="mq-n">0${i + 1}</span><h3>${t}</h3><p>${d}</p></li>`).join('')}
@@ -183,7 +187,7 @@ const decisionSection = (ctx) =>
   section(
     'decisions',
     `
-    ${head({ id: 'decisions', n: '04', label: 'Key design decisions', title: 'Four decisions, each tied to a problem in the product.' })}
+    ${head({ id: 'decisions', n: '04', label: 'Key design decisions', title: 'Four design decisions that shaped the redesign.', intro: 'Each one answers a specific problem in the original product. Where both exist, switch between the original and redesigned screens to compare.' })}
     <div class="mq-decisions">
       ${decisions(ctx)
         .map(
@@ -199,8 +203,18 @@ const decisionSection = (ctx) =>
         )
         .join('')}
     </div>
-    <p class="mq-more">${fullLink(ctx, 'See the detailed reasoning and more comparisons')}</p>`,
+    <p class="mq-more">${fullLink(ctx, 'Read the full reasoning, with more comparisons')}</p>`,
     { mod: 'soft' },
+  );
+
+// ------------------------------------------------------- 5 · design system
+
+const system = () =>
+  section(
+    'system',
+    `
+    ${head({ id: 'system', n: '05', label: 'Design system', title: 'One design system behind every screen.', intro: 'Colour, type, spacing and components are defined once and reused in every module. Here the system is rebuilt with the redesign’s own tokens, so you can see each component working.' })}
+    ${designSystem({ compact: true })}`,
   );
 
 // ------------------------------------------------------------- 6 · Take-On
@@ -234,7 +248,7 @@ const takeon = (ctx) =>
   section(
     'takeon',
     `
-    ${head({ id: 'takeon', n: '05', label: 'ManaGEM Take-On', title: 'Making the first experience with ManaGEM more structured.', intro: 'Take-On is an onboarding experience designed to reduce manual collection and capture of a new client’s information. Clients upload the documents they already have; an AI-assisted process extracts and structures the records; the client reviews and corrects them; and GEMIS verifies the result.' })}
+    ${head({ id: 'takeon', n: '06', label: 'ManaGEM Take-On', title: 'Making the first experience with ManaGEM more structured.', intro: 'Take-On replaces typing in a new client’s records by hand. The client uploads the documents they already have, an AI-assisted process extracts the records, the client reviews and corrects them, and GEMIS checks the result before anything is created.' })}
     <p class="mq-status-pill"><span class="status status--progress"><span class="status__mark" aria-hidden="true"></span>UX/UI prototype completed; development underway</span></p>
     <div class="mq-takeon">
       ${video(ctx, 'flow-takeon-review', 'Filtering extracted customers, opening a record with a missing email, then merging a possible duplicate', { caption: 'Reviewing extracted records: evidence, missing fields, and a duplicate merged.', source: SRC_TAKEON })}
@@ -261,7 +275,7 @@ const iface = (ctx) =>
   section(
     'interface',
     `
-    ${head({ id: 'interface', n: '06', label: 'The redesigned experience', title: 'One product, read the same way in every module.', intro: 'Select any screen to see it full size.' })}
+    ${head({ id: 'interface', n: '07', label: 'The redesigned interface', title: 'Every module now follows the same structure.', intro: 'A selection of redesigned screens, from the sales pipeline to stock. Select any screen to see it full size.' })}
     <div class="mq-show">
       ${showcase.map(([k, c, a, cls]) => shot(ctx, k, a, { caption: c, cls, sizes: cls === 'mq-show--full' ? '(min-width: 1264px) 1200px, 100vw' : '(min-width: 834px) 700px, 100vw' })).join('')}
     </div>`,
@@ -275,7 +289,7 @@ const statusSection = () =>
     `
     <div class="mq-statusblock">
       <div>
-        <p class="mx-kicker"><span class="mx-kicker__n">07</span>Current status</p>
+        <p class="mx-kicker"><span class="mx-kicker__n">08</span>Current status</p>
         <h2 class="mx-h2" id="status-h">Designed. Now moving through implementation.</h2>
         <p class="mq-lede">The ManaGEM redesign is currently being implemented by the development team. Rather than releasing individual redesigned screens separately, GEMIS plans to release the redesigned product as a complete experience once the implementation is ready.</p>
         <p class="mq-note">No results are reported yet: the redesigned product has not been released, so its effect has not been measured.</p>
@@ -309,6 +323,7 @@ export default {
     ${challenge(ctx)}
     ${approach(ctx)}
     ${decisionSection(ctx)}
+    ${system(ctx)}
     ${takeon(ctx)}
     ${iface(ctx)}
     ${statusSection(ctx)}
