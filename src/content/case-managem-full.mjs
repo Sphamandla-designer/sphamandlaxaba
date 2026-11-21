@@ -7,6 +7,7 @@
 
 import { esc, url, todo, button, icon } from '../shared.mjs';
 import { projects } from './projects.mjs';
+import { designSystem, DS_PRINCIPLES } from './managem-ds.mjs';
 import {
   SRC_CORE, SRC_TAKEON, SRC_LEGACY, TAKEON_FILE, QUICK, glyph,
   shot, video, filmVideo, head, section, note, chapterNav, feature, nextProject,
@@ -19,7 +20,7 @@ const chapters = [
   ['problem', 'Design problem'],
   ['approach', 'Approach'],
   ['decisions', 'Decisions'],
-  ['patterns', 'Consistency'],
+  ['patterns', 'Design system'],
   ['takeon', 'Take-On'],
   ['evaluation', 'Evaluation'],
   ['status', 'Status'],
@@ -61,7 +62,7 @@ const background = (ctx) =>
   section(
     'background',
     `
-    ${head({ id: 'background', n: '01', label: 'Product background', title: 'A business runs through ManaGEM, not just inside it.', intro: 'ManaGEM is an established ERP and business-management platform developed by GEMIS, my employer, and used by its clients to run day-to-day operations. It began with a template bought around 2015 and grew over many years. This project redesigned that existing product — it did not build a new one.' })}
+    ${head({ id: 'background', n: '01', label: 'Product background', title: 'ManaGEM is where a business’s daily work happens.', intro: 'ManaGEM is an established ERP and business-management platform developed by GEMIS, my employer, and used by its clients to run day-to-day operations. It began with a template bought around 2015 and grew over many years. This project redesigned that existing product — it did not build a new one.' })}
     <ul class="mf-modules" role="list" aria-label="Business functions in ManaGEM">
       ${modules.map(([t, d]) => `<li><strong>${t}</strong><span>${d}</span></li>`).join('')}
     </ul>
@@ -91,7 +92,7 @@ const existing = (ctx) =>
   section(
     'existing',
     `
-    ${head({ id: 'existing', n: '02', label: 'Understanding the existing experience', title: 'What the original product asked of its users.', intro: 'These are screenshots of the original interface. Client names, contact details and financial figures are replaced by grey bars; everything else — layout, labels, alignment and controls — is unchanged.' })}
+    ${head({ id: 'existing', n: '02', label: 'Understanding the existing experience', title: 'The original interface, screen by screen.', intro: 'These are screenshots of the original interface. Client names, contact details and financial figures are replaced by grey bars; everything else — layout, labels, alignment and controls — is unchanged.' })}
     <div class="mf-legacy">
       ${analysis
         .map(
@@ -203,7 +204,7 @@ const story = (id, mod, { tag, title, beats, media }) =>
 const decisions = (ctx) =>
   section(
     'decisions',
-    `${head({ id: 'decisions', n: '05', label: 'Detailed design decisions', title: 'Problem, consideration, decision, evidence.', intro: 'The strongest examples from the redesign. Each pairs the original screen with the redesign where both exist.' })}
+    `${head({ id: 'decisions', n: '05', label: 'Detailed design decisions', title: 'The reasoning behind each design decision.', intro: 'The strongest examples from the redesign, each set out as problem, consideration and decision — with the original and redesigned screens side by side where both exist.' })}
     <ol class="mx-jump" role="list">${['Navigation', 'Records', 'Feedback', 'Simplifying'].map((t, i) => `<li><a href="#core-${'ABCD'[i]}"><b>${'ABCD'[i]}</b>${t}</a></li>`).join('')}</ol>`,
   ) +
   story('core-A', 'soft', {
@@ -256,7 +257,7 @@ const decisions = (ctx) =>
       ${shot(ctx, 'mg-detail-review', 'Review step of the New Enquiry form', { caption: 'The review step before committing.', sizes: '(min-width: 1264px) 600px, 100vw' })}
       ${shot(ctx, 'mg-detail-attention', 'Dashboard messages banner above the headline figures', { caption: 'Messages surfaced on the dashboard.', sizes: '(min-width: 1264px) 600px, 100vw' })}
     </div>
-    ${todo(ctx, 'ManaGEM: designed save-confirmation states (saving, saved, error)', '— the prototype shows review-then-commit but no explicit saved/toast state, so none is shown.')}`,
+    ${todo(ctx, 'ManaGEM: designed save-confirmation states (saving, saved, error)', '— the design-system section now specifies saving, saved and error states, rebuilt for the portfolio; confirm they match what the development team is building.')}`,
   }) +
   story('core-D', '', {
     tag: 'D · Simplifying without removing',
@@ -284,14 +285,19 @@ const patternsSection = (ctx) =>
   section(
     'patterns',
     `
-    ${head({ id: 'patterns', n: '06', label: 'Interface consistency and reusable patterns', title: 'A small set of parts, used everywhere.', intro: 'Specimens cut from the redesigned screens. These patterns repeat across the product; they are not presented as a formal, documented design system.' })}
+    ${head({ id: 'patterns', n: '06', label: 'Design system', title: 'One design system behind every screen.', intro: 'The redesign is built from one set of foundations — colour, type, spacing — and a small library of components reused in every module. The board below rebuilds that system with the redesign’s own tokens, and shows each component in motion.' })}
+    <ol class="mf-principles" role="list">
+      ${DS_PRINCIPLES.map(([t, d], i) => `<li><span class="mq-n">0${i + 1}</span><h3>${t}</h3><p>${d}</p></li>`).join('')}
+    </ol>
+    ${designSystem()}
+    <h3 class="mx-subh">The same patterns in the redesigned screens</h3>
     <div class="mf-patterns">
-      ${patterns.map(([k, t, d]) => `<figure class="mf-pattern"><figcaption><strong>${t}</strong><span>${d}</span></figcaption>${shot(ctx, k, `${t} pattern from the redesigned interface`, { sizes: '(min-width: 1264px) 860px, 100vw' })}</figure>`).join('')}
+      ${patterns.map(([k, t, d]) => `<figure class="mf-pattern"><figcaption><strong>${t}</strong><span>${d}</span></figcaption>${shot(ctx, k, `${t} pattern from the redesigned interface`, { sizes: '(min-width: 1264px) 960px, 100vw' })}</figure>`).join('')}
     </div>
     <div class="mx-trio">
-      ${shot(ctx, 'mg-login', 'The ManaGEM sign-in screen with the GEMIS mark', { caption: 'The GEMIS identity from the first screen.', sizes: '(min-width: 1264px) 800px, 100vw', cls: 'mx-trio__main' })}
-      ${shot(ctx, 'mg-factory', 'The Factory module using the shared page structure', { caption: 'Factory', sizes: '(min-width: 1264px) 400px, 50vw' })}
-      ${shot(ctx, 'mg-staff', 'Staff Records using the same tabs, filters and table', { caption: 'Staff Records', sizes: '(min-width: 1264px) 400px, 50vw' })}
+      ${shot(ctx, 'mg-login', 'The ManaGEM sign-in screen with the GEMIS mark', { caption: 'The GEMIS identity from the first screen.', sizes: '(min-width: 1264px) 900px, 100vw', cls: 'mx-trio__main' })}
+      ${shot(ctx, 'mg-factory', 'The Factory module using the shared page structure', { caption: 'Factory', sizes: '(min-width: 1264px) 450px, 50vw' })}
+      ${shot(ctx, 'mg-staff', 'Staff Records using the same tabs, filters and table', { caption: 'Staff Records', sizes: '(min-width: 1264px) 450px, 50vw' })}
     </div>`,
     { mod: 'soft' },
   );
@@ -325,8 +331,8 @@ const takeonIntro = (ctx) =>
     'takeon',
     `
     <div class="mx-part">
-      <p class="mx-part__n">07 · ManaGEM Take-On</p>
-      <h2 class="mx-part__name" id="takeon-h">Onboarding, without the retyping</h2>
+      <p class="mx-part__n">07 · Onboarding</p>
+      <h2 class="mx-part__name" id="takeon-h">ManaGEM Take-On</h2>
       <p class="mx-part__desc">Before a new client can use ManaGEM, their customers, products, pricing and staff have to be in it. That depended on collecting the information and typing it in by hand. Take-On is my design for a guided alternative: the client uploads what they already have, an AI-assisted process structures it, the client reviews and corrects it, and GEMIS checks it before anything is created.</p>
       <p class="mx-part__status"><span class="status status--progress"><span class="status__mark" aria-hidden="true"></span>UX/UI prototype completed; development underway</span></p>
     </div>

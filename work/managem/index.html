@@ -43,11 +43,13 @@
     <div class="wrap">
       <a class="back" href="../../#work">← Selected work</a>
       <div class="mq-hero__text">
-        <p class="mq-hero__cat">ManaGEM · Product design case study</p>
+        <p class="mq-hero__cat">Case study · ManaGEM ERP redesign</p>
         <h1 class="mq-title" id="mq-title">Reimagining the experience behind everyday business operations.</h1>
-        <p class="mq-sub">Redesigning an established ERP platform to make complex business workflows clearer, more consistent and easier to navigate.</p>
       </div>
-      <dl class="mq-herometa"><div><dt>Product</dt><dd>ManaGEM</dd></div><div><dt>Organisation</dt><dd>GEMIS</dd></div><div><dt>Project</dt><dd>Existing product redesign</dd></div><div><dt>Role</dt><dd>Product Design / UX/UI Design</dd></div><div><dt>Status</dt><dd>Design completed; implementation underway</dd></div><div><dt>Category</dt><dd>Enterprise Software / ERP</dd></div></dl>
+      <div class="mq-hero__under">
+        <p class="mq-sub">Redesigning an established ERP platform to make complex business workflows clearer, more consistent and easier to navigate.</p>
+        <dl class="mq-herometa"><div><dt>Product</dt><dd>ManaGEM</dd></div><div><dt>Organisation</dt><dd>GEMIS</dd></div><div><dt>Project</dt><dd>Existing product redesign</dd></div><div><dt>Role</dt><dd>Product Design / UX/UI Design</dd></div><div><dt>Status</dt><dd>Design completed; implementation underway</dd></div><div><dt>Category</dt><dd>Enterprise Software / ERP</dd></div></dl>
+      </div>
       <div class="mq-hero__shot">
         <div class="mq-browser">
           <div class="mq-browser__bar" aria-hidden="true"><i></i><i></i><i></i><span>ManaGEM · Dashboard</span></div>
@@ -64,7 +66,7 @@
     <nav class="mx-chapters" aria-label="Case study sections" data-chapters>
       <div class="wrap">
         <p class="mx-chapters__name" aria-hidden="true">ManaGEM</p>
-        <ol role="list"><li><a href="#glance">At a glance</a></li><li><a href="#challenge">Challenge</a></li><li><a href="#approach">Approach</a></li><li><a href="#decisions">Decisions</a></li><li><a href="#takeon">Take-On</a></li><li><a href="#interface">Interface</a></li><li><a href="#status">Status</a></li></ol>
+        <ol role="list"><li><a href="#glance">At a glance</a></li><li><a href="#challenge">Challenge</a></li><li><a href="#approach">Approach</a></li><li><a href="#decisions">Decisions</a></li><li><a href="#system">Design system</a></li><li><a href="#takeon">Take-On</a></li><li><a href="#interface">Interface</a></li><li><a href="#status">Status</a></li></ol>
         <a class="btn btn--primary mx-chapters__cta" href="../../work/managem/full/">Full case study</a>
       </div>
       <span class="mx-progress" aria-hidden="true" data-progress></span>
@@ -75,7 +77,7 @@
     <div class="mq-glance">
       <div class="mq-glance__lead">
         <p class="mx-kicker"><span class="mx-kicker__n">01</span>At a glance</p>
-        <h2 class="mx-h2" id="glance-h">One system for the whole job, from first enquiry to final payment.</h2>
+        <h2 class="mx-h2" id="glance-h">ManaGEM runs a business from first enquiry to final payment.</h2>
         <p class="mq-lede">ManaGEM is GEMIS’s business management platform. A single piece of work passes through sales, operations and finance inside it — so a screen is never only a screen. It is one step in a chain other people depend on.</p>
       </div>
       <dl class="mq-glance__facts">
@@ -91,10 +93,12 @@
   <section class="mx-sec mx-sec--soft" id="challenge" aria-labelledby="challenge-h" data-chapter>
     <div class="wrap">
     
-  <header class="mx-head mx-head--center">
-    <p class="mx-kicker"><span class="mx-kicker__n">02</span>The challenge</p>
-    <h2 class="mx-h2" id="challenge-h">An established system with growing complexity.</h2>
-    <p class="mx-intro">ManaGEM started from a template bought around 2015 and grew feature by feature. These were the problems in the product when the redesign began.</p>
+  <header class="mx-head">
+    <div class="mx-head__l">
+      <p class="mx-kicker"><span class="mx-kicker__n">02</span>The challenge</p>
+      <h2 class="mx-h2" id="challenge-h">An established system with growing complexity.</h2>
+    </div>
+    <p class="mx-intro">ManaGEM began as a template bought around 2015 and grew one feature at a time. By the time the redesign started, these seven problems had built up.</p>
   </header>
     <ol class="mq-seven" role="list">
       <li><span class="mq-n">01</span><div><h3>Navigation</h3><p>New clients found the product difficult to navigate.</p></div></li><li><span class="mq-n">02</span><div><h3>Onboarding</h3><p>Getting started depended heavily on manual information collection and entry.</p></div></li><li><span class="mq-n">03</span><div><h3>Data clarity</h3><p>Some information did not reflect as expected — invoice information in particular.</p></div></li><li><span class="mq-n">04</span><div><h3>Visibility</h3><p>Messages and notifications needing attention were not visible enough.</p></div></li><li><span class="mq-n">05</span><div><h3>Identity</h3><p>The product did not carry a consistent GEMIS identity.</p></div></li><li><span class="mq-n">06</span><div><h3>Complexity</h3><p>Some unnecessary features made the interface more complicated.</p></div></li><li><span class="mq-n">07</span><div><h3>Save feedback</h3><p>Forms did not show clearly when a save had worked, leading to repeat saves and possible duplicates.</p></div></li>
@@ -114,10 +118,12 @@
   <section class="mx-sec" id="approach" aria-labelledby="approach-h" data-chapter>
     <div class="wrap">
     
-  <header class="mx-head mx-head--center">
-    <p class="mx-kicker"><span class="mx-kicker__n">03</span>My approach</p>
-    <h2 class="mx-h2" id="approach-h">Redesigning the system, not just the screens.</h2>
-    <p class="mx-intro">I worked through ManaGEM screen by screen and workflow by workflow, reconsidering how its functions connect before deciding how any one screen should look — and preserving the features businesses already depend on.</p>
+  <header class="mx-head">
+    <div class="mx-head__l">
+      <p class="mx-kicker"><span class="mx-kicker__n">03</span>My approach</p>
+      <h2 class="mx-h2" id="approach-h">Redesigning the system, not just the screens.</h2>
+    </div>
+    <p class="mx-intro">I reviewed ManaGEM screen by screen and workflow by workflow. Before changing how any screen looked, I worked out how it connected to the others — and kept every feature businesses rely on.</p>
   </header>
     
   <figure class="mx-flowmap">
@@ -138,10 +144,12 @@
   <section class="mx-sec mx-sec--soft" id="decisions" aria-labelledby="decisions-h" data-chapter>
     <div class="wrap">
     
-  <header class="mx-head mx-head--center">
-    <p class="mx-kicker"><span class="mx-kicker__n">04</span>Key design decisions</p>
-    <h2 class="mx-h2" id="decisions-h">Four decisions, each tied to a problem in the product.</h2>
-    
+  <header class="mx-head">
+    <div class="mx-head__l">
+      <p class="mx-kicker"><span class="mx-kicker__n">04</span>Key design decisions</p>
+      <h2 class="mx-h2" id="decisions-h">Four design decisions that shaped the redesign.</h2>
+    </div>
+    <p class="mx-intro">Each one answers a specific problem in the original product. Where both exist, switch between the original and redesigned screens to compare.</p>
   </header>
     <div class="mq-decisions">
       
@@ -242,16 +250,119 @@
   </figure></div>
       </article>
     </div>
-    <p class="mq-more"><a class="mq-textlink" href="../../work/managem/full/">See the detailed reasoning and more comparisons<span aria-hidden="true"><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span></a></p></div>
+    <p class="mq-more"><a class="mq-textlink" href="../../work/managem/full/">Read the full reasoning, with more comparisons<span aria-hidden="true"><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span></a></p></div>
+  </section>
+    
+  <section class="mx-sec" id="system" aria-labelledby="system-h" data-chapter>
+    <div class="wrap">
+    
+  <header class="mx-head">
+    <div class="mx-head__l">
+      <p class="mx-kicker"><span class="mx-kicker__n">05</span>Design system</p>
+      <h2 class="mx-h2" id="system-h">One design system behind every screen.</h2>
+    </div>
+    <p class="mx-intro">Colour, type, spacing and components are defined once and reused in every module. Here the system is rebuilt with the redesign’s own tokens, so you can see each component working.</p>
+  </header>
+    
+  <figure class="ds ds--compact" data-ds>
+    <div class="ds-board">
+      <div class="ds-board__bar" aria-hidden="true">
+        <span class="ds-board__logo">G</span>
+        <span class="ds-board__name">ManaGEM <b>Design system</b></span>
+        <span class="ds-board__tabs"><i class="is-on">Foundations</i><i>Components</i><i>Patterns</i></span>
+        <span class="ds-board__live"><i></i>Live components</span>
+      </div>
+      <div class="ds-grid">
+  <section class="ds-tile ds-tile--colour" aria-label="Colour">
+    <header class="ds-tile__head"><h4>Colour</h4><span>One accent, one neutral ramp, four status pairs</span></header>
+    
+    <div class="ds-brand">
+      <div class="ds-sw" style="--c:#0F172A;--i:0"><span class="ds-sw__chip"></span><strong>Navy 900</strong><code>#0F172A</code><em>Sidebar, primary text</em></div><div class="ds-sw" style="--c:#1E293B;--i:1"><span class="ds-sw__chip"></span><strong>Navy 800</strong><code>#1E293B</code><em>Sidebar hover</em></div><div class="ds-sw" style="--c:#0EA5E9;--i:2"><span class="ds-sw__chip"></span><strong>Sky 500</strong><code>#0EA5E9</code><em>Primary action, focus</em></div><div class="ds-sw" style="--c:#E0F2FE;--i:3"><span class="ds-sw__chip"></span><strong>Sky 100</strong><code>#E0F2FE</code><em>Selected, info fill</em></div>
+    </div>
+    <div class="ds-ramp" aria-label="Slate neutral ramp, 50 to 700">
+      <span style="--c:#F8FAFC;--i:0" title="Slate 50 #F8FAFC"><b>50</b></span><span style="--c:#F1F5F9;--i:1" title="Slate 100 #F1F5F9"><b>100</b></span><span style="--c:#E2E8F0;--i:2" title="Slate 200 #E2E8F0"><b>200</b></span><span style="--c:#CBD5E1;--i:3" title="Slate 300 #CBD5E1"><b>300</b></span><span style="--c:#94A3B8;--i:4" title="Slate 400 #94A3B8"><b>400</b></span><span style="--c:#64748B;--i:5" title="Slate 500 #64748B"><b>500</b></span><span style="--c:#475569;--i:6" title="Slate 600 #475569"><b>600</b></span><span style="--c:#334155;--i:7" title="Slate 700 #334155"><b>700</b></span>
+    </div>
+    <div class="ds-status">
+      <div class="ds-pair" style="--c:#10B981;--l:#D1FAE5;--i:0"><span class="ds-pair__chip"><i></i></span><strong>Emerald</strong><em>Paid · Verified</em></div><div class="ds-pair" style="--c:#F59E0B;--l:#FEF3C7;--i:1"><span class="ds-pair__chip"><i></i></span><strong>Amber</strong><em>Partial · Review</em></div><div class="ds-pair" style="--c:#EF4444;--l:#FEE2E2;--i:2"><span class="ds-pair__chip"><i></i></span><strong>Red</strong><em>Overdue · Error</em></div><div class="ds-pair" style="--c:#8B5CF6;--l:#EDE9FE;--i:3"><span class="ds-pair__chip"><i></i></span><strong>Purple</strong><em>Duplicate</em></div>
+    </div>
+  </section>
+  <section class="ds-tile ds-tile--type" aria-label="Typography">
+    <header class="ds-tile__head"><h4>Typography</h4><span>Outfit for interface, JetBrains Mono for figures</span></header>
+    
+    <div class="ds-aa" aria-hidden="true"><span class="ds-aa__glyph">Aa</span><span class="ds-aa__meta">Outfit<br><b data-ds-weight>400 → 700</b></span></div>
+    <ul class="ds-scale" role="list">
+      <li><span class="ds-scale__k">Page title<small>24 / 600</small></span><span class="ds-t-page">Invoices</span></li><li><span class="ds-scale__k">Section<small>16 / 600</small></span><span class="ds-t-section">Customer information</span></li><li><span class="ds-scale__k">Body<small>13 / 400</small></span><span class="ds-t-body">Eight invoices, R 535,000 outstanding</span></li><li><span class="ds-scale__k">Label<small>11 / 500 · caps</small></span><span class="ds-t-label">Total billed</span></li><li><span class="ds-scale__k">Figures<small>JetBrains Mono</small></span><span class="ds-t-mono">INV-2026-0142 · R 425,000</span></li>
+    </ul>
+  </section>
+  <section class="ds-tile ds-tile--buttons" aria-label="Buttons">
+    <header class="ds-tile__head"><h4>Buttons</h4><span>7px radius · 13 / 500</span></header>
+    
+    <div class="ds-btns">
+      <span class="ds-btn ds-btn--primary ds-press"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.8" fill="none"/></svg>New invoice</span>
+      <span class="ds-btn ds-btn--secondary"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>Export</span>
+      <span class="ds-btn ds-btn--ghost">Cancel</span>
+      <span class="ds-cursor" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 2l15 9.5-6.6 1.4L9 19.5z" fill="#0F172A" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+    </div>
+    <div class="ds-chips"><span class="ds-chip">Status: All <i>×</i></span><span class="ds-chip">Customer: All <i>×</i></span><span class="ds-chip ds-chip--add">+ Add filter</span></div>
+  </section>
+  <section class="ds-tile ds-tile--status" aria-label="Status badges">
+    <header class="ds-tile__head"><h4>Status badges</h4><span>Words and colour, never colour alone</span></header>
+    
+    <div class="ds-badges">
+      <span class="ds-badge ds-badge--emerald">Paid</span>
+      <span class="ds-badge ds-badge--amber">Partial</span>
+      <span class="ds-badge ds-badge--sky">Unpaid</span>
+      <span class="ds-badge ds-badge--red">Overdue</span>
+      <span class="ds-badge ds-badge--purple">Duplicate</span>
+    </div>
+    <div class="ds-row" aria-hidden="true">
+      <span class="ds-t-mono ds-row__id">INV-2026-0141</span>
+      <span class="ds-row__name">Parkside Estates</span>
+      <span class="ds-t-mono ds-row__amt">R 182,000</span>
+      <span class="ds-badge ds-badge--amber" data-ds-badge>Partial</span>
+    </div>
+    <p class="ds-cap">Live row: the status updates as the invoice is paid.</p>
+  </section>
+  <section class="ds-tile ds-tile--field" aria-label="Form field">
+    <header class="ds-tile__head"><h4>Form field</h4><span>Label above, focus ring, inline validation</span></header>
+    
+    <div class="ds-field" data-ds-type="maria@deltagroup.co.za">
+      <label>Email <b>*</b></label>
+      <div class="ds-input"><span class="ds-input__v">maria@deltagroup.co.za</span><span class="ds-input__caret" aria-hidden="true"></span><span class="ds-input__ok" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></span></div>
+      <p class="ds-field__help"><span class="ds-help--idle">We send the quote to this address.</span><span class="ds-help--ok">Looks good.</span></p>
+    </div>
+    <div class="ds-toggle-row"><span class="ds-toggle" aria-hidden="true"><i></i></span>Send confirmation email to customer</div>
+  </section>
+  <section class="ds-tile ds-tile--save" aria-label="Save states">
+    <header class="ds-tile__head"><h4>Save states</h4><span>One commit, always confirmed</span></header>
+    
+    <div class="ds-save" data-ds-save data-state="saved">
+      <div class="ds-save__form">
+        <span class="ds-save__line"></span><span class="ds-save__line ds-save__line--short"></span>
+        <span class="ds-btn ds-btn--primary ds-save__btn">
+          <span class="ds-save__lbl ds-save__lbl--idle">Create enquiry</span>
+          <span class="ds-save__lbl ds-save__lbl--saving"><i class="ds-spin" aria-hidden="true"></i>Saving…</span>
+          <span class="ds-save__lbl ds-save__lbl--saved"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>Saved</span>
+        </span>
+      </div>
+      <div class="ds-toast" role="presentation"><span class="ds-toast__icon"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></span><span><strong>Enquiry L04/26-125 created</strong><small>Added to Open Enquiries</small></span></div>
+      <ol class="ds-save__steps" role="list"><li data-s="idle">Ready</li><li data-s="saving">Saving · button locked</li><li data-s="saved">Saved · confirmed</li></ol>
+    </div>
+  </section></div>
+    </div>
+    <figcaption class="ds-cap-outer">Rebuilt in code from the redesign’s own tokens — colours, typefaces, radii and component styles are taken from the design prototype. The save states are specified in the system; the prototype screens show the review-and-commit flow.</figcaption>
+  </figure></div>
   </section>
     
   <section class="mx-sec mx-sec--band" id="takeon" aria-labelledby="takeon-h" data-chapter>
     <div class="wrap">
     
-  <header class="mx-head mx-head--center">
-    <p class="mx-kicker"><span class="mx-kicker__n">05</span>ManaGEM Take-On</p>
-    <h2 class="mx-h2" id="takeon-h">Making the first experience with ManaGEM more structured.</h2>
-    <p class="mx-intro">Take-On is an onboarding experience designed to reduce manual collection and capture of a new client’s information. Clients upload the documents they already have; an AI-assisted process extracts and structures the records; the client reviews and corrects them; and GEMIS verifies the result.</p>
+  <header class="mx-head">
+    <div class="mx-head__l">
+      <p class="mx-kicker"><span class="mx-kicker__n">06</span>ManaGEM Take-On</p>
+      <h2 class="mx-h2" id="takeon-h">Making the first experience with ManaGEM more structured.</h2>
+    </div>
+    <p class="mx-intro">Take-On replaces typing in a new client’s records by hand. The client uploads the documents they already have, an AI-assisted process extracts the records, the client reviews and corrects them, and GEMIS checks the result before anything is created.</p>
   </header>
     <p class="mq-status-pill"><span class="status status--progress"><span class="status__mark" aria-hidden="true"></span>UX/UI prototype completed; development underway</span></p>
     <div class="mq-takeon">
@@ -309,10 +420,12 @@
   <section class="mx-sec" id="interface" aria-labelledby="interface-h" data-chapter>
     <div class="wrap">
     
-  <header class="mx-head mx-head--center">
-    <p class="mx-kicker"><span class="mx-kicker__n">06</span>The redesigned experience</p>
-    <h2 class="mx-h2" id="interface-h">One product, read the same way in every module.</h2>
-    <p class="mx-intro">Select any screen to see it full size.</p>
+  <header class="mx-head">
+    <div class="mx-head__l">
+      <p class="mx-kicker"><span class="mx-kicker__n">07</span>The redesigned interface</p>
+      <h2 class="mx-h2" id="interface-h">Every module now follows the same structure.</h2>
+    </div>
+    <p class="mx-intro">A selection of redesigned screens, from the sales pipeline to stock. Select any screen to see it full size.</p>
   </header>
     <div class="mq-show">
       <figure class="mx-shot mq-show--full">
@@ -338,7 +451,7 @@
     <div class="wrap">
     <div class="mq-statusblock">
       <div>
-        <p class="mx-kicker"><span class="mx-kicker__n">07</span>Current status</p>
+        <p class="mx-kicker"><span class="mx-kicker__n">08</span>Current status</p>
         <h2 class="mx-h2" id="status-h">Designed. Now moving through implementation.</h2>
         <p class="mq-lede">The ManaGEM redesign is currently being implemented by the development team. Rather than releasing individual redesigned screens separately, GEMIS plans to release the redesigned product as a complete experience once the implementation is ready.</p>
         <p class="mq-note">No results are reported yet: the redesigned product has not been released, so its effect has not been measured.</p>

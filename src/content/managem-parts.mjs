@@ -84,11 +84,13 @@ export const filmVideo = (ctx) =>
     hero: true,
   });
 
-/** Centred headline stack with a numbered kicker. */
-export const head = ({ id, n, label, title, intro = '', align = 'center' }) => `
-  <header class="mx-head mx-head--${align}">
-    <p class="mx-kicker">${n ? `<span class="mx-kicker__n">${n}</span>` : ''}${esc(label)}</p>
-    <h2 class="mx-h2" id="${id}-h">${title}</h2>
+/** Section heading: kicker and title on the left, the intro in the right column. */
+export const head = ({ id, n, label, title, intro = '' }) => `
+  <header class="mx-head">
+    <div class="mx-head__l">
+      <p class="mx-kicker">${n ? `<span class="mx-kicker__n">${n}</span>` : ''}${esc(label)}</p>
+      <h2 class="mx-h2" id="${id}-h">${title}</h2>
+    </div>
     ${intro ? `<p class="mx-intro">${intro}</p>` : ''}
   </header>`;
 

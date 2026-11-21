@@ -290,6 +290,96 @@
     });
   });
 
+  // ------------------------------------------- ManaGEM design-system board
+  // Entrance plays once (.ds-seen). Looping demos run only while the board is
+  // on screen (.ds-live) and stop when it leaves. Reduced motion gets the
+  // final states with no movement (.ds-static).
+  document.querySelectorAll('[data-ds]').forEach(function (board) {
+    var timers = [], running = false;
+    var later = function (fn, ms) { timers.push(setTimeout(fn, ms)); };
+    board.querySelectorAll('.ds-tile').forEach(function (t, i) { t.style.setProperty('--t-i', i); });
+
+    var field = board.querySelector('[data-ds-type]');
+    var save = board.querySelector('[data-ds-save]');
+    var badge = board.querySelector('[data-ds-badge]');
+    var stepper = board.querySelector('[data-ds-stepper]');
+    var nav = board.querySelector('[data-ds-nav]');
+    var counts = board.querySelectorAll('[data-ds-count]');
+
+    function typeLoop() {
+      if (!field || !running) return;
+      var text = field.getAttribute('data-ds-type'), out = field.querySelector('.ds-input__v'), i = 0;
+      field.classList.remove('is-valid'); field.classList.add('is-focus'); out.textContent = '';
+      (function next() {
+        if (!running) return;
+        if (i <= text.length) { out.textContent = text.slice(0, i++); later(next, 55 + Math.random() * 70); }
+        else { field.classList.add('is-valid'); later(function () { field.classList.remove('is-focus', 'is-valid'); later(typeLoop, 900); }, 2200); }
+      })();
+    }
+    function saveLoop() {
+      if (!save || !running) return;
+      save.setAttribute('data-state', 'idle');
+      later(function () { save.setAttribute('data-state', 'saving'); }, 1600);
+      later(function () { save.setAttribute('data-state', 'saved'); }, 3000);
+      later(saveLoop, 5600);
+    }
+    var badges = [['ds-badge--sky', 'Unpaid'], ['ds-badge--amber', 'Partial'], ['ds-badge--emerald', 'Paid'], ['ds-badge--red', 'Overdue']], b = 0;
+    function badgeLoop() {
+      if (!badge || !running) return;
+      b = (b + 1) % badges.length;
+      badge.className = 'ds-badge ' + badges[b][0] + ' is-swap';
+      badge.textContent = badges[b][1];
+      later(badgeLoop, 1900);
+    }
+    function stepLoop(n) {
+      if (!stepper || !running) return;
+      stepper.setAttribute('data-step', n);
+      later(function () { stepLoop(n >= 4 ? 1 : n + 1); }, n >= 4 ? 2000 : 1100);
+    }
+    function navTo(i) {
+      if (!nav) return;
+      var item = nav.querySelector('[data-i="' + i + '"]'), bar = nav.querySelector('.ds-nav__bar');
+      if (item && bar) bar.style.transform = 'translateY(' + item.offsetTop + 'px)';
+      nav.querySelectorAll('.ds-nav__i').forEach(function (el) { el.style.color = el === item ? '#fff' : ''; });
+    }
+    var navOrder = [1, 2, 3, 4, 0], n = 0;
+    function navLoop() { if (!nav || !running) return; navTo(navOrder[n]); n = (n + 1) % navOrder.length; later(navLoop, 1500); }
+    function countUp() {
+      counts.forEach(function (el) {
+        var target = +el.getAttribute('data-ds-count'), t0 = performance.now();
+        (function frame(t) { var k = Math.min(1, (t - t0) / 1200); el.textContent = Math.round(target * (1 - Math.pow(1 - k, 3))); if (k < 1 && running) requestAnimationFrame(frame); else el.textContent = target; })(t0);
+      });
+    }
+
+    function start() {
+      if (running) return;
+      running = true;
+      board.classList.add('ds-seen', 'ds-live');
+      typeLoop(); saveLoop(); later(badgeLoop, 1200); stepLoop(1); navLoop(); countUp();
+    }
+    function stop() {
+      running = false;
+      timers.forEach(clearTimeout); timers = [];
+      board.classList.remove('ds-live');
+    }
+
+    if (reduceMotion.matches || !('IntersectionObserver' in window)) {
+      board.classList.add('ds-static');
+      if (field) field.classList.add('is-focus', 'is-valid');
+      navTo(1);
+      return;
+    }
+    navTo(1);
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) start(); else stop(); });
+    }, { threshold: 0.15 }).observe(board);
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) { stop(); return; }
+      var r = board.getBoundingClientRect();
+      if (r.bottom > 0 && r.top < window.innerHeight) start();
+    });
+  });
+
   // -------------------------------------------------------- image viewer
   var viewer = document.querySelector('[data-viewer]');
   if (viewer && typeof viewer.showModal === 'function') {
