@@ -160,7 +160,7 @@
   // ------------------------------- case-study chapters & reading progress
   var chapterNav = document.querySelector('[data-chapters]');
   if (chapterNav) {
-    var chapterLinks = Array.prototype.slice.call(chapterNav.querySelectorAll('a[href^="#"]'));
+    var chapterLinks = Array.prototype.slice.call(chapterNav.querySelectorAll('ol a[href^="#"]'));
     var chapterEls = chapterLinks.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
     var bar = chapterNav.querySelector('[data-progress]');
     var article = chapterNav.closest('article');

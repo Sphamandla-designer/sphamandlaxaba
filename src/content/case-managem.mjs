@@ -100,8 +100,12 @@ const hero = (ctx) => `
   <header class="mx-hero wrap">
     <a class="back" href="${url(ctx, 'index.html#work')}">← Selected work</a>
     <p class="mx-eyebrow">Case study <span aria-hidden="true">·</span> Enterprise ERP <span aria-hidden="true">·</span> Product redesign</p>
-    <h1 class="mx-title">Reimagining Mana<span class="mx-title__gem">GEM</span></h1>
+    <h1 class="mx-title">Reimagining ManaGEM</h1>
     <p class="mx-sub">Redesigning an established business management platform, simplifying complex workflows, and designing a more structured approach to client onboarding.</p>
+    <div class="btn-row">
+      ${button(ctx, { label: 'Read the case study', href: '#overview', variant: 'primary', ic: '' })}
+      ${button(ctx, { label: 'Open the prototype', href: 'prototypes/managem.html', variant: 'secondary', ic: 'external', external: true })}
+    </div>
     <dl class="mx-herometa">
       <div><dt>My role</dt><dd>Product Design, UX/UI Design, Workflow Redesign</dd></div>
       <div><dt>Organisation</dt><dd>GEMIS</dd></div>
@@ -575,7 +579,9 @@ export default {
     ${hero(ctx)}
     <nav class="mx-chapters" aria-label="Case study sections" data-chapters>
       <div class="wrap">
+        <p class="mx-chapters__name" aria-hidden="true">ManaGEM</p>
         <ol role="list">${chapters.map(([id, label]) => `<li><a href="#${id}">${label}</a></li>`).join('')}</ol>
+        <a class="btn btn--primary mx-chapters__cta" href="${url(ctx, 'prototypes/managem.html')}" target="_blank" rel="noopener">Prototype<span class="sr-only"> (opens in a new tab)</span></a>
       </div>
       <span class="mx-progress" aria-hidden="true" data-progress></span>
     </nav>
@@ -595,7 +601,7 @@ export default {
         <span class="mx-next__label">Next project</span>
         <span class="mx-next__name">${esc(next.name)}</span>
         <span class="mx-next__sum">${esc(next.title)}</span>
-        <span class="mx-next__arrow" aria-hidden="true">${icon.arrow}</span>
+        <span class="mx-next__arrow"><span>View case study</span>${icon.arrow}</span>
       </a>
     </nav>
   </article>`;

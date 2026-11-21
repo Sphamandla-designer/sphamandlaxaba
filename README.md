@@ -71,19 +71,21 @@ sitemap.xml robots.txt CONTENT-NEEDED.md                                 ← gen
 generic template. Its screenshots in `assets/images/managem/` are captured from
 the two design prototypes (`prototypes/managem.html` and
 `ManaGem Take-On (Standalone).html`) at 1440×900 @2x and show demo data only.
-It is the one page that uses a restrained red accent (`--accent`, scoped to
-`.mx`). Claims on the page are limited to the redesign brief and what the
+Claims on the page are limited to the redesign brief and what the
 prototypes show; open questions are logged in `CONTENT-NEEDED.md`.
 
 ## Design system
 
-Black-and-white only: black is the single conversion colour, white the
-canvas, grayscale for everything else — no accent colour. Every interactive
-element is a pill (999px); cards are 16px; inputs 8px. Inter 700 for
-headlines (52/36/32/24/20px, sentence case, no letter-spacing), Inter
-400/500 for text. Flat by default; shadow only on the hero card. Black
-promo cards break up the white rhythm, and the footer is a black band.
-Dark mode flips the same grayscale.
+Follows the supplied `design.md`: photography-first, near-invisible UI. Pages
+are stacks of edge-to-edge tiles — white, parchment (`#f5f5f7`) and near-black
+(`#272729`) — where the colour change is the divider. Near-black ink
+(`#1d1d1f`); one accent, Action Blue (`#0066cc`, `#2997ff` inside dark tiles),
+used only for interactive elements. Primary actions are blue pills, secondary
+actions ghost pills, utility cards have an 18px radius and a hairline border.
+The global nav is a 44px true-black bar. Type is SF Pro on Apple platforms and
+Inter elsewhere: 17px body, weight 600 headlines, no weight 500. The only
+shadow is the product shadow under hero product imagery. Buttons press with
+`scale(0.95)`. Dark mode keeps the same system with the surfaces flipped.
 
 ## Notes
 
