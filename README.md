@@ -66,12 +66,13 @@ sitemap.xml robots.txt CONTENT-NEEDED.md                                 ← gen
 
 ## ManaGEM case study
 
-Two levels of the same story:
+Two levels of the same story, plus the design-system documentation:
 
 | Route | Source | Reading |
 | --- | --- | --- |
 | `work/managem/` | `src/content/case-managem.mjs` | Recruiter overview, 2–3 min — hero, at a glance, challenge, approach, four decisions with before/after evidence, Take-On, redesigned interface, status |
-| `work/managem/full/` | `src/content/case-managem-full.mjs` | Full case study, 7–10 min — background, the original interface analysed, design problem, approach, detailed design stories, reusable patterns, Take-On, evaluation plan, implementation status, reflection |
+| `work/managem/full/` | `src/content/case-managem-full.mjs` | Full case study, 7–10 min — context, discovery, existing product, navigation, dashboard, invoices, design system, Take-On, technical direction, status and reflection |
+| `work/managem/design-system/` | `src/content/managem-ds-page.mjs` | The ManaGEM design system: the user created it, the manager approved it and GEMIS adopted it for the product redesign, Take-On and the landing page. Covers foundations, navigation, components, states, data, forms, responsive and accessibility |
 
 Shared components (screenshots, video, before/after compare, status list,
 workflow diagram) live in `src/content/managem-parts.mjs`; styles in
@@ -82,14 +83,21 @@ system as live, animated components using the redesign's own tokens and
 typefaces (Outfit and JetBrains Mono, self-hosted in `assets/fonts/`, OFL).
 Styles are in `src/styles/05-managem-ds.css`; the animation controller is the
 `[data-ds]` block in `assets/js/main.js`. Loops run only while the board is on
-screen, and reduced-motion users see final static states. The full route is registered in
-`extraPages` in `src/build.mjs`.
+screen, and reduced-motion users see final static states. The full and design-system routes are
+registered in `extraPages` in `src/build.mjs`. Token values in
+`TOKENS`/`TYPE_SCALE`/`RADII`/`SHADOWS` are read from the prototypes' own
+stylesheets. Document only components and states that exist in a prototype.
 
-**Images.** `assets/images/managem/mg-*` and `to-*` are captured from the two
-design prototypes (demo data). `legacy-*` are screenshots of the original
-interface with every client name, contact detail and financial figure replaced
-by grey bars, produced by `src/redact-legacy.py`. **Never commit unredacted
-originals** — the site is public. `pat-*` are crops of the redesigned screens.
+**Images.** `assets/images/managem/mg-*`, `ds-*` and `to-*` are captured from
+the design prototypes (demo data). Take-On captures and `flow-takeon-*` videos
+are recorded with an init script that replaces the real client name with
+"Sample Trading (Pty) Ltd". `nav-original-*` are the only three original-interface
+screenshots approved for publication (the username is cropped out of
+`nav-original-sales`). `legacy-*` files are no longer referenced. **Never commit
+unredacted originals** — the repository is public.
+
+**Internal files.** `MANAGEM-CLAIMS-LEDGER.md` maps every public claim to its
+evidence. Like `CONTENT-NEEDED.md` it is publicly readable if committed.
 
 **Status wording** is defined once in `STATUS` in `managem-parts.mjs`. Do not
 describe the redesign as live until it is released. Open questions are in

@@ -22,6 +22,7 @@ import managem from './content/case-managem.mjs';
 import wastemart from './content/case-wastemart.mjs';
 import gemis from './content/case-gemis.mjs';
 import managemFull from './content/case-managem-full.mjs';
+import managemDs from './content/managem-ds-page.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const out = (rel, content) => {
@@ -57,6 +58,16 @@ const extraPages = [
     description: 'The full ManaGEM case study: the original interface, the design problem, workflow analysis, detailed design decisions, interface patterns and the AI-assisted Take-On onboarding concept.',
     bodyClass: 'page-case page-case--managem page-case--full',
     render: (ctx) => managemFull.render(ctx),
+  },
+  {
+    path: 'work/managem/design-system/index.html',
+    page: 'ManaGEM ERP',
+    navKey: 'work',
+    slug: 'managem',
+    title: 'ManaGEM Design System — Product Design Case Study | Sphamandla Xaba',
+    description: 'The ManaGEM design system: foundations, navigation, components, states and patterns, created by Sphamandla Xaba, adopted by GEMIS and applied to the ManaGEM product redesign, Take-On and landing page.',
+    bodyClass: 'page-case page-case--managem page-case--ds',
+    render: (ctx) => managemDs.render(ctx),
   },
 ];
 

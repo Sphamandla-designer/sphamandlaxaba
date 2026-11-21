@@ -300,7 +300,7 @@
     board.querySelectorAll('.ds-tile').forEach(function (t, i) { t.style.setProperty('--t-i', i); });
 
     var field = board.querySelector('[data-ds-type]');
-    var save = board.querySelector('[data-ds-save]');
+    var tabSets = board.querySelectorAll('[data-ds-tabs], [data-ds-subtabs]');
     var badge = board.querySelector('[data-ds-badge]');
     var stepper = board.querySelector('[data-ds-stepper]');
     var nav = board.querySelector('[data-ds-nav]');
@@ -309,19 +309,22 @@
     function typeLoop() {
       if (!field || !running) return;
       var text = field.getAttribute('data-ds-type'), out = field.querySelector('.ds-input__v'), i = 0;
-      field.classList.remove('is-valid'); field.classList.add('is-focus'); out.textContent = '';
+      field.classList.add('is-focus'); out.textContent = '';
       (function next() {
         if (!running) return;
         if (i <= text.length) { out.textContent = text.slice(0, i++); later(next, 55 + Math.random() * 70); }
-        else { field.classList.add('is-valid'); later(function () { field.classList.remove('is-focus', 'is-valid'); later(typeLoop, 900); }, 2200); }
+        else { later(function () { field.classList.remove('is-focus'); later(typeLoop, 1400); }, 1800); }
       })();
     }
-    function saveLoop() {
-      if (!save || !running) return;
-      save.setAttribute('data-state', 'idle');
-      later(function () { save.setAttribute('data-state', 'saving'); }, 1600);
-      later(function () { save.setAttribute('data-state', 'saved'); }, 3000);
-      later(saveLoop, 5600);
+    // Tabs and sub-tabs: move the active state along, as a user switching views would.
+    function tabLoop() {
+      if (!running) return;
+      tabSets.forEach(function (set) {
+        var items = set.children, on = 0;
+        for (var k = 0; k < items.length; k++) if (items[k].classList.contains('is-on')) on = k;
+        items[on].classList.remove('is-on'); items[(on + 1) % items.length].classList.add('is-on');
+      });
+      later(tabLoop, 1700);
     }
     var badges = [['ds-badge--sky', 'Unpaid'], ['ds-badge--amber', 'Partial'], ['ds-badge--emerald', 'Paid'], ['ds-badge--red', 'Overdue']], b = 0;
     function badgeLoop() {
@@ -355,7 +358,7 @@
       if (running) return;
       running = true;
       board.classList.add('ds-seen', 'ds-live');
-      typeLoop(); saveLoop(); later(badgeLoop, 1200); stepLoop(1); navLoop(); countUp();
+      typeLoop(); later(tabLoop, 1200); later(badgeLoop, 1200); stepLoop(1); navLoop(); countUp();
     }
     function stop() {
       running = false;
@@ -365,7 +368,7 @@
 
     if (reduceMotion.matches || !('IntersectionObserver' in window)) {
       board.classList.add('ds-static');
-      if (field) field.classList.add('is-focus', 'is-valid');
+      if (field) field.classList.add('is-focus');
       navTo(1);
       return;
     }

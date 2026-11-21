@@ -1,38 +1,38 @@
-// ManaGEM — recruiter overview (work/managem/), the default reading.
-// Two to three minutes: what ManaGEM is, what was wrong with it, what I did,
-// four design decisions with before/after evidence, Take-On, the redesigned
-// interface and an exact status. The deep dive lives at work/managem/full/
-// (case-managem-full.mjs). Evidence rules are in managem-parts.mjs.
+// ManaGEM — overview (work/managem/), the default three-minute reading.
+// Body-copy budget: 600–800 words (captions, labels and metadata excluded).
+// Every factual claim is listed in MANAGEM-CLAIMS-LEDGER.md. Restricted
+// material (other original screenshots, the product film, prototype links,
+// the Take-On sample company's real name) is deliberately absent.
 
 import { url, icon } from '../shared.mjs';
 import { designSystem } from './managem-ds.mjs';
 import {
-  SRC_CORE, SRC_TAKEON, SRC_LEGACY, FULL,
-  shot, video, head, section, chapterNav, nextProject, compare, statusList, workflowDiagram,
+  SRC_CORE, SRC_TAKEON, FULL, DS, REVIEW, ORIGINAL_NAV,
+  shot, video, head, section, chapterNav, nextProject, statusList,
 } from './managem-parts.mjs';
+import { dsApplied } from './managem-parts.mjs';
 
 const chapters = [
   ['glance', 'At a glance'],
   ['challenge', 'Challenge'],
-  ['approach', 'Approach'],
-  ['decisions', 'Decisions'],
+  ['navigation', 'Navigation'],
+  ['data', 'Data first'],
   ['system', 'Design system'],
   ['takeon', 'Take-On'],
-  ['interface', 'Interface'],
   ['status', 'Status'],
 ];
 
-const fullLink = (ctx, label) => `<a class="mq-textlink" href="${url(ctx, FULL)}">${label}<span aria-hidden="true">${icon.arrow}</span></a>`;
+const link = (ctx, href, label) => `<a class="mq-textlink" href="${url(ctx, href)}">${label}<span aria-hidden="true">${icon.arrow}</span></a>`;
 
-// --------------------------------------------------------------- 1 · hero
+// ------------------------------------------------------------- 1 · hero
 
 const meta = [
-  ['Product', 'ManaGEM'],
-  ['Organisation', 'GEMIS'],
-  ['Project', 'Existing product redesign'],
-  ['Role', 'Product Design / UX/UI Design'],
-  ['Status', 'Design completed; implementation underway'],
-  ['Category', 'Enterprise Software / ERP'],
+  ['Product', 'ManaGEM, an established GEMIS ERP'],
+  ['My role', 'Led the UX/UI and product design'],
+  ['Team', 'Five people'],
+  ['Design phase', 'One month'],
+  ['Status', 'Approved design in implementation; not yet released'],
+  ['Category', 'Enterprise software / ERP'],
 ];
 
 const hero = (ctx) => `
@@ -44,7 +44,7 @@ const hero = (ctx) => `
         <h1 class="mq-title" id="mq-title">Reimagining the experience behind everyday business operations.</h1>
       </div>
       <div class="mq-hero__under">
-        <p class="mq-sub">Redesigning an established ERP platform to make complex business workflows clearer, more consistent and easier to navigate.</p>
+        <p class="mq-sub">How do you make an established ERP easier for new clients to understand, without disrupting the familiarity existing clients depend on?</p>
         <dl class="mq-herometa">${meta.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>
       </div>
       <div class="mq-hero__shot">
@@ -52,12 +52,12 @@ const hero = (ctx) => `
           <div class="mq-browser__bar" aria-hidden="true"><i></i><i></i><i></i><span>ManaGEM · Dashboard</span></div>
           ${shot(ctx, 'mg-dashboard', 'The redesigned ManaGEM dashboard: grouped navigation, a messages banner, four headline figures, a sales summary and current projects', { sizes: '(min-width: 1264px) 1200px, 100vw', eager: true })}
         </div>
-        <p class="mq-hero__cap"><span>The redesigned dashboard — the first screen after signing in.</span><span class="mx-src">${SRC_CORE} · not yet released</span>${fullLink(ctx, 'Read the full case study')}</p>
+        <p class="mq-hero__cap"><span>The redesigned dashboard.</span><span class="mx-src">${SRC_CORE}</span>${link(ctx, FULL, 'Read the full case study')}</p>
       </div>
     </div>
   </header>`;
 
-// --------------------------------------------------------- 2 · at a glance
+// ------------------------------------------------------- 2 · at a glance
 
 const glance = () =>
   section(
@@ -66,250 +66,134 @@ const glance = () =>
     <div class="mq-glance">
       <div class="mq-glance__lead">
         <p class="mx-kicker"><span class="mx-kicker__n">01</span>At a glance</p>
-        <h2 class="mx-h2" id="glance-h">ManaGEM runs a business from first enquiry to final payment.</h2>
-        <p class="mq-lede">ManaGEM is GEMIS’s business management platform. A single piece of work passes through sales, operations and finance inside it — so a screen is never only a screen. It is one step in a chain other people depend on.</p>
+        <h2 class="mx-h2" id="glance-h">A redesign of a product clients already use every day.</h2>
+        <p class="mq-lede">ManaGEM is GEMIS’s business management platform, covering enquiries, quotes, jobs, stock, invoicing and debtors. I led the UX/UI and product design for its redesign: reconsidering navigation, information hierarchy, workflows and consistency, and designing a new onboarding experience.</p>
       </div>
       <dl class="mq-glance__facts">
-        <div><dt>Product</dt><dd>An established ERP for trade and project businesses: customers, suppliers, products and pricing, enquiries and quotations, jobs, stock, production, invoicing and reporting.</dd></div>
-        <div><dt>My role</dt><dd>Product design and UX/UI design, with substantial ownership of the product-design direction and the interface and workflow decisions.</dd></div>
-        <div><dt>Scope</dt><dd>The existing product, screen by screen and workflow by workflow — plus Take-On, a new onboarding experience for clients.</dd></div>
-        <div><dt>Design focus</dt><dd>Navigation, information hierarchy, form feedback and consistency — while keeping the functionality businesses already rely on.</dd></div>
-        <div><dt>Status</dt><dd>Design completed. The development team is building it, and it has not yet been released to customers.</dd></div>
+        <div><dt>My role</dt><dd>Product experience, UX/UI direction, workflow and interface decisions, and the design system.</dd></div>
+        <div><dt>Team</dt><dd>Me, the GEMIS manager, a full-stack developer, an AI strategist and a tester.</dd></div>
+        <div><dt>Manager</dt><dd>Set business expectations, scope, priorities and timeline, and approved the design direction.</dd></div>
+        <div><dt>Timeline</dt><dd>One month for the core redesign design phase.</dd></div>
+        <div><dt>Scope</dt><dd>The existing product, a design system, and Take-On, a new onboarding flow.</dd></div>
       </dl>
     </div>`,
   );
 
-// ----------------------------------------------------------- 3 · challenge
+// ---------------------------------------------------- 3 · challenge
 
-const problems = [
-  ['Navigation', 'New clients found the product difficult to navigate.'],
-  ['Onboarding', 'Getting started depended heavily on manual information collection and entry.'],
-  ['Data clarity', 'Some information did not reflect as expected — invoice information in particular.'],
-  ['Visibility', 'Messages and notifications needing attention were not visible enough.'],
-  ['Identity', 'The product did not carry a consistent GEMIS identity.'],
-  ['Complexity', 'Some unnecessary features made the interface more complicated.'],
-  ['Save feedback', 'Forms did not show clearly when a save had worked, leading to repeat saves and possible duplicates.'],
-];
-
-const challenge = (ctx) =>
+const challenge = () =>
   section(
     'challenge',
     `
-    ${head({ id: 'challenge', n: '02', label: 'The challenge', title: 'An established system with growing complexity.', intro: 'ManaGEM began as a template bought around 2015 and grew one feature at a time. By the time the redesign started, these seven problems had built up.' })}
-    <ol class="mq-seven" role="list">
-      ${problems.map(([t, d], i) => `<li><span class="mq-n">0${i + 1}</span><div><h3>${t}</h3><p>${d}</p></div></li>`).join('')}
-    </ol>
-    <div class="mq-legacy">
-      ${shot(ctx, 'legacy-customers', 'The original Customers list: three columns headed Description, and two rows whose values have shifted into the wrong columns', { caption: 'The original Customers list. Three columns are headed “Description”, and in rows 4 and 9 the values have shifted into the wrong columns — an email under First Name, a date under Last Name.', source: SRC_LEGACY, cls: 'mq-legacy__main' })}
-      ${shot(ctx, 'legacy-invoices', 'The original Invoices list with up to ten buttons on every row and a checkbox for paid status', { caption: 'The original Invoices list: up to ten buttons on every row, and status reduced to a checkbox.', source: SRC_LEGACY })}
+    ${head({ id: 'challenge', n: '02', label: 'The challenge and discovery', title: 'Familiar to some clients, confusing to new ones.', intro: 'ManaGEM had grown feature by feature. Existing clients knew where everything was; new clients struggled to find functions and see how the system fitted together.' })}
+    <div class="mq-discovery">
+      <div class="mq-discovery__item"><span class="mq-n">6</span><h3>Client phone conversations</h3><p>Conversations with six existing clients showed they wanted important business information visible immediately, instead of searching through several screens.</p></div>
+      <div class="mq-discovery__item"><span class="mq-n">↳</span><h3>Product and complaints review</h3><p>With the manager and the full-stack developer, I reviewed existing complaints and the current product, including how features depend on one another.</p></div>
+      <div class="mq-discovery__item"><span class="mq-n">→</span><h3>What it informed</h3><p>Dashboard KPIs, invoice presentation, visible messages, semantic status colours, and removing complexity that did not serve a task.</p></div>
     </div>`,
     { mod: 'soft' },
   );
 
-// ------------------------------------------------------------ 4 · approach
+// -------------------------------------------------- 4 · navigation
 
-const approachSteps = [
-  ['Understand', 'What the system already does, and which functions businesses rely on.'],
-  ['Trace', 'How information moves between modules — enquiry to invoice to accounting.'],
-  ['Simplify', 'Where complexity came from, and what could be grouped or removed from view.'],
-  ['Redesign', 'Each screen in the context of the screens before and after it, and in one consistent language.'],
-];
-
-const approach = () =>
+const navigation = (ctx) =>
   section(
-    'approach',
+    'navigation',
     `
-    ${head({ id: 'approach', n: '03', label: 'My approach', title: 'Redesigning the system, not just the screens.', intro: 'I reviewed ManaGEM screen by screen and workflow by workflow. Before changing how any screen looked, I worked out how it connected to the others — and kept every feature businesses rely on.' })}
-    ${workflowDiagram()}
-    <ol class="mq-steps" role="list">
-      ${approachSteps.map(([t, d], i) => `<li><span class="mq-n">0${i + 1}</span><h3>${t}</h3><p>${d}</p></li>`).join('')}
-    </ol>`,
-  );
-
-// ----------------------------------------------------------- 5 · decisions
-
-const decisions = (ctx) => [
-  {
-    tag: 'A · Navigation and discoverability',
-    title: 'Grouping navigation by the part of the business it serves',
-    rows: [
-      ['Original problem', 'A long, flat menu whose sections expand into a dozen or more items each.'],
-      ['Consideration', 'New clients need to learn where things are before the product is useful.'],
-      ['Direction', 'Five labelled groups — Core, Customers, Sales, Operations, Admin — plus a breadcrumb, top-bar search and counts on items with open work.'],
-    ],
-    media: `<div class="mq-navpair">
-      ${shot(ctx, 'legacy-nav', 'The original sidebar with Stock Control expanded into twelve items', { caption: 'Original', source: SRC_LEGACY, sizes: '220px' })}
-      ${shot(ctx, 'mg-sidebar', 'The redesigned sidebar with five labelled groups', { caption: 'Redesign', source: SRC_CORE, sizes: '220px' })}
-      ${video(ctx, 'flow-navigation', 'Moving through the redesigned sidebar between connected modules', { caption: 'Moving between modules in the redesign.', cls: 'mq-navpair__video' })}
-    </div>`,
-  },
-  {
-    tag: 'B · Information hierarchy',
-    title: 'Putting the state of every record first',
-    rows: [
-      ['Original problem', 'Dense tables where status was a checkbox and invoice information did not always reflect as expected.'],
-      ['Consideration', 'People act on what a list tells them; unclear state means late or wrong follow-up.'],
-      ['Direction', 'Summary totals before rows, a plain-word status on every record, and actions moved out of the row.'],
-    ],
-    media: compare(ctx, {
-      before: ['legacy-invoices', 'The original Invoices list with checkboxes for paid status and up to ten buttons per row'],
-      after: ['mg-invoices', 'The redesigned Invoices list with four summary totals and a Paid, Partial, Unpaid or Overdue status per row'],
-      caption: 'Invoices, before and after. Use the switch to compare.',
-    }),
-  },
-  {
-    tag: 'C · Form feedback',
-    title: 'Making the moment of saving unmistakable',
-    rows: [
-      ['Original problem', 'Forms did not confirm a save clearly, so people saved again — risking duplicate records.'],
-      ['Consideration', 'A save should be one deliberate step the user can see coming and see completed.'],
-      ['Direction', 'A four-step form with visible progress, a review of everything entered, one final action, then a return to the updated list.'],
-    ],
-    media: video(ctx, 'flow-enquiry', 'Filling in the four-step New Enquiry form, reviewing it and creating the enquiry, which returns to the enquiry list', { caption: 'New Enquiry in the redesign: steps, review, one commit.' }),
-  },
-  {
-    tag: 'D · Consistency and identity',
-    title: 'One product language, in GEMIS colours',
-    rows: [
-      ['Original problem', 'Each module felt like a separate tool, and the product did not carry a GEMIS identity.'],
-      ['Consideration', 'Consistency lets people reuse on one screen what they learned on another.'],
-      ['Direction', 'A GEMIS-branded shell and one page structure — title, summary, filters, table — repeated in every module.'],
-    ],
-    media: compare(ctx, {
-      before: ['legacy-customers', 'The original Customers list'],
-      after: ['mg-customers', 'The redesigned Customers list with the shared page structure'],
-      caption: 'Customers, before and after. The same structure is used from Products to Staff Records.',
-    }),
-  },
-];
-
-const decisionSection = (ctx) =>
-  section(
-    'decisions',
-    `
-    ${head({ id: 'decisions', n: '04', label: 'Key design decisions', title: 'Four design decisions that shaped the redesign.', intro: 'Each one answers a specific problem in the original product. Where both exist, switch between the original and redesigned screens to compare.' })}
-    <div class="mq-decisions">
-      ${decisions(ctx)
-        .map(
-          (d, i) => `
-      <article class="mq-dec" aria-labelledby="dec-${i}">
-        <header class="mq-dec__head">
-          <p class="mq-dec__tag">${d.tag}</p>
-          <h3 id="dec-${i}">${d.title}</h3>
-        </header>
-        <dl class="mq-dec__rows">${d.rows.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>
-        <div class="mq-dec__media">${d.media}</div>
-      </article>`,
-        )
-        .join('')}
+    ${head({ id: 'navigation', n: '03', label: 'The signature decision', title: 'Navigation that new clients can read, and existing clients still recognise.', intro: 'The original sidebar expanded each section in place into long lists of sub-pages. The manager initially preferred to keep it, because existing clients were used to it. I proposed grouping related functions so people could reach them without opening nested sections.' })}
+    <div class="mq-navcmp">
+      <div class="mq-navcmp__orig">
+        <p class="mx-compare__label"><span class="mx-compare__dot mx-compare__dot--before" aria-hidden="true"></span>Original interface</p>
+        <div class="mq-navcmp__row">
+          ${shot(ctx, 'nav-original-sales', 'Original sidebar with Sales expanded into twelve items', { caption: 'Sales', source: ORIGINAL_NAV, sizes: '200px' })}
+          ${shot(ctx, 'nav-original-products', 'Original sidebar with Products and Pricing expanded', { caption: 'Products & Pricing', source: ORIGINAL_NAV, sizes: '200px' })}
+          ${shot(ctx, 'nav-original-projects', 'Original sidebar with Projects Module expanded into three sub-blocks', { caption: 'Projects Module', source: ORIGINAL_NAV, sizes: '200px' })}
+        </div>
+      </div>
+      <div class="mq-navcmp__new">
+        <p class="mx-compare__label"><span class="mx-compare__dot mx-compare__dot--after" aria-hidden="true"></span>Redesign</p>
+        ${shot(ctx, 'ds-sidebar-expanded', 'Redesigned sidebar with five labelled groups and every destination visible', { caption: 'Five groups, every destination visible', sizes: '240px' })}
+      </div>
     </div>
-    <p class="mq-more">${fullLink(ctx, 'Read the full reasoning, with more comparisons')}</p>`,
+    <div class="mq-navwhy">
+      <div><h3>The trade-off</h3><p>Keep what existing clients know, or make the structure easier to learn. Grouping kept the same destinations and labels, so familiar functions stayed findable.</p></div>
+      <div><h3>The direction</h3><p>Five groups — Core, Customers, Sales, Operations, Admin — with the current page marked, a breadcrumb and a search field on every screen.</p></div>
+      <div><h3>Review and approval</h3><p>${REVIEW}</p></div>
+    </div>`,
+  );
+
+// --------------------------------------------------- 5 · data first
+
+const data = (ctx) =>
+  section(
+    'data',
+    `
+    ${head({ id: 'data', n: '04', label: 'A data-first experience', title: 'Important information on the first screen, not five clicks away.', intro: 'Clients wanted to see their business at a glance. I first considered pop-ups for urgent actions, but they would interrupt the task in hand, so I chose visible messages and a search field that works from anywhere.' })}
+    <div class="mq-datagrid">
+      ${shot(ctx, 'mg-detail-attention', 'Dashboard messages banner above four headline figures', { caption: 'Messages and KPIs first', sizes: '(min-width: 1264px) 700px, 100vw', cls: 'mq-datagrid__main' })}
+      ${shot(ctx, 'ds-topbar', 'Top bar with breadcrumb, search, notification bell and avatar', { caption: 'Search on every screen', sizes: '(min-width: 1264px) 500px, 100vw' })}
+      ${shot(ctx, 'ds-user', 'Signed-in user name and role in the sidebar', { caption: 'Who is signed in, and their role', sizes: '240px' })}
+      ${shot(ctx, 'mg-invoices', 'Invoices with totals first and a plain-word status on every row', { caption: 'Invoices: totals, then a status in words', sizes: '(min-width: 1264px) 1200px, 100vw', cls: 'mq-datagrid__wide' })}
+    </div>
+    <p class="mq-note">ManaGEM lets clients add their own staff, including decision-makers, so the sidebar always shows the signed-in person’s name and role.</p>`,
     { mod: 'soft' },
   );
 
-// ------------------------------------------------------- 5 · design system
+// ------------------------------------------------ 6 · design system
 
-const system = () =>
+const system = (ctx) =>
   section(
     'system',
     `
-    ${head({ id: 'system', n: '05', label: 'Design system', title: 'One design system behind every screen.', intro: 'Colour, type, spacing and components are defined once and reused in every module. Here the system is rebuilt with the redesign’s own tokens, so you can see each component working.' })}
-    ${designSystem({ compact: true })}`,
+    ${head({ id: 'system', n: '05', label: 'Design system and implementation', title: 'A design system GEMIS adopted beyond this product.', intro: 'ManaGEM needed screens that behaved alike. I created a design system to give it that foundation; GEMIS formally adopted it, and I applied it to the redesign, Take-On and the ManaGEM landing page.' })}
+    ${designSystem({ compact: true })}
+    ${dsApplied(ctx)}
+    <div class="mq-impl">
+      <p>The redesign was first planned for Power BI. As the design developed, its interaction and animation needs made a custom frontend the better fit — a technical direction the team reached together, with the full-stack developer’s knowledge of the existing system shaping what was feasible.</p>
+      <p class="mq-more">${link(ctx, `${DS}#in-action`, 'See the design system in action')}</p>
+    </div>`,
   );
 
-// ------------------------------------------------------------- 6 · Take-On
+// ------------------------------------------------------- 7 · Take-On
 
 const journey = [
-  ['to-01-welcome', 'Welcome', 'Welcome screen explaining the four stages'],
-  ['to-02-trust', 'Trust & compliance', 'Plain-language summary of how data is handled'],
-  ['to-03-profile', 'Company profile', 'Company profile form'],
-  ['to-04-upload', 'Document upload', 'One upload area per kind of information'],
-  ['to-05-extraction', 'AI extraction', 'Processing shown as a readable log'],
-  ['to-06-validation', 'Validation summary', 'Record counts and a confidence breakdown'],
-  ['to-07-customers', 'Customer review', 'Each customer with a confidence status'],
-  ['to-08-products', 'Product review', 'Products and pricing with the same statuses'],
-  ['to-09-staff', 'Staff review', 'Staff records with the same statuses'],
-  ['to-10-confirm', 'Confirm & submit', 'Outstanding issues listed before submitting'],
-  ['to-11-complete', 'Completion', 'Submitted for GEMIS review'],
-];
-
-const highlights = [
-  'Document upload in the formats clients already have',
-  'Structured extraction into customers, products and staff',
-  'Confidence indicators on every record',
-  'The source evidence behind each record',
-  'Flagged and missing information called out',
-  'Manual correction of any field',
-  'Merge, keep or reject for possible duplicates',
-  'A human check by GEMIS before anything is created',
+  ['to-04-upload', 'Upload', 'Upload areas for customers, products, staff and suppliers'],
+  ['to-05-extraction', 'Extract', 'Processing explained document by document'],
+  ['to-07-record', 'Review', 'A record’s source, missing fields and editable values'],
+  ['to-11-complete', 'GEMIS check', 'Submitted for GEMIS review'],
 ];
 
 const takeon = (ctx) =>
   section(
     'takeon',
     `
-    ${head({ id: 'takeon', n: '06', label: 'ManaGEM Take-On', title: 'Making the first experience with ManaGEM more structured.', intro: 'Take-On replaces typing in a new client’s records by hand. The client uploads the documents they already have, an AI-assisted process extracts the records, the client reviews and corrects them, and GEMIS checks the result before anything is created.' })}
-    <p class="mq-status-pill"><span class="status status--progress"><span class="status__mark" aria-hidden="true"></span>UX/UI prototype completed; development underway</span></p>
-    <div class="mq-takeon">
-      ${video(ctx, 'flow-takeon-review', 'Filtering extracted customers, opening a record with a missing email, then merging a possible duplicate', { caption: 'Reviewing extracted records: evidence, missing fields, and a duplicate merged.', source: SRC_TAKEON })}
-      <ul class="mq-ticks" role="list" aria-label="What the design includes">${highlights.map((h) => `<li>${h}</li>`).join('')}</ul>
-    </div>
-    <ol class="mq-strip" role="list" aria-label="The eleven Take-On screens, in order">
-      ${journey.map(([key, t, alt], i) => `<li><p class="mq-strip__t"><span>${String(i + 1).padStart(2, '0')}</span>${t}</p>${shot(ctx, key, `${t}: ${alt}`, { source: SRC_TAKEON, sizes: '(min-width: 1069px) 300px, (min-width: 641px) 40vw, 80vw' })}</li>`).join('')}
+    ${head({ id: 'takeon', n: '06', label: 'ManaGEM Take-On', title: 'From spreadsheets and back-and-forth to guided onboarding.', intro: 'Onboarding relied on collecting company information by hand, in Excel, with repeated rounds of checking. Take-On lets a client upload what they have, review what an AI-assisted step extracts, correct it, and submit it for a GEMIS check.' })}
+    <p class="mq-status-pill"><span class="status status--progress"><span class="status__mark" aria-hidden="true"></span>UX/UI prototype complete; development underway</span></p>
+    ${video(ctx, 'flow-takeon-review', 'Filtering extracted customers, opening a record with a missing email, then merging a possible duplicate', { caption: 'Reviewing extracted records: the source, what is missing, and a duplicate merged.', source: SRC_TAKEON })}
+    <ol class="mq-strip mq-strip--4" role="list" aria-label="Key Take-On steps">
+      ${journey.map(([key, t, alt], i) => `<li><p class="mq-strip__t"><span>${String(i + 1).padStart(2, '0')}</span>${t}</p>${shot(ctx, key, `${t}: ${alt}`, { source: SRC_TAKEON, sizes: '(min-width: 1069px) 300px, 50vw' })}</li>`).join('')}
     </ol>
-    <p class="mq-caveat">The prototype uses simulated AI processing and sample records. Security and compliance wording in it is draft content, not a description of implemented controls.</p>`,
+    <p class="mq-caveat">The prototype simulates the AI processing and uses sample records. It demonstrates the proposed experience, not a working AI system.</p>`,
     { mod: 'band' },
   );
 
-// ----------------------------------------------------------- 7 · interface
+// -------------------------------------------------------- 8 · status
 
-const showcase = [
-  ['mg-open-enquiries', 'Open Enquiries — the whole sales pipeline, from new lead to invoiced, above a filterable list.', 'The redesigned Open Enquiries list with counts for each pipeline stage', 'mq-show--full'],
-  ['mg-customers', 'Customers — account type, status and accounting link in one readable list.', 'Redesigned Customers list', 'mq-show--6'],
-  ['mg-products', 'Products & Pricing — a dense catalogue with pricing, tax and stock kept scannable.', 'Redesigned Products and Pricing list', 'mq-show--6'],
-  ['mg-stock', 'Stock Control — suppliers, orders, stores and movements together as tabs in one module.', 'Redesigned Stock Control dashboard', 'mq-show--7'],
-  ['mg-detail-review', 'New Enquiry — a review of everything entered before one clear commit.', 'Review step of the New Enquiry form', 'mq-show--5'],
-];
-
-const iface = (ctx) =>
-  section(
-    'interface',
-    `
-    ${head({ id: 'interface', n: '07', label: 'The redesigned interface', title: 'Every module now follows the same structure.', intro: 'A selection of redesigned screens, from the sales pipeline to stock. Select any screen to see it full size.' })}
-    <div class="mq-show">
-      ${showcase.map(([k, c, a, cls]) => shot(ctx, k, a, { caption: c, cls, sizes: cls === 'mq-show--full' ? '(min-width: 1264px) 1200px, 100vw' : '(min-width: 834px) 700px, 100vw' })).join('')}
-    </div>`,
-  );
-
-// -------------------------------------------------------------- 8 · status
-
-const statusSection = () =>
+const statusSection = (ctx) =>
   section(
     'status',
     `
     <div class="mq-statusblock">
       <div>
-        <p class="mx-kicker"><span class="mx-kicker__n">08</span>Current status</p>
-        <h2 class="mx-h2" id="status-h">Designed. Now moving through implementation.</h2>
-        <p class="mq-lede">The ManaGEM redesign is currently being implemented by the development team. Rather than releasing individual redesigned screens separately, GEMIS plans to release the redesigned product as a complete experience once the implementation is ready.</p>
-        <p class="mq-note">No results are reported yet: the redesigned product has not been released, so its effect has not been measured.</p>
+        <p class="mx-kicker"><span class="mx-kicker__n">07</span>Status and next steps</p>
+        <h2 class="mx-h2" id="status-h">Approved, and now being built.</h2>
+        <p class="mq-lede">The development team is implementing the approved design. GEMIS plans to release the redesigned product as a complete experience rather than screen by screen. It has not yet been released to customers, so its effect has not been measured.</p>
+        <p class="mq-more">${link(ctx, FULL, 'Read the full case study')}</p>
       </div>
       ${statusList()}
     </div>`,
     { mod: 'soft' },
   );
-
-// ----------------------------------------------------------------- 9 · CTA
-
-const invitation = (ctx) => `
-  <section class="mq-invite" aria-labelledby="invite-h">
-    <div class="wrap">
-      <p class="mx-kicker">Full case study · about 8 minutes</p>
-      <h2 id="invite-h">Explore the full case study.</h2>
-      <p class="mq-invite__copy">Go deeper into the product challenges, design decisions, interface exploration and onboarding experience.</p>
-      <a class="btn btn--primary mq-invite__btn" href="${url(ctx, FULL)}"><span>Explore the full case study</span>${icon.arrow}</a>
-    </div>
-  </section>`;
 
 export default {
   slug: 'managem',
@@ -321,13 +205,19 @@ export default {
     ${chapterNav(ctx, chapters, { name: 'ManaGEM', cta: `<a class="btn btn--primary mx-chapters__cta" href="${url(ctx, FULL)}">Full case study</a>` })}
     ${glance(ctx)}
     ${challenge(ctx)}
-    ${approach(ctx)}
-    ${decisionSection(ctx)}
+    ${navigation(ctx)}
+    ${data(ctx)}
     ${system(ctx)}
     ${takeon(ctx)}
-    ${iface(ctx)}
     ${statusSection(ctx)}
-    ${invitation(ctx)}
+    <section class="mq-invite" aria-labelledby="invite-h">
+      <div class="wrap">
+        <p class="mx-kicker">Full case study · about 9 minutes</p>
+        <h2 id="invite-h">Explore the full case study.</h2>
+        <p class="mq-invite__copy">The discovery, the navigation trade-off in detail, invoice clarity, the design system, Take-On and the technical direction.</p>
+        <a class="btn btn--primary mq-invite__btn" href="${url(ctx, FULL)}"><span>Explore the full case study</span>${icon.arrow}</a>
+      </div>
+    </section>
     ${nextProject(ctx, next)}
   </article>`;
   },

@@ -1,0 +1,974 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ManaGEM Design System — Product Design Case Study | Sphamandla Xaba</title>
+<meta name="description" content="The ManaGEM design system: foundations, navigation, components, states and patterns, created by Sphamandla Xaba, adopted by GEMIS and applied to the ManaGEM product redesign, Take-On and landing page.">
+<link rel="canonical" href="https://sphamandla-designer.github.io/sphamandlaxaba/work/managem/design-system/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ManaGEM Design System — Product Design Case Study | Sphamandla Xaba">
+<meta property="og:description" content="The ManaGEM design system: foundations, navigation, components, states and patterns, created by Sphamandla Xaba, adopted by GEMIS and applied to the ManaGEM product redesign, Take-On and landing page.">
+<meta property="og:url" content="https://sphamandla-designer.github.io/sphamandlaxaba/work/managem/design-system/">
+<meta property="og:image" content="https://sphamandla-designer.github.io/sphamandlaxaba/assets/images/og-default.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../../assets/css/site.css">
+<script>(function(){var t;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.dataset.theme=t;document.documentElement.classList.add('js')})();</script>
+<script src="../../../assets/js/main.js" defer></script>
+</head>
+<body class="page-case page-case--managem page-case--ds" id="top">
+
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav-bar" data-header>
+    <div class="nav-bar__inner wrap">
+      <a class="wordmark" href="../../../">Sphamandla Xaba</a>
+      <nav class="site-nav" aria-label="Primary">
+        <div class="site-menu" id="site-menu" data-nav-menu>
+          <ul class="site-menu__list" role="list"><li><a class="nav-link" href="../../../#work" aria-current="page">Work</a></li><li><a class="nav-link" href="../../../#approach">Approach</a></li><li><a class="nav-link" href="../../../about/">About</a></li><li><a class="nav-link" href="../../../contact/">Contact</a></li></ul>
+          <a class="btn btn--primary site-menu__cv" href="../../../assets/docs/Sphamandla-Xaba-CV.pdf" download><span>Download CV</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+        </div>
+      </nav>
+      <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch to dark theme"><svg class="i i-sun" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3 3l1.4 1.4M11.6 11.6 13 13M3 13l1.4-1.4M11.6 4.4 13 3" stroke="currentColor" stroke-width="1.6"/></svg><svg class="i i-moon" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 9.5A5.5 5.5 0 0 1 6.5 3 5.5 5.5 0 1 0 13 9.5Z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+      <button class="icon-btn nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu" data-nav-toggle><svg class="i i-menu" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 5h12M2 11h12" stroke="currentColor" stroke-width="1.6"/></svg><svg class="i i-close" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" stroke-width="1.6"/></svg></button>
+    </div>
+  </header>
+<main id="main" tabindex="-1">
+
+  <article class="case mx mx--full mx--ds">
+    
+  <header class="mf-hero dsx-hero" aria-labelledby="dsx-title">
+    <div class="wrap">
+      <a class="mf-back" href="../../../work/managem/"><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8H3M7 4 3 8l4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span>ManaGEM case study</span></a>
+      <div class="mf-hero__grid">
+        <div class="mf-hero__text">
+          <p class="mx-eyebrow">ManaGEM · Design system</p>
+          <h1 class="mf-title" id="dsx-title">One design foundation for three ManaGEM experiences.</h1>
+          <p class="mf-sub">I created this design system to give ManaGEM a consistent foundation. GEMIS formally adopted it, and I applied it to the product redesign, the Take-On onboarding experience and the ManaGEM landing page.</p>
+        </div>
+        <dl class="dsx-credit">
+          <div><dt>Created</dt><dd>By me — foundations, components and patterns</dd></div>
+          <div><dt>Applied</dt><dd>By me — to the product redesign, Take-On and the landing page</dd></div>
+          <div><dt>Reviewed</dt><dd>With the GEMIS manager and full-stack developer, in the prototype review</dd></div>
+          <div><dt>Approved</dt><dd>By the GEMIS manager — the design direction now being implemented</dd></div>
+          <div><dt>Adopted</dt><dd>By GEMIS, as its design system for ManaGEM</dd></div>
+        </dl>
+      </div>
+    </div>
+  </header>
+    
+    <nav class="mx-chapters" aria-label="Case study sections" data-chapters>
+      <div class="wrap">
+        <p class="mx-chapters__name" aria-hidden="true">Design system</p>
+        <ol role="list"><li><a href="#in-action">In action</a></li><li><a href="#foundations">Foundations</a></li><li><a href="#navigation">Navigation</a></li><li><a href="#components">Components</a></li><li><a href="#states">States</a></li><li><a href="#data">Data</a></li><li><a href="#forms">Forms</a></li><li><a href="#responsive">Responsive</a></li><li><a href="#access">Accessibility</a></li><li><a href="#future">Next</a></li></ol>
+        <a class="btn btn--secondary mx-chapters__cta" href="../../../work/managem/">Case study</a>
+      </div>
+      <span class="mx-progress" aria-hidden="true" data-progress></span>
+    </nav>
+    
+  <section class="mx-sec" id="in-action" aria-labelledby="in-action-h" data-chapter>
+    <div class="wrap">
+    
+  <header class="mx-head">
+    <div class="mx-head__l">
+      <p class="mx-kicker"><span class="mx-kicker__n">01</span>The system in action</p>
+      <h2 class="mx-h2" id="in-action-h">One foundation, applied three ways.</h2>
+    </div>
+    <p class="mx-intro">The product redesign, Take-On and the landing page are built from the same decisions. Below, each decision is shown in all three experiences, with what is shared and what deliberately varies.</p>
+  </header>
+    <ol class="dsx-steps" role="list">
+      <li><span class="mq-n">01</span><h3>The need</h3><p>ManaGEM had grown feature by feature, and screens no longer behaved alike.</p></li><li><span class="mq-n">02</span><h3>The foundation</h3><p>I created one set of colours, type, components and patterns.</p></li><li><span class="mq-n">03</span><h3>Adoption</h3><p>GEMIS formally adopted it as the design system for ManaGEM.</p></li><li><span class="mq-n">04</span><h3>Application</h3><p>I used it for the product redesign, Take-On and the landing page.</p></li><li><span class="mq-n">05</span><h3>What it supports</h3><p>New modules and experiences start from known parts.</p></li>
+    </ol>
+    <div class="dsx-apps">
+      <figure class="dsx-app"><figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/mg-dashboard-1600.webp" data-zoom data-caption="ManaGEM product redesign" aria-label="Enlarge: The redesigned ManaGEM dashboard"><img src="../../../assets/images/managem/mg-dashboard-1600.webp" srcset="../../../assets/images/managem/mg-dashboard-1600.webp 1600w, ../../../assets/images/managem/mg-dashboard-960.webp 960w" sizes="(min-width: 1264px) 450px, 100vw" width="1600" height="1000" alt="The redesigned ManaGEM dashboard" loading="lazy" decoding="async"></a></div>
+    <figcaption><span>ManaGEM product redesign</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure></figure>
+      <figure class="dsx-app"><figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/to-06-validation-1600.webp" data-zoom data-caption="ManaGEM Take-On" aria-label="Enlarge: The Take-On validation summary"><img src="../../../assets/images/managem/to-06-validation-1600.webp" srcset="../../../assets/images/managem/to-06-validation-1600.webp 1600w, ../../../assets/images/managem/to-06-validation-960.webp 960w" sizes="(min-width: 1264px) 450px, 100vw" width="1600" height="1000" alt="The Take-On validation summary" loading="lazy" decoding="async"></a></div>
+    <figcaption><span>ManaGEM Take-On</span><span class="mx-src">Take-On prototype · sample data</span></figcaption>
+  </figure></figure>
+      <figure class="dsx-app"><figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/ds-land-hero.webp" data-zoom data-caption="ManaGEM landing page" aria-label="Enlarge: The ManaGEM landing page hero with a product screenshot"><img src="../../../assets/images/managem/ds-land-hero.webp" width="1440" height="1560" alt="The ManaGEM landing page hero with a product screenshot" loading="lazy" decoding="async"></a></div>
+    <figcaption><span>ManaGEM landing page</span><span class="mx-src">ManaGEM landing page</span></figcaption>
+  </figure></figure>
+    </div>
+    <div class="dsx-xs">
+  <article class="dsx-x" id="x-type" aria-labelledby="x-type-h">
+    <div class="dsx-x__head">
+      <h3 id="x-type-h">Typography</h3>
+      <p>One interface typeface keeps the three experiences recognisably the same product. Figures always switch to a monospaced face so amounts line up; the landing page scales the same type up for reading at a distance.</p>
+    </div>
+    <div class="dsx-x__grid">
+      <figure class="dsx-x__item"><div class="dsx-x__stage dsx-x__stage--live">
+  <div class="dsx-spec" style="--f:Outfit;--m:JetBrains Mono">
+    <p class="dsx-spec__h">Invoices<small>Page title 24 / 600</small></p><p class="dsx-spec__b">Eight invoices, R 535,000 outstanding<small>Body 13 / 400</small></p><p class="dsx-spec__n">INV-2026-0142 · R 425,000<small>Figures · JetBrains Mono</small></p>
+  </div></div><figcaption><strong>Product redesign</strong><span>Compact sizes for long working sessions</span><span class="mx-src">Rendered from the measured values</span></figcaption></figure><figure class="dsx-x__item"><div class="dsx-x__stage dsx-x__stage--live">
+  <div class="dsx-spec" style="--f:Outfit;--m:JetBrains Mono">
+    <p class="dsx-spec__h">Review customers<small>Page title 22 / 600</small></p><p class="dsx-spec__b">Ten records found in your files<small>Body 13.5 / 400</small></p><p class="dsx-spec__n">82% confidence<small>Figures · JetBrains Mono</small></p>
+  </div></div><figcaption><strong>Take-On</strong><span>Almost identical scale, slightly roomier body</span><span class="mx-src">Rendered from the measured values</span></figcaption></figure><figure class="dsx-x__item"><div class="dsx-x__stage dsx-x__stage--live">
+  <div class="dsx-spec" style="--f:Outfit;--m:IBM Plex Mono">
+    <p class="dsx-spec__d">One job, from enquiry to payment<small>Section title 48 / 600, shown smaller</small></p><p class="dsx-spec__b">ManaGEM keeps the job, the money and the stock on one record.<small>Body 17 / 400</small></p><p class="dsx-spec__n">R 2,000 / month<small>Figures · IBM Plex Mono</small></p>
+  </div></div><figcaption><strong>Landing page</strong><span>Display sizes for a marketing page</span><span class="mx-src">Rendered from the measured values</span></figcaption></figure>
+    </div>
+    <dl class="dsx-x__notes">
+      <div><dt>Shared</dt><dd>Outfit for all interface text; 600 weight for every heading; a monospaced face for figures and references.</dd></div>
+      <div><dt>Varies</dt><dd>The landing page uses display sizes (48–72px) and IBM Plex Mono, the fallback already named in the product’s font stack.</dd></div>
+    </dl>
+  </article>
+  <article class="dsx-x" id="x-colour" aria-labelledby="x-colour-h">
+    <div class="dsx-x__head">
+      <h3 id="x-colour-h">Colour</h3>
+      <p>Navy and slate do the structural work in all three, so colour can be saved for meaning: one accent for “act here”, and a fixed semantic set for status.</p>
+    </div>
+    <div class="dsx-x__grid">
+      <figure class="dsx-x__item"><div class="dsx-x__stage dsx-x__stage--live"><div class="dsx-ramp"><span style="--c:#0F172A;--tc:#fff"><b>Structure</b><code>#0F172A</code></span><span style="--c:#0EA5E9;--tc:#0F172A"><b>Action</b><code>#0EA5E9</code></span><span style="--c:#10B981;--tc:#0F172A"><b>Done</b><code>#10B981</code></span><span style="--c:#F59E0B;--tc:#0F172A"><b>Attention</b><code>#F59E0B</code></span><span style="--c:#EF4444;--tc:#0F172A"><b>Problem</b><code>#EF4444</code></span><span style="--c:#8B5CF6;--tc:#fff"><b>Duplicate</b><code>#8B5CF6</code></span></div></div><figcaption><strong>Product redesign</strong><span>Sky marks actions, focus and the current page</span><span class="mx-src">Rendered from the measured values</span></figcaption></figure><figure class="dsx-x__item"><div class="dsx-x__stage dsx-x__stage--live"><div class="dsx-ramp"><span style="--c:#0F172A;--tc:#fff"><b>Structure</b><code>#0F172A</code></span><span style="--c:#0EA5E9;--tc:#0F172A"><b>Progress</b><code>#0EA5E9</code></span><span style="--c:#10B981;--tc:#0F172A"><b>Done</b><code>#10B981</code></span><span style="--c:#F59E0B;--tc:#0F172A"><b>Attention</b><code>#F59E0B</code></span><span style="--c:#EF4444;--tc:#0F172A"><b>Problem</b><code>#EF4444</code></span><span style="--c:#8B5CF6;--tc:#fff"><b>Duplicate</b><code>#8B5CF6</code></span></div></div><figcaption><strong>Take-On</strong><span>Same palette; navy carries the main action</span><span class="mx-src">Rendered from the measured values</span></figcaption></figure><figure class="dsx-x__item"><div class="dsx-x__stage dsx-x__stage--live"><div class="dsx-ramp"><span style="--c:#0B1222;--tc:#fff"><b>Structure</b><code>#0B1222</code></span><span style="--c:#00BFA6;--tc:#0B1222"><b>Sign-up</b><code>#00BFA6</code></span><span style="--c:#0EA5E9;--tc:#0F172A"><b>Links</b><code>#0EA5E9</code></span><span style="--c:#06734E;--tc:#fff"><b>Good</b><code>#06734E</code></span><span style="--c:#92400E;--tc:#fff"><b>Warn</b><code>#92400E</code></span><span style="--c:#B91C1C;--tc:#fff"><b>Bad</b><code>#B91C1C</code></span></div></div><figcaption><strong>Landing page</strong><span>Darker navy bands and a teal call to action</span><span class="mx-src">Rendered from the measured values</span></figcaption></figure>
+    </div>
+    <dl class="dsx-x__notes">
+      <div><dt>Shared</dt><dd>Navy #0F172A for structure, sky for focus and links, the emerald / amber / red family for status — always with a word.</dd></div>
+      <div><dt>Varies</dt><dd>The landing page adds GEM teal #00BFA6 for sign-up only, so marketing actions never look like actions inside the product.</dd></div>
+    </dl>
+  </article>
+  <article class="dsx-x" id="x-actions" aria-labelledby="x-actions-h">
+    <div class="dsx-x__head">
+      <h3 id="x-actions-h">Buttons and actions</h3>
+      <p>Each area has one clearly primary action next to a quieter secondary one, with an icon that says what will happen. Shape and colour change with the context; the hierarchy does not.</p>
+    </div>
+    <div class="dsx-x__grid">
+      <figure class="dsx-x__item"><a class="zoom dsx-x__stage" href="../../../assets/images/managem/ds-x-p-actions.webp" data-zoom data-caption="Product redesign: Export and New Invoice buttons" aria-label="Enlarge: Export and New Invoice buttons"><img src="../../../assets/images/managem/ds-x-p-actions.webp" width="480" height="116" alt="Export and New Invoice buttons" loading="lazy" decoding="async"></a><figcaption><strong>Product redesign</strong><span>Sky fill, 7px radius, 13 / 500</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption></figure><figure class="dsx-x__item"><a class="zoom dsx-x__stage" href="../../../assets/images/managem/ds-x-t-actions.webp" data-zoom data-caption="Take-On: Back and Accept &amp; continue buttons" aria-label="Enlarge: Back and Accept &amp; continue buttons"><img src="../../../assets/images/managem/ds-x-t-actions.webp" width="558" height="96" alt="Back and Accept &amp; continue buttons" loading="lazy" decoding="async"></a><figcaption><strong>Take-On</strong><span>Navy fill, 9px radius, 13 / 600</span><span class="mx-src">Take-On prototype · sample data</span></figcaption></figure><figure class="dsx-x__item"><a class="zoom dsx-x__stage is-dark" href="../../../assets/images/managem/ds-x-l-actions.webp" data-zoom data-caption="Landing page: Start your free trial and Explore the product buttons on the navy hero" aria-label="Enlarge: Start your free trial and Explore the product buttons on the navy hero"><img src="../../../assets/images/managem/ds-x-l-actions.webp" width="970" height="188" alt="Start your free trial and Explore the product buttons on the navy hero" loading="lazy" decoding="async"></a><figcaption><strong>Landing page</strong><span>Teal pill, navy text, 15–17 / 600</span><span class="mx-src">ManaGEM landing page</span></figcaption></figure>
+    </div>
+    <dl class="dsx-x__notes">
+      <div><dt>Shared</dt><dd>One primary per area; secondary is outlined or ghost; leading or trailing icon; same Outfit label.</dd></div>
+      <div><dt>Varies</dt><dd>Take-On’s primary is navy, with sky kept for an accent button; the landing page uses larger pill buttons with a teal fill reserved for sign-up.</dd></div>
+    </dl>
+  </article>
+  <article class="dsx-x" id="x-forms" aria-labelledby="x-forms-h">
+    <div class="dsx-x__head">
+      <h3 id="x-forms-h">Form fields</h3>
+      <p>Labels always sit above the field and required fields are marked, so people can scan a form top to bottom and know what is still needed. Focus is a sky border, the same signal as the current page in the sidebar.</p>
+    </div>
+    <div class="dsx-x__grid">
+      <figure class="dsx-x__item"><a class="zoom dsx-x__stage" href="../../../assets/images/managem/ds-x-p-form.webp" data-zoom data-caption="Product redesign: New Enquiry customer fields with the contact field in focus" aria-label="Enlarge: New Enquiry customer fields with the contact field in focus"><img src="../../../assets/images/managem/ds-x-p-form.webp" width="1150" height="600" alt="New Enquiry customer fields with the contact field in focus" loading="lazy" decoding="async"></a><figcaption><strong>Product redesign</strong><span>9×12px padding, 7px radius, label 12 / 500</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption></figure><figure class="dsx-x__item"><a class="zoom dsx-x__stage" href="../../../assets/images/managem/ds-x-t-form.webp" data-zoom data-caption="Take-On: Take-On company profile fields with sample company details" aria-label="Enlarge: Take-On company profile fields with sample company details"><img src="../../../assets/images/managem/ds-x-t-form.webp" width="1280" height="600" alt="Take-On company profile fields with sample company details" loading="lazy" decoding="async"></a><figcaption><strong>Take-On</strong><span>9×12px padding, 8px radius, label 12 / 600</span><span class="mx-src">Take-On prototype · sample data</span></figcaption></figure><figure class="dsx-x__item"><a class="zoom dsx-x__stage" href="../../../assets/images/managem/ds-x-l-form.webp" data-zoom data-caption="Landing page: Landing page team form with name, company, email and selects" aria-label="Enlarge: Landing page team form with name, company, email and selects"><img src="../../../assets/images/managem/ds-x-l-form.webp" width="1178" height="840" alt="Landing page team form with name, company, email and selects" loading="lazy" decoding="async"></a><figcaption><strong>Landing page</strong><span>48px high, 12px radius, label 14 / 600</span><span class="mx-src">ManaGEM landing page</span></figcaption></figure>
+    </div>
+    <dl class="dsx-x__notes">
+      <div><dt>Shared</dt><dd>Label above · white field · 1px #E2E8F0 border · sky focus · two-column rows for related fields.</dd></div>
+      <div><dt>Varies</dt><dd>The landing form is larger (16px text, 48px fields), as suits a public sign-up form; the product keeps fields compact for daily data entry.</dd></div>
+    </dl>
+  </article>
+  <article class="dsx-x" id="x-cards" aria-labelledby="x-cards-h">
+    <div class="dsx-x__head">
+      <h3 id="x-cards-h">Cards and information</h3>
+      <p>Cards group one idea with its key figure first, so a page can be read by its headlines before any detail.</p>
+    </div>
+    <div class="dsx-x__grid">
+      <figure class="dsx-x__item"><a class="zoom dsx-x__stage" href="../../../assets/images/managem/ds-x-p-cards.webp" data-zoom data-caption="Product redesign: Enquiries and quotes KPI cards with change against the prior period" aria-label="Enlarge: Enquiries and quotes KPI cards with change against the prior period"><img src="../../../assets/images/managem/ds-x-p-cards.webp" width="1184" height="286" alt="Enquiries and quotes KPI cards with change against the prior period" loading="lazy" decoding="async"></a><figcaption><strong>Product redesign</strong><span>Label · 32px figure · change, 12px radius</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption></figure><figure class="dsx-x__item"><a class="zoom dsx-x__stage" href="../../../assets/images/managem/ds-to-dropzone-files.webp" data-zoom data-caption="Take-On: Take-On upload card with two files marked encrypted and scanned" aria-label="Enlarge: Take-On upload card with two files marked encrypted and scanned"><img src="../../../assets/images/managem/ds-to-dropzone-files.webp" width="1164" height="646" alt="Take-On upload card with two files marked encrypted and scanned" loading="lazy" decoding="async"></a><figcaption><strong>Take-On</strong><span>Title · guidance · content, 14px radius</span><span class="mx-src">Take-On prototype · sample data</span></figcaption></figure><figure class="dsx-x__item"><a class="zoom dsx-x__stage" href="../../../assets/images/managem/ds-x-l-cards.webp" data-zoom data-caption="Landing page: Landing page pricing card for the Team plan" aria-label="Enlarge: Landing page pricing card for the Team plan"><img src="../../../assets/images/managem/ds-x-l-cards.webp" width="680" height="1004" alt="Landing page pricing card for the Team plan" loading="lazy" decoding="async"></a><figcaption><strong>Landing page</strong><span>Plan · price · inclusions · action, 24px radius</span><span class="mx-src">ManaGEM landing page</span></figcaption></figure>
+    </div>
+    <dl class="dsx-x__notes">
+      <div><dt>Shared</dt><dd>White card, 1px border, soft small shadow; the most important figure or title first.</dd></div>
+      <div><dt>Varies</dt><dd>Radius grows with the context — 12px in the product, 14px in Take-On, 24px on the landing page — and marketing cards can be inverted to navy for emphasis.</dd></div>
+    </dl>
+  </article>
+  <article class="dsx-x" id="x-status" aria-labelledby="x-status-h">
+    <div class="dsx-x__head">
+      <h3 id="x-status-h">Status and feedback</h3>
+      <p>Status always pairs a colour with a word, so it survives a quick glance, a grey-scale print-out and colour-blindness. The same four meanings appear wherever records can be in different states.</p>
+    </div>
+    <div class="dsx-x__grid">
+      <figure class="dsx-x__item"><a class="zoom dsx-x__stage" href="../../../assets/images/managem/ds-x-p-status.webp" data-zoom data-caption="Product redesign: Invoice totals in monospaced figures with Paid, Partial, Unpaid and Overdue badges" aria-label="Enlarge: Invoice totals in monospaced figures with Paid, Partial, Unpaid and Overdue badges"><img src="../../../assets/images/managem/ds-x-p-status.webp" width="972" height="652" alt="Invoice totals in monospaced figures with Paid, Partial, Unpaid and Overdue badges" loading="lazy" decoding="async"></a><figcaption><strong>Product redesign</strong><span>Badges 11 / 500 caps on a tint</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption></figure><figure class="dsx-x__item"><a class="zoom dsx-x__stage" href="../../../assets/images/managem/ds-x-t-valid.webp" data-zoom data-caption="Take-On: Take-On validation results in green, amber, purple and red rows, each with a sentence" aria-label="Enlarge: Take-On validation results in green, amber, purple and red rows, each with a sentence"><img src="../../../assets/images/managem/ds-x-t-valid.webp" width="1388" height="580" alt="Take-On validation results in green, amber, purple and red rows, each with a sentence" loading="lazy" decoding="async"></a><figcaption><strong>Take-On</strong><span>Full-sentence rows with an icon</span><span class="mx-src">Take-On prototype · sample data</span></figcaption></figure><figure class="dsx-x__item"><a class="zoom dsx-x__stage" href="../../../assets/images/managem/ds-x-l-status.webp" data-zoom data-caption="Landing page: Landing page job list with On track and Delayed tags and an Illustrative figures note" aria-label="Enlarge: Landing page job list with On track and Delayed tags and an Illustrative figures note"><img src="../../../assets/images/managem/ds-x-l-status.webp" width="792" height="428" alt="Landing page job list with On track and Delayed tags and an Illustrative figures note" loading="lazy" decoding="async"></a><figcaption><strong>Landing page</strong><span>Tags 12.5 / 600 with a value</span><span class="mx-src">ManaGEM landing page</span></figcaption></figure>
+    </div>
+    <dl class="dsx-x__notes">
+      <div><dt>Shared</dt><dd>Emerald = done or on track, amber = needs attention, red = problem, purple = possible duplicate; text colour is the dark shade of each hue.</dd></div>
+      <div><dt>Varies</dt><dd>Take-On explains each status in a sentence because people are checking AI-extracted data for the first time; the landing page labels its sample figures as illustrative.</dd></div>
+    </dl>
+  </article>
+  <article class="dsx-x" id="x-layout" aria-labelledby="x-layout-h">
+    <div class="dsx-x__head">
+      <h3 id="x-layout-h">Layout and hierarchy</h3>
+      <p>Every screen reads in the same order — where you are, the headline figures, then the detail — and spacing is tighter inside a group than between groups, so blocks separate without extra lines.</p>
+    </div>
+    <div class="dsx-x__grid">
+      <figure class="dsx-x__item"><a class="zoom dsx-x__stage" href="../../../assets/images/managem/mg-dashboard-1600.webp" data-zoom data-caption="Product redesign: The redesigned dashboard: sidebar, top bar, KPI cards, charts and projects" aria-label="Enlarge: The redesigned dashboard: sidebar, top bar, KPI cards, charts and projects"><img src="../../../assets/images/managem/mg-dashboard-1600.webp" srcset="../../../assets/images/managem/mg-dashboard-1600.webp 1600w, ../../../assets/images/managem/mg-dashboard-960.webp 960w" sizes="(min-width: 1264px) 400px, 100vw" width="1600" height="1000" alt="The redesigned dashboard: sidebar, top bar, KPI cards, charts and projects" loading="lazy" decoding="async"></a><figcaption><strong>Product redesign</strong><span>Sidebar + top bar frame; 16px gaps</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption></figure><figure class="dsx-x__item"><a class="zoom dsx-x__stage" href="../../../assets/images/managem/to-06-validation-1600.webp" data-zoom data-caption="Take-On: Take-On validation summary with a stepper, counts and results" aria-label="Enlarge: Take-On validation summary with a stepper, counts and results"><img src="../../../assets/images/managem/to-06-validation-1600.webp" srcset="../../../assets/images/managem/to-06-validation-1600.webp 1600w, ../../../assets/images/managem/to-06-validation-960.webp 960w" sizes="(min-width: 1264px) 400px, 100vw" width="1600" height="1000" alt="Take-On validation summary with a stepper, counts and results" loading="lazy" decoding="async"></a><figcaption><strong>Take-On</strong><span>Stepper frame; 24px card padding</span><span class="mx-src">Take-On prototype · sample data</span></figcaption></figure><figure class="dsx-x__item"><a class="zoom dsx-x__stage" href="../../../assets/images/managem/ds-land-tour.webp" data-zoom data-caption="Landing page: Landing page product tour section with tabs and a product screenshot" aria-label="Enlarge: Landing page product tour section with tabs and a product screenshot"><img src="../../../assets/images/managem/ds-land-tour.webp" width="1440" height="1224" alt="Landing page product tour section with tabs and a product screenshot" loading="lazy" decoding="async"></a><figcaption><strong>Landing page</strong><span>Editorial sections; 112px between them</span><span class="mx-src">ManaGEM landing page</span></figcaption></figure>
+    </div>
+    <dl class="dsx-x__notes">
+      <div><dt>Shared</dt><dd>A fixed frame (sidebar, stepper or section header), headline figures before detail, the same card and table parts inside.</dd></div>
+      <div><dt>Varies</dt><dd>Density: the product packs information for daily use, Take-On gives one task per screen, and the landing page gives each message a full section.</dd></div>
+    </dl>
+  </article></div>
+    
+  <div class="dsx-table" role="region" aria-label="Shared decisions and their values in each experience" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Decision</th><th scope="col">Product redesign</th><th scope="col">Take-On</th><th scope="col">Landing page</th></tr></thead>
+      <tbody><tr><th scope="row">Interface typeface</th><td>Outfit</td><td>Outfit</td><td>Outfit</td></tr><tr><th scope="row">Figures typeface</th><td>JetBrains Mono</td><td>JetBrains Mono</td><td>IBM Plex Mono</td></tr><tr><th scope="row">Page / section title</th><td>24 / 600</td><td>22 / 600</td><td>48 / 600 (hero 72)</td></tr><tr><th scope="row">Body text</th><td>13px</td><td>13.5px</td><td>17px</td></tr><tr><th scope="row">Primary action</th><td><span class="dsx-sw" style="--c:#0EA5E9" aria-hidden="true"></span><code>#0EA5E9</code> white text</td><td><span class="dsx-sw" style="--c:#0F172A" aria-hidden="true"></span><code>#0F172A</code> white text</td><td><span class="dsx-sw" style="--c:#00BFA6" aria-hidden="true"></span><code>#00BFA6</code> navy text</td></tr><tr><th scope="row">Button shape</th><td>7px radius · 13 / 500</td><td>9px radius · 13 / 600</td><td>Pill · 15–17 / 600</td></tr><tr><th scope="row">Field</th><td>7px radius · label 12 / 500</td><td>8px radius · label 12 / 600</td><td>12px radius · label 14 / 600</td></tr><tr><th scope="row">Card radius</th><td>12px</td><td>14px</td><td>24px</td></tr><tr><th scope="row">Border</th><td><span class="dsx-sw" style="--c:#E2E8F0" aria-hidden="true"></span><code>#E2E8F0</code></td><td><span class="dsx-sw" style="--c:#E2E8F0" aria-hidden="true"></span><code>#E2E8F0</code></td><td><span class="dsx-sw" style="--c:#E2E8F0" aria-hidden="true"></span><code>#E2E8F0</code></td></tr><tr><th scope="row">Status</th><td>Emerald · amber · red · purple badges</td><td>Same set, as sentences</td><td>Good · warn · bad tags</td></tr></tbody>
+    </table>
+  </div>
+    <p class="mx-note">Values read from each build’s stylesheet. Names and figures in the captures are demo or sample data.</p></div>
+  </section>
+    
+  <section class="mx-sec mx-sec--soft" id="foundations" aria-labelledby="foundations-h" data-chapter>
+    <div class="wrap">
+    
+  <header class="mx-head">
+    <div class="mx-head__l">
+      <p class="mx-kicker"><span class="mx-kicker__n">02</span>Foundations</p>
+      <h2 class="mx-h2" id="foundations-h">Colour, type and shape, defined once.</h2>
+    </div>
+    <p class="mx-intro">Each foundation answers a problem in a business-management product: long sessions, dense records and many modules. The board renders the actual values live; the tables list each one and where it is used.</p>
+  </header>
+    <div class="dsx-why">
+      <div><h3>Typography for long working sessions</h3><p>Outfit has open, even letterforms that stay legible at the 11–13px sizes dense screens need. Amounts, invoice numbers and references switch to JetBrains Mono, whose equal-width digits line up in columns, so totals can be compared down a table without reading each one.</p></div><div><h3>Colour that carries meaning</h3><p>Navy and slate carry the structure; one sky blue marks what you can act on and where you are. Emerald, amber, red and purple mean done, needs attention, problem and possible duplicate in every module — and each always comes with a word.</p></div><div><h3>Spacing and hierarchy for scanning</h3><p>Screens follow one reading order: title, headline figures, tabs, toolbar, then records. Small gaps inside a group and larger gaps between groups let people scan many records and still see where one block ends.</p></div><div><h3>Components that behave the same everywhere</h3><p>Every module uses the same KPI card, toolbar, table, tabs and drawer. Once someone learns how filtering or editing works in Invoices, it works the same way in Enquiries or Stock — and each part only has to be specified once.</p></div><div><h3>Navigation and patterns that connect modules</h3><p>The five-group sidebar, breadcrumb and global search frame every screen, so a new client always knows where they are. Drawers keep the list in view while editing, and stepped forms end in a review before anything is committed.</p></div>
+    </div>
+    
+  <figure class="ds" data-ds>
+    <div class="ds-board">
+      <div class="ds-board__bar" aria-hidden="true">
+        <span class="ds-board__logo">G</span>
+        <span class="ds-board__name">ManaGEM <b>Design system</b></span>
+        <span class="ds-board__tabs"><i class="is-on">Foundations</i><i>Components</i><i>Patterns</i></span>
+        <span class="ds-board__live"><i></i>Live components</span>
+      </div>
+      <div class="ds-grid">
+  <section class="ds-tile ds-tile--colour" aria-label="Colour">
+    <header class="ds-tile__head"><h4>Colour</h4><span>Navy and slate structure · one sky accent · four semantic pairs</span></header>
+    
+    <div class="ds-brand">
+      <div class="ds-sw" style="--c:#0F172A;--i:0"><span class="ds-sw__chip"></span><strong>Navy 900</strong><code>#0F172A</code><em>Sidebar, primary text</em></div><div class="ds-sw" style="--c:#1E293B;--i:1"><span class="ds-sw__chip"></span><strong>Navy 800</strong><code>#1E293B</code><em>Sidebar hover</em></div><div class="ds-sw" style="--c:#0EA5E9;--i:2"><span class="ds-sw__chip"></span><strong>Sky 500</strong><code>#0EA5E9</code><em>Primary action, focus, active</em></div><div class="ds-sw" style="--c:#0284C7;--i:3"><span class="ds-sw__chip"></span><strong>Sky 600</strong><code>#0284C7</code><em>Primary hover</em></div>
+    </div>
+    <div class="ds-ramp" aria-label="Neutral ramp">
+      <span style="--c:#F8FAFC;--i:0" title="Canvas #F8FAFC"><b>Canvas</b></span><span style="--c:#F1F5F9;--i:1" title="Slate 100 #F1F5F9"><b>Slate 100</b></span><span style="--c:#E2E8F0;--i:2" title="Border #E2E8F0"><b>Border</b></span><span style="--c:#CBD5E1;--i:3" title="Slate 300 #CBD5E1"><b>Slate 300</b></span><span style="--c:#94A3B8;--i:4" title="Text 3 #94A3B8"><b>Text 3</b></span><span style="--c:#64748B;--i:5" title="Text 2 #64748B"><b>Text 2</b></span><span style="--c:#475569;--i:6" title="Slate 600 #475569"><b>Slate 600</b></span><span style="--c:#334155;--i:7" title="Slate 700 #334155"><b>Slate 700</b></span>
+    </div>
+    <div class="ds-status">
+      <div class="ds-pair" style="--c:#10B981;--l:#D1FAE5;--i:0"><span class="ds-pair__chip"><i></i></span><strong>Emerald</strong><em>Paid · Verified · up</em></div><div class="ds-pair" style="--c:#F59E0B;--l:#FEF3C7;--i:1"><span class="ds-pair__chip"><i></i></span><strong>Amber</strong><em>Partial · Needs review</em></div><div class="ds-pair" style="--c:#EF4444;--l:#FEE2E2;--i:2"><span class="ds-pair__chip"><i></i></span><strong>Red</strong><em>Overdue · Error · down</em></div><div class="ds-pair" style="--c:#8B5CF6;--l:#EDE9FE;--i:3"><span class="ds-pair__chip"><i></i></span><strong>Purple</strong><em>Possible duplicate</em></div>
+    </div>
+  </section>
+  <section class="ds-tile ds-tile--type" aria-label="Typography">
+    <header class="ds-tile__head"><h4>Typography</h4><span>Outfit for the interface · JetBrains Mono for figures</span></header>
+    
+    <div class="ds-aa" aria-hidden="true"><span class="ds-aa__glyph">Aa</span><span class="ds-aa__meta">Outfit<br><b>400 · 500 · 600 · 700</b></span></div>
+    <ul class="ds-scale" role="list">
+      <li><span class="ds-scale__k">KPI value<small>32 / 700 · −0.02em</small></span><span class="ds-t-kpi">R 535K</span></li><li><span class="ds-scale__k">Page title<small>24 / 600 · −0.01em</small></span><span class="ds-t-page">Invoices</span></li><li><span class="ds-scale__k">Card heading<small>15 / 600</small></span><span class="ds-t-section">Current projects</span></li><li><span class="ds-scale__k">Body · table<small>13 / 400</small></span><span class="ds-t-body">Eight invoices, R 535,000 outstanding</span></li><li><span class="ds-scale__k">KPI label<small>11 / 600 · caps · 0.05em</small></span><span class="ds-t-label">Total billed</span></li><li><span class="ds-scale__k">Figures<small>JetBrains Mono</small></span><span class="ds-t-mono">INV-2026-0142 · R 425,000</span></li>
+    </ul>
+  </section>
+  <section class="ds-tile ds-tile--nav" aria-label="Navigation">
+    <header class="ds-tile__head"><h4>Navigation</h4><span>Grouped sections · active · count · alert</span></header>
+    
+    <div class="ds-nav" data-ds-nav data-active="1">
+      <p class="ds-nav__g">Sales</p>
+      <span class="ds-nav__i" data-i="0">New Enquiry</span>
+      <span class="ds-nav__i" data-i="1">Open Enquiries <b>51</b></span>
+      <span class="ds-nav__i" data-i="2">Invoices</span>
+      <p class="ds-nav__g">Operations</p>
+      <span class="ds-nav__i" data-i="3">Debtors Management</span>
+      <span class="ds-nav__i" data-i="4">Factory <b class="ds-nav__warn">3</b></span>
+      <span class="ds-nav__bar" aria-hidden="true"></span>
+      <div class="ds-nav__user"><span class="ds-av">AC</span><span><b>Alex Carter</b><small>Sales Manager</small></span></div>
+    </div>
+  </section>
+  <section class="ds-tile ds-tile--buttons" aria-label="Buttons">
+    <header class="ds-tile__head"><h4>Buttons</h4><span>7px radius · 13 / 500 · 120ms</span></header>
+    
+    <div class="ds-btns">
+      <span class="ds-btn ds-btn--primary ds-press"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.8" fill="none"/></svg>New invoice</span>
+      <span class="ds-btn ds-btn--secondary"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2.5v8M4.5 7 8 10.5 11.5 7M3 13.5h10" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>Export</span>
+      <span class="ds-btn ds-btn--emerald">Sync with Sage</span>
+      <span class="ds-btn ds-btn--ghost">Cancel</span>
+      <span class="ds-btn ds-btn--secondary ds-btn--sm">Small</span>
+      <span class="ds-cursor" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 2l15 9.5-6.6 1.4L9 19.5z" fill="#0F172A" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+    </div>
+    <p class="ds-cap">Primary, secondary, emerald, ghost and small. Hover darkens or tints; the cursor shows the primary hover.</p>
+  </section>
+  <section class="ds-tile ds-tile--status" aria-label="Status badges">
+    <header class="ds-tile__head"><h4>Status badges</h4><span>Words and colour, never colour alone</span></header>
+    
+    <div class="ds-badges">
+      <span class="ds-badge ds-badge--emerald">Paid</span>
+      <span class="ds-badge ds-badge--amber">Partial</span>
+      <span class="ds-badge ds-badge--sky">Unpaid</span>
+      <span class="ds-badge ds-badge--red">Overdue</span>
+      <span class="ds-badge ds-badge--purple">Duplicate</span>
+      <span class="ds-badge ds-badge--slate ds-badge--dot">Dormant</span>
+    </div>
+    <div class="ds-row" aria-hidden="true">
+      <span class="ds-check is-on"><svg viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
+      <span class="ds-t-mono ds-row__id">INV-2026-0141</span>
+      <span class="ds-row__name">Parkside Estates</span>
+      <span class="ds-t-mono ds-row__amt">R 182,000</span>
+      <span class="ds-badge ds-badge--amber" data-ds-badge>Partial</span>
+    </div>
+    <p class="ds-cap">A selected row (sky-50 fill, checked box) whose status moves through the invoice states.</p>
+  </section>
+  <section class="ds-tile ds-tile--field" aria-label="Form fields">
+    <header class="ds-tile__head"><h4>Form fields</h4><span>Label above · focus ring · two-column rows</span></header>
+    
+    <div class="ds-fieldrow">
+      <div class="ds-field" data-ds-type="Maria Santos">
+        <label>Contact person <b>*</b></label>
+        <div class="ds-input"><span class="ds-input__v">Maria Santos</span><span class="ds-input__caret" aria-hidden="true"></span></div>
+      </div>
+      <div class="ds-field">
+        <label>Role</label>
+        <div class="ds-input ds-input--ph">e.g. Project Manager</div>
+      </div>
+    </div>
+    <div class="ds-field">
+      <label>Customer type <b>*</b></label>
+      <div class="ds-input ds-input--select">Repeat Customer<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div>
+    </div>
+    <div class="ds-toggle-row"><span class="ds-toggle" aria-hidden="true"><i></i></span>Send confirmation email to customer</div>
+  </section>
+  <section class="ds-tile ds-tile--tabs" aria-label="Tabs and sub-tabs">
+    <header class="ds-tile__head"><h4>Tabs and sub-tabs</h4><span>Counts · warning dot · active state</span></header>
+    
+    <div class="ds-tabs" data-ds-tabs>
+      <span class="ds-tab is-on">Dashboard</span><span class="ds-tab">Pending <i>4</i></span><span class="ds-tab">Product builds <i>7</i></span><span class="ds-tab">Not invoiced <i>3</i><u></u></span>
+    </div>
+    <div class="ds-subtabs" data-ds-subtabs>
+      <span class="ds-subtab is-on">Dashboard</span><span class="ds-subtab">Suppliers <i>6</i></span><span class="ds-subtab">Purchase orders <i>6</i></span><span class="ds-subtab">Receive <i>4</i></span>
+    </div>
+    <div class="ds-pager"><span>Showing 1–10 of 243</span><span class="ds-pager__p"><b class="is-on">1</b><b>2</b><b>3</b><b>…</b><b>25</b></span></div>
+  </section>
+  <section class="ds-tile ds-tile--kpi" aria-label="KPI card">
+    <header class="ds-tile__head"><h4>KPI card</h4><span>Label · value · delta · icon · hover lift</span></header>
+    
+    <div class="ds-kpis">
+      <div class="ds-kpi"><div class="ds-kpi__top"><span class="ds-t-label">Quotes</span><span class="ds-kpi__icon ds-kpi__icon--em"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5h6l2.5 2.5v8.5h-8.5z M6.5 8h4M6.5 10.5h3" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></span></div><p class="ds-kpi__v">R <span data-ds-count="3348">3348</span>K</p><p class="ds-kpi__d ds-kpi__d--up">↑ +8% vs prior</p></div>
+      <div class="ds-kpi ds-kpi--lift"><div class="ds-kpi__top"><span class="ds-t-label">Sales</span><span class="ds-kpi__icon"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v3.2l2 1.3" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span></div><p class="ds-kpi__v">R <span data-ds-count="955">955</span>K</p><p class="ds-kpi__d ds-kpi__d--down">↓ −2% vs prior</p></div>
+    </div>
+    <p class="ds-cap">Demo values from the prototype. Hover raises the card by 1px with the medium shadow.</p>
+  </section>
+  <section class="ds-tile ds-tile--stepper" aria-label="Progress stepper">
+    <header class="ds-tile__head"><h4>Progress stepper</h4><span>Multi-step forms · completed steps show a tick</span></header>
+    
+    <ol class="ds-steps" data-ds-stepper data-step="4" role="list">
+      <li data-n="1"><span class="ds-steps__dot"><b>1</b><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2"/></svg></span><span class="ds-steps__t"><small>Step 1</small>Customer</span></li><li data-n="2"><span class="ds-steps__dot"><b>2</b><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2"/></svg></span><span class="ds-steps__t"><small>Step 2</small>Site & scope</span></li><li data-n="3"><span class="ds-steps__dot"><b>3</b><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2"/></svg></span><span class="ds-steps__t"><small>Step 3</small>Schedule</span></li><li data-n="4"><span class="ds-steps__dot"><b>4</b><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2"/></svg></span><span class="ds-steps__t"><small>Step 4</small>Review</span></li>
+    </ol>
+  </section>
+  <section class="ds-tile ds-tile--shape" aria-label="Radius and elevation">
+    <header class="ds-tile__head"><h4>Radius and elevation</h4><span>Seven radii · four shadows and a focus ring</span></header>
+    
+    <div class="ds-radii">
+      <span style="--r:4px"><i></i><code>4</code><small>Checkbox, kbd</small></span><span style="--r:6px"><i></i><code>6</code><small>Nav item, pager</small></span><span style="--r:7px"><i></i><code>7</code><small>Buttons, inputs, sub-tabs</small></span><span style="--r:8px"><i></i><code>8</code><small>Search, icon tiles</small></span><span style="--r:10px"><i></i><code>10</code><small>Toolbar, mini stats</small></span><span style="--r:12px"><i></i><code>12</code><small>Cards, tables, KPIs</small></span><span style="--r:28px"><i></i><code>999</code><small>Badges, chips, toggle</small></span>
+    </div>
+    <div class="ds-shadows">
+      <span style="--sh:0 1px 2px rgba(15,23,42,.04)"><i></i><small><b>Small</b>Cards at rest</small></span><span style="--sh:0 4px 12px rgba(15,23,42,.06)"><i></i><small><b>Medium</b>KPI and quick-action hover</small></span><span style="--sh:0 12px 32px rgba(15,23,42,.10)"><i></i><small><b>Large</b>Raised surfaces</small></span><span style="--sh:0 0 0 3px rgba(14,165,233,.12)"><i></i><small><b>Focus ring</b>Focused inputs</small></span>
+    </div>
+  </section></div>
+    </div>
+    <figcaption class="ds-cap-outer">Live components rendered with the system’s own tokens and typefaces, as used in the ManaGEM redesign and Take-On. Names and figures are the prototypes’ demo data.</figcaption>
+  </figure>
+    <div class="dsx-cols">
+      <div>
+        <h3 class="dsx-h3">Colour</h3>
+        
+  <div class="dsx-table" role="region" aria-label="Colour tokens" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Token</th><th scope="col">Value</th><th scope="col">Use</th></tr></thead>
+      <tbody><tr><th scope="row">Navy 900</th><td><span class="dsx-sw" style="--c:#0F172A" aria-hidden="true"></span><code>#0F172A</code></td><td>Sidebar, primary text</td></tr><tr><th scope="row">Navy 800</th><td><span class="dsx-sw" style="--c:#1E293B" aria-hidden="true"></span><code>#1E293B</code></td><td>Sidebar hover</td></tr><tr><th scope="row">Sky 500</th><td><span class="dsx-sw" style="--c:#0EA5E9" aria-hidden="true"></span><code>#0EA5E9</code></td><td>Primary action, focus, active</td></tr><tr><th scope="row">Sky 600</th><td><span class="dsx-sw" style="--c:#0284C7" aria-hidden="true"></span><code>#0284C7</code></td><td>Primary hover</td></tr><tr><th scope="row">Sky 100</th><td><span class="dsx-sw" style="--c:#E0F2FE" aria-hidden="true"></span><code>#E0F2FE</code></td><td>Selected, info fill</td></tr><tr><th scope="row">Sky 50</th><td><span class="dsx-sw" style="--c:#F0F9FF" aria-hidden="true"></span><code>#F0F9FF</code></td><td>Selected rows</td></tr><tr><th scope="row">Canvas</th><td><span class="dsx-sw" style="--c:#F8FAFC" aria-hidden="true"></span><code>#F8FAFC</code></td><td>Surfaces and fills</td></tr><tr><th scope="row">Slate 100</th><td><span class="dsx-sw" style="--c:#F1F5F9" aria-hidden="true"></span><code>#F1F5F9</code></td><td>Surfaces and fills</td></tr><tr><th scope="row">Border</th><td><span class="dsx-sw" style="--c:#E2E8F0" aria-hidden="true"></span><code>#E2E8F0</code></td><td>Every 1px line</td></tr><tr><th scope="row">Slate 300</th><td><span class="dsx-sw" style="--c:#CBD5E1" aria-hidden="true"></span><code>#CBD5E1</code></td><td>Surfaces and fills</td></tr><tr><th scope="row">Text 3</th><td><span class="dsx-sw" style="--c:#94A3B8" aria-hidden="true"></span><code>#94A3B8</code></td><td>Tertiary text, icons</td></tr><tr><th scope="row">Text 2</th><td><span class="dsx-sw" style="--c:#64748B" aria-hidden="true"></span><code>#64748B</code></td><td>Secondary text</td></tr><tr><th scope="row">Slate 600</th><td><span class="dsx-sw" style="--c:#475569" aria-hidden="true"></span><code>#475569</code></td><td>Surfaces and fills</td></tr><tr><th scope="row">Slate 700</th><td><span class="dsx-sw" style="--c:#334155" aria-hidden="true"></span><code>#334155</code></td><td>Surfaces and fills</td></tr><tr><th scope="row">Emerald</th><td><span class="dsx-sw" style="--c:#10B981" aria-hidden="true"></span><code>#10B981</code> <span class="dsx-sw" style="--c:#D1FAE5" aria-hidden="true"></span><code>#D1FAE5</code> text <span class="dsx-sw" style="--c:#047857" aria-hidden="true"></span><code>#047857</code></td><td>Paid · Verified · up</td></tr><tr><th scope="row">Amber</th><td><span class="dsx-sw" style="--c:#F59E0B" aria-hidden="true"></span><code>#F59E0B</code> <span class="dsx-sw" style="--c:#FEF3C7" aria-hidden="true"></span><code>#FEF3C7</code> text <span class="dsx-sw" style="--c:#B45309" aria-hidden="true"></span><code>#B45309</code></td><td>Partial · Needs review</td></tr><tr><th scope="row">Red</th><td><span class="dsx-sw" style="--c:#EF4444" aria-hidden="true"></span><code>#EF4444</code> <span class="dsx-sw" style="--c:#FEE2E2" aria-hidden="true"></span><code>#FEE2E2</code> text <span class="dsx-sw" style="--c:#B91C1C" aria-hidden="true"></span><code>#B91C1C</code></td><td>Overdue · Error · down</td></tr><tr><th scope="row">Purple</th><td><span class="dsx-sw" style="--c:#8B5CF6" aria-hidden="true"></span><code>#8B5CF6</code> <span class="dsx-sw" style="--c:#EDE9FE" aria-hidden="true"></span><code>#EDE9FE</code> text <span class="dsx-sw" style="--c:#6D28D9" aria-hidden="true"></span><code>#6D28D9</code></td><td>Possible duplicate</td></tr></tbody>
+    </table>
+  </div>
+      </div>
+      <div>
+        <h3 class="dsx-h3">Typography</h3>
+        
+  <div class="dsx-table dsx-table--type" role="region" aria-label="Type scale" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Role</th><th scope="col">Size / weight</th><th scope="col">Sample</th></tr></thead>
+      <tbody><tr><th scope="row">KPI value</th><td>32 / 700 · −0.02em</td><td><span class="dsx-type ds-t-kpi">R 535K</span></td></tr><tr><th scope="row">Page title</th><td>24 / 600 · −0.01em</td><td><span class="dsx-type ds-t-page">Invoices</span></td></tr><tr><th scope="row">Pipeline count</th><td>24 / 700</td><td><span class="dsx-type ds-t-count">18</span></td></tr><tr><th scope="row">Drawer title</th><td>16 / 600</td><td><span class="dsx-type ds-t-drawer">Invite new user</span></td></tr><tr><th scope="row">Card heading</th><td>15 / 600</td><td><span class="dsx-type ds-t-section">Current projects</span></td></tr><tr><th scope="row">Body · table</th><td>13 / 400</td><td><span class="dsx-type ds-t-body">Eight invoices, R 535,000 outstanding</span></td></tr><tr><th scope="row">Field label</th><td>12 / 500</td><td><span class="dsx-type ds-t-flabel">Contact person</span></td></tr><tr><th scope="row">KPI label</th><td>11 / 600 · caps · 0.05em</td><td><span class="dsx-type ds-t-label">Total billed</span></td></tr><tr><th scope="row">Badge</th><td>11 / 500 · caps · 0.04em</td><td><span class="dsx-type ds-t-badge">Overdue</span></td></tr><tr><th scope="row">Nav section</th><td>10 / 600 · caps · 0.08em</td><td><span class="dsx-type ds-t-navsec">Operations</span></td></tr><tr><th scope="row">Figures</th><td>JetBrains Mono</td><td><span class="dsx-type ds-t-mono">INV-2026-0142 · R 425,000</span></td></tr></tbody>
+    </table>
+  </div>
+        <h3 class="dsx-h3">Layout and spacing</h3>
+        
+  <div class="dsx-table" role="region" aria-label="Layout values" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Measure</th><th scope="col">Value</th></tr></thead>
+      <tbody><tr><th scope="row">Sidebar</th><td>240px · 64px collapsed</td></tr><tr><th scope="row">Top bar</th><td>56px high, 24px side padding</td></tr><tr><th scope="row">Search field</th><td>Up to 380px</td></tr><tr><th scope="row">KPI grid</th><td>4 columns, 16px gap</td></tr><tr><th scope="row">Quick actions</th><td>4 columns, 12px gap</td></tr><tr><th scope="row">Drawer</th><td>480px</td></tr><tr><th scope="row">Spacing in use</th><td>4 · 6 · 8 · 10 · 12 · 14 · 16 · 18 · 20 · 24px</td></tr></tbody>
+    </table>
+  </div>
+        <p class="mx-note">Spacing values are those used across the components; they are not declared as a separate token scale.</p>
+      </div>
+    </div>
+    <div class="dsx-cols dsx-cols--3">
+      <div><h3 class="dsx-h3">Radius</h3>
+  <div class="dsx-table" role="region" aria-label="Radius values" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">px</th><th scope="col">Used for</th></tr></thead>
+      <tbody><tr><th scope="row">4</th><td>Checkbox, kbd</td></tr><tr><th scope="row">6</th><td>Nav item, pager</td></tr><tr><th scope="row">7</th><td>Buttons, inputs, sub-tabs</td></tr><tr><th scope="row">8</th><td>Search, icon tiles</td></tr><tr><th scope="row">10</th><td>Toolbar, mini stats</td></tr><tr><th scope="row">12</th><td>Cards, tables, KPIs</td></tr><tr><th scope="row">999</th><td>Badges, chips, toggle</td></tr></tbody>
+    </table>
+  </div></div>
+      <div><h3 class="dsx-h3">Elevation</h3>
+  <div class="dsx-table" role="region" aria-label="Shadows" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Level</th><th scope="col">Value</th></tr></thead>
+      <tbody><tr><th scope="row">Small</th><td><code>0 1px 2px rgba(15,23,42,.04)</code><br><small>Cards at rest</small></td></tr><tr><th scope="row">Medium</th><td><code>0 4px 12px rgba(15,23,42,.06)</code><br><small>KPI and quick-action hover</small></td></tr><tr><th scope="row">Large</th><td><code>0 12px 32px rgba(15,23,42,.10)</code><br><small>Raised surfaces</small></td></tr><tr><th scope="row">Drawer</th><td><code>−10px 0 30px rgba(15,23,42,.12)</code><br><small>Side drawer</small></td></tr><tr><th scope="row">Focus ring</th><td><code>0 0 0 3px rgba(14,165,233,.12)</code><br><small>Focused inputs</small></td></tr></tbody>
+    </table>
+  </div></div>
+      <div><h3 class="dsx-h3">Icons and motion</h3>
+  <div class="dsx-table" role="region" aria-label="Icons and motion" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Item</th><th scope="col">Value</th></tr></thead>
+      <tbody><tr><th scope="row">Icons</th><td>16px outline, 2px stroke, round caps</td></tr><tr><th scope="row">In buttons</th><td>14px</td></tr><tr><th scope="row">Icon tiles</th><td>32px (KPI), 40px (quick actions)</td></tr><tr><th scope="row">Transitions</th><td>100–200ms: buttons 120, toggle 120, KPI 150, sidebar and drawer 200</td></tr><tr><th scope="row">Borders</th><td>1px #E2E8F0 everywhere</td></tr></tbody>
+    </table>
+  </div></div>
+    </div></div>
+  </section>
+    
+  <section class="mx-sec" id="navigation" aria-labelledby="navigation-h" data-chapter>
+    <div class="wrap">
+    
+  <header class="mx-head">
+    <div class="mx-head__l">
+      <p class="mx-kicker"><span class="mx-kicker__n">03</span>Navigation and application structure</p>
+      <h2 class="mx-h2" id="navigation-h">From expanding menus to five labelled groups.</h2>
+    </div>
+    <p class="mx-intro">In the original interface, each section expanded in place into a long list of sub-pages. The system replaces that with five groups — Core, Customers, Sales, Operations, Admin — where every destination stays visible and the user’s location is always marked.</p>
+  </header>
+    <div class="dsx-navcompare">
+      <div class="dsx-navcompare__orig">
+        <p class="mx-compare__label"><span class="mx-compare__dot mx-compare__dot--before" aria-hidden="true"></span>Original interface</p>
+        <div class="dsx-navcompare__three">
+          <figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/nav-original-sales.webp" data-zoom data-caption="Sales expanded" aria-label="Enlarge: Original sidebar with Sales expanded into twelve items"><img src="../../../assets/images/managem/nav-original-sales.webp" width="436" height="1598" alt="Original sidebar with Sales expanded into twelve items" loading="lazy" decoding="async"></a></div>
+    <figcaption><span>Sales expanded</span><span class="mx-src">Original interface · approved for publication</span></figcaption>
+  </figure>
+          <figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/nav-original-products.webp" data-zoom data-caption="Products &amp; Pricing expanded" aria-label="Enlarge: Original sidebar with Products and Pricing expanded"><img src="../../../assets/images/managem/nav-original-products.webp" width="436" height="1760" alt="Original sidebar with Products and Pricing expanded" loading="lazy" decoding="async"></a></div>
+    <figcaption><span>Products &amp; Pricing expanded</span><span class="mx-src">Original interface · approved for publication</span></figcaption>
+  </figure>
+          <figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/nav-original-projects.webp" data-zoom data-caption="Projects Module expanded" aria-label="Enlarge: Original sidebar with Projects Module expanded into three sub-blocks"><img src="../../../assets/images/managem/nav-original-projects.webp" width="430" height="1816" alt="Original sidebar with Projects Module expanded into three sub-blocks" loading="lazy" decoding="async"></a></div>
+    <figcaption><span>Projects Module expanded</span><span class="mx-src">Original interface · approved for publication</span></figcaption>
+  </figure>
+        </div>
+      </div>
+      <div class="dsx-navcompare__new">
+        <p class="mx-compare__label"><span class="mx-compare__dot mx-compare__dot--after" aria-hidden="true"></span>Redesign</p>
+        <div class="dsx-navcompare__two">
+          <figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/ds-sidebar-expanded.webp" data-zoom data-caption="Expanded" aria-label="Enlarge: Redesigned sidebar with five labelled groups"><img src="../../../assets/images/managem/ds-sidebar-expanded.webp" width="480" height="1800" alt="Redesigned sidebar with five labelled groups" loading="lazy" decoding="async"></a></div>
+    <figcaption><span>Expanded</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+          <figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/ds-sidebar-collapsed.webp" data-zoom data-caption="Collapsed" aria-label="Enlarge: Redesigned sidebar collapsed to icons"><img src="../../../assets/images/managem/ds-sidebar-collapsed.webp" width="128" height="1800" alt="Redesigned sidebar collapsed to icons" loading="lazy" decoding="async"></a></div>
+    <figcaption><span>Collapsed</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+        </div>
+      </div>
+    </div>
+    
+  <div class="dsx-table" role="region" aria-label="Navigation specification" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Element</th><th scope="col">Specification</th><th scope="col">States in the prototype</th></tr></thead>
+      <tbody><tr><th scope="row">Nav item</th><td>13px, 7×10px padding, 6px radius, 16px icon</td><td>Default · hover (navy 800, white text) · active (10% sky fill, 3px sky left edge, sky icon)</td></tr><tr><th scope="row">Section label</th><td>10 / 600 caps, 0.08em, slate 500</td><td>—</td></tr><tr><th scope="row">Count badge</th><td>10px pill, white 8% fill</td><td>Default · alert (amber 20% fill, amber text)</td></tr><tr><th scope="row">Sidebar</th><td>240px, navy 900, sticky</td><td>Expanded · collapsed to 64px icons (200ms) · off-canvas on mobile with overlay</td></tr><tr><th scope="row">Top bar</th><td>56px, breadcrumb · search · bell · avatar</td><td>Search focus (sky border, white fill) · bell with red unread dot</td></tr><tr><th scope="row">Breadcrumb</th><td>Home / section / current (600)</td><td>Home hidden on small screens</td></tr><tr><th scope="row">User</th><td>28px gradient avatar, name 12/500, role 11 slate</td><td>Always shows who is signed in and their role</td></tr></tbody>
+    </table>
+  </div>
+    <div class="dsx-crops">
+      <figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/ds-topbar.webp" data-zoom data-caption="Top bar" aria-label="Enlarge: Redesigned top bar with breadcrumb, search with shortcut, notification bell and avatar"><img src="../../../assets/images/managem/ds-topbar.webp" width="1600" height="75" alt="Redesigned top bar with breadcrumb, search with shortcut, notification bell and avatar" loading="lazy" decoding="async"></a></div>
+    <figcaption><span>Top bar</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+      <figure class="mx-shot dsx-small">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/ds-search-focus.webp" data-zoom data-caption="Search · focus" aria-label="Enlarge: Search field in its focus state with a sky border"><img src="../../../assets/images/managem/ds-search-focus.webp" width="762" height="70" alt="Search field in its focus state with a sky border" loading="lazy" decoding="async"></a></div>
+    <figcaption><span>Search · focus</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+      <figure class="mx-shot dsx-small">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/ds-user.webp" data-zoom data-caption="Signed-in user and role" aria-label="Enlarge: Signed-in user with name and role in the sidebar"><img src="../../../assets/images/managem/ds-user.webp" width="480" height="108" alt="Signed-in user with name and role in the sidebar" loading="lazy" decoding="async"></a></div>
+    <figcaption><span>Signed-in user and role</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+    </div></div>
+  </section>
+    
+  <section class="mx-sec mx-sec--soft" id="components" aria-labelledby="components-h" data-chapter>
+    <div class="wrap">
+    
+  <header class="mx-head">
+    <div class="mx-head__l">
+      <p class="mx-kicker"><span class="mx-kicker__n">04</span>Core components</p>
+      <h2 class="mx-h2" id="components-h">The parts every module is built from.</h2>
+    </div>
+    <p class="mx-intro">Each component below exists in the redesign or Take-On prototype. Its purpose, parts, variants and behaviour are taken from the prototype’s markup and styles; each comes with a real capture.</p>
+  </header>
+    <div class="dsx-comps">
+      
+  <article class="dsx-comp dsx-comp--wide">
+    <div class="dsx-comp__text">
+      <h3>KPI cards</h3>
+      <p class="dsx-comp__purpose">Put the figures a manager checks first at the top of the dashboard and each module.</p>
+      <dl>
+        <div><dt>Anatomy</dt><dd>Caps label · 32px figure · delta line · 32px tinted icon tile</dd></div>
+        <div><dt>Variants</dt><dd>Delta up (emerald), down (red), muted</dd></div>
+        <div><dt>Behaviour</dt><dd>Hover lifts 1px with the medium shadow (150ms)</dd></div>
+      </dl>
+    </div>
+    <figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/ds-kpi-grid.webp" data-zoom data-caption="Four KPI cards: enquiries, quotes, sales and opportunities" aria-label="Enlarge: Four KPI cards: enquiries, quotes, sales and opportunities"><img src="../../../assets/images/managem/ds-kpi-grid.webp" width="1600" height="165" alt="Four KPI cards: enquiries, quotes, sales and opportunities" loading="lazy" decoding="async"></a></div>
+    <figcaption><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+  </article>
+      
+  <article class="dsx-comp dsx-comp--wide">
+    <div class="dsx-comp__text">
+      <h3>Toolbar and filters</h3>
+      <p class="dsx-comp__purpose">One place to search, filter and export any list.</p>
+      <dl>
+        <div><dt>Anatomy</dt><dd>Search field · removable filter chips · dashed “Add filter” · date range · CSV / Excel / PDF</dd></div>
+        <div><dt>Variants</dt><dd>Chip, add-chip, export group</dd></div>
+        <div><dt>Behaviour</dt><dd>Search focus turns the field white with a sky border; chips’ × and add-chip highlight on hover</dd></div>
+      </dl>
+    </div>
+    <figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/ds-toolbar.webp" data-zoom data-caption="Toolbar with search, filter chips, date range and export buttons" aria-label="Enlarge: Toolbar with search, filter chips, date range and export buttons"><img src="../../../assets/images/managem/ds-toolbar.webp" width="1600" height="78" alt="Toolbar with search, filter chips, date range and export buttons" loading="lazy" decoding="async"></a></div>
+    <figcaption><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+  </article>
+      
+  <article class="dsx-comp dsx-comp--wide">
+    <div class="dsx-comp__text">
+      <h3>Data tables</h3>
+      <p class="dsx-comp__purpose">Dense records that stay readable: references and amounts in mono, status in words.</p>
+      <dl>
+        <div><dt>Anatomy</dt><dd>Checkbox · mono reference · bold name with sub-line · figures right-aligned · status badge · row actions</dd></div>
+        <div><dt>Variants</dt><dd>Sortable headers; responsive card layout on mobile</dd></div>
+        <div><dt>Behaviour</dt><dd>Sortable header and row hover tint; selected rows fill sky 50</dd></div>
+      </dl>
+    </div>
+    <figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/ds-table-invoices.webp" data-zoom data-caption="Invoices table with statuses" aria-label="Enlarge: Invoices table with statuses"><img src="../../../assets/images/managem/ds-table-invoices.webp" width="1600" height="697" alt="Invoices table with statuses" loading="lazy" decoding="async"></a></div>
+    <figcaption><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+  </article>
+      
+  <article class="dsx-comp">
+    <div class="dsx-comp__text">
+      <h3>Bulk action bar</h3>
+      <p class="dsx-comp__purpose">Act on several selected records without leaving the list.</p>
+      <dl>
+        <div><dt>Anatomy</dt><dd>Selection count · actions · destructive action in red</dd></div>
+        <div><dt>Variants</dt><dd>Default and danger buttons</dd></div>
+        <div><dt>Behaviour</dt><dd>Slides up from the bottom when rows are selected</dd></div>
+      </dl>
+    </div>
+    <figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/ds-bulk-bar.webp" data-zoom data-caption="Navy bulk action bar showing two customers selected with delete, export and cancel" aria-label="Enlarge: Navy bulk action bar showing two customers selected with delete, export and cancel"><img src="../../../assets/images/managem/ds-bulk-bar.webp" width="916" height="90" alt="Navy bulk action bar showing two customers selected with delete, export and cancel" loading="lazy" decoding="async"></a></div>
+    <figcaption><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+  </article>
+      
+  <article class="dsx-comp">
+    <div class="dsx-comp__text">
+      <h3>Pagination</h3>
+      <p class="dsx-comp__purpose">Move through long lists and choose page size.</p>
+      <dl>
+        <div><dt>Anatomy</dt><dd>Result count · page-size select · page buttons</dd></div>
+        <div><dt>Variants</dt><dd>—</dd></div>
+        <div><dt>Behaviour</dt><dd>Hover tint; current page filled sky</dd></div>
+      </dl>
+    </div>
+    <figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/ds-pager.webp" data-zoom data-caption="Pagination showing results count and page buttons" aria-label="Enlarge: Pagination showing results count and page buttons"><img src="../../../assets/images/managem/ds-pager.webp" width="1600" height="75" alt="Pagination showing results count and page buttons" loading="lazy" decoding="async"></a></div>
+    <figcaption><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+  </article>
+      
+  <article class="dsx-comp dsx-comp--wide">
+    <div class="dsx-comp__text">
+      <h3>Tabs</h3>
+      <p class="dsx-comp__purpose">Switch between views of one module, with counts that show where work is waiting.</p>
+      <dl>
+        <div><dt>Anatomy</dt><dd>Label · count pill · optional amber warning dot</dd></div>
+        <div><dt>Variants</dt><dd>Tabs (underline), sub-tabs (filled)</dd></div>
+        <div><dt>Behaviour</dt><dd>Active tab: sky text and 2px underline; active sub-tab: navy fill, white text</dd></div>
+      </dl>
+    </div>
+    <figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/ds-tabs-factory.webp" data-zoom data-caption="Factory tabs with counts and a warning dot on Not invoiced" aria-label="Enlarge: Factory tabs with counts and a warning dot on Not invoiced"><img src="../../../assets/images/managem/ds-tabs-factory.webp" width="1600" height="53" alt="Factory tabs with counts and a warning dot on Not invoiced" loading="lazy" decoding="async"></a></div>
+    <figcaption><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+  </article>
+      
+  <article class="dsx-comp dsx-comp--wide">
+    <div class="dsx-comp__text">
+      <h3>Sub-tabs</h3>
+      <p class="dsx-comp__purpose">Group related areas inside one module instead of separate menu items.</p>
+      <dl>
+        <div><dt>Anatomy</dt><dd>Label · count</dd></div>
+        <div><dt>Variants</dt><dd>Default · active · hover</dd></div>
+        <div><dt>Behaviour</dt><dd>Twelve Stock Control areas live here rather than in the sidebar</dd></div>
+      </dl>
+    </div>
+    <figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/ds-subtabs-stock.webp" data-zoom data-caption="Stock Control sub-tabs from Dashboard to Stock Take" aria-label="Enlarge: Stock Control sub-tabs from Dashboard to Stock Take"><img src="../../../assets/images/managem/ds-subtabs-stock.webp" width="1600" height="64" alt="Stock Control sub-tabs from Dashboard to Stock Take" loading="lazy" decoding="async"></a></div>
+    <figcaption><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+  </article>
+      
+  <article class="dsx-comp dsx-comp--wide">
+    <div class="dsx-comp__text">
+      <h3>Pipeline</h3>
+      <p class="dsx-comp__purpose">Show where work sits in a process at a glance.</p>
+      <dl>
+        <div><dt>Anatomy</dt><dd>Stage label · count · connecting arrow</dd></div>
+        <div><dt>Variants</dt><dd>Enquiry pipeline; factory funnel with progress bars</dd></div>
+        <div><dt>Behaviour</dt><dd>Stages are selectable; the active stage fills sky 50</dd></div>
+      </dl>
+    </div>
+    <figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/ds-pipeline.webp" data-zoom data-caption="Enquiry pipeline with counts from new lead to invoiced" aria-label="Enlarge: Enquiry pipeline with counts from new lead to invoiced"><img src="../../../assets/images/managem/ds-pipeline.webp" width="1600" height="108" alt="Enquiry pipeline with counts from new lead to invoiced" loading="lazy" decoding="async"></a></div>
+    <figcaption><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+  </article>
+      
+  <article class="dsx-comp">
+    <div class="dsx-comp__text">
+      <h3>Drawer</h3>
+      <p class="dsx-comp__purpose">Create or edit a record without losing the list behind it.</p>
+      <dl>
+        <div><dt>Anatomy</dt><dd>Header with close · scrolling body · footer actions</dd></div>
+        <div><dt>Variants</dt><dd>Form drawer (Invite user); review drawer (Take-On)</dd></div>
+        <div><dt>Behaviour</dt><dd>Slides in from the right over a dimmed page (200ms); full width on mobile</dd></div>
+      </dl>
+    </div>
+    <figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/ds-drawer.webp" data-zoom data-caption="Invite new user drawer with name, email, role and a toggle; empty space in its body trimmed" aria-label="Enlarge: Invite new user drawer with name, email, role and a toggle; empty space in its body trimmed"><img src="../../../assets/images/managem/ds-drawer.webp" width="960" height="837" alt="Invite new user drawer with name, email, role and a toggle; empty space in its body trimmed" loading="lazy" decoding="async"></a></div>
+    <figcaption><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+  </article>
+      
+  <article class="dsx-comp">
+    <div class="dsx-comp__text">
+      <h3>Form fields</h3>
+      <p class="dsx-comp__purpose">Consistent capture across every form.</p>
+      <dl>
+        <div><dt>Anatomy</dt><dd>12/500 label above · 9×12px input · 7px radius · required asterisk</dd></div>
+        <div><dt>Variants</dt><dd>Text, select, textarea, two-column row, toggle</dd></div>
+        <div><dt>Behaviour</dt><dd>Focus: sky border with a 3px sky ring</dd></div>
+      </dl>
+    </div>
+    <figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/ds-form-focus.webp" data-zoom data-caption="New Enquiry customer information form with a focused field" aria-label="Enlarge: New Enquiry customer information form with a focused field"><img src="../../../assets/images/managem/ds-form-focus.webp" width="1600" height="626" alt="New Enquiry customer information form with a focused field" loading="lazy" decoding="async"></a></div>
+    <figcaption><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+  </article>
+      
+  <article class="dsx-comp dsx-comp--wide">
+    <div class="dsx-comp__text">
+      <h3>Quick actions</h3>
+      <p class="dsx-comp__purpose">Shortcuts to the most common tasks from the dashboard.</p>
+      <dl>
+        <div><dt>Anatomy</dt><dd>40px sky icon tile · title · sub-line</dd></div>
+        <div><dt>Variants</dt><dd>—</dd></div>
+        <div><dt>Behaviour</dt><dd>Hover: sky border and medium shadow</dd></div>
+      </dl>
+    </div>
+    <figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/ds-quick-actions.webp" data-zoom data-caption="Four quick action cards on the dashboard" aria-label="Enlarge: Four quick action cards on the dashboard"><img src="../../../assets/images/managem/ds-quick-actions.webp" width="1600" height="165" alt="Four quick action cards on the dashboard" loading="lazy" decoding="async"></a></div>
+    <figcaption><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+  </article>
+      
+  <article class="dsx-comp">
+    <div class="dsx-comp__text">
+      <h3>Empty state</h3>
+      <p class="dsx-comp__purpose">Explain a screen that has nothing to show yet.</p>
+      <dl>
+        <div><dt>Anatomy</dt><dd>64px icon circle · heading · message · action</dd></div>
+        <div><dt>Variants</dt><dd>—</dd></div>
+        <div><dt>Behaviour</dt><dd>Used in the prototype for modules not yet designed</dd></div>
+      </dl>
+    </div>
+    <figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/ds-empty.webp" data-zoom data-caption="Empty state with an icon, a heading and a documentation link" aria-label="Enlarge: Empty state with an icon, a heading and a documentation link"><img src="../../../assets/images/managem/ds-empty.webp" width="1600" height="406" alt="Empty state with an icon, a heading and a documentation link" loading="lazy" decoding="async"></a></div>
+    <figcaption><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+  </article>
+    </div>
+    <h3 class="mx-subh">Take-On components built on the same system</h3>
+    <div class="dsx-crops dsx-crops--to">
+      <figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/ds-to-stepper.webp" data-zoom data-caption="Stepper" aria-label="Enlarge: Take-On eleven-step progress bar"><img src="../../../assets/images/managem/ds-to-stepper.webp" width="1600" height="72" alt="Take-On eleven-step progress bar" loading="lazy" decoding="async"></a></div>
+    <figcaption><span>Stepper</span><span class="mx-src">Take-On prototype · sample data</span></figcaption>
+  </figure>
+      <figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/ds-to-dropzone-files.webp" data-zoom data-caption="Upload area" aria-label="Enlarge: Take-On upload area with files marked encrypted and scanned"><img src="../../../assets/images/managem/ds-to-dropzone-files.webp" width="1164" height="646" alt="Take-On upload area with files marked encrypted and scanned" loading="lazy" decoding="async"></a></div>
+    <figcaption><span>Upload area</span><span class="mx-src">Take-On prototype · sample data</span></figcaption>
+  </figure>
+      <figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/to-07-record-1600.webp" data-zoom data-caption="Review drawer" aria-label="Enlarge: Take-On review drawer showing the source of an extracted record"><img src="../../../assets/images/managem/to-07-record-1600.webp" srcset="../../../assets/images/managem/to-07-record-1600.webp 1600w, ../../../assets/images/managem/to-07-record-960.webp 960w" sizes="(min-width: 1264px) 600px, 100vw" width="1600" height="1000" alt="Take-On review drawer showing the source of an extracted record" loading="lazy" decoding="async"></a></div>
+    <figcaption><span>Review drawer</span><span class="mx-src">Take-On prototype · sample data</span></figcaption>
+  </figure>
+    </div></div>
+  </section>
+    
+  <section class="mx-sec" id="states" aria-labelledby="states-h" data-chapter>
+    <div class="wrap">
+    
+  <header class="mx-head">
+    <div class="mx-head__l">
+      <p class="mx-kicker"><span class="mx-kicker__n">05</span>Component states</p>
+      <h2 class="mx-h2" id="states-h">Only the states the prototypes actually have.</h2>
+    </div>
+    <p class="mx-intro">A state is listed as present only where the prototype’s styles define it and a screen uses it. Common patterns the prototypes do not include — saving indicators, success toasts, inline error messages — are not added here.</p>
+  </header>
+    
+  <div class="dsx-table dsx-table--matrix" role="region" aria-label="Component state matrix" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Component</th><th scope="col">Default</th><th scope="col">Hover</th><th scope="col">Focus</th><th scope="col">Active / selected</th><th scope="col">Disabled</th><th scope="col">Expanded / open</th><th scope="col">Loading</th><th scope="col">Empty</th></tr></thead>
+      <tbody><tr><th scope="row">Nav item</th><td><span class="dsx-y" aria-label="Present">●</span></td><td><span class="dsx-y" aria-label="Present">●</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-y" aria-label="Present">●</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-y" aria-label="Present">●</span> collapse</td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td></tr><tr><th scope="row">Button</th><td><span class="dsx-y" aria-label="Present">●</span></td><td><span class="dsx-y" aria-label="Present">●</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td>Take-On only</td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td></tr><tr><th scope="row">Input / select</th><td><span class="dsx-y" aria-label="Present">●</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-y" aria-label="Present">●</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td></tr><tr><th scope="row">Search</th><td><span class="dsx-y" aria-label="Present">●</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-y" aria-label="Present">●</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td></tr><tr><th scope="row">Table row</th><td><span class="dsx-y" aria-label="Present">●</span></td><td><span class="dsx-y" aria-label="Present">●</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-y" aria-label="Present">●</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td></tr><tr><th scope="row">Tab / sub-tab</th><td><span class="dsx-y" aria-label="Present">●</span></td><td><span class="dsx-y" aria-label="Present">●</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-y" aria-label="Present">●</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td></tr><tr><th scope="row">Pager</th><td><span class="dsx-y" aria-label="Present">●</span></td><td><span class="dsx-y" aria-label="Present">●</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-y" aria-label="Present">●</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td></tr><tr><th scope="row">Checkbox</th><td><span class="dsx-y" aria-label="Present">●</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-y" aria-label="Present">●</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td></tr><tr><th scope="row">Toggle</th><td><span class="dsx-y" aria-label="Present">●</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-y" aria-label="Present">●</span> on</td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td></tr><tr><th scope="row">KPI / quick action</th><td><span class="dsx-y" aria-label="Present">●</span></td><td><span class="dsx-y" aria-label="Present">●</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td></tr><tr><th scope="row">Drawer / bulk bar</th><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-y" aria-label="Present">●</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td></tr><tr><th scope="row">Take-On processing</th><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-y" aria-label="Present">●</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td></tr><tr><th scope="row">Module screen</th><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-n" aria-label="Not present">—</span></td><td><span class="dsx-y" aria-label="Present">●</span></td></tr></tbody>
+    </table>
+  </div>
+    <ul class="dsx-notes" role="list">
+      <li><strong>Validation</strong> appears in Take-On as gating: “Accept & continue” stays disabled until every consent is ticked, and the upload step lists what is still required.</li>
+      <li><strong>Error</strong> is expressed as status — Overdue, Error in the Sage sync, Low confidence — not as form error messages.</li>
+      <li><strong>Focus</strong> styling is defined for inputs and search. Buttons and nav items rely on the browser’s default focus outline.</li>
+    </ul>
+    <div class="dsx-crops dsx-crops--states">
+      <figure class="mx-shot dsx-btnshot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/ds-to-btn-disabled.webp" data-zoom data-caption="Disabled until consent" aria-label="Enlarge: Take-On Accept and continue button in its disabled state"><img src="../../../assets/images/managem/ds-to-btn-disabled.webp" width="324" height="74" alt="Take-On Accept and continue button in its disabled state" loading="lazy" decoding="async"></a></div>
+    <figcaption><span>Disabled until consent</span><span class="mx-src">Take-On prototype · sample data</span></figcaption>
+  </figure>
+      <figure class="mx-shot dsx-btnshot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/ds-to-btn-enabled.webp" data-zoom data-caption="Enabled" aria-label="Enlarge: The same button enabled after consent"><img src="../../../assets/images/managem/ds-to-btn-enabled.webp" width="324" height="74" alt="The same button enabled after consent" loading="lazy" decoding="async"></a></div>
+    <figcaption><span>Enabled</span><span class="mx-src">Take-On prototype · sample data</span></figcaption>
+  </figure>
+      <figure class="mx-shot dsx-small">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/ds-kpi-hover.webp" data-zoom data-caption="KPI hover" aria-label="Enlarge: KPI card in its hover state, raised with a shadow"><img src="../../../assets/images/managem/ds-kpi-hover.webp" width="552" height="238" alt="KPI card in its hover state, raised with a shadow" loading="lazy" decoding="async"></a></div>
+    <figcaption><span>KPI hover</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+      <figure class="mx-shot dsx-full">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/ds-row-hover.webp" data-zoom data-caption="Row hover" aria-label="Enlarge: Table row in its hover state"><img src="../../../assets/images/managem/ds-row-hover.webp" width="1600" height="82" alt="Table row in its hover state" loading="lazy" decoding="async"></a></div>
+    <figcaption><span>Row hover</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+    </div></div>
+  </section>
+    
+  <section class="mx-sec mx-sec--soft" id="data" aria-labelledby="data-h" data-chapter>
+    <div class="wrap">
+    
+  <header class="mx-head">
+    <div class="mx-head__l">
+      <p class="mx-kicker"><span class="mx-kicker__n">06</span>Data presentation</p>
+      <h2 class="mx-h2" id="data-h">Important information first, in words people can act on.</h2>
+    </div>
+    <p class="mx-intro">The six client conversations pointed to one need: see important business information immediately instead of searching through screens. These patterns are how the system answers that.</p>
+  </header>
+    <div class="dsx-patterns">
+      <div><h3>KPIs at the top</h3><p>Every module that has headline figures opens with KPI cards before any list.</p></div>
+      <div><h3>Financial figures in mono</h3><p>Amounts, invoice numbers and references use the monospaced face, right-aligned in tables.</p></div>
+      <div><h3>Semantic status</h3><p>Emerald, amber, red, sky and purple badges, each with a word: Paid, Partial, Overdue, Unpaid, Duplicate.</p></div>
+      <div><h3>Messages on the dashboard</h3><p>A messages banner sits above the KPIs, and the bell carries an unread dot.</p></div>
+      <div><h3>Search everywhere</h3><p>A search field in the top bar on every screen, plus a search field in each list’s toolbar.</p></div>
+    </div>
+    <div class="dsx-crops">
+      <figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/mg-invoices-1600.webp" data-zoom data-caption="Invoices: totals first, status on every row" aria-label="Enlarge: Invoices with totals, then a status per row"><img src="../../../assets/images/managem/mg-invoices-1600.webp" srcset="../../../assets/images/managem/mg-invoices-1600.webp 1600w, ../../../assets/images/managem/mg-invoices-960.webp 960w" sizes="(min-width: 1264px) 1200px, 100vw" width="1600" height="1000" alt="Invoices with totals, then a status per row" loading="lazy" decoding="async"></a></div>
+    <figcaption><span>Invoices: totals first, status on every row</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+      <figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/ds-kpi-sage.webp" data-zoom data-caption="Accounting sync state as KPIs" aria-label="Enlarge: Sage invoice KPIs showing synced, pending and error counts"><img src="../../../assets/images/managem/ds-kpi-sage.webp" width="1600" height="136" alt="Sage invoice KPIs showing synced, pending and error counts" loading="lazy" decoding="async"></a></div>
+    <figcaption><span>Accounting sync state as KPIs</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+      <figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/mg-detail-attention-1600.webp" data-zoom data-caption="Messages before figures" aria-label="Enlarge: Dashboard messages banner above the KPI cards"><img src="../../../assets/images/managem/mg-detail-attention-1600.webp" srcset="../../../assets/images/managem/mg-detail-attention-1600.webp 1600w, ../../../assets/images/managem/mg-detail-attention-960.webp 960w" sizes="(min-width: 1264px) 600px, 100vw" width="1600" height="387" alt="Dashboard messages banner above the KPI cards" loading="lazy" decoding="async"></a></div>
+    <figcaption><span>Messages before figures</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+    </div></div>
+  </section>
+    
+  <section class="mx-sec" id="forms" aria-labelledby="forms-h" data-chapter>
+    <div class="wrap">
+    
+  <header class="mx-head">
+    <div class="mx-head__l">
+      <p class="mx-kicker"><span class="mx-kicker__n">07</span>Forms and workflow</p>
+      <h2 class="mx-h2" id="forms-h">Steps you can see, and a review before committing.</h2>
+    </div>
+    <p class="mx-intro">Longer forms are split into visible steps and end in a review of everything entered. Take-On applies the same pattern at a larger scale, with eleven steps and a consent step that gates progress.</p>
+  </header>
+    <div class="dsx-flow">
+      <figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/mg-new-enquiry-1600.webp" data-zoom data-caption="New Enquiry · step 1 of 4: grouped fields, required marks" aria-label="Enlarge: New Enquiry step one: customer information in a two-column layout"><img src="../../../assets/images/managem/mg-new-enquiry-1600.webp" srcset="../../../assets/images/managem/mg-new-enquiry-1600.webp 1600w, ../../../assets/images/managem/mg-new-enquiry-960.webp 960w" sizes="(min-width: 1264px) 600px, 100vw" width="1600" height="1000" alt="New Enquiry step one: customer information in a two-column layout" loading="lazy" decoding="async"></a></div>
+    <figcaption><span>New Enquiry · step 1 of 4: grouped fields, required marks</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+      <figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/mg-detail-review-1600.webp" data-zoom data-caption="New Enquiry · step 4: review, then one commit" aria-label="Enlarge: New Enquiry review step with a single Create Enquiry button"><img src="../../../assets/images/managem/mg-detail-review-1600.webp" srcset="../../../assets/images/managem/mg-detail-review-1600.webp 1600w, ../../../assets/images/managem/mg-detail-review-960.webp 960w" sizes="(min-width: 1264px) 600px, 100vw" width="1600" height="787" alt="New Enquiry review step with a single Create Enquiry button" loading="lazy" decoding="async"></a></div>
+    <figcaption><span>New Enquiry · step 4: review, then one commit</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+      <figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/to-02-consent-1600.webp" data-zoom data-caption="Take-On · consent gates progress" aria-label="Enlarge: Take-On consent checklist gating the next step"><img src="../../../assets/images/managem/to-02-consent-1600.webp" srcset="../../../assets/images/managem/to-02-consent-1600.webp 1600w, ../../../assets/images/managem/to-02-consent-960.webp 960w" sizes="(min-width: 1264px) 600px, 100vw" width="1600" height="1000" alt="Take-On consent checklist gating the next step" loading="lazy" decoding="async"></a></div>
+    <figcaption><span>Take-On · consent gates progress</span><span class="mx-src">Take-On prototype · sample data</span></figcaption>
+  </figure>
+      <figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/to-10-confirm-1600.webp" data-zoom data-caption="Take-On · outstanding issues before submitting" aria-label="Enlarge: Take-On final confirmation listing outstanding issues"><img src="../../../assets/images/managem/to-10-confirm-1600.webp" srcset="../../../assets/images/managem/to-10-confirm-1600.webp 1600w, ../../../assets/images/managem/to-10-confirm-960.webp 960w" sizes="(min-width: 1264px) 600px, 100vw" width="1600" height="1000" alt="Take-On final confirmation listing outstanding issues" loading="lazy" decoding="async"></a></div>
+    <figcaption><span>Take-On · outstanding issues before submitting</span><span class="mx-src">Take-On prototype · sample data</span></figcaption>
+  </figure>
+    </div>
+    <p class="mx-note">After Create Enquiry, the prototype returns to the enquiry list. It does not show a separate saving or saved message.</p></div>
+  </section>
+    
+  <section class="mx-sec mx-sec--soft" id="responsive" aria-labelledby="responsive-h" data-chapter>
+    <div class="wrap">
+    
+  <header class="mx-head">
+    <div class="mx-head__l">
+      <p class="mx-kicker"><span class="mx-kicker__n">08</span>Responsive behaviour</p>
+      <h2 class="mx-h2" id="responsive-h">The same system, rearranged for smaller screens.</h2>
+    </div>
+    <p class="mx-intro">The redesign prototype defines five breakpoints. Below 900px the sidebar moves off-canvas behind a menu button; below 640px tables become stacked cards that keep each label.</p>
+  </header>
+    
+  <div class="dsx-table" role="region" aria-label="Breakpoints" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Breakpoint</th><th scope="col">What changes</th></tr></thead>
+      <tbody><tr><th scope="row">≤ 1024px</th><td>KPI grid from 4 to 2 columns</td></tr><tr><th scope="row">≤ 900px</th><td>Sidebar off-canvas with an overlay; menu button appears; search fills the bar</td></tr><tr><th scope="row">≤ 800px</th><td>Quick actions and mini stats to 2 columns</td></tr><tr><th scope="row">≤ 720px</th><td>Sign-in panel stacks</td></tr><tr><th scope="row">≤ 640px</th><td>KPIs to 1 column; pipeline to 2; drawer full width; page title 20px; tables become labelled cards; breadcrumb drops Home</td></tr></tbody>
+    </table>
+  </div>
+    <div class="dsx-phones">
+      <figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/ds-m-dashboard.webp" data-zoom data-caption="Dashboard" aria-label="Enlarge: Dashboard at phone width"><img src="../../../assets/images/managem/ds-m-dashboard.webp" width="780" height="1688" alt="Dashboard at phone width" loading="lazy" decoding="async"></a></div>
+    <figcaption><span>Dashboard</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+      <figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/ds-m-menu.webp" data-zoom data-caption="Off-canvas navigation" aria-label="Enlarge: Off-canvas sidebar open over the dashboard at phone width"><img src="../../../assets/images/managem/ds-m-menu.webp" width="780" height="1688" alt="Off-canvas sidebar open over the dashboard at phone width" loading="lazy" decoding="async"></a></div>
+    <figcaption><span>Off-canvas navigation</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+      <figure class="mx-shot">
+    <div class="mx-frame-wrap"><a class="zoom mx-frame" href="../../../assets/images/managem/ds-m-invoices.webp" data-zoom data-caption="Table as cards" aria-label="Enlarge: Invoices as stacked labelled cards at phone width"><img src="../../../assets/images/managem/ds-m-invoices.webp" width="780" height="1688" alt="Invoices as stacked labelled cards at phone width" loading="lazy" decoding="async"></a></div>
+    <figcaption><span>Table as cards</span><span class="mx-src">Core redesign prototype · demo data</span></figcaption>
+  </figure>
+    </div></div>
+  </section>
+    
+  <section class="mx-sec" id="access" aria-labelledby="access-h" data-chapter>
+    <div class="wrap">
+    
+  <header class="mx-head">
+    <div class="mx-head__l">
+      <p class="mx-kicker"><span class="mx-kicker__n">09</span>Accessibility and usability</p>
+      <h2 class="mx-h2" id="access-h">What the system does well, and what I propose to strengthen.</h2>
+    </div>
+    <p class="mx-intro">Contrast was measured for every text colour pair the system uses. No formal accessibility audit has been carried out, and no WCAG compliance is claimed. The improvements below are my proposals; they have not been adopted by GEMIS.</p>
+  </header>
+    <div class="dsx-cols">
+      <div>
+        <h3 class="dsx-h3">Built in</h3>
+        <ul class="dsx-notes" role="list">
+          <li>Status always has a word as well as a colour.</li>
+          <li>Labels sit above fields; required fields are marked.</li>
+          <li>Inputs and search have a visible focus ring.</li>
+          <li>Navigation always shows the current page, breadcrumb and signed-in role.</li>
+          <li>The same patterns repeat in every module, so learning one screen helps with the next.</li>
+          <li>Take-On’s navy primary button and the landing page’s navy-on-teal button already pass comfortably.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="dsx-h3">Contrast in the current implementation</h3>
+        
+  <div class="dsx-table" role="region" aria-label="Measured contrast ratios in the current implementation" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Pair</th><th scope="col">Ratio</th><th scope="col">Result</th></tr></thead>
+      <tbody><tr><th scope="row">Text #0F172A on white</th><td>17.9 : 1</td><td>Meets 4.5 : 1</td></tr><tr><th scope="row">Secondary text #64748B on white</th><td>4.8 : 1</td><td>Meets 4.5 : 1</td></tr><tr><th scope="row">Badge text on its tint (all five)</th><td>4.5–6.0 : 1</td><td>Meets 4.5 : 1</td></tr><tr><th scope="row">Nav text #CBD5E1 on navy</th><td>12.0 : 1</td><td>Meets 4.5 : 1</td></tr><tr><th scope="row">Take-On primary: white on navy #0F172A</th><td>17.9 : 1</td><td>Meets 4.5 : 1</td></tr><tr><th scope="row">Landing CTA: #0B1222 on teal #00BFA6</th><td>8.0 : 1</td><td>Meets 4.5 : 1</td></tr><tr><th scope="row">Product primary: white on sky #0EA5E9</th><td>2.8 : 1</td><td><strong>Below 4.5 : 1</strong></td></tr><tr><th scope="row">Sky text on white: links, active tab, invoice references</th><td>2.8 : 1</td><td><strong>Below 4.5 : 1</strong></td></tr><tr><th scope="row">KPI change up: emerald #10B981 on white</th><td>2.5 : 1</td><td><strong>Below 4.5 : 1</strong></td></tr><tr><th scope="row">KPI change down: red #EF4444 on white</th><td>3.8 : 1</td><td><strong>Below 4.5 : 1</strong></td></tr><tr><th scope="row">Tertiary text #94A3B8 on white</th><td>2.6 : 1</td><td><strong>Below 4.5 : 1</strong></td></tr></tbody>
+    </table>
+  </div>
+      </div>
+    </div>
+    <h3 class="mx-subh">Proposed improvements</h3>
+    
+  <div class="dsx-table" role="region" aria-label="Proposed contrast improvements" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Element</th><th scope="col">Current</th><th scope="col">Proposed</th><th scope="col">Ratio after</th><th scope="col">Why this value</th></tr></thead>
+      <tbody><tr><th scope="row">Primary button fill</th><td><span class="dsx-sw" style="--c:#0EA5E9" aria-hidden="true"></span><code>#0EA5E9</code> 2.8&nbsp;:&nbsp;1</td><td><span class="dsx-sw" style="--c:#0369A1" aria-hidden="true"></span><code>#0369A1</code> sky 700</td><td>5.9 : 1</td><td>Stays in the sky family, so the brand accent is unchanged in hue; hover moves to sky 800 #075985 (7.6 : 1).</td></tr><tr><th scope="row">Links, active tab, references</th><td><span class="dsx-sw" style="--c:#0EA5E9" aria-hidden="true"></span><code>#0EA5E9</code> 2.8&nbsp;:&nbsp;1</td><td><span class="dsx-sw" style="--c:#0369A1" aria-hidden="true"></span><code>#0369A1</code> sky 700</td><td>5.9 : 1</td><td>Text in the accent colour needs the darker shade; #0EA5E9 stays for focus rings, icons on navy (6.4 : 1) and fills.</td></tr><tr><th scope="row">Tab underline, selected borders</th><td><span class="dsx-sw" style="--c:#0EA5E9" aria-hidden="true"></span><code>#0EA5E9</code> 2.8&nbsp;:&nbsp;1</td><td><span class="dsx-sw" style="--c:#0284C7" aria-hidden="true"></span><code>#0284C7</code> sky 600</td><td>4.1 : 1</td><td>Non-text indicators need 3 : 1; sky 600 is already the system’s hover colour.</td></tr><tr><th scope="row">KPI change, up</th><td><span class="dsx-sw" style="--c:#10B981" aria-hidden="true"></span><code>#10B981</code> 2.5&nbsp;:&nbsp;1</td><td><span class="dsx-sw" style="--c:#047857" aria-hidden="true"></span><code>#047857</code></td><td>5.5 : 1</td><td>The emerald badge text colour the system already uses.</td></tr><tr><th scope="row">KPI change, down</th><td><span class="dsx-sw" style="--c:#EF4444" aria-hidden="true"></span><code>#EF4444</code> 3.8&nbsp;:&nbsp;1</td><td><span class="dsx-sw" style="--c:#B91C1C" aria-hidden="true"></span><code>#B91C1C</code></td><td>6.5 : 1</td><td>The red badge text colour the system already uses.</td></tr><tr><th scope="row">Tertiary text</th><td><span class="dsx-sw" style="--c:#94A3B8" aria-hidden="true"></span><code>#94A3B8</code> 2.6&nbsp;:&nbsp;1</td><td><span class="dsx-sw" style="--c:#64748B" aria-hidden="true"></span><code>#64748B</code> for readable text</td><td>4.8 : 1</td><td>Keep #94A3B8 only for disabled states and decorative icons.</td></tr></tbody>
+    </table>
+  </div>
+    <div class="dsx-prop" aria-label="Current and proposed colours side by side">
+      <div class="dsx-prop__col">
+        <span class="dsx-prop__tag">Current implementation</span>
+        <div class="dsx-prop__row"><span class="dsx-pbtn" style="--c:#0EA5E9">+ New invoice</span><span class="r">2.8 : 1</span></div>
+        <div class="dsx-prop__row"><span class="dsx-ptab" style="--c:#0EA5E9">Dashboard</span><span class="dsx-pmono" style="--c:#0EA5E9">INV-2026-0142</span><span class="r">2.8 : 1</span></div>
+        <div class="dsx-prop__row"><span class="dsx-pd" style="--c:#10B981">↑ +5 vs prior</span><span class="dsx-pd" style="--c:#EF4444">↓ −2% vs prior</span><span class="r">2.5 · 3.8 : 1</span></div>
+        <div class="dsx-prop__row"><span class="dsx-pt" style="--c:#94A3B8">Showing 1–10 of 243</span><span class="r">2.6 : 1</span></div>
+      </div>
+      <div class="dsx-prop__col dsx-prop__col--new">
+        <span class="dsx-prop__tag">Proposed · not yet adopted</span>
+        <div class="dsx-prop__row"><span class="dsx-pbtn" style="--c:#0369A1">+ New invoice</span><span class="r">5.9 : 1</span></div>
+        <div class="dsx-prop__row"><span class="dsx-ptab" style="--c:#0369A1;--b:#0284C7">Dashboard</span><span class="dsx-pmono" style="--c:#0369A1">INV-2026-0142</span><span class="r">5.9 : 1</span></div>
+        <div class="dsx-prop__row"><span class="dsx-pd" style="--c:#047857">↑ +5 vs prior</span><span class="dsx-pd" style="--c:#B91C1C">↓ −2% vs prior</span><span class="r">5.5 · 6.5 : 1</span></div>
+        <div class="dsx-prop__row"><span class="dsx-pt" style="--c:#64748B">Showing 1–10 of 243</span><span class="r">4.8 : 1</span></div>
+      </div>
+    </div>
+    <p class="mx-note">Ratios calculated with the WCAG relative-luminance formula against white. The approved product design, and every capture on this page, still uses the current values.</p></div>
+  </section>
+    
+  <section class="mx-sec mx-sec--soft" id="future" aria-labelledby="future-h" data-chapter>
+    <div class="wrap">
+    
+  <header class="mx-head">
+    <div class="mx-head__l">
+      <p class="mx-kicker"><span class="mx-kicker__n">10</span>Supporting future work</p>
+      <h2 class="mx-h2" id="future-h">A foundation new screens can start from.</h2>
+    </div>
+    <p class="mx-intro">Because colour, type, components and states are already defined, a new ManaGEM module or GEMIS experience starts from known parts rather than a blank page — as Take-On and the landing page already did.</p>
+  </header>
+    <div class="dsx-patterns dsx-patterns--3">
+      <div><h3>New modules</h3><p>Reuse the page structure: header, KPI cards, tabs, toolbar, table, pager.</p></div>
+      <div><h3>New experiences</h3><p>Take-On shows a new flow built on the same tokens and components with only a few additions: stepper, upload area, confidence badges.</p></div>
+      <div><h3>Marketing</h3><p>The landing page shows how the system extends for marketing — a teal accent, darker bands — while the product screens stay unchanged.</p></div>
+    </div></div>
+  </section>
+    <section class="mf-return" aria-labelledby="dsx-return-h">
+      <div class="wrap">
+        <h2 id="dsx-return-h">See the system in the case study.</h2>
+        <p>How the design system fits the wider ManaGEM redesign — from the navigation decision to Take-On.</p>
+        <a class="btn btn--secondary" href="../../../work/managem/"><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8H3M7 4 3 8l4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span>Back to the case study</span></a>
+      </div>
+    </section>
+    
+    <nav class="mx-next" aria-label="Next case study">
+      <div class="wrap">
+        <a class="mx-next__link" href="../../../work/wastemart/">
+          <span class="mx-next__label">Next project</span>
+          <span class="mx-next__name">WasteMart</span>
+          <span class="mx-next__sum">A driver app where the next step is always obvious.</span>
+          <span class="mx-next__btn"><span>View case study</span><svg class="i" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span>
+        </a>
+      </div>
+    </nav>
+  </article>
+</main>
+
+  <footer class="footer">
+    <div class="wrap footer__grid">
+      <div>
+        <p class="footer__name">Sphamandla Xaba</p>
+        <p class="footer__muted">Product Designer · UI/UX<br>Johannesburg, South Africa</p>
+      </div>
+      <nav aria-label="Work">
+        <p class="footer__head">Work</p>
+        <ul role="list">
+          <li><a href="../../../work/managem/">ManaGEM ERP</a></li>
+          <li><a href="../../../work/wastemart/">WasteMart</a></li>
+          <li><a href="../../../work/gemis/">GEMIS Website</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Contact">
+        <p class="footer__head">Contact</p>
+        <ul role="list">
+          <li><a href="mailto:sphamandaxaba@gmail.com">Email</a></li>
+          <li><a href="https://www.linkedin.com/in/sphamandla-xaba-ba1602287/" target="_blank" rel="noopener">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a></li>
+          <li><a href="../../../assets/docs/Sphamandla-Xaba-CV.pdf" download>CV (PDF)</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="wrap footer__base">
+      <p>© 2026 Sphamandla Xaba</p>
+      <a href="#top">Back to top</a>
+    </div>
+  </footer>
+  <dialog class="viewer" data-viewer aria-label="Image viewer">
+    <form method="dialog" class="viewer__bar">
+      <p class="viewer__caption" data-viewer-caption></p>
+      <button class="btn btn--secondary" type="submit">Close</button>
+    </form>
+    <div class="viewer__stage"><img data-viewer-img alt=""></div>
+  </dialog>
+</body>
+</html>
