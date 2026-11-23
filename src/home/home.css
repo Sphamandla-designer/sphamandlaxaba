@@ -257,3 +257,12 @@ main { padding: clamp(14px, 2vw, 28px) clamp(14px, 2.4vw, 32px) 8px; }
 @media (max-width: 520px) { .bar__time { display: none; } .bar { gap: 10px; } }
 .cta__rows li > a:not(.btn) { display: inline-flex; align-items: center; min-height: 44px; }
 .foot a { display: inline-flex; align-items: center; min-height: 44px; } .foot { align-items: center; }
+
+/* Banner without artwork: the headline carries it, on two lines (three on phones) */
+.banner { grid-template-columns: minmax(0, 1fr); container-type: inline-size; min-height: 0; padding-block: clamp(32px, 5vw, 72px); }
+.banner h1 { font-size: clamp(1.625rem, 6.4cqi, 4.75rem); line-height: 1; }
+.banner h1 span { display: block; color: #fff; white-space: nowrap; }
+.banner h1 span + span { color: rgba(255, 255, 255, 0.58); }
+.banner__lede { max-width: 38rem; }
+@container (max-width: 600px) { .banner h1 { text-wrap: balance; line-height: 1.04; } .banner h1 span { display: inline; white-space: normal; } }
+@container (max-width: 600px) { .banner h1 { font-size: clamp(1.625rem, 10.5cqi, 2.5rem); } }

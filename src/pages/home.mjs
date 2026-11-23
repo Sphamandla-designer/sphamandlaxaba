@@ -131,16 +131,12 @@ const overview = (ctx) => `
     <div class="banner card">
       <div class="banner__copy">
         <p class="eyebrow"><i aria-hidden="true"></i>Product Designer · ${esc(site.location)}</p>
-        <h1 id="hero-h">Designing complex systems. <span>Making them feel simple.</span></h1>
+        <h1 id="hero-h"><span>Designing complex systems.</span> <span>Making them feel simple.</span></h1>
         <p class="banner__lede">I’m Sphamandla Xaba. I design enterprise platforms, digital products and intelligent user experiences.</p>
         <p class="banner__cta">
           <a class="btn btn--accent" href="#work"><span>Explore selected work</span>${ic.arrow}</a>
           <a class="btn btn--ghost" href="${url(ctx, site.cv)}" download><span>View curriculum vitae</span>${ic.down}</a>
         </p>
-      </div>
-      <div class="banner__art" aria-hidden="true">
-        <div class="banner__screen">${img(ctx, 'managem/mg-dashboard', '', { sizes: '(min-width: 1100px) 560px, 80vw', eager: true })}</div>
-        <div class="banner__phone">${img(ctx, 'wastemart/06-jobs', '', { sizes: '160px' })}</div>
       </div>
     </div>
     <ul class="stats" role="list">
