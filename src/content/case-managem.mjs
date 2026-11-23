@@ -35,27 +35,59 @@ const meta = [
   ['Category', 'Enterprise software / ERP'],
 ];
 
+// The dashboard, split into the layers it is built from. Each layer is the
+// same screenshot cropped to one region (x, y, w, h in the 1440 × 900 capture)
+// and lifted off the screen in 3D; scrolling lowers them back into place.
+const LAYERS = [
+  ['Navigation', 0, 0, 240, 900, 150],
+  ['Search', 240, 0, 1200, 56, 60],
+  ['Messages', 264, 146, 1152, 56, 250],
+  ['Headline figures', 264, 216, 1152, 119, 190],
+  ['Sales summary', 264, 351, 737, 346, 110],
+  ['Performance', 1017, 351, 399, 346, 300],
+  ['Current projects', 264, 713, 1152, 187, 80],
+];
+const pct = (n) => `${(+n).toFixed(3)}%`;
+const layer = ([label, x, y, w, h, z], i) => {
+  const css = [
+    `left:${pct((x / 1440) * 100)}`, `top:${pct((y / 900) * 100)}`, `width:${pct((w / 1440) * 100)}`, `height:${pct((h / 900) * 100)}`,
+    `background-size:${pct((1440 / w) * 100)} ${pct((900 / h) * 100)}`,
+    `background-position:${pct(w === 1440 ? 0 : (x / (1440 - w)) * 100)} ${pct(h === 900 ? 0 : (y / (900 - h)) * 100)}`,
+    `--z:${z}`, `--i:${i}`,
+  ].join(';');
+  return `<span class="mc-layer" style="${css}"><b>${label}</b></span>`;
+};
+
 const hero = (ctx) => `
-  <header class="mq-hero" aria-labelledby="mq-title">
-    <div class="wrap">
-      <a class="back" href="${url(ctx, 'index.html#work')}">← Selected work</a>
-      <div class="mq-hero__text">
+  <header class="mc-hero" data-mc-hero aria-labelledby="mq-title" style="--mc-img:url('${url(ctx, 'assets/images/managem/mg-dashboard-1600.webp')}');--mc-img-s:url('${url(ctx, 'assets/images/managem/mg-dashboard-960.webp')}')">
+    <div class="mc-hero__pin">
+      <div class="mc-hero__glow" aria-hidden="true"></div>
+      <div class="wrap mc-hero__copy">
+        <a class="back" href="${url(ctx, 'index.html#work')}">← Selected work</a>
         <p class="mq-hero__cat">Case study · ManaGEM ERP redesign</p>
-        <h1 class="mq-title" id="mq-title">Reimagining the experience behind everyday business operations.</h1>
+        <h1 class="mq-title" id="mq-title" data-mc-split>Reimagining the experience behind everyday business operations.</h1>
+        <p class="mc-hero__cue" aria-hidden="true"><span></span>Scroll to assemble the interface</p>
       </div>
-      <div class="mq-hero__under">
-        <p class="mq-sub">How do you make an established ERP easier for new clients to understand, without disrupting the familiarity existing clients depend on?</p>
-        <dl class="mq-herometa">${meta.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>
-      </div>
-      <div class="mq-hero__shot">
-        <div class="mq-browser">
+      <div class="mc-stage">
+        <div class="mc-plane" data-mc-plane>
           <div class="mq-browser__bar" aria-hidden="true"><i></i><i></i><i></i><span>ManaGEM · Dashboard</span></div>
-          ${shot(ctx, 'mg-dashboard', 'The redesigned ManaGEM dashboard: grouped navigation, a messages banner, four headline figures, a sales summary and current projects', { sizes: '(min-width: 1264px) 1200px, 100vw', eager: true })}
+          <div class="mc-screen">
+            ${shot(ctx, 'mg-dashboard', 'The redesigned ManaGEM dashboard: grouped navigation, a messages banner, four headline figures, a sales summary and current projects', { sizes: '(min-width: 1264px) 1200px, 100vw', eager: true })}
+            <div class="mc-layers" aria-hidden="true">${LAYERS.map(layer).join('')}</div>
+          </div>
         </div>
-        <p class="mq-hero__cap"><span>The redesigned dashboard.</span><span class="mx-src">${SRC_CORE}</span>${link(ctx, FULL, 'Read the full case study')}</p>
       </div>
+      <p class="mc-hero__cap"><span>The redesigned dashboard.</span><span class="mx-src">${SRC_CORE}</span></p>
     </div>
-  </header>`;
+  </header>
+  <section class="mc-statement" aria-label="The design question">
+    <div class="wrap">
+      <p class="mc-statement__k">The question</p>
+      <p class="mc-statement__q" data-mc-scrub>How do you make an established ERP easier for new clients to understand, without disrupting the familiarity existing clients depend on?</p>
+      <dl class="mq-herometa">${meta.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>
+      <p class="mc-statement__more">${link(ctx, FULL, 'Read the full case study')}</p>
+    </div>
+  </section>`;
 
 // ------------------------------------------------------- 2 · at a glance
 
@@ -87,12 +119,20 @@ const challenge = () =>
     `
     ${head({ id: 'challenge', n: '02', label: 'The challenge and discovery', title: 'Familiar to some clients, confusing to new ones.', intro: 'ManaGEM had grown feature by feature. Existing clients knew where everything was; new clients struggled to find functions and see how the system fitted together.' })}
     <div class="mq-discovery">
-      <div class="mq-discovery__item"><span class="mq-n">6</span><h3>Client phone conversations</h3><p>Conversations with six existing clients showed they wanted important business information visible immediately, instead of searching through several screens.</p></div>
+      <div class="mq-discovery__item"><span class="mq-n mc-count" data-mc-count="6">6</span><h3>Client phone conversations</h3><p>Conversations with six existing clients showed they wanted important business information visible immediately, instead of searching through several screens.</p></div>
       <div class="mq-discovery__item"><span class="mq-n">↳</span><h3>Product and complaints review</h3><p>With the manager and the full-stack developer, I reviewed existing complaints and the current product, including how features depend on one another.</p></div>
       <div class="mq-discovery__item"><span class="mq-n">→</span><h3>What it informed</h3><p>Dashboard KPIs, invoice presentation, visible messages, semantic status colours, and removing complexity that did not serve a task.</p></div>
     </div>`,
     { mod: 'soft' },
   );
+
+// A moving band of the modules ManaGEM covers (decorative; the same list is
+// in the At a glance paragraph).
+const MODULES = ['Enquiries', 'Quotes', 'Jobs', 'Stock', 'Invoicing', 'Debtors'];
+const marquee = () => `
+  <div class="mc-marquee" aria-hidden="true" data-mc-marquee>
+    <div class="mc-marquee__track">${[0, 1, 2].map(() => MODULES.map((m, i) => `<span${i % 2 ? ' class="is-fill"' : ''}>${m}</span>`).join('')).join('')}</div>
+  </div>`;
 
 // -------------------------------------------------- 4 · navigation
 
@@ -101,7 +141,7 @@ const navigation = (ctx) =>
     'navigation',
     `
     ${head({ id: 'navigation', n: '03', label: 'The signature decision', title: 'Navigation that new clients can read, and existing clients still recognise.', intro: 'The original sidebar expanded each section in place into long lists of sub-pages. The manager initially preferred to keep it, because existing clients were used to it. I proposed grouping related functions so people could reach them without opening nested sections.' })}
-    <div class="mq-navcmp">
+    <div class="mq-navcmp" data-mc-nav>
       <div class="mq-navcmp__orig">
         <p class="mx-compare__label"><span class="mx-compare__dot mx-compare__dot--before" aria-hidden="true"></span>Original interface</p>
         <div class="mq-navcmp__row">
@@ -205,6 +245,7 @@ export default {
     ${chapterNav(ctx, chapters, { name: 'ManaGEM', cta: `<a class="btn btn--primary mx-chapters__cta" href="${url(ctx, FULL)}">Full case study</a>` })}
     ${glance(ctx)}
     ${challenge(ctx)}
+    ${marquee()}
     ${navigation(ctx)}
     ${data(ctx)}
     ${system(ctx)}
