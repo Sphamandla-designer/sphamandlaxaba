@@ -64,13 +64,22 @@ src/                 build script, content, components, styles
 sitemap.xml robots.txt CONTENT-NEEDED.md                                 ← generated
 ```
 
-## Homepage
+## Homepage — SX / INTELLIGENCE
 
-`src/pages/home.mjs` with styles in `src/styles/07-home.css`, on the shared
-shell and design.md tokens. Order: hero, selected work, how I work,
-experience, contact. Each fact appears once, and every visual is a real
-project artefact (prototype captures and a prototype recording). The GEMIS
-tile is typographic until a capture of the site is added.
+The homepage is a self-contained page with its own shell, stylesheet and script:
+
+| File | Purpose |
+| --- | --- |
+| `src/pages/home.mjs` | Content and markup. All copy and data (dimensions, capabilities, projects, matrix, architecture layers) are plain arrays at the top |
+| `src/home/home.css` → `assets/css/home.css` | Design tokens, layout and motion |
+| `assets/js/home.js` | Intro, navigation state, map, selectors, matrix linking, canvas field |
+
+It shows exactly three case studies and links to the existing routes. Nothing on
+it is scored or measured: counts are literal counts of items on the page, the
+discipline matrix is categorical, and the only live value is the Johannesburg
+clock. The GEMIS panel uses a labelled placeholder until a capture of the site
+is added. The intro plays at most once every 12 hours and never with reduced
+motion. Fonts (Space Grotesk, IBM Plex Mono) are self-hosted under the OFL.
 
 ## ManaGEM case study
 
