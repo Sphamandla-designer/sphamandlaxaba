@@ -88,6 +88,14 @@ registered in `extraPages` in `src/build.mjs`. Token values in
 `TOKENS`/`TYPE_SCALE`/`RADII`/`SHADOWS` are read from the prototypes' own
 stylesheets. Document only components and states that exist in a prototype.
 
+**Cinematic layer.** `src/styles/06-managem-cine.css` and the "ManaGEM
+cinematic layer" block in `assets/js/main.js` add the 3D hero (the dashboard
+split into layers that settle into place on scroll; regions are listed in
+`LAYERS` in `case-managem.mjs`), word-reveal headings, the scrubbed question,
+section numerals, tilting screens, the navigation scene and the module band.
+The script only writes CSS variables; scrolling stays native. With reduced
+motion or without JavaScript the pages are static and complete.
+
 **Images.** `assets/images/managem/mg-*`, `ds-*` and `to-*` are captured from
 the design prototypes (demo data). Take-On captures and `flow-takeon-*` videos
 are recorded with an init script that replaces the real client name with

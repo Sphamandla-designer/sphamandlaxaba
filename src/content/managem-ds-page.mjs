@@ -40,7 +40,7 @@ const sw = (hex) => `<span class="dsx-sw" style="--c:${hex}" aria-hidden="true">
 // ------------------------------------------------------------------- hero
 
 const hero = (ctx) => `
-  <header class="mf-hero dsx-hero" aria-labelledby="dsx-title">
+  <header class="mf-hero mc-dark dsx-hero" aria-labelledby="dsx-title" style="--mc-img:url('${url(ctx, 'assets/images/managem/mg-dashboard-1600.webp')}')" data-mc-dark>
     <div class="wrap">
       <a class="mf-back" href="${url(ctx, QUICK)}">${glyph.back}<span>ManaGEM case study</span></a>
       <div class="mf-hero__grid">

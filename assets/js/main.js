@@ -429,4 +429,160 @@
     });
   });
 
+  // ------------------------------------------- ManaGEM cinematic layer
+  // Scroll-linked 3D and text motion for the ManaGEM pages. Each tracked
+  // element reports a 0–1 progress from its position in the viewport; the
+  // value is eased toward its target every frame (that easing is the "smooth
+  // scroll" feel, with native scrolling left alone) and written to a CSS
+  // variable. All styling lives in src/styles/06-managem-cine.css.
+  (function () {
+    if (!document.body.classList.contains('page-case--managem')) return;
+    if (reduceMotion.matches || !('IntersectionObserver' in window) || !window.requestAnimationFrame) return;
+
+    var vh = window.innerHeight;
+    var tracked = [];
+    var raf = 0;
+    function clamp(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+    function inOut(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+    function out(t) { return 1 - Math.pow(1 - t, 3); }
+    function track(el, measure, apply, k) { tracked.push({ el: el, measure: measure, apply: apply, cur: null, k: k || 0.14 }); }
+    function frame() {
+      raf = 0;
+      var again = false;
+      for (var i = 0; i < tracked.length; i++) {
+        var t = tracked[i];
+        var r = t.el.getBoundingClientRect();
+        if (t.cur !== null && (r.bottom < -vh || r.top > vh * 2)) continue;
+        var target = t.measure(r);
+        if (t.cur === null || Math.abs(target - t.cur) < 0.0006) t.cur = target;
+        else { t.cur += (target - t.cur) * t.k; again = true; }
+        t.apply(t.cur, t.el);
+      }
+      if (again) request();
+    }
+    function request() { if (!raf) raf = window.requestAnimationFrame(frame); }
+    window.addEventListener('scroll', request, { passive: true });
+    window.addEventListener('resize', function () { vh = window.innerHeight; request(); });
+    var enter = function (r) { return clamp((vh - r.top) / (vh * 0.7)); };
+    var through = function (r) { return clamp((vh - r.top) / (vh + r.height)); };
+
+    // Split a plain-text element into words (kept readable for assistive tech).
+    function split(el, cls) {
+      if (el.children.length) return null;
+      var text = el.textContent.trim();
+      if (!text) return null;
+      el.setAttribute('aria-label', text);
+      el.innerHTML = text.split(/\s+/).map(function (w, i) {
+        return cls === 'mc-sw'
+          ? '<span class="mc-sw" aria-hidden="true">' + w + '</span>'
+          : '<span class="mc-w" aria-hidden="true"><span style="--d:' + i + '">' + w + '</span></span>';
+      }).join(' ');
+      return el.children;
+    }
+
+    // Headings: words rise out of a mask when the heading enters.
+    var headIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); headIO.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.2 });
+    document.querySelectorAll('[data-mc-split], .mx .mx-h2, .mx .mf-title, .mq-invite h2, .mf-return h2').forEach(function (el) {
+      if (!split(el)) return;
+      if (el.hasAttribute('data-mc-split')) window.setTimeout(function () { el.classList.add('is-in'); }, 120);
+      else headIO.observe(el);
+    });
+
+    // Hero: the tilted dashboard flattens and its layers settle into place.
+    var hero = document.querySelector('[data-mc-hero]');
+    if (hero) {
+      track(hero, function (r) { return clamp(-r.top / Math.max(1, r.height - vh)); }, function (p) {
+        var e = inOut(clamp((p - 0.03) / 0.72));
+        hero.style.setProperty('--e', e.toFixed(4));
+        hero.style.setProperty('--k', clamp(p / 0.2).toFixed(4));
+        hero.classList.toggle('is-flat', e >= 1);
+        hero.classList.toggle('is-past', p > 0.2);
+        hero._e = e;
+      }, 0.12);
+      if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        hero.addEventListener('pointermove', function (ev) {
+          var k = 1 - (hero._e || 0);
+          hero.style.setProperty('--tx', ((ev.clientX / window.innerWidth - 0.5) * 7 * k).toFixed(2) + 'deg');
+          hero.style.setProperty('--ty', ((0.5 - ev.clientY / vh) * 5 * k).toFixed(2) + 'deg');
+        });
+      }
+    }
+
+    // Dark heroes on the full case study and design-system pages: the tilted
+    // screen behind the title drifts as the hero scrolls away.
+    document.querySelectorAll('[data-mc-dark]').forEach(function (el) {
+      track(el, function (r) { return clamp(-r.top / Math.max(1, r.height)); }, function (p) { el.style.setProperty('--hp', p.toFixed(4)); });
+    });
+
+    // The question: words light up as the paragraph crosses the viewport.
+    document.querySelectorAll('[data-mc-scrub]').forEach(function (el) {
+      var words = split(el, 'mc-sw');
+      if (!words) return;
+      var lit = 0;
+      track(el, function (r) { return clamp((vh * 0.82 - r.top) / (r.height + vh * 0.32)); }, function (p) {
+        var n = Math.round(p * words.length);
+        if (n === lit) return;
+        for (var i = Math.min(n, lit); i < Math.max(n, lit); i++) words[i].classList.toggle('is-lit', i < n);
+        lit = n;
+      }, 0.2);
+    });
+
+    // Section numerals drift behind the content.
+    document.querySelectorAll('.mx .mx-sec').forEach(function (sec) {
+      var n = sec.querySelector('.mx-kicker__n');
+      if (!n) return;
+      var ghost = document.createElement('span');
+      ghost.className = 'mc-ghost';
+      ghost.setAttribute('aria-hidden', 'true');
+      ghost.textContent = n.textContent;
+      sec.classList.add('mc-has-ghost');
+      sec.insertBefore(ghost, sec.firstChild);
+      track(sec, through, function (p) { ghost.style.setProperty('--gp', p.toFixed(4)); });
+    });
+
+    // Larger screens tip up into place as they enter.
+    document.querySelectorAll('.mx .mx-shot > .mx-frame-wrap, .mx .mx-video, .mx .ds-board').forEach(function (el) {
+      if (el.closest('.mc-hero, .mq-strip, [data-mc-nav], .dsx-x, .dsx-phones, .dsx-navcompare') || el.offsetWidth < 460) return;
+      el.classList.add('mc-tilt');
+      track(el, enter, function (p) { el.style.setProperty('--sp', out(p).toFixed(4)); });
+    });
+
+    // Navigation: the original menus turn away as the redesign steps forward.
+    document.querySelectorAll('[data-mc-nav]').forEach(function (el) {
+      track(el, function (r) { return clamp((vh * 0.62 - r.top) / (vh * 0.5)); }, function (p) { el.style.setProperty('--np', inOut(p).toFixed(4)); });
+    });
+
+    // Take-On steps fan in.
+    document.querySelectorAll('.mx .mq-strip').forEach(function (el) {
+      el.classList.add('mc-fan');
+      track(el, enter, function (p) { el.style.setProperty('--sp', out(p).toFixed(4)); });
+    });
+
+    // Module band moves with the scroll.
+    document.querySelectorAll('[data-mc-marquee]').forEach(function (el) {
+      var trackEl = el.firstElementChild;
+      track(el, function (r) { return vh - r.top; }, function (v) { trackEl.style.setProperty('--mx', (-40 - v * 0.42).toFixed(1)); }, 0.1);
+    });
+
+    // Count up.
+    var countIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        countIO.unobserve(e.target);
+        var end = +e.target.getAttribute('data-mc-count'), t0 = 0;
+        (function tick(now) {
+          if (!t0) t0 = now;
+          var p = clamp((now - t0) / 1100);
+          e.target.textContent = Math.round(out(p) * end);
+          if (p < 1) window.requestAnimationFrame(tick);
+        })(window.performance.now());
+      });
+    }, { threshold: 0.6 });
+    document.querySelectorAll('[data-mc-count]').forEach(function (el) { countIO.observe(el); });
+
+    request();
+  })();
+
 })();
