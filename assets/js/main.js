@@ -510,6 +510,12 @@
       }
     }
 
+    // Dark heroes on the full case study and design-system pages: the tilted
+    // screen behind the title drifts as the hero scrolls away.
+    document.querySelectorAll('[data-mc-dark]').forEach(function (el) {
+      track(el, function (r) { return clamp(-r.top / Math.max(1, r.height)); }, function (p) { el.style.setProperty('--hp', p.toFixed(4)); });
+    });
+
     // The question: words light up as the paragraph crosses the viewport.
     document.querySelectorAll('[data-mc-scrub]').forEach(function (el) {
       var words = split(el, 'mc-sw');

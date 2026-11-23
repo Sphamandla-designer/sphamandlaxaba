@@ -32,7 +32,7 @@ const link = (ctx, href, label) => `<a class="mq-textlink" href="${url(ctx, href
 // ------------------------------------------------------------------- hero
 
 const hero = (ctx) => `
-  <header class="mf-hero" aria-labelledby="mf-title">
+  <header class="mf-hero mc-dark" aria-labelledby="mf-title" style="--mc-img:url('${url(ctx, 'assets/images/managem/mg-invoices-1600.webp')}')" data-mc-dark>
     <div class="wrap">
       <a class="mf-back" href="${url(ctx, QUICK)}">${glyph.back}<span>Back to the overview</span></a>
       <div class="mf-hero__grid">

@@ -147,3 +147,23 @@
 
 /* --- Closing invitation -------------------------------------------------- */
 .mq-invite h2 { text-wrap: balance; }
+
+/* --- Dark heroes: full case study and design-system pages --------------- */
+.mc-dark { --hp: 0; --mx-red: #ff6b6b; position: relative; overflow: hidden; overflow: clip; min-height: min(86vh, 860px); padding-bottom: clamp(160px, 24vw, 340px); background: #070B15; color: #F1F5F9; border-bottom: 0; }
+.mc-dark::before { content: ''; position: absolute; inset: 0; pointer-events: none; background:
+  radial-gradient(60% 55% at 78% 70%, rgba(14, 165, 233, 0.26), transparent 70%),
+  radial-gradient(40% 40% at 10% 92%, rgba(0, 191, 166, 0.14), transparent 70%),
+  radial-gradient(50% 40% at 30% 0%, rgba(99, 102, 241, 0.12), transparent 70%); }
+.mc-dark::after { content: ''; position: absolute; right: -2%; bottom: -3%; width: min(72%, 1100px); aspect-ratio: 16 / 10; pointer-events: none; border-radius: 14px; background: var(--mc-img) top left / cover no-repeat; box-shadow: 0 60px 140px -40px rgba(14, 165, 233, 0.55), 0 0 0 1px rgba(148, 163, 184, 0.2); opacity: 0.9; transform-origin: 50% 100%; transform: perspective(1600px) translate3d(0, calc(var(--hp) * -90px), 0) rotateX(calc(56deg - var(--hp) * 16deg)) rotateZ(-17deg); -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 30%); mask-image: linear-gradient(to top, transparent 0%, #000 30%); will-change: transform; }
+.mc-dark > .wrap { position: relative; z-index: 1; }
+.mc-dark .mf-back { color: #7DD3FC; }
+.mc-dark .mx-eyebrow { color: #94A3B8; }
+.mc-dark .mf-title { color: #fff; }
+.mc-dark .mf-sub { color: #CBD5E1; }
+.mc-dark .mf-contents a { color: #E2E8F0; border-top-color: rgba(148, 163, 184, 0.26); }
+.mc-dark .mf-contents a:hover { color: #7DD3FC; }
+.mc-dark .dsx-credit { border-top-color: rgba(226, 232, 240, 0.7); }
+.mc-dark .dsx-credit div { border-bottom-color: rgba(148, 163, 184, 0.26); }
+.mc-dark .dsx-credit dd { color: #E2E8F0; }
+.mc-dark :focus-visible { outline-color: #7DD3FC; }
+@media (max-width: 760px) { .mc-dark { min-height: 0; padding-bottom: 66vw; } .mc-dark::after { right: -14%; bottom: -2%; width: 118%; } }
