@@ -9,7 +9,7 @@
 
 import { esc, url, img, site } from '../shared.mjs';
 import { projects } from '../content/projects.mjs';
-import { experience, education, learning, tools } from '../content/experience.mjs';
+import { experience, education, tools } from '../content/experience.mjs';
 
 const byslug = Object.fromEntries(projects.map((p) => [p.slug, p]));
 const caseUrl = (ctx, slug) => url(ctx, `work/${slug}/`);
@@ -34,93 +34,73 @@ const NAV = [
 ];
 const RAIL = [
   ['overview', 'Command centre'],
-  ['approach', 'Design intelligence'],
   ['work', 'Project intelligence'],
+  ['approach', 'Design intelligence'],
   ['architecture', 'System architecture'],
   ['experience', 'Professional profile'],
   ['contact', 'Contact terminal'],
 ];
 
 const DIMENSIONS = [
-  { key: 'strategy', cap: 'thinking', name: 'Strategy', text: 'Framing the right problem before designing a solution: what the business needs, what users need, and where the two meet.', caps: ['Product discovery', 'Problem framing', 'Product requirements'], x: 14, y: 14 },
-  { key: 'experience', cap: 'ux', name: 'Experience', text: 'Journeys, flows and information structures that people can follow without being taught.', caps: ['User journeys', 'Information architecture', 'Workflow design'], x: 86, y: 14 },
-  { key: 'systems', cap: 'interface', name: 'Systems', text: 'Reusable foundations — tokens, components and patterns — that keep a product consistent as it grows.', caps: ['Design systems', 'Component libraries', 'Responsive interfaces'], x: 86, y: 86 },
-  { key: 'products', cap: 'delivery', name: 'Products', text: 'Interfaces taken from prototype through review to development handoff.', caps: ['Interactive prototypes', 'Developer collaboration', 'Interface validation'], x: 14, y: 86 },
+  { key: 'strategy', cap: 'thinking', name: 'Strategy', text: 'Framing the right problem before designing a solution.', x: 14, y: 14 },
+  { key: 'experience', cap: 'ux', name: 'Experience', text: 'Journeys and structures people can follow without being taught.', x: 86, y: 14 },
+  { key: 'systems', cap: 'interface', name: 'Systems', text: 'Reusable foundations that keep a product consistent as it grows.', x: 86, y: 86 },
+  { key: 'products', cap: 'delivery', name: 'Products', text: 'Interfaces taken from prototype through review to development handoff.', x: 14, y: 86 },
 ];
 
 const CAPABILITIES = [
   {
     key: 'thinking', name: 'Product thinking', line: 'Decide what is worth designing before designing it.',
     items: ['Product discovery', 'Problem framing', 'User-centred decision making', 'Product requirements'],
-    evidence: [['managem', 'Discovery with existing clients framed the redesign around one tension: familiarity for current clients, clarity for new ones.'], ['wastemart', 'The driver’s working day defined the product: jobs, evidence, sign-off and end of day.']],
+    evidence: ['managem', 'wastemart'],
   },
   {
     key: 'ux', name: 'UX architecture', line: 'Structure the product so the next step is obvious.',
     items: ['User journeys', 'Information architecture', 'Workflow design', 'Interaction architecture'],
-    evidence: [['managem', 'Navigation restructured from expanding menus into labelled groups.'], ['wastemart', 'An operational workflow designed for use in the field.'], ['gemis', 'Information architecture for the redesigned corporate website.']],
+    evidence: ['managem', 'wastemart', 'gemis'],
   },
   {
-    key: 'interface', name: 'Interface systems', line: 'Build the parts once, then build everything from them.',
+    key: 'interface', name: 'Interface systems', line: 'Build the parts once.',
     items: ['Design systems', 'Component libraries', 'Responsive interfaces', 'Enterprise dashboards'],
-    evidence: [['managem', 'I created the design system; GEMIS formally adopted it.'], ['wastemart', 'A mobile-first interface.'], ['gemis', 'A responsive website.']],
+    evidence: ['managem', 'wastemart', 'gemis'],
   },
   {
-    key: 'delivery', name: 'Product delivery', line: 'Carry the design through review and into development.',
+    key: 'delivery', name: 'Product delivery', line: 'Carry the design into development.',
     items: ['Interactive prototypes', 'Developer collaboration', 'Design documentation', 'Interface validation'],
-    evidence: [['managem', 'The system and prototype underwent functional review.'], ['wastemart', 'Design complete; development is underway.'], ['gemis', 'Built in collaboration with a development team.']],
+    evidence: ['managem', 'wastemart', 'gemis'],
   },
   {
-    key: 'ai', name: 'AI-assisted design', line: 'Use AI where it speeds up exploration, and design for it where it serves the product.',
+    key: 'ai', name: 'AI-assisted design', line: 'Use AI where it serves the product.',
     items: ['AI-supported workflows', 'Intelligent product experiences', 'Rapid prototyping', 'AI-assisted design exploration'],
-    evidence: [['managem', 'Take-On: an AI-assisted onboarding experience I designed for ManaGEM.']],
+    evidence: ['managem'],
   },
 ];
 
 const PROJECTS = [
   {
     slug: 'managem', name: 'ManaGEM', type: 'Enterprise resource planning system', tone: 'sky',
-    text: 'Redesigning an established ERP platform to make complex business workflows clearer, more consistent and easier to navigate.',
+    text: 'An established ERP, redesigned so complex workflows are clear and consistent. Includes the Take-On onboarding experience and the landing page.',
     role: 'UX/UI and product design',
-    showcase: ['Enterprise UX', 'Complex workflows', 'Information architecture', 'Design system application', 'Product interface design'],
-    context: ['ManaGEM is a GEMIS product.', 'I contributed significantly to its UX/UI and product design.', 'I designed the Take-On experience and the landing page.', 'GEMIS formally adopted the design system I created.', 'The system and prototype underwent functional review.'],
   },
   {
     slug: 'wastemart', name: 'WasteMart', type: 'Mobile application', tone: 'teal',
-    text: 'A mobile workflow for waste-collection drivers: jobs, evidence, sign-off and end of day, built for the field.',
+    text: 'A driver’s working day in one app: jobs, evidence, sign-off and end of day.',
     role: 'Product design',
-    showcase: ['Mobile product design', 'User journeys', 'Operational workflows', 'Interaction design', 'Mobile-first experiences'],
-    context: ['The design is complete.', 'Development is underway.'],
   },
   {
     slug: 'gemis', name: 'GEMIS', type: 'Corporate digital experience', tone: 'silver',
-    text: 'The redesign of the GEMIS corporate website, from structure to interface.',
+    text: 'The GEMIS corporate website, redesigned with a development team.',
     role: 'Led the redesign',
-    showcase: ['Website redesign', 'Information architecture', 'Digital brand experience', 'UX/UI', 'Developer collaboration'],
-    context: ['I led the GEMIS website redesign.', 'I collaborated with a development team.'],
   },
 ];
 
-// Disciplines each case study demonstrates (m = ManaGEM, w = WasteMart, g = GEMIS).
-const MATRIX = [
-  ['Enterprise UX', 'm'],
-  ['Workflow design', 'mw'],
-  ['Information architecture', 'mg'],
-  ['Design systems', 'm'],
-  ['User journeys', 'w'],
-  ['Mobile-first design', 'w'],
-  ['Interaction design', 'w'],
-  ['Digital brand experience', 'g'],
-  ['Website redesign', 'g'],
-  ['Developer collaboration', 'mg'],
-];
-
 const LAYERS = [
-  { name: 'Business requirements', purpose: 'Establish what the product must achieve and the constraints it has to respect.', act: ['Stakeholder conversations', 'Scope and priority setting', 'Reviewing the existing product'], out: ['Project scope', 'Priorities', 'Constraints'], ev: [['managem', 'Scope, priorities and timeline were set with the GEMIS manager.']] },
-  { name: 'User needs', purpose: 'Understand who uses the product, what they are trying to do and where it fails them.', act: ['Conversations with users', 'Reviewing complaints and feedback', 'Framing the problem'], out: ['Findings', 'Problem statement', 'Design principles'], ev: [['managem', 'Phone conversations with existing clients shaped the dashboard and navigation.']] },
-  { name: 'Information architecture', purpose: 'Organise content and functions so people can predict where things are.', act: ['Grouping and labelling', 'Navigation models', 'Content hierarchy'], out: ['Sitemap', 'Navigation structure', 'Page hierarchy'], ev: [['managem', 'Expanding menus became labelled navigation groups.'], ['gemis', 'Structure for the redesigned corporate website.']] },
-  { name: 'User flows', purpose: 'Map each task from start to finish, including what happens when something goes wrong.', act: ['Journey mapping', 'Workflow design', 'Edge cases and recovery'], out: ['User journeys', 'Task flows', 'Step sequences'], ev: [['wastemart', 'A driver’s day: jobs, evidence, sign-off, end of day.'], ['managem', 'Take-On: guided, step-by-step onboarding.']] },
-  { name: 'Interface systems', purpose: 'Turn structure into a consistent, reusable interface.', act: ['Design tokens and components', 'Responsive layouts', 'States and feedback'], out: ['Design system', 'Component library', 'Screen designs'], ev: [['managem', 'A design system GEMIS formally adopted.']] },
-  { name: 'Development handoff', purpose: 'Make sure what is built matches what was designed.', act: ['Interactive prototypes', 'Design documentation', 'Review with developers'], out: ['Prototype', 'Specifications', 'Review notes'], ev: [['managem', 'Prototype functionally reviewed.'], ['wastemart', 'Design complete; development underway.'], ['gemis', 'Built with a development team.']] },
+  { name: 'Business requirements', purpose: 'Establish what the product must achieve and the constraints it has to respect.', out: ['Project scope', 'Priorities', 'Constraints'], ev: [['managem', 'Scope, priorities and timeline were set with the GEMIS manager.']] },
+  { name: 'User needs', purpose: 'Understand who uses the product, what they are trying to do and where it fails them.', out: ['Findings', 'Problem statement', 'Design principles'], ev: [['managem', 'Phone conversations with existing clients shaped the dashboard and navigation.']] },
+  { name: 'Information architecture', purpose: 'Organise content and functions so people can predict where things are.', out: ['Sitemap', 'Navigation structure', 'Page hierarchy'], ev: [['managem', 'Expanding menus became labelled navigation groups.'], ['gemis', '']] },
+  { name: 'User flows', purpose: 'Map each task from start to finish, including what happens when something goes wrong.', out: ['User journeys', 'Task flows', 'Step sequences'], ev: [['wastemart', 'A driver’s day: jobs, evidence, sign-off, end of day.'], ['managem', '']] },
+  { name: 'Interface systems', purpose: 'Turn structure into a consistent, reusable interface.', out: ['Design system', 'Component library', 'Screen designs'], ev: [['managem', 'A design system GEMIS formally adopted.']] },
+  { name: 'Development handoff', purpose: 'Make sure what is built matches what was designed.', out: ['Prototype', 'Specifications', 'Review notes'], ev: [['managem', 'Prototype functionally reviewed.'], ['wastemart', ''], ['gemis', '']] },
 ];
 
 const AREAS = ['Product design', 'UI/UX design', 'Graphic design', 'Product coordination', 'Product testing', 'Marketing and SEO', 'Developer collaboration'];
@@ -209,7 +189,7 @@ const hero = (ctx) => `
           </div>
         </div>
         <div class="map__read" id="map-read" aria-live="off">
-          ${DIMENSIONS.map((d, i) => `<div class="map__panel" data-dim-panel="${d.key}"${i ? ' hidden' : ''}><p class="map__k"><span>${pad(i + 1)}</span>${d.name}</p><p class="map__t">${d.text}</p><ul role="list">${d.caps.map((c) => `<li>${c}</li>`).join('')}</ul><a class="plink map__go" href="#approach" data-goto-cap="${d.cap}"><span>Explore ${CAPABILITIES.find((c) => c.key === d.cap).name.toLowerCase()}</span>${ic.arrow}</a></div>`).join('')}
+          ${DIMENSIONS.map((d, i) => `<div class="map__panel" data-dim-panel="${d.key}"${i ? ' hidden' : ''}><p class="map__k"><span>${pad(i + 1)}</span>${d.name}</p><p class="map__t">${d.text}</p><a class="plink map__go" href="#approach" data-goto-cap="${d.cap}"><span>Explore ${CAPABILITIES.find((c) => c.key === d.cap).name.toLowerCase()}</span>${ic.arrow}</a></div>`).join('')}
         </div></div>
       </div>
     </div>
@@ -220,7 +200,7 @@ const hero = (ctx) => `
 
 const capabilities = (ctx) => `
   <section class="sec" id="approach" aria-labelledby="${hid('Design intelligence')}" data-sec>
-    ${secHead('02', 'Design intelligence', 'How I approach product design.', `${CAPABILITIES.length} domains · ${CAPABILITIES.reduce((n, c) => n + c.items.length, 0)} practices`, 'Five domains, from deciding what to build to handing it to developers. Select one to see its practices and where each shows in the work.')}
+    ${secHead('03', 'Design intelligence', 'How I approach product design.', `${CAPABILITIES.length} domains · ${CAPABILITIES.reduce((n, c) => n + c.items.length, 0)} practices`, 'Select a domain to see its practices.')}
     <div class="cap" data-cap data-r>
       ${tick}
       <div class="cap__list" role="group" aria-label="Capability domains" data-strip>
@@ -235,8 +215,8 @@ const capabilities = (ctx) => `
             <ul class="cap__items" role="list">${c.items.map((it, j) => `<li style="--j:${j}"><span class="cap__wire" aria-hidden="true"></span><span class="cap__item"><i>${pad(i + 1)}.${j + 1}</i>${it}</span></li>`).join('')}</ul>
           </div>
           <div class="cap__ev">
-            <p class="label">Where it shows in the work</p>
-            <ul role="list">${c.evidence.map(([slug, t]) => `<li>${projLink(ctx, slug)}<p>${t}</p></li>`).join('')}</ul>
+            <p class="label">Shown in</p>
+            <ul role="list">${c.evidence.map((slug) => `<li>${projLink(ctx, slug)}</li>`).join('')}</ul>
           </div>
         </div>`).join('')}
       </div>
@@ -285,10 +265,6 @@ const project = (ctx, p, i) => {
         <div><dt>Platform</dt><dd>${esc(src.platform)}</dd></div>
         <div><dt>Status</dt><dd><span class="state"><i aria-hidden="true"></i>${esc(src.status.label)}</span></dd></div>
       </dl>
-      <div class="proj__cols">
-        <div><p class="label">Showcases</p><ul class="proj__show" role="list">${p.showcase.map((s) => `<li>${s}</li>`).join('')}</ul></div>
-        <div><p class="label">Verified context</p><ul class="proj__ctx" role="list">${p.context.map((s) => `<li>${ic.check}<span>${s}</span></li>`).join('')}</ul></div>
-      </div>
       <p class="proj__cta" aria-hidden="true"><span>Open case study</span>${ic.arrow}</p>
     </div>
     ${visual(ctx, p)}
@@ -297,26 +273,16 @@ const project = (ctx, p, i) => {
 
 const work = (ctx) => `
   <section class="sec sec--work" id="work" aria-labelledby="${hid('Project intelligence')}" data-sec>
-    ${secHead('03', 'Project intelligence', 'Three products. Three kinds of complexity.', '3 case studies · web, mobile, enterprise', 'An ERP platform, a field app for drivers and a corporate website. Each panel opens its case study.')}
+    ${secHead('02', 'Project intelligence', 'Three products. Three kinds of complexity.', '3 case studies · web, mobile, enterprise')}
     <nav class="pnav" aria-label="Jump to a case study" data-pnav>
       <ol role="list">${PROJECTS.map((p, i) => `<li><a class="pnav__a pnav__a--${p.tone}" href="#case-${p.slug}" data-pnav-link="${p.slug}"><span class="pnav__n">${pad(i + 1)}</span><span class="pnav__name">${p.name}</span><span class="pnav__type">${p.type}</span></a></li>`).join('')}</ol>
     </nav>
     <div class="projs">${PROJECTS.map((p, i) => project(ctx, p, i)).join('')}</div>
-    <div class="matrix" data-matrix data-r>
-      ${tick}
-      <div class="matrix__head"><p class="label">Discipline matrix</p><p class="matrix__note">Which disciplines each case study demonstrates. Categorical, not scored.</p></div>
-      <div class="matrix__scroll">
-        <table>
-          <thead><tr><th scope="col"><span class="vh">Discipline</span></th>${PROJECTS.map((p, i) => `<th scope="col" data-col="${p.slug}"><a href="${caseUrl(ctx, p.slug)}"><span>${pad(i + 1)}</span>${p.name}</a></th>`).join('')}</tr></thead>
-          <tbody>${MATRIX.map(([d, on]) => `<tr><th scope="row">${d}</th>${PROJECTS.map((p) => `<td data-col="${p.slug}">${on.includes(p.slug[0]) ? `<span class="dot dot--${p.tone}"><span class="vh">Yes</span></span>` : '<span class="nodot"><span class="vh">No</span></span>'}</td>`).join('')}</tr>`).join('')}</tbody>
-        </table>
-      </div>
-    </div>
   </section>`;
 
 const architecture = (ctx) => `
   <section class="sec" id="architecture" aria-labelledby="${hid('System architecture')}" data-sec>
-    ${secHead('04', 'System architecture', 'From a business requirement to a built interface.', `${LAYERS.length} layers · select one to inspect`, 'Six layers, each feeding the next. Select a layer to see its purpose, the activities involved, what it produces and where it appears in the projects.')}
+    ${secHead('04', 'System architecture', 'From a business requirement to a built interface.', `${LAYERS.length} layers · select one to inspect`, 'Each layer feeds the next.')}
     <div class="arch" data-arch data-r>
       ${tick}
       <ol class="arch__list" role="list" aria-label="Layers" data-strip>
@@ -330,11 +296,10 @@ const architecture = (ctx) => `
         <div class="arch__panel" data-layer-panel="${i}"${i ? ' hidden' : ''}>
           <p class="arch__k"><span>L${i + 1} / ${LAYERS.length}</span>${l.name}</p>
           <p class="arch__purpose">${l.purpose}</p>
-          <div class="arch__cols">
-            <div><p class="label">Design activities</p><ul role="list">${l.act.map((a) => `<li>${a}</li>`).join('')}</ul></div>
+          <div class="arch__cols arch__cols--one">
             <div><p class="label">Deliverables</p><ul role="list">${l.out.map((a) => `<li>${a}</li>`).join('')}</ul></div>
           </div>
-          <div class="arch__ev"><p class="label">Project evidence</p><ul role="list">${l.ev.map(([slug, t]) => `<li>${projLink(ctx, slug)}<p>${t}</p></li>`).join('')}</ul></div>
+          <div class="arch__ev"><p class="label">Project evidence</p><ul role="list">${l.ev.map(([slug, t]) => `<li>${projLink(ctx, slug)}${t ? `<p>${t}</p>` : ''}</li>`).join('')}</ul></div>
           <p class="arch__step">${i > 0 ? `<button type="button" data-layer-go="${i - 1}"><span aria-hidden="true">←</span> ${LAYERS[i - 1].name}</button>` : '<span></span>'}${i < LAYERS.length - 1 ? `<button type="button" data-layer-go="${i + 1}">Next: ${LAYERS[i + 1].name} <span aria-hidden="true">→</span></button>` : ''}</p>
         </div>`).join('')}
       </div>
@@ -343,7 +308,7 @@ const architecture = (ctx) => `
 
 const profile = (ctx) => `
   <section class="sec" id="experience" aria-labelledby="${hid('Professional profile')}" data-sec>
-    ${secHead('05', 'Professional profile', 'A designer with a multidisciplinary background.', `${experience.length} roles · ${esc(site.location)}`, 'Two design roles, with experience that also covers graphic design, product coordination, product testing, and marketing and SEO.')}
+    ${secHead('05', 'Professional profile', 'A designer with a multidisciplinary background.', `${experience.length} roles · ${esc(site.location)}`)}
     <div class="prof">
       <aside class="prof__id" data-r>
         ${tick}
@@ -365,7 +330,6 @@ const profile = (ctx) => `
             <p class="time__dates">${esc(e.dates)}${e.current ? '<span class="state"><i aria-hidden="true"></i>Current</span>' : ''}</p>
             <h3 class="time__org">${esc(e.org)}</h3>
             <p class="time__role">${esc(e.role)}</p>
-            <ul class="time__pts" role="list">${e.points.map((p) => `<li>${esc(p)}</li>`).join('')}</ul>
             ${e.work.length ? `<p class="time__work">${e.work.map((w) => `<a class="plink" href="${url(ctx, w.href)}"><span>${esc(w.label)}</span>${ic.arrow}</a>`).join('')}</p>` : ''}
           </li>`).join('')}
         </ol>
@@ -373,7 +337,6 @@ const profile = (ctx) => `
       <div class="prof__side" data-r>
         <div class="prof__block"><p class="label">Experience includes</p><ul class="chips" role="list">${AREAS.map((a) => `<li>${a}</li>`).join('')}</ul></div>
         <div class="prof__block"><p class="label">Tools</p><dl class="toolset">${Object.entries(tools).map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${v.map(esc).join(' · ')}</dd></div>`).join('')}</dl></div>
-        <div class="prof__block"><p class="label">Continued learning</p><ul class="learn" role="list">${learning.map((l) => `<li>${esc(l)}</li>`).join('')}</ul></div>
       </div>
     </div>
   </section>`;
@@ -453,8 +416,8 @@ ${intro()}
 ${topbar(ctx)}
 <main id="main" tabindex="-1">
 ${hero(ctx)}
-${capabilities(ctx)}
 ${work(ctx)}
+${capabilities(ctx)}
 ${architecture(ctx)}
 ${profile(ctx)}
 ${contact(ctx)}

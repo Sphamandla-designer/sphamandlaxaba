@@ -662,3 +662,13 @@ body { background-image: linear-gradient(rgba(255, 255, 255, 0.016) 1px, transpa
   .top__id { min-width: 44px; justify-content: center; }
 }
 @media (min-width: 641px) { .hero__desc { grid-template-columns: repeat(4, minmax(0, 1fr)); width: 100%; max-width: 620px; } .hero__desc li { padding: 12px 14px; letter-spacing: 0.06em; } }
+
+/* Lighter content pass: fewer blocks, same layout */
+.arch__cols--one { grid-template-columns: minmax(0, 1fr); }
+.cap__ev ul { margin-top: 8px; } .cap__ev li { padding: 14px 0; }
+.proj__text { max-width: 36ch; font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem); }
+.proj__meta { margin-top: 28px; }
+.time__item { padding-bottom: 28px; } .time__item:last-child { padding-bottom: 12px; }
+@media (max-width: 1239px) { .prof__side { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 760px) { .prof__side { grid-template-columns: minmax(0, 1fr); } }
+@media (min-width: 1100px) { .proj--managem { min-height: clamp(460px, 40vw, 640px); } }
