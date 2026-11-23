@@ -75,8 +75,6 @@ const pages = [home, ...casePages, ...extraPages, about, contact, notfound];
 
 for (const p of pages) {
   const ctx = { path: p.path, depth: depthOf(p.path), page: p.page, navKey: p.navKey, slug: p.slug, absolute: p.path === '404.html' };
-  // The homepage brings its own document (its own shell, stylesheet and script).
-  if (p.document) { out(p.path, p.document(ctx)); continue; }
   const body = p.render(ctx);
   const opts = { title: p.title, description: p.description, body, bodyClass: p.bodyClass, noindex: p.noindex };
   if (p.ogImage) opts.ogImage = p.ogImage;
@@ -92,9 +90,6 @@ const css = readdirSync(styleDir)
   .map((f) => `/* ${f} */\n${readFileSync(join(styleDir, f), 'utf8')}`)
   .join('\n');
 out('assets/css/site.css', `/* Built from src/styles — edit those files, then run: node src/build.mjs */\n${css}`);
-
-// The homepage's stylesheet is separate, so case-study pages do not load it.
-out('assets/css/home.css', `/* Built from src/home/home.css — edit that file, then run: node src/build.mjs */\n${readFileSync(join(root, 'src/home/home.css'), 'utf8')}`);
 
 // ------------------------------------------------------- sitemap & robots
 
