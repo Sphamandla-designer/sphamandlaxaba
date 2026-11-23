@@ -429,25 +429,6 @@
     });
   });
 
-  // ------------------------------------------------ homepage hero stage
-  // The product screen tips up into place as it scrolls into view.
-  var stage = document.querySelector('[data-hm-stage]');
-  if (stage) {
-    if (reduceMotion.matches) stage.style.setProperty('--lift', 1);
-    else {
-      var liftTick = false;
-      var lift = function () {
-        liftTick = false;
-        var r = stage.getBoundingClientRect(), vh = window.innerHeight;
-        var p = Math.max(0, Math.min(1, (vh - r.top) / (vh * 0.85)));
-        stage.style.setProperty('--lift', (1 - Math.pow(1 - p, 3)).toFixed(4));
-      };
-      window.addEventListener('scroll', function () { if (!liftTick) { liftTick = true; window.requestAnimationFrame(lift); } }, { passive: true });
-      window.addEventListener('resize', lift);
-      lift();
-    }
-  }
-
   // ------------------------------------------- ManaGEM cinematic layer
   // Scroll-linked 3D and text motion for the ManaGEM pages. Each tracked
   // element reports a 0–1 progress from its position in the viewport; the
