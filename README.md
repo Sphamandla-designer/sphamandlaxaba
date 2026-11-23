@@ -64,22 +64,24 @@ src/                 build script, content, components, styles
 sitemap.xml robots.txt CONTENT-NEEDED.md                                 ← generated
 ```
 
-## Homepage — SX / INTELLIGENCE
+## Homepage — the portfolio as a dashboard
 
-The homepage is a self-contained page with its own shell, stylesheet and script:
+A self-contained page with its own shell, stylesheet and script:
 
 | File | Purpose |
 | --- | --- |
-| `src/pages/home.mjs` | Content and markup. All copy and data (dimensions, capabilities, projects, matrix, architecture layers) are plain arrays at the top |
-| `src/home/home.css` → `assets/css/home.css` | Design tokens, layout and motion |
-| `assets/js/home.js` | Intro, navigation state, map, selectors, matrix linking, canvas field |
+| `src/pages/home.mjs` | Content and markup. All copy and data are plain arrays at the top |
+| `src/home/home.css` → `assets/css/home.css` | Tokens, app shell, cards and motion |
+| `assets/js/home.js` | Section highlighting, pickers, search, clock |
 
-It shows exactly three case studies and links to the existing routes. Nothing on
-it is scored or measured: counts are literal counts of items on the page, the
-discipline matrix is categorical, and the only live value is the Johannesburg
-clock. The GEMIS panel uses a labelled placeholder until a capture of the site
-is added. The intro plays at most once every 12 hours and never with reduced
-motion. Fonts (Space Grotesk, IBM Plex Mono) are self-hosted under the OFL.
+Its design language was studied from the dashboard reference images in the
+repository root: an app shell with a sidebar and search bar, a welcome banner
+with an ember glow, a bento grid of rounded cards, pill controls and stat
+tiles. A dashboard invites numbers, so the rule is strict: every number is a
+literal count of something on the page, statuses come from `projects.mjs`, and
+the roles timeline is drawn from the dates in `experience.mjs`. Nothing is
+scored or measured. It shows exactly three case studies and links to the
+existing routes.
 
 ## ManaGEM case study
 
