@@ -5,15 +5,13 @@
 // stepper track and a timeline. Styles: src/home/home.css. Script:
 // assets/js/home.js.
 //
-// The four KPI tiles carry figures supplied by Sphamandla. Statuses come
-// from src/content/projects.mjs, and the timeline is drawn from the dates in
+// The four KPI tiles carry figures supplied by Sphamandla. The roles
+// timeline is drawn from the dates in
 // src/content/experience.mjs. Nothing else on the page is scored or measured.
 
 import { esc, url, img, site } from '../shared.mjs';
-import { projects } from '../content/projects.mjs';
 import { experience, education, tools } from '../content/experience.mjs';
 
-const bySlug = Object.fromEntries(projects.map((p) => [p.slug, p]));
 const caseUrl = (ctx, slug) => url(ctx, `work/${slug}/`);
 const pad = (n) => String(n).padStart(2, '0');
 
@@ -43,13 +41,10 @@ const NAV = [
   ['contact', 'Contact', ic.mail],
 ];
 
-// stage: how far along each project is (0 design, 1 development, 2 live),
-// read from the status in src/content/projects.mjs.
-const STAGES = ['Design', 'Development', 'Live'];
 const PROJECTS = [
-  { slug: 'managem', name: 'ManaGEM', type: 'Enterprise resource planning', role: 'UX/UI and product design', stage: 1, text: 'An established ERP, redesigned so complex workflows are clear and consistent. Includes the Take-On onboarding experience and the landing page.' },
-  { slug: 'wastemart', name: 'WasteMart', type: 'Mobile application', role: 'Product design', stage: 1, text: 'A driver’s working day in one app: jobs, evidence, sign-off and end of day.' },
-  { slug: 'gemis', name: 'GEMIS', type: 'Corporate website', role: 'Led the redesign', stage: 2, text: 'The GEMIS corporate website, redesigned with a development team.' },
+  { slug: 'managem', name: 'ManaGEM', type: 'Enterprise resource planning', role: 'UX/UI and product design', text: 'An established ERP, redesigned so complex workflows are clear and consistent. Includes the Take-On onboarding experience and the landing page.' },
+  { slug: 'wastemart', name: 'WasteMart', type: 'Mobile application', role: 'Product design', text: 'A driver’s working day in one app: jobs, evidence, sign-off and end of day.' },
+  { slug: 'gemis', name: 'GEMIS', type: 'Corporate website', role: 'Led the redesign', text: 'The GEMIS corporate website, redesigned with a development team.' },
 ];
 
 const CAPABILITIES = [
@@ -82,13 +77,6 @@ const YEARS = Array.from({ length: year - y0 + 1 }, (_, i) => y0 + i);
 const pname = (slug) => PROJECTS.find((p) => p.slug === slug).name;
 const chip = (ctx, slug) => `<a class="chip chip--${slug}" href="${caseUrl(ctx, slug)}"><i aria-hidden="true"></i>${pname(slug)}${ic.arrow}</a>`;
 const head = (id, title, meta = '') => `<header class="sec__head"><h2 id="${id}-h">${title}</h2>${meta ? `<p>${meta}</p>` : ''}</header>`;
-const stageTrack = (p) => `<span class="stage" role="img" aria-label="Stage: ${STAGES[p.stage]}">${STAGES.map((s, i) => `<i class="${i < p.stage || p.stage === STAGES.length - 1 ? 'is-done' : i === p.stage ? 'is-now' : ''}"></i>`).join('')}</span>`;
-
-const visual = (ctx, p) => {
-  if (p.slug === 'managem') return `<div class="shot shot--screen">${img(ctx, 'managem/mg-dashboard', 'The redesigned ManaGEM dashboard', { sizes: '(min-width: 1100px) 640px, 92vw' })}</div>`;
-  if (p.slug === 'wastemart') return `<div class="shot shot--phones">${['07-job-detail', '06-jobs', '12-signoff'].map((k, i) => `<span>${img(ctx, `wastemart/${k}`, ['WasteMart job detail', 'WasteMart job list', 'WasteMart customer sign-off'][i], { sizes: '200px' })}</span>`).join('')}</div>`;
-  return `<div class="shot shot--none" role="img" aria-label="No capture of the GEMIS website has been added to this portfolio yet"><span>GEMIS</span><small>Website capture not added yet</small></div>`;
-};
 
 const sidebar = (ctx) => `
   <aside class="side" aria-label="Portfolio">
@@ -149,37 +137,40 @@ const overview = (ctx) => `
     </ul>
   </section>`;
 
+// Screens each card plays through: [image key, short label].
+const SCREENS = {
+  managem: [['mg-dashboard', 'Dashboard'], ['mg-open-enquiries', 'Enquiries'], ['mg-invoices', 'Invoices'], ['mg-stock', 'Stock'], ['to-06-validation', 'Take-On']],
+  wastemart: [['06-jobs', 'Jobs'], ['07-job-detail', 'Job'], ['09-capture-top', 'Evidence'], ['12-signoff', 'Sign-off'], ['19-endday-review', 'End of day']],
+  gemis: [],
+};
+const glyph = { pause: '<svg viewBox="0 0 20 20" aria-hidden="true" class="g-pause"><path d="M7 5v10M13 5v10"/></svg>', play: '<svg viewBox="0 0 20 20" aria-hidden="true" class="g-play"><path d="M7 4.5v11l9-5.500z"/></svg>' };
+
+const player = (ctx, p) => {
+  const shots = SCREENS[p.slug];
+  if (!shots.length) return `<div class="pcard__media pcard__media--none" role="img" aria-label="No capture of the ${p.name} website has been added yet"><span>${p.name}</span><small>Screens not added yet</small></div>`;
+  const folder = p.slug === 'managem' ? 'managem' : 'wastemart';
+  return `<div class="pcard__media" data-player>
+      <div class="pcard__bars" role="group" aria-label="${p.name} screens">${shots.map(([, l], i) => `<button type="button" data-bar aria-label="${l}" aria-pressed="${i === 0}"><i></i></button>`).join('')}</div>
+      <div class="pcard__stage">${shots.map(([k, l], i) => `<figure class="pcard__slide${i === 0 ? ' is-on' : ''}" data-slide>${img(ctx, `${folder}/${k}`, `${p.name}: ${l}`, { sizes: p.slug === 'managem' ? '(min-width: 1100px) 620px, 130vw' : '220px' })}</figure>`).join('')}</div>
+      <button class="pcard__next" type="button" data-next aria-label="Next ${p.name} screen"></button>
+      <p class="pcard__cap"><span data-cap>${shots[0][1]}</span><span data-count>1 / ${shots.length}</span></p>
+      <button class="pcard__toggle" type="button" data-toggle aria-label="Pause" hidden>${glyph.pause}${glyph.play}</button>
+    </div>`;
+};
+
 const work = (ctx) => `
   <section class="sec" id="work" aria-labelledby="work-h" data-sec>
     ${head('work', 'Projects', `${PROJECTS.length} case studies`)}
-    <div class="grid">
-      <div class="card list" data-pick>
-        <div class="card__head"><h3>Selected work</h3><p class="legend">${STAGES.map((s) => `<span>${s}</span>`).join('<b aria-hidden="true">→</b>')}</p></div>
-        <ul class="rows" role="list">
-          ${PROJECTS.map((p, i) => `
-          <li>
-            <button class="rowbtn" type="button" data-pick-btn="${p.slug}" aria-pressed="${i === 0}" aria-controls="preview">
-              <i class="dot dot--${p.slug}" aria-hidden="true"></i>
-              <span class="rowbtn__main"><b>${p.name}</b><small>${p.type}</small></span>
-              <span class="rowbtn__meta"><span class="pill pill--${bySlug[p.slug].status.kind}">${esc(bySlug[p.slug].status.label)}</span>${stageTrack(p)}</span>
-            </button>
-          </li>`).join('')}
-        </ul>
-        <p class="card__foot">Select a project to preview it.</p>
-      </div>
-      <div class="card preview" id="preview" aria-live="polite">
-        ${PROJECTS.map((p, i) => `
-        <article class="preview__pane preview__pane--${p.slug}" data-pick-pane="${p.slug}"${i ? ' hidden' : ''}>
-          <div class="preview__text">
-            <p class="eyebrow"><i class="dot dot--${p.slug}" aria-hidden="true"></i>${p.type}</p>
-            <h3>${p.name}</h3>
-            <p class="preview__line">${p.text}</p>
-            <dl class="facts"><div><dt>Involvement</dt><dd>${p.role}</dd></div><div><dt>Platform</dt><dd>${esc(bySlug[p.slug].platform)}</dd></div></dl>
-            <a class="btn btn--accent" href="${caseUrl(ctx, p.slug)}" data-case="${p.slug}"><span>Open case study</span>${ic.arrow}</a>
-          </div>
-          ${visual(ctx, p)}
-        </article>`).join('')}
-      </div>
+    <div class="pcards">
+      ${PROJECTS.map((p) => `
+      <article class="card pcard pcard--${p.slug}" aria-labelledby="p-${p.slug}">
+        ${player(ctx, p)}
+        <div class="pcard__text">
+          <p class="pcard__type">${p.type}</p>
+          <h3 id="p-${p.slug}"><a href="${caseUrl(ctx, p.slug)}" data-case="${p.slug}">${p.name}</a></h3>
+          <a class="pcard__go" href="${caseUrl(ctx, p.slug)}" aria-label="View the ${p.name} case study"><span>View case study</span>${ic.arrow}</a>
+        </div>
+      </article>`).join('')}
     </div>
   </section>`;
 

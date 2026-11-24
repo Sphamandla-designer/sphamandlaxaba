@@ -78,8 +78,10 @@ Its design language was studied from the dashboard reference images in the
 repository root: an app shell with a sidebar and search bar, a welcome banner
 with an ember glow, a bento grid of rounded cards, pill controls and stat
 tiles. The four KPI tiles carry figures supplied by Sphamandla (edit them in
-`overview()` in `home.mjs`). Statuses come from `projects.mjs`, and the roles
-timeline is drawn from the dates in `experience.mjs`. Nothing else is scored
+`overview()` in `home.mjs`). The roles timeline is drawn from the dates in
+`experience.mjs`. The three project cards play through real product screens
+listed in `SCREENS` in `home.mjs`; playback pauses on hover, off screen and on
+the pause button, and never starts with reduced motion. Nothing else is scored
 or measured. It shows exactly three case studies and links to the
 existing routes.
 

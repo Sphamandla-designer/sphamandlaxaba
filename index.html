@@ -74,68 +74,44 @@
 
   <section class="sec" id="work" aria-labelledby="work-h" data-sec>
     <header class="sec__head"><h2 id="work-h">Projects</h2><p>3 case studies</p></header>
-    <div class="grid">
-      <div class="card list" data-pick>
-        <div class="card__head"><h3>Selected work</h3><p class="legend"><span>Design</span><b aria-hidden="true">→</b><span>Development</span><b aria-hidden="true">→</b><span>Live</span></p></div>
-        <ul class="rows" role="list">
-          
-          <li>
-            <button class="rowbtn" type="button" data-pick-btn="managem" aria-pressed="true" aria-controls="preview">
-              <i class="dot dot--managem" aria-hidden="true"></i>
-              <span class="rowbtn__main"><b>ManaGEM</b><small>Enterprise resource planning</small></span>
-              <span class="rowbtn__meta"><span class="pill pill--progress">Design approved · In development</span><span class="stage" role="img" aria-label="Stage: Development"><i class="is-done"></i><i class="is-now"></i><i class=""></i></span></span>
-            </button>
-          </li>
-          <li>
-            <button class="rowbtn" type="button" data-pick-btn="wastemart" aria-pressed="false" aria-controls="preview">
-              <i class="dot dot--wastemart" aria-hidden="true"></i>
-              <span class="rowbtn__main"><b>WasteMart</b><small>Mobile application</small></span>
-              <span class="rowbtn__meta"><span class="pill pill--progress">Design complete · In development</span><span class="stage" role="img" aria-label="Stage: Development"><i class="is-done"></i><i class="is-now"></i><i class=""></i></span></span>
-            </button>
-          </li>
-          <li>
-            <button class="rowbtn" type="button" data-pick-btn="gemis" aria-pressed="false" aria-controls="preview">
-              <i class="dot dot--gemis" aria-hidden="true"></i>
-              <span class="rowbtn__main"><b>GEMIS</b><small>Corporate website</small></span>
-              <span class="rowbtn__meta"><span class="pill pill--live">Live website</span><span class="stage" role="img" aria-label="Stage: Live"><i class="is-done"></i><i class="is-done"></i><i class="is-done"></i></span></span>
-            </button>
-          </li>
-        </ul>
-        <p class="card__foot">Select a project to preview it.</p>
-      </div>
-      <div class="card preview" id="preview" aria-live="polite">
-        
-        <article class="preview__pane preview__pane--managem" data-pick-pane="managem">
-          <div class="preview__text">
-            <p class="eyebrow"><i class="dot dot--managem" aria-hidden="true"></i>Enterprise resource planning</p>
-            <h3>ManaGEM</h3>
-            <p class="preview__line">An established ERP, redesigned so complex workflows are clear and consistent. Includes the Take-On onboarding experience and the landing page.</p>
-            <dl class="facts"><div><dt>Involvement</dt><dd>UX/UI and product design</dd></div><div><dt>Platform</dt><dd>Web application</dd></div></dl>
-            <a class="btn btn--accent" href="work/managem/" data-case="managem"><span>Open case study</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12M11.5 5.5 16 10l-4.5 4.5"/></svg></a>
-          </div>
-          <div class="shot shot--screen"><img src="assets/images/managem/mg-dashboard-1600.webp" srcset="assets/images/managem/mg-dashboard-1600.webp 1600w, assets/images/managem/mg-dashboard-960.webp 960w" sizes="(min-width: 1100px) 640px, 92vw" width="1600" height="1000" alt="The redesigned ManaGEM dashboard" loading="lazy" decoding="async"></div>
-        </article>
-        <article class="preview__pane preview__pane--wastemart" data-pick-pane="wastemart" hidden>
-          <div class="preview__text">
-            <p class="eyebrow"><i class="dot dot--wastemart" aria-hidden="true"></i>Mobile application</p>
-            <h3>WasteMart</h3>
-            <p class="preview__line">A driver’s working day in one app: jobs, evidence, sign-off and end of day.</p>
-            <dl class="facts"><div><dt>Involvement</dt><dd>Product design</dd></div><div><dt>Platform</dt><dd>Mobile app</dd></div></dl>
-            <a class="btn btn--accent" href="work/wastemart/" data-case="wastemart"><span>Open case study</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12M11.5 5.5 16 10l-4.5 4.5"/></svg></a>
-          </div>
-          <div class="shot shot--phones"><span><img src="assets/images/wastemart/07-job-detail.webp" width="600" height="1298" alt="WasteMart job detail" loading="lazy" decoding="async"></span><span><img src="assets/images/wastemart/06-jobs.webp" width="600" height="1298" alt="WasteMart job list" loading="lazy" decoding="async"></span><span><img src="assets/images/wastemart/12-signoff.webp" width="600" height="1298" alt="WasteMart customer sign-off" loading="lazy" decoding="async"></span></div>
-        </article>
-        <article class="preview__pane preview__pane--gemis" data-pick-pane="gemis" hidden>
-          <div class="preview__text">
-            <p class="eyebrow"><i class="dot dot--gemis" aria-hidden="true"></i>Corporate website</p>
-            <h3>GEMIS</h3>
-            <p class="preview__line">The GEMIS corporate website, redesigned with a development team.</p>
-            <dl class="facts"><div><dt>Involvement</dt><dd>Led the redesign</dd></div><div><dt>Platform</dt><dd>Responsive website</dd></div></dl>
-            <a class="btn btn--accent" href="work/gemis/" data-case="gemis"><span>Open case study</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12M11.5 5.5 16 10l-4.5 4.5"/></svg></a>
-          </div>
-          <div class="shot shot--none" role="img" aria-label="No capture of the GEMIS website has been added to this portfolio yet"><span>GEMIS</span><small>Website capture not added yet</small></div>
-        </article>
-      </div>
+    <div class="pcards">
+      
+      <article class="card pcard pcard--managem" aria-labelledby="p-managem">
+        <div class="pcard__media" data-player>
+      <div class="pcard__bars" role="group" aria-label="ManaGEM screens"><button type="button" data-bar aria-label="Dashboard" aria-pressed="true"><i></i></button><button type="button" data-bar aria-label="Enquiries" aria-pressed="false"><i></i></button><button type="button" data-bar aria-label="Invoices" aria-pressed="false"><i></i></button><button type="button" data-bar aria-label="Stock" aria-pressed="false"><i></i></button><button type="button" data-bar aria-label="Take-On" aria-pressed="false"><i></i></button></div>
+      <div class="pcard__stage"><figure class="pcard__slide is-on" data-slide><img src="assets/images/managem/mg-dashboard-1600.webp" srcset="assets/images/managem/mg-dashboard-1600.webp 1600w, assets/images/managem/mg-dashboard-960.webp 960w" sizes="(min-width: 1100px) 620px, 130vw" width="1600" height="1000" alt="ManaGEM: Dashboard" loading="lazy" decoding="async"></figure><figure class="pcard__slide" data-slide><img src="assets/images/managem/mg-open-enquiries-1600.webp" srcset="assets/images/managem/mg-open-enquiries-1600.webp 1600w, assets/images/managem/mg-open-enquiries-960.webp 960w" sizes="(min-width: 1100px) 620px, 130vw" width="1600" height="1000" alt="ManaGEM: Enquiries" loading="lazy" decoding="async"></figure><figure class="pcard__slide" data-slide><img src="assets/images/managem/mg-invoices-1600.webp" srcset="assets/images/managem/mg-invoices-1600.webp 1600w, assets/images/managem/mg-invoices-960.webp 960w" sizes="(min-width: 1100px) 620px, 130vw" width="1600" height="1000" alt="ManaGEM: Invoices" loading="lazy" decoding="async"></figure><figure class="pcard__slide" data-slide><img src="assets/images/managem/mg-stock-1600.webp" srcset="assets/images/managem/mg-stock-1600.webp 1600w, assets/images/managem/mg-stock-960.webp 960w" sizes="(min-width: 1100px) 620px, 130vw" width="1600" height="1000" alt="ManaGEM: Stock" loading="lazy" decoding="async"></figure><figure class="pcard__slide" data-slide><img src="assets/images/managem/to-06-validation-1600.webp" srcset="assets/images/managem/to-06-validation-1600.webp 1600w, assets/images/managem/to-06-validation-960.webp 960w" sizes="(min-width: 1100px) 620px, 130vw" width="1600" height="1000" alt="ManaGEM: Take-On" loading="lazy" decoding="async"></figure></div>
+      <button class="pcard__next" type="button" data-next aria-label="Next ManaGEM screen"></button>
+      <p class="pcard__cap"><span data-cap>Dashboard</span><span data-count>1 / 5</span></p>
+      <button class="pcard__toggle" type="button" data-toggle aria-label="Pause" hidden><svg viewBox="0 0 20 20" aria-hidden="true" class="g-pause"><path d="M7 5v10M13 5v10"/></svg><svg viewBox="0 0 20 20" aria-hidden="true" class="g-play"><path d="M7 4.5v11l9-5.500z"/></svg></button>
+    </div>
+        <div class="pcard__text">
+          <p class="pcard__type">Enterprise resource planning</p>
+          <h3 id="p-managem"><a href="work/managem/" data-case="managem">ManaGEM</a></h3>
+          <a class="pcard__go" href="work/managem/" aria-label="View the ManaGEM case study"><span>View case study</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12M11.5 5.5 16 10l-4.5 4.5"/></svg></a>
+        </div>
+      </article>
+      <article class="card pcard pcard--wastemart" aria-labelledby="p-wastemart">
+        <div class="pcard__media" data-player>
+      <div class="pcard__bars" role="group" aria-label="WasteMart screens"><button type="button" data-bar aria-label="Jobs" aria-pressed="true"><i></i></button><button type="button" data-bar aria-label="Job" aria-pressed="false"><i></i></button><button type="button" data-bar aria-label="Evidence" aria-pressed="false"><i></i></button><button type="button" data-bar aria-label="Sign-off" aria-pressed="false"><i></i></button><button type="button" data-bar aria-label="End of day" aria-pressed="false"><i></i></button></div>
+      <div class="pcard__stage"><figure class="pcard__slide is-on" data-slide><img src="assets/images/wastemart/06-jobs.webp" width="600" height="1298" alt="WasteMart: Jobs" loading="lazy" decoding="async"></figure><figure class="pcard__slide" data-slide><img src="assets/images/wastemart/07-job-detail.webp" width="600" height="1298" alt="WasteMart: Job" loading="lazy" decoding="async"></figure><figure class="pcard__slide" data-slide><img src="assets/images/wastemart/09-capture-top.webp" width="600" height="1298" alt="WasteMart: Evidence" loading="lazy" decoding="async"></figure><figure class="pcard__slide" data-slide><img src="assets/images/wastemart/12-signoff.webp" width="600" height="1298" alt="WasteMart: Sign-off" loading="lazy" decoding="async"></figure><figure class="pcard__slide" data-slide><img src="assets/images/wastemart/19-endday-review.webp" width="600" height="1298" alt="WasteMart: End of day" loading="lazy" decoding="async"></figure></div>
+      <button class="pcard__next" type="button" data-next aria-label="Next WasteMart screen"></button>
+      <p class="pcard__cap"><span data-cap>Jobs</span><span data-count>1 / 5</span></p>
+      <button class="pcard__toggle" type="button" data-toggle aria-label="Pause" hidden><svg viewBox="0 0 20 20" aria-hidden="true" class="g-pause"><path d="M7 5v10M13 5v10"/></svg><svg viewBox="0 0 20 20" aria-hidden="true" class="g-play"><path d="M7 4.5v11l9-5.500z"/></svg></button>
+    </div>
+        <div class="pcard__text">
+          <p class="pcard__type">Mobile application</p>
+          <h3 id="p-wastemart"><a href="work/wastemart/" data-case="wastemart">WasteMart</a></h3>
+          <a class="pcard__go" href="work/wastemart/" aria-label="View the WasteMart case study"><span>View case study</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12M11.5 5.5 16 10l-4.5 4.5"/></svg></a>
+        </div>
+      </article>
+      <article class="card pcard pcard--gemis" aria-labelledby="p-gemis">
+        <div class="pcard__media pcard__media--none" role="img" aria-label="No capture of the GEMIS website has been added yet"><span>GEMIS</span><small>Screens not added yet</small></div>
+        <div class="pcard__text">
+          <p class="pcard__type">Corporate website</p>
+          <h3 id="p-gemis"><a href="work/gemis/" data-case="gemis">GEMIS</a></h3>
+          <a class="pcard__go" href="work/gemis/" aria-label="View the GEMIS case study"><span>View case study</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12M11.5 5.5 16 10l-4.5 4.5"/></svg></a>
+        </div>
+      </article>
     </div>
   </section>
 
