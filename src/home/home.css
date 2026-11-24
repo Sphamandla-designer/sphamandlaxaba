@@ -266,3 +266,10 @@ main { padding: clamp(14px, 2vw, 28px) clamp(14px, 2.4vw, 32px) 8px; }
 .banner__lede { max-width: 38rem; }
 @container (max-width: 600px) { .banner h1 { text-wrap: balance; line-height: 1.04; } .banner h1 span { display: inline; white-space: normal; } }
 @container (max-width: 600px) { .banner h1 { font-size: clamp(1.625rem, 10.5cqi, 2.5rem); } }
+
+/* KPI tiles: value with an optional unit */
+.stat { grid-template-columns: minmax(0, 1fr) auto; align-content: start; }
+.stat__n { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 10px; margin-top: 6px; }
+.stat__n small { font: 400 1.0625rem/1.2 var(--display); letter-spacing: 0; color: var(--text2); }
+.stat__s { grid-column: 1 / -1; margin-top: 2px; }
+@media (max-width: 400px) { .stat__go { display: none; } .stat__l { grid-column: 1 / -1; } }

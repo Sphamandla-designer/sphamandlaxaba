@@ -77,10 +77,10 @@ A self-contained page with its own shell, stylesheet and script:
 Its design language was studied from the dashboard reference images in the
 repository root: an app shell with a sidebar and search bar, a welcome banner
 with an ember glow, a bento grid of rounded cards, pill controls and stat
-tiles. A dashboard invites numbers, so the rule is strict: every number is a
-literal count of something on the page, statuses come from `projects.mjs`, and
-the roles timeline is drawn from the dates in `experience.mjs`. Nothing is
-scored or measured. It shows exactly three case studies and links to the
+tiles. The four KPI tiles carry figures supplied by Sphamandla (edit them in
+`overview()` in `home.mjs`). Statuses come from `projects.mjs`, and the roles
+timeline is drawn from the dates in `experience.mjs`. Nothing else is scored
+or measured. It shows exactly three case studies and links to the
 existing routes.
 
 ## ManaGEM case study
