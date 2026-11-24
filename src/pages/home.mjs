@@ -5,9 +5,9 @@
 // stepper track and a timeline. Styles: src/home/home.css. Script:
 // assets/js/home.js.
 //
-// A dashboard invites numbers. Every number here is a literal count of
-// something on this page, statuses come from src/content/projects.mjs, and
-// the timeline is drawn from the dates in src/content/experience.mjs.
+// The four KPI tiles carry figures supplied by Sphamandla. Statuses come
+// from src/content/projects.mjs, and the timeline is drawn from the dates in
+// src/content/experience.mjs. Nothing else on the page is scored or measured.
 
 import { esc, url, img, site } from '../shared.mjs';
 import { projects } from '../content/projects.mjs';
@@ -141,11 +141,11 @@ const overview = (ctx) => `
     </div>
     <ul class="stats" role="list">
       ${[
-        [PROJECTS.length, 'Case studies', 'Web, mobile and enterprise', 'work'],
-        [CAPABILITIES.length, 'Capability domains', `${CAPABILITIES.reduce((n, c) => n + c.items.length, 0)} practices`, 'approach'],
-        [STEPS.length, 'Process steps', 'Requirement to handoff', 'process'],
-        [experience.length, 'Design roles', `Since ${y0}`, 'experience'],
-      ].map(([n, l, s, id]) => `<li><a class="stat card" href="#${id}"><span class="stat__l">${l}</span><span class="stat__n">${pad(n)}</span><span class="stat__s">${s}</span><span class="stat__dots" aria-hidden="true">${'<i></i>'.repeat(n)}</span><span class="stat__go">${ic.arrow}</span></a></li>`).join('')}
+        ['Design Experience', '3', 'Years', 'Professional design experience', '#experience'],
+        ['Digital Projects', '10+', '', 'Websites and digital experiences', '#work'],
+        ['Design Systems', '01', 'Adopted', 'Design system formally adopted at GEMIS', url(ctx, 'work/managem/design-system/')],
+        ['Product Disciplines', '3', '', 'Web · Mobile · Enterprise SaaS', '#approach'],
+      ].map(([l, n, unit, sub, href]) => `<li><a class="stat card" href="${href}"><span class="stat__l">${l}</span><span class="stat__n">${n}${unit ? `<small>${unit}</small>` : ''}</span><span class="stat__s">${sub}</span><span class="stat__go">${ic.arrow}</span></a></li>`).join('')}
     </ul>
   </section>`;
 
