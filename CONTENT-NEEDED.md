@@ -7,9 +7,9 @@ nothing missing is presented as fact. Supply the item, replace the
 
 ## WasteMart
 
+- [ ] **WasteMart: design timeline and when development started**
 - [ ] **WasteMart: the wider product and whether the client can be named**
 - [ ] **WasteMart: which features are implemented, plus build screenshots**
-- [ ] **WasteMart: design timeline and when development started**
 
 ## GEMIS Website
 
