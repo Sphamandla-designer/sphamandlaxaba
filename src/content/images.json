@@ -1061,5 +1061,104 @@
 "sizes": [
 1120
 ]
+},
+"gemis/live-home": {
+"w": 2880,
+"h": 1440,
+"sizes": [
+1600,
+960
+]
+},
+"gemis/live-solutions": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"gemis/live-work": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"gemis/live-story": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"gemis/live-contact": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"gemis/live-products": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"gemis/live-sec-solutions": {
+"w": 2880,
+"h": 1988,
+"sizes": [
+1600,
+960
+]
+},
+"gemis/live-sec-process": {
+"w": 2880,
+"h": 1214,
+"sizes": [
+1600,
+960
+]
+},
+"gemis/live-form-errors": {
+"w": 1498,
+"h": 2702,
+"sizes": [
+900
+]
+},
+"gemis/live-m-home": {
+"w": 1170,
+"h": 1992,
+"sizes": [
+600
+]
+},
+"gemis/live-m-menu": {
+"w": 1170,
+"h": 1992,
+"sizes": [
+600
+]
+},
+"gemis/live-m-solutions": {
+"w": 1170,
+"h": 1992,
+"sizes": [
+600
+]
+},
+"gemis/live-m-contact": {
+"w": 1170,
+"h": 1992,
+"sizes": [
+600
+]
 }
 }

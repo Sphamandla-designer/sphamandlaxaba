@@ -1,0 +1,7 @@
+{
+  "date": "24 Nov 2026",
+  "rows": [
+    ["axe-core 4.10, WCAG A/AA", "No violations on Home, Solutions, Products, Case Studies, Our Story and Contact, at 1440 and 390px"],
+    ["Lighthouse 12, mobile", "Accessibility, Best Practices and SEO 100 on Home, Solutions and Contact; Performance 88–91, one run each from a cloud test machine"]
+  ]
+}
