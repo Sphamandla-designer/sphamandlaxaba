@@ -30,14 +30,14 @@ export const projects = [
   {
     slug: 'gemis',
     name: 'GEMIS Website',
-    category: 'Corporate website · Brand identity · UX strategy',
+    category: 'Brand & Digital Experience Design',
     status: { label: 'Live website', kind: 'live' },
-    title: 'Giving a decade of technical experience a digital identity.',
+    title: 'Building a digital identity for GEMIS.',
     summary: 'Led the UX, brand identity and website design for GEMIS, from discovery to implementation support.',
     role: 'UI/UX Designer and design lead',
     platform: 'Responsive website',
-    cover: { key: 'gemis/gm-home', alt: 'The GEMIS website home page' },
-    pageTitle: 'GEMIS Website and Brand Identity — Product Design Case Study | Sphamandla Xaba',
+    cover: { key: 'gemis/live-home', alt: 'The GEMIS website home page' },
+    pageTitle: 'GEMIS Brand & Digital Experience Design — Case Study | Sphamandla Xaba',
     description: 'How Sphamandla Xaba led the UX strategy, brand identity, design system and website design for GEM Information Systems, a South African software company, from discovery to implementation support.',
   },
 ];
