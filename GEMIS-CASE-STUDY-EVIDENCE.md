@@ -1,6 +1,7 @@
 # GEMIS case study — evidence inventory
 
-Source: `src/content/case-gemis.mjs` (route `work/gemis/`). Two parts, seven
+Source: `src/content/case-gemis.mjs` (route `work/gemis/`), built on the shared
+case-study system (`src/content/cs.mjs`, `src/styles/09-case.css`). Two parts, seven
 chapters. Every image is a real asset; every figure carries a short source
 label. Reconstructed diagrams are labelled as such and never presented as
 original artefacts.
@@ -26,7 +27,7 @@ of every capture.
 | 02 Discovery & strategy | One question, six tensions, resolutions | Competitor review described only, no screenshots | Reconstructed diagram |
 | 03 Experience design | First 3D build vs final direction, with script weight (≈ 895 KB vs ≈ 43 KB JS) | Sitemap and home hierarchy mapped to Discover → Enquire | First build; live site; reconstructed diagrams |
 | 04 Brand & design system | Logo lock-ups, mark, colour and type tokens, components | Email signature, share card | Brand files; specimens rendered from the reference stylesheet |
-| 05 Website experience | Live enquiry form error summary | Home, Solutions, Case Studies, Our Story; four phone screens | Live site |
+| 05 Website experience | Solutions, Case Studies, Our Story, Contact | Four phone screens; the enquiry form error summary | Live site |
 | 06 Design to development | Verbatim CSS excerpt (site.css lines 5790, 5799–5801) and file tree | UX-review changes; QA results | HTML/CSS reference |
 | 07 Outcomes & reflection | Confirmed outcomes | Evidence and limits note | — |
 
