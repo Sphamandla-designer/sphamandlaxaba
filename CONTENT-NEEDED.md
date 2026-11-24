@@ -19,7 +19,6 @@ nothing missing is presented as fact. Supply the item, replace the
 - [ ] **GEMIS website: sitemap, visual direction, key page decisions, responsive screens, reflection**
 - [ ] **GEMIS website: timeline and launch date**
 - [ ] **GEMIS website: live URL**
-- [ ] **GEMIS website: desktop and mobile mockups or screenshots of the live site**
 
 ## ManaGEM ERP
 

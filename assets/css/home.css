@@ -326,3 +326,7 @@ html:not(.js) .pcard__bars, html:not(.js) .pcard__next, html:not(.js) .pcard__ca
 @media (max-width: 900px) { .pcards { grid-template-columns: minmax(0, 1fr); } .pcard__media { aspect-ratio: 4 / 3; } .pcard--managem .pcard__slide img { width: 150%; } .pcard--wastemart .pcard__slide img { width: 34%; } .pcard--wastemart .pcard__slide { padding-top: 10%; } .pcard__go span { display: inline; } .pcard__media--none { aspect-ratio: 16 / 7; } }
 @media (prefers-reduced-motion: reduce) { .pcard__bars i { animation: none !important; } }
 @media (pointer: coarse) { .pcard__bars button { height: 44px; } .pcard__next { inset: 44px 0 0; } .pcard__text h3 a { display: inline-flex; align-items: center; min-height: 44px; } }
+
+/* GEMIS: a website, shown like the ManaGEM screens */
+.pcard--gemis .pcard__slide img { position: absolute; left: 7%; top: 16%; width: 172%; max-width: none; border-radius: 10px 0 0 0; border: 1px solid rgba(255, 255, 255, 0.14); box-shadow: 0 24px 60px -20px #000; }
+@media (max-width: 900px) { .pcard--gemis .pcard__slide img { width: 150%; } }

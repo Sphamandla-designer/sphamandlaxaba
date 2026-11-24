@@ -141,17 +141,17 @@ const overview = (ctx) => `
 const SCREENS = {
   managem: [['mg-dashboard', 'Dashboard'], ['mg-open-enquiries', 'Enquiries'], ['mg-invoices', 'Invoices'], ['mg-stock', 'Stock'], ['to-06-validation', 'Take-On']],
   wastemart: [['06-jobs', 'Jobs'], ['07-job-detail', 'Job'], ['09-capture-top', 'Evidence'], ['12-signoff', 'Sign-off'], ['19-endday-review', 'End of day']],
-  gemis: [],
+  gemis: [['gm-home', 'Home'], ['gm-solutions', 'Solutions'], ['gm-managem', 'ManaGEM'], ['gm-insights', 'Insights'], ['gm-story', 'Our story']],
 };
 const glyph = { pause: '<svg viewBox="0 0 20 20" aria-hidden="true" class="g-pause"><path d="M7 5v10M13 5v10"/></svg>', play: '<svg viewBox="0 0 20 20" aria-hidden="true" class="g-play"><path d="M7 4.5v11l9-5.500z"/></svg>' };
 
 const player = (ctx, p) => {
   const shots = SCREENS[p.slug];
   if (!shots.length) return `<div class="pcard__media pcard__media--none" role="img" aria-label="No capture of the ${p.name} website has been added yet"><span>${p.name}</span><small>Screens not added yet</small></div>`;
-  const folder = p.slug === 'managem' ? 'managem' : 'wastemart';
+  const folder = p.slug;
   return `<div class="pcard__media" data-player>
       <div class="pcard__bars" role="group" aria-label="${p.name} screens">${shots.map(([, l], i) => `<button type="button" data-bar aria-label="${l}" aria-pressed="${i === 0}"><i></i></button>`).join('')}</div>
-      <div class="pcard__stage">${shots.map(([k, l], i) => `<figure class="pcard__slide${i === 0 ? ' is-on' : ''}" data-slide>${img(ctx, `${folder}/${k}`, `${p.name}: ${l}`, { sizes: p.slug === 'managem' ? '(min-width: 1100px) 620px, 130vw' : '220px' })}</figure>`).join('')}</div>
+      <div class="pcard__stage">${shots.map(([k, l], i) => `<figure class="pcard__slide${i === 0 ? ' is-on' : ''}" data-slide>${img(ctx, `${folder}/${k}`, `${p.name}: ${l}`, { sizes: p.slug !== 'wastemart' ? '(min-width: 1100px) 620px, 130vw' : '220px' })}</figure>`).join('')}</div>
       <button class="pcard__next" type="button" data-next aria-label="Next ${p.name} screen"></button>
       <p class="pcard__cap"><span data-cap>${shots[0][1]}</span><span data-count>1 / ${shots.length}</span></p>
       <button class="pcard__toggle" type="button" data-toggle aria-label="Pause" hidden>${glyph.pause}${glyph.play}</button>

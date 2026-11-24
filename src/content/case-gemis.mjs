@@ -1,8 +1,9 @@
 // GEMIS corporate website case study.
-// Only verified facts are published. Screens, sitemap and details are still
+// Only verified facts are published. Screens are captures of the GEMIS site
+// (Sphamandla-designer/gemis-site, repository root). Sitemap and details are still
 // to come and are tracked in CONTENT-NEEDED.md.
 
-import { todo, button, site } from '../shared.mjs';
+import { todo, button, site, figure } from '../shared.mjs';
 import { list } from '../case.mjs';
 
 export default {
@@ -13,11 +14,15 @@ export default {
     ['Live site', todo(ctx, 'GEMIS website: live URL')],
   ],
   cover: (ctx) => `
-    <div class="showcase card card--dark">
-      <p class="showcase__title">GEMIS</p>
-      <p class="showcase__sub">Corporate website redesign</p>
+    <div class="gm-cover">
+      ${figure(ctx, { key: 'gemis/gm-home', alt: 'The redesigned GEMIS website home page on desktop', caption: 'Home page, desktop', kind: 'screen', sizes: '(min-width: 1100px) 860px, 92vw', eager: true })}
+      ${figure(ctx, { key: 'gemis/gm-home-mobile', alt: 'The redesigned GEMIS website home page on a phone', caption: 'Home page, mobile', kind: 'phone', sizes: '240px' })}
     </div>
-    ${todo(ctx, 'GEMIS website: desktop and mobile mockups or screenshots of the live site')}`,
+    <div class="gm-pages">
+      ${figure(ctx, { key: 'gemis/gm-solutions', alt: 'GEMIS website: Solutions page', caption: 'Solutions', kind: 'screen', sizes: '(min-width: 1100px) 400px, 92vw' })}
+      ${figure(ctx, { key: 'gemis/gm-managem', alt: 'GEMIS website: ManaGEM product page', caption: 'ManaGEM product page', kind: 'screen', sizes: '(min-width: 1100px) 400px, 92vw' })}
+      ${figure(ctx, { key: 'gemis/gm-story', alt: 'GEMIS website: Our Story page', caption: 'Our story', kind: 'screen', sizes: '(min-width: 1100px) 400px, 92vw' })}
+    </div>`,
 
   sections: [
     {
