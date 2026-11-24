@@ -48,6 +48,48 @@
     $$('[data-pick-go]', scope).forEach(function (g) { g.addEventListener('click', function () { pick(g.getAttribute('data-pick-go'), true); }); });
   });
 
+  // Project cards: each plays through its screens. The active bar's fill
+  // animation is the timer, so pausing it pauses the player exactly.
+  // Click a bar to jump, click the screen for the next one. Playback holds
+  // on hover and keyboard focus, stops off screen, and never starts with
+  // reduced motion (the controls still work).
+  $$('[data-player]').forEach(function (root) {
+    var slides = $$('[data-slide]', root), bars = $$('[data-bar]', root), cap = $('[data-cap]', root), count = $('[data-count]', root), toggle = $('[data-toggle]', root);
+    var at = 0, userPaused = false, visible = false, hover = false;
+    function sync() {
+      var play = !reduce && !userPaused && visible;
+      root.classList.toggle('is-playing', play);
+      root.classList.toggle('is-held', play && hover);
+    }
+    function show(n) {
+      at = (n + slides.length) % slides.length;
+      slides.forEach(function (s, i) { s.classList.toggle('is-on', i === at); });
+      bars.forEach(function (b, i) {
+        b.setAttribute('aria-pressed', String(i === at));
+        b.classList.toggle('is-done', i < at);
+        var fill = b.firstElementChild; fill.style.animation = 'none'; void fill.offsetWidth; fill.style.animation = '';
+      });
+      cap.textContent = bars[at].getAttribute('aria-label');
+      count.textContent = (at + 1) + ' / ' + slides.length;
+    }
+    bars.forEach(function (b, i) {
+      b.addEventListener('click', function () { show(i); });
+      b.firstElementChild.addEventListener('animationend', function () { if (i === at) show(at + 1); });
+    });
+    $('[data-next]', root).addEventListener('click', function () { show(at + 1); });
+    root.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight') { e.preventDefault(); show(at + 1); } else if (e.key === 'ArrowLeft') { e.preventDefault(); show(at - 1); } });
+    if (!reduce) {
+      toggle.hidden = false;
+      toggle.addEventListener('click', function () { userPaused = !userPaused; toggle.setAttribute('aria-label', userPaused ? 'Play' : 'Pause'); sync(); });
+      root.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') { hover = true; sync(); } });
+      root.addEventListener('pointerleave', function () { hover = false; sync(); });
+      root.addEventListener('focusin', function (e) { if (e.target.matches(':focus-visible')) { hover = true; sync(); } });
+      root.addEventListener('focusout', function () { hover = false; sync(); });
+      if ('IntersectionObserver' in window) new IntersectionObserver(function (en) { visible = en[0].isIntersecting; sync(); }, { threshold: 0.5 }).observe(root);
+      else { visible = true; sync(); }
+    }
+  });
+
   // Search: filter the list of destinations; Enter opens the highlighted one.
   var find = $('[data-find]');
   if (find) {

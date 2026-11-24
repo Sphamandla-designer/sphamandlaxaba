@@ -273,3 +273,55 @@ main { padding: clamp(14px, 2vw, 28px) clamp(14px, 2.4vw, 32px) 8px; }
 .stat__n small { font: 400 1.0625rem/1.2 var(--display); letter-spacing: 0; color: var(--text2); }
 .stat__s { grid-column: 1 / -1; margin-top: 2px; }
 @media (max-width: 400px) { .stat__go { display: none; } .stat__l { grid-column: 1 / -1; } }
+
+/* ==========================================================================
+   Projects — three cards, each playing through real product screens
+   ========================================================================== */
+.pcards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); }
+.pcard { --tone: var(--gemis); display: flex; flex-direction: column; padding: 10px; transition: border-color var(--t2) var(--ease); }
+.pcard--managem { --tone: var(--managem); } .pcard--wastemart { --tone: var(--wastemart); }
+.pcard:hover, .pcard:focus-within { border-color: var(--line2); }
+.pcard__media { position: relative; aspect-ratio: 4 / 3.7; overflow: hidden; border-radius: 14px; background: radial-gradient(90% 80% at 50% 110%, color-mix(in srgb, var(--tone) 26%, transparent), transparent 70%), #0b0c10; border: 1px solid var(--line); }
+.pcard__stage { position: absolute; inset: 0; }
+.pcard__slide { position: absolute; inset: 0; margin: 0; opacity: 0; transform: scale(1.03); transition: opacity 600ms var(--ease), transform 900ms var(--ease); }
+.pcard__slide.is-on { opacity: 1; transform: none; }
+/* Web product: the screen runs off the right edge, large enough to read */
+.pcard--managem .pcard__slide img { position: absolute; left: 7%; top: 16%; width: 172%; max-width: none; border-radius: 10px 0 0 0; border: 1px solid rgba(255, 255, 255, 0.14); box-shadow: 0 24px 60px -20px #000; }
+/* Mobile product: one phone, centred */
+.pcard--wastemart .pcard__slide { display: grid; place-items: start center; padding-top: 12%; }
+.pcard--wastemart .pcard__slide img { width: 46%; height: auto; border-radius: 22px; border: 5px solid #0b0c0f; box-shadow: 0 24px 60px -18px #000, 0 0 0 1px rgba(255, 255, 255, 0.14); }
+/* Progress bars: one per screen; the current one fills while it plays */
+.pcard__bars { position: absolute; z-index: 3; left: 12px; right: 12px; top: 0; display: flex; gap: 5px; }
+.pcard__bars button { position: relative; flex: 1; height: 34px; }
+.pcard__bars button::before, .pcard__bars i { content: ''; position: absolute; left: 0; right: 0; top: 14px; height: 3px; border-radius: 2px; }
+.pcard__bars button::before { background: rgba(255, 255, 255, 0.2); transition: background var(--t1); }
+.pcard__bars button:hover::before { background: rgba(255, 255, 255, 0.36); }
+.pcard__bars i { background: #fff; transform: scaleX(0); transform-origin: 0 50%; }
+.pcard__bars button.is-done i, .pcard__bars button[aria-pressed='true'] i { transform: none; }
+.is-playing .pcard__bars button[aria-pressed='true'] i { animation: fill 4.2s linear forwards; }
+.is-playing.is-held .pcard__bars button[aria-pressed='true'] i { animation-play-state: paused; }
+@keyframes fill { from { transform: scaleX(0); } to { transform: none; } }
+.pcard__bars button:focus-visible { outline-offset: -4px; }
+.pcard__next { position: absolute; inset: 34px 0 0; z-index: 2; cursor: pointer; border-radius: 0 0 14px 14px; }
+.pcard__next:focus-visible { outline-offset: -3px; }
+.pcard__cap { position: absolute; z-index: 3; left: 10px; bottom: 10px; display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 999px; background: rgba(8, 9, 11, 0.78); backdrop-filter: blur(8px); border: 1px solid var(--line); font-size: 0.8125rem; pointer-events: none; }
+.pcard__cap span:last-child { color: var(--text3); font-variant-numeric: tabular-nums; }
+.pcard__toggle { position: absolute; z-index: 4; right: 10px; bottom: 10px; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: rgba(8, 9, 11, 0.78); backdrop-filter: blur(8px); border: 1px solid var(--line); color: var(--text); transition: background var(--t1); }
+.pcard__toggle[hidden] { display: none; }
+.pcard__toggle:hover { background: rgba(255, 255, 255, 0.16); }
+.pcard__toggle svg { width: 16px; height: 16px; } .pcard__toggle .g-play { fill: currentColor; stroke: none; display: none; }
+.pcard__toggle[aria-label='Play'] .g-play { display: block; } .pcard__toggle[aria-label='Play'] .g-pause { display: none; }
+.pcard__media--none { display: grid; place-content: center; justify-items: center; gap: 6px; border-style: dashed; border-color: var(--line2); background: none; }
+.pcard__media--none span { font: 600 clamp(2.5rem, 5vw, 4.5rem)/1 var(--display); letter-spacing: -0.05em; color: rgba(255, 255, 255, 0.12); } .pcard__media--none small { color: var(--text2); }
+.pcard__text { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 2px 12px; padding: 16px 10px 8px; }
+.pcard__type { grid-column: 1 / -1; font-size: 0.8125rem; color: var(--text2); }
+.pcard__text h3 { font: 500 clamp(1.5rem, 1.1rem + 1.2vw, 2.125rem)/1.05 var(--display); letter-spacing: -0.025em; }
+.pcard__text h3 a { text-decoration: none; } .pcard__text h3 a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; }
+.pcard__go { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 0.875rem; color: var(--text2); text-decoration: none; white-space: nowrap; transition: color var(--t1); }
+.pcard__go svg { width: 34px; height: 34px; padding: 9px; border-radius: 50%; border: 1px solid var(--line2); transition: background var(--t1), color var(--t1), transform var(--t2) var(--ease); }
+.pcard__go:hover, .pcard__go:focus-visible { color: var(--text); } .pcard__go:hover svg { background: #fff; color: #0b0c0f; transform: rotate(-45deg); }
+html:not(.js) .pcard__bars, html:not(.js) .pcard__next, html:not(.js) .pcard__cap span:last-child { display: none; }
+@media (min-width: 901px) { .pcard__go span { display: none; } }
+@media (max-width: 900px) { .pcards { grid-template-columns: minmax(0, 1fr); } .pcard__media { aspect-ratio: 4 / 3; } .pcard--managem .pcard__slide img { width: 150%; } .pcard--wastemart .pcard__slide img { width: 34%; } .pcard--wastemart .pcard__slide { padding-top: 10%; } .pcard__go span { display: inline; } .pcard__media--none { aspect-ratio: 16 / 7; } }
+@media (prefers-reduced-motion: reduce) { .pcard__bars i { animation: none !important; } }
+@media (pointer: coarse) { .pcard__bars button { height: 44px; } .pcard__next { inset: 44px 0 0; } .pcard__text h3 a { display: inline-flex; align-items: center; min-height: 44px; } }
