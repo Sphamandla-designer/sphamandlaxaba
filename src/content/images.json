@@ -980,5 +980,86 @@
 "sizes": [
 600
 ]
+},
+"gemis/early-preloader": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"gemis/early-motion": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"gemis/sec-solutions": {
+"w": 2880,
+"h": 1988,
+"sizes": [
+1600,
+960
+]
+},
+"gemis/sec-process": {
+"w": 2880,
+"h": 1214,
+"sizes": [
+1600,
+960
+]
+},
+"gemis/form-errors": {
+"w": 1498,
+"h": 2702,
+"sizes": [
+900
+]
+},
+"gemis/form": {
+"w": 1498,
+"h": 1914,
+"sizes": [
+900
+]
+},
+"gemis/mob-menu": {
+"w": 1170,
+"h": 1992,
+"sizes": [
+600
+]
+},
+"gemis/mob-contact": {
+"w": 1170,
+"h": 1992,
+"sizes": [
+600
+]
+},
+"gemis/mob-solutions": {
+"w": 1170,
+"h": 1992,
+"sizes": [
+600
+]
+},
+"gemis/share-card": {
+"w": 1200,
+"h": 630,
+"sizes": [
+1200
+]
+},
+"gemis/signature": {
+"w": 1120,
+"h": 428,
+"sizes": [
+1120
+]
 }
 }

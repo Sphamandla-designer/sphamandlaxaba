@@ -13,12 +13,14 @@ nothing missing is presented as fact. Supply the item, replace the
 
 ## GEMIS Website
 
-- [ ] **GEMIS website: audiences and key messages**
-- [ ] **GEMIS website: real reasons for the redesign**
-- [ ] **GEMIS website: how the collaboration with developers worked**
-- [ ] **GEMIS website: sitemap, visual direction, key page decisions, responsive screens, reflection**
-- [ ] **GEMIS website: timeline and launch date**
-- [ ] **GEMIS website: live URL**
+- [ ] **GEMIS case study: confirm the project start and launch dates** — the page shows July–November 2026 from the reference repository history.
+- [ ] **GEMIS case study: the competitor review findings** — the six-question framework is shown; add what the review found, without naming companies unless you are comfortable doing so.
+- [ ] **GEMIS case study: wireframes** — none were available; add selected wireframes from Figma if you have them.
+- [ ] **GEMIS case study: Figma evidence of the identity and design system** — logo explorations, colour and type styles, spacing, component library and states. The page currently renders the system from the built stylesheet.
+- [ ] **GEMIS case study: business cards, social media banners and the brand guidelines document** — none were in the repository.
+- [ ] **GEMIS case study: how stakeholder feedback refined the identity** — one or two concrete examples, without quoting anyone you have not cleared.
+- [ ] **GEMIS case study: the checks you ran on the live implementation** — what you reviewed with the development team after handoff, on which devices, and one or two issues found and resolved.
+- [ ] **GEMIS case study: a design-versus-live comparison** — a screenshot of gemis.co.za beside the matching design.
 
 ## ManaGEM ERP
 
