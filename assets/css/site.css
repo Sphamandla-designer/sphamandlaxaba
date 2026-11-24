@@ -526,7 +526,7 @@ html:not(.js) .hero__grid-fallback { display: block; }
 .cs-hero__lede { margin-top: var(--lg); font: var(--body-lg); font-weight: 400; color: var(--body); max-width: 42rem; }
 .cs-cover .fig--mockup img { aspect-ratio: 4 / 3; object-fit: cover; max-height: 760px; }
 .js .cs-cover .fig { clip-path: inset(0 0 100% 0 round var(--r-xl)); animation: unclip 900ms var(--ease) 200ms forwards; }
-@keyframes unclip { to { clip-path: inset(0 0 0 0 round var(--r-xl)); } }
+@keyframes unclip { 99% { clip-path: inset(0 0 0 0 round var(--r-xl)); } to { clip-path: none; } }
 .js .cs-hero > * { opacity: 0; animation: fadeUp 700ms var(--ease) forwards; }
 .js .cs-hero > :nth-child(2) { animation-delay: 80ms; } .js .cs-hero > :nth-child(3) { animation-delay: 160ms; } .js .cs-hero > :nth-child(4) { animation-delay: 260ms; } .js .cs-hero > :nth-child(5) { animation-delay: 340ms; }
 
@@ -615,6 +615,11 @@ html:not(.js) .hero__grid-fallback { display: block; }
 .viewer__caption { flex: 1; font: var(--body-sm); color: var(--mute); }
 .viewer__stage { display: grid; place-items: center; padding: var(--lg); min-height: 0; overflow: auto; }
 .viewer__stage img { max-height: calc(100dvh - 7rem); width: auto; border-radius: var(--r-xl); }
+
+/* GEMIS case study: website screens */
+.gm-cover { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.28fr); gap: var(--2xl); align-items: end; }
+.gm-pages { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--2xl); margin-top: var(--2xl); }
+@media (max-width: 760px) { .gm-cover { grid-template-columns: minmax(0, 1fr); } .gm-cover .fig--phone { max-width: 240px; } .gm-pages { grid-template-columns: minmax(0, 1fr); } }
 
 /* 04-case-managem.css */
 /* ==========================================================================

@@ -933,5 +933,52 @@
 "sizes": [
 680
 ]
+},
+"gemis/gm-home": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"gemis/gm-solutions": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"gemis/gm-managem": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"gemis/gm-insights": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"gemis/gm-story": {
+"w": 2880,
+"h": 1800,
+"sizes": [
+1600,
+960
+]
+},
+"gemis/gm-home-mobile": {
+"w": 600,
+"h": 1298,
+"sizes": [
+600
+]
 }
 }
