@@ -6,32 +6,6 @@
   var root = document.documentElement;
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  // ---------------------------------------------------------------- theme
-  var toggle = document.querySelector('[data-theme-toggle]');
-  var systemDark = window.matchMedia('(prefers-color-scheme: dark)');
-
-  function saved() {
-    try { return localStorage.getItem('theme'); } catch (e) { return null; }
-  }
-  function apply(theme) {
-    root.dataset.theme = theme;
-    if (toggle) toggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
-  }
-  apply(root.dataset.theme || 'light');
-
-  if (toggle) {
-    toggle.addEventListener('click', function () {
-      var next = root.dataset.theme === 'dark' ? 'light' : 'dark';
-      apply(next);
-      try { localStorage.setItem('theme', next); } catch (e) { /* private mode: still switches */ }
-    });
-  }
-  // Follow the OS until the visitor has made a choice of their own.
-  systemDark.addEventListener('change', function (e) {
-    var s = saved();
-    if (s !== 'light' && s !== 'dark') apply(e.matches ? 'dark' : 'light');
-  });
-
   // ------------------------------------------------------------ header
   var header = document.querySelector('[data-header]');
   function onScroll() {
