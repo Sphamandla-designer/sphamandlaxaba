@@ -3,7 +3,7 @@
 // page depth so every link and asset path is relative — the site works the
 // same under a local server and under the GitHub Pages sub-path.
 
-import { site, nav } from './site.mjs';
+import { site } from './site.mjs';
 import { readFileSync } from 'node:fs';
 
 const imgMeta = JSON.parse(readFileSync(new URL('./content/images.json', import.meta.url), 'utf8'));
@@ -106,56 +106,43 @@ export const sectionHead = ({ title, intro = '', id = '' }) => `
 
 // ------------------------------------------------------------------- shell
 
+// The header and footer are the homepage's: the white segmented tabs fixed top
+// left, and the name / link columns / strip footer. Styles: src/styles/10-system.css.
+const TABS = [
+  { label: 'Home', href: '', key: 'home' },
+  { label: 'Work', href: 'index.html#work', key: 'work' },
+  { label: 'Process', href: 'index.html#process', key: 'process' },
+  { label: 'About', href: 'about/', key: 'about' },
+];
+
 function header(ctx) {
-  const links = nav
-    .map((n) => `<li><a class="nav-link" href="${esc(url(ctx, n.href))}"${ctx.navKey === n.key ? ' aria-current="page"' : ''}>${n.label}</a></li>`)
+  const links = TABS
+    .map((n) => `<li><a href="${esc(url(ctx, n.href))}"${ctx.navKey === n.key ? ' aria-current="page"' : ''}>${n.label}</a></li>`)
     .join('');
   return `
   <a class="skip" href="#main">Skip to content</a>
-  <header class="nav-bar" data-header>
-    <div class="nav-bar__inner wrap">
-      <a class="wordmark" href="${url(ctx, '')}">Sphamandla Xaba</a>
-      <nav class="site-nav" aria-label="Primary">
-        <div class="site-menu" id="site-menu" data-nav-menu>
-          <ul class="site-menu__list" role="list">${links}</ul>
-          <a class="btn btn--primary site-menu__cv" href="${url(ctx, site.cv)}" download><span>Download CV</span>${icon.download}</a>
-        </div>
-      </nav>
-      <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch to dark theme">${icon.sun}${icon.moon}</button>
-      <button class="icon-btn nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu" data-nav-toggle>${icon.menu}${icon.close}</button>
-    </div>
-  </header>`;
+  <nav class="tabs" aria-label="Primary"><ul role="list">${links}</ul></nav>
+  <a class="btn btn--primary tabs-cta" href="${url(ctx, 'contact/')}"${ctx.navKey === 'contact' ? ' aria-current="page"' : ''}><span>Contact me</span>${icon.external}</a>`;
 }
 
 function footer(ctx) {
+  const year = new Date().getFullYear();
   return `
-  <footer class="footer">
-    <div class="wrap footer__grid">
-      <div>
-        <p class="footer__name">Sphamandla Xaba</p>
-        <p class="footer__muted">Product Designer · UI/UX<br>${esc(site.location)}</p>
-      </div>
-      <nav aria-label="Work">
-        <p class="footer__head">Work</p>
-        <ul role="list">
-          <li><a href="${url(ctx, 'work/managem/')}">ManaGEM ERP</a></li>
-          <li><a href="${url(ctx, 'work/wastemart/')}">WasteMart</a></li>
-          <li><a href="${url(ctx, 'work/gemis/')}">GEMIS Website</a></li>
-        </ul>
-      </nav>
-      <nav aria-label="Contact">
-        <p class="footer__head">Contact</p>
-        <ul role="list">
-          <li><a href="mailto:${site.email}">Email</a></li>
-          <li><a href="${site.linkedin}" target="_blank" rel="noopener">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a></li>
-          <li><a href="${url(ctx, site.cv)}" download>CV (PDF)</a></li>
-        </ul>
-      </nav>
+  <footer class="foot">
+    <div class="wrap foot__in">
+      <p class="foot__name">${esc(site.name)}<span>Product Designer</span></p>
+      <nav aria-label="Case studies"><p class="dot">(Work)</p><ul role="list">
+        <li><a href="${url(ctx, 'work/managem/')}">ManaGEM</a></li>
+        <li><a href="${url(ctx, 'work/wastemart/')}">WasteMart</a></li>
+        <li><a href="${url(ctx, 'work/gemis/')}">GEMIS</a></li>
+      </ul></nav>
+      <nav aria-label="More"><p class="dot">(More)</p><ul role="list">
+        <li><a href="${url(ctx, 'about/')}">About</a></li>
+        <li><a href="${site.linkedin}" target="_blank" rel="noopener">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a></li>
+        <li><a href="${url(ctx, site.cv)}" download>CV (PDF)</a></li>
+      </ul></nav>
     </div>
-    <div class="wrap footer__base">
-      <p>© ${new Date().getFullYear()} Sphamandla Xaba</p>
-      <a href="#top">Back to top</a>
-    </div>
+    <div class="strip strip--foot"><span>© ${year} ${esc(site.name)}</span><a href="#top">Back to top <i aria-hidden="true">↑</i></a><span>${esc(site.location)}</span></div>
   </footer>
   <dialog class="viewer" data-viewer aria-label="Image viewer">
     <form method="dialog" class="viewer__bar">
@@ -166,14 +153,16 @@ function footer(ctx) {
   </dialog>`;
 }
 
-const THEME_BOOT = `(function(){var t;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.dataset.theme=t;document.documentElement.classList.add('js')})();`;
+// One theme: the homepage's black frame. The attribute stays so the dark
+// rules in the case-study styles apply.
+const THEME_BOOT = `document.documentElement.classList.add('js')`;
 
 export function documentShell(ctx, { title, description, body, bodyClass = '', noindex = false, ogImage = 'assets/images/og-default.jpg' }) {
   const canonical = site.origin + site.basePath + ctx.path.replace(/index\.html$/, '');
   // A title that already names the site (contains ' | ') is used as written.
   const fullTitle = title ? (title.includes(' | ') ? title : `${title} — Sphamandla Xaba`) : 'Sphamandla Xaba — Product Designer | UI/UX';
   return `<!doctype html>
-<html lang="en-ZA">
+<html lang="en-ZA" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -186,7 +175,8 @@ ${noindex ? '<meta name="robots" content="noindex">' : `<link rel="canonical" hr
 <meta property="og:url" content="${canonical}">
 <meta property="og:image" content="${site.origin + site.basePath + ogImage}">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0a0a0a">
 <link rel="icon" href="${url(ctx, 'assets/favicon.svg')}" type="image/svg+xml">
 <link rel="preload" href="${url(ctx, 'assets/fonts/inter-latin-wght-normal.woff2')}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${url(ctx, 'assets/css/site.css')}">

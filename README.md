@@ -31,8 +31,8 @@ node src/build.mjs
 | The ManaGEM case study's layout and styles | `render()` in `src/content/case-managem.mjs`, `src/styles/04-case-managem.css` |
 | Homepage, About, Contact | `src/pages/*.mjs` |
 | Shared components (buttons, figures, placeholders, header, footer) | `src/layout.mjs`, `src/case.mjs` |
-| Styles and design tokens | `src/styles/01-tokens.css` … `03-components.css` (built into `assets/css/site.css`) |
-| Behaviour (theme, menu, image viewer, copy email) | `assets/js/main.js` |
+| Styles and design tokens | `src/styles/01-tokens.css` … `10-system.css` (built into `assets/css/site.css`); the homepage's system is applied site-wide in `10-system.css` |
+| Behaviour (image viewer, copy email, case-study motion) | `assets/js/main.js` |
 
 **Adding a case study:** add an entry to `projects.mjs`, create
 `src/content/case-<slug>.mjs` (copy an existing one), and register it in
@@ -134,21 +134,25 @@ describe the redesign as live until it is released. Open questions are in
 
 ## Design system
 
-Follows the supplied `design.md`: photography-first, near-invisible UI. Pages
-are stacks of edge-to-edge tiles — white, parchment (`#f5f5f7`) and near-black
-(`#272729`) — where the colour change is the divider. Near-black ink
-(`#1d1d1f`); one accent, Action Blue (`#0066cc`, `#2997ff` inside dark tiles),
-used only for interactive elements. Primary actions are blue pills, secondary
-actions ghost pills, utility cards have an 18px radius and a hairline border.
-The global nav is a 44px true-black bar. Type is SF Pro on Apple platforms and
-Inter elsewhere: 17px body, weight 600 headlines, no weight 500. The only
-shadow is the product shadow under hero product imagery. Buttons press with
-`scale(0.95)`. Dark mode keeps the same system with the surfaces flipped.
+One system, set by the homepage (`src/home/home.css`) and carried to every
+other page by `src/styles/10-system.css`, which loads last and re-points the
+site tokens: a black frame, light grey "paper" panels, one tight neo-grotesk
+(Inter) in black, white and greys only, small rectangular buttons with a
+north-east arrow, the white segmented tabs fixed top left, "(Label)" notes
+with a bullet, tight uppercase page titles, light sentence-case section
+titles, and outlined containers on black. No accent colour, gradients or glows.
+
+Every page is full-bleed on one alignment line (`--line`): content starts
+where the tabs start and ends the same distance from the right edge. On case
+studies the chapter links are a second holder on the tabs' row.
+
+Product screens, the ManaGEM design-system board and the GEMIS brand board
+keep their own colours, because they show the products rather than the
+portfolio.
 
 ## Notes
 
-- Light theme by default; follows the OS setting until the visitor picks a
-  theme, which is then remembered.
+- One dark theme; there is no theme switch.
 - Accessibility: semantic landmarks, one H1 per page, skip link, visible focus,
   keyboard-operable menu, image viewer and experience rows, status shown with
   words and shapes (never colour alone), `prefers-reduced-motion` respected.
