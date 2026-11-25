@@ -1,9 +1,11 @@
-// Homepage — the portfolio as a dashboard.
-// Design language studied from the dashboard references in the repository
-// root: an app shell (sidebar, search bar), a welcome banner with a glow, a
-// bento grid of rounded cards, pill controls, stat tiles, a table, a
-// stepper track and a timeline. Styles: src/home/home.css. Script:
-// assets/js/home.js.
+// Homepage. Follows the AZENTOS reference in "Portfolio Inspirations" closely:
+// a light grey hero panel inside a black frame (segmented tabs top left, date
+// and a contact button top right, a tight two-line title, an (About) note, a
+// two-card widget, a centred portrait with a name plate, a status pill and a
+// featured card), a black strip of three labels, a centred statement whose
+// words light as they are read, and an outlined container of stat cards. The
+// sections after that extend the same monochrome language. Product screens
+// appear only in the work section. Styles: src/home/home.css.
 //
 // The four KPI tiles carry figures supplied by Sphamandla. The roles
 // timeline is drawn from the dates in
@@ -44,7 +46,7 @@ const NAV = [
 const PROJECTS = [
   { slug: 'managem', name: 'ManaGEM', type: 'Enterprise resource planning', role: 'UX/UI and product design', text: 'An established ERP, redesigned so complex workflows are clear and consistent. Includes the Take-On onboarding experience and the landing page.' },
   { slug: 'wastemart', name: 'WasteMart', type: 'Mobile application', role: 'Product design', text: 'A driver’s working day in one app: jobs, evidence, sign-off and end of day.' },
-  { slug: 'gemis', name: 'GEMIS', type: 'Corporate website', role: 'Led the redesign', text: 'The GEMIS corporate website, redesigned with a development team.' },
+  { slug: 'gemis', name: 'GEMIS', type: 'Brand and website design', role: 'UI/UX design lead', text: 'A brand identity, design system and corporate website for a South African software company.' },
 ];
 
 const CAPABILITIES = [
@@ -74,184 +76,223 @@ const YEARS = Array.from({ length: year - y0 + 1 }, (_, i) => y0 + i);
 
 // ---------------------------------------------------------------- pieces
 
+const PROTO = { managem: ['View prototype', 'prototypes/managem.html'], wastemart: ['View prototype', 'prototypes/wastemart.html'], gemis: ['View live site', 'https://gemis.co.za/'] };
 const pname = (slug) => PROJECTS.find((p) => p.slug === slug).name;
-const chip = (ctx, slug) => `<a class="chip chip--${slug}" href="${caseUrl(ctx, slug)}"><i aria-hidden="true"></i>${pname(slug)}${ic.arrow}</a>`;
-const head = (id, title, meta = '') => `<header class="sec__head"><h2 id="${id}-h">${title}</h2>${meta ? `<p>${meta}</p>` : ''}</header>`;
+const chip = (ctx, slug) => `<a class="chip" href="${caseUrl(ctx, slug)}">${pname(slug)}${ic.out}</a>`;
+/** The reference's control: a small dark rectangle with a north-east arrow. */
+const btn = (href, label, { tone = 'ink', icon = ic.out, attrs = '' } = {}) => `<a class="btn btn--${tone}" href="${href}" ${attrs}><span>${label}</span>${icon}</a>`;
+const lines = (...ls) => ls.map((l) => `<span class="ln"><span>${l}</span></span>`).join(' ');
+const glyphs = {
+  check: '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 10.5 2.8 2.8L14.5 7.500"/></svg>',
+  star: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M3 12h18M5.6 5.6l12.800 12.800M18.400 5.600 5.600 18.400"/></svg>',
+  mark: '<svg viewBox="0 0 24 24" aria-hidden="true" class="fill"><path d="M4 4h7v7H7.500A3.500 3.500 0 0 1 4 7.500zM13 4h3.500A3.500 3.500 0 0 1 20 7.500V11h-7zM4 13h7v7H7.500A3.500 3.500 0 0 1 4 16.500zM13 13h7v3.500A3.500 3.500 0 0 1 16.500 20H13z"/></svg>',
+};
+const TABS = [['overview', 'Home'], ['work', 'Work'], ['process', 'Process'], ['experience', 'About']];
+const TOOLS6 = Object.values(tools).flat().slice(0, 6);
 
-const sidebar = (ctx) => `
-  <aside class="side" aria-label="Portfolio">
-    <a class="brand" href="#overview">${mark}<span><b>${esc(site.name)}</b><small>Product Designer</small></span></a>
-    <nav class="side__nav" aria-label="Sections">
-      <p class="side__k">Portfolio</p>
-      <ul role="list">${NAV.map(([id, l, i]) => `<li><a href="#${id}" data-nav="${id}">${i}<span>${l}</span></a></li>`).join('')}</ul>
-      <p class="side__k">Case studies</p>
-      <ul role="list">${PROJECTS.map((p) => `<li><a href="${caseUrl(ctx, p.slug)}"><i class="dot dot--${p.slug}" aria-hidden="true"></i><span>${p.name}</span></a></li>`).join('')}</ul>
-    </nav>
-    <div class="side__foot">
-      <a class="btn btn--light" href="${url(ctx, site.cv)}" download>${ic.down}<span>Download CV</span></a>
-      <a class="side__link" href="${site.linkedin}" target="_blank" rel="noopener"><span>LinkedIn</span>${ic.out}</a>
-    </div>
-  </aside>`;
-
-const topbar = (ctx) => `
-  <header class="bar">
-    <a class="bar__brand" href="#overview" aria-label="${esc(site.name)} — overview">${mark}</a>
-    <div class="find" data-find>
-      ${ic.search}
-      <input type="text" role="combobox" aria-label="Search this portfolio" aria-expanded="false" aria-controls="find-list" aria-autocomplete="list" placeholder="Search projects, sections, contact…" autocomplete="off" spellcheck="false" data-find-input>
-      <kbd aria-hidden="true">/</kbd>
-      <ul class="find__list" id="find-list" role="listbox" hidden>
-        ${[
-          ...PROJECTS.map((p) => [`${p.name} case study`, caseUrl(ctx, p.slug), p.type]),
-          ...NAV.map(([id, l]) => [l, `#${id}`, 'Section']),
-          ['Download CV', url(ctx, site.cv), 'PDF'],
-          ['About', url(ctx, 'about/'), 'Page'],
-          ['Email', `mailto:${site.email}`, site.email],
-        ].map(([t, href, k], i) => `<li role="option" id="find-${i}"><a href="${href}" tabindex="-1"><span>${t}</span><small>${esc(k)}</small></a></li>`).join('')}
-      </ul>
-    </div>
-    <p class="bar__time" title="Local time in Johannesburg"><i aria-hidden="true"></i><span>Johannesburg</span><time data-clock>--:--</time></p>
-    <a class="btn btn--ghost bar__cv" href="${url(ctx, site.cv)}" download>${ic.down}<span>CV</span></a>
-  </header>`;
+const topnav = () => `
+  <nav class="tabs" aria-label="Sections">
+    <ul role="list">${TABS.map(([id, l]) => `<li><a href="#${id}" data-nav="${id}">${l}</a></li>`).join('')}</ul>
+  </nav>`;
 
 const overview = (ctx) => `
-  <section class="sec" id="overview" aria-labelledby="hero-h" data-sec>
-    <div class="banner card">
-      <div class="banner__copy">
-        <p class="eyebrow"><i aria-hidden="true"></i>Product Designer · ${esc(site.location)}</p>
-        <h1 id="hero-h"><span>Designing complex systems.</span> <span>Making them feel simple.</span></h1>
-        <p class="banner__lede">I’m Sphamandla Xaba. I design enterprise platforms, digital products and intelligent user experiences.</p>
-        <p class="banner__cta">
-          <a class="btn btn--accent" href="#work"><span>Explore selected work</span>${ic.arrow}</a>
-          <a class="btn btn--ghost" href="${url(ctx, site.cv)}" download><span>View curriculum vitae</span>${ic.down}</a>
-        </p>
+  <section class="hero" id="overview" aria-labelledby="hero-h" data-sec data-scroll>
+    <div class="hero__panel">
+      <div class="hero__fig" aria-hidden="false">
+        <div class="hero__photo">${img(ctx, 'about/sphamandla-xaba', 'Sphamandla Xaba, in a straw hat and a checked shirt, looking up to the left', { sizes: '(min-width: 900px) 36vw, 92vw', eager: true })}</div>
+        <p class="plate"><span class="plate__mark">${glyphs.mark}</span><span class="plate__name">${esc(site.name)}</span><span class="plate__bars" aria-hidden="true"></span></p>
+        <ul class="hero__names" role="list" aria-label="Case studies">${PROJECTS.map((p) => `<li><a href="${caseUrl(ctx, p.slug)}">${p.name}</a></li>`).join('')}</ul>
+      </div>
+
+      <div class="hero__left">
+        <h1 id="hero-h" class="title" data-rise>${lines('Product', '<i>Designer</i>')}<sup aria-hidden="true">(’${String(year).slice(2)})</sup></h1>
+        <div class="hero__about" data-rise>
+          <p class="dot">(About)</p>
+          <p>Designing complex systems. Making them feel simple.</p>
+          ${btn('#work', 'View work')}
+        </div>
+        <div class="duo" data-rise>
+          <a class="duo__a" href="#work">
+            <span class="duo__n">10+</span><span class="duo__l">Digital projects</span>
+            <span class="duo__tools" aria-hidden="true">${TOOLS6.map((t) => `<i>${esc(t)}</i>`).join('')}</span>
+            <span class="duo__btn">Selected work</span>
+          </a>
+          <a class="duo__b" href="#experience"><span class="duo__l">Experience</span><span class="duo__n">3<small>yrs</small></span><span class="duo__l">Professional design experience</span></a>
+        </div>
+      </div>
+
+      <div class="hero__right">
+        <div class="hero__top" data-rise>
+          <p class="hero__date"><span data-day>${esc(site.location.split(',')[0])}</span><span><time data-clock>--:--</time> · <span data-date>South Africa</span></span></p>
+          ${btn('#contact', 'Contact me')}
+        </div>
+        <p class="pill" data-rise><i>${glyphs.check}</i>Design system adopted</p>
+        <p class="hero__base" data-rise>Based in<span class="dot">${esc(site.location.split(',')[0])}</span></p>
+        <a class="now" href="${caseUrl(ctx, 'managem')}" data-rise>
+          <span class="now__k">Featured case study</span>
+          <span class="now__row"><b>ManaGEM</b><em>${year}</em></span>
+          <span class="now__art" aria-hidden="true"><span>ERP</span><i>${ic.out}</i><u></u></span>
+        </a>
       </div>
     </div>
-    <ul class="stats" role="list">
-      ${[
-        ['Design Experience', '3', 'Years', 'Professional design experience', '#experience'],
-        ['Digital Projects', '10+', '', 'Websites and digital experiences', '#work'],
-        ['Design Systems', '01', 'Adopted', 'Design system formally adopted at GEMIS', url(ctx, 'work/managem/design-system/')],
-        ['Product Disciplines', '3', '', 'Web · Mobile · Enterprise SaaS', '#approach'],
-      ].map(([l, n, unit, sub, href]) => `<li><a class="stat card" href="${href}"><span class="stat__l">${l}</span><span class="stat__n">${n}${unit ? `<small>${unit}</small>` : ''}</span><span class="stat__s">${sub}</span><span class="stat__go">${ic.arrow}</span></a></li>`).join('')}
-    </ul>
+    <div class="strip"><span>Since <b>${y0}</b></span><a href="#statement">Scroll down <i aria-hidden="true">↓</i></a><span>${esc(site.location)}</span></div>
+  </section>`;
+
+const statement = (ctx) => `
+  <section class="say" id="statement" aria-label="Approach" data-scroll>
+    <div class="wrap">
+      <p class="say__t" data-words>Decide what is worth designing before designing it. Structure the product so the next step is obvious. Build the parts once, and carry the design into development.</p>
+      <p class="say__s">Enterprise platforms, digital products and <br>intelligent user experiences. <span>Designed in Johannesburg.</span></p>
+      <div class="bento" data-scroll>
+        <div class="bento__lead">
+          <h2 class="bento__t">Three years. Ten projects. One adopted design system.<span class="glass glass--a" aria-hidden="true">${glyphs.star}</span><span class="glass glass--b" aria-hidden="true">${glyphs.mark}</span></h2>
+          <p>Product design across web, mobile and enterprise SaaS, from business requirements to development handoff.</p>
+        </div>
+        <ul class="bento__cards" role="list">
+          <li><a class="bcard bcard--light" href="#work"><span class="bcard__dots" aria-hidden="true">${TOOLS6.map((t) => `<i>${esc(t.slice(0, 2))}</i>`).join('')}</span><span class="bcard__n">10+</span><span class="bcard__l">Digital<br>projects</span></a></li>
+          <li><a class="bcard" href="${url(ctx, 'work/managem/design-system/')}"><span class="bcard__n">01</span><span class="bcard__k">Design system</span><span class="bcard__seal" aria-hidden="true">Formally<br>adopted<br>GEMIS</span><span class="bcard__p">A design system created for ManaGEM and formally adopted by GEMIS.</span></a></li>
+          <li><a class="bcard bcard--mid" href="#approach"><span class="bcard__n">3</span><span class="bcard__k">Product disciplines</span><span class="bcard__p">Web · Mobile · Enterprise SaaS</span></a></li>
+        </ul>
+      </div>
+    </div>
   </section>`;
 
 // Screens each card plays through: [image key, short label].
 const SCREENS = {
   managem: [['mg-dashboard', 'Dashboard'], ['mg-open-enquiries', 'Enquiries'], ['mg-invoices', 'Invoices'], ['mg-stock', 'Stock'], ['to-06-validation', 'Take-On']],
   wastemart: [['06-jobs', 'Jobs'], ['07-job-detail', 'Job'], ['09-capture-top', 'Evidence'], ['12-signoff', 'Sign-off'], ['19-endday-review', 'End of day']],
-  gemis: [['gm-home', 'Home'], ['gm-solutions', 'Solutions'], ['gm-managem', 'ManaGEM'], ['gm-insights', 'Insights'], ['gm-story', 'Our story']],
+  gemis: [['live-home', 'Home'], ['live-solutions', 'Solutions'], ['live-work', 'Case studies'], ['live-story', 'Our story'], ['live-contact', 'Contact']],
 };
 const glyph = { pause: '<svg viewBox="0 0 20 20" aria-hidden="true" class="g-pause"><path d="M7 5v10M13 5v10"/></svg>', play: '<svg viewBox="0 0 20 20" aria-hidden="true" class="g-play"><path d="M7 4.5v11l9-5.500z"/></svg>' };
 
 const player = (ctx, p) => {
   const shots = SCREENS[p.slug];
-  if (!shots.length) return `<div class="pcard__media pcard__media--none" role="img" aria-label="No capture of the ${p.name} website has been added yet"><span>${p.name}</span><small>Screens not added yet</small></div>`;
-  const folder = p.slug;
-  return `<div class="pcard__media" data-player>
-      <div class="pcard__bars" role="group" aria-label="${p.name} screens">${shots.map(([, l], i) => `<button type="button" data-bar aria-label="${l}" aria-pressed="${i === 0}"><i></i></button>`).join('')}</div>
-      <div class="pcard__stage">${shots.map(([k, l], i) => `<figure class="pcard__slide${i === 0 ? ' is-on' : ''}" data-slide>${img(ctx, `${folder}/${k}`, `${p.name}: ${l}`, { sizes: p.slug !== 'wastemart' ? '(min-width: 1100px) 620px, 130vw' : '220px' })}</figure>`).join('')}</div>
-      <button class="pcard__next" type="button" data-next aria-label="Next ${p.name} screen"></button>
-      <p class="pcard__cap"><span data-cap>${shots[0][1]}</span><span data-count>1 / ${shots.length}</span></p>
-      <button class="pcard__toggle" type="button" data-toggle aria-label="Pause" hidden>${glyph.pause}${glyph.play}</button>
+  return `<div class="pj__media" data-player>
+      <div class="pj__stage">${shots.map(([k, l], i) => `<figure class="pj__slide${i === 0 ? ' is-on' : ''}" data-slide>${img(ctx, `${p.slug}/${k}`, `${p.name}: ${l}`, { sizes: p.slug !== 'wastemart' ? '(min-width: 1100px) 760px, 130vw' : '220px' })}</figure>`).join('')}</div>
+      <button class="pj__next" type="button" data-next aria-label="Next ${p.name} screen"></button>
+      <div class="pj__bars" role="group" aria-label="${p.name} screens">${shots.map(([, l], i) => `<button type="button" data-bar aria-label="${l}" aria-pressed="${i === 0}"><i></i></button>`).join('')}</div>
+      <p class="pj__cap"><span data-cap>${shots[0][1]}</span><span data-count>1 / ${shots.length}</span></p>
+      <button class="pj__toggle" type="button" data-toggle aria-label="Pause" hidden>${glyph.pause}${glyph.play}</button>
     </div>`;
 };
 
 const work = (ctx) => `
-  <section class="sec" id="work" aria-labelledby="work-h" data-sec>
-    ${head('work', 'Projects', `${PROJECTS.length} case studies`)}
-    <div class="pcards">
-      ${PROJECTS.map((p) => `
-      <article class="card pcard pcard--${p.slug}" aria-labelledby="p-${p.slug}">
-        ${player(ctx, p)}
-        <div class="pcard__text">
-          <p class="pcard__type">${p.type}</p>
-          <h3 id="p-${p.slug}"><a href="${caseUrl(ctx, p.slug)}" data-case="${p.slug}">${p.name}</a></h3>
-          <a class="pcard__go" href="${caseUrl(ctx, p.slug)}" aria-label="View the ${p.name} case study"><span>View case study</span>${ic.arrow}</a>
-        </div>
-      </article>`).join('')}
+  <section class="sec work" id="work" aria-labelledby="work-h" data-sec>
+    <div class="wrap">
+      <header class="head">
+        <p class="dot">(Selected work)</p>
+        <h2 id="work-h" class="title title--md" data-rise>${lines('Three products,', '<i>designed end to end.</i>')}</h2>
+      </header>
+      <div class="stack">
+        ${PROJECTS.map((p, i) => { const [pl, ph] = PROTO[p.slug]; const ext = /^https?:/.test(ph); return `
+        <article class="pj pj--${p.slug}${i % 2 ? '' : ' pj--light'}" style="--i:${i}" aria-labelledby="p-${p.slug}">
+          <div class="pj__text">
+            <p class="pj__k">${p.type}</p>
+            <p class="pj__row"><span id="p-${p.slug}" role="heading" aria-level="3" class="pj__name">${p.name}</span><em>${pad(i + 1)}</em></p>
+            <p class="pj__desc">${p.text}</p>
+            <p class="pj__role"><span>Role</span>${p.role}</p>
+            <p class="pj__acts">
+              ${btn(caseUrl(ctx, p.slug), `View case study<span class="sr"> for ${p.name}</span>`, { tone: i % 2 ? 'paper' : 'ink', attrs: `data-case="${p.slug}"` })}
+              ${btn(ext ? ph : url(ctx, ph), `${pl}<span class="sr"> for ${p.name} (opens in a new tab)</span>`, { tone: 'line', attrs: 'target="_blank" rel="noopener"' })}
+            </p>
+          </div>
+          ${player(ctx, p)}
+        </article>`; }).join('')}
+      </div>
     </div>
   </section>`;
 
 const approach = (ctx) => `
-  <section class="sec" id="approach" aria-labelledby="approach-h" data-sec>
-    ${head('approach', 'Capabilities', `${CAPABILITIES.length} domains`)}
-    <div class="card caps" data-pick>
-      <div class="tabs" role="group" aria-label="Capability domains" data-strip>
-        ${CAPABILITIES.map((c, i) => `<button class="tab" type="button" data-pick-btn="${c.key}" aria-pressed="${i === 0}" aria-controls="cap-view">${c.name}</button>`).join('')}
-      </div>
-      <div class="caps__view" id="cap-view" aria-live="polite">
-        ${CAPABILITIES.map((c, i) => `
-        <div class="caps__pane" data-pick-pane="${c.key}"${i ? ' hidden' : ''}>
-          <div class="caps__lead"><p class="eyebrow">${pad(i + 1)} / ${pad(CAPABILITIES.length)}</p><p class="caps__line">${c.line}</p><div class="caps__shown"><span>Shown in</span>${c.shown.map((s) => chip(ctx, s)).join('')}</div></div>
-          <ol class="caps__items" role="list">${c.items.map((it, j) => `<li style="--j:${j}"><span>${pad(j + 1)}</span>${it}</li>`).join('')}</ol>
-        </div>`).join('')}
+  <section class="sec caps" id="approach" aria-labelledby="approach-h" data-sec>
+    <div class="wrap">
+      <div class="box caps__in">
+        <header class="caps__head">
+          <p class="dot">(Capabilities)</p>
+          <h2 id="approach-h" class="title title--md" data-rise>${lines('Five things', '<i>I bring.</i>')}</h2>
+        </header>
+        <div class="acc">
+          ${CAPABILITIES.map((c, i) => `
+          <details class="acc__item" name="cap"${i === 0 ? ' open' : ''}>
+            <summary><span class="acc__n">${pad(i + 1)}</span><span class="acc__name">${c.name}</span><span class="acc__ic" aria-hidden="true"></span></summary>
+            <div class="acc__body">
+              <p class="acc__line">${c.line}</p>
+              <ul class="acc__items" role="list">${c.items.map((it) => `<li>${it}</li>`).join('')}</ul>
+              <p class="acc__shown"><span>Shown in</span>${c.shown.map((sl) => chip(ctx, sl)).join('')}</p>
+            </div>
+          </details>`).join('')}
+        </div>
       </div>
     </div>
   </section>`;
 
 const process = (ctx) => `
-  <section class="sec" id="process" aria-labelledby="process-h" data-sec>
-    ${head('process', 'Process', `${STEPS.length} steps, each feeding the next`)}
-    <div class="card flowcard" data-pick>
-      <ol class="track" role="list" aria-label="Process steps" data-strip>
-        ${STEPS.map((s, i) => `<li><button class="track__btn" type="button" data-pick-btn="${i}" aria-pressed="${i === 0}" aria-controls="step-view"><span>${pad(i + 1)}</span>${s.name}</button></li>`).join('')}
-      </ol>
-      <div id="step-view" aria-live="polite">
-        ${STEPS.map((s, i) => `
-        <div class="step" data-pick-pane="${i}"${i ? ' hidden' : ''}>
-          <div class="step__lead"><p class="eyebrow">Step ${i + 1} of ${STEPS.length}</p><h3>${s.full}</h3><p>${s.purpose}</p></div>
-          <div class="step__col"><p class="label">Deliverables</p><ul role="list">${s.out.map((o) => `<li>${o}</li>`).join('')}</ul></div>
-          <div class="step__col"><p class="label">In the work</p><ul class="step__ev" role="list">${s.ev.map(([slug, t]) => `<li>${chip(ctx, slug)}${t ? `<p>${t}</p>` : ''}</li>`).join('')}</ul></div>
-          <p class="step__nav">${i > 0 ? `<button class="btn btn--ghost btn--sm" type="button" data-pick-go="${i - 1}"><span aria-hidden="true">←</span> ${STEPS[i - 1].name}</button>` : '<span></span>'}${i < STEPS.length - 1 ? `<button class="btn btn--ghost btn--sm" type="button" data-pick-go="${i + 1}">Next: ${STEPS[i + 1].name} <span aria-hidden="true">→</span></button>` : ''}</p>
-        </div>`).join('')}
+  <section class="rail" id="process" aria-labelledby="process-h" data-sec data-rail>
+    <div class="rail__pin">
+      <div class="wrap rail__head">
+        <div>
+          <p class="dot">(Process)</p>
+          <h2 id="process-h" class="title title--md">Six steps, <i>each feeding the next.</i></h2>
+        </div>
+        <p class="rail__count" aria-hidden="true"><b data-rail-n>01</b><span>/ ${pad(STEPS.length)}</span></p>
       </div>
+      <ol class="rail__track" role="list" data-rail-track>
+        ${STEPS.map((st, i) => `
+        <li class="stepc">
+          <p class="stepc__top"><span>${pad(i + 1)}</span><em>Step</em></p>
+          <h3>${st.full}</h3>
+          <p class="stepc__p">${st.purpose}</p>
+          <ul class="stepc__out" role="list" aria-label="Deliverables">${st.out.map((o) => `<li>${o}</li>`).join('')}</ul>
+          <ul class="stepc__ev" role="list" aria-label="In the work">${st.ev.map(([slug, t]) => `<li>${chip(ctx, slug)}${t ? `<span>${t}</span>` : ''}</li>`).join('')}</ul>
+        </li>`).join('')}
+      </ol>
+      <div class="wrap"><div class="rail__bar" aria-hidden="true"><i data-rail-bar></i></div></div>
     </div>
   </section>`;
 
 const profile = (ctx) => `
-  <section class="sec" id="experience" aria-labelledby="experience-h" data-sec>
-    ${head('experience', 'Experience', `${experience.length} roles · ${esc(site.location)}`)}
-    <div class="grid grid--exp">
-      <div class="card me">
-        <div class="me__photo">${img(ctx, 'about/portrait-spha', 'Sphamandla Xaba', { sizes: '(min-width: 1100px) 300px, 60vw' })}</div>
-        <h3>${esc(site.name)}</h3>
-        <p class="me__role">Product Designer / UI/UX Designer</p>
-        <dl class="facts facts--stack"><div><dt>Experience</dt><dd>About three years across design and multidisciplinary roles</dd></div><div><dt>Education</dt><dd>${esc(education.qualification)}, ${esc(education.school)}</dd></div></dl>
-        <a class="btn btn--ghost btn--sm" href="${url(ctx, 'about/')}"><span>Full profile</span>${ic.arrow}</a>
-      </div>
-      <div class="card gantt">
-        <div class="card__head"><h3>Roles</h3><p class="legend">By year</p></div>
-        <div class="gantt__chart" style="--n:${YEARS.length}">
-          <ol class="gantt__axis" role="list" aria-hidden="true">${YEARS.map((y) => `<li>${y}</li>`).join('')}</ol>
-          <ul class="gantt__rows" role="list">
-            ${span.map((e) => `<li class="gantt__bar${e.current ? ' is-now' : ''}" style="--a:${e.from - y0 + 1};--b:${e.to - y0 + 2}"><b>${esc(e.role)}</b><span>${esc(e.org)} · ${esc(e.dates)}</span></li>`).join('')}
-          </ul>
+  <section class="about" id="experience" aria-labelledby="experience-h" data-sec>
+    <div class="about__panel">
+      <header class="about__head">
+        <div>
+          <p class="dot">(Experience)</p>
+          <h2 id="experience-h" class="title title--md" data-rise>${lines('About three years', '<i>across design roles.</i>')}</h2>
         </div>
-        <ul class="gantt__work" role="list">${span.filter((e) => e.work.length).flatMap((e) => e.work).map((w) => `<li><a class="chip" href="${url(ctx, w.href)}">${esc(w.label)}${ic.arrow}</a></li>`).join('')}</ul>
+        ${btn(url(ctx, 'about/'), 'Full profile')}
+      </header>
+      <ol class="roles" role="list">
+        ${span.map((e, i) => `<li data-rise style="--i:${i}"><span class="roles__d">${esc(e.dates)}</span><span class="roles__r">${esc(e.role)}</span><span class="roles__o">${esc(e.org)}${e.current ? '<i>Current</i>' : ''}</span></li>`).join('')}
+        <li data-rise style="--i:${span.length}"><span class="roles__d">Education</span><span class="roles__r">${esc(education.qualification)}</span><span class="roles__o">${esc(education.school)}</span></li>
+      </ol>
+      <div class="about__cols">
+        <div data-rise><p class="dot">(Experience includes)</p><ul class="tags" role="list">${AREAS.map((a) => `<li>${a}</li>`).join('')}</ul></div>
+        <div data-rise><p class="dot">(Tools)</p><dl class="toolset">${Object.entries(tools).map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${v.map(esc).join(' · ')}</dd></div>`).join('')}</dl></div>
       </div>
-      <div class="card"><div class="card__head"><h3>Experience includes</h3></div><ul class="tags" role="list">${AREAS.map((a) => `<li>${a}</li>`).join('')}</ul></div>
-      <div class="card"><div class="card__head"><h3>Tools</h3></div><dl class="toolset">${Object.entries(tools).map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${v.map(esc).join(' · ')}</dd></div>`).join('')}</dl></div>
     </div>
   </section>`;
 
 const contact = (ctx) => `
-  <section class="sec" id="contact" aria-labelledby="contact-h" data-sec>
-    <div class="card cta">
-      <div>
-        <h2 id="contact-h">Have a complex product challenge?</h2>
-        <p>Let’s turn complexity into a clearer, more useful digital experience.</p>
-      </div>
-      <ul class="cta__rows" role="list">
-        <li><span>Email</span><a href="mailto:${site.email}">${site.email}</a><button class="btn btn--ghost btn--sm" type="button" data-copy="${site.email}"><span data-copy-label>Copy</span></button></li>
-        <li><span>LinkedIn</span><a href="${site.linkedin}" target="_blank" rel="noopener">Sphamandla Xaba</a><a class="btn btn--ghost btn--sm" href="${site.linkedin}" target="_blank" rel="noopener" aria-label="Open LinkedIn in a new tab">Open ${ic.out}</a></li>
-        <li><span>CV</span><a href="${url(ctx, site.cv)}" download>Curriculum vitae (PDF)</a><a class="btn btn--ghost btn--sm" href="${url(ctx, site.cv)}" download aria-label="Download CV as PDF">Download ${ic.down}</a></li>
+  <section class="sec talk" id="contact" aria-labelledby="contact-h" data-sec>
+    <div class="wrap">
+      <p class="dot talk__k">(Contact)</p>
+      <h2 id="contact-h" class="say__t talk__t" data-rise>Have a complex product challenge? <span>Let’s turn complexity into a clearer, more useful digital experience.</span></h2>
+      <p class="talk__cta" data-rise>${btn(`mailto:${site.email}`, 'Start a conversation', { tone: 'paper' })}</p>
+      <ul class="talk__rows box" role="list">
+        <li><span>Email</span><a href="mailto:${site.email}">${site.email}</a><button class="btn btn--line" type="button" data-copy="${site.email}"><span data-copy-label>Copy</span></button></li>
+        <li><span>LinkedIn</span><a href="${site.linkedin}" target="_blank" rel="noopener">Sphamandla Xaba<span class="sr"> (opens in a new tab)</span></a>${btn(site.linkedin, 'Open', { tone: 'line', attrs: 'target="_blank" rel="noopener" aria-label="Open LinkedIn in a new tab"' })}</li>
+        <li><span>CV</span><a href="${url(ctx, site.cv)}" download>Curriculum vitae (PDF)</a>${btn(url(ctx, site.cv), 'Download', { tone: 'line', icon: ic.down, attrs: 'download aria-label="Download CV as PDF"' })}</li>
       </ul>
-      <a class="btn btn--accent btn--lg" href="mailto:${site.email}"><span>Start a conversation</span>${ic.arrow}</a>
     </div>
-    <p class="foot">© ${year} ${esc(site.name)} <a href="#overview">Back to top ↑</a></p>
   </section>`;
+
+const footer = (ctx) => `
+  <footer class="foot">
+    <div class="wrap foot__in">
+      <p class="foot__name">${esc(site.name)}<span>Product Designer</span></p>
+      <nav aria-label="Case studies"><p class="dot">(Work)</p><ul role="list">${PROJECTS.map((p) => `<li><a href="${caseUrl(ctx, p.slug)}">${p.name}</a></li>`).join('')}</ul></nav>
+      <nav aria-label="More"><p class="dot">(More)</p><ul role="list"><li><a href="${url(ctx, 'about/')}">About</a></li><li><a href="${site.linkedin}" target="_blank" rel="noopener">LinkedIn<span class="sr"> (opens in a new tab)</span></a></li><li><a href="${url(ctx, site.cv)}" download>CV (PDF)</a></li></ul></nav>
+    </div>
+    <div class="strip strip--foot"><span>© ${year} ${esc(site.name)}</span><a href="#top">Back to top <i aria-hidden="true">↑</i></a><span>${esc(site.location)}</span></div>
+  </footer>`;
 
 // -------------------------------------------------------------- document
 
@@ -281,9 +322,9 @@ export default {
 <meta property="og:image" content="${canonical}assets/images/og-default.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#08090B">
+<meta name="theme-color" content="#0a0a0a">
 <link rel="icon" href="${url(ctx, 'assets/favicon.svg')}" type="image/svg+xml">
-<link rel="preload" href="${url(ctx, 'assets/fonts/outfit-latin-wght-normal.woff2')}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="${url(ctx, 'assets/fonts/inter-latin-wght-normal.woff2')}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${url(ctx, 'assets/css/home.css')}">
 <script>document.documentElement.classList.add('js')</script>
 <script src="${url(ctx, 'assets/js/home.js')}" defer></script>
@@ -291,21 +332,17 @@ export default {
 </head>
 <body id="top">
 <a class="skip" href="#main">Skip to content</a>
-<div class="app">
-${sidebar(ctx)}
-<div class="shell">
-${topbar(ctx)}
+${topnav(ctx)}
 <main id="main" tabindex="-1">
 ${overview(ctx)}
+${statement(ctx)}
 ${work(ctx)}
 ${approach(ctx)}
 ${process(ctx)}
 ${profile(ctx)}
 ${contact(ctx)}
 </main>
-</div>
-</div>
-<nav class="dock" aria-label="Sections (compact)"><ul role="list">${NAV.map(([id, l, i]) => `<li><a href="#${id}" data-nav="${id}">${i}<span>${l}</span></a></li>`).join('')}</ul></nav>
+${footer(ctx)}
 </body>
 </html>
 `;
