@@ -1,1164 +1,1171 @@
 {
-"wastemart/01-login": {
-"w": 780,
-"h": 1688,
-"sizes": [
-600
-]
-},
-"wastemart/04-startday-ready": {
-"w": 780,
-"h": 1688,
-"sizes": [
-600
-]
-},
-"wastemart/06-jobs": {
-"w": 780,
-"h": 1688,
-"sizes": [
-600
-]
-},
-"wastemart/07-job-detail": {
-"w": 780,
-"h": 1688,
-"sizes": [
-600
-]
-},
-"wastemart/08-checkin-confirm": {
-"w": 780,
-"h": 1688,
-"sizes": [
-600
-]
-},
-"wastemart/09-capture-top": {
-"w": 780,
-"h": 1688,
-"sizes": [
-600
-]
-},
-"wastemart/10-bin-mismatch": {
-"w": 780,
-"h": 1688,
-"sizes": [
-600
-]
-},
-"wastemart/11-scan": {
-"w": 780,
-"h": 1688,
-"sizes": [
-600
-]
-},
-"wastemart/12-signoff": {
-"w": 780,
-"h": 1688,
-"sizes": [
-600
-]
-},
-"wastemart/14-manifest-saved": {
-"w": 780,
-"h": 1688,
-"sizes": [
-600
-]
-},
-"wastemart/17-activity": {
-"w": 780,
-"h": 1688,
-"sizes": [
-600
-]
-},
-"about/portrait-spha": {
-"w": 1200,
-"h": 1243,
-"sizes": [
-900
-]
-},
-"wastemart/16-jobs-progress": {
-"w": 780,
-"h": 1688,
-"sizes": [
-600
-]
-},
-"wastemart/18-shift": {
-"w": 780,
-"h": 1688,
-"sizes": [
-600
-]
-},
-"wastemart/19-endday-review": {
-"w": 780,
-"h": 1688,
-"sizes": [
-600
-]
-},
-"mockups/managem": {
-"w": 2000,
-"h": 1500,
-"sizes": [
-1600,
-960
-]
-},
-"mockups/wastemart": {
-"w": 2200,
-"h": 1650,
-"sizes": [
-1600,
-960
-]
-},
-"mockups/finos": {
-"w": 2375,
-"h": 1781,
-"sizes": [
-1600,
-960
-]
-},
-"mockups/gemis-studio": {
-"w": 1620,
-"h": 1215,
-"sizes": [
-1600,
-960
-]
-},
-"managem/mg-customers": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/mg-dashboard": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/mg-debtors": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/mg-detail-attention": {
-"w": 2400,
-"h": 580,
-"sizes": [
-1600,
-960
-]
-},
-"managem/mg-detail-pipeline": {
-"w": 2400,
-"h": 600,
-"sizes": [
-1600,
-960
-]
-},
-"managem/mg-detail-review": {
-"w": 2400,
-"h": 1180,
-"sizes": [
-1600,
-960
-]
-},
-"managem/mg-detail-sage": {
-"w": 2400,
-"h": 840,
-"sizes": [
-1600,
-960
-]
-},
-"managem/mg-enquiry-review": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/mg-factory": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/mg-invoices": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/mg-login": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/mg-new-enquiry": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/mg-open-enquiries": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/mg-products": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/mg-projects": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/mg-reports": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/mg-sage-invoices": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/mg-sidebar": {
-"w": 480,
-"h": 2480,
-"sizes": [
-480
-]
-},
-"managem/mg-staff": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/mg-stock-alerts": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/mg-stock": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/mg-warranties": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/to-01-welcome": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/to-02-consent": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/to-02-trust": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/to-03-profile": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/to-04-upload": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/to-05-extraction": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/to-06-validation": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/to-07-customers": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/to-07-duplicate": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/to-07-lowconf": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/to-07-record": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/to-08-products": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/to-09-staff": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/to-10-confirm": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/to-10-declaration": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/to-11-complete": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/to-12-admin": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/legacy-customers": {
-"w": 1892,
-"h": 899,
-"sizes": [
-1600,
-960
-]
-},
-"managem/legacy-dashboard": {
-"w": 1900,
-"h": 886,
-"sizes": [
-1600,
-960
-]
-},
-"managem/legacy-invoices": {
-"w": 1896,
-"h": 896,
-"sizes": [
-1600,
-960
-]
-},
-"managem/legacy-products": {
-"w": 1898,
-"h": 902,
-"sizes": [
-1600,
-960
-]
-},
-"managem/legacy-projects": {
-"w": 1890,
-"h": 900,
-"sizes": [
-1600,
-960
-]
-},
-"managem/legacy-purchase-orders": {
-"w": 1896,
-"h": 892,
-"sizes": [
-1600,
-960
-]
-},
-"managem/legacy-receipts": {
-"w": 1902,
-"h": 897,
-"sizes": [
-1600,
-960
-]
-},
-"managem/legacy-suppliers": {
-"w": 1897,
-"h": 904,
-"sizes": [
-1600,
-960
-]
-},
-"managem/legacy-warranties": {
-"w": 1916,
-"h": 899,
-"sizes": [
-1600,
-960
-]
-},
-"managem/legacy-nav": {
-"w": 430,
-"h": 1608,
-"sizes": [
-430
-]
-},
-"managem/pat-summary": {
-"w": 1600,
-"h": 140,
-"sizes": [
-1600
-]
-},
-"managem/pat-filters": {
-"w": 1600,
-"h": 80,
-"sizes": [
-1600
-]
-},
-"managem/pat-table": {
-"w": 1600,
-"h": 294,
-"sizes": [
-1600
-]
-},
-"managem/pat-stepper": {
-"w": 1600,
-"h": 112,
-"sizes": [
-1600
-]
-},
-"managem/pat-form": {
-"w": 1600,
-"h": 481,
-"sizes": [
-1600
-]
-},
-"managem/nav-original-sales": {
-"w": 436,
-"h": 1598,
-"sizes": [
-436
-]
-},
-"managem/nav-original-products": {
-"w": 436,
-"h": 1760,
-"sizes": [
-436
-]
-},
-"managem/nav-original-projects": {
-"w": 430,
-"h": 1816,
-"sizes": [
-430
-]
-},
-"managem/ds-sidebar-expanded": {
-"w": 480,
-"h": 1800,
-"sizes": [
-480
-]
-},
-"managem/ds-sidebar-collapsed": {
-"w": 128,
-"h": 1800,
-"sizes": [
-128
-]
-},
-"managem/ds-user": {
-"w": 480,
-"h": 108,
-"sizes": [
-480
-]
-},
-"managem/ds-topbar": {
-"w": 1600,
-"h": 75,
-"sizes": [
-1600
-]
-},
-"managem/ds-search-focus": {
-"w": 762,
-"h": 70,
-"sizes": [
-762
-]
-},
-"managem/ds-kpi-grid": {
-"w": 1600,
-"h": 165,
-"sizes": [
-1600
-]
-},
-"managem/ds-kpi-hover": {
-"w": 552,
-"h": 238,
-"sizes": [
-552
-]
-},
-"managem/ds-quick-actions": {
-"w": 1600,
-"h": 165,
-"sizes": [
-1600
-]
-},
-"managem/ds-nav-hover": {
-"w": 440,
-"h": 646,
-"sizes": [
-440
-]
-},
-"managem/ds-pipeline": {
-"w": 1600,
-"h": 108,
-"sizes": [
-1600
-]
-},
-"managem/ds-toolbar": {
-"w": 1600,
-"h": 78,
-"sizes": [
-1600
-]
-},
-"managem/ds-table-invoices": {
-"w": 1600,
-"h": 697,
-"sizes": [
-1600
-]
-},
-"managem/ds-pager": {
-"w": 1600,
-"h": 75,
-"sizes": [
-1600
-]
-},
-"managem/ds-bulk-bar": {
-"w": 916,
-"h": 90,
-"sizes": [
-916
-]
-},
-"managem/ds-table-selected": {
-"w": 1600,
-"h": 818,
-"sizes": [
-1600
-]
-},
-"managem/ds-tabs-enquiries": {
-"w": 1600,
-"h": 53,
-"sizes": [
-1600
-]
-},
-"managem/ds-tabs-factory": {
-"w": 1600,
-"h": 53,
-"sizes": [
-1600
-]
-},
-"managem/ds-funnel": {
-"w": 1600,
-"h": 161,
-"sizes": [
-1600
-]
-},
-"managem/ds-subtabs-stock": {
-"w": 1600,
-"h": 64,
-"sizes": [
-1600
-]
-},
-"managem/ds-empty": {
-"w": 1600,
-"h": 406,
-"sizes": [
-1600
-]
-},
-"managem/ds-row-hover": {
-"w": 1600,
-"h": 82,
-"sizes": [
-1600
-]
-},
-"managem/ds-drawer": {
-"w": 960,
-"h": 837,
-"sizes": [
-960
-]
-},
-"managem/ds-form-focus": {
-"w": 1600,
-"h": 626,
-"sizes": [
-1600
-]
-},
-"managem/ds-card-sales": {
-"w": 1476,
-"h": 692,
-"sizes": [
-1476
-]
-},
-"managem/ds-kpi-sage": {
-"w": 1600,
-"h": 136,
-"sizes": [
-1600
-]
-},
-"managem/ds-m-dashboard": {
-"w": 780,
-"h": 1688,
-"sizes": [
-780
-]
-},
-"managem/ds-m-menu": {
-"w": 780,
-"h": 1688,
-"sizes": [
-780
-]
-},
-"managem/ds-m-invoices": {
-"w": 780,
-"h": 1688,
-"sizes": [
-780
-]
-},
-"managem/ds-to-stepper": {
-"w": 1600,
-"h": 72,
-"sizes": [
-1600
-]
-},
-"managem/ds-to-btn-disabled": {
-"w": 324,
-"h": 74,
-"sizes": [
-324
-]
-},
-"managem/ds-to-btn-enabled": {
-"w": 324,
-"h": 74,
-"sizes": [
-324
-]
-},
-"managem/ds-to-dropzone-empty": {
-"w": 1164,
-"h": 446,
-"sizes": [
-1164
-]
-},
-"managem/ds-to-dropzone-files": {
-"w": 1164,
-"h": 646,
-"sizes": [
-1164
-]
-},
-"managem/ds-land-hero": {
-"w": 1440,
-"h": 1560,
-"sizes": [
-1440
-]
-},
-"managem/ds-land-tour": {
-"w": 1440,
-"h": 1224,
-"sizes": [
-1440
-]
-},
-"managem/ds-land-start": {
-"w": 1440,
-"h": 1205,
-"sizes": [
-1440
-]
-},
-"managem/ds-land-pricing": {
-"w": 1440,
-"h": 1260,
-"sizes": [
-1440
-]
-},
-"managem/to-02-consent-empty": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/to-04-upload-empty": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"managem/ds-x-p-actions": {
-"w": 480,
-"h": 116,
-"sizes": [
-480
-]
-},
-"managem/ds-x-t-actions": {
-"w": 558,
-"h": 96,
-"sizes": [
-558
-]
-},
-"managem/ds-x-l-actions": {
-"w": 970,
-"h": 188,
-"sizes": [
-970
-]
-},
-"managem/ds-x-p-form": {
-"w": 1150,
-"h": 600,
-"sizes": [
-1150
-]
-},
-"managem/ds-x-t-form": {
-"w": 1280,
-"h": 600,
-"sizes": [
-1280
-]
-},
-"managem/ds-x-l-form": {
-"w": 1178,
-"h": 840,
-"sizes": [
-1178
-]
-},
-"managem/ds-x-p-status": {
-"w": 972,
-"h": 652,
-"sizes": [
-972
-]
-},
-"managem/ds-x-t-valid": {
-"w": 1388,
-"h": 580,
-"sizes": [
-1388
-]
-},
-"managem/ds-x-l-status": {
-"w": 792,
-"h": 428,
-"sizes": [
-792
-]
-},
-"managem/ds-x-p-cards": {
-"w": 1184,
-"h": 286,
-"sizes": [
-1184
-]
-},
-"managem/ds-x-l-cards": {
-"w": 680,
-"h": 1004,
-"sizes": [
-680
-]
-},
-"gemis/gm-home": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"gemis/gm-solutions": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"gemis/gm-managem": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"gemis/gm-insights": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"gemis/gm-story": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"gemis/gm-home-mobile": {
-"w": 600,
-"h": 1298,
-"sizes": [
-600
-]
-},
-"gemis/early-preloader": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"gemis/early-motion": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"gemis/sec-solutions": {
-"w": 2880,
-"h": 1988,
-"sizes": [
-1600,
-960
-]
-},
-"gemis/sec-process": {
-"w": 2880,
-"h": 1214,
-"sizes": [
-1600,
-960
-]
-},
-"gemis/form-errors": {
-"w": 1498,
-"h": 2702,
-"sizes": [
-900
-]
-},
-"gemis/form": {
-"w": 1498,
-"h": 1914,
-"sizes": [
-900
-]
-},
-"gemis/mob-menu": {
-"w": 1170,
-"h": 1992,
-"sizes": [
-600
-]
-},
-"gemis/mob-contact": {
-"w": 1170,
-"h": 1992,
-"sizes": [
-600
-]
-},
-"gemis/mob-solutions": {
-"w": 1170,
-"h": 1992,
-"sizes": [
-600
-]
-},
-"gemis/share-card": {
-"w": 1200,
-"h": 630,
-"sizes": [
-1200
-]
-},
-"gemis/signature": {
-"w": 1120,
-"h": 428,
-"sizes": [
-1120
-]
-},
-"gemis/live-home": {
-"w": 2880,
-"h": 1440,
-"sizes": [
-1600,
-960
-]
-},
-"gemis/live-solutions": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"gemis/live-work": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"gemis/live-story": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"gemis/live-contact": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"gemis/live-products": {
-"w": 2880,
-"h": 1800,
-"sizes": [
-1600,
-960
-]
-},
-"gemis/live-sec-solutions": {
-"w": 2880,
-"h": 1988,
-"sizes": [
-1600,
-960
-]
-},
-"gemis/live-sec-process": {
-"w": 2880,
-"h": 1214,
-"sizes": [
-1600,
-960
-]
-},
-"gemis/live-form-errors": {
-"w": 1498,
-"h": 2702,
-"sizes": [
-900
-]
-},
-"gemis/live-m-home": {
-"w": 1170,
-"h": 1992,
-"sizes": [
-600
-]
-},
-"gemis/live-m-menu": {
-"w": 1170,
-"h": 1992,
-"sizes": [
-600
-]
-},
-"gemis/live-m-solutions": {
-"w": 1170,
-"h": 1992,
-"sizes": [
-600
-]
-},
-"gemis/live-m-contact": {
-"w": 1170,
-"h": 1992,
-"sizes": [
-600
-]
-}
+  "wastemart/01-login": {
+    "w": 780,
+    "h": 1688,
+    "sizes": [
+      600
+    ]
+  },
+  "wastemart/04-startday-ready": {
+    "w": 780,
+    "h": 1688,
+    "sizes": [
+      600
+    ]
+  },
+  "wastemart/06-jobs": {
+    "w": 780,
+    "h": 1688,
+    "sizes": [
+      600
+    ]
+  },
+  "wastemart/07-job-detail": {
+    "w": 780,
+    "h": 1688,
+    "sizes": [
+      600
+    ]
+  },
+  "wastemart/08-checkin-confirm": {
+    "w": 780,
+    "h": 1688,
+    "sizes": [
+      600
+    ]
+  },
+  "wastemart/09-capture-top": {
+    "w": 780,
+    "h": 1688,
+    "sizes": [
+      600
+    ]
+  },
+  "wastemart/10-bin-mismatch": {
+    "w": 780,
+    "h": 1688,
+    "sizes": [
+      600
+    ]
+  },
+  "wastemart/11-scan": {
+    "w": 780,
+    "h": 1688,
+    "sizes": [
+      600
+    ]
+  },
+  "wastemart/12-signoff": {
+    "w": 780,
+    "h": 1688,
+    "sizes": [
+      600
+    ]
+  },
+  "wastemart/14-manifest-saved": {
+    "w": 780,
+    "h": 1688,
+    "sizes": [
+      600
+    ]
+  },
+  "wastemart/17-activity": {
+    "w": 780,
+    "h": 1688,
+    "sizes": [
+      600
+    ]
+  },
+  "about/portrait-spha": {
+    "w": 1200,
+    "h": 1243,
+    "sizes": [
+      900
+    ]
+  },
+  "wastemart/16-jobs-progress": {
+    "w": 780,
+    "h": 1688,
+    "sizes": [
+      600
+    ]
+  },
+  "wastemart/18-shift": {
+    "w": 780,
+    "h": 1688,
+    "sizes": [
+      600
+    ]
+  },
+  "wastemart/19-endday-review": {
+    "w": 780,
+    "h": 1688,
+    "sizes": [
+      600
+    ]
+  },
+  "mockups/managem": {
+    "w": 2000,
+    "h": 1500,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "mockups/wastemart": {
+    "w": 2200,
+    "h": 1650,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "mockups/finos": {
+    "w": 2375,
+    "h": 1781,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "mockups/gemis-studio": {
+    "w": 1620,
+    "h": 1215,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/mg-customers": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/mg-dashboard": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/mg-debtors": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/mg-detail-attention": {
+    "w": 2400,
+    "h": 580,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/mg-detail-pipeline": {
+    "w": 2400,
+    "h": 600,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/mg-detail-review": {
+    "w": 2400,
+    "h": 1180,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/mg-detail-sage": {
+    "w": 2400,
+    "h": 840,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/mg-enquiry-review": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/mg-factory": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/mg-invoices": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/mg-login": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/mg-new-enquiry": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/mg-open-enquiries": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/mg-products": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/mg-projects": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/mg-reports": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/mg-sage-invoices": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/mg-sidebar": {
+    "w": 480,
+    "h": 2480,
+    "sizes": [
+      480
+    ]
+  },
+  "managem/mg-staff": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/mg-stock-alerts": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/mg-stock": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/mg-warranties": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/to-01-welcome": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/to-02-consent": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/to-02-trust": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/to-03-profile": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/to-04-upload": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/to-05-extraction": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/to-06-validation": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/to-07-customers": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/to-07-duplicate": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/to-07-lowconf": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/to-07-record": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/to-08-products": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/to-09-staff": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/to-10-confirm": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/to-10-declaration": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/to-11-complete": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/to-12-admin": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/legacy-customers": {
+    "w": 1892,
+    "h": 899,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/legacy-dashboard": {
+    "w": 1900,
+    "h": 886,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/legacy-invoices": {
+    "w": 1896,
+    "h": 896,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/legacy-products": {
+    "w": 1898,
+    "h": 902,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/legacy-projects": {
+    "w": 1890,
+    "h": 900,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/legacy-purchase-orders": {
+    "w": 1896,
+    "h": 892,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/legacy-receipts": {
+    "w": 1902,
+    "h": 897,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/legacy-suppliers": {
+    "w": 1897,
+    "h": 904,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/legacy-warranties": {
+    "w": 1916,
+    "h": 899,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/legacy-nav": {
+    "w": 430,
+    "h": 1608,
+    "sizes": [
+      430
+    ]
+  },
+  "managem/pat-summary": {
+    "w": 1600,
+    "h": 140,
+    "sizes": [
+      1600
+    ]
+  },
+  "managem/pat-filters": {
+    "w": 1600,
+    "h": 80,
+    "sizes": [
+      1600
+    ]
+  },
+  "managem/pat-table": {
+    "w": 1600,
+    "h": 294,
+    "sizes": [
+      1600
+    ]
+  },
+  "managem/pat-stepper": {
+    "w": 1600,
+    "h": 112,
+    "sizes": [
+      1600
+    ]
+  },
+  "managem/pat-form": {
+    "w": 1600,
+    "h": 481,
+    "sizes": [
+      1600
+    ]
+  },
+  "managem/nav-original-sales": {
+    "w": 436,
+    "h": 1598,
+    "sizes": [
+      436
+    ]
+  },
+  "managem/nav-original-products": {
+    "w": 436,
+    "h": 1760,
+    "sizes": [
+      436
+    ]
+  },
+  "managem/nav-original-projects": {
+    "w": 430,
+    "h": 1816,
+    "sizes": [
+      430
+    ]
+  },
+  "managem/ds-sidebar-expanded": {
+    "w": 480,
+    "h": 1800,
+    "sizes": [
+      480
+    ]
+  },
+  "managem/ds-sidebar-collapsed": {
+    "w": 128,
+    "h": 1800,
+    "sizes": [
+      128
+    ]
+  },
+  "managem/ds-user": {
+    "w": 480,
+    "h": 108,
+    "sizes": [
+      480
+    ]
+  },
+  "managem/ds-topbar": {
+    "w": 1600,
+    "h": 75,
+    "sizes": [
+      1600
+    ]
+  },
+  "managem/ds-search-focus": {
+    "w": 762,
+    "h": 70,
+    "sizes": [
+      762
+    ]
+  },
+  "managem/ds-kpi-grid": {
+    "w": 1600,
+    "h": 165,
+    "sizes": [
+      1600
+    ]
+  },
+  "managem/ds-kpi-hover": {
+    "w": 552,
+    "h": 238,
+    "sizes": [
+      552
+    ]
+  },
+  "managem/ds-quick-actions": {
+    "w": 1600,
+    "h": 165,
+    "sizes": [
+      1600
+    ]
+  },
+  "managem/ds-nav-hover": {
+    "w": 440,
+    "h": 646,
+    "sizes": [
+      440
+    ]
+  },
+  "managem/ds-pipeline": {
+    "w": 1600,
+    "h": 108,
+    "sizes": [
+      1600
+    ]
+  },
+  "managem/ds-toolbar": {
+    "w": 1600,
+    "h": 78,
+    "sizes": [
+      1600
+    ]
+  },
+  "managem/ds-table-invoices": {
+    "w": 1600,
+    "h": 697,
+    "sizes": [
+      1600
+    ]
+  },
+  "managem/ds-pager": {
+    "w": 1600,
+    "h": 75,
+    "sizes": [
+      1600
+    ]
+  },
+  "managem/ds-bulk-bar": {
+    "w": 916,
+    "h": 90,
+    "sizes": [
+      916
+    ]
+  },
+  "managem/ds-table-selected": {
+    "w": 1600,
+    "h": 818,
+    "sizes": [
+      1600
+    ]
+  },
+  "managem/ds-tabs-enquiries": {
+    "w": 1600,
+    "h": 53,
+    "sizes": [
+      1600
+    ]
+  },
+  "managem/ds-tabs-factory": {
+    "w": 1600,
+    "h": 53,
+    "sizes": [
+      1600
+    ]
+  },
+  "managem/ds-funnel": {
+    "w": 1600,
+    "h": 161,
+    "sizes": [
+      1600
+    ]
+  },
+  "managem/ds-subtabs-stock": {
+    "w": 1600,
+    "h": 64,
+    "sizes": [
+      1600
+    ]
+  },
+  "managem/ds-empty": {
+    "w": 1600,
+    "h": 406,
+    "sizes": [
+      1600
+    ]
+  },
+  "managem/ds-row-hover": {
+    "w": 1600,
+    "h": 82,
+    "sizes": [
+      1600
+    ]
+  },
+  "managem/ds-drawer": {
+    "w": 960,
+    "h": 837,
+    "sizes": [
+      960
+    ]
+  },
+  "managem/ds-form-focus": {
+    "w": 1600,
+    "h": 626,
+    "sizes": [
+      1600
+    ]
+  },
+  "managem/ds-card-sales": {
+    "w": 1476,
+    "h": 692,
+    "sizes": [
+      1476
+    ]
+  },
+  "managem/ds-kpi-sage": {
+    "w": 1600,
+    "h": 136,
+    "sizes": [
+      1600
+    ]
+  },
+  "managem/ds-m-dashboard": {
+    "w": 780,
+    "h": 1688,
+    "sizes": [
+      780
+    ]
+  },
+  "managem/ds-m-menu": {
+    "w": 780,
+    "h": 1688,
+    "sizes": [
+      780
+    ]
+  },
+  "managem/ds-m-invoices": {
+    "w": 780,
+    "h": 1688,
+    "sizes": [
+      780
+    ]
+  },
+  "managem/ds-to-stepper": {
+    "w": 1600,
+    "h": 72,
+    "sizes": [
+      1600
+    ]
+  },
+  "managem/ds-to-btn-disabled": {
+    "w": 324,
+    "h": 74,
+    "sizes": [
+      324
+    ]
+  },
+  "managem/ds-to-btn-enabled": {
+    "w": 324,
+    "h": 74,
+    "sizes": [
+      324
+    ]
+  },
+  "managem/ds-to-dropzone-empty": {
+    "w": 1164,
+    "h": 446,
+    "sizes": [
+      1164
+    ]
+  },
+  "managem/ds-to-dropzone-files": {
+    "w": 1164,
+    "h": 646,
+    "sizes": [
+      1164
+    ]
+  },
+  "managem/ds-land-hero": {
+    "w": 1440,
+    "h": 1560,
+    "sizes": [
+      1440
+    ]
+  },
+  "managem/ds-land-tour": {
+    "w": 1440,
+    "h": 1224,
+    "sizes": [
+      1440
+    ]
+  },
+  "managem/ds-land-start": {
+    "w": 1440,
+    "h": 1205,
+    "sizes": [
+      1440
+    ]
+  },
+  "managem/ds-land-pricing": {
+    "w": 1440,
+    "h": 1260,
+    "sizes": [
+      1440
+    ]
+  },
+  "managem/to-02-consent-empty": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/to-04-upload-empty": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "managem/ds-x-p-actions": {
+    "w": 480,
+    "h": 116,
+    "sizes": [
+      480
+    ]
+  },
+  "managem/ds-x-t-actions": {
+    "w": 558,
+    "h": 96,
+    "sizes": [
+      558
+    ]
+  },
+  "managem/ds-x-l-actions": {
+    "w": 970,
+    "h": 188,
+    "sizes": [
+      970
+    ]
+  },
+  "managem/ds-x-p-form": {
+    "w": 1150,
+    "h": 600,
+    "sizes": [
+      1150
+    ]
+  },
+  "managem/ds-x-t-form": {
+    "w": 1280,
+    "h": 600,
+    "sizes": [
+      1280
+    ]
+  },
+  "managem/ds-x-l-form": {
+    "w": 1178,
+    "h": 840,
+    "sizes": [
+      1178
+    ]
+  },
+  "managem/ds-x-p-status": {
+    "w": 972,
+    "h": 652,
+    "sizes": [
+      972
+    ]
+  },
+  "managem/ds-x-t-valid": {
+    "w": 1388,
+    "h": 580,
+    "sizes": [
+      1388
+    ]
+  },
+  "managem/ds-x-l-status": {
+    "w": 792,
+    "h": 428,
+    "sizes": [
+      792
+    ]
+  },
+  "managem/ds-x-p-cards": {
+    "w": 1184,
+    "h": 286,
+    "sizes": [
+      1184
+    ]
+  },
+  "managem/ds-x-l-cards": {
+    "w": 680,
+    "h": 1004,
+    "sizes": [
+      680
+    ]
+  },
+  "gemis/gm-home": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "gemis/gm-solutions": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "gemis/gm-managem": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "gemis/gm-insights": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "gemis/gm-story": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "gemis/gm-home-mobile": {
+    "w": 600,
+    "h": 1298,
+    "sizes": [
+      600
+    ]
+  },
+  "gemis/early-preloader": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "gemis/early-motion": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "gemis/sec-solutions": {
+    "w": 2880,
+    "h": 1988,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "gemis/sec-process": {
+    "w": 2880,
+    "h": 1214,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "gemis/form-errors": {
+    "w": 1498,
+    "h": 2702,
+    "sizes": [
+      900
+    ]
+  },
+  "gemis/form": {
+    "w": 1498,
+    "h": 1914,
+    "sizes": [
+      900
+    ]
+  },
+  "gemis/mob-menu": {
+    "w": 1170,
+    "h": 1992,
+    "sizes": [
+      600
+    ]
+  },
+  "gemis/mob-contact": {
+    "w": 1170,
+    "h": 1992,
+    "sizes": [
+      600
+    ]
+  },
+  "gemis/mob-solutions": {
+    "w": 1170,
+    "h": 1992,
+    "sizes": [
+      600
+    ]
+  },
+  "gemis/share-card": {
+    "w": 1200,
+    "h": 630,
+    "sizes": [
+      1200
+    ]
+  },
+  "gemis/signature": {
+    "w": 1120,
+    "h": 428,
+    "sizes": [
+      1120
+    ]
+  },
+  "gemis/live-home": {
+    "w": 2880,
+    "h": 1440,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "gemis/live-solutions": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "gemis/live-work": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "gemis/live-story": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "gemis/live-contact": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "gemis/live-products": {
+    "w": 2880,
+    "h": 1800,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "gemis/live-sec-solutions": {
+    "w": 2880,
+    "h": 1988,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "gemis/live-sec-process": {
+    "w": 2880,
+    "h": 1214,
+    "sizes": [
+      1600,
+      960
+    ]
+  },
+  "gemis/live-form-errors": {
+    "w": 1498,
+    "h": 2702,
+    "sizes": [
+      900
+    ]
+  },
+  "gemis/live-m-home": {
+    "w": 1170,
+    "h": 1992,
+    "sizes": [
+      600
+    ]
+  },
+  "gemis/live-m-menu": {
+    "w": 1170,
+    "h": 1992,
+    "sizes": [
+      600
+    ]
+  },
+  "gemis/live-m-solutions": {
+    "w": 1170,
+    "h": 1992,
+    "sizes": [
+      600
+    ]
+  },
+  "gemis/live-m-contact": {
+    "w": 1170,
+    "h": 1992,
+    "sizes": [
+      600
+    ]
+  },
+  "about/sphamandla-xaba": {
+    "w": 832,
+    "h": 1047,
+    "sizes": [
+      832
+    ]
+  }
 }
